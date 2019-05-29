@@ -1,0 +1,13 @@
+{% for variation in variations %}
+  {% if variation[0]|string() == currentvariation[0]|string() %}
+    <span class="sidebar-curr-variation">{{ variation[1] }}</span>
+  {% else %}
+    <a class="sidebar-variation-link" href="{{ pathto(variation[0] ~ '/' ~ pagename ~ file_suffix, 1) }}">{{ variation[1] }}</a>
+  {% endif %}
+
+  {% if not loop.last %}
+    <span class="sidebar-sep">|</span>
+  {% endif %}
+{% endfor %}
+
+{%- extends "sphinx_rtd_theme/searchbox.html" %}

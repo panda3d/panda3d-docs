@@ -1,0 +1,34 @@
+/* override table width restrictions */
+@media screen and (min-width: 767px) {
+
+   .wy-table-responsive table td {
+      /* !important prevents the common CSS stylesheets from overriding
+         this as on RTD they are loaded after this stylesheet */
+      white-space: normal !important;
+   }
+
+   .wy-table-responsive {
+      overflow: visible !important;
+   }
+}
+
+/* style the version selection links */
+.sidebar-curr-variation {
+    margin: 4px 6px;
+}
+
+.sidebar-variation-link {
+    /*border-bottom: 1px solid white;*/
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/* make search box border match the background */
+.wy-side-nav-search input[type=text] {
+    border-color: #624bcc;
+}
+
+/* make sidebar link click state match the background color */
+.wy-menu-vertical a:active {
+    background-color: #735cdd;
+}
