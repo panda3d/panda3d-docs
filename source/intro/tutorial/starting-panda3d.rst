@@ -88,7 +88,7 @@ Starting Panda3D
     
     .. code-block:: bash
     
-        ppython filename.py
+        python filename.py
     
     
     
