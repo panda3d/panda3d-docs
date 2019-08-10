@@ -68,14 +68,14 @@ Starting Panda3D
     Running the Program
     -------------------
     
-    To run your program on Windows or Mac, enter the following in a terminal
-    (command prompt):
+    On Windows, Python is already included with Panda3D. To run your program, enter
+    the following in a terminal (command prompt):
     
     .. code-block:: bash
     
         ppython filename.py
     
-    To run it on GNU/Linux, enter the following in a terminal:
+    To run it on GNU/Linux or macOS, enter the following in a terminal:
     
     .. code-block:: bash
     
