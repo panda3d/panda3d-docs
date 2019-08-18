@@ -184,6 +184,7 @@ pathnames will be stored as relative paths, relative to the location of the
 egg file. For example, let's say that the files are laid out like this:
 
 ::
+
     c:\My Models\Maya Files\Character.mb
     c:\My Models\Egg Files\Character.egg
     c:\My Models\Textures\Character.png
@@ -192,6 +193,7 @@ egg file. For example, let's say that the files are laid out like this:
 In that case, the command to export the model is:
 
 ::
+
     c:\
     cd c:\My Models\
     maya2egg -o "Egg Files/Character.egg" "Maya Files/Character.mb"
@@ -213,6 +215,7 @@ Models which are rigged (they have bones to help them animate), skinned
 the following options:
 
 ::
+
     maya2egg -a model -o eggFileName.egg mayaFileName.mb 
     maya2egg -a chan -o eggFileName.egg mayaFileName.mb 
     maya2egg -a pose -o eggFileName.egg mayaFileName.mb 

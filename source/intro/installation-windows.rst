@@ -37,6 +37,7 @@ messages.
 
 **What to do if you see the Error Message:**
 ::
+
     display(error): The application requested hardware acceleration, but your OpenGL
     display(error): driver, GDI Generic, only supports software rendering.
     display(error): You need to install a hardware-accelerated OpenGL driver, or,

@@ -58,6 +58,7 @@ CG Input                                               Description
 ``uniform float4 anything``                            A constant vector that was stored using ``setShaderInput``. Parameter anything would match data supplied by the call ``setShaderInput("anything", Vec4(x,y,z,w))``
 ::
 
+
     uniform sampler2D anything
     uniform sampler3D anything
     uniform sampler2DArray anything
@@ -101,6 +102,7 @@ As of Panda3D 1.8.0, the capabilities for passing numeric shader inputs have
 been greatly enhanced. The available input types are as follows:
 
 ::
+
 
     - Vec4
     - Vec3

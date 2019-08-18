@@ -20,6 +20,7 @@ samples directory, select a sample program, change directory to that sample,
 and run the sample using Python:
 
 ::
+
     $ cd /usr/share/panda3d/samples
     $ ls
     Asteroids
@@ -84,6 +85,7 @@ you will have to edit the build scripts.
 If you see this error:
 
 ::
+
     display(error): The application requested hardware acceleration, but your OpenGL
     display(error): driver, GDI Generic, only supports software rendering.
     display(error): You need to install a hardware-accelerated OpenGL driver, or,

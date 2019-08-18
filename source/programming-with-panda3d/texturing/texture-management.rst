@@ -31,6 +31,7 @@ dimension (for an overall reduction to 1/4 of the total memory requirement).
 If there are certain textures that should not be scaled, for instance GUI
 textures, you can exclude them with lines like:
 ::
+
     exclude-texture-scale digits_*.png
     exclude-texture-scale gui*.jpg
 

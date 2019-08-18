@@ -63,6 +63,7 @@ cannot be unrolled by the compiler:
 ``for (i = 0; i < k_iterations.x; ++i)`` Instead, you should use
 a constant that is known at compile-time:
 ::
+
     #define ITERATIONS 10
     for (i = 0; i < ITERATIONS; ++i)
 

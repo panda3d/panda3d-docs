@@ -18,6 +18,7 @@ Assuming that the purpose of a matrix is to transform an input-vector
 (Xi,Yi,Zi,Wi) into an output vector (Xo,Yo,Zo,Wo), the four equations are:
 
 ::
+
     Xo = A*Xi + B*Yi + C*Zi + D*Wi
     Yo = E*Xi + F*Yi + G*Zi + H*Wi
     Zo = J*Xi + K*Yi + L*Zi + M*Wi
@@ -27,6 +28,7 @@ Assuming that the purpose of a matrix is to transform an input-vector
 There are two different orders that you can store these coefficients in RAM:
 
 ::
+
     Storage Option 1: A,B,C,D,E,F,G,H,J,K,L,M,N,O,P,Q
     Storage Option 2: A,E,J,N,B,F,K,O,C,G,L,P,D,H,M,Q
 
@@ -147,6 +149,7 @@ find the four transform equations. I have simplified them somewhat (ie,
 removed some of the C++ quirks) in order to put them here:
 
 ::
+
     define VECTOR4_MATRIX4_PRODUCT(output, input, M)  \
     output._0 = input._0*M._00 + input._1*M._10 + input._2*M._20 + input._3*M._30;  \
     output._1 = input._0*M._01 + input._1*M._11 + input._2*M._21 + input._3*M._31;  \
@@ -158,6 +161,7 @@ Then, if you look in the corresponding header file for matrices, you will see
 the matrix class definition:
 
 ::
+
     struct {
       FLOATTYPE  _00, _01, _02, _03;
       FLOATTYPE  _10, _11, _12, _13;

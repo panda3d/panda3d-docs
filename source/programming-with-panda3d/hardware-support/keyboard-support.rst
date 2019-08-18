@@ -86,6 +86,7 @@ that send a time argument corresponding to the time that event was fired
 6. Keys that don't type a character are labeled as follows:
 
 ::
+
     "escape", "f"+"1-12" (e.g. "f1","f2",..."f12"), "print_screen" "scroll_lock"
     "backspace", "insert", "home", "page_up", "num_lock"
     "tab",  "delete", "end", "page_down"
