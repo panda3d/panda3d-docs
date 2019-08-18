@@ -37,7 +37,7 @@ Also, when you're typesetting these coefficients in a manual (or printing them
 on the screen), there are two possible ways to typeset them:
 
 +--------------------------------------+--------------------------------------+
-| .. code:: codeblock                  | .. code:: codeblock                  |
+| .. code:: text                       | .. code:: text                       |
 |                                      |                                      |
 |    A  B  C  D                        |    A  E  J  N                        |
 |    E  F  G  H                        |    B  F  K  O                        |
