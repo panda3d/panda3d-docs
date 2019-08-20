@@ -11,7 +11,6 @@ command-line tools handle compression of files in a format that Panda3D can
 read; pzip for compressing and punzip for decompressing. Usage:
 
 
-
 .. code-block:: bash
 
     pzip file [file2 file3 ...]
@@ -19,14 +18,10 @@ read; pzip for compressing and punzip for decompressing. Usage:
 
 Usage:
 
-``   
-
 .. code-block:: bash
 
     punzip file.pz [file2.pz file3.pz ...]
     punzip -o dest_file file.pz
-
-``
 
 What are the .pyc files that are created after I run the Python interpreter?
 ----------------------------------------------------------------------------
@@ -35,7 +30,7 @@ What are the .pyc files that are created after I run the Python interpreter?
 both compiled and "optimized". As an important speed-up of the start-up time
 for short programs that use a lot of standard modules, if a file called
 "spam.pyc" exists in the directory where "spam.py" is found, this is assumed
-to contain an already-``byte-compiled'' version of the module spam. The
+to contain an already-"byte-compiled" version of the module spam. The
 modification time of the version of "spam.py" used to create "spam.pyc" is
 recorded in "spam.pyc", and the file is ignored if these don't match.
 http://www.python.org/doc/1.5.1p1/tut/node43.html
@@ -48,26 +43,18 @@ compiling. Note that these optimizations currently do not significantly
 improve performance. The following illustrates how to do this (replace python
 with ppython on Windows):
 
-``   
-
 .. code-block:: bash
 
     python -O file.py
     python -OO file.py
 
-``
-
 Note: if you wish to run the Python interpreter without generating compiled
 bytecode files at all, then add '-B' to the command. The following illustrates
 how to do this (replace python with ppython on Windows):
 
-``   
-
 .. code-block:: bash
 
     python -B file.py
-
-``
 
 Why are my animations/intervals sometimes skipped when I run something heavy on the CPU before playing them?
 ------------------------------------------------------------------------------------------------------------
@@ -80,22 +67,22 @@ If you'll run this example code you might not see the position interval.
     from panda3d.core import *
     import direct.directbase.DirectStart
     from direct.interval.IntervalGlobal import *
-    
+
     env = loader.loadModel('environment')
     env.reparentTo(render)
     env.setZ(-4)
-    
+
     def func():
        # something heavy on the CPU
        for i in range(9999999):
           pass
        # run the interval after
        posival.start()
-    
+
     posival = LerpPosInterval(base.cam, 0.4, (0,base.cam.getY()-12,0), base.cam.getPos())
-    
+
     func()
-    
+
     run()
 
 But you will see the
@@ -154,24 +141,20 @@ The key is to use the -cn <character's name> flag in maya2egg for every file.
 This ensures that the files work together. Let's say you are making an
 animated dog. You have the following animations:
 
-| ``   dog-walk.mb``
-| ``   dog-sit.mb``
-| ``   dog-run.mb``
+.. code-block:: text
+
+    dog-walk.mb
+    dog-sit.mb
+    dog-run.mb
 
 To convert these into panda, you would call
-
-``   
 
 .. code-block:: bash
 
     maya2egg6 dog-walk.mb -a model -cn dog -o dog-model.egg
 
-``
-
 Note, we can grab the model from any of the animations, as long as they are
 all using the exact same rig:
-
-``   
 
 .. code-block:: bash
 
@@ -179,23 +162,17 @@ all using the exact same rig:
     maya2egg6 dog-sit.mb -a chan -cn dog -o dog-sit.egg
     maya2egg6 dog-run.mb -a chan -cn dog -o dog-run.egg
 
-``
-
 I'm using the ``lookAt()`` method on a NodePath to point it at another object. It works fine until I point upwards, and then it starts to spin my object around randomly
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ``lookAt()`` works as long as you
 aren't telling it to look in the direction of its up vector. The up vector can
 be specified as the second argument of
 ``lookAt()``.
 
-``   
-
 .. code-block:: python
 
     lookAt(object,Vec3(0,0,1))
-
-``
 
 I'm building a 3D game, and I have a huge world. When my world starts up, the program hangs for a few seconds the first time I look around. Is there any way to avoid this?
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -205,14 +182,10 @@ It can take a while to prepare objects to be rendered.
 Ideally, you don't want this to happen the first time you see an object. You
 can offload the wait time to the beginning by calling:
 
-``   
-
 .. code-block:: python
 
     # self.myWorld is a NodePath that contains a ton of objects
     self.myWorld.prepareScene(base.win.getGsg())
-
-``
 
 This will walk through the scene graph, starting at
 ``self.myWorld``, and prepare each
@@ -224,15 +197,11 @@ Is there a way to hide the mouse pointer so that it doesn't show up on my screen
 You can change to properties of the Panda3D window so that it doesn't show the
 cursor.
 
-``   
-
 .. code-block:: python
 
     props = WindowProperties()
     props.setCursorHidden(True)
     base.win.requestProperties(props)
-
-``
 
 If a model has an animation, then is that animation necessarily represented by an additional .egg file?
 -------------------------------------------------------------------------------------------------------
@@ -247,14 +216,10 @@ I have a model with an animation. When I try to play the animation I get a KeyEr
 
 The exact error is this:
 
-``   
-
 .. code-block:: bash
 
     KeyError: lodRoot
     display: Closing wglGraphicsWindow
-
-``
 
 This often happens when you are trying to load animations onto a model that
 wasn't exported to have animations. There are two pieces to objects that have
@@ -265,69 +230,49 @@ problems when you try to play animations. Look at the manual for more details
 about exporting models as eggs.
 
 I called ``setTexture('tex.png')`` and it didn't change or send an error. Why?
------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 
 To override an existing texture, you need to specify a priority. The
 ``setTexture()`` call includes an
 optional priority parameter, and if the priority is less than 1 the texture
 will not change.
 
-``   
-
 .. code-block:: python
 
     setTexture('tex.png', 1)
-
-``
 
 Why do I get sometimes get an AssertionError when instantiating Sequence?
 -------------------------------------------------------------------------
 
 Specifically, I get the following error:
 
-``   
-
 .. code-block:: bash
 
     assert(self.validateComponents(self.ivals))
     AssertionError
 
-``
-
 It happens at this line of code:
-
-``   
 
 .. code-block:: python
 
     move = Sequence(obj.setX(5))
 
-``
-
 Sequences and Parallels are a way to combine intervals. You can't put anything
 inside them that isn't an interval. The following would have the same effect
 and work:
 
-``   
-
 .. code-block:: python
 
     move = Sequence(Func(obj.setX, 5))
-
-``
 
 This will start the execution of the function, but not wait for it to finish.
 
 Does Panda3D use degrees or radians?
 ------------------------------------
 
-Degrees, but see also the
-``deg2Rad()`` and
-``rad2Deg()`` functions. But note
-that functions like ``math.sin()``,
-``math.cos()``,
-``math.tan()`` are calculated in
-radians. Don't forget to convert the values!
+Degrees, but see also the ``deg2Rad()`` and ``rad2Deg()`` functions. But note
+that functions like ``math.sin()``, ``math.cos()``, ``math.tan()`` are
+calculated in radians. Don't forget to convert the values!
 
 Why do all my flat objects look weird when lit?
 -----------------------------------------------
@@ -366,19 +311,13 @@ I'm trying to redirect the output of some commands like ``myNode.ls()`` to a fil
 There are several alternative approaches. One approach using StringStream is
 this:
 
-``   
-
 .. code-block:: python
 
     strm = StringStream()
     render.ls(strm)
     open('out.txt', 'w').write(strm.getData())
 
-``
-
 The following is another approach using StringStream:
-
-``   
 
 .. code-block:: python
 
@@ -386,11 +325,7 @@ The following is another approach using StringStream:
     cvMgr.write(strm)
     open('out.txt', 'w').write(strm.getData())
 
-``
-
 If you don't want to use a StringStream you can do this:
-
-``   
 
 .. code-block:: python
 
@@ -398,24 +333,16 @@ If you don't want to use a StringStream you can do this:
     strm.addFile(Filename('out.txt'))
     render.ls(strm)
 
-``
-
 There is also a way to specify the output file in the config file.
-
-``   
 
 .. code-block:: text
 
     notify-output out.txt
 
-``
-
 How do I create a node from a string containing a .egg source?
 --------------------------------------------------------------
 
 Use the EggData class.
-
-``   
 
 .. code-block:: python
 
@@ -423,14 +350,10 @@ Use the EggData class.
     egg.read(StringStream(eggText))
     model = NodePath(loadEggData(egg))
 
-``
-
 How can I know which letter is below the pointer when I click on a TextNode?
 ----------------------------------------------------------------------------
 
 Use the TextAssembler class.
-
-``   
 
 .. code-block:: python
 
@@ -445,4 +368,3 @@ Use the TextAssembler class.
                                ta.getXpos(ri, ci),
                                ta.getYpos(ri, ci)))
 
-``
