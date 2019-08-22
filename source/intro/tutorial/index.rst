@@ -10,7 +10,6 @@ the entire thing. The program that we are going to create will load up a small
 scene containing some grass and a panda. The panda will be animated to walk
 back and forth over the grass.
 
-
 .. toctree::
    :maxdepth: 2
 

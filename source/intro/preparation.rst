@@ -3,29 +3,21 @@
 General Preparation
 ===================
 
-\__NOTOC_\_ You can use multiple programming languages with Panda3D. The most
+You can use multiple programming languages with Panda3D. The most
 commonly used language is Python, followed by C++. Some manual pages offer
 both C++ and Python information - use the toggle button at the top of the
 manual page to toggle between C++ information and Python information.
-
-
 
 .. only:: python
 
     For example, if you want this page to contain information about learning C++
     instead of learning Python, just hit the "C++" link at the top of this page.
 
-
-
-
 .. only:: cpp
 
     For example, if you want this page to contain information about learning
     Python instead of learning C++, just hit the "Python" link at the top of this
     page.
-
-
-
 
 .. only:: python
 
@@ -85,25 +77,18 @@ manual page to toggle between C++ information and Python information.
     
     Links from the official Python website:
     
-    -  [http://www.python.org Official Website - http://www.python.org]
-    -  [http://docs.python.org/ Current Python Documentation ]
-    -  [http://www.python.org/doc Python Documentation]
+    -  `Official Website - http://www.python.org <http://www.python.org>`__
+    -  `Current Python Documentation <http://docs.python.org/>`__
+    -  `Python Documentation <http://www.python.org/doc>`__
     
     
     Here are some other good links for learning Python:
     
-    -  [http://www.swaroopch.com/notes/python/ Byte of Python]
-    -  [http://www.diveintopython.net Dive Into Python]
-    -  [http://wiki.python.org/moin/BeginnersGuide Beginner's Guide from Python's
-       wiki]
-    -  [http://www.effbot.org/zone/librarybook-index.htm The Standard Python
-       Library]
-    -  [http://www.voidspace.org.uk/python/articles/OOP.shtml Introduction to OOP
-       with Python]
-    
-
-
-
+    -  `Byte of Python <http://www.swaroopch.com/notes/python/>`__
+    -  `Dive Into Python <http://www.diveintopython.net>`__
+    -  `Beginner's Guide from Python's wiki <http://wiki.python.org/moin/BeginnersGuide>`__
+    -  `The Standard Python Library <http://www.effbot.org/zone/librarybook-index.htm>`__
+    -  `Introduction to OOP with Python <http://www.voidspace.org.uk/python/articles/OOP.shtml>`__
 
 .. only:: cpp
 

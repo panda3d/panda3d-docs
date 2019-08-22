@@ -6,7 +6,6 @@ Introduction to Panda3D
 Panda3D Basics
 --------------
 
-
 Panda3D is a 3D engine: a library of subroutines for 3D rendering and game
 development. The library is C++ with a set of Python bindings. Game
 development with Panda3D usually consists of writing a Python or C++ program
@@ -47,7 +46,6 @@ You can read more about Panda3D's :ref:`features`.
 Panda3D is not a Beginner's Tool or a Toy
 -----------------------------------------
 
-
 To successfully use Panda3D, you must be a skilled programmer. If you do not
 know what an "API" is, or if you don't know what a "tree" is, you will
 probably find Panda3D overwhelming. This is no point-and-click game-maker:
@@ -82,7 +80,6 @@ profiling tools you need to hit 60 fps.
 Panda3D's Software License
 --------------------------
 
-
 Since version 1.5.3, Panda3D has been released under the so-called "Modified
 BSD license," which is a free software license with very few restrictions on
 usage. In versions 1.5.2 and before, it used a proprietary license which was
@@ -104,7 +101,6 @@ You can read `Panda3D's License <https://www.panda3d.org/license.php>`__.
 Who is Working on Panda3D
 -------------------------
 
-
 There are a number of developers in the commercial and open-source community.
 Currently, besides the active contributions from the open-source community,
 the most active member of the development community is Disney. Disney's
@@ -119,11 +115,9 @@ documentation is mostly aimed at Python use.
 The Introductory Chapter
 ------------------------
 
-
 This introductory chapter of the manual is designed to walk you through some
 of the basics of using Panda3D. This chapter is structured as a tutorial, not
 as a reference work.
-
 
 .. toctree::
    :maxdepth: 2

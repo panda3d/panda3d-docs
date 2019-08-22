@@ -17,9 +17,6 @@ mouse.
     .. code-block:: cpp
     
         window->setup_trackball();
-    
-    
-
 
 The keys to navigate are:
 
@@ -48,8 +45,6 @@ Update your code as follows:
 
 
 .. only:: python
-
-    
     
     .. code-block:: python
     
@@ -84,14 +79,7 @@ Update your code as follows:
         app = MyApp()
         app.run()
     
-    
-
-
-
-
 .. only:: cpp
-
-    
     
     .. code-block:: cpp
     
@@ -151,31 +139,22 @@ Update your code as follows:
             framework.close_framework();
             return (0);
         }
-    
-    
 
-
-The procedure ``taskMgr.add()`` tells
-Panda3D's task manager to call the procedure
+The procedure ``taskMgr.add()`` tells Panda3D's task manager to call the procedure
 ``spinCameraTask()`` every frame. This is a
 procedure that we have written to control the camera. As long as the procedure
-``spinCameraTask()`` returns the constant
-``<cxx>Async</cxx>Task.<cxx>DS_</cxx>cont``, the task manager will
+``spinCameraTask()`` returns the constant ``AsyncTask.DS_cont``, the task manager will
 continue to call it every frame.
-
 
 
 .. only:: cpp
 
-    The object passed to ``taskMgr->add`` is
-    an ``AsyncTask`` object. We can use
+    The object passed to ``taskMgr->add`` is an ``AsyncTask`` object. We can use
     ``GenericAsyncTask`` to wrap a global
     function or static method around a task. We can also pass an additional
     ``void*`` parameter that we can
     cast into a pointer of any data type we like, which is passed as argument to
     the task function. A GenericAsyncTask function must look like the following:
-    
-    
     
     .. code-block:: cpp
     
@@ -187,23 +166,18 @@ continue to call it every frame.
           return AsyncTask::DS_cont;
         }
     
-    
-    
     For more advanced usage, you can subclass AsyncTask and override the
-    ``do_task`` method to make it do
-    what you want.
+    ``do_task`` method to make it do what you want.
 
 
-In our code, the procedure
-``spinCameraTask()`` calculates the desired
+In our code, the procedure ``spinCameraTask()`` calculates the desired
 position of the camera based on how much time has elapsed. The camera rotates
 6 degrees every second. The first two lines compute the desired orientation of
 the camera; first in degrees, and then in radians. The
 ``setPos()`` call actually sets the
 position of the camera. (Remember that Y is horizontal and Z is vertical, so
 the position is changed by animating X and Y while Z is left fixed at 3 units
-above ground level.) The
-``setHpr()`` call actually sets the
+above ground level.) The ``setHpr()`` call actually sets the
 orientation.
 
 Run the Program

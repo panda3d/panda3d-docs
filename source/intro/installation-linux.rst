@@ -6,7 +6,6 @@ Installing Panda3D in Linux
 The Installation Process - Linux
 --------------------------------
 
-
 The easiest way to install panda is to use the RPM or DEB packages. This is
 only possible if your version of Linux is one of the provided versions of
 Linux. If not, you will need to
@@ -19,7 +18,7 @@ installation is good. To do so, you need to change directory to the Panda
 samples directory, select a sample program, change directory to that sample,
 and run the sample using Python:
 
-::
+.. code-block:: bash
 
     $ cd /usr/share/panda3d/samples
     $ ls
@@ -84,7 +83,7 @@ you will have to edit the build scripts.
 
 If you see this error:
 
-::
+.. code-block:: text
 
     display(error): The application requested hardware acceleration, but your OpenGL
     display(error): driver, GDI Generic, only supports software rendering.
@@ -98,7 +97,10 @@ This error is fairly self-explanatory: it means your video drivers are
 inadequate. Obtain better drivers.
 
 **What to do if you see the Error Message:**
-``ImportError: No module named direct.directbase.DirectStart``
+
+.. code-block:: text
+
+    ImportError: No module named direct.directbase.DirectStart
 
 This error means it couldn't find the Python modules -- please make sure you
 are running the correct version of Python (probably Python 2.7, that depends
@@ -106,11 +108,13 @@ on the Panda3D version) and that the panda3d.pth is located inside the Python
 site-packages directory.
 
 **What to do if you see the Error Message:**
-``ImportError: /usr/lib/panda3d/libpandaexpress.so: undefined symbol: PyUnicodeUCS4_AsWideChar``
+
+.. code-block:: text
+
+    ImportError: /usr/lib/panda3d/libpandaexpress.so: undefined symbol: PyUnicodeUCS4_AsWideChar
 
 This could mean that your version of Python is compiled with the flag
-``Py_UNICODE_SIZE`` set to
-``2``. Please find a Python
+``Py_UNICODE_SIZE`` set to ``2``. Please find a Python
 version compiled with Py_UNICODE_SIZE set to 4 (which is usually the default).
 See `this forum
 topic <https://www.panda3d.org/forums/viewtopic.php?t=3904#20510>`__ for a
