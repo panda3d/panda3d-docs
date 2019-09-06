@@ -1,4 +1,4 @@
-# [Panda3D Engine Documentation](https://panda3d.readthedocs.io)
+# Panda3D Engine Documentation
 
 This repository contains a work-in-progress conversion from the old Mediawiki format to a new Sphinx-based site. This should make it much easier for people to contribute to the documentation, and will also allow us to have the manual and API reference in one place.
 
