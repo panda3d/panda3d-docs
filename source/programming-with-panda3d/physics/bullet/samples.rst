@@ -1,4 +1,4 @@
-.. _samples:
+.. _bullet_samples:
 
 Bullet Samples
 ==============

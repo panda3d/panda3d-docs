@@ -3,8 +3,6 @@
 Running your Program
 ====================
 
-\__NOTOC_\_ 
-
 .. only:: python
 
     Using Command Prompt to Run your Program
@@ -23,13 +21,9 @@ Running your Program
     the ``cd`` command. This
     stands for ‘change directory’. Type the following text behind the > symbol:
     
-    
-    
-    .. code-block:: bash
+    .. code-block:: bat
     
         cd C:\Panda3D-1.9.4\mystuff\
-    
-    
     
     Instead of version 1.9.4, you should type the version number of Panda that you
     have downloaded and installed. Please note that this folder name is
@@ -42,13 +36,9 @@ Running your Program
     This means that it’s now pointing to the right directory. To run your script
     and start Panda3D, type the following text behind the > symbol:
     
-    
-    
     .. code-block:: bash
     
         ppython myscript.py
-    
-    
     
     |pic108ge.jpg|
     
@@ -66,10 +56,6 @@ Running your Program
     .. |pic093tn.jpg| image:: pic093tn.jpg
     .. |pic108ge.jpg| image:: pic108ge.jpg
     .. |EmptyPandaWindow.jpg| image:: emptypandawindow.jpg
-    
-
-
-
 
 .. only:: cpp
 
@@ -118,7 +104,7 @@ Running your Program
     selector as well; select "x64" if you use the 64-bit Panda3D SDK, and "x86" if
     you use the 32-bit version.
     
-    http://rdb.name/msvc-2015-release-x64.png
+    |Release.png|
     
     Now, open up the project configuration pages. If you are using the Panda3D 1.9
     SDK, then you will have to change the "Platform Toolset" in the "General" tab
@@ -138,9 +124,16 @@ Running your Program
     the directory you installed Panda3D into, of course):
     
     Include Directories
-       ``C:\Panda3D-1.9.4\include;C:\Panda3D-1.9.4\python\include``
+
+    ::
+
+       C:\Panda3D-1.9.4\include;C:\Panda3D-1.9.4\python\include
+
     Library Directories
-       ``C:\Panda3D-1.9.4\lib;C:\Panda3D-1.9.4\python\libs``
+
+    ::
+
+       C:\Panda3D-1.9.4\lib;C:\Panda3D-1.9.4\python\libs
     
     Then, you need to add the appropriate Panda3D libraries to the list of
     "Additional Dependencies" your project should be linked with. The exact set to
@@ -148,6 +141,7 @@ Running your Program
     a reasonable default set:
     
     ::
+
         libp3framework.lib
         libpanda.lib
         libpandaexpress.lib
@@ -157,7 +151,7 @@ Running your Program
         libp3direct.lib
     
     
-    http://rdb.name/2018-06-13-173954_889x246_scrot.png
+    |AdditionalDeps.png|
     
     This should be enough to at least build the project. Press F7 to build your
     project and start the compilation process. You may see several C4267 warnings;
@@ -168,8 +162,10 @@ Running your Program
     project from Visual Studio. Go back to the project configuration, and under
     "Debugging", open the "Environment" option. Add the following setting, once
     again adjusting for your specific Panda3D installation directory:
-    
-    ``PATH=C:\Panda3D-1.9.4\bin;%PATH%``
+   
+    ::
+
+        PATH=C:\Panda3D-1.9.4\bin;%PATH%
     
     Now, assuming that the project built successfully, you can press F5 to run the
     program. Of course, not much will happen yet, because we don't have any
@@ -182,12 +178,13 @@ Running your Program
     
     On platforms other than Windows, we use the GNU compiler or a compatible
     alternative like Clang. Most Linux distributions ship with GCC out of the box;
-    some provide an easily installable package such as
-    ``build-essential`` on Ubuntu or the XCode
-    Command-Line Tools on Mac OS X.
+    some provide an easily installable package such as ``build-essential`` on
+    Ubuntu or the XCode Command-Line Tools on Mac OS X.
     
     The following pages describe how this is accomplished:
     
     -  :ref:`Linux version <how-to-compile-a-c++-panda3d-program-on-linux>`
     -  :ref:`macOS version <how-to-compile-a-c++-panda3d-program-on-macos>`
 
+    .. |Release.png| image:: http://rdb.name/msvc-2015-release-x64.png
+    .. |AdditionalDeps.png| image:: http://rdb.name/2018-06-13-173954_889x246_scrot.png

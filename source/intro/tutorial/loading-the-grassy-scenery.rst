@@ -8,19 +8,14 @@ Loading the Grassy Scenery
 
 Panda3D contains a data structure called the *Scene Graph*. The Scene Graph is
 a tree containing all objects that need to be rendered. At the root of the
-tree is an object named
-``render``.
-
+tree is an object named ``render``. **Nothing is rendered until it is first**
+inserted into the Scene Graph.
 
 .. only:: cpp
 
     You can get the NodePath of render by calling
     ``window->get_render()``.
 
-
-``Nothing is rendered until it is first``
-
-inserted into the Scene Graph.
 
 To install the grassy scenery model into the Scene Graph, we use the method
 ``reparentTo()``. This sets the parent
@@ -29,12 +24,11 @@ model visible in the scene.
 
 Finally, we adjust the position and scale of the model. In this particular
 case, the environment model is a little too large and somewhat offset for our
-purposes. The ``setScale()`` and
-``setPos()`` procedures rescale and
+purposes. The ``setScale()`` and ``setPos()`` procedures rescale and
 center the model.
 
 Panda3D uses the "geographical" coordinate system where position
-``(-8, 42, 0)`` means map coordinates
+(-8, 42, 0) means map coordinates
 (8, 42) and height 0. If you are used to OpenGL/Direct3D coordinates, then
 hold up your right hand in the classical position with thumb as X, fingers as
 Y, and palm as Z facing toward you; then tilt backward until your hand is
@@ -50,11 +44,7 @@ Update the Code
 With Panda3D running properly, it is now possible to load some grassy scenery.
 Update your code as follows:
 
-
-
 .. only:: python
-
-    
     
     .. code-block:: python
     
@@ -77,14 +67,7 @@ Update your code as follows:
         app = MyApp()
         app.run()
     
-    
-
-
-
-
 .. only:: cpp
-
-    
     
     .. code-block:: cpp
     
@@ -112,17 +95,12 @@ Update your code as follows:
             framework.close_framework();
             return 0;
         }
-    
-    
-
 
 The ShowBase procedure 
 
 .. only:: python
 
     ``loader.loadModel()``
-
-
 
 .. only:: cpp
 

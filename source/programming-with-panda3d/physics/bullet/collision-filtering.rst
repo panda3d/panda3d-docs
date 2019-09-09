@@ -67,6 +67,7 @@ refer to the manual page on :ref:`collision-bitmasks`.
 Given the above bit masks we would get the following results for collision:
 
 ::
+
     mask1 and mask2 = false
     mask1 vs. mask3 = true
     mask3 vs. mask4 = false

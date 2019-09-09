@@ -36,7 +36,9 @@ run it using the command prompt - this will enable you to see the error
 messages.
 
 **What to do if you see the Error Message:**
-::
+
+.. code-block:: text
+
     display(error): The application requested hardware acceleration, but your OpenGL
     display(error): driver, GDI Generic, only supports software rendering.
     display(error): You need to install a hardware-accelerated OpenGL driver, or,
@@ -44,12 +46,14 @@ messages.
     display(error): alter the hardware/software configuration in your Config.prc file.
     display(error): Window wouldn't open; abandoning window.
 
-
 This error is fairly self-explanatory: it means your video drivers are
 inadequate. Obtain better drivers.
 
 **What to do if you see the Error Message:**
-``python is not a recognized internal command``
+
+.. code-block:: text
+
+    python is not a recognized internal command
 
 This error message means that the command prompt was not able to locate
 python. Normally, during the panda installation process, the PATH environment

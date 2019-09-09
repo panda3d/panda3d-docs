@@ -73,6 +73,7 @@ webserver.
 If your webserver hosts:
 
 ::
+
     http://localhost/mydir/models/myfile.bam 
     http://localhost/mydir/maps/mytexture.png
 
@@ -80,6 +81,7 @@ If your webserver hosts:
 Put this in your config.prc:
 
 ::
+
     vfs-mount-url http://myserver/mydir /mydir 
     model-path /mydir
 
@@ -324,6 +326,7 @@ alternative different from the use of an .rgb file is the use of a .ttf
 instead. An example follows.
 
 ::
+
     # models is the original directory
     # models.mf it the new target multifile
     multify -c -f models.mf -v models
@@ -351,6 +354,7 @@ At the OS prompt, to create a password protected multifile and print out the
 contents do the following.
 
 ::
+
     # models is the original directory
     # models.mf it the new target multifile
     multify -c -f models.mf -ep "mypass" -v models

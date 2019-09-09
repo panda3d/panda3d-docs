@@ -90,6 +90,7 @@ perspective camera always contains four nonzero constants, and they're always
 in the same place:
 
 ::
+
     A	0	0	0
     0	0	B	1
     0	C	0	0
@@ -100,6 +101,7 @@ The result is that the panda projection matrix boils down to these simple
 equations:
 
 ::
+
     clipx = viewx * A
     clipy = viewz * C
     clipz = viewy * B + D
@@ -114,6 +116,7 @@ After panda calculates clip-space coordinates, it divides by W. Finally, it
 rescales the depth-value:
 
 ::
+
     screenx = clipx / clipw
     screeny = clipy / clipw
     screenz = clipz / clipw
@@ -127,6 +130,7 @@ So now we have some equations defining (clipx,clipy,clipz,clipw) in terms of
 shown all my algebraic steps:
 
 ::
+
     depth = screenz * 0.5 + 0.5
     depth = (clipz / clipw) * 0.5 + 0.5
     depth = ((viewy * B + D) / viewy) * 0.5 + 0.5
@@ -158,6 +162,7 @@ To save our vertex and pixel shaders a little work, we can precompute these
 constants:
 
 ::
+
     projx = 0.5D/A
     projy = 0.5D
     projz = 0.5D/C
@@ -167,6 +172,7 @@ constants:
 So, here are the equations in their final form:
 
 ::
+
     viewx = (screenx * projx) / (depth + projw)
     viewy = (1 * projy) / (depth + projw)
     viewz = (screeny * projz) / (depth + projw)

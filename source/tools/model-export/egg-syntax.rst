@@ -61,6 +61,7 @@ This describes a texture file that can be referenced later with <TRef> { name
 }.
 
 ::
+
     <Texture> name {
       filename
       [scalars]
@@ -93,6 +94,7 @@ This defines a set of material attributes that may later be referenced with
 <MRef> { name }.
 
 ::
+
     <Material> name {
       [scalars]
     }
@@ -130,6 +132,7 @@ must come from the same vertex pool. The body of a <VertexPool> entry is
 simply a list of one or more <Vertex> entries, as follows:
 
 ::
+
     <VertexPool> name {
       <Vertex> number1 {
       }
@@ -156,6 +159,7 @@ changing its position in world space. One exception is geometry under an
 the <Instance> node. (Another exception is a <DynamicVertexPool>; see below.)
 
 ::
+
     <Vertex> number {
         x y z [w]
         [attributes]
@@ -192,6 +196,7 @@ of attributes that applies to a group of polygons--the attributes list must be
 repeated for each polygon. This is why egg files tend to be very large.
 
 ::
+
     <Polygon> name { 
         [attributes] 
         <VertexRef> { 
@@ -226,6 +231,7 @@ the following entries can be given specifically within a <Group> node to
 specify attributes of the group.
 
 ::
+
     <Group> name {
       [attributes]
       [scalars]
@@ -462,6 +468,7 @@ Joint Nodes
 -----------
 
 ::
+
     <Joint> name {
       [transform]
       [ref-list]
@@ -517,6 +524,7 @@ any one of the following (<Scalar> entries are optional, and default as
 shown):
 
 ::
+
     <S$Anim> name { 
       <Scalar> fps { 24 }
       <V> { values }

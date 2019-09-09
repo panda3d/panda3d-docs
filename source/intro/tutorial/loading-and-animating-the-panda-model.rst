@@ -6,16 +6,11 @@ Loading and Animating the Panda Model
 :ref:`Actors <loading-actors-and-animations>`
 ---------------------------------------------
 
-
-
 .. only:: python
 
-    The ``Actor`` class is for
-    animated models. Note that we use
-    ``loadModel()`` for static models and
-    ``Actor`` only when they are
-    animated. The two constructor arguments for the
-    ``Actor`` class are the name of
+    The ``Actor`` class is for animated models. Note that we use
+    ``loadModel()`` for static models and ``Actor`` only when they are
+    animated. The two constructor arguments for the ``Actor`` class are the name of
     the file containing the model and a Python dictionary containing the names of
     the files containing the animations.
     
@@ -25,8 +20,7 @@ Loading and Animating the Panda Model
     Update the Code
     ~~~~~~~~~~~~~~~
     
-    Now that the scenery is in place, we will load an
-    ``Actor``. Update your code to
+    Now that the scenery is in place, we will load an ``Actor``. Update your code to
     look like this: 
     
     .. code-block:: python
@@ -71,11 +65,6 @@ Loading and Animating the Panda Model
         app = MyApp()
         app.run()
     
-    
-
-
-
-
 .. only:: cpp
 
     The ``Actor`` class which is
@@ -96,8 +85,6 @@ Loading and Animating the Panda Model
     render_2d) will not show even if the call:
     ``window->loop_animations(0);`` is made. For such
     animations to show, other steps must be applied (more on this later).
-    
-    
     
     .. code-block:: cpp
     
@@ -155,24 +142,15 @@ Loading and Animating the Panda Model
             framework.close_framework();
             return (0);
         }
-    
-    
-
-
-
 
 .. only:: python
 
-    The command ``loop("walk")`` causes the
-    walk animation to begin looping.
-
-
-
+    The command ``loop("walk")`` causes the walk animation to begin looping.
 
 .. only:: cpp
 
-    ``We are first loading the model file and the animation file like ordinary models. Then, we are simply calling loop_animations(0) to loop all animations.``
-
+    We are first loading the model file and the animation file like ordinary models.
+    Then, we are simply calling loop_animations(0) to loop all animations.
 
 Run the Program
 ~~~~~~~~~~~~~~~

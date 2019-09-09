@@ -47,6 +47,7 @@ The debugger's prompt is "(Pdb) ". There are many ways to enter the debugger.
 Typical usage to run a program under control of the debugger is:
 
 ::
+
     &gt;&gt;&gt; import pdb
     &gt;&gt;&gt; import <mymodule>
     &gt;&gt;&gt;  pdb.run('mymodule.test()')

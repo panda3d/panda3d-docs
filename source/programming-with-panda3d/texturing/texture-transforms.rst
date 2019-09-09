@@ -27,6 +27,7 @@ Note that the operation in each case is applied to the (u, v) texture
 coordinates, not to the texture; so it will have the opposite effect on the
 texture. For instance, the call
 ::
+
     nodePath.setTexScale(ts,
     2, 2)
 will effectively double

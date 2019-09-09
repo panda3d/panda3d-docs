@@ -73,6 +73,7 @@ The response is printed to the command window. It may look something like
 this:
 
 ::
+
     371 total nodes (including 43 instances). 
     21 transforms; 16% of nodes have some render attribute. 
     205 Geoms, with 94 GeomVertexDatas, appear on 133 GeomNodes. 

@@ -288,6 +288,7 @@ be excluded in the subpart. Inclusion / exclusion will descend attached
 joints. Exclude always overwrite include.
 
 ::
+
     actor.makeSubpart("legs", ["Left Thigh", "Right Thigh"])
     actor.makeSubpart("torso", ["Head"], ["Left Thigh", "Right Thigh"])
 
@@ -295,6 +296,7 @@ joints. Exclude always overwrite include.
 If you want to play an animation on a subpart make sure to pass the name.
 
 ::
+
     actor.loop("walk", partName="legs")
     actor.loop("reload", partName="torso")
 

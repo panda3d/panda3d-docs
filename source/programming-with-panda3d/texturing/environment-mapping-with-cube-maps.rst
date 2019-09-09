@@ -70,6 +70,7 @@ always showing the area behind the camera when the cube map was generated, as
 a sphere map must do. In order for this to work properly, you should ensure
 that your camera is unrotated (that is,
 ::
+
     setHpr(0, 0,
     0)
 ) when you generate the
