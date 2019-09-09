@@ -8,7 +8,7 @@ Loading the Grassy Scenery
 
 Panda3D contains a data structure called the *Scene Graph*. The Scene Graph is
 a tree containing all objects that need to be rendered. At the root of the
-tree is an object named ``render``. **Nothing is rendered until it is first**
+tree is an object named ``render``. Nothing is rendered until it is first
 inserted into the Scene Graph.
 
 .. only:: cpp
