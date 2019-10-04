@@ -16,3 +16,17 @@ Since this new format is still quite rough around the edges, Panda3D's main webs
 pip3 install -r requirements.txt
 python3 -m sphinx ./source ./build
 ```
+
+## Coding Style
+
+When editing the documentation, please try to conform to the following
+guidelines:
+
+* Running text should be wrapped to an 80-character ruler. Many editors have
+  a feature to do this automatically (eg. Alt+Q in Sublime Text).
+* Please configure your editor to strip extra spaces at the end of a line.
+* Use a single blank newline at the end of each file.
+* Indentation for ReStructuredText should be 3 spaces, except code blocks,
+  which need to be indented to 4 spaces for Python code and 2 for C++.
+* See the [Python guide](https://devguide.python.org/documenting/#style-guide)
+  for more information.
