@@ -3,7 +3,9 @@
 The runtime Panda3D directory
 =============================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 When the Panda3D runtime (including the web plugin) runs a p3d file, it must
 download key files into a particular directory on your hard disk. This

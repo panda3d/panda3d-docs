@@ -3,7 +3,9 @@
 Creating multiple packages
 ==========================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 A pdef file can contain multiple package and/or p3d file definitions. Each
 package named in a pdef file is created and placed in the output directory you

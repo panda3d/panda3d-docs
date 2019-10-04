@@ -3,7 +3,9 @@
 P3D origin security
 ===================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 script_origin
 -------------

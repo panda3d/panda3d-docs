@@ -3,7 +3,9 @@
 About certificates
 ==================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This section describes a deprecated feature as of Panda3D 1.10.0.
 
 When a p3d file is embedded in a web page, it can potentially start running as
 soon as a user visits the web page. This can be a big security problem for the

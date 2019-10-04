@@ -3,7 +3,9 @@
 Using packp3d
 =============
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 The easiest way to create a p3d file is to use the packp3d tool. This program
 is distributed with the development distribution of Panda3D. (It happens to be

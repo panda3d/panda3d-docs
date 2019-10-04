@@ -3,7 +3,9 @@
 Building and hosting your own packages
 ======================================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This section describes a deprecated feature as of Panda3D 1.10.0.
 
 Putting your entire application into a p3d file is a useful way to distribute
 small applications, but there are times when you need to distribute your code

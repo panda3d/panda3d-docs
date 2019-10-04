@@ -3,7 +3,9 @@
 Standard packages
 =================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 There are a number of packages hosted at the standard Panda3D host URL,
 http://runtime.panda3d.org : panda3d, fmod, openal, audio, egg, ode, wx, tk

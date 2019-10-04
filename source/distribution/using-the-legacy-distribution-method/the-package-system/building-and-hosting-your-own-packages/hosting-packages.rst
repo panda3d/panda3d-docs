@@ -3,7 +3,9 @@
 Hosting packages
 ================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 After you build one or more packages, you have to make them available for
 download. This means you must copy the entire contents of the output directory

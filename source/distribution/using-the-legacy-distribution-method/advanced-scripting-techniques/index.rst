@@ -3,7 +3,9 @@
 Advanced scripting techniques
 =============================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This section describes a deprecated feature as of Panda3D 1.10.0.
 
 The following pages describe some of the more advanced techniques when
 embedding your application in a web page, especially for using JavaScript to

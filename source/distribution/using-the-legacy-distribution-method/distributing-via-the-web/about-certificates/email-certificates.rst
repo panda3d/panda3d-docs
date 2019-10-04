@@ -3,7 +3,9 @@
 Email certificates
 ==================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 You can also use a personal email certificate to sign your p3d files. When you
 do this, and the user is shown your certificate, he/she will be told "This

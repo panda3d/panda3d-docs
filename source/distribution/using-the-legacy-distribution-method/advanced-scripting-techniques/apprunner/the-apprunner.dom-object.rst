@@ -3,7 +3,9 @@
 The appRunner.dom object
 ========================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 Another important member of base.appRunner is the "dom" object. This is the
 top of the JavaScript DOM ("Document Object Model") hierarchy, and corresponds

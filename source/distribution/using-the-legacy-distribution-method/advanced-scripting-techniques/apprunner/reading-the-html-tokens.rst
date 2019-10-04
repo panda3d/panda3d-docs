@@ -3,7 +3,9 @@
 Reading the HTML tokens
 =======================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 As described in :ref:`advanced-object-tags`, you can write Python code to
 respond to any arbitrary tokens given in the <object> element. The AppRunner

@@ -3,7 +3,9 @@
 More about referencing packages
 ===============================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 A p3d file may include a reference to one or more packages, which means that
 those package(s) will be downloaded and installed before the application even

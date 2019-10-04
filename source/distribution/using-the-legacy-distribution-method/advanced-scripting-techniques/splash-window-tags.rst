@@ -3,7 +3,9 @@
 Splash window tags
 ==================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 The following table lists the custom P3D tokens that you may specify within
 the <object> element, as described in :ref:`advanced-object-tags`. You can use

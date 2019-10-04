@@ -3,7 +3,9 @@
 Plugin notify callbacks
 =======================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 At key points during application launch, the plugin will make optional
 callbacks into JavaScript code, so your page can respond to what the

@@ -3,7 +3,9 @@
 Using ppackage
 ==============
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 The ppackage utility is Panda's utility for building packages. You can also
 use ppackage to build a p3d file; this gives you much more control over the

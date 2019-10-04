@@ -3,7 +3,9 @@
 Introduction to p3d files
 =========================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This section describes a deprecated feature as of Panda3D 1.10.0.
 
 The p3d file is the heart of Panda's packaging system. When you package your
 application for distribution, you will pack it into a p3d file. This file

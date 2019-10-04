@@ -3,7 +3,9 @@
 Embedding with an object element
 ================================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 There are two different syntaxes for embedding a p3d file in a web page.
 Internet Explorer requires one particular syntax, and every other browser in

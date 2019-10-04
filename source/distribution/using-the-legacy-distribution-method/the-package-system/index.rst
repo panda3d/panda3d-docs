@@ -3,7 +3,9 @@
 The package system
 ==================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 The Panda3D plugin uses a system of "packages" to manage additional content
 needed by p3d files.

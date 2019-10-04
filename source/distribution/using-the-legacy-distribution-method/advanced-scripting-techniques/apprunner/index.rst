@@ -3,7 +3,9 @@
 AppRunner
 =========
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 AppRunner is the Python class that supervises the launching of your
 application in a p3d file. There is a global instance of AppRunner available

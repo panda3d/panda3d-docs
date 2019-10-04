@@ -3,7 +3,9 @@
 P3D file config settings
 ========================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 You can set certain config settings in a p3d file on the packp3d command line.
 These control the way the p3d file may be used or embedded.

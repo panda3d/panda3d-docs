@@ -3,7 +3,9 @@
 Embedding with RunPanda3D
 =========================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 Using nested ``&lt;object&gt;`` elements
 is a straightforward way to embed your p3d file, but it does have two

@@ -3,7 +3,9 @@
 Signing your p3d files
 ======================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 Once you have a certificate, you can use it to sign any of your p3d files. Be
 sure the certificate is in pem format; use the openssl command to convert it

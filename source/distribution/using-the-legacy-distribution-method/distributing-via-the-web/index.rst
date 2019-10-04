@@ -3,7 +3,9 @@
 Distributing via the web
 ========================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This section describes a deprecated feature as of Panda3D 1.10.0.
 
 One of the big advantages of packaging your application into a p3d file is
 that it is possible to embed that p3d file into a web page, so that your

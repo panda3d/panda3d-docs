@@ -3,7 +3,9 @@
 SSL hosting
 ===========
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 As stated previously, the Panda3D plugin system first downloads the
 contents.xml from the root of your host URL, and uses this file to validate

@@ -3,7 +3,9 @@
 DetectPanda3D.js
 ================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 There is a JavaScript function distributed with Panda, in the
 direct/src/directscripts directory, that can be used to determine whether the

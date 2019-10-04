@@ -3,7 +3,9 @@
 Advanced object tags
 ====================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 When you embed a Panda3D application in a web page, either with the <object>
 tag or with P3D_RunContent, you specify certain key pieces of information such

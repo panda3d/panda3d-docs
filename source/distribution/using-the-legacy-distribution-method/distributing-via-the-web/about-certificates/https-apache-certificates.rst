@@ -3,7 +3,9 @@
 HTTPS (Apache) certificates
 ===========================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 If you already have an SSL-protected website with its own https address, then
 you can use that website's certificate to sign your p3d files. When the user

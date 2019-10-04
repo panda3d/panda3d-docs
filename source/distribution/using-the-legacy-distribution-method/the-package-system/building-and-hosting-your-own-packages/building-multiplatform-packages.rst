@@ -3,7 +3,9 @@
 Building multiplatform packages
 ===============================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 When your packages include some compiled C++ code, including dll's or exe's,
 you will need to produce a different version package for each operating

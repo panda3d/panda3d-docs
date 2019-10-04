@@ -3,7 +3,9 @@
 PackageInstaller
 ================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 The PackageInstaller class is used to download and install a Panda3D package,
 as built by the ppackage.p3d utility, at runtime. It is similar to

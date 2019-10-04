@@ -3,7 +3,9 @@
 Running p3d files
 =================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 Once you have built a p3d file, you may run it immediately with the panda3d
 program:

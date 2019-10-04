@@ -3,7 +3,9 @@
 The appRunner.main object
 =========================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 The most important member of base.appRunner is the "main" object. This object
 is the same object as plugin.main as seen from the JavaScript side (where

@@ -3,7 +3,9 @@
 Referencing packages
 ====================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 When the Panda3D plugin system runs your p3d file, it must first download the
 correct version of Panda3D, as well as any auxiliary packages your p3d file

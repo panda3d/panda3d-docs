@@ -3,7 +3,9 @@
 Distributing as a self-contained installer
 ==========================================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 It is possible to distribute your p3d file as a fully self-contained
 application. You can use your p3d file to generate a custom installer, and

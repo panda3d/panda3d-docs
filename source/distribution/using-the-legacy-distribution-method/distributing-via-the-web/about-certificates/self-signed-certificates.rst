@@ -3,7 +3,9 @@
 Self-signed certificates
 ========================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 The self-signed certificate is the simplest kind of certificate to acquire,
 since it doesn't require working with any certificate agencies. You can

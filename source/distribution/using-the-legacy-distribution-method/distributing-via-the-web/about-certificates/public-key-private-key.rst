@@ -3,7 +3,9 @@
 Public key, private key
 =======================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 A certificate has two components: the public key, which is copied into each
 p3d file you sign and is visible to everyone; and the private key, which you

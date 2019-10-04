@@ -3,7 +3,9 @@
 Installing packages
 ===================
 
-Note: This article describes a deprecated feature as of Panda3D 1.10.0.
+.. warning::
+
+   This article describes a deprecated feature as of Panda3D 1.10.0.
 
 A package file is a Panda3D multifile. When a package is installed onto a
 user's machine, it means the multifile is downloaded and placed in its own
