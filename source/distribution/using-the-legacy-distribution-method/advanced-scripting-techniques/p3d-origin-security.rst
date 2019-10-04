@@ -35,14 +35,14 @@ the p3d file. If you omit the protocol, then any protocol is allowed; if you
 omit the port, then the default port is assumed. You may define the host as
 either an explicit host, e.g. "www.mydomain.com", or with one or more "*"
 characters, which stands for any one component of a domain, e.g.
-"*.mydomain.com" matches "alpha.mydomain.com" and "beta.mydomain.com" but not
-"mydomain.com" or "www.alpha.mydomain.com". The special code "**" stands for
-any zero or more components, e.g. "**.mydomain.com" matches any of the above,
-including "mydomain.com" and "www.alpha.mydomain.com", but not
+"\*.mydomain.com" matches "alpha.mydomain.com" and "beta.mydomain.com" but not
+"mydomain.com" or "www.alpha.mydomain.com". The special code "\*\*" stands for
+any zero or more components, e.g. "\*\*.mydomain.com" matches any of the
+above, including "mydomain.com" and "www.alpha.mydomain.com", but not
 "yourdomain.com".
 
 If you really wish to remove restrictions for the script_origin, you can set
-it to "**", which means any host at all. We strongly recommend not doing this,
+it to "\*\*", which means any host at all. We strongly recommend not doing this,
 for obvious reasons.
 
 You can also set the script_origin to a semicolon-delimited set of origin
@@ -73,6 +73,6 @@ setting, to allow it to run on their own page. But they will have to re-sign
 it with their own certificate, since any modifications will invalidate your
 own signature.)
 
-The default run_origin is "**", which means there is no restriction. You can
+The default run_origin is "\\*\*", which means there is no restriction. You can
 set the run_origin with the -c parameter to packp3d, e.g.
 ``-c run_origin=www.mydomain.com``.

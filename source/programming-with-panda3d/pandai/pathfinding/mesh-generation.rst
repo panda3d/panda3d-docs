@@ -32,9 +32,9 @@ egg file that is thus generated should be passed to the Mesh Generation Tool.
 
 Blender Users (IMPORTANT)
 
-- Creation of the full and collision meshes is to be done on the x-y plane.
-This makes it much easier to just get in to Blender and create a mesh since
-the starting view is a top view of the x-y plane.
+-  Creation of the full and collision meshes is to be done on the x-y plane.
+   This makes it much easier to just get in to Blender and create a mesh since
+   the starting view is a top view of the x-y plane.
 
 -  NOTE : We advice to make meshes with a scale of 50 or above for best
    results. It would be wise to make your world based on this scale. Much

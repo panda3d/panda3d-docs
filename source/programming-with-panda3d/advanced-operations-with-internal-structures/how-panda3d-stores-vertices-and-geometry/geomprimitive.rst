@@ -20,20 +20,70 @@ different number of vertex numbers.
 For instance, a GeomTriangles object containing three triangles, and a
 GeomTristrips containing two triangle strips, might look like this:
 
-============= =============
-GeomTriangles  GeomTristrips
-0              0
-1              2
-2              3
-\              5
-2              6
-1              1
-3             
-\              5
-0              1
-5              3
-6              2
-============= =============
+.. raw:: html
+
+   <center><table style="border-collapse: collapse">
+   <tr>
+   <td style="text-align: center; padding-left: 5pt; padding-right: 5pt">GeomTriangles</td>
+   <td style="padding-right: 64pt"></td>
+   <td style="text-align: center; padding-left: 5pt; padding-right: 5pt">GeomTristrips</td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">0</td>
+   <td></td>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">0</td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">1</td>
+   <td></td>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">2</td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">2</td>
+   <td></td>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">3</td>
+   </tr>
+   <tr>
+   <td></td>
+   <td></td>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">5</td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">2</td>
+   <td></td>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">6</td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">1</td>
+   <td></td>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">1</td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">3</td>
+   <td></td>
+   <td></td>
+   </tr>
+   <tr>
+   <td></td>
+   <td></td>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">5</td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">0</td>
+   <td></td>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">1</td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">5</td>
+   <td></td>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">3</td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">6</td>
+   <td></td>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">2</td>
+   </tr>
+   </table></center>
 
 
 Note that the GeomPrimitive objects don't themselves contain any vertex data;
@@ -42,7 +92,6 @@ actual vertex data in a GeomVertexData object, stored elsewhere.
 
 GeomTriangles
 ~~~~~~~~~~~~~
-
 
 This is the most common kind of GeomPrimitive. This kind of primitive stores
 any number of connected or unconnected triangles. Each triangle must have
@@ -53,7 +102,6 @@ listed in counterclockwise order, as seen from the front of the triangle.
 
 GeomTristrips
 ~~~~~~~~~~~~~
-
 
 This kind of primitive stores lists of connected triangles, in a specific
 arrangement called a triangle strip. You can store any number of individual
@@ -97,7 +145,6 @@ it will leave the polygons as individual triangles.
 GeomTrifans
 ~~~~~~~~~~~
 
-
 This is similar to a GeomTristrips, in that the primitive can contain any
 number of triangle fans, each of which has an arbitrary number of vertices.
 Within each triangle fan, the first three vertices (in counterclockwise order)
@@ -116,7 +163,6 @@ GeomTriangles or GeomTristrips instead.
 
 GeomLines
 ~~~~~~~~~
-
 
 This kind of GeomPrimitive stores any number of connected or unconnected line
 segments. It is similar to a GeomTriangles, but it draws lines instead of
@@ -137,7 +183,6 @@ thickness parameter is ignored.
 GeomLinestrips
 ~~~~~~~~~~~~~~
 
-
 This is the analogue of a GeomTristrips object: the GeomLinestrips object can
 store any number of line strips, each of which can have any number of
 vertices, at least two. Within a particular line strip, the first two vertices
@@ -150,7 +195,6 @@ fairly easily.
 
 GeomPoints
 ~~~~~~~~~~
-
 
 This is the simplest kind of GeomPrimitive; it stores a number of individual
 points. Each point has exactly one vertex.
@@ -194,4 +238,3 @@ nodePath.setTexOffset(), setTexScale(), etc.
 .. |GeomLinestrips.png| image:: geomlinestrips.png
 .. |GeomPoints.png| image:: geompoints.png
 .. |GeomPointsThick.png| image:: geompointsthick.png
-

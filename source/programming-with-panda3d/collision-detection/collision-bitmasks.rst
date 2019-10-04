@@ -33,25 +33,17 @@ particular bits.
 You can only set the from collide mask on a collision node, and you must set
 it directly on the node itself, not on the NodePath:
 
-
-
 .. code-block:: python
 
     nodePath.node().setFromCollideMask(BitMask32(0x10))
-
-
 
 However, the into collide mask may be set on the NodePath, for convenience;
 this recursively modifies the into collide mask for all the nodes at the given
 NodePath level and below.
 
-
-
 .. code-block:: python
 
     nodePath.setCollideMask(newMask, bitsToChange, nodeType)
-
-
 
 The parameter newMask specifies the new mask to apply. The remaining
 parameters are optional; if they are omitted, then every node at nodePath
@@ -65,24 +57,16 @@ CollisionNodes.
 
 Examples:
 
-
-
 .. code-block:: python
 
     nodePath.setCollideMask(BitMask32(0x10))
 
-
-
 This sets the into collide mask of nodePath, and all children of nodePath, to
 the value 0x10, regardless of the value each node had before.
-
-
 
 .. code-block:: python
 
     nodePath.setCollideMask(BitMask32(0x04), BitMask32(0xff))
-
-
 
 This replaces the lower 8 bits of nodePath and all of its children with the
 value 0x04, leaving the upper 24 bits of each node unchanged.
@@ -94,13 +78,9 @@ and the default into collide mask for a new GeomNode is
 create a CollisionNode that collides with visible geometry by doing something
 like this:
 
-
-
 .. code-block:: python
 
-    nodePath.node().setFromCollideMask(GeomNode.getDefaultCollideMask())
-
-
+   nodePath.node().setFromCollideMask(GeomNode.getDefaultCollideMask())
 
 The ``NodePath.getCollideMask()`` function returns a
 union of all the collide masks for itself and its children. Since the
@@ -108,13 +88,9 @@ union of all the collide masks for itself and its children. Since the
 recursively on its children, the following code can have a profound effect,
 even though it looks like it's doing nothing:
 
-
-
 .. code-block:: python
 
-    nodePath.setCollideMask(nodePath.getCollideMask())
-
-
+   nodePath.setCollideMask(nodePath.getCollideMask())
 
 The above code actually calculates the collide mask for its children, and sets
 all of its children to that same collide mask, wiping out what was there
@@ -122,13 +98,10 @@ before.
 
 If you need to have only entities with a certain collision mask to be able to
 collide with a model, it is helpful to open the model's egg file and see where
-the collisions are enabled (see :ref:`Egg_Syntax <egg-syntax>`). Then you
+the collisions are enabled (see :ref:`Egg Syntax <egg-syntax>`). Then you
 would set the collide mask for only that child node, using
-``NodePath.find()``(see
-:ref:`NodePath <the-scene-graph>`). For example, to create a box into only
-"ralph" can collide:
-
-
+``NodePath.find()`` (see :ref:`NodePath <the-scene-graph>`). For example, to
+create a box into only "ralph" can collide:
 
 .. code-block:: python
 
@@ -136,5 +109,3 @@ would set the collide mask for only that child node, using
     ralph.setCollideMask(BitMask32.bit(0))
     box=loader.loadModel("box")
     box.find("**/Cube;+h").setCollideMask(BitMask32.bit(0))
-
-

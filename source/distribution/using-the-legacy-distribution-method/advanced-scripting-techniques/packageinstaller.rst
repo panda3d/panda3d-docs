@@ -32,8 +32,8 @@ API documentation for more information.
 .. code-block:: python
 
     from direct.p3d.DWBPackageInstaller import DWBPackageInstaller
-    
-    self.pi = DWBPackageInstaller(base.appRunner, 
+
+    self.pi = DWBPackageInstaller(base.appRunner,
                                   parent = base.a2dTopRight,
                                   scale = 0.5, pos = (-0.6, 0, -0.1),
                                   finished = self.packageInstalled)

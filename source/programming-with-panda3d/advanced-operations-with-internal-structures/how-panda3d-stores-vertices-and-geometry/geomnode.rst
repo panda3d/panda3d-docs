@@ -6,23 +6,36 @@ GeomNode
 Finally, GeomNode is the glue that connects :ref:`Geoms <geom>` into the scene
 graph. A GeomNode contains a list of one or more Geoms.
 
-+-----------------------------------------------------------------------------+
-| GeomNode                                                                    |
-| +------------------------------------------------------------------------+  |
-| | ==== ===========                                                       |  |
-| | Geom RenderState                                                       |  |
-| | ==== ===========                                                       |  |
-| +------------------------------------------------------------------------+  |
-| | ==== ===========                                                       |  |
-| | Geom RenderState                                                       |  |
-| | ==== ===========                                                       |  |
-| +------------------------------------------------------------------------+  |
-| | ==== ===========                                                       |  |
-| | Geom RenderState                                                       |  |
-| | ==== ===========                                                       |  |
-| +------------------------------------------------------------------------+  |
-+-----------------------------------------------------------------------------+
+.. raw:: html
 
+   <center><table>
+   <tr><td style="border: 1px solid black; background: #c1beea; padding: 5pt">
+   <p>GeomNode</p>
+   <table>
+   <tr><td><table style="border: 1px solid black; background: #acb1ed; padding: 5pt">
+   <tr><td style="border: 1px solid black; background: #9197d8; padding: 5pt">
+   <p>Geom</p>
+   </td><td style="border: 1px solid black; background: #9197d8; padding: 5pt">
+   <p>RenderState</p>
+   </td></tr>
+   </table></td></tr>
+   <tr><td><table style="border: 1px solid black; background: #acb1ed; padding: 5pt">
+   <tr><td style="border: 1px solid black; background: #9197d8; padding: 5pt">
+   <p>Geom</p>
+   </td><td style="border: 1px solid black; background: #9197d8; padding: 5pt">
+   <p>RenderState</p>
+   </td></tr>
+   </table></td></tr>
+   <tr><td><table style="border: 1px solid black; background: #acb1ed; padding: 5pt">
+   <tr><td style="border: 1px solid black; background: #9197d8; padding: 5pt">
+   <p>Geom</p>
+   </td><td style="border: 1px solid black; background: #9197d8; padding: 5pt">
+   <p>RenderState</p>
+   </td></tr>
+   </table></td></tr>
+   </table>
+   </td></tr>
+   </table></center>
 
 The GeomNode class inherits from :ref:`PandaNode <the-scene-graph>`, so a
 GeomNode can be attached directly to the scene graph like any other node; and

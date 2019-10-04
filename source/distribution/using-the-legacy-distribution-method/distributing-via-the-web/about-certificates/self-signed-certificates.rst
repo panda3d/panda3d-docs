@@ -27,8 +27,6 @@ you're on Windows, you can find it on the internet easily.
 
 A sample command sequence to generate a self-signed certificate follows:
 
-
-
 .. code-block:: bash
 
     openssl genrsa 1024 > mycert.pem

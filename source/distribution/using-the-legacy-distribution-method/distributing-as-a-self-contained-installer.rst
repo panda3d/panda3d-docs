@@ -91,14 +91,14 @@ Example
 This fictional example shows how to use pdeploy and commonly-used options.
 (You may want to omit the -P options to generate for every platform.) This is
 a single command, line breaks are merely added to avoid this manual page from
-stretching. 
+stretching.
 
 .. code-block:: bash
 
     pdeploy -s -n coolgame -N "My Cool Game" -v 1.0.0 -a com.cool_company -A "Cool Company"
     -e packager@cool_company.com -l "Modified BSD License"
     -L bsd.txt -t width=800 -t height=600
-    -i icon16.png -i icon32.png -i icon48.png -i icon128.png 
+    -i icon16.png -i icon32.png -i icon48.png -i icon128.png
     -P linux_amd64 -P win32 -P osx_i386 coolGame.p3d installer
 
 

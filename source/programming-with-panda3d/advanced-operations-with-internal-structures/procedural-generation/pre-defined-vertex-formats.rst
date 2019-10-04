@@ -15,46 +15,28 @@ formats for color (but you can use either form regardless of your current
 rendering API; Panda will automatically convert the format at render time if
 necessary).
 
-
+========== ==================== ==================== ========================================== ====================================== ===================
+**Format** **vertex** (X, Y, Z) **normal** (X, Y, Z) **color**, 4-component RGBA (OpenGL style) **color**, packed RGBA (DirectX style) **texcoord** (U, V)
+v3         ✓
+v3n3       ✓                    ✓
+v3t2       ✓                                                                                                                           ✓
+v3n3t2     ✓                    ✓                                                                                                      ✓
+v3c4       ✓                                         ✓
+v3n3c4     ✓                    ✓                    ✓
+v3c4t2     ✓                                         ✓                                                                                 ✓
+v3n3c4t2   ✓                    ✓                    ✓                                                                                 ✓
+v3cp       ✓                                                                                    ✓
+v3n3cp     ✓                    ✓                                                               ✓
+v3cpt2     ✓                                                                                    ✓                                      ✓
+v3n3cpt2   ✓                    ✓                                                               ✓                                      ✓
+========== ==================== ==================== ========================================== ====================================== ===================
 
 .. only:: python
 
-    ============================== ==================== ==================== ========================================== ====================================== ===================
-    **Standard format**            **vertex** (X, Y, Z) **normal** (X, Y, Z) **color**, 4-component RGBA (OpenGL style) **color**, packed RGBA (DirectX style) **texcoord** (U, V)
-    GeomVertexFormat.getV3()       ✓                                                                                                                          
-    GeomVertexFormat.getV3n3()     ✓                    ✓                                                                                                     
-    GeomVertexFormat.getV3t2()     ✓                                                                                                                           ✓
-    GeomVertexFormat.getV3n3t2()   ✓                    ✓                                                                                                      ✓
-    GeomVertexFormat.getV3c4()     ✓                                         ✓                                                                                
-    GeomVertexFormat.getV3n3c4()   ✓                    ✓                    ✓                                                                                
-    GeomVertexFormat.getV3c4t2()   ✓                                         ✓                                                                                 ✓
-    GeomVertexFormat.getV3n3c4t2() ✓                    ✓                    ✓                                                                                 ✓
-    GeomVertexFormat.getV3cp()     ✓                                                                                    ✓                                     
-    GeomVertexFormat.getV3n3cp()   ✓                    ✓                                                               ✓                                     
-    GeomVertexFormat.getV3cpt2()   ✓                                                                                    ✓                                      ✓
-    GeomVertexFormat.getV3n3cpt2() ✓                    ✓                                                               ✓                                      ✓
-    ============================== ==================== ==================== ========================================== ====================================== ===================
-    
-
-
-
+   The predefined formats are accessable through the API using, for example,
+   ``GeomVertexFormat.get_v3v3()``.
 
 .. only:: cpp
 
-    ================================ ==================== ==================== ========================================== ====================================== ===================
-    **Standard format**              **vertex** (X, Y, Z) **normal** (X, Y, Z) **color**, 4-component RGBA (OpenGL style) **color**, packed RGBA (DirectX style) **texcoord** (U, V)
-    GeomVertexFormat::get_v3()       ✓                                                                                                                          
-    GeomVertexFormat::get_v3n3()     ✓                    ✓                                                                                                     
-    GeomVertexFormat::get_v3t2()     ✓                                                                                                                           ✓
-    GeomVertexFormat::get_v3n3t2()   ✓                    ✓                                                                                                      ✓
-    GeomVertexFormat::get_v3c4()     ✓                                         ✓                                                                                
-    GeomVertexFormat::get_v3n3c4()   ✓                    ✓                    ✓                                                                                
-    GeomVertexFormat::get_v3c4t2()   ✓                                         ✓                                                                                 ✓
-    GeomVertexFormat::get_v3n3c4t2() ✓                    ✓                    ✓                                                                                 ✓
-    GeomVertexFormat::get_v3cp()     ✓                                                                                    ✓                                     
-    GeomVertexFormat::get_v3n3cp()   ✓                    ✓                                                               ✓                                     
-    GeomVertexFormat::get_v3cpt2()   ✓                                                                                    ✓                                      ✓
-    GeomVertexFormat::get_v3n3cpt2() ✓                    ✓                                                               ✓                                      ✓
-    ================================ ==================== ==================== ========================================== ====================================== ===================
-    
-
+   The predefined formats are accessable through the API using, for example,
+   ``GeomVertexFormat::get_v3v3()``.

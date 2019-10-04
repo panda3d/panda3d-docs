@@ -38,10 +38,15 @@ Further tweaking of the bounding volume used must be done manually
 -  If all you care about is Panda's usage of bounding boxes, you can create a
    BoundingVolume for the node you want and tell Panda to use that one with
    [https://www.panda3d.org/apiref.php?page=PandaNode#setFinal setFinal(1)].
-   *node.setBounds(BoundingVolume(...))
-   node.setFinal(1)*
+
+   .. code-block:: python
+
+      node.setBounds(BoundingVolume(...))
+      node.setFinal(1)
+
    This will tell Panda to stop calculating bounds and use the one you gave
-   it.
+   it instead.
+
 -  If you want to have a node with a manual bounding box set for your own
    nefarious purposes, set the bounds at the bottom: on the Geom within a
    GeomNode. This will propagate upwards, assuming there are no other nodes

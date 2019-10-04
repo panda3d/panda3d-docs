@@ -46,14 +46,21 @@ of memory. Typically, each GeomVertexData consists of just one array; but it
 is also possible to distribute the data so that some columns are stored in one
 array, while other columns are stored in another array:
 
-== ========= ======== ========= ============
-\  vertex    texcoord  normal    color
-0  (1, 0, 0) (1, 0)    (0, 0, 1) (0, 0, 1, 1)
-1  (1, 1, 0) (1, 1)    (0, 0, 1) (0, 0, 1, 1)
-2  (0, 1, 0) (0, 1)    (0, 0, 1) (0, 0, 1, 1)
-3  (0, 0, 0) (0, 0)    (0, 0, 1) (0, 0, 1, 1)
-== ========= ======== ========= ============
+== ========= ========
+\  vertex    texcoord
+0  (1, 0, 0) (1, 0)
+1  (1, 1, 0) (1, 1)
+2  (0, 1, 0) (0, 1)
+3  (0, 0, 0) (0, 0)
+== ========= ========
 
+== ========= ============
+\   normal    color
+0  (0, 0, 1) (0, 0, 1, 1)
+1  (0, 0, 1) (0, 0, 1, 1)
+2  (0, 0, 1) (0, 0, 1, 1)
+3  (0, 0, 1) (0, 0, 1, 1)
+== ========= ============
 
 You might want to do this, for instance, if you have certain columns of data
 that are always the same between different blocks of vertices; you can put

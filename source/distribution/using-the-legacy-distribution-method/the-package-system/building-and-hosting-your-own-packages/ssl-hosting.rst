@@ -44,7 +44,7 @@ the specific address with the downloadUrl parameter, e.g.:
 
 .. code-block:: python
 
-    packager.setHost('https://myhost.com/myrootdir/', 
+    packager.setHost('https://myhost.com/myrootdir/',
                      downloadUrl = 'http://myhost.com:8080/myrootdir/')
 
 

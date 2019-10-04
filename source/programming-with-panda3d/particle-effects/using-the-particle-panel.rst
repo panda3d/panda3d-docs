@@ -3,56 +3,56 @@
 Using the Particle Panel
 ========================
 
-The Particle Panel can be invoked by running the Particle Panel sample
-program, which should be located at Panda3D-1.X.X/samples/Particles in
-Windows. The Panda3d engine uses text files for storing particle effects. You
-don't need to use the Particle Panel to create particle effects, you can just
-create those files in your text editor, or set all the parameters in your
-code, however it makes everything a lot easier and you can see all your
-changes immediately in the 3d view.
+The Particle Panel can be invoked by running the Particle Panel sample program,
+which should be located at Panda3D-1.X.X/samples/Particles in Windows. The
+Panda3d engine uses text files for storing particle effects. You don't need to
+use the Particle Panel to create particle effects, you can just create those
+files in your text editor, or set all the parameters in your code, however it
+makes everything a lot easier and you can see all your changes immediately in
+the 3d view.
 
 |Ppanel1.png|
 
 1. Load Params, Save Params, Print Params or Quit. You can load or save your
-Panda Particle Files (*.ptf), which are ordinary text files. You can also
-print the content of the ptf file to the console. Quit exits the Particle
-Panel program.
+   Panda Particle Files (\*.ptf), which are ordinary text files. You can also
+   print the content of the ptf file to the console. Quit exits the Particle
+   Panel program.
 
 2. Toggle between Active or Passive modes (Active by default).
 
-3. Find out general info about the Particle Panel program or toggle Baloon
-Help (on by default).
+3. Find out general info about the Particle Panel program or toggle Baloon Help
+   (on by default).
 
-4. Select effect to configure or create new effect. Options: Create new
-Effect, Select Particle Effect, Place Particle Effect, Toggle Effect Vis,
-Enable/Disable.
+4. Select effect to configure or create new effect. Options: Create new Effect,
+   Select Particle Effect, Place Particle Effect, Toggle Effect Vis,
+   Enable/Disable.
 
 5. Select effect to configure or create new effect.
 
 6. Select particles object to configure or add new particles object to current
-effect.
+   effect.
 
 7. System:
 
 |Ppanel2.png|
 
-1) Max number of simultaneous particles. More amount of particles won't exist
-at the same time.
+1) Max number of simultaneous particles. More amount of particles won't exist at
+   the same time.
 
 2) Seconds between particle births. No new particles will be generated during
-this period.
+   this period.
 
 3) Number of particles created at each birth.
 
 4) Variation in litter size, so exactly the same amount of particles won't be
-generated at each birth as set in the "Litter Size".
+   generated at each birth as set in the "Litter Size".
 
-5) Age in seconds at which the system (vs. Particles) should die. Default is
-0, which means the particle generator won't die.
+5) Age in seconds at which the system (vs. Particles) should die. Default is 0,
+   which means the particle generator won't die.
 
 6) Whether or not velocities are absolute.
 
-7) System has a lifespan or not. Lenght set in "Lifespan".
+7) System has a lifespan or not. Length set in "Lifespan".
 
 8) Particle system position (0,0,0 by default)
 
@@ -65,14 +65,14 @@ Parameters page.
 
 |Ppanel3.png|
 
-1) Type of the particle factory. The differences between these factories lie
-in the orientation and rotational abilities.
+1) Type of the particle factory. The differences between these factories lie in
+   the orientation and rotational abilities.
 
 2) Average particle lifespan in seconds. Sets how long each particle should
-exist.
+   exist.
 
-3) Variation in lifespan. Default is 0, which means all particles will have
-the same lifespan.
+3) Variation in lifespan. Default is 0, which means all particles will have the
+   same lifespan.
 
 4) Average particle mass.
 
@@ -88,13 +88,13 @@ Some of this information can also be found in the Particle Factories page.
 
 |Ppanel4.png|
 
-1) There are a large number of particle emitters, each categorized by the
-volume of space they represent.
+1) There are a large number of particle emitters, each categorized by the volume
+   of space they represent.
 
 2) All emitters have three modes: explicit, radiate, and custom. Explicit mode
-emits the particles in parallel in the same direction. Radiate mode emits
-particles away from a specific point. Custom mode emits particles with a
-velocity determined by the particular emitter.
+   emits the particles in parallel in the same direction. Radiate mode emits
+   particles away from a specific point. Custom mode emits particles with a
+   velocity determined by the particular emitter.
 
 3) Launch velocity multiplier (all emission modes)
 
@@ -113,11 +113,11 @@ Some of this information can also be found in the Particle Emitters page.
 |Ppanel5.png|
 
 1) Renderer Type sets the type of particle renderer. These are
-LineParticleRenderer, GeomParticleRenderer, PointParticleRenderer,
-SparkleParticleRenderer and SpriteParticleRenderer.
+   LineParticleRenderer, GeomParticleRenderer, PointParticleRenderer,
+   SparkleParticleRenderer and SpriteParticleRenderer.
 
 2) Alpha setting over particle's lifetime: NO_ALPHA, ALPHA_IN, ALPHA_OUT,
-ALPHA_IN_OUT, ALPHA_USER.
+   ALPHA_IN_OUT, ALPHA_USER.
 
 3) Alpha value for ALPHA_USER alpha mode.
 
@@ -146,8 +146,8 @@ undocumented
 |Ppanel8.png|
 
 2.1) If you enable these, then the values from 3 and 5 and 7 won't be ignored,
-the values between Initial X/Y/Z and Final X/Y/Z will be interpolated over
-particle's life.
+     the values between Initial X/Y/Z and Final X/Y/Z will be interpolated over
+     particle's life.
 
 2.2, 2.4, 2.6) Initial X/Y/Z scales. You can set the scales of particles here.
 
@@ -242,16 +242,15 @@ Here's an example of using a Linear Segment:
 
 |Ppanel16.png|
 
-You can add different forces to your particle effects here. For example you
-can use the Noise Force to add some randomness to the movement of particles
-such as for falling particles used in a snow effect.
+You can add different forces to your particle effects here. For example you can
+use the Noise Force to add some randomness to the movement of particles such as
+for falling particles used in a snow effect.
 
 Note: There isn't an option in the Particle Panel to set what the individual
 particles should be relative to. If you want to set that explicitly, use the
-``renderParent`` argument in the
-``start()`` call in your code. You
-will find this useful for particle effects on moving objects, or for example
-rain and snow.
+``renderParent`` argument in the ``start()`` call in your code. You will find
+this useful for particle effects on moving objects, or for example rain and
+snow.
 
 Note: resizing the particle Panel GUI window might crash the program.
 

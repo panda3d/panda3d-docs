@@ -70,15 +70,15 @@ example p3d could be as follows:
 
     import sys
     # add the working directory to the path so local files and modules can be found
-    sys.path.insert(0,'') 
-    
+    sys.path.insert(0,'')
+
     class MyP3D(p3d):
         require('morepy','panda3d','somePackage') # include some other packages
-            
-        config( 
-            version="0.0", 
-            display_name="MyP3D") 
-        
+
+        config(
+            version="0.0",
+            display_name="MyP3D")
+
         module('core.*') # include the python package core, and its submodules
         dir('data',newDir='data') # include a folder called data
         mainModule('main') # include and set the main module that runs when the p3d is run

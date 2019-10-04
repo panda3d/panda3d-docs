@@ -1,4 +1,4 @@
-.. _faq:
+.. _bullet-faq:
 
 Bullet FAQ
 ==========

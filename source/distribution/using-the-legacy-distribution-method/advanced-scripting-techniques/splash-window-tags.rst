@@ -28,15 +28,15 @@ active_img    The image to display while the app is running (but the app has tak
 noplugin_img  This is available only if you use the :ref:`RunPanda3D.js <embedding-with-runpanda3d>` method of embedding your p3d file. In this case, this specifies the image to display if the plugin is not installed or cannot be run for some reason.
 noplugin_href As above, this is available only if you use the RunPanda3D.js method of embedding your p3d file, and it specifies the URL that the user should be taken to if he or she clicks on the embed region when the plugin is not installed. A good choice, for instance, is https://www.panda3d.org/get .
 auth_ready    The three images that define the normally red "authorize" button
-             
+
 auth_rollover
-             
-auth_click   
+
+auth_click
 play_ready    The three images that define the normally green "play" button
-             
+
 play_rollover
-             
-play_click   
+
+play_click
 fgcolor       The text color of the text that may appear in the window, default is black.
 bgcolor       The background color of the window before the app has launched, default is white.
 barcolor      The fill color of the loading bar that is shown before the app launches

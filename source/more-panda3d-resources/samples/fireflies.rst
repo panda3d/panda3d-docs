@@ -140,7 +140,7 @@ shown all my algebraic steps:
     (2*depth - 1.0) * viewy + viewy * -B = D
     (2*depth - 1.0 - B) * viewy = D
     viewy = 0.5D / (depth - 0.5 - 0.5B)
-    
+
     screenx = clipx / clipw
     screenx = (viewx * A) / viewy
     screenx * viewy = viewx * A
@@ -148,7 +148,7 @@ shown all my algebraic steps:
     (screenx * 0.5D) / (depth - 0.5 - 0.5B) = viewx * A
     (screenx * 0.5D/A) / (depth - 0.5 - 0.5B) = viewx
     viewx = (screenx * 0.5D/A) / (depth - 0.5 - 0.5B)
-    
+
     screeny = clipy / clipw
     screeny = (viewz * C) / viewy
     screeny * viewy = viewz * C
@@ -176,8 +176,8 @@ So, here are the equations in their final form:
     viewx = (screenx * projx) / (depth + projw)
     viewy = (1 * projy) / (depth + projw)
     viewz = (screeny * projz) / (depth + projw)
-Back to the List of
-Sample Programs:
+
+Back to the List of Sample Programs:
 
 :ref:`samples`
 

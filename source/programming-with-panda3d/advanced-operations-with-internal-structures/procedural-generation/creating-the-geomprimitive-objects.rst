@@ -23,53 +23,40 @@ primitive.
 
 For example:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         prim = GeomTriangles(Geom.UHStatic)
-        
+
         prim.addVertex(0)
         prim.addVertex(1)
         prim.addVertex(2)
         # thats the first triangle
-        
+
         # you can also add a few at once
         prim.addVertices(2, 1, 3)
-        
+
         prim.addVertices(0, 5, 6)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
-    .. code-block:: python
-    
+    .. code-block:: cpp
+
         // In order for this to work you need to have included "geomTriangles.h"
-        
+
         PT(GeomTriangles) prim;
         prim = new GeomTriangles(Geom::UH_static);
-        
+
         prim->add_vertex(0);
         prim->add_vertex(1);
         prim->add_vertex(2);
         // thats the first triangle
-        
+
         // you can also add a few at once
         prim->add_vertices(2, 1, 3);
-        
+
         prim->add_vertices(0, 5, 6);
-    
-    
 
 
 Note that the GeomPrimitive constructor requires one parameter, which is a
@@ -91,21 +78,46 @@ If you are unsure about this parameter, you should use
 
 The above sample code defines a GeomTriangles object that looks like this:
 
-==
-\ 
-0
-1
-2
-\ 
-2
-1
-3
-\ 
-0
-5
-6
-==
+.. raw:: html
 
+   <center><table style="border-collapse: collapse">
+   <tr>
+   <td style="padding-left: 64pt"></td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">0</td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">1</td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">2</td>
+   </tr>
+   <tr>
+   <td> </td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">2</td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">1</td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">3</td>
+   </tr>
+   <tr>
+   <td> </td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">0</td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">5</td>
+   </tr>
+   <tr>
+   <td style="border: 1px solid black; background: #c1beea; text-align: center">6</td>
+   </tr>
+   </table></center>
 
 The actual positions of the vertices depends on the values of the vertices
 numbered 0, 1, 2, 3, and 5 in the associated :ref:`geomvertexdata` (you will
@@ -115,34 +127,22 @@ you attach the GeomPrimitives to a :ref:`geom`).
 
 Finally, there are a few handy shortcuts for adding multiple vertices at once:
 
-====================================================== ========================================================================================================================================================================================================================================================================================================================================================================
-
-
 .. code-block:: python
 
-    add_vertices(v1, v2)
-    add_vertices(v1, v2, v3)
-    add_vertices(v1, v2, v3, v4)
+   # Add 2, 3, or 4 vertices in a single call.
+   add_vertices(v1, v2)
+   add_vertices(v1, v2, v3)
+   add_vertices(v1, v2, v3, v4)
 
-Adds 2, 3, or 4 vertices in a single call.
+   # Add numVertices consecutive vertices, beginning at vertex "start".
+   # For instance, add_consecutive_vertices(5, 3) adds vertices 5, 6, 7.
+   add_consecutive_vertices(start, numVertices)
 
+   # Adds numVertices consecutive vertices, beginning with the next vertex
+   # after the last vertex you added, or beginning at vertex 0 if these are
+   # the first vertices.
+   add_next_vertices(numVertices)
 
-.. code-block:: python
-
-    add_consecutive_vertices(start, numVertices)
-
-Adds *numVertices* consecutive vertices, beginning at vertex *start*. For instance, add_consecutive_vertices(5, 3) adds vertices 5, 6, 7.
-
-
-.. code-block:: python
-
-    add_next_vertices(numVertices)
-
-Adds *numVertices* consecutive vertices, beginning with the next vertex after the last vertex you added, or beginning at vertex 0 if these are the first vertices. For instance, ``add_vertex(10)`` adds vertex 10. If you immediately call ``add_next_vertices(4)``, it adds vertices 11, 12, 13, 14.
-====================================================== ========================================================================================================================================================================================================================================================================================================================================================================
-
-None of the above shortcut methods calls
-``close_primitive()`` for you; it is still
-your responsibility to call
-``close_primitive()`` each time you add the
-appropriate number of vertices.
+None of the above shortcut methods calls ``close_primitive()`` for you; it is
+still your responsibility to call ``close_primitive()`` each time you add the
+appropriate number of vertices to a primitive that requires it.

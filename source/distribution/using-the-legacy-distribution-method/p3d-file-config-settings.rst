@@ -28,8 +28,8 @@ keep_user_env    "1" if the user's environment variables, and current working di
 run_origin       The semicolon-separated list of hostnames that are allowed to embed this app in a web page. The default is any hostname. See :ref:`p3d-origin-security`.
 script_origin    The semicolon-separated list of hostnames that are allowed to directly call Python methods exposed by this app from JavaScript in a web page. The default is no hostname. See :ref:`p3d-origin-security`.
 height           The default size of the window created for the p3d file, when it is run from the desktop (or via the panda3d application). This is not used when the p3d file is embedded in a web page, because in that case the embed will specify the height and width.
-                
-width           
+
+width
 ================ =================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
 
 To specify a config option, use the command-line option

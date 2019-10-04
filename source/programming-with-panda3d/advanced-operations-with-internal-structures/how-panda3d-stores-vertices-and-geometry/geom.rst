@@ -13,19 +13,29 @@ Fundamentally, a Geom is very simple; it contains a pointer to a single
 GeomVertexData, and a list of one or more GeomPrimitives, of various types, as
 needed. All the associated GeomPrimitives index into the same GeomVertexData.
 
-+-----------------------------------------------------------------------------+
-| Geom                                                                        |
-| ==============                                                              |
-| GeomVertexData                                                              |
-| ==============                                                              |
-|                                                                             |
-| =============                                                               |
-| GeomTriangles                                                               |
-| GeomTriangles                                                               |
-| GeomTristrips                                                               |
-| =============                                                               |
-+-----------------------------------------------------------------------------+
+.. raw:: html
 
+   <center><table>
+   <tr><td style="border: 1px solid black; background: #c1beea; padding: 5pt">
+   <p>Geom</p>
+   <table>
+   <tr><td style="border: 1px solid black; background: #9197d8; padding: 5pt">
+   <p>GeomVertexData</p>
+   </td></tr>
+   </table>
+   <table>
+   <tr><td style="border: 1px solid black; background: #acb1ed; padding: 5pt">
+   <p>GeomTriangles</p>
+   </td></tr>
+   <tr><td style="border: 1px solid black; background: #acb1ed; padding: 5pt">
+   <p>GeomTriangles</p>
+   </td></tr>
+   <tr><td style="border: 1px solid black; background: #acb1ed; padding: 5pt">
+   <p>GeomTristrips</p>
+   </td></tr>
+   </table>
+   </td></tr>
+   </table></center>
 
 The GeomVertexData pointer may be unique to each Geom, or one GeomVertexData
 may be shared among many different Geoms (each of which might use a different
