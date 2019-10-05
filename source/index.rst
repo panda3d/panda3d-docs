@@ -1,3 +1,5 @@
+.. _main-page:
+
 Table of Contents
 =================
 

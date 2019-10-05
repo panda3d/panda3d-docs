@@ -38,10 +38,9 @@ means without LOD and at full quality.
 
 Various other terrain generators have been contributed by the community:
 
--  `SoarX <https://www.panda3d.org/forums/viewtopic.php?t=2265>`__
--  `chombee's terrain
-   renderer <https://www.panda3d.org/forums/viewtopic.php?t=1200>`__
--  `snaptotheterrain <https://www.panda3d.org/forums/viewtopic.php?t=4408>`__
+-  `SoarX <https://discourse.panda3d.org/t/yet-another-terrain-algorithm/2021>`__
+-  `chombee's terrain renderer <https://discourse.panda3d.org/t/terrain-renderer-for-panda3d-release-2/1162>`__
+-  `snaptotheterrain <https://discourse.panda3d.org/t/snaptotheterrain-random-retro-terrain-generator/4048>`__
 
 
 .. toctree::

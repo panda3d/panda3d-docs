@@ -137,8 +137,8 @@ Here are some examples in code:
 
 
 Please, note then when the Panda window is minimized or Panda3D loses focus
-somehow else, "-up" event is sent for all keys. Read this forum thread to
-learn more: https://www.panda3d.org/forums/viewtopic.php?t=4630
+somehow else, "-up" event is sent for all keys. Read this forum thread to learn
+more: https://discourse.panda3d.org/t/not-a-bug-solved-bug-with-up-events/4266
 
 Modifier keys
 -------------

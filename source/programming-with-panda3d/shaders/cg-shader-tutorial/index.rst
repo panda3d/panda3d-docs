@@ -72,7 +72,7 @@ Note: this section is incomplete. It will be updated soon.
 
 Although some pages aren't written yet, the sourcecode for all the tutorials
 is complete. Read this forum topic for more info and links to codes:
-https://www.panda3d.org/forums/viewtopic.php?t=12515&start=0
+https://discourse.panda3d.org/t/improving-the-manual/11599
 
 
 .. toctree::

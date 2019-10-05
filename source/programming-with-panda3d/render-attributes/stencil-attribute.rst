@@ -111,6 +111,5 @@ entire script.
     
     run()
 
-You can
-get a little more insight into stencils in this thread on the forums:
-https://www.panda3d.org/forums/viewtopic.php?p=48451#48451
+You can get a little more insight into stencils in this thread on the forums:
+https://discourse.panda3d.org/t/using-stencils-solved/7409/7

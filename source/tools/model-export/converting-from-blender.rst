@@ -28,7 +28,7 @@ https://github.com/09th/YABEE
 
 If you observe any problem, or find a bug, you can report it on official
 thread that can be found here:
-https://www.panda3d.org/forums/viewtopic.php?f=2&t=11441
+https://discourse.panda3d.org/t/yet-another-blender-egg-exporter-yabee/10702
 
 ----
 

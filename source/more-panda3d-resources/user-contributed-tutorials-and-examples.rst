@@ -18,15 +18,15 @@ MyGameFast: http://www.mygamefast.com/
 Open source games
 -----------------
 
-Tagger: https://www.panda3d.org/forums/viewtopic.php?t=7794
+Tagger: https://discourse.panda3d.org/t/tagger/7322
 
-Pac-Bat pac-man clone: https://www.panda3d.org/forums/viewtopic.php?t=11796
+Pac-Bat pac-man clone: https://discourse.panda3d.org/t/pac-bat/11035
 
-A3P: https://www.panda3d.org/forums/viewtopic.php?t=7807
+A3P: https://discourse.panda3d.org/t/a3p-formerly-stainless/7335
 
 Naith: http://code.google.com/p/naith/
 
-3d-rama pong: https://www.panda3d.org/forums/viewtopic.php?t=10025
+3d-rama pong: https://discourse.panda3d.org/t/3d-rama-pong/9427
 
 The Traveling Fox: https://discourse.panda3d.org/t/the-traveling-fox/15815
 
@@ -40,7 +40,7 @@ growing repository of various kinds of panda3d samples and code snippets
 https://discourse.panda3d.org/t/panda3d-code-collection/14472
 
 Demomaster application framework with wxpython navigator:
-https://www.panda3d.org/forums/viewtopic.php?t=5915
+https://discourse.panda3d.org/t/demomaster-application-framework-with-wxpython-navigator/5519
 
 Panda3d Terrain System:
 https://github.com/Craig-Macomber/Panda3D-Terrain-System
@@ -49,45 +49,52 @@ Panda3d Shader Generator:
 https://github.com/Craig-Macomber/Panda3D-Shader-Generator
 
 Infinite Procedural Terrain Engine:
-https://www.panda3d.org/forums/viewtopic.php?t=10244&start=0
+https://discourse.panda3d.org/t/infinite-procedural-terrain-engine/9614
 
 Improved distortion sample:
-https://www.panda3d.org/forums/viewtopic.php?t=7406
+https://discourse.panda3d.org/t/improved-distortion-sample/6952
 
 Onscreen IDE & dynamic instant update:
-https://www.panda3d.org/forums/viewtopic.php?t=3875
+https://discourse.panda3d.org/t/onscreen-ide-dynamic-instant-update-v0-5-4/3534
 
-ODE Middleware: https://www.panda3d.org/forums/viewtopic.php?t=7913
+ODE Middleware:
+https://discourse.panda3d.org/t/ode-middleware/7436
 
 pause/resume scene (intervals-tasks-actors-sounds-movies):
-https://www.panda3d.org/forums/viewtopic.php?t=4439
+https://discourse.panda3d.org/t/pause-resume-scene-intervals-tasks-actors-sounds-movies/4079
 
-rope samples: https://www.panda3d.org/forums/viewtopic.php?t=5510
+rope samples:
+https://discourse.panda3d.org/t/rope-samples/5119
 
 Paraboloid Shadow Map + PCF Smooth:
-https://www.panda3d.org/forums/viewtopic.php?t=9946
+https://discourse.panda3d.org/t/paraboloid-shadow-map-pcf-smooth/9353
 
 Fade from one camera to another:
-https://www.panda3d.org/forums/viewtopic.php?t=12643
+https://discourse.panda3d.org/t/fade-from-one-camera-to-another/11703
 
 Minecraft-like chunk generator:
-https://www.panda3d.org/forums/viewtopic.php?t=12421
+https://discourse.panda3d.org/t/minecraft-like-chunk-generator/11552
 
 Hardware and Geometry Shader Instancing:
-https://www.panda3d.org/forums/viewtopic.php?t=8680
+https://discourse.panda3d.org/t/example-hardware-and-geometry-shader-instancing/8165
 
-Fractal Map Generator: https://www.panda3d.org/forums/viewtopic.php?t=11112
+Fractal Map Generator:
+https://discourse.panda3d.org/t/fractal-map-generator/10413
 
-Load image as 3d plane: https://www.panda3d.org/forums/viewtopic.php?t=11268
+Load image as 3d plane:
+https://discourse.panda3d.org/t/loadimageasplane/10557
 
-Interactive scene: https://www.panda3d.org/forums/viewtopic.php?t=11009
+Interactive scene:
+https://discourse.panda3d.org/t/interactive-scene/10316
 
-Using tags: https://www.panda3d.org/forums/viewtopic.php?t=11461
+Using tags:
+https://discourse.panda3d.org/t/using-tags/10722
 
 Another Camera Controller, Orbit style:
-https://www.panda3d.org/forums/viewtopic.php?t=12414
+https://discourse.panda3d.org/t/another-camera-controller-orbit-style/11545
 
-edge screen tracking: https://www.panda3d.org/forums/viewtopic.php?t=1276
+edge screen tracking:
+https://discourse.panda3d.org/t/rotate-camera-based-on-mouse-position/1237
 
 Developing a First Person Camera with Panda3D and C++ (pdf download):
 http://www.imagenetz.de/f7bdc2255/FPC_tutorial.pdf.html
