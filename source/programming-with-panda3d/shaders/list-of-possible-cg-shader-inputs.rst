@@ -5,95 +5,263 @@ List of Possible Cg Shader Inputs
 
 In many cases, it is desirable to access information from the render state or
 from the 3-D transformation of the node that is currently being rendered.
-Instead of having to pass all this information manually, it is possible to
-name your variables in a special way that Panda3D will recognize and
-automatically populate with the relevant data.
+Instead of having to pass all this information manually, it is possible to name
+your variables in a special way that Panda3D will recognize and automatically
+populate with the relevant data.
 
 The following table describes the inputs that can be used in Cg shaders.
 
-====================================================== =========================================================================================================================================================================================================================================================================================
-CG Input                                               Description
-====================================================== =========================================================================================================================================================================================================================================================================================
-``uniform sampler2D tex_0 : TEXUNIT0``                 The model's first texture. This requires that the model be textured in the normal manner. You may also use tex_1, tex_2, and so forth, if the model is multitextured.
-``sampler3D or samplerCUBE``                           If the model uses a 3D texture or a cubemap, use tex3D and texCUBE to access the color.
-``float3 vtx_position: POSITION``                      Vertex Position. Vertex shader only. You may also use float4, in which case (w==1).
-``float3 vtx_normal: NORMAL``                          Vertex Normal. Vertex shader only.
-``float4 vtx_color : COLOR``                           Vertex color. Vertex shader only.
-``float2 vtx_texcoord0: TEXCOORD0``                    UV(W) coordinate set associated with the model's first texture. This requires that the model be textured in the normal manner. You may also use vtx_texcoord1, vtx_texcoord2, and so forth if the model is multitextured. Vertex shader only.
-``float2 vtx_texcoord: TEXCOORD0``                     From Panda3D 1.9 onward, this refers to the default (unnamed) set of UV(W) coordinates, if present, rather than being an alias for vtx_texcoord0. Vertex shader only.
-``float2 vtx_texcoord_x: TEXCOORD0``                   From Panda3D 1.9 onward, this refers to a set of UV(W) coordinates with the given name. Vertex shader only.
-``float3 vtx_tangent0``                                Tangent vector associated with the model's first texture. This can only be used if the model has been textured in the normal manner, and if binormals have been precomputed. You may also use vtx_tangent1, vtx_tangent2, and so forth if the model is multitextured. Vertex shader only.
-``float3 vtx_binormal0``                               Binormal vector associated with vtx_texcoord0. This can only be used if the model has been textured in the normal manner, and if binormals have been precomputed. You can also use vtx_binormal1, vtx_binormal2, and so forth if the model has been multitextured. Vertex shader only.
-``floatX vtx_anything``                                Panda makes it possible to store arbitrary columns of user-defined data in the vertex table; see :ref:`geomvertexdata`. You can access this data using this syntax. For example, vtx_chicken will look for a column named "chicken" in the vertex array. Vertex shader only.
-``uniform float4x4 trans_x_to_y``                      A matrix that transforms from coordinate system X to coordinate system Y. See the section on :ref:`shaders-and-coordinate-spaces` for more information.
-``uniform float4x4 tpose_x_to_y``                      Transpose of trans_x_to_y
-``uniform float4 row0_x_to_y``                         Row 0 of trans_x_to_y.
-``uniform float4 row1_x_to_y``                         Row 1 of trans_x_to_y.
-``uniform float4 row2_x_to_y``                         Row 2 of trans_x_to_y.
-``uniform float4 row3_x_to_y``                         Row 3 of trans_x_to_y.
-``uniform float4 col0_x_to_y``                         Col 0 of trans_x_to_y.
-``uniform float4 col1_x_to_y``                         Col 1 of trans_x_to_y.
-``uniform float4 col2_x_to_y``                         Col 2 of trans_x_to_y.
-``uniform float4 col3_x_to_y``                         Col 3 of trans_x_to_y.
-``uniform float4x4 mstrans_x``                         Model-Space Transform of X, aka trans_x_to_model
-``uniform float4x4 cstrans_x``                         Clip-Space Transform of X, aka trans_x_to_clip
-``uniform float4x4 wstrans_x``                         World-Space Transform of X, aka trans_x_to_world
-``uniform float4x4 vstrans_x``                         View-Space Transform of X, aka trans_x_to_view
-``uniform float4 mspos_x``                             Model-Space Position of X, aka row3_x_to_model
-``uniform float4 cspos_x``                             Clip-Space Position of X, aka row3_x_to_clip
-``uniform float4 wspos_x``                             World-Space Position of X, aka row3_x_to_world
-``uniform float4 vspos_x``                             View-Space Position of X, aka row3_x_to_view
-``uniform float4x4 mat_modelview``                     Modelview matrix, transforming model-space coordinates to camera-space coordinates.
-``uniform float4x4 inv_modelview``                     Inverse of the model-view Matrix
-``uniform float4x4 tps_modelview``                     Transposed Modelview Matrix
-``uniform float4x4 itp_modelview``                     Inverse Transposed Modelview Matrix
-``uniform float4x4 mat_projection``                    Projection Matrix
-``uniform float4x4 inv_projection``                    Inverse Projection Matrix
-``uniform float4x4 tps_projection``                    Transposed Projection Matrix
-``uniform float4x4 itp_projection``                    Inverse Transposed Projection Matrix
-``uniform float4x4 mat_modelproj``                     Composed Modelview/Projection Matrix
-``uniform float4x4 inv_modelproj``                     Inverse ModelProj Matrix
-``uniform float4x4 tps_modelproj``                     Transposed ModelProj Matrix
-``uniform float4x4 itp_modelproj``                     Inverse Transposed ModelProj Matrix
-``uniform float4 anything``                            A constant vector that was stored using ``setShaderInput``. Parameter anything would match data supplied by the call ``setShaderInput("anything", Vec4(x,y,z,w))``
-::
+``uniform sampler2D tex_0 : TEXUNIT0``
+   The model's first texture. This requires that the model be textured in the
+   normal manner. You may also use tex_1, tex_2, and so forth, if the model is
+   multitextured.
 
+``sampler3D`` or ``samplerCUBE``
+   If the model uses a 3D texture or a cubemap, use tex3D and texCUBE to access
+   the color.
 
-    uniform sampler2D anything
-    uniform sampler3D anything
-    uniform sampler2DArray anything
+``float3 vtx_position: POSITION``
+   Vertex Position. Vertex shader only. You may also use float4, in which case
+   ``(w==1)``.
 
-                                                       A constant texture that was stored using ``setShaderInput``. Parameter *anything* would match data supplied by the call ``setShaderInput("anything", myTex)``
-``uniform float4x4 anything``                          A constant matrix that was stored using ``setShaderInput``. Parameter anything would match data supplied by the call setShaderInput("anything", myNodePath). The matrix supplied is the nodepath's local transform.
-``uniform float4 texpad_x``                            X must be the name of a texture specified via shaderInput. Contains the U,V coordinates of the center of the texture. This will be (0.5,0.5) if the texture is not padded, but it will be less if the texture is padded.
-``uniform float4 texpix_x``                            X must be the name of a texture specified via shaderInput. Contains the U,V offset of a single pixel in the texture (ie, the reciprocal of the texture size).
-``uniform float4x4 attr_material``                     The contents of the material attribute. Row 0 is ambient, Row 1 is diffuse, Row 2 is emission, Row 3 is specular, with shininess in W.
-``uniform float4 attr_color``                          The contents of the color attribute. This is white unless the model has a flat color applied.
-``uniform float4 attr_colorscale``                     The contents of the color scale attribute. This is white unless the model has a color scale applied using nodePath.setColorScale.
-                                                      
-                                                       This variable is only available in 1.6.2 and above.
-``uniform float4 attr_fog``                            The fog parameters, where applicable. The values are in order: density, start, end, scale. The density is for exponential fog only, the start, end and scale are for linear fog only. The scale is equal to 1 / (end - start).
-                                                      
-                                                       New in Panda3D 1.8.
-``uniform float4 attr_fogcolor``                       The fog color, if applicable. New in Panda3D 1.8.
-``uniform float4 alight_x``                            X must be an AmbientLight specified via a shaderInput. Contains the color of the light.
-``uniform float4x4 dlight_x``                          X must be an DirectionalLight specified via a shaderInput. Row 0 is color, row 1 is specular, row 2 is model-space direction, row 3 is model-space pseudo half-angle.
-``uniform float4 plane_x``                             X must be an PlaneNode specified via a shaderInput. Contains the four terms of the plane equation.
-                                                      
-                                                       This variable is only available in 1.6.2 and above.
-``uniform float4 clipplane_0``                         Contains the parameters of the first clipplane (also: clipplane_1, clipplane_2, etc. for subsequent clip planes) in world-space coordinates.
-                                                      
-                                                       This variable is only available in 1.6.2 and above.
-``uniform float sys_time``                             Contains the frame time in seconds.
-                                                      
-                                                       This variable is only available in 1.9.0 and above.
-``floatX l_position: POSITION``                        Linearly interpolated Position, as supplied by the vertex shader to the fragment shader. Declare "out" in the vertex shader, "in" in the fragment shader.
-``floatX l_color0: COLOR0``                            Linearly interpolated Primary color, as supplied by the vertex shader to the fragment shader. Declare "out" in the vertex shader, "in" in the fragment shader.
-``floatX l_color1: COLOR1``                            Linearly interpolated Secondary color, as supplied by the vertex shader to the fragment shader. Declare "out" in the vertex shader, "in" in the fragment shader.
-``floatX l_texcoord0: TEXCOORD0``                      Linearly interpolated Texture Coordinate 0, as supplied by the vertex shader to the fragment shader. You may also use l_texcoord1, l_texcoord2, and so forth. Declare "out" in the vertex shader, "in" in the fragment shader.
-``out floatX o_color: COLOR``                          Output Color, as supplied by the fragment shader to the blending units. Fragment shader only. (COLOR0 is also accepted.)
-``out floatX o_aux: COLOR1``                           Output auxiliary color. Only available if an auxiliary was obtained for the shaders target buffer/window. Fragment shader only.
-====================================================== =========================================================================================================================================================================================================================================================================================
+``float3 vtx_normal: NORMAL``
+   Vertex Normal. Vertex shader only.
+
+``float4 vtx_color : COLOR``
+   Vertex color. Vertex shader only.
+
+``float2 vtx_texcoord0: TEXCOORD0``
+   UV(W) coordinate set associated with the model's first texture. This requires
+   that the model be textured in the normal manner. You may also use
+   vtx_texcoord1, vtx_texcoord2, and so forth if the model is multitextured.
+   Vertex shader only.
+
+``float2 vtx_texcoord: TEXCOORD0``
+   From Panda3D 1.9 onward, this refers to the default (unnamed) set of UV(W)
+   coordinates, if present, rather than being an alias for vtx_texcoord0. Vertex
+   shader only.
+
+``float2 vtx_texcoord_x: TEXCOORD0``
+   From Panda3D 1.9 onward, this refers to a set of UV(W) coordinates with the
+   given name. Vertex shader only.
+
+``float3 vtx_tangent0``
+   Tangent vector associated with the model's first texture. This can only be
+   used if the model has been textured in the normal manner, and if binormals
+   have been precomputed. You may also use vtx_tangent1, vtx_tangent2, and so
+   forth if the model is multitextured. Vertex shader only.
+
+``float3 vtx_binormal0``
+   Binormal vector associated with vtx_texcoord0. This can only be used if the
+   model has been textured in the normal manner, and if binormals have been
+   precomputed. You can also use vtx_binormal1, vtx_binormal2, and so forth if
+   the model has been multitextured. Vertex shader only.
+
+``floatX vtx_anything``
+   Panda makes it possible to store arbitrary columns of user-defined data in
+   the vertex table; see :ref:`geomvertexdata`. You can access this data using
+   this syntax. For example, vtx_chicken will look for a column named "chicken"
+   in the vertex array. Vertex shader only.
+
+``uniform float4x4 trans_x_to_y``
+   A matrix that transforms from coordinate system X to coordinate system Y. See
+   the section on :ref:`shaders-and-coordinate-spaces` for more information.
+
+``uniform float4x4 tpose_x_to_y``
+   Transpose of trans_x_to_y
+
+``uniform float4 row0_x_to_y``
+   Row 0 of trans_x_to_y.
+
+``uniform float4 row1_x_to_y``
+   Row 1 of trans_x_to_y.
+
+``uniform float4 row2_x_to_y``
+   Row 2 of trans_x_to_y.
+
+``uniform float4 row3_x_to_y``
+   Row 3 of trans_x_to_y.
+
+``uniform float4 col0_x_to_y``
+   Col 0 of trans_x_to_y.
+
+``uniform float4 col1_x_to_y``
+   Col 1 of trans_x_to_y.
+
+``uniform float4 col2_x_to_y``
+   Col 2 of trans_x_to_y.
+
+``uniform float4 col3_x_to_y``
+   Col 3 of trans_x_to_y.
+
+``uniform float4x4 mstrans_x``
+   Model-Space Transform of X, aka trans_x_to_model
+
+``uniform float4x4 cstrans_x``
+   Clip-Space Transform of X, aka trans_x_to_clip
+
+``uniform float4x4 wstrans_x``
+   World-Space Transform of X, aka trans_x_to_world
+
+``uniform float4x4 vstrans_x``
+   View-Space Transform of X, aka trans_x_to_view
+
+``uniform float4 mspos_x``
+   Model-Space Position of X, aka row3_x_to_model
+
+``uniform float4 cspos_x``
+   Clip-Space Position of X, aka row3_x_to_clip
+
+``uniform float4 wspos_x``
+   World-Space Position of X, aka row3_x_to_world
+
+``uniform float4 vspos_x``
+   View-Space Position of X, aka row3_x_to_view
+
+``uniform float4x4 mat_modelview``
+   Modelview matrix, transforming model-space coordinates to camera-space
+   coordinates.
+
+``uniform float4x4 inv_modelview``
+   Inverse of the model-view Matrix
+
+``uniform float4x4 tps_modelview``
+   Transposed Modelview Matrix
+
+``uniform float4x4 itp_modelview``
+   Inverse Transposed Modelview Matrix
+
+``uniform float4x4 mat_projection``
+   Projection Matrix
+
+``uniform float4x4 inv_projection``
+   Inverse Projection Matrix
+
+``uniform float4x4 tps_projection``
+   Transposed Projection Matrix
+
+``uniform float4x4 itp_projection``
+   Inverse Transposed Projection Matrix
+
+``uniform float4x4 mat_modelproj``
+   Composed Modelview/Projection Matrix
+
+``uniform float4x4 inv_modelproj``
+   Inverse ModelProj Matrix
+
+``uniform float4x4 tps_modelproj``
+   Transposed ModelProj Matrix
+
+``uniform float4x4 itp_modelproj``
+   Inverse Transposed ModelProj Matrix
+
+``uniform float4 anything``
+   A constant vector that was stored using ``setShaderInput``. Parameter
+   anything would match data supplied by the call ``setShaderInput("anything",
+   Vec4(x,y,z,w))``
+
+``uniform sampler2D anything``
+   \
+``uniform sampler3D anything``
+   \
+``uniform sampler2DArray anything``
+   \
+   A constant texture that was stored using ``setShaderInput``. Parameter
+   *anything* would match data supplied by the call
+   ``setShaderInput("anything", myTex)``
+
+``uniform float4x4 anything``
+   A constant matrix that was stored using ``setShaderInput``. Parameter
+   anything would match data supplied by the call setShaderInput("anything",
+   myNodePath). The matrix supplied is the nodepath's local transform.
+
+``uniform float4 texpad_x``
+   X must be the name of a texture specified via shaderInput. Contains the U,V
+   coordinates of the center of the texture. This will be (0.5,0.5) if the
+   texture is not padded, but it will be less if the texture is padded.
+
+``uniform float4 texpix_x``
+   X must be the name of a texture specified via shaderInput. Contains the U,V
+   offset of a single pixel in the texture (ie, the reciprocal of the texture
+   size).
+
+``uniform float4x4 attr_material``
+   The contents of the material attribute. Row 0 is ambient, Row 1 is diffuse,
+   Row 2 is emission, Row 3 is specular, with shininess in W.
+
+``uniform float4 attr_color``
+   The contents of the color attribute. This is white unless the model has a
+   flat color applied.
+
+``uniform float4 attr_colorscale``
+   The contents of the color scale attribute. This is white unless the model has
+   a color scale applied using nodePath.setColorScale.
+
+   This variable is only available in 1.6.2 and above.
+
+``uniform float4 attr_fog``
+   The fog parameters, where applicable. The values are in order: density,
+   start, end, scale. The density is for exponential fog only, the start, end
+   and scale are for linear fog only. The scale is equal to 1 / (end - start).
+
+   New in Panda3D 1.8.
+
+``uniform float4 attr_fogcolor``
+   The fog color, if applicable. New in Panda3D 1.8.
+
+``uniform float4 alight_x``
+   X must be an AmbientLight specified via a shaderInput. Contains the color of
+   the light.
+
+``uniform float4x4 dlight_x``
+   X must be an DirectionalLight specified via a shaderInput. Row 0 is color,
+   row 1 is specular, row 2 is model-space direction, row 3 is model-space
+   pseudo half-angle.
+
+``uniform float4 plane_x``
+   X must be an PlaneNode specified via a shaderInput. Contains the four terms
+   of the plane equation.
+
+   This variable is only available in 1.6.2 and above.
+
+``uniform float4 clipplane_0``
+   Contains the parameters of the first clipplane (also: clipplane_1,
+   clipplane_2, etc. for subsequent clip planes) in world-space coordinates.
+
+   This variable is only available in 1.6.2 and above.
+
+``uniform float sys_time``
+   Contains the frame time in seconds.
+
+   This variable is only available in 1.9.0 and above.
+
+``floatX l_position: POSITION``
+   Linearly interpolated Position, as supplied by the vertex shader to the
+   fragment shader. Declare "out" in the vertex shader, "in" in the fragment
+   shader.
+
+``floatX l_color0: COLOR0``
+   Linearly interpolated Primary color, as supplied by the vertex shader to the
+   fragment shader. Declare "out" in the vertex shader, "in" in the fragment
+   shader.
+
+``floatX l_color1: COLOR1``
+   Linearly interpolated Secondary color, as supplied by the vertex shader to
+   the fragment shader. Declare "out" in the vertex shader, "in" in the fragment
+   shader.
+
+``floatX l_texcoord0: TEXCOORD0``
+   Linearly interpolated Texture Coordinate 0, as supplied by the vertex shader
+   to the fragment shader. You may also use l_texcoord1, l_texcoord2, and so
+   forth. Declare "out" in the vertex shader, "in" in the fragment shader.
+
+``out floatX o_color: COLOR``
+   Output Color, as supplied by the fragment shader to the blending units.
+   Fragment shader only. (COLOR0 is also accepted.)
+
+``out floatX o_aux: COLOR1``
+   Output auxiliary color. Only available if an auxiliary was obtained for the
+   shaders target buffer/window. Fragment shader only.
 
 Using Custom Shader Inputs
 --------------------------
