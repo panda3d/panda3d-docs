@@ -28,9 +28,19 @@ on the frame-rate meter, put this in your config file::
 
 Or, if you want to have it set at run-time:
 
-.. code-block:: python
+.. only:: python
 
-   base.setFrameRateMeter(True)
+   .. code-block:: python
+
+      base.setFrameRateMeter(True)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      PT(FrameRateMeter) meter;
+      meter = new FrameRateMeter("frame_rate_meter");
+      meter->setup_window(graphics_window);
 
 The Scene Analyzer
 ------------------
@@ -54,9 +64,19 @@ rate.
 To inspect performance the NodePath.analyze() method is extremely useful. For
 example:
 
-.. code-block:: python
+.. only:: python
 
-   render.analyze()
+   .. code-block:: python
+
+      render.analyze()
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      SceneGraphAnalyzer sga;
+      sga.add_node(render.node());
+      sga.write(std::cerr);
 
 The response is printed to the command window. It may look something like this::
 
@@ -78,18 +98,36 @@ of all of these boxes to just sit around and be part of the background, or to
 move as a single unit, they can flattened together into a handful of nodes (or
 even one node). To do this, parent them all to the same node, and use:
 
-.. code-block:: python
+.. only:: python
 
-   node.flattenStrong()
+   .. code-block:: python
 
-One thing that flattenStrong() won't touch is geometry under a ModelRoot or
+      node.flattenStrong()
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      node.flatten_strong();
+
+One thing that flatten_strong() won't touch is geometry under a ModelRoot or
 ModelNode node. Since each egg or bam file loads itself up under a ModelRoot
 node, the proper way to handle this is to get rid of that node first to make the
 geometry from multiple different egg files to be flattened together. This can be
 done with the following:
 
-.. code-block:: python
+.. only:: python
 
-   modelRoot = loader.loadModel('myModel.egg')
-   newModel = NodePath('model')
-   modelRoot.getChildren().reparentTo(newModel)
+   .. code-block:: python
+
+      modelRoot = loader.loadModel('myModel.egg')
+      newModel = NodePath('model')
+      modelRoot.getChildren().reparentTo(newModel)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      NodePath model = window->load_model(framework.get_models(), "myModel.egg");
+      NodePath new_model("model");
+      model.get_children().reparent_to(new_model);
