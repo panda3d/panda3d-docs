@@ -3,15 +3,15 @@
 Sample Programs in the Distribution
 ===================================
 
-The Panda3D Distribution includes quite a few sample programs. The following
-is a list of what's included, and which features of the engine each sample
+The Panda3D Distribution includes quite a few sample programs. The following is
+a list of what's included, and which features of the engine each sample
 demonstrates. If you are just learning Panda3D, take a look at the ones marked
 as "Beginner" difficulty.
 
-To run a sample program, you need to install Panda3D. If you're a Windows
-user, you'll find the sample programs in your Start Menu. If you're a Linux
-user, you'll find the sample programs in /usr/share/panda3d. On Mac OS X,
-you'll find them in /Developer/Examples/Panda3D/.
+To run a sample program, you need to install Panda3D. If you're a Windows user,
+you'll find the sample programs in your Start Menu. If you're a Linux user,
+you'll find the sample programs in /usr/share/panda3d. On macOS, you'll find
+them in /Developer/Examples/Panda3D/.
 
 :ref:`asteroids`
 
