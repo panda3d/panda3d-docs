@@ -52,10 +52,15 @@ copyright = u'2019 Carnegie Mellon University'
 #
 # The short X.Y version.
 version = '1.10'
-# The full version, including alpha/beta/rc tags.
-release = '1.10.3'
 
-# Whether to generate Python or C++ documentation.  TODO: 
+# This is supposed to be the full version, but it doesn't appear to be used
+# anywhere important, and I'm not keen on having to update this continuously.
+release = version
+
+# List of all versions in the switcher.
+versions = ['1.10', '1.9']
+
+# Whether to generate Python or C++ documentation.  TODO:
 tags.add('python')
 
 variations = [('python', 'Python'),
@@ -104,11 +109,12 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
-  'style_nav_header_background': '#735cdd',
-  'logo_only': True,
-  'collapse_navigation': False,
-  'prev_next_buttons_location': 'both',
-  'style_external_links': True
+    'style_nav_header_background': '#735cdd',
+    'logo_only': True,
+    'collapse_navigation': False,
+    'prev_next_buttons_location': 'both',
+    'style_external_links': True,
+    'display_version': False,
 }
 
 # The name for this set of Sphinx documents.  If None, it defaults to
@@ -142,6 +148,7 @@ html_context = {
     'github_repo': 'panda3d-docs',
     'github_version': version,
     'conf_py_path': '/',
+    'versions': versions,
 }
 
 # Don't copy a _sources dir -- we already have a GitHub link

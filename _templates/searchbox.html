@@ -1,3 +1,17 @@
+{% for version_option in versions %}
+  {% if version_option|string() == version|string() %}
+    <span class="sidebar-curr-version">{{ version_option }}</span>
+  {% elif currentvariation is defined %}
+    <a class="sidebar-version-link" href="{{ pathto('../' ~ version_option ~ '/' ~ currentvariation[0]|string() ~ '/' ~ pagename ~ file_suffix, 1) }}">{{ version_option }}</a>
+  {% endif %}
+
+  {% if not loop.last %}
+    <span class="sidebar-sep">|</span>
+  {% endif %}
+{% endfor %}
+
+<br />
+
 {% for variation in variations %}
   {% if variation[0]|string() == currentvariation[0]|string() %}
     <span class="sidebar-curr-variation">{{ variation[1] }}</span>
