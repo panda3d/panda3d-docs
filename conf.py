@@ -137,7 +137,16 @@ html_context = {
     'css_files': [
         '_static/panda.css',  # override wide tables in RTD theme
     ],
+    'display_github': True,
+    'github_user': 'panda3d',
+    'github_repo': 'panda3d-docs',
+    'github_version': version,
+    'conf_py_path': '/',
 }
+
+# Don't copy a _sources dir -- we already have a GitHub link
+html_copy_source = False
+
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
 # directly to the root of the documentation.
