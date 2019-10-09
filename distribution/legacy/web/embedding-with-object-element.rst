@@ -18,7 +18,7 @@ page. If you are unfamiliar with HTML syntax, we recommend you study a brief
 tutorial on writing web pages using HTML before continuing.
 
 For Internet Explorer, you must use the
-``&lt;object&gt;`` element to embed a p3d
+``<object>`` element to embed a p3d
 file, with code like this:
 
 
@@ -33,15 +33,15 @@ file, with code like this:
 
 
 Note that the width and height are specified as attributes to the
-``&lt;object&gt;`` element. The classid
+``<object>`` element. The classid
 string is literal, and must always be the exact string shown above; this is
 the string that identifies the Panda3D plugin. The URL of the p3d file to be
 launched should be specified as an attribute of the nested
-``&lt;param&gt;`` element, as shown
+``<param>`` element, as shown
 above.
 
 For other browsers, you also use the
-``&lt;object&gt;`` element, but it looks a
+``<object>`` element, but it looks a
 little bit different:
 
 
@@ -58,17 +58,17 @@ In non-Internet Explorer browsers, you identify the Panda3D plugin with the
 string ``type="application/x-panda3d"``, instead of with
 the classid string used by Internet Explorer. Also, the URL of the p3d file is
 specified as an attribute of the
-``&lt;object&gt;`` element, instead of in
-a nested ``&lt;param&gt;`` element.
+``<object>`` element, instead of in
+a nested ``<param>`` element.
 
 In order to design a web page that works on any browser--and you should always
 design web pages that do--you can embed one
-``&lt;object&gt;`` element within the
+``<object>`` element within the
 other. This works because if a browser encounters an
-``&lt;object&gt;`` element that it doesn't
+``<object>`` element that it doesn't
 understand, it is supposed to load whatever is within that
-``&lt;object&gt;``'s nested scope, which
-might be another ``&lt;object&gt;``
+``<object>``'s nested scope, which
+might be another ``<object>``
 element. So, for instance, the above examples could be written like this:
 
 
@@ -85,10 +85,10 @@ element. So, for instance, the above examples could be written like this:
 
 
 
-The outer ``&lt;object&gt;`` element is
+The outer ``<object>`` element is
 the non-Internet Explorer version, and in case that isn't understood (for
 instance, because the user is running Internet Explorer), then it will fall to
-the inner ``&lt;object&gt;`` element
+the inner ``<object>`` element
 instead, which is the Internet Explorer version.
 
 We recommend putting the non-Internet Explorer version on the outside, because
@@ -96,5 +96,5 @@ some versions of Safari seem to get confused if they encounter the Internet
 Explorer version first.
 
 Note that there are additional, optional attributes that may be provided to
-either form of the ``&lt;object&gt;`` tag.
+either form of the ``<object>`` tag.
 These are discussed in :ref:`advanced-object-tags`.

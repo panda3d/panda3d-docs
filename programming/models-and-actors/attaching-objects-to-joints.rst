@@ -26,4 +26,4 @@ be something like "Femur", or "Neck", or "L Finger1". This is usually set
 inside the modeling package. For example, in MAX, each object in the scene has
 a name, including the bones. If necessary, you can determine the joint names
 by scanning the egg file for strings like
-``&lt;Joint&gt; Femur``.
+``<Joint> Femur``.

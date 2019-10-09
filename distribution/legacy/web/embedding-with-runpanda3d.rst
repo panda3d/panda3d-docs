@@ -7,13 +7,13 @@ Embedding with RunPanda3D
 
    This article describes a deprecated feature as of Panda3D 1.10.0.
 
-Using nested ``&lt;object&gt;`` elements
+Using nested ``<object>`` elements
 is a straightforward way to embed your p3d file, but it does have two
 disadvantages. Specifically, (1) it requires you to specify all of the options
 twice, which promotes errors; and (2) it doesn't work if you need to specify
 an "id" attribute to access your embedded plugin object via JavaScript,
 because you can't specify the same "id" attribute to two different
-``&lt;object&gt;`` elements.
+``<object>`` elements.
 
 There's another alternative that solves both problems, using JavaScript. Of
 course, this requires that your end-users will have JavaScript enabled, but
@@ -54,7 +54,7 @@ That is, you must include a reference to RunPanda3D.js within the
 web page.
 
 ``P3D_RunContent()`` will generate the
-appropriate form of the ``&lt;object&gt;``
+appropriate form of the ``<object>``
 element for whichever browser the user is currently running: either the
 Internet Explorer form, or the non-Internet Explorer form. The object element
 is generated via document.write(), wherever the call to
@@ -65,9 +65,9 @@ The parameters to ``P3D_RunContent()`` must
 be given in pairs: of each two parameters, the first parameter is the keyword,
 and the second parameter is the value. This is equivalent to a
 ``keyword="value"`` pair appearing in the
-``&lt;object&gt;`` element. For instance,
+``<object>`` element. For instance,
 the above call would generate an
-``&lt;object&gt;`` element something like
+``<object>`` element something like
 this:
 
 
@@ -87,4 +87,4 @@ of browser the user is running.)
 Using ``P3D_RunContent()`` also adds two
 additional :ref:`splash-window-tags`, noplugin_img and noplugin_href. These
 tags are not available if you embed using the
-``&lt;object&gt;`` syntax directly.
+``<object>`` syntax directly.

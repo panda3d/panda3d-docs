@@ -36,14 +36,14 @@ Smart Pointers
 
 To correctly track references in C++ code, Panda3D needs to know whenever a
 new reference to the class is created. Therefore, Panda3D defines a template
-class ``PointerTo&lt;T&gt;`` which is just
+class ``PointerTo<T>`` which is just
 like the ordinary pointer
 ``T*``, except that the
 reference count is incremented when it is created or assigned, and decremented
 when it goes out of scope. There is a convenience macro
 ``PT(T)`` to save typing.
 
-There is also a macro ``ConstPointerTo&lt;T&gt;``,
+There is also a macro ``ConstPointerTo<T>``,
 shortened to ``CPT(T)``, which
 manages a pointer to a const object. This is similar to
 ``const T*`` in C++; the pointer can
@@ -147,8 +147,8 @@ that weak pointers have extra advantages: they can know when the underlying
 object has been destructed.
 
 Weak pointers are implemented by
-``WeakPointerTo&lt;T&gt;`` and
-``WeakConstPointerTo&lt;T&gt;``, abbreviated to
+``WeakPointerTo<T>`` and
+``WeakConstPointerTo<T>``, abbreviated to
 ``WPT(T)`` and
 ``WCPT(T)``, respectively. They
 work just like regular pointers, but be careful not to dereference it if it
