@@ -29,7 +29,7 @@ Thus, in any Panda application, you must always use Panda's synchronization
 primitives, and not the system-provided ones; and you must use Panda's thread
 primitives and not call into the system thread library directly, or you will
 risk a terrible crash. That is, you should use Panda's Thread and Mutex
-classes (or for Python users, the `:py:mod:direct.stdpy.threading` module), and
+classes (or for Python users, the :py:mod:`direct.stdpy.threading` module), and
 not any system thread or mutex implementation. See :ref:`threading` for more.
 
 Defining task chains

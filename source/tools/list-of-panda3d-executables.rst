@@ -44,10 +44,10 @@ make-prc-key.exe      Generates one or more new key to be used for signing a prc
 maya2egg5.exe         Converts files in the Maya 5 format to the .egg format. For more information see :ref:`converting-from-maya`.
 maya2egg6.exe         Converts files in the Maya 6 format to the .egg format. For more information see :ref:`converting-from-maya`.
 maya2egg65.exe        Converts files in the Maya 6.5 format to the .egg format. For more information see :ref:`converting-from-maya`.
-multify.exe           Stores and extracts files from a Panda MultiFile. Can also extract file in program using the ``VirtualFileSystem``(see API for usage). For more information see executable.
-pdecrypt.exe          Decompress a file compressed by pencrypt. See executable for more inforamtion.
+multify.exe           Stores and extracts files from a Panda MultiFile. Can also extract file in program using the VirtualFileSystem (see API for usage). For more information see executable.
+pdecrypt.exe          Decompress a file compressed by pencrypt. See executable for more information.
 pencrypt.exe          Runs an encryption algorithm on the specified file. The original file can only be recovered by using pdecrypt. See executable for more information.
-python.exe            Used to start Panda 3D. For more information see :ref:`starting-panda3d`
+python.exe            The Python interpreter. For more information see :ref:`starting-panda3d`
 pstats.exe            Panda’s built in performance tool. For more information see :ref:`measuring-performance-with-pstats`
 pview.exe             Used to view models in the .egg or .bam format without having to create a Panda program. For more information see :ref:`pview`.
 vrml2egg.exe          Converts files in the Virtual Reality Modeling Language format to the .egg format. For more information see :ref:`converting-from-other-formats`.

@@ -123,7 +123,7 @@ Here's what's known to be missing:
 Note that although vertex colors are supported by the ShaderGenerator, in order
 to render vertex colors you need to apply a ``ColorAttrib.makeVertex()`` attrib
 to the render state. One easy way to do this is to call
-``NodePath.setColorOff()``(that is, turn off scene graph color, and let vertex
+``NodePath.setColorOff()`` (that is, turn off scene graph color, and let vertex
 color be visible). In the fixed-function renderer, vertex colors will render
 with or without this attrib, so you might not notice if you fail to apply it.
 Models that come in via the egg loader should have this attribute applied
