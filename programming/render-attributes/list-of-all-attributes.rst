@@ -16,8 +16,7 @@ RenderAttrib.
 -  :ref:`AntialiasAttrib <antialiasing>`: Controls full-screen antialiasing
    and polygon-edge antialiasing.
 
--  :ref:`AudioVolumeAttrib <>`: Applies a scale to audio volume for positional
-   sounds.
+-  AudioVolumeAttrib: Applies a scale to audio volume for positional sounds.
 
 -  :ref:`AuxBitplaneAttrib <auxiliary-bitplane-control>`: Causes shader
    generator to produce extra data.
