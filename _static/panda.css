@@ -2,8 +2,29 @@ body, .wy-body-for-nav {
     background: url("https://www.panda3d.org/wp-content/themes/panda3d/assets/img/elements/background.jpg") #f9f9f9;
 }
 
-.wy-nav-content-wrap {
-    background: initial !important;
+/* top bar that appears in mobile version */
+.wy-nav-top {
+    background: #404040;
+    height: 55px;
+    line-height: 55px;
+    padding: 0 0;
+}
+
+.wy-nav-top i {
+    font-size: 24px;
+    line-height: 55px;
+    padding: 0 16px;
+
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(50%,transparent),color-stop(50%,#252424));
+    background-image: -webkit-linear-gradient(top,transparent 50%,#252424 50%);
+    background-image: linear-gradient(to bottom,transparent 50%,#252424 50%);
+    background-size: 100% 200%;
+    -webkit-transition: all .25s cubic-bezier(0.4,0,0.2,1);
+    transition: all .25s cubic-bezier(0.4,0,0.2,1);
+}
+
+.wy-nav-top i:hover, .wy-nav-top i:active, .wy-nav-top i:focus {
+    background-position: 0 100%;
 }
 
 .wy-nav-content {
