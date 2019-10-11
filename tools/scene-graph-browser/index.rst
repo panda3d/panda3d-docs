@@ -10,9 +10,8 @@ Information on enabling 'Direct Tools' is available in the
 In the main Direct Session window, there are several scene placement tools
 available through the tabs at the right side of the screen. Clicking on these
 tabs will bring up a dialog box with the various properties for these aspects.
-On the left side of the panel is a collapsible scene graph for the render
-parent node. Right click any of the objects to bring up a list of possible
-commands.
+On the left side of the panel is a collapsible scene graph for the render parent
+node. Right click any of the objects to bring up a list of possible commands.
 
 |directtools3.jpg|
 
@@ -25,7 +24,6 @@ window allows these movements to be relative to another object in the program.
 
 .. |directtools3.jpg| image:: directtools3.jpg
 .. |directtools4.jpg| image:: directtools4.jpg
-
 
 
 .. toctree::

@@ -4,17 +4,16 @@ Previewing 3D Models in Pview
 =============================
 
 Pview or Panda Viewer is a model and animation viewer for egg and bam files.
-This allows users to see if their files have converted correctly without
-having to create a Panda3D program. Pview is accessed through a command
-prompt.
+This allows users to see if their files have converted correctly without having
+to create a Panda3D program. Pview is accessed through a command prompt.
 
 To view a model that has been converted to an egg or bam file, type the
 following:
 
 ``pview modelFile.egg``
 
-To view a character model with animations, simply add the name of the file
-with the animation.
+To view a character model with animations, simply add the name of the file with
+the animation.
 
 ``pview modelFile.egg animationFile.egg``
 
@@ -22,20 +21,20 @@ Here's an example based on the panda model distributed with panda source.
 
 ``pview panda.egg``
 
-A new window should pop-up and here's what you should see -
+A new window should pop-up and here's what you should see:
 
 |pviewsample.jpg|
 
 There are some controls and hotkeys available while using pview. To see the
-whole list press shift-question mark in the pview window. To turn this list
-off press shift-question mark again. For convenience here is the full list of
-as the time of writing:
+whole list press shift-question mark in the pview window. To turn this list off
+press shift-question mark again. For convenience here is the full list of as the
+time of writing:
 
-=========================== ========================================================================
-Left-click and drag Mouse   Moves the model up, down, left, and right relative to the camera
+=========================== ====================================================
+Left-click and drag Mouse   Pans the camera.
 Middle-click and drag Mouse Rotates the model around its pivot
 Right-click and drag Mouse  Moves the model away and towards the camera
-f                           Report framerate. The current framerate is output on the console window.
+f                           Report current framerate to the console window.
 w                           Toggle wireframe mode
 t                           Toggle texturing
 b                           Toggle back face (double-sided) rendering
@@ -61,7 +60,7 @@ alt-enter                   Toggle between full-screen and windowed mode
 W                           Toggle wireframe
 escape                      Close Window
 q                           Close Window
-=========================== ========================================================================
+=========================== ====================================================
 
 .. |pviewsample.jpg| image:: pviewsample.jpg
 

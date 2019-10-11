@@ -3,9 +3,9 @@
 List of Panda3D Executables
 ===========================
 
-This is meant to be a list of the executables in the /bin/ folder of Panda 3D.
-You can get a detailed synopsis of what the executables do by running them
-with -h as the argument.
+This is meant to be a list of the executables in the /bin/ folder of Panda3D.
+You can get a detailed synopsis of what the executables do by running them with
+-h as the argument.
 
 ===================== =============================================================================================================================================================================================================
 Filename              Description
