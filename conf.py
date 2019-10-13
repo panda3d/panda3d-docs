@@ -121,6 +121,7 @@ html_theme_options = {
 # "<project> v<release> documentation".
 html_title = "Panda3D Manual"
 html_logo = "_static/logo.png"
+html_js_files = ['ver_dropdown.js']
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
@@ -148,6 +149,7 @@ html_context = {
     'github_repo': 'panda3d-docs',
     'github_version': version,
     'conf_py_path': '/',
+    'version': version,
     'versions': versions,
 }
 
