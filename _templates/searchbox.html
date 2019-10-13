@@ -1,6 +1,6 @@
 <span>Version</span>
 {% if currentvariation is defined %}
-  <select id="ver-dropdown" style="display: none;" onchange="window.location = '{{ pathto('../' ~ '\' + this.options[this.selectedIndex].value + \'' ~ '/' ~ currentvariation[0]|string() ~ '/' ~ pagename ~ file_suffix, 1) }}'">
+  <select id="ver-dropdown" style="display: none;" onchange="dropdown_navigate('{{ pathto('../' ~ '\' + this.options[this.selectedIndex].value + \'' ~ '/' ~ currentvariation[0]|string() ~ '/' ~ pagename ~ file_suffix, 1) }}')">
     {% for version_option in versions %}
       <option{% if version_option == version %} selected{% endif %}>{{ version_option }}</option>
     {% endfor %}
