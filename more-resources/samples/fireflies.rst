@@ -82,84 +82,120 @@ that it needs to regenerate the original surface position from the screen
 position and depth value. The math for that deserves some explanation.
 
 We need to take a clip-space coordinate and depth-buffer value
-(ClipX,ClipY,ClipZ,ClipW) and unproject it back to a view-space
-(ViewX,ViewY,ViewZ) coordinate. Lighting is then done in view-space.
+(x_clip,y_clip,z_clip,w_clip) and unproject it back to a view-space
+(x_view,y_view,z_view) coordinate. Lighting is then done in view-space.
 
 Okay, so here's the math. Panda uses the projection matrix to transform view-
 space into clip-space. But in practice, the projection matrix for a perspective
 camera always contains four nonzero constants, and they're always in the same
-place::
+place:
 
-   A  0  0  0
-   0  0  B  1
-   0  C  0  0
-   0  0  D  0
+.. math::
+
+   \begin{bmatrix}
+   A & 0 & 0 & 0 \\
+   0 & 0 & B & 1 \\
+   0 & C & 0 & 0 \\
+   0 & 0 & D & 0
+   \end{bmatrix}
 
 The result is that the panda projection matrix boils down to these simple
-equations::
+equations:
 
-   clipx = viewx * A
-   clipy = viewz * C
-   clipz = viewy * B + D
-   clipw = viewy
+.. math::
+
+   \begin{align*}
+   x_{clip} &= x_{view} \cdot A \\
+   y_{clip} &= z_{view} \cdot C \\
+   z_{clip} &= y_{view} \cdot B + D \\
+   w_{clip} &= y_{view}
+   \end{align*}
 
 Look out, there has been a coordinate system change! In the scene graph, Z
 corresponds to "up", but in clip-space, Z is the depth value (and X,Y address a
 pixel).
 
 After panda calculates clip-space coordinates, it divides by W. Finally, it
-rescales the depth-value::
+rescales the depth-value:
 
-   screenx = clipx / clipw
-   screeny = clipy / clipw
-   screenz = clipz / clipw
-   depth = screenz * 0.5 + 0.5
+.. math::
 
-So now we have some equations defining (clipx,clipy,clipz,clipw) in terms of
-(viewx,viewy,viewz), and (screenx,screeny,screenz) in terms of
-(clipx,clipy,clipz,clipw). It's basic algebra to solve these equations for
-(viewx, viewy, viewz) in terms of (screenx, screeny, screenz). Here, I have
-shown all my algebraic steps::
+   \begin{align*}
+   x_{screen} &= \frac{x_{clip}}{w_{clip}} \\
+   y_{screen} &= \frac{y_{clip}}{w_{clip}} \\
+   z_{screen} &= \frac{z_{clip}}{w_{clip}} \\
+   depth &= 0.5 \cdot z_{screen} + 0.5
+   \end{align*}
 
-   depth = screenz * 0.5 + 0.5
-   depth = (clipz / clipw) * 0.5 + 0.5
-   depth = ((viewy * B + D) / viewy) * 0.5 + 0.5
-   depth - 0.5 = ((viewy * B + D) / viewy) * 0.5
-   (2*depth - 1.0) = ((viewy * B + D) / viewy)
-   (2*depth - 1.0) * viewy = viewy * B + D
-   (2*depth - 1.0) * viewy + viewy * -B = D
-   (2*depth - 1.0 - B) * viewy = D
-   viewy = 0.5D / (depth - 0.5 - 0.5B)
+So now we have some equations defining (x_clip,y_clip,z_clip,w_clip) in terms of
+(x_view,y_view,z_view), and (x_screen,y_screen,z_screen) in terms of
+(x_clip,y_clip,z_clip,w_clip). It's basic algebra to solve these equations for
+(x_view, y_view, z_view) in terms of (x_screen, y_screen, z_screen). Here, I
+have shown all my algebraic steps:
 
-   screenx = clipx / clipw
-   screenx = (viewx * A) / viewy
-   screenx * viewy = viewx * A
-   screenx * (0.5D / (depth - 0.5 - 0.5B)) = viewx * A
-   (screenx * 0.5D) / (depth - 0.5 - 0.5B) = viewx * A
-   (screenx * 0.5D/A) / (depth - 0.5 - 0.5B) = viewx
-   viewx = (screenx * 0.5D/A) / (depth - 0.5 - 0.5B)
+.. math::
 
-   screeny = clipy / clipw
-   screeny = (viewz * C) / viewy
-   screeny * viewy = viewz * C
-   screeny * (0.5D / (depth - 0.5 - 0.5B)) = viewz * C
-   (screeny * 0.5D) / (depth - 0.5 - 0.5B) = viewz * C
-   (screeny * 0.5D/C) / (depth - 0.5 - 0.5B) = viewz
-   viewz = (screeny * 0.5D/C) / (depth - 0.5 - 0.5B)
+   \begin{align*}
+   depth &= 0.5 \cdot z_{screen} + 0.5 \\
+   depth &= \frac{z_{clip}}{w_{clip}} \cdot 0.5 + 0.5 \\
+   depth &= \frac{y_{view} \cdot B + D}{y_{view}} \cdot 0.5 + 0.5 \\
+   depth - 0.5 &= \frac{y_{view} \cdot B + D}{y_{view}} \cdot 0.5 \\
+   (2 \cdot depth - 1.0) &= \frac{y_{view} \cdot B + D}{y_{view}} \\
+   (2 \cdot depth - 1.0) \cdot y_{view} &= y_{view} \cdot B + D \\
+   (2 \cdot depth - 1.0) \cdot y_{view} + y_{view} \cdot -B &= D \\
+   (2 \cdot depth - 1.0 - B) \cdot y_{view} &= D \\
+   y_{view} &= \frac{0.5D}{depth - 0.5 - 0.5B}
+   \end{align*}
+
+|
+
+.. math::
+
+   \begin{align*}
+   x_{screen} &= \frac{x_{clip}}{w_{clip}} \\
+   x_{screen} &= \frac{x_{view} \cdot A}{y_{view}} \\
+   x_{screen} \cdot y_{view} &= x_{view} \cdot A \\
+   x_{screen} \cdot \frac{0.5D}{depth - 0.5 - 0.5B} &= x_{view} \cdot A \\
+   \frac{x_{screen} \cdot 0.5D}{depth - 0.5 - 0.5B} &= x_{view} \cdot A \\
+   \frac{x_{screen} \cdot \frac{0.5D}{A}}{depth - 0.5 - 0.5B} &= x_{view} \\
+   x_{view} &= \frac{x_{screen} \cdot \frac{0.5D}{A}}{depth - 0.5 - 0.5B}
+   \end{align*}
+
+|
+
+.. math::
+
+   \begin{align*}
+   y_{screen} &= \frac{y_{clip}}{w_{clip}} \\
+   y_{screen} &= \frac{z_{view} \cdot C}{y_{view}} \\
+   y_{screen} \cdot y_{view} &= z_{view} \cdot C \\
+   y_{screen} \cdot \frac{0.5D}{depth - 0.5 - 0.5B} &= z_{view} \cdot C \\
+   \frac{y_{screen} \cdot 0.5D}{depth - 0.5 - 0.5B} &= z_{view} \cdot C \\
+   \frac{y_{screen} \cdot \frac{0.5D}{C}}{depth - 0.5 - 0.5B} &= z_{view} \\
+   z_{view} &= \frac{y_{screen} \cdot \frac{0.5D}{C}}{depth - 0.5 - 0.5B}
+   \end{align*}
 
 To save our vertex and pixel shaders a little work, we can precompute these
-constants::
+constants:
 
-   projx = 0.5D/A
-   projy = 0.5D
-   projz = 0.5D/C
-   projw = -0.5-0.5B
+.. math::
 
-So, here are the equations in their final form::
+   \begin{align*}
+   x_{proj} &= \frac{0.5D}{A} \\
+   y_{proj} &= 0.5D \\
+   z_{proj} &= \frac{0.5D}{C} \\
+   w_{proj} &= -0.5-0.5B
+   \end{align*}
 
-   viewx = (screenx * projx) / (depth + projw)
-   viewy = (1 * projy) / (depth + projw)
-   viewz = (screeny * projz) / (depth + projw)
+So, here are the equations in their final form:
+
+.. math::
+
+   \begin{align*}
+   x_{view} &= \frac{x_{screen} \cdot x_{proj}}{depth + w} \\
+   y_{view} &= \frac{1 * y_{proj}}{depth + w} \\
+   z_{view} &= \frac{y_{screen} \cdot z_{proj}}{depth + w}
+   \end{align*}
 
 Back to the List of Sample Programs:
 
