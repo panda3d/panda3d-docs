@@ -28,6 +28,10 @@ guidelines:
 * Use a single blank newline at the end of each file.
 * Indentation for ReStructuredText should be 3 spaces, except code blocks,
   which need to be indented to 4 spaces for Python code and 2 for C++.
+* The manual exists mostly to explain concepts and should not become a cookbook
+  for code examples.  However, in a few cases it is helpful to have a complete
+  code example listed.  In this case, put it in a separate .py file and refer to
+  it using a `.. literalinclude::` block.
 * When choosing a location for a new manual page, keep the filename concise, and
   try to avoid creating redundancy in the path. For example, prefer
   `bullet/tutorial.rst` over `the-bullet-integration/bullet-tutorial.rst`.
