@@ -3,17 +3,13 @@
 Common Image Filters
 ====================
 
-
-
 .. only:: cpp
 
     Note: Sorry, but the CommonFilters and FilterManager classes are implemented
     in Python and will not be of much use to C++ users.
 
-
 Common Image Filters
 --------------------
-
 
 Note: the following information applies to Panda version 1.5.0 and beyond. It
 does not apply to older versions of Panda3D.
@@ -23,13 +19,9 @@ common image postprocessing operations.
 
 Import the class like this:
 
-
-
 .. code-block:: python
 
     from direct.filter.CommonFilters import CommonFilters
-
-
 
 Currently, the image postprocessing operations supported by class
 CommonFilters is:
@@ -49,17 +41,12 @@ We expect this list to grow rather substantially over the next year or so.
 Basic Setup
 -----------
 
-
 The first step is to create an object of class CommonFilters. Pass in a
 pointer to your window, and your 3D camera:
-
-
 
 .. code-block:: python
 
     filters = CommonFilters(base.win, base.cam)
-
-
 
 This will have no effect until you enable a filter (instructions below.) Once
 a filter is enabled, class CommonFilters will reconfigure the Panda3D
@@ -78,7 +65,6 @@ your window, but it will be filtered as you specify.
 What if the Video Card can't handle it?
 ---------------------------------------
 
-
 If the video card is not capable of implementing your filters, then all
 filters will be removed and the filter-enabling function will return False.
 Otherwise, filter-enabling functions will return True.
@@ -86,20 +72,15 @@ Otherwise, filter-enabling functions will return True.
 The Bloom Filter
 ----------------
 
-
 The bloom filter causes bright objects to have a glowing halo around them. To
 enable a bloom filter, use
 ``setBloom``. To disable, use
 ``delBloom``:
 
-
-
 .. code-block:: python
 
     filters.setBloom( ... options ...)
     filters.delBloom()
-
-
 
 The bloom filter works as follows. First, it renders the scene into a texture.
 It also asks the renderer to render any glow-maps into the alpha channel of
@@ -143,20 +124,15 @@ The bloom filter has many keyword parameters:
 The Cartoon Inking Filter
 -------------------------
 
-
 The cartoon inking filter causes objects to have black lines around them. To
 enable a cartoon inking filter, use
 ``setCartoonInk``. To disable, use
 ``delCartoonInk``:
 
-
-
 .. code-block:: python
 
     filters.setCartoonInk( ... options ...)
     filters.delCartoonInk()
-
-
 
 The cartoon inking filter works by rendering a camera-space normal into an
 texture. Then, a postprocessing filter does an edge-detect algorithm on the
@@ -172,20 +148,15 @@ The filter has the following keyword parameters:
 The Volumetric Lighting Filter
 ------------------------------
 
-
 The Volumetric Lighting filter makes objects cast visible light rays (also
 known as crepuscular rays, god rays or sunbeams) that can be occluded by
 visible geometry. This is an easy way to easily create nice-looking light/sun
 effects.
 
-
-
 .. code-block:: python
 
     filters.setVolumetricLighting( ... options ...)
     filters.delVolumetricLighting()
-
-
 
 The filter has the following keyword parameters:
 
@@ -213,34 +184,24 @@ The filter has the following keyword parameters:
 The Inverted Filter
 -------------------
 
-
 This filter simply inverts the colors of the image.
-
-
 
 .. code-block:: python
 
     filters.setInverted()
     filters.delInverted()
 
-
-
 This filter has no parameters.
 
 The Blur / Sharpen Filter
 -------------------------
 
-
 This filter can apply a blur or sharpen effect to the image.
-
-
 
 .. code-block:: python
 
     filters.setBlurSharpen( ... options ...)
     filters.delBlurSharpen()
-
-
 
 The filter has the following keyword parameters:
 
@@ -253,17 +214,12 @@ The filter has the following keyword parameters:
 The Ambient Occlusion Filter
 ----------------------------
 
-
 This filter adds a simple screen-space ambient occlusion effect to the scene.
-
-
 
 .. code-block:: python
 
     filters.setAmbientOcclusion( ... options ...)
     filters.delAmbientOcclusion()
-
-
 
 It is important that the viewing frustrum's near and far values fit the scene
 as tightly as possible. Note that you need to do lots of tweaking to the

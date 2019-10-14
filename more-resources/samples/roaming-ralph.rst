@@ -31,4 +31,3 @@ had time to correct the sample program. Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Roaming-Ralph.jpg| image:: screenshot-sample-programs-roaming-ralph.jpg
-

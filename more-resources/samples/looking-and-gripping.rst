@@ -44,4 +44,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Looking-and-Gripping.jpg| image:: screenshot-sample-programs-looking-and-gripping.jpg
-

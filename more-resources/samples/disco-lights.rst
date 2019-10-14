@@ -30,4 +30,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Disco-Lights.jpg| image:: screenshot-sample-programs-disco-lights.jpg
-

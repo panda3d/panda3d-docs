@@ -8,8 +8,6 @@ available from Packt Publishing with the author's permission. The text refers
 to a "custom class", which is a python class that is not part of the Panda3D
 SDK. Here is an example of a custom class:
 
-
-
 .. code-block:: python
 
     class MyClass:
@@ -18,8 +16,6 @@ SDK. Here is an example of a custom class:
         myVar2 = 20
       def myMethod(self):
         return(self.myVar1, self.myVar2)
-
-
 
 From Panda3D 1.6 Game Engine Beginner's Guide:
 
@@ -105,7 +101,6 @@ hinder proper garbage collection. A better usage is to put a simple print
 statement in the ``__del__`` method
 that will serve as a notifier that Python has garbage collected the custom
 class instance. For example:
-
 
 .. code-block:: python
 

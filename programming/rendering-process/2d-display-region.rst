@@ -20,26 +20,22 @@ If you are creating a secondary window or buffer, and you would like to layer
 2-D elements on top of the screen, you can do so by simply creating a 2-D
 scene similar to render2d. Some sample code to do so is shown here:
 
-
-
 .. code-block:: python
 
     dr = win.makeDisplayRegion()
     dr.setSort(20)
-    
+
     myCamera2d = NodePath(Camera('myCam2d'))
     lens = OrthographicLens()
     lens.setFilmSize(2, 2)
     lens.setNearFar(-1000, 1000)
     myCamera2d.node().setLens(lens)
-    
+
     myRender2d = NodePath('myRender2d')
     myRender2d.setDepthTest(False)
     myRender2d.setDepthWrite(False)
     myCamera2d.reparentTo(myRender2d)
     dr.setCamera(myCamera2d)
-
-
 
 The first group of commands creates a new DisplayRegion on the window and sets
 its sort value to 20, so that it will be drawn after the main DisplayRegion
@@ -72,8 +68,6 @@ also to be the special PGTop node required by DirectGui. If you are creating
 your own 2-D scene graph, you can create your own aspect2d node something like
 this:
 
-
-
 .. code-block:: python
 
     aspectRatio = base.getAspectRatio()
@@ -81,12 +75,9 @@ this:
     myAspect2d.setScale(1.0 / aspectRatio, 1.0, 1.0)
     myAspect2d.node().setMouseWatcher(base.mouseWatcherNode)
 
-
-
 If this is for a different window than base.win, you will probably need to
 also create your own MouseWatcher, other than base.mouseWatcherNode, to manage
 the mouse associated with your new window. See elsewhere for more information
 about this.
 
 .. |DisplayRegion_gui.jpg| image:: displayregion-gui.jpg
-

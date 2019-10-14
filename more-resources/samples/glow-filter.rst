@@ -58,4 +58,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Glow-Filter.jpg| image:: screenshot-sample-programs-glow-filter.jpg
-

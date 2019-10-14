@@ -28,33 +28,19 @@ filename, except for the image sequence number.
 
 To load a multiview texture, use:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         tex = loader.loadTexture('filename_#.png', multiview = True)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         LoaderOptions options;
         options.set_texture_flags(LoaderOptions::TF_multiview);
         PT(Texture) tex = TexturePool::load_texture("filename_#.png", 0, false, options);
-    
-    
-
 
 where the hash mark in the filename is replaced with the digit (or digits)
 that correspond to the image sequence number. For instance, the above example
@@ -67,33 +53,19 @@ numbered 0 through 11. The first six images define the six faces of the cube
 in the left view, and the next six images define the six faces of the cube in
 the right view.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         tex = loader.loadCubeMap('cubemap_##.png', multiview = True)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         LoaderOptions options;
         options.set_texture_flags(LoaderOptions::TF_multiview);
         PT(Texture) tex = TexturePool::load_texture("cubemap_##.png", 0, false, options);
-    
-    
-
 
 Finally, 3-D textures work this way as well. (Note that here by 3-D texture we
 mean one that contains height, width, and depth; this is not to be confused
@@ -103,31 +75,17 @@ contain height, width, and depth.) When loading a multiview 3-D texture, you
 must specify the number of views explicitly, because Panda won't be able to
 figure that out based on the number of images files alone.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         tex = loader.load3DTexture('tex3d_#.png', multiview = True, numViews = 2)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         LoaderOptions options;
         options.set_texture_flags(LoaderOptions::TF_multiview);
         options.set_texture_num_views(2);
         PT(Texture) tex = TexturePool::load_3d_texture("tex3d_#.png", 0, false, options);
-    
-    
-

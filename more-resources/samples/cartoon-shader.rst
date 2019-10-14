@@ -45,4 +45,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Cartoon-Shader.jpg| image:: screenshot-sample-programs-cartoon-shader.jpg
-

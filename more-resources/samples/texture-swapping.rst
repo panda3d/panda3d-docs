@@ -44,4 +44,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Texture-Swapping.jpg| image:: screenshot-sample-programs-texture-swapping.jpg
-

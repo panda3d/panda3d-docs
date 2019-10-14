@@ -12,15 +12,12 @@ and out.
 Defining your text properties
 -----------------------------
 
-
 You can create any number of
 ``TextProperties`` objects. Each of these
 can store a different set of text properties, any of the text properties that
 you can set directly on a TextNode. These include the per-character attributes
 such as font, color, shadow, and slant, as well as per-line formatting
 properties such as alignment and wordwrap.
-
-
 
 .. code-block:: python
 
@@ -30,8 +27,6 @@ properties such as alignment and wordwrap.
     tpSlant.setSlant(0.3)
     tpRoman = TextProperties()
     tpRoman.setFont(cmr12)
-
-
 
 You can set as many or as few different attributes on any one TextProperties
 object as you like. Only the attributes you specify will be applied to the
@@ -45,22 +40,15 @@ which only changes the font.
 Registering the new TextProperties objects
 ------------------------------------------
 
-
 You will need a pointer to the global
 ``TextPropertiesManager`` object:
-
-
 
 .. code-block:: python
 
     tpMgr = TextPropertiesManager.getGlobalPtr()
 
-
-
 After you have created your TextProperties objects, you must register each one
 with the TextPropertiesManager, under a unique name:
-
-
 
 .. code-block:: python
 
@@ -68,11 +56,8 @@ with the TextPropertiesManager, under a unique name:
     tpMgr.setProperties("slant", tpSlant)
     tpMgr.setProperties("roman", tpRoman)
 
-
-
 Referencing the TextProperties in text strings
 ----------------------------------------------
-
 
 Now you're ready to put the special characters in your text string to activate
 these mode changes. To do this, you will use the special character '\1', or
@@ -89,13 +74,9 @@ nest property changes like this; each '\2' will undo the most recent
 
 The following text string:
 
-
-
 .. code-block:: python
 
     text.setText("Every day in \1slant\1every way\2 I'm \1red\1getting \1roman\1better \1slant\1and\2 better.\2\2")
-
-
 
 Looks like this:
 
@@ -105,4 +86,3 @@ You can use these special characters in any Panda construct that generates
 text, including TextNode, OnscreenText, and any DirectGui object.
 
 .. |Every day in every way I'm getting better and better| image:: text-attrib.png
-

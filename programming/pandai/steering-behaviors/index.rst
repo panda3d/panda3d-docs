@@ -36,16 +36,12 @@ function of the AICharacter class.
 
 Once you get this reference, you can use it to call any steering behavior.
 
-
-
 .. code-block:: python
 
     //For example:
-    
-         aiBehaviors = aiCharacter.getAiBehaviors();  
+
+         aiBehaviors = aiCharacter.getAiBehaviors();
          aiBehaviors.seek(targetNodePath);
-
-
 
 -  Once you have read this page, you can proceed to explore the individual
    pages for each AI Behavior for details and even an example demo for each
@@ -59,12 +55,10 @@ Every steering behavior can also take a second parameter which is priority.
 This ranges from 0 to 1 and it defines the behaviors intensity when combined
 with other behaviors.
 
-
-
 .. code-block:: python
 
-    //For example: 
-        
+    //For example:
+
         aiBehaviors.seek(targetNodePath_1, 0.5);
         aiBehaviors.flee(targetNodePath_2, 0.5);
 
@@ -78,44 +72,42 @@ HELPER FUNCTIONS :
 
 (For beginners -> Come back to these when you need this functionality)
 
-For the AIWorld class: 
+For the AIWorld class:
 
 .. code-block:: python
 
     void addAiChar(AICharacter aiChar);
-    
+
     void removeAiChar(string name);
-    
+
     void addFlock(Flock *flock);
-    
+
     void flockOff(int ID);
-    
+
     void flockOn(int ID);
-    
+
     Flock getFlock(int ID);
 
-
 For the AICharacter class:
-
 
 .. code-block:: python
 
     double getMass();
-    
+
     void setMass(double m);
-    
+
     LVecBase3f getVelocity();
-    
+
     double getMaxForce();
-    
+
     void setMaxForce(double max_force);
-    
+
     NodePath getNodePath();
-    
+
     void setNodePath(NodePath np);
 
 For the AIBehaviors
-class: 
+class:
 
 .. code-block:: python
 
@@ -130,23 +122,19 @@ disabled. Returns -1 if an invalid string is passed.
 
 To remove any AI after their call has been instantiated.
 
-
 .. code-block:: python
 
     void removeAi(string "AIName");
-
-
 
 -  Note for pathfinding removal, use pathfollow as the string name, since
    pathfinding is a subset of pathfollow.
 
 To pause or resume any AI after their call has been instantiated.
 
-
 .. code-block:: python
 
     void pauseAi(string "AIName");
-    
+
     void resumeAi(string "AIName");
 
 where AIName refers to:
@@ -172,7 +160,6 @@ where AIName refers to:
 "pathfollow" - removes pathfollow
 
 --------------
-
 
 .. toctree::
    :maxdepth: 2

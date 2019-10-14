@@ -37,8 +37,6 @@ To use any of the above, specify the token and the value as a pair in the
 embedding HTML syntax. In the Internet Explorer syntax, this means you use the
 <param> element, e.g.:
 
-
-
 .. code-block:: html
 
     <object width="640" height="480"
@@ -48,12 +46,8 @@ embedding HTML syntax. In the Internet Explorer syntax, this means you use the
         <param name="auto_start" value="1">
     </object>
 
-
-
 In the non-Internet Explorer syntax, you can use the <param> element as above,
 or you can insert the token directly within the <object> tag, e.g.:
-
-
 
 .. code-block:: html
 
@@ -62,12 +56,8 @@ or you can insert the token directly within the <object> tag, e.g.:
       splash_img="my_splash.jpg" auto_start="1">
     </object>
 
-
-
 When using RunPanda3D, you just add the token and value as a pair of strings
 to the P3D_RunContent() call:
-
-
 
 .. code-block:: javascript
 
@@ -75,5 +65,3 @@ to the P3D_RunContent() call:
         'width', '640', 'height', '480',
         'splash_img', 'my_splash.jpg', 'auto_start', '1')
     }
-
-

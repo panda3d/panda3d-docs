@@ -19,14 +19,10 @@ which you can use to access the contents of the embedding web page itself.
 For example, to update the value in a field called "username" on form called
 "login" on the web page, you could write Python code like this:
 
-
-
 .. code-block:: python
 
     login = base.appRunner.dom.document.getElementById('login')
     login.username.value = 'username'
-
-
 
 In general, anything you can do in JavaScript, you can do in Python, via the
 base.appRunner.dom object.

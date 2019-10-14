@@ -6,7 +6,6 @@ Cg Tutorial Part 3
 Cg Tutorial Part 3: The Simplest Useful Shader
 ----------------------------------------------
 
-
 Here our shader will actually have useful output. It won't be anything fancy,
 just the silhouettes of the boxes since we're not doing anything with the
 lighting just yet. To recap, there are two types of shaders. Vertex shaders
@@ -17,9 +16,6 @@ think of fragments as the equivalent of pixels.
 The Shader
 ----------
 
-
-
-
 .. code-block:: glsl
 
     void vshader(
@@ -29,14 +25,12 @@ The Shader
     {
         l_position = mul(mat_modelproj, vtx_position);
     }
-    
+
     void fshader(
         out float4 o_color : COLOR)
     {
         o_color = float4(1.0, 0.0, 1.0, 1.0);
     }
-
-
 
 The vshader function is called once for every processed vertex while fshader
 is called for every drawn pixel. Because our cube has 24 vertices, vshader is

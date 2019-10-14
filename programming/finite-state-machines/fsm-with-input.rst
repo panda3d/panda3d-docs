@@ -3,15 +3,13 @@
 FSM with input
 ==============
 
-
-
 .. only:: python
 
     Another common use for FSM's is to provide an abstraction for AI state. For
     this purpose, you would like to supply an "input" string to the FSM and let
     the FSM decide which state it should transition to rather than explicitly
     specifying the target state name. Consider the following FSM state diagram:
-    
+
     ========== ====== ==========
     ↷ straight        ↶ straight
     North      ← left East
@@ -19,8 +17,7 @@ FSM with input
     West       → left South
     ↺ straight        ↻ straight
     ========== ====== ==========
-    
-    
+
     Here the text next to an arrow represents the "input" string given to the FSM,
     and the direction of the arrow represents the state transition that should be
     made for that particular input string, from the indicated starting state. In
@@ -45,12 +42,11 @@ FSM with input
     of the state to transition to. If the transition should be disallowed, the
     filter function can either return None to quietly ignore it, or it can raise
     an exception. For example:
-    
-    
+
     .. code-block:: python
-    
+
         class CompassDir(FSM):
-        
+
             def filterNorth(self, request, args):
                 if request == 'straight':
                     return 'North'
@@ -58,7 +54,7 @@ FSM with input
                     return 'West'
                 else:
                     return None
-        
+
             def filterWest(self, request, args):
                 if request == 'straight':
                     return 'West'
@@ -66,7 +62,7 @@ FSM with input
                     return 'South'
                 else:
                     return None
-        
+
             def filterSouth(self, request, args):
                 if request == 'straight':
                     return 'South'
@@ -74,7 +70,7 @@ FSM with input
                     return 'East'
                 else:
                     return None
-        
+
             def filterEast(self, request, args):
                 if request == 'straight':
                     return 'East'
@@ -82,29 +78,29 @@ FSM with input
                     return 'North'
                 else:
                     return None
-    
+
     Note that input
     strings, by convention, should begin with a lowercase letter, as opposed to
     state names, which should begin with an uppercase letter. This allows you to
     make the distinction between requesting a state directly, and feeding a
     particular input string to an FSM. To feed input to this FSM, you would use
     the ``request()`` call, just as
-    before: 
-    
+    before:
+
     .. code-block:: python
-    
+
         myfsm.request('left') # or myfsm.request_left()
         myfsm.request('left')
         myfsm.request('straight') # or myfsm.request_straight()
         myfsm.request('left')
-    
+
     If the FSM had
     been in state North originally, after the above sequence of operations it
     would now be in state East.
-    
+
     The defaultFilter method
     ------------------------
-    
+
     Although defining a series of individual filter methods gives you the most
     flexibility, for many FSM's you may not need this much explicit control. For
     these cases, you can simply define a defaultFilter method that does everything
@@ -114,10 +110,9 @@ FSM with input
     ``defaultFilter()`` instead; you can put
     any logic here that handles the general case. For instance, we could have
     defined the above FSM using just the defaultFilter method, and a lookup table:
-    
-    
+
     .. code-block:: python
-    
+
         class CompassDir(FSM):
             nextState = {
                 ('North', 'straight') : 'North',
@@ -129,11 +124,11 @@ FSM with input
                 ('East', 'straight') : 'East',
                 ('East', 'left') : 'North',
                 }
-        
+
             def defaultFilter(self, request, args):
                 key = (self.state, request)
                 return self.nextState.get(key)
-    
+
     The base FSM class
     defines a ``defaultFilter()`` method that
     implements the default FSM transition rules (that is, allow all
@@ -147,10 +142,6 @@ FSM with input
     custom logic you require (and it can call up to the defaultFilter method if
     you like).
 
-
-
-
 .. only:: cpp
 
     This section does not apply to C++ users.
-

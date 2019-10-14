@@ -178,4 +178,3 @@ vertical film size to match.
 
 .. |Lens tutorial, perspective view| image:: lens-tutorial-perspective.jpg
 .. |Lens tutorial, top view| image:: lens-tutorial-top.jpg
-

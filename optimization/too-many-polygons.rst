@@ -57,4 +57,3 @@ polygons, there are few optimizations you can do.
    rendered. You can use :ref:`fog <fog>` to hide the clipping.
 
 .. |Pstats-skinning-time.png| image:: pstats-skinning-time.png
-

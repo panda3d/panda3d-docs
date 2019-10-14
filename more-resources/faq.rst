@@ -10,7 +10,6 @@ Those are files that are zipped with pzip. Along with punzip, these
 command-line tools handle compression of files in a format that Panda3D can
 read; pzip for compressing and punzip for decompressing. Usage:
 
-
 .. code-block:: bash
 
     pzip file [file2 file3 ...]
@@ -60,7 +59,6 @@ Why are my animations/intervals sometimes skipped when I run something heavy on 
 ------------------------------------------------------------------------------------------------------------
 
 If you'll run this example code you might not see the position interval.
-
 
 .. code-block:: python
 
@@ -114,7 +112,6 @@ There are several easy solutions. One is to munge the clock while you're
 computing your slow frame so that it doesn't actually allow time to advance
 during this period, by putting this line after your loop, etc.
 
-
 .. code-block:: python
 
     globalClock.setFrameTime(globalClock.getRealTime())
@@ -126,13 +123,11 @@ this case that's what you want to happen.
 
 Another approach, that doesn't involve explicitly munging the clock, would be
 simply to wait to start the interval until the next frame, for instance with a
-doMethodLater(). 
+doMethodLater().
 
 .. code-block:: python
 
     taskMgr.doMethodLater(0, lambda task, posival = posival: posival.start(), 'startInterval')
-
-
 
 I have a bunch of Maya Animations of one model in different mb files. I used maya2egg to port them into panda, but only one of the animations work.
 ---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -367,4 +362,3 @@ Use the TextAssembler class.
                   (ri, ci, chr(ta.getCharacter(ri, ci)),
                                ta.getXpos(ri, ci),
                                ta.getYpos(ri, ci)))
-

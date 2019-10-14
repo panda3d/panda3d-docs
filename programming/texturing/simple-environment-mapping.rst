@@ -34,16 +34,12 @@ see why it is called sphere mapping.
 Panda3D can generate sphere maps for you. The above sphere map was generated
 with the following code:
 
-
-
 .. code-block:: python
 
     scene = loader.loadModel('bvw-f2004--streetscene/street-scene.egg')
     scene.reparentTo(render)
     scene.setZ(-2)
     base.saveSphereMap('streetscene_env.jpg', size = 256)
-
-
 
 The idea is simply to put the camera in the middle of your environment,
 approximately where your shiny object would be. Then just call
@@ -54,15 +50,11 @@ feature is new as of Panda3D 1.1.
 Now you can apply the environment map to just about any object you like. For
 instance, the teapot:
 
-
-
 .. code-block:: python
 
     tex = loader.loadTexture('streetscene_env.jpg')
     teapot.setTexGen(TextureStage.getDefault(), TexGenAttrib.MEyeSphereMap)
     teapot.setTexture(tex)
-
-
 
 |The teapot with sphere map|
 
@@ -78,16 +70,12 @@ a car look shiny. We could just do exactly the same thing as above, but our
 car has a texture map already. If we just replace the texture map with the
 environment map we'll end up with a chrome car:
 
-
-
 .. code-block:: python
 
     car = loader.loadModel('bvw-f2004--carnsx/carnsx.egg')
     tex = loader.loadTexture('streetscene_env.jpg')
     car.setTexGen(TextureStage.getDefault(), TexGenAttrib.MEyeSphereMap)
     car.setTexture(tex, 1)
-
-
 
 |The car with sphere map|
 
@@ -111,19 +99,13 @@ So the new map looks like this:
 While we're fixing things up, let's move the wheels to a different node, so we
 can assign the shine just to the metal and glass body of the car:
 
-
-
 .. code-block:: python
 
     car = loader.loadModel('bvw-f2004--carnsx/carnsx.egg')
     body = car.find('**/body')
     body.findAllMatches('**/FL_wheel*').reparentTo(car)
 
-
-
 And now the shine is applied like this:
-
-
 
 .. code-block:: python
 
@@ -132,8 +114,6 @@ And now the shine is applied like this:
     ts.setMode(TextureStage.MAdd)
     body.setTexGen(ts, TexGenAttrib.MEyeSphereMap)
     body.setTexture(ts, tex)
-
-
 
 |The car with color and shine together|
 
@@ -168,4 +148,3 @@ reflections.
 .. |The car with sphere map| image:: chrome-car.jpg
 .. |The darkened environment map| image:: streetscene-env-dark.jpg
 .. |The car with color and shine together| image:: shiny-car.jpg
-

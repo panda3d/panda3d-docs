@@ -3,13 +3,11 @@
 Advanced FSM Tidbits
 ====================
 
-
-
 .. only:: python
 
     request vs. demand
     ------------------
-    
+
     As stated previously, you normally request an FSM to change its state by
     calling either ``fsm.request('NewState', arg1, arg2, ...)``, or
     ``fsm.request('inputString', arg1, arg2, ...)``, where arg1, arg2, ...
@@ -30,10 +28,10 @@ Advanced FSM Tidbits
     the state transition is denied. There is no return value from
     ``demand()``; if it returns, the
     transition was accepted.
-    
+
     FSM.AlreadyInTransition
     -----------------------
-    
+
     An FSM is always in exactly one state, except while it is in the process of
     transitioning between states (that is, while it is calling the exitStateName
     method for the previous state, followed by the enterStateName method for the
@@ -52,10 +50,10 @@ Advanced FSM Tidbits
     FSM is currently in transition. When this happens, the FSM will queue up the
     demand, and will carry it out as soon as it has fully transitioned into its
     new state.
-    
+
     forceTransition()
     -----------------
-    
+
     There is also a method ``fsm.forceTransition()``.
     This is similar to ``demand()`` in
     that it never fails and does not have a return value, but it's different in
@@ -73,10 +71,10 @@ Advanced FSM Tidbits
     ``forceTransition()``, it may be that your
     filter functions (or your defaultTransitions) are poorly written and are
     disallowing what should be legitimate state transitions.
-    
+
     Filtering the optional arguments
     --------------------------------
-    
+
     The filterStateName method receives two parameters: the string request, and a
     tuple, which contains the additional arguments passed to the request (or
     demand) call. It then normally returns the state name the FSM should
@@ -94,10 +92,6 @@ Advanced FSM Tidbits
     function can filter not only the state transitions themselves, but also the
     set of data passed along with the request.
 
-
-
-
 .. only:: cpp
 
     This section does not apply to C++ users.
-

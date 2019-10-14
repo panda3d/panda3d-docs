@@ -13,13 +13,9 @@ fighting the mouse for control.
 If you want to move the camera directly under show control, you must first
 disable the camera control task and then the camera will move as expected.
 
-
-
 .. code-block:: python
 
     base.disableMouse()
-
-
 
 The ShowBase class contains some handy methods to allow the user control over
 the camera. The ``useDrive()`` command
@@ -37,14 +33,10 @@ rotates to that direction. The speed the camera moves is determined by how far
 from the center the mouse pointer is. Additionally, there is another command
 that allows control based on trackball mice.
 
-
-
 .. code-block:: python
 
     base.useDrive()
     base.useTrackball()
-
-
 
 ShowBase also provides the method
 ``oobe()`` to give you to control
@@ -55,12 +47,9 @@ for giving you a God's-eye view of your application at any point in
 development. The method is a toggle; call it once to enable OOBE mode, and
 then again to disable it.
 
-
-
 .. code-block:: python
 
     base.oobe()
-
 
 ``oobeCull()`` is a variant on
 ``oobe()``, and it works

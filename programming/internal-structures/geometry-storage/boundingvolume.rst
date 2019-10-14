@@ -51,4 +51,3 @@ Further tweaking of the bounding volume used must be done manually
    nefarious purposes, set the bounds at the bottom: on the Geom within a
    GeomNode. This will propagate upwards, assuming there are no other nodes
    with bounding volumes above it.
-

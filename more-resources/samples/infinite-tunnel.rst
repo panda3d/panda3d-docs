@@ -32,4 +32,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Infinite-Tunnel.jpg| image:: screenshot-sample-programs-infinite-tunnel.jpg
-

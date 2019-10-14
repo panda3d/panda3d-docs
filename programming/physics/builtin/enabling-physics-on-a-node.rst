@@ -22,8 +22,6 @@ PhysicsManager will handle the physics calculations every frame and update the
 ActorNode with any changes. Panda provides a default physics manager,
 base.physicsMgr, which will often be suitable for most applications.
 
-
-
 .. code-block:: python
 
     node = NodePath("PhysicsNode")
@@ -34,8 +32,6 @@ base.physicsMgr, which will often be suitable for most applications.
     jetpackGuy = loader.loadModel("models/jetpack_guy")
     jetpackGuy.reparentTo(anp)
 
-
-
 Now, the "jetpackGuy" model will be updated every frame with the physics
 applied to it.
 
@@ -43,10 +39,6 @@ The ActorNode also serves as a repository for the PhysicsObject that describes
 the physical properties (i.e. mass) of the object. To modify these properties,
 use the getPhysicsObject call.
 
-
-
 .. code-block:: python
 
     an.getPhysicsObject().setMass(136.077)   # about 300 lbs
-
-

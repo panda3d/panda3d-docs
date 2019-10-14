@@ -16,75 +16,47 @@ area.
 
 Example for how to setup a ghost object:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         from panda3d.bullet import BulletGhostNode
         from panda3d.bullet import BulletBoxShape
-        
+
         shape = BulletBoxShape(Vec3(1, 1, 1))
-        
+
         ghost = BulletGhostNode('Ghost')
         ghost.addShape(shape)
         ghostNP = render.attachNewNode(ghost)
         ghostNP.setPos(0, 0, 0)
         ghostNP.setCollideMask(BitMask32(0x0f))
-        
+
         world.attachGhost(ghost)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        TODO
-    
-    
 
+        TODO
 
 Example for how to get overlapping objects:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         def checkGhost(self, task):
           ghost = ghostNP.node()
           print ghost.getNumOverlappingNodes()
           for node in ghost.getOverlappingNodes():
             print node
-        
+
           return task.cont
-        
+
         taskMgr.add(checkGhost, 'checkGhost')
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        TODO
-    
-    
 
+        TODO

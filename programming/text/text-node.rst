@@ -17,38 +17,24 @@ parent the text to render2d or aspect2d, you will probably need to give it a
 fairly small scale, since the coordinate space of the whole screen in render2d
 is in the range (-1, 1).
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         text = TextNode('node name')
         text.setText("Every day in every way I'm getting better and better.")
         textNodePath = aspect2d.attachNewNode(text)
         textNodePath.setScale(0.07)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         PT(TextNode) text;
         text = new TextNode("node name");
         text->set_text("Every day in every way I'm getting better and better.");
         NodePath textNodePath = window->get_aspect_2d().attach_new_node(text);
         textNodePath.set_scale(0.07);
-    
-    
-
 
 |A simple TextNode example|
 
@@ -63,34 +49,19 @@ control the appearance of your text.
 Font
 ~~~~
 
-
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         cmr12 = loader.loadFont('cmr12.egg')
         text.setFont(cmr12)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         PT(TextFont) cmr12=FontPool::load_font("cmss12.egg");
         text->set_font(cmr12);
-    
-    
-
 
 |TextNode.setFont() example|
 
@@ -99,41 +70,23 @@ You may use any font you like, including a TTF file; see :ref:`text-fonts`.
 Small Caps
 ~~~~~~~~~~
 
-
-
-
 .. code-block:: python
 
     text.setSmallCaps(True)
 
-
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         cmr12 = loader.loadFont('cmr12.egg')
         text.setFont(cmr12)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         PT(TextFont) cmr12=FontPool::load_font("cmss12.egg");
         text->set_font(cmr12);
-    
-    
-
 
 |TextNode.setSmallCaps() example|
 
@@ -145,31 +98,17 @@ feature if your font of choice doesn't happen to include lowercase letters.
 
 You can also specify the relative scale of the "lowercase" letters:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         text.setSmallCapsScale(0.4)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        text->set_small_caps_scale(0.4);
-    
-    
 
+        text->set_small_caps_scale(0.4);
 
 |TextNode.setSmallCapsScale() example|
 
@@ -179,32 +118,17 @@ size. The default is 0.8.
 Slant
 ~~~~~
 
-
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         text.setSlant(0.3)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        text->set_slant(0.3);
-    
-    
 
+        text->set_slant(0.3);
 
 |TextNode.setSlant() example|
 
@@ -213,31 +137,17 @@ value is 0.0 for no slant, or 1.0 for a 45-degree rightward slant. Usually
 values in the range 0.2 to 0.3 give a pleasing effect. You can also use a
 negative number to give a reverse slant.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         text.setTextColor(1, 0.5, 0.5, 1)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        text->set_text_color(1, 0.5, 0.5, 1);
-    
-    
 
+        text->set_text_color(1, 0.5, 0.5, 1);
 
 |TextNode.setColor() example|
 
@@ -247,34 +157,19 @@ The color is specified with its r, g, b, a components. Note that if a is not
 Shadow
 ~~~~~~
 
-
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         text.setShadow(0.05, 0.05)
         text.setShadowColor(0, 0, 0, 1)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         text->set_shadow(0.05, 0.05);
         text->set_shadow_color(0, 0, 0, 1);
-    
-    
-
 
 |TextNode.setShadow() example|
 
@@ -296,36 +191,21 @@ color of the shadow; the default is black.
 Wordwrap
 ~~~~~~~~
 
-
 By default, text will be formatted on one line, unless it includes newline
 characters. Enabling wordwrap will automatically break the text into multiple
 lines if it doesn't fit within the specified width.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         text.setWordwrap(15.0)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        text->set_wordwrap(15.0);
-    
-    
 
+        text->set_wordwrap(15.0);
 
 |TextNode.setWordwrap() example|
 
@@ -335,37 +215,22 @@ be the maximum width of each line, in screen units.
 Alignment
 ~~~~~~~~~
 
-
 Text is left-aligned by default; that is, it starts at the position you
 specify with textNodePath.setPos() and goes out to the right from there. If
 you have multiple lines of text, you may prefer to center the text or
 right-align it instead:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         text.setAlign(TextNode.ACenter)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        text->set_align(TextNode::A_center);
-    
-    
 
+        text->set_align(TextNode::A_center);
 
 |TextNode.setAlign() example|
 
@@ -387,37 +252,22 @@ wordwrap units to the right of the starting point.
 Frame
 ~~~~~
 
-
 You can specify that a thin frame should be drawn around the entire text
 rectangle:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         text.setFrameColor(0, 0, 1, 1)
         text.setFrameAsMargin(0.2, 0.2, 0.1, 0.1)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         text->set_frame_color(0, 0, 1, 1);
         text->set_frame_as_margin(0.2, 0.2, 0.1, 0.1);
-    
-    
-
 
 |TextNode.setFrameAsMargin() example|
 
@@ -432,38 +282,23 @@ respectively. All four parameters can be 0.0 to tightly enclose the text
 Card
 ~~~~
 
-
 Finally, you can draw a solid card behind the text rectangle:
-
-
 
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         text.setCardColor(1, 1, 0.5, 1)
         text.setCardAsMargin(0, 0, 0, 0)
         text.setCardDecal(True)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         text->set_card_color(1, 1, 0.5, 1);
         text->set_card_as_margin(0, 0, 0, 0);
         text->set_card_decal(true);
-    
-    
-
 
 |TextNode.setCardAsMargin() example|
 
@@ -492,7 +327,6 @@ controlling the binning of the text explicitly.
 Picking a Text Node
 -------------------
 
-
 Strictly speaking, a TextNode has no geometry, so you can't pick it.
 
 There are two possible workarounds.
@@ -504,15 +338,11 @@ either offset the text a few inches in front of the card to prevent
 Z-fighting, or explicitly decal the text onto the card, with something like
 this:
 
-
-
 .. code-block:: python
 
     card = NodePath(cardMaker.generate())
     tnp = card.attachNewNode(textNode)
     card.setEffect(DecalEffect.make())
-
-
 
 (2) Instead of parenting the TextNode directly to the scene, parent the node
 returned by textNode.generate() instead. This will be a static node that
@@ -534,4 +364,3 @@ of the node should be the card geometry.
 .. |TextNode.setAlign() example| image:: text-align.png
 .. |TextNode.setFrameAsMargin() example| image:: text-frame.png
 .. |TextNode.setCardAsMargin() example| image:: text-card.png
-

@@ -14,14 +14,10 @@ camera will be loud. Make sure to use a mono sound source for your 3D audio as
 stereo sound sources will not be able to be spatialized and hence can't be
 used for 3D audio.
 
-
-
 .. code-block:: python
 
     from direct.showbase import Audio3DManager
     audio3d = Audio3DManager.Audio3DManager(base.sfxManagerList[0], camera)
-
-
 
 To create a sound that is positional, you need to use the
 ``loadSfx()`` function on the
@@ -29,24 +25,16 @@ To create a sound that is positional, you need to use the
 ``loader.loadSfx()`` which is for
 non-positional sounds. e.g.
 
-
-
 .. code-block:: python
 
     mySound = audio3d.loadSfx('blue.wav')
 
-
-
 Sounds can be attached to objects such that when they move, the sound source
 will move along with them.
-
-
 
 .. code-block:: python
 
     audio3d.attachSoundToObject(mySound, teapot)
-
-
 
 You can use the ``Audio3DManager's setSoundVelocity()`` and
 ``setListenerVelocity()`` to set the velocity of
@@ -57,18 +45,14 @@ their position, you can call
 ``setSoundVelocityAuto()`` or
 ``setListenerVelocityAuto()`` like this:
 
-
-
 .. code-block:: python
 
     audio3d.setSoundVelocity(sound,velocityVector)
     audio3d.setListenerVelocity(velocityVector)
-    
+
     base.cTrav = CollisionTraverser()
     audio3d.setSoundVelocityAuto(sound)
     audio3d.setListenerVelocityAuto()
-
-
 
 Currently, for the latter to work, a CollisionTraverser must be attached to
 base.cTrav as you see in the example. If you already have one assigned to do
@@ -81,22 +65,14 @@ panda unit equal to 1 foot (or 1 meter in Panda3D 1.10 and above). If you use
 another scale you'll need to use
 ``setDistanceFactor`` to adjust the scale.
 
-
-
 .. code-block:: python
 
     audio3d.setDistanceFactor(scale)
-
-
 
 You can adjust the rate that sounds attenuate by distance. If you want to
 position the sounds but don't want the volume to be effected by their
 distance, you can set the drop off factor to 0.
 
-
-
 .. code-block:: python
 
     audio3d.setDropOffFactor(scale)
-
-

@@ -10,16 +10,12 @@ To turn on fog, create an object of class
 ``Fog``, and then apply it
 using the ``setFog`` operator:
 
-
-
 .. code-block:: python
 
     myFog = Fog("Fog Name")
     myFog.setColor(R,G,B)
     myFog.setExpDensity(Float 0 to 1)
     render.setFog(myFog)
-
-
 
 However, there is more here than meets the eye. We have created a fog node,
 which goes into the scene graph. Therefore, the fog has a position, a place
@@ -39,24 +35,16 @@ it in the scene graph. So you can easily cause only a subset of the objects
 subgraph you want to be affected. To remove the fog attribute later, use the
 ``clearFog`` directive:
 
-
-
 .. code-block:: python
 
     render.clearFog()
 
-
-
 While you have fog in effect, it is often desirable to set the background
 color to match the fog:
-
-
 
 .. code-block:: python
 
     base.setBackgroundColor( myFogColor )
-
-
 
 Fog Modes
 ---------
@@ -105,7 +93,6 @@ first be parented into the scene graph, then activated by calling
 
 Setup a linear fog node at the origin:
 
-
 .. code-block:: python
 
     colour = (0.5,0.8,0.8)
@@ -115,8 +102,6 @@ Setup a linear fog node at the origin:
     linfog.setLinearFallback(45,160,320)
     render.attachNewNode(linfog)
     render.setFog(linfog)
-
-
 
 In linear mode, the onset and opaque distances of the fog are defined as
 offsets along the local forward (+Y) axis of the fog node. The onset distance
@@ -192,8 +177,6 @@ You activate an exponential fog effect by calling the
 
 Setup some scene-wide exponential fog:
 
-
-
 .. code-block:: python
 
     colour = (0.5,0.8,0.8)
@@ -202,8 +185,6 @@ Setup some scene-wide exponential fog:
     expfog.setExpDensity(0.005)
     render.setFog(expfog)
     base.setBackgroundColor(*colour)
-
-
 
 The last line in the sample above doesn't actually affect the fog, however, it
 generally looks better if the scene background color matches the color of the
@@ -219,10 +200,6 @@ that ``NodePath`` and its children.
 The expontential fog effect can be turned off again using
 ``clearFog``:
 
-
-
 .. code-block:: python
 
     render.clearFog()
-
-

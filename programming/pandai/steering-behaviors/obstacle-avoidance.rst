@@ -12,7 +12,6 @@ https://www.youtube.com/watch?v=xZnuWRiKL6I
 
 In PandAI, obstacle avoidance is defined as :
 
-
 .. code-block:: python
 
     aiBehaviors.obstacleAvoidance(float feeler_length)
@@ -28,7 +27,7 @@ multiplier)
 --------------
 
 For the algorithm to work, the obstacles need to be added to the world like
-this : 
+this :
 
 .. code-block:: python
 
@@ -37,17 +36,13 @@ this :
 Also you can
 remove an obstacle at any time needed by using
 
-
 .. code-block:: python
 
     aiWorld.removeObstacle(NodePath obstacle)
 
-
-
 --------------
 
 The full working code in Panda3D is :
-
 
 .. code-block:: python
 
@@ -60,26 +55,26 @@ The full working code in Panda3D is :
     from panda3d.ai import *
     #for Onscreen GUI
     from direct.gui.OnscreenText import OnscreenText
-    
+
     # Globals
     speed = 0.75
-    
+
     # Function to put instructions on the screen.
     font = loader.loadFont("cmss12")
     def addInstructions(pos, msg):
         return OnscreenText(text=msg, style=1, fg=(1,1,1,1), font = font,
                             pos=(-1.3, pos), align=TextNode.ALeft, scale = .05)
-    
+
     class World(DirectObject):
-    
+
         def __init__(self):
             base.disableMouse()
             base.cam.setPosHpr(0,0,55,0,-90,0)
-            
+
             self.loadModels()
             self.setAI()
             self.setMovement()
-    
+
         def loadModels(self):
             # Seeker
             ralphStartPos = Vec3(-10, 0, 0)
@@ -105,33 +100,33 @@ The full working code in Panda3D is :
             self.obstacle2.setColor(0,0,1)
             self.obstacle2.setPos(5,5,0)
             self.obstacle2.setScale(1)
-            self.obstacle2.reparentTo(render)        
-            
+            self.obstacle2.reparentTo(render)
+
             self.pursuer.loop("run")
-          
+
         def setAI(self):
             #Creating AI World
             self.AIworld = AIWorld(render)
-     
+
             self.AIchar = AICharacter("pursuer",self.pursuer, 100, 0.05, 5)
             self.AIworld.addAiChar(self.AIchar)
             self.AIbehaviors = self.AIchar.getAiBehaviors()
-            
+
             self.AIbehaviors.pursue(self.target)
-            
+
             # Obstacle avoidance
             self.AIbehaviors.obstacleAvoidance(1.0)
             self.AIworld.addObstacle(self.obstacle1)
             self.AIworld.addObstacle(self.obstacle2)
-    
-            #AI World update        
+
+            #AI World update
             taskMgr.add(self.AIUpdate,"AIUpdate")
-            
-        #to update the AIWorld    
+
+        #to update the AIWorld
         def AIUpdate(self,task):
-            self.AIworld.update()            
+            self.AIworld.update()
             return Task.cont
-    
+
         #All the movement functions for the Target
         def setMovement(self):
             self.keyMap = {"left":0, "right":0, "up":0, "down":0}
@@ -145,12 +140,12 @@ The full working code in Panda3D is :
             self.accept("arrow_down-up", self.setKey, ["down",0])
             #movement task
             taskMgr.add(self.Mover,"Mover")
-            
+
             addInstructions(0.9, "Use the Arrow keys to move the Red Target")
-    
+
         def setKey(self, key, value):
             self.keyMap[key] = value
-                
+
         def Mover(self,task):
             startPos = self.target.getPos()
             if (self.keyMap["left"]!=0):
@@ -161,9 +156,9 @@ The full working code in Panda3D is :
                     self.target.setPos(startPos + Point3(0,speed,0))
             if (self.keyMap["down"]!=0):
                     self.target.setPos(startPos + Point3(0,-speed,0))
-                            
+
             return Task.cont
-     
+
     w = World()
     run()
 

@@ -25,42 +25,28 @@ existing vertices. You can do this with a
 For instance, if you want to copy the (X, Y) position of each vertex to its
 (U, V) texture coordinate, you could do something like this:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         texcoord = GeomVertexWriter(vdata, 'texcoord')
         vertex = GeomVertexReader(vdata, 'vertex')
-        
+
         while not vertex.isAtEnd():
           v = vertex.getData3f()
           texcoord.setData2f(v[0], v[1])
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         GeomVertexWriter texcoord = GeomVertexWriter(vdata,"texcoord");
         GeomVertexReader vertex = GeomVertexReader(vdata,"vertex");
-        
+
         while(!vertex.is_at_end()){
           LVector3f v = vertex.get_data3f();
           texcoord.set_data2f(v[0], v[1]);
         }
-    
-    
-
 
 Important! When you are simultaneously reading from and writing to the same
 GeomVertexData object, you should create all of the GeomVertexWriters you need

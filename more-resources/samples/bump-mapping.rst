@@ -89,4 +89,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Normal-Mapping.jpg| image:: screenshot-sample-programs-normal-mapping.jpg
-

@@ -6,7 +6,6 @@ Measuring Performance with PStats
 QUICK INTRODUCTION
 ------------------
 
-
 PStats is Panda's built-in performance analysis tool. It can graph frame rate
 over time, and can further graph the work spent within each frame into
 user-defined subdivisions of the frame (for instance, app, cull and draw), and
@@ -24,54 +23,39 @@ To use PStats, you first need to build the PStats server program, which is
 part of the Pandatool tree (it's called pstats.exe on Windows, and pstats on a
 Unix platform). Start by running the PStats server program (it runs in the
 background), and then start your Direct/Panda client with the following in
-your 
+your
 
 .. only:: python
 
     Config.prc file:
-    
-    
-    
+
     .. code-block:: text
-    
+
         want-pstats 1
-    
-    
-    
+
     Or, at runtime, issue the Python command:
-    
-    
-    
+
     .. code-block:: python
-    
+
         PStatClient.connect()
-    
-    
-
-
 
 .. only:: cpp
 
     startup code:
-    
-    
-    
+
     .. code-block:: cpp
-    
+
         // Includes: pStatClient.h
-        
+
         if (PStatClient::is_connected()) {
           PStatClient::disconnect();
         }
-        
+
         string host = ""; // Empty = default config var value
         int port = -1; // -1 = default config var value
         if (!PStatClient::connect(host, port)) {
           std::cout << "Could not connect to PStat server." << std::endl;
         }
-    
-    
-
 
 Or if you're running pview, press shift-S.
 
@@ -87,31 +71,22 @@ different machine than the client, start the server on the profiling machine
 and add the following variable to your client's Config.prc file, naming the
 hostname or IP address of the profiling machine:
 
-
-
 .. code-block:: text
 
     pstats-host profiling-machine-ip-or-hostname
-
-
 
 If you are developing Python code, you may be interested in reporting the
 relative time spent within each Python task (by subdividing the total time
 spent in Python, as reported under "Show Code"). To do this, add the following
 lines to your Config.prc file before you start ShowBase:
 
-
-
 .. code-block:: text
 
     task-timer-verbose 1
     pstats-tasks 1
 
-
-
 Caveats
 ~~~~~~~
-
 
 OpenGL is asynchronous, which means that function calls aren't guaranteed to
 execute right away. This can make performance analysis of OpenGL operations
@@ -120,13 +95,9 @@ GPU spends doing a certain operation. However, if you wish to more accurately
 track down rendering bottlenecks, you may set the following configuration
 variable:
 
-
-
 .. code-block:: text
 
     pstats-gpu-timing 1
-
-
 
 This will enable a new set of graphs that use timer queries to measure how
 much time each task is actually taking on the GPU.
@@ -135,13 +106,9 @@ If your card does not support it or does not give reliable timer query
 information, a crude way of working around this and getting more accurate
 timing breakdown, you can set this:
 
-
-
 .. code-block:: text
 
     gl-finish 1
-
-
 
 Setting this option forces Panda to call glFinish() after every major graphics
 operation, which blocks until all graphics commands sent to the graphics
@@ -151,7 +118,6 @@ reflect where the graphics bottlenecks are.
 
 THE PSTATS SERVER (The user interface)
 --------------------------------------
-
 
 The GUI for managing the graphs and drilling down to view more detail is
 entirely controlled by the PStats server program. At the time of this writing,
@@ -174,7 +140,6 @@ create additional graphs by selecting from the Graphs pulldown menu.
 
 Time-based Strip Charts
 ~~~~~~~~~~~~~~~~~~~~~~~
-
 
 This is the graph type you will use most frequently to examine performance
 data. The horizontal axis represents the passage of time; each frame is
@@ -241,7 +206,6 @@ up to the previous level.
 Value-based Strip Charts
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 There are other strip charts you may create, which show arbitrary kinds of
 data per frame other than elapsed time. These can only be accessed from the
 Graphs pulldown menu, and include things such as texture memory in use and
@@ -250,7 +214,6 @@ above.
 
 Piano Roll Charts
 ~~~~~~~~~~~~~~~~~
-
 
 This graph is used less frequently, but when it is needed it is a valuable
 tool to reveal exactly how the time is spent within a frame. The PStats server
@@ -296,7 +259,6 @@ The piano roll chart may be created from the Graphs pulldown menu.
 Additional threads
 ~~~~~~~~~~~~~~~~~~
 
-
 If the panda client has multiple threads that generate PStats data, the PStats
 server can open up graphs for these threads as well. Each separate thread is
 considered unrelated to the main thread, and may have the same or an
@@ -308,7 +270,6 @@ theoretical and untested.
 
 Color and Other Optional Collector Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 If you do not specify a color for a particular collector, it will be assigned
 a random color at runtime. At present, the only way to specify a color is to
@@ -323,7 +284,6 @@ not the server) to reflect changes to this table.
 
 HOW TO DEFINE YOUR OWN COLLECTORS
 ---------------------------------
-
 
 The PStats client code is designed to be generic enough to allow users to
 define their own collectors to time any arbitrary blocks of code (or record
@@ -384,8 +344,6 @@ accumulating time in the "Draw" collector. The time spent within the nested
 If you wish to collect the time data for functions, a simple decorator pattern
 can be used below, as below:
 
-
-
 .. code-block:: python
 
     from panda3d.core import PStatCollector
@@ -411,35 +369,27 @@ can be used below, as below:
         doPstat.__doc__ = func.__doc__
         return doPstat
 
-
-
 To use it, either save the function to a file and import it into the script
 you wish to debug. Then use it as a decorator on the function you wish to
 time. A collection named Debug will appear in the Pstats server with the
 function as its child.
 
-
-
 .. code-block:: python
 
     from pstat_debug import pstat
-    
+
     @pstat
     def myLongRunFunction():
         """ This function does something long """
 
-
-
 HOW IT WORKS (What's actually happening)
 ----------------------------------------
-
 
 The PStats code is divided into two main parts: the client code and the server
 code.
 
 The PStats Client
 ~~~~~~~~~~~~~~~~~
-
 
 The client code is in panda/src/pstatclient, and is available to run in every
 Panda client unless it is compiled out. (It will be compiled out if OPTIMIZE
@@ -494,7 +444,6 @@ next job is simply to clear its array and prepare itself for the next frame.
 
 The PStats Server
 ~~~~~~~~~~~~~~~~~
-
 
 The generic server code is in pandatool/src/pstatserver, and the GUI-specific
 server code is in pandatool/src/gtk-stats and pandatool/src/win-stats, for

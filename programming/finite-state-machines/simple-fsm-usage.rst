@@ -3,8 +3,6 @@
 Simple FSM Usage
 ================
 
-
-
 .. only:: python
 
     A Panda3D FSM is implemented by defining a new Python class which inherits
@@ -39,58 +37,57 @@ Simple FSM Usage
     explicitly to a new state, use the call
     ``fsm.request('StateName')``, where StateName is the
     state you would like it to transition to.
-    
+
     Arguments to enterStateName methods
     -----------------------------------
-    
+
     Normally, both ``enterStateName()`` and
     ``exitStateName()`` take no arguments
     (other than self). However, if your FSM requires some information before it
     can transition to a particular state, you can define any arguments you like to
     the enterStateName method for that state; these arguments should be passed in
     to the ``request()`` call, following
-    the state name. 
-    
+    the state name.
+
     .. code-block:: python
-    
+
         from direct.fsm.FSM import FSM
-        
+
         class AvatarFSM(FSM):
-        
+
             def enterWalk(self, speed, doorMask):
                 avatar.setPlayRate(speed, 'walk')
                 avatar.loop('walk')
                 footstepsSound.play()
                 enableDoorCollisions(doorMask)
-                
+
             def exitWalk(self):
                 avatar.stop()
                 footstepsSound.stop()
                 disableDoorCollisions()
-        
+
         myfsm = AvatarFSM('myAvatar')
         myfsm.request('Walk', 1.0, BitMask32.bit(2))
-    
+
     Note
     that the exitStateName method must always take no arguments.
-    
+
     Allowed and disallowed state transitions
     ----------------------------------------
-    
+
     By default, every state transition request is allowed: the call
     ``fsm.request('StateName')`` will always succeed,
     and the the FSM will be left in the new state. You may wish to make your FSM
     more robust by disallowing certain transitions that you don't want to happen.
     For instance, consider the example FSM described previously, which had the
     following state diagram:
-    
+
     ==== ========= ==== = ========
-    ↗    Walk2Swim ↘     
+    ↗    Walk2Swim ↘
     Walk           Swim → Drowning
-    ↖    Swim2Walk ↙     
+    ↖    Swim2Walk ↙
     ==== ========= ==== = ========
-    
-    
+
     In this diagram, the arrows represent legal transitions. It is legal to
     transition from 'Walk' to 'Walk2Swim', but not from 'Walk' to 'Swim2Walk'. If
     you were to request the FSM to enter state 'Swim2Walk' while it is currently
@@ -102,12 +99,11 @@ Simple FSM Usage
     a state name; for that key, the value is a list of allowed transitions from
     the indicated state. Any transition not listed in defaultTransitions is
     considered invalid. For example:
-    
-    
+
     .. code-block:: python
-    
+
         class AvatarFSM(FSM):
-        
+
             def __init__(self):
                 FSM.__init__(self, 'myAvatar')
                 self.defaultTransitions = {
@@ -117,17 +113,13 @@ Simple FSM Usage
                     'Swim2Walk' : [ 'Walk' ],
                     'Drowning' : [ ],
                     }
-    
+
     If you do not assign
     anything to ``self.defaultTransitions()``, then all
     transitions are legal. However, if you do assign a map like the above, then
     requesting a transition that is not listed in the map will raise the exception
     ``FSM.RequestDenied``.
 
-
-
-
 .. only:: cpp
 
     This section does not apply to C++ users.
-

@@ -23,4 +23,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Distortion.jpg| image:: screenshot-sample-programs-distortion.jpg
-

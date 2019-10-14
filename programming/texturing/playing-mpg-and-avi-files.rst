@@ -8,21 +8,14 @@ Panda now supports AVI format for textures in Panda.
 Usage
 -----
 
-
-
-
 .. code-block:: python
 
     myMovieTexture=loader.loadTexture("myMovie.avi")
     myObject.setTexture(myMovieTexture)
 
-
-
 The movie subsystem is implemented using FFMPEG. Therefore, it supports all of
 the formats that FFMPEG supports. The functions to control the movie are as
 follows:
-
-
 
 .. code-block:: python
 
@@ -36,35 +29,24 @@ follows:
     movie.getPlayRate()
     movie.isPlaying()
 
-
-
 If you want to hear the movie's audio as well, you need to load it twice: once
 as a texture, and once as a sound file:
-
-
 
 .. code-block:: python
 
     mySound=loader.loadSfx("myMovie.avi")
 
-
-
 Then, you can synchonize the video to the audio:
-
-
 
 .. code-block:: python
 
     myMovieTexture.synchronizeTo(mySound)
-
-
 
 From that point forward, playing the audio will cause the texture to update.
 This is more accurate than synchronizing the video manually.
 
 For powers-of-two limited graphics hardware
 -------------------------------------------
-
 
 If your graphics hardware does not support non power-of-two texture, your
 movie texture size would be shifted up to the next larger power of two size.
@@ -79,7 +61,6 @@ Player sample program.
 
 Issues
 ------
-
 
 The video texture works by decoding on a frame by frame basis and copying into
 the texture buffer. As such, it is inadvisable to use more than a few high res

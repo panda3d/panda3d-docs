@@ -25,7 +25,6 @@ image 4 The *+w* (or *+z*) face (up)
 image 5 The *-w* (or *-z*) face (down)
 ======= =================================
 
-
 By +x face, we mean the face of the cube farthest along the positive X axis.
 In Panda3D's default Z-up coordinate system, this is the right face.
 Similarly, the -x face is the face farthest along the negative X axis, or the
@@ -66,13 +65,9 @@ texture to every direction from the center.
 You can load a cube map from a series of six image files, very similar to the
 way you load a 3-D texture:
 
-
-
 .. code-block:: python
 
     tex = loader.loadCubeMap('cubemap_#.png')
-
-
 
 As with a 3-D texture, the hash mark ("#") in the filename will be filled in
 with the image sequence number, which in the case of a cube map will be a
@@ -83,4 +78,3 @@ digit from 0 to 5. The above example, then, will load the six images
 .. |The arrangement of the six faces of a cube map| image:: exploded-cube-map.png
 .. |A solid-mapped cube| image:: mapped-cube-map-solid.png
 .. |A wireframe cube, showing the internal mapped space| image:: mapped-cube-map.png
-

@@ -70,45 +70,45 @@ test or not, so both are set to Replace. The reference value to set in the
 stencil buffer is 1. We're writing regardless of what's in the buffer already,
 so we'll set the read and write masks to 0 and 1, respectively. Now we can add
 these attributes to nodes in the scene to exploit the effect. Here is the
-entire script. 
+entire script.
 
 .. code-block:: python
 
     from panda3d.core import *
-    
+
     # Do this before the next import:
     loadPrcFileData("", "framebuffer-stencil #t")
-    
+
     import direct.directbase.DirectStart
-    
+
     constantOneStencil = StencilAttrib.make(1,StencilAttrib.SCFAlways,
     StencilAttrib.SOZero,StencilAttrib.SOReplace,
     StencilAttrib.SOReplace,1,0,1)
-     
+
     stencilReader = StencilAttrib.make(1,StencilAttrib.SCFEqual,
     StencilAttrib.SOKeep, StencilAttrib.SOKeep,
-    StencilAttrib.SOKeep,1,1,0) 
-    
+    StencilAttrib.SOKeep,1,1,0)
+
     cm = CardMaker("cardmaker")
     cm.setFrame(-.5,.5,-.5,.5)
-    
+
     # To rotate the card to face the camera, we create
     # it and then parent it to the camera.
     viewingSquare = render.attachNewNode(cm.generate())
     viewingSquare.reparentTo(base.camera)
-    viewingSquare.setPos(0, 5, 0) 
-    
+    viewingSquare.setPos(0, 5, 0)
+
     viewingSquare.node().setAttrib(constantOneStencil)
     viewingSquare.node().setAttrib(ColorWriteAttrib.make(0))
     viewingSquare.setBin('background',0)
     viewingSquare.setDepthWrite(0)
-    
+
     view = loader.loadModel("panda")
     view.reparentTo(render)
     view.setScale(3)
     view.setY(150)
     view.node().setAttrib(stencilReader)
-    
+
     run()
 
 You can get a little more insight into stencils in this thread on the forums:

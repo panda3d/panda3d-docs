@@ -14,62 +14,36 @@ BillboardEffect on that node. Normally, you do not need to create a
 BillboardEffect explicitly, since there are a handful of high-level methods on
 NodePath that will create one for you:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         myNodePath.setBillboardAxis()
         myNodePath.setBillboardPointWorld()
         myNodePath.setBillboardPointEye()
-    
-    
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         myNodePath.set_billboard_axis();
         myNodePath.set_billboard_point_world();
         myNodePath.set_billboard_point_eye();
-    
-    
-
 
 Each of the above calls is mutually exclusive; there can be only one kind of
 billboard effect on a node at any given time. To undo a billboard effect, use:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         myNodePath.clearBillboard()
-    
-    
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        myNodePath.clear_billboard();
-    
-    
 
+        myNodePath.clear_billboard();
 
 The most common billboard type is an axial billboard, created by the
 ``setBillboardAxis()`` method. This kind of
@@ -92,46 +66,31 @@ done by specifying a fixed distance to the camera. You may also wish to adjust
 depth testing and sorting options so that it appears on top of other objects
 in the scene. For example:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         # Make it appear as though it is 10 units in front of the camera
         myNodePath.setBillboardPointEye(-10, fixed_depth=True)
-        
+
         myNodePath.setBin("fixed", 0)
         myNodePath.setDepthWrite(False)
         myNodePath.setDepthTest(False)
-    
-    
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         // Make it appear as though it is 10 units in front of the camera
         myNodePath.set_billboard_point_eye(-10, true);
-        
+
         myNodePath.set_bin("fixed", 0);
         myNodePath.set_depth_write(false);
         myNodePath.set_depth_test(false);
-    
-    
-
 
 There are several more options available on a BillboardEffect, but these are
 rarely used. If you need to take advantage of any of these more esoteric
 options, you must create a BillboardEffect and apply it to the node yourself:
-
-
 
 .. code-block:: python
 
@@ -144,5 +103,3 @@ options, you must create a BillboardEffect and apply it to the node yourself:
       lookAtPoint = point3
     )
     myNodePath.node().setEffect(myEffect)
-
-

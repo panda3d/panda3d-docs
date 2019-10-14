@@ -13,59 +13,45 @@ Setting up a soft body patch is similar to soft body ropes, but a few extra
 settings have to be done. The following code will create rectangular path with
 31 by 31 segments, and thus 32 x 32 nodes.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         from panda3d.bullet import BulletSoftBodyNode
-         
+
         info = self.world.getWorldInfo()
         info.setAirDensity(1.2)
         info.setWaterDensity(0)
         info.setWaterOffset(0)
         info.setWaterNormal(Vec3(0, 0, 0))
-        
+
         resx = 31
         resy = 31
-        
+
         p00 = Point3(-8, -8, 0)
         p10 = Point3( 8, -8, 0)
         p01 = Point3(-8,  8, 0)
         p11 = Point3( 8,  8, 0)
-        
+
         fixeds = 1+2+4+8
         gendiags = True
-        
+
         bodyNode = BulletSoftBodyNode.makePatch(info, p00, p10, p01, p11, resx, resy, fixeds, gendiags)
-        
+
         material = bodyNode.appendMaterial()
         material.setLinearStiffness(0.4)
         bodyNode.generateBendingConstraints(2, material)
-        
+
         bodyNode.setTotalMass(50.0)
         bodyNode.getShape(0).setMargin(0.5)
         bodyNP = self.worldNP.attachNewNode(bodyNode)
         world.attachSoftBody(bodyNode)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        TODO
-    
-    
 
+        TODO
 
 First we have to configure the soft body world properties, like we did for
 soft body ropes too. Next we define variables for the resolution in x- and
@@ -98,39 +84,25 @@ In order to have a visual representation of the soft body patch we need a
 module has a helper method which will do the work for us. The following code
 snippet shows how use this helper method.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         from panda3d.core import GeomVertexFormat
         from panda3d.bulletimport BulletHelper
-        
+
         fmt = GeomVertexFormat.getV3n3t2()
         geom = BulletHelper.makeGeomFromFaces(bodyNode, fmt, True)
         bodyNode.linkGeom(geom)
         visNode = GeomNode('')
         visNode.addGeom(geom)
         visNP = bodyNP.attachNewNode(visNode)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        TODO
-    
-    
 
+        TODO
 
 The third parameter to ``makeGeomFromFaces``
 is set to ``True``, making the
@@ -143,33 +115,19 @@ the texture has already a column for texcoords, so we just need to write
 texcoords using a ``GeomVertexRewriter``. The
 following code shows a convenience method which will do this for us.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         tex = loader.loadTexture('models/panda.jpg')
         visNP.setTexture(tex)
         BulletHelper.makeTexcoordsForPatch(geom, resx, resy)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        TODO
-    
-    
 
+        TODO
 
 Note: It is also possible to render soft body patches using a
 ``NurbsSurfaceEvaluator`` and

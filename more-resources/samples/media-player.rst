@@ -25,4 +25,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Media-Player.jpg| image:: screenshot-sample-programs-media-player.jpg
-

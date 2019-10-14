@@ -8,8 +8,6 @@ identical-looking young women line up left-to-right across the stage, and they
 all kick-left-kick-right in unison. To implement this in Panda3D, you might do
 this:
 
-
-
 .. code-block:: python
 
     for i in range(50):
@@ -17,8 +15,6 @@ this:
       dancer.loop("kick")
       dancer.setPos(i*5,0,0)
       dancer.reparentTo(render)
-
-
 
 Here is the scene graph that we just created:
 
@@ -36,8 +32,6 @@ dancer, so that the engine only has to update her animation once. Cause the
 engine to render her 50 times, by inserting her into the scene graph in 50
 different places. Here is how it is done:
 
-
-
 .. code-block:: python
 
     dancer = Actor.Actor("chorus-line-dancer.egg", {"kick":"kick.egg"})
@@ -47,8 +41,6 @@ different places. Here is how it is done:
       placeholder = render.attachNewNode("Dancer-Placeholder")
       placeholder.setPos(i*5, 0, 0)
       dancer.instanceTo(placeholder)
-
-
 
 Here is a diagram of the scene graph we just created:
 
@@ -86,10 +78,7 @@ and animating it multiple times.
 Advanced Instancing
 -------------------
 
-
 Now, let's go a step further:
-
-
 
 .. code-block:: python
 
@@ -102,15 +91,11 @@ Now, let's go a step further:
       placeholder.setPos(i*5,0,0)
       dancer.instanceTo(placeholder)
 
-
-
 This is the exact same code as before, except that instead of putting the 50
 placeholders beneath ``render``, I
 put them beneath a dummy node called
 ``chorusline``. So my line of dancers
 is not part of the scene graph yet. Now, I can do this:
-
-
 
 .. code-block:: python
 
@@ -118,8 +103,6 @@ is not part of the scene graph yet. Now, I can do this:
       placeholder = render.attachNewNode("Line-Placeholder")
       placeholder.setPos(0,i*10,0)
       chorusline.instanceTo(placeholder)
-
-
 
 Here is the scene graph I just created:
 
@@ -133,7 +116,6 @@ dancers.
 Instancing: an Important Caveat
 -------------------------------
 
-
 Instancing saves panda quite a bit of CPU time when animating the model. But
 that doesn't change the fact that the renderer still needs to render the model
 150 times. If the dancer is a 1000 polygon model, that's still 150,000
@@ -144,7 +126,6 @@ frustum-culled separately.
 
 The NodePath: a Pointer to a Node plus a Unique Instance ID
 -----------------------------------------------------------
-
 
 If I had a pointer to the chorus-line dancer model, and I tried to ask the
 question "where is the dancer," there would be no well-defined answer. The
@@ -189,4 +170,3 @@ the NodePath points.
 .. |Instancing2.jpg| image:: instancing2.jpg
 .. |Instancing3.jpg| image:: instancing3.jpg
 .. |Instancing4.jpg| image:: instancing4.jpg
-

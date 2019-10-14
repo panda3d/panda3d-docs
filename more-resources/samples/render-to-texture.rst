@@ -24,4 +24,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Teapot-on-TV.jpg| image:: screenshot-sample-programs-teapot-on-tv.jpg
-

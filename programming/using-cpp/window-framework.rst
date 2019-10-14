@@ -130,4 +130,3 @@ The Window Framework
 
    It's very useful to study the file ``panda/src/framework/windowFramework.h``,
    since you will need to use it often.
-

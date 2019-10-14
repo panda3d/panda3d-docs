@@ -72,4 +72,3 @@ btSoftBody::Config BulletSoftBodyConfig                     Description
 ``citerations``    ``get/setClusterSolverIterations``       Cluster solver iterations
                                                             Positive integer
 ================== ======================================== ============================================
-

@@ -25,35 +25,23 @@ your textures properly in the first place.
 If you would like Panda3D to rescale your images up to the next larger power
 of two instead of down to the next smaller power of two, use:
 
-
-
 .. code-block:: text
 
     textures-power-2 up
 
-
-
 In your config file. The default is:
-
-
 
 .. code-block:: text
 
     textures-power-2 down
 
-
-
 As of version 1.8.0, another mode was added which adds black borders as needed
 to frame the texture within a larger power-two texture. To enable this mode
 instead, use:
 
-
-
 .. code-block:: text
 
     textures-power-2 pad
-
-
 
 In your config file.
 
@@ -92,14 +80,10 @@ corner, and black bars on the upper and right sides. However, if you use UV
 coordinates carefully, you can cause just the movie to be displayed. To do
 this, you need to know how big those black bars are:
 
-
-
 .. code-block:: python
 
     padx = texture.getPadXSize()
     pady = texture.getPadYSize()
-
-
 
 Panda3D only uses padded textures in a few very special cases: 1. When playing
 a non-power-of-two movie. 2. When using render-to-texture, and a
@@ -114,24 +98,16 @@ useful to avoid wasteful movie padding of the kind described above. If you
 have one of these cards and you want to enable the use of non-power-of-two
 textures, you can put the following line in your Config.prc:
 
-
-
 .. code-block:: text
 
     textures-power-2 none
 
-
-
 You can also attempt to have panda detect your video card's capabilities
 automatically, using this command:
-
-
 
 .. code-block:: text
 
     textures-auto-power-2 #t
-
-
 
 If this variable is true, then panda will wait until you open a window, and
 then ask the window's driver if the driver supports non-power-of-two textures.

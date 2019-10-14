@@ -21,4 +21,3 @@ bullet-additional-damping-angular-factor    float      0.01    Only used when bu
 bullet-additional-damping-linear-threshold  float      0.01    Only used when bullet-additional-damping is set to TRUE.
 bullet-additional-damping-angular-threshold float      0.01    Only used when bullet-additional-damping is set to TRUE.
 =========================================== ========== ======= =========================================================================================================================================================================================================================
-

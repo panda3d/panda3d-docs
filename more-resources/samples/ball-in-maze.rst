@@ -29,4 +29,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Ball-in-Maze.jpg| image:: screenshot-sample-programs-ball-in-maze.jpg
-

@@ -35,4 +35,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Carousel.jpg| image:: screenshot-sample-programs-carousel.jpg
-

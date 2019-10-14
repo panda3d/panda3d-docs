@@ -18,13 +18,9 @@ pdef file is described on the next page.
 
 Once you have the pdef file, you can run ppackage as follows:
 
-
-
 .. code-block:: bash
 
     ppackage -i c:/output_dir myfile.pdef
-
-
 
 The directory named with -i is the directory into which the contents of the
 package(s) named in the pdef file will be placed. It doesn't have to exist

@@ -21,25 +21,21 @@ will have more faces if raising this value. Increasing the value will make the
 soft body more realistic, but it also requires more performance to simulate
 the soft body.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         # Soft body world information
         info = world.getWorldInfo()
         info.setAirDensity(1.2)
         info.setWaterDensity(0)
         info.setWaterOffset(0)
         info.setWaterNormal(Vec3(0, 0, 0))
-        
+
         # Softbody
         center = Point3(0, 0, 0)
         radius = Vec3(1, 1, 1) * 1.5
-        
+
         bodyNode = BulletSoftBodyNode.makeEllipsoid(info, center, radius, 128)
         bodyNode.setName('Ellipsoid')
         bodyNode.getMaterial(0).setLinearStiffness(0.1)
@@ -48,27 +44,17 @@ the soft body.
         bodyNode.getCfg().setPressureCoefficient(1500)
         bodyNode.setTotalMass(30, True)
         bodyNode.setPose(True, False)
-        
+
         bodyNP = render.attachNewNode(bodyNode)
         bodyNP.setPos(15, 0, 12)
         bodyNP.setH(90.0)
         world.attachSoftBody(bodyNP.node())
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        TODO
-    
-    
 
+        TODO
 
 When comparing the soft body setup with the previous page, the soft body patch
 setup, we will find that there are two differences:
@@ -100,36 +86,22 @@ same code as we have been using for soft body patches. The only difference is
 that we don't need to make the created geometry two-sided, since the inside of
 the closed mesh is usually not visible.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         from panda3d.core import GeomVertexFormat
         from panda3d.bulletimport BulletHelper
-        
+
         fmt = GeomVertexFormat.getV3n3t2()
         geom = BulletHelper.makeGeomFromFaces(bodyNode, fmt)
         bodyNode.linkGeom(geom)
         visNode = GeomNode('EllipsoidVisual')
         visNode.addGeom(geom)
         visNP = bodyNP.attachNewNode(visNode)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        TODO
-    
-    
 
+        TODO

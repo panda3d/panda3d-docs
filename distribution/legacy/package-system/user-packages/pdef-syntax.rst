@@ -9,15 +9,12 @@ The pdef syntax
 
 A package definition looks something like a Python class definition:
 
-
 .. code-block:: python
 
     class mypackage(package):
         file('neededfile.dll')
         module('my.python.module')
         dir('/c/my/root_dir')
-
-
 
 In fact, you can put any Python syntax you like into a pdef file, and it will
 be executed by ppackage. A pdef file is really just a special kind of Python
@@ -43,28 +40,21 @@ Sometimes the files and modules you wish to include are not on the path, and
 thus can not be found. To see what is on the path is when your pdef file is
 run, you can use this at the top of your pdef file:
 
-
 .. code-block:: python
 
     import sys
     print sys.path
 
-
-
 Often when building packages, it's useful to have the working directory on the
 path, but it may be missing. It can be added with:
-
 
 .. code-block:: python
 
     import sys
     sys.path.insert(0,'') #add the working directory as the first entry in sys.path
 
-
-
 When making p3d packages, you use p3d instead of package for the class. An
 example p3d could be as follows:
-
 
 .. code-block:: python
 
@@ -83,8 +73,6 @@ example p3d could be as follows:
         dir('data',newDir='data') # include a folder called data
         mainModule('main') # include and set the main module that runs when the p3d is run
         file('events.txt') # include a text file
-
-
 
 Generally what ppackage is pretty good about finding what modules are imported
 and automatically including them, but there are cases where this fails and

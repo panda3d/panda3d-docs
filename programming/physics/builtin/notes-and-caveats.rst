@@ -22,4 +22,3 @@ the physics engine:
    gravity applied), be sure to look at the friction coefficient options on
    the [https://www.panda3d.org/apiref.php?page=PhysicsCollisionHandler
    PhyicsCollisionHandler].
-

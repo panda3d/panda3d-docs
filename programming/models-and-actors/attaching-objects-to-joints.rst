@@ -6,13 +6,9 @@ Attaching an Object to a Joint
 If an actor has a skeleton, then it is possible to locate one of the joints,
 and attach an object to that joint:
 
-
-
 .. code-block:: python
 
     myNodePath = actorNodePath.exposeJoint(None,"modelRoot","Joint Name")
-
-
 
 This function returns a nodepath which is attached to the joint. By
 reparenting any object to this nodepath, you can cause it to follow the

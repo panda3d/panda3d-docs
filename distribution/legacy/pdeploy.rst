@@ -23,7 +23,6 @@ to run.
 
 For information about command-line options, you can invoke:
 
-
 .. code-block:: bash
 
     pdeploy -h
@@ -36,7 +35,6 @@ Generating an installer
 -----------------------
 
 You can create a graphical installer for your game using a command similar to:
-
 
 .. code-block:: bash
 
@@ -101,8 +99,6 @@ stretching.
     -i icon16.png -i icon32.png -i icon48.png -i icon128.png
     -P linux_amd64 -P win32 -P osx_i386 coolGame.p3d installer
 
-
-
 Generating a launcher executable
 --------------------------------
 
@@ -111,7 +107,6 @@ standalone launcher executable. It works similar to tools like py2exe, but is
 designed to embed .p3d games. This will not require a Panda3D installation to
 run - instead, when running it, it will automatically download and install the
 Panda3D libraries. The pdeploy command-line looks like this:
-
 
 .. code-block:: bash
 

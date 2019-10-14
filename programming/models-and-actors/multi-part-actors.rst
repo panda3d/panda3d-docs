@@ -11,8 +11,6 @@ them together at the waist, then the legs model should contain a bone "waist",
 and the torso model should also contain a bone "waist". You can then attach
 them together:
 
-
-
 .. code-block:: python
 
     nodePath = Actor.Actor({
@@ -21,8 +19,6 @@ them together:
       },{'legs':{'dance':'RobotLegs-Dance.egg'},
          'torso':{'dance':'RobotTorso1-Dance.egg'}})
     nodePath.attach('torso','legs','waist')
-
-
 
 Multi-part actors are fairly complicated. Each part is loaded from a separate
 egg file, and each part has its own set of animations that are applied to it.
@@ -38,39 +34,31 @@ part.
 
 Here's another example:
 
-
-
 .. code-block:: python
 
     myactor = Actor(
-    
+
         # part dictionary
-        {"head":"char/dogMM/dogMM_Shorts-head-mod", 
-         "torso":"char/dogMM/dogMM_Shorts-torso-mod", 
-         "legs":"char/dogMM/dogMM_Shorts-legs-mod"}, 
-    
+        {"head":"char/dogMM/dogMM_Shorts-head-mod",
+         "torso":"char/dogMM/dogMM_Shorts-torso-mod",
+         "legs":"char/dogMM/dogMM_Shorts-legs-mod"},
+
         # dictionary of anim dictionaries
-        {"head":{"walk":"char/dogMM/dogMM_Shorts-head-walk", 
-                 "run":"char/dogMM/dogMM_Shorts-head-run"}, 
-         "torso":{"walk":"char/dogMM/dogMM_Shorts-torso-walk", 
-                  "run":"char/dogMM/dogMM_Shorts-torso-run"}, 
-         "legs":{"walk":"char/dogMM/dogMM_Shorts-legs-walk", 
-                 "run":"char/dogMM/dogMM_Shorts-legs-run"} 
+        {"head":{"walk":"char/dogMM/dogMM_Shorts-head-walk",
+                 "run":"char/dogMM/dogMM_Shorts-head-run"},
+         "torso":{"walk":"char/dogMM/dogMM_Shorts-torso-walk",
+                  "run":"char/dogMM/dogMM_Shorts-torso-run"},
+         "legs":{"walk":"char/dogMM/dogMM_Shorts-legs-walk",
+                 "run":"char/dogMM/dogMM_Shorts-legs-run"}
          })
-
-
 
 In addition multipart actor parts need to be connected together in a
 meaningful fashion:
-
-
 
 .. code-block:: python
 
     myactor.attach("head", "torso", "joint-head")
     myactor.attach("torso", "legs", "joint-hips")
-
-
 
 The attach() call names two parts, and reparents the part named by the first
 parameter onto the part named by the second parameter, at the node named by
@@ -85,28 +73,23 @@ attachment joint, by virtue of the scene graph relationship.
 Animation
 ---------
 
-
 You can animate the parts as normal animations, but you need to supply the
-partname, like this: 
+partname, like this:
 
 .. code-block:: python
 
     myactor.play('Animation Name', 'Part Name')
 
-
-
 If you want to use AnimControl, as explained in
 :ref:`this section <actor-animations>`, you must supply the partname as second
 parameter in getAnimControl():
-
-
 
 .. code-block:: python
 
     # you can see you just need to call
     # actor.getAnimControl('Animation Name','Part Name')
     # to get access to the AnimControl of that part.
-    
+
     ac=actor.getAnimControl('Animation Name','Part Name')
     ac.isPlaying() #returns a boolean whether the animation is playing or not
     ac.getFrame() #returns the current frame number
@@ -121,5 +104,3 @@ parameter in getAnimControl():
     ac.pose(frame) #poses at frame frame
     ac.setPlayRate(rate) #sets the playrate.  explained further below
     ac.stop() #stops the animation
-
-

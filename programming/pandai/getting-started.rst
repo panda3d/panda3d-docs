@@ -27,7 +27,7 @@ you can't understand some of them.
 Step 1 :
 
 To use our AI library into your game you need to import PandAI into your game
-code via : 
+code via :
 
 .. code-block:: python
 
@@ -73,7 +73,7 @@ Step 9 :
 
 Watch how your awesome seek function works !
 
-The actual code : 
+The actual code :
 
 .. code-block:: python
 
@@ -84,16 +84,16 @@ The actual code :
     from direct.actor.Actor import Actor
     #for Pandai
     from panda3d.ai import *
-    
+
     class World(DirectObject):
-    
+
         def __init__(self):
             base.disableMouse()
             base.cam.setPosHpr(0,0,55,0,-90,0)
-            
+
             self.loadModels()
             self.setAI()
-           
+
         def loadModels(self):
             # Seeker
             ralphStartPos = Vec3(-10, 0, 0)
@@ -108,30 +108,28 @@ The actual code :
             self.target.setPos(5,0,0)
             self.target.setScale(1)
             self.target.reparentTo(render)
-          
+
         def setAI(self):
             #Creating AI World
             self.AIworld = AIWorld(render)
-     
+
             self.AIchar = AICharacter("seeker",self.seeker, 100, 0.05, 5)
             self.AIworld.addAiChar(self.AIchar)
             self.AIbehaviors = self.AIchar.getAiBehaviors()
-            
+
             self.AIbehaviors.seek(self.target)
             self.seeker.loop("run")
-    
-            #AI World update        
+
+            #AI World update
             taskMgr.add(self.AIUpdate,"AIUpdate")
-            
-        #to update the AIWorld    
+
+        #to update the AIWorld
         def AIUpdate(self,task):
-            self.AIworld.update()            
+            self.AIworld.update()
             return Task.cont
-     
+
     w = World()
     run()
-
-
 
 -  Note : It doesn't matter where your seek is first called (ie. before the
    AIWorld update or after) it should still work as soon as the Update starts

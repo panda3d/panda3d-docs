@@ -8,13 +8,9 @@ example, if you wish to force a character model's eyes to follow the mouse,
 you will need to procedurally take control of the neck and head. To achieve
 this, use controlJoint.
 
-
-
 .. code-block:: python
 
     myNodePath = actor.controlJoint(None,"modelRoot","Joint Name")
-
-
 
 This creates a dummy node. Every frame, the transform is copied from the dummy
 node into the joint. By setting the transform of the dummy node, you can
@@ -43,7 +39,6 @@ complete hierarchy of joints.
 Cautions and limitations
 ------------------------
 
-
 Prior to Panda3D version 1.5, there were several important limitations to
 controlJoint(). These have been lifted as of Panda3D version 1.5.
 
@@ -57,4 +52,3 @@ controlJoint(). These have been lifted as of Panda3D version 1.5.
 -  In previous versions of Panda, controlJoint could not be undone. Beginning
    in Panda3D version 1.5, you may call releaseJoint("modelRoot", "Joint
    Name") to undo a previous call to controlJoint().
-

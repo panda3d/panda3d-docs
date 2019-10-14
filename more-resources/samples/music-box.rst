@@ -23,4 +23,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Music-Box.jpg| image:: screenshot-sample-programs-music-box.jpg
-

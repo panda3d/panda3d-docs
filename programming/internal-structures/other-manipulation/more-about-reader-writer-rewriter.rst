@@ -18,13 +18,9 @@ You construct a GeomVertexReader or GeomVertexWriter with a pointer to the
 :ref:`geomvertexdata` object you are operating on, and the name of the column
 you wish to process, e.g.:
 
-
-
 .. code-block:: python
 
     color = GeomVertexReader(vdata, 'color')
-
-
 
 Because the GeomVertexReader and GeomVertexWriter classes only store a
 temporary pointer, which might become invalid between frames or even between
@@ -50,7 +46,6 @@ x = getData1i()      setData1i(x)addData1i(x)
 \                    setData3i(x, y, z)addData3i(x, y, z)
 \                    setData4i(x, y, z, w)addData4i(x, y, z, w)
 ==================== ====================================================================
-
 
 Each of the getData family of functions supported by GeomVertexReader returns
 the value of the data in the current column, converted to the requested type.
@@ -122,7 +117,6 @@ on the specified row, and increment from there.
 GeomVertexRewriter
 ------------------
 
-
 The GeomVertexRewriter class exists as a convenience for code that needs to
 alternately read and write the data on a column. GeomVertexRewriter multiply
 inherits from GeomVertexReader and GeomVertexWriter, so it supports the
@@ -135,16 +129,12 @@ vertices from the beginning to end, reading and writing as it goes. For
 instance, to set all of the Z components of a piece of geometry to 0.0, while
 preserving the X and Y components, you might write a loop such as:
 
-
-
 .. code-block:: python
 
     vertex = GeomVertexRewriter(vdata, 'vertex')
     while not vertex.isAtEnd():
       v = vertex.getData3f()
       vertex.setData3f(v[0], v[1], 0.0)
-
-
 
 Note that this example code calls getData3f() and setData3f() exactly once
 through each iteration, which increments the current read row and current

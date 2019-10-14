@@ -236,4 +236,3 @@ each texture input.
 
    TextureStage::CO_one_minus_src_alpha
       The complement of the alpha value.
-

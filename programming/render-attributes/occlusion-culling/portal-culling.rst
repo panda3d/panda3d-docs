@@ -59,4 +59,3 @@ Incomplete Section
 Note: this section is incomplete. It will be updated soon.
 
 .. |portal_diagram.png| image:: portal-diagram.png
-

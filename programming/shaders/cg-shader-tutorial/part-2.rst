@@ -6,7 +6,6 @@ Cg Tutorial Part 2
 Cg Tutorial Part 2: The Simplest Shader
 ---------------------------------------
 
-
 In this part of the tutorial, we will introduce the barest shader possible and
 then modify the python application to load this shader to verify that it
 works. How would we know that it works? Well, this shader is so simple that it
@@ -15,27 +14,22 @@ basically makes our application useless and all we will see is a black screen.
 The Shader
 ----------
 
-
-
-
 .. code-block:: glsl
 
     //Cg
     /* lesson2.sha */
-    
+
     void vshader(
         out float4 l_position : POSITION)
     {
         l_position = float4(0.0, 0.0, 0.0, 1.0);
     }
-    
+
     void fshader(
         out float4 o_color : COLOR)
     {
         o_color = float4(1.0, 0.0, 1.0, 1.0);
     }
-
-
 
 We'll only go through the basics of this shader for now. Also note that not
 everything in this tutorial is a Cg requirement, some of the things such as
@@ -100,68 +94,62 @@ would we have to change our shader if we only have a 16 bit color depth.
 The Python Script
 -----------------
 
-
 The only thing we will change in our panda script is to load our shader file
 and assign the shader on our root node. Run the script and you will see a
 black screen, so theres no point in providing a screenshot for this one!
 
-
-
 .. code-block:: python
 
     #Lesson2.py
-    
+
     import sys
     import direct.directbase.DirectStart
-    
+
     base.setBackgroundColor(0.0, 0.0, 0.0)
     base.disableMouse()
-    
+
     base.camLens.setNearFar(1.0, 50.0)
     base.camLens.setFov(45.0)
-    
+
     camera.setPos(0.0, -20.0, 10.0)
     camera.lookAt(0.0, 0.0, 0.0)
-    
+
     root = render.attachNewNode("Root")
-    
+
     modelCube = loader.loadModel("cube.egg")
-    
+
     cubes = []
     for x in [-3.0, 0.0, 3.0]:
         cube = modelCube.copyTo(root)
         cube.setPos(x, 0.0, 0.0)
         cubes += [ cube ]
-    
+
     # Load the shader from the file.
     shader = loader.loadShader("lesson2.sha")
     # Assign the shader to work on the root node
     # If you remove the line below, you will see
     # that panda is actually rendering our scene.
     root.setShader(shader)
-    
+
     base.accept("escape", sys.exit)
     base.accept("o", base.oobe)
-    
+
     def move(x, y, z):
         root.setX(root.getX() + x)
         root.setY(root.getY() + y)
         root.setZ(root.getZ() + z)
-    
+
     base.accept("d", move, [1.0, 0.0, 0.0])
     base.accept("a", move, [-1.0, 0.0, 0.0])
     base.accept("w", move, [0.0, 1.0, 0.0])
     base.accept("s", move, [0.0, -1.0, 0.0])
     base.accept("e", move, [0.0, 0.0, 1.0])
     base.accept("q", move, [0.0, 0.0, -1.0])
-    
+
     run()
-
-
 
 Modifying the Shader
 --------------------
-
 
 Let's modify the shader to get some idea of what we can do in Cg. We still
 won't be producing any output yet but it will give you a good overview of how
@@ -171,8 +159,6 @@ First lets see what happens when we try to use a float3 as the shader output.
 Try changing the vertex shader to the sample below and then running the panda
 script. Examine the console output carefully.
 
-
-
 .. code-block:: glsl
 
     void vshader(
@@ -181,13 +167,9 @@ script. Examine the console output carefully.
         l_position = float3(0.0, 0.0, 0.0, 1.0);
     }
 
-
-
 Now this next vertex shader does exactly the same thing as the original shader
 but shows how you can assign fixed length arrays to other fixed length arrays
 in Cg.
-
-
 
 .. code-block:: glsl
 
@@ -198,13 +180,9 @@ in Cg.
         l_position = zero;
     }
 
-
-
 Finally lets do some useless maths in the vertex shader. Also note how you can
 assign a value to l_position more than once. You should try making your own
 modifications to the shader and see if it can compile
-
-
 
 .. code-block:: glsl
 
@@ -217,8 +195,6 @@ modifications to the shader and see if it can compile
         l_position = zero;
         l_position = float4(0.0, 0.0, 0.0, 1.0);
     }
-
-
 
 After modifying the vertex shader, try to modify the fragment shader on your
 own. In the next tutorial, we will improve the shader's usefulness.

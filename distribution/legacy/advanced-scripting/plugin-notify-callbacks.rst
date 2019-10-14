@@ -40,16 +40,12 @@ To use any of the above, assign the token to a JavaScript expression which
 should be evaluated when the event occurs. Usually this is a call to one of
 your own JavaScript functions, e.g.:
 
-
-
 .. code-block:: html
 
     <object width="640" height="480"
       type="application/x-panda3d" data="myapp.p3d">
       onWindowOpen="MyWindowFunction()"
     </object>
-
-
 
 You should use the appropriate embedding syntax as described in
 :ref:`advanced-object-tags`.

@@ -55,4 +55,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Particles.jpg| image:: screenshot-sample-programs-particles.jpg
-

@@ -19,15 +19,13 @@ object as a point mass, it is not possible to apply a rotation of any kind to
 your object. For rotational forces, see
 ``AngularVectorForce`` below.*
 
-**Example:** 
+**Example:**
 
 .. code-block:: python
 
-    lvf=LinearVectorForce(1,0,0)  # Push 1 newton in the positive-x direction 
+    lvf=LinearVectorForce(1,0,0)  # Push 1 newton in the positive-x direction
     forceNode.addForce(lvf)  # Determine coordinate space of this force node
     actorNode.getPhysical(0).addLinearForce(lvf) # Add the force to the object
-
-
 
 AngularVectorForce
 ------------------
@@ -44,15 +42,13 @@ is simple: mass **must** be used in the torque calculations. As such, you will
 want to make sure your forces are sufficiently small or your masses are
 sufficiently large to keep your rotational velocity sane.
 
-**Example:** 
+**Example:**
 
 .. code-block:: python
 
-    avf=AngularVectorForce(1,0,0) # Spin around the positive-x axis 
+    avf=AngularVectorForce(1,0,0) # Spin around the positive-x axis
     forceNode.addForce(avf) # Determine which positive-x axis we use for calculation
     actorNode.getPhysical(0).addAngularForce(avf) # Add the force to the object
-
-
 
 One additional caveat with
 ``AngularVectorForce``: Angular forces will
@@ -60,16 +56,14 @@ not be processed on your object until an
 ``AngularIntegrator`` is added to the
 ``PhysicsManager``.
 
-**Example:** 
+**Example:**
 
 .. code-block:: python
 
     from panda3d.physics import AngularEulerIntegrator
-    
+
     angleInt = AngularEulerIntegrator() # Instantiate an AngleIntegrator()
     base.physicsMgr.attachAngularIntegrator(angleInt) # Attatch the AngleIntegrator to the PhysicsManager
-
-
 
 *Editor's Note: Each type of force should be given it's own page with much
 more in depth examples, and perhaps a small sample program.*

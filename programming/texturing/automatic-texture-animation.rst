@@ -25,15 +25,11 @@ You can parent the model under render and it will automatically start
 animating through its textures. If you need it to start at a particular frame,
 use something like this:
 
-
-
 .. code-block:: python
 
     flip = loader.loadModel('flip.egg')
     flip.find('**/+SequenceNode').node().pose(startFrame)
     flip.reparentTo(render)
-
-
 
 By default, all of the polygons created by
 ``egg-texture-cards`` will have the same

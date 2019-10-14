@@ -63,4 +63,3 @@ q                           Close Window
 =========================== ====================================================
 
 .. |pviewsample.jpg| image:: pviewsample.jpg
-

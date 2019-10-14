@@ -39,33 +39,19 @@ a CollisionHandler that defines the action to take when the collision is
 detected; then you pass the NodePath for your from object, and its
 CollisionHandler, to ``addCollider``.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         traverser = CollisionTraverser('traverser name')
         base.cTrav = traverser
         traverser.addCollider(fromObject, handler)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        CollisionTraverser c_trav.add_collider(fromObject, handler);
-    
-    
 
+        CollisionTraverser c_trav.add_collider(fromObject, handler);
 
 You only need to add the "from" objects to your traverser! Don't try to add
 the "into" objects to the CollisionTraverser. Adding an object to a
@@ -81,15 +67,8 @@ zero.
 The CollisionTraverser can visually show the collisions that are occurring by
 using the following line of code:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
-        collisionTraverser.showCollisions(render)
-    
-    
 
+        collisionTraverser.showCollisions(render)

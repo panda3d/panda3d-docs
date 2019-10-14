@@ -40,13 +40,9 @@ pass a 4-tuple to the text parameter (or to many of the other parameters, such
 as relief or geom), where each element of the tuple is the parameter value for
 the corresponding state, like this:
 
-
-
 .. code-block:: python
 
     b = DirectButton(text = ("OK", "click!", "rolling over", "disabled"))
-
-
 
 The above example would create a DirectButton whose label reads "OK" when it
 is not being touched, but it will change to a completely different label as
@@ -57,18 +53,12 @@ four different texture maps to represent the button in each state. Normally,
 you would convert these texture maps into an egg file using
 ``egg-texture-cards`` like this:
 
-
-
 .. code-block:: bash
 
     egg-texture-cards -o button_maps.egg -p 240,240 button_ready.png button_click.png button_rollover.png button_disabled.png
 
-
-
 And then you would load up the that egg file in Panda and apply it to the four
 different states like this:
-
-
 
 .. code-block:: python
 
@@ -77,8 +67,6 @@ different states like this:
                              maps.find('**/button_click'),
                              maps.find('**/button_rollover'),
                              maps.find('**/button_disabled')))
-
-
 
 You can also access one of the state-specific NodePaths after the button has
 been created with the interface
@@ -104,43 +92,36 @@ state          Whether or not the button is disabled                DGG.NORMAL o
 Like any other :ref:`DirectGui <directgui>` widget, you can change any of the
 properties by treating the element as a dictionary:
 
-
 .. code-block:: python
 
     button["state"] = DGG.DISABLED
 
-
-
 Example
 -------
-
-
 
 .. code-block:: python
 
     import direct.directbase.DirectStart
     from direct.gui.OnscreenText import OnscreenText
     from direct.gui.DirectGui import *
-    
+
     from panda3d.core import TextNode
-    
+
     # Add some text
     bk_text = "This is my Demo"
-    textObject = OnscreenText(text = bk_text, pos = (0.95,-0.95), 
+    textObject = OnscreenText(text = bk_text, pos = (0.95,-0.95),
     scale = 0.07,fg=(1,0.5,0.5,1),align=TextNode.ACenter,mayChange=1)
-    
+
     # Callback function to set  text
     def setText():
             bk_text = "Button Clicked"
             textObject.setText(bk_text)
-    
+
     # Add button
     b = DirectButton(text = ("OK", "click!", "rolling over", "disabled"), scale=.05, command=setText)
-    
+
     # Run the tutorial
     run()
-
-
 
 Note that you will not be able to set the text unless the mayChange flag is 1.
 This is an optimization, which is easily missed by newcomers.

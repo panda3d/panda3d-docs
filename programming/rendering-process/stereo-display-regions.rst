@@ -129,4 +129,3 @@ can set the ``stereo-lens-old-convergence`` variable to
 ``true``.
 
 .. |Stereo Lens Parameters| image:: stereo-lens-parameters.jpg
-

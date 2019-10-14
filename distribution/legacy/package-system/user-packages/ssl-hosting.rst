@@ -24,13 +24,9 @@ Using this feature is completely optional, but it does provide a bit more
 security against hackers. By convention, if you specify your host URL with an
 https address, like this:
 
-
-
 .. code-block:: python
 
     packager.setHost('https://myhost.com/myrootdir/')
-
-
 
 then Panda3D will understand that the contents.xml file should be downloaded
 via the https protocol. However, the remaining files will be downloaded via
@@ -40,14 +36,10 @@ downloading from mirror hosts to distribute the download burden. If your
 cleartext http address it not the same as the https address, you can specify
 the specific address with the downloadUrl parameter, e.g.:
 
-
-
 .. code-block:: python
 
     packager.setHost('https://myhost.com/myrootdir/',
                      downloadUrl = 'http://myhost.com:8080/myrootdir/')
-
-
 
 The first URL is the host URL, and is the address from which contents.xml will
 be downloaded, and is also the URL that should be specified when downloading

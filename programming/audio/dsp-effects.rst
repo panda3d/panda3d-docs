@@ -22,49 +22,32 @@ To this:
 The FilterProperties Object
 ---------------------------
 
-
 Any DSP you add to your sound will require the use of "FilterProperties",
 which is a list of filters and their coefficients. Start with this import:
-
-
 
 .. code-block:: python
 
     from panda3d.core import FilterProperties
 
-
-
 This will allow you to create lists of filters, like this one:
-
-
 
 .. code-block:: python
 
     fp = FilterProperties()
 
-
-
 This just adds a blank filter list. From here we can add whatever filter we'd
 like. To stay consistent with the example below, we'll add a reverb effect.
-
-
 
 .. code-block:: python
 
     fp.addReverb(0.6, 0.5, 0.1, 0.1, 0.1)
 
-
-
 All this really does is add this particular reverb to our filter list - sound
 is not yet affected. To apply these filters to our audio output, use:
-
-
 
 .. code-block:: python
 
     audioMgr.configureFilters(fp)
-
-
 
 where ``audioMgr`` is an
 ``AudioManager`` object, most likely
@@ -81,26 +64,22 @@ https://www.panda3d.org/apiref.php?page=FilterProperties
 
 Below is a sample program for adding a reverb effect:
 
-
-
 .. code-block:: python
 
     # This is just to ensure that we are using FMOD. In your application,
     # please edit the Config.prc file that you distribute
     from panda3d.core import loadPrcFileData
     loadPrcFileData("", "audio-library-name p3fmod_audio")
-    
+
     import direct.directbase.DirectStart
     from panda3d.core import FilterProperties
-    
+
     mySound = loader.loadSfx("models/audio/sfx/GUI_rollover.wav")
     mySound.setLoop(True)
     mySound.play()
-    
+
     fp = FilterProperties()
     fp.addReverb(0.6, 0.5, 0.1, 0.1, 0.1)
     base.sfxManagerList[0].configureFilters(fp)
-    
+
     run()
-
-

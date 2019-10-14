@@ -17,47 +17,33 @@ position of the first node, and
 of the last node. ``fixeds`` will
 be explained later on this page.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         from panda3d.bullet import BulletSoftBodyNode
-        
+
         info = self.world.getWorldInfo()
         info.setAirDensity(1.2)
         info.setWaterDensity(0)
         info.setWaterOffset(0)
         info.setWaterNormal(Vec3(0, 0, 0))
-        
+
         res = 8
         p1 = Point3(0, 0, 4)
         p2 = Point3(10, 0, 4)
         fixeds = 0
-        
-        bodyNode = BulletSoftBodyNode.makeRope(info, p1, p2, res, fixeds) 
+
+        bodyNode = BulletSoftBodyNode.makeRope(info, p1, p2, res, fixeds)
         bodyNode.setTotalMass(50.0)
         bodyNP = worldNP.attachNewNode(bodyNode)
         world.attachSoftBody(bodyNode)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        TODO
-    
-    
 
+        TODO
 
 Visualisation
 -------------
@@ -70,39 +56,25 @@ There are two ways of rendering the rope. First we can make use of a nurbs
 curse, or we can simple render the rope using geom lines. First we have a look
 at how to render the rope using geom lines.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         from panda3d.core import GeomNode
-        
+
         geom = BulletHelper.makeGeomFromLinks(bodyNode)
-        
+
         visNode = GeomNode('')
         visNode.addGeom(geom)
         visNP = bodyNP.attachNewNode(visNode)
-        
+
         bodyNode.linkGeom(geom)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        TODO
-    
-    
 
+        TODO
 
 The class ``BulletHelper`` has a
 convenience method which creates a ready-to-use
@@ -127,22 +99,18 @@ done in the last line, by linking the geom to the soft body node.
 The result doesn't look very good. It's just a thin line. But instead of the
 above code we can use a nurbs curve for visualization.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         from panda3d.core import RopeNode
         from panda3d.core import NurbsCurveEvaluator
-        
+
         curve = NurbsCurveEvaluator()
         curve.reset(res + 2)
-        
+
         bodyNode.linkCurve(curve)
-        
+
         visNode = RopeNode('')
         visNode.setCurve(curve)
         visNode.setRenderMode(RopeNode.RMTube)
@@ -152,22 +120,12 @@ above code we can use a nurbs curve for visualization.
         visNode.setThickness(0.4)
         visNP = self.worldNP.attachNewNode(visNode)
         visNP.setTexture(loader.loadTexture('some_texture.jpg'))
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        TODO
-    
-    
 
+        TODO
 
 First we create a nurbs curve
 (``NurbsCurveEvaluator``), and then we link
@@ -202,42 +160,27 @@ value of this parameter we can attach different nodes/vertices of the rope:
 -  2: Only the last node/vertex is attached.
 -  3: Both the first and the last node/vertex are attached.
 
-
 Or we want to attach the soft body rope to a rigid body. In the following code
 snippet the last node/vertex of a soft body rope is attached to a rigid body.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         # NodePath for some BulletSoftBody "rope"
         softNP = ...
-        
+
         # NodePath for some BulletRigidBody
         rigidNP = ...
-        
+
         # Index of the last node of the rope
         idx = softNP.node().getNumNodes() - 1
-        
+
         # Attach the last node of the rope with the rigid body
         softNP.node().appendAnchor(idx, rigidNP.node())
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        TODO
-    
-    
 
+        TODO

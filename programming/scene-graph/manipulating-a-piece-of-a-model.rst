@@ -26,7 +26,6 @@ model it is.
 Animated (skeleton animation) models
 ------------------------------------
 
-
 If your model is animated via keyframe animation in a package such as 3DSMax
 or Maya--that is, the sort of model you expect to load in via the
 :ref:`Actor <models-and-actors>` interface--then Panda will be aggressive in
@@ -47,13 +46,9 @@ suppose (hypothetically) the head is labeled "Sphere01" in your modeling
 program. Use egg-optchar to tell panda that "Sphere01" deserves to be kept
 separate and labeled:
 
-
-
 .. code-block:: bash
 
     egg-optchar -d outputDir -flag Sphere01=theHead modelFile.egg anim1.egg anim2.egg
-
-
 
 Note that you must always supply the model file(s) and all of its animation
 files to egg-optchar at the same time. This is so it can examine all of the
@@ -67,31 +62,17 @@ polyset a meaningful name. Once you have labeled the relevant piece of
 geometry, you can obtain a pointer to it using the
 ``find`` method:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         myModelsHead = myModel.find("**/theHead")
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        NodePath myModelsHead = myModel.find("**/theHead");
-    
-    
 
+        NodePath myModelsHead = myModel.find("**/theHead");
 
 With this NodePath, you can manipulate the head separately from the rest of
 the model. For example, you can move the piece using
@@ -101,7 +82,6 @@ matter, do anything that you would do to any other scene graph node.
 
 Unanimated (environment) models
 -------------------------------
-
 
 Other kinds of models, those that do not contain any skeleton or animations,
 are not optimized as aggressively by the Panda loader, on the assumption that

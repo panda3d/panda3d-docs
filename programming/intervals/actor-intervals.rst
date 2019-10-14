@@ -3,14 +3,12 @@
 Actor Intervals
 ===============
 
-
-
 .. only:: python
 
     Actor intervals allow actor animations to be played as an interval, which
     allows them to be combined with other intervals through sequences and
     parallels.
-    
+
     The subrange of the animation to be played may be specified via frames
     (``startFrame`` up to and including
     ``endFrame``) or seconds
@@ -20,16 +18,16 @@ Actor Intervals
     ``startTime`` in conjunction with the
     duration, in seconds. If none of these is specified, then the default is to
     play the entire range of the animation.
-    
+
     If ``endFrame`` is before
     ``startFrame``, or if the play rate is
     negative, then the animation will be played backwards.
-    
+
     You may specify a subrange that is longer than the actual animation, but if
     you do so, you probably also want to specify either
     ``loop=1`` or
     ``constrainedLoop=1``; see below.
-    
+
     The loop parameter is a boolean value. When it is true, it means that the
     animation restarts and plays again if the interval extends beyond the
     animation's last frame. When it is false, it means that the animation stops
@@ -43,7 +41,7 @@ Actor Intervals
     parameters. Setting ``loop=1`` has
     no effect on the duration of the ActorInterval, it only controls what the
     actor does if you try to play past the end of the animation.
-    
+
     The parameter ``constrainedLoop`` works
     similarly to loop, but while
     ``loop=1`` implies a loop within
@@ -57,15 +55,13 @@ Actor Intervals
     ``constrainedLoop=1`` instead, then the next
     frame after ``endFrame`` will be
     ``startFrame`` again.
-    
+
     All parameters other than the animation name are optional.
-    
-    
-    
+
     .. code-block:: python
-    
+
         from direct.interval.ActorInterval import ActorInterval
-        
+
         myInterval = myactor.actorInterval(
             "Animation Name",
             loop=<0 or 1>,
@@ -79,13 +75,7 @@ Actor Intervals
             partName=PN,
             lodName=LN,
         )
-    
-    
-
-
-
 
 .. only:: cpp
 
     As ActorInterval is implemented in Python, this section does not apply to C++.
-

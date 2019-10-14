@@ -9,78 +9,47 @@ away, saving on costly vertex skinning operations. Another use would be to
 combine several small objects into a simplified single object, or to apply a
 cheaper shader. LOD can also be used to hide objects when they are far away.
 
-
-
 .. only:: cpp
 
-    Include file: 
-    
-    .. code-block:: cpp
-    
-        #include "lodNode.h"
-    
-    
+    Include file:
 
+    .. code-block:: cpp
+
+        #include "lodNode.h"
 
 To create an LODNode and NodePath:
 
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         lod = LODNode('my LOD node')
         lod_np = NodePath(lod)
         lod_np.reparentTo(render)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         PT(LODNode) lod = new LODNode("my LOD node");
         NodePath lod_np (lod);
         lod_np.reparent_to(render);
-    
-    
-
 
 To add a level of detail to the LODNode:
 
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         lod.addSwitch(50.0, 0.0)
         my_model.reparentTo(lod_np)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         lod->add_switch(50.0, 0.0);
         my_model.reparent_to(lod_np);
-    
-    
-
 
 my_model can be any NodePath you like.
 

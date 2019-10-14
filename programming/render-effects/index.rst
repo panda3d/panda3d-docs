@@ -56,31 +56,17 @@ affect. If you have an effect that should affect everything in the scene the
 NodePath in the next line of code is "render". If you only want it to affect
 specific objects, choose the appropriate place in the scene graph.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         nodePath.node().setEffect(<Render Effect>)
-    
-    
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         nodePath.node()->set_effect(<Render Effect>);
-    
-    
-
-
 
 .. toctree::
    :maxdepth: 2

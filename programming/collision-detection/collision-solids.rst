@@ -24,64 +24,36 @@ will be used to hold only one solid, but in fact a CollisionNode can contain
 any number of solids, and this is sometimes a useful optimization, especially
 if you have several solids that always move together as a unit.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         cs = CollisionSphere(0, 0, 0, 1)
         cnodePath = avatar.attachNewNode(CollisionNode('cnode'))
         cnodePath.node().addSolid(cs)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         PT(CollisionSphere) cs = new CollisionSphere();
         cSphere_node= new CollisionNode("Sphere");
         cSphere_node->add_solid(cs);
-    
-    
-
 
 CollisionNodes are hidden by default, but they may be shown for debugging
 purposes:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         cnodePath.show()
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        cSphere_node->show();
-    
-    
 
+        cSphere_node->show();
 
 Note: Be aware that the collision algorithm has only limited awareness of
 scaling transforms applied to CollisionSolids. This particularly applies to
@@ -112,13 +84,9 @@ A sphere is defined in terms of a center and a radius. Note that, like any
 object, the sphere's coordinates are defined in the sphere's own coordinate
 space, so that often the center is (0, 0, 0).
 
-
-
 .. code-block:: python
 
     sphere = CollisionSphere(cx, cy, cz, radius)
-
-
 
 CollisionCapsule
 ----------------
@@ -135,13 +103,9 @@ many intersection tests have been written from capsules into other shapes.
 
 A capsule is defined with its two endpoints, and the cylindrical radius.
 
-
-
 .. code-block:: python
 
     capsule = CollisionCapsule(ax, ay, az, bx, by, bz, radius)
-
-
 
 CollisionInvSphere
 ------------------
@@ -157,13 +121,9 @@ all directions, except for a bubble of space in the middle. It's useful for
 constraining an object within a particular space, since nothing can get out of
 an inverse sphere.
 
-
-
 .. code-block:: python
 
     inv = CollisionInvSphere(cx, cy, cz, radius)
-
-
 
 CollisionPlane
 --------------
@@ -191,13 +151,9 @@ A CollisionPlane is constructed using a Panda3D Plane object, which itself has
 a number of constructors, including the A, B, C, D plane equation, or a list
 of three points, or a point and a normal.
 
-
-
 .. code-block:: python
 
     plane = CollisionPlane(Plane(Vec3(0, 0, 1), Point3(0, 0, 0)))
-
-
 
 CollisionPolygon
 ----------------
@@ -231,14 +187,10 @@ triangles or quads (the higher-order polygons can only be loaded from an egg
 file). Simply specify the three or four points to the constructor, in
 counter-clockwise order.
 
-
-
 .. code-block:: python
 
     quad = CollisionPolygon(Point3(0, 0, 0), Point3(0, 0, 1),
       Point3(0, 1, 1), Point3(0, 1, 0))
-
-
 
 CollisionRay
 ------------
@@ -264,13 +216,9 @@ see :ref:`collision-handlers`.
 A CollisionRay is created by specifing an origin point, and a direction
 vector. The direction vector need not be normalized.
 
-
-
 .. code-block:: python
 
     ray = CollisionRay(ox, oy, oz, dx, dy, dz)
-
-
 
 CollisionLine
 -------------
@@ -279,13 +227,9 @@ This is essentially the same as a CollisionRay, except it extends to infinity
 in both directions. It is constructed with the same parameters, an origin
 point and a direction vector.
 
-
-
 .. code-block:: python
 
     line = CollisionLine(ox, oy, oz, dx, dy, dz)
-
-
 
 CollisionSegment
 ----------------
@@ -296,13 +240,9 @@ want to put a limit on how far the CollisionRay would otherwise reach.
 
 A CollisionSegment is constructed by specifying the two end points.
 
-
-
 .. code-block:: python
 
     segment = CollisionSegment(ax, ay, az, bx, by, bz)
-
-
 
 CollisionParabola
 -----------------
@@ -325,22 +265,16 @@ Oriented-Bounding Box (OBB).
 There are two constructors for the Box. One of them specifies the center for
 the box as well as the distance of each of the sides from the center.
 
-
-
 .. code-block:: python
 
     box = CollisionBox(center, dx, dy, dz)
 
-
-
 The second form of constructor takes the two diagonally opposite end points of
-the AABB. 
+the AABB.
 
 .. code-block:: python
 
     box = CollisionBox(Point3(minx,miny,minz),Point3(maxx,maxy,maxz))
-
-
 
 Collision System Chart
 ----------------------
@@ -371,4 +305,3 @@ Capsule          ''' '''       ''' '''       **1.10**  ''' '''      *' 1.10*'  *
 ================ ============= ============= ========= ============ ========== =========== ============
 
 .. |A CollisionCapsule| image:: tube.jpg
-

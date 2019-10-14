@@ -33,4 +33,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Asteroids.jpg| image:: screenshot-sample-programs-asteroids.jpg
-

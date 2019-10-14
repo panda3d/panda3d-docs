@@ -6,7 +6,6 @@ Multi-Pass Rendering
 Multi-Pass Rendering
 --------------------
 
-
 Sometimes you may need to draw the same scene more than once per frame, each
 view looking different. This is where multi-pass rendering comes into play.
 
@@ -31,16 +30,12 @@ in the scene get drawn as if the top node in its scene graph has
 :ref:`attributes <render-attributes>` can be changed/overridden after the
 Camera has been put on a scene.
 
-
-
 .. code-block:: python
 
-    # This makes everything drawn by the default camera use myNodePath's 
-    # RenderState.  Note:  base.cam is not base.camera.  If you have an 
+    # This makes everything drawn by the default camera use myNodePath's
+    # RenderState.  Note:  base.cam is not base.camera.  If you have an
     # reference to base.camera, use base.camera.node().
     base.cam.setInitialState(myNodePath.getState())
-
-
 
 You may, however, want more control over what RenderState gets assigned to
 each node in the scene. You can do this using the Camera class methods
@@ -53,24 +48,22 @@ tag named ``key`` the Camera
 assigns it whatever RenderState is associated with
 ``value``.
 
-
-
 .. code-block:: python
 
     # Assume we have Shader instances toon_shader and blur_shader
     # and we have a Camera whose NodePath is myCamera
-    
+
     # Create a temporary node in order to create a usable RenderState.
     tempnode = NodePath("temp node")
     tempnode.setShader(toon_shader)
     base.cam.setTagStateKey("Toon Shading")
     base.cam.setTagState("True", tempnode.getState())
-    
+
     tempnode = NodePath("temp node")
     tempnode.setShader(blur_shader)
     myCamera.node().setTagStateKey("Blur Shading")
     myCamera.node().setTagState("True", tempnode.getState())
-    
+
     # this makes myNodePath and its children get toonShaded
     # when rendered by the default camera
     myNodePath.setTag("Toon Shading", "True")
@@ -78,8 +71,6 @@ assigns it whatever RenderState is associated with
     # now if you want myNodePath to be blurred when seen by myCamera,
     # it's as easy as adding a tag
     myNodePath.setTag("Blur Shading", "True")
-
-
 
 For a full guide about Multi-Pass rendering in Panda3D, please read the `Howto
 on Multipass

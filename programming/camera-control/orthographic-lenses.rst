@@ -45,35 +45,21 @@ of 0, so it doesn't matter much.)
 If you like, you can change the default camera to use an orthographic lens
 with something like this:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         lens = OrthographicLens()
         lens.setFilmSize(20, 15)  # Or whatever is appropriate for your scene
         base.cam.node().setLens(lens)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         PT(OrthographicLens) lens = new OrthographicLens();
         lens->set_film_size(20, 15); // Or whatever is appropriate for your scene
         window->get_camera(0)->set_lens(lens);
-    
-    
-
 
 Note that using an orthographic lens can be nonintuitive at times--for
 instance, objects don't get larger as you come closer to them, and they don't
@@ -81,4 +67,3 @@ get smaller as you get farther away--so it may be impossible to tell your
 camera is even moving!
 
 .. |Lens tutorial, orthographic lenses| image:: lens-tutorial-orthographic.jpg
-

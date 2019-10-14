@@ -15,18 +15,12 @@ to the appropriate page to install the plugin if necessary.
 To use it, copy it to your web server and reference it in the section of your
 HTML document like this:
 
-
-
 .. code-block:: html
 
     <script src="DetectPanda3D.js" language="javascript"></script>
 
-
-
 Then elsewhere, presumably in the section of your document, you can reference
 it like this:
-
-
 
 .. code-block:: html
 
@@ -38,8 +32,6 @@ it like this:
     }
     </script>
 
-
-
 The function takes two optional parameters. The first parameter, if specified,
 is the URL of another page to redirect to, and the second parameter should be
 True to redirect to the indicated URL if the plugin is found, or False to
@@ -49,15 +41,11 @@ For instance, to trigger an automatic redirect to another page if the plugin
 is not installed, pass that page's URL as the first parameter, and False as
 the second parameter, like this:
 
-
-
 .. code-block:: html
 
     <script language="javascript">
     detectPanda3D('http://my.host.net/needsPlugin.html', False);
     </script>
-
-
 
 Note that this JavaScript function only detects whether the plugin is
 installed; it cannot report the plugin version number, and even if the plugin

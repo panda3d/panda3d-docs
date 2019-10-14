@@ -23,4 +23,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Shadows.jpg| image:: screenshot-sample-programs-shadows.jpg
-

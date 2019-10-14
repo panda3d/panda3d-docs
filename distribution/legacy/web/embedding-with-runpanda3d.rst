@@ -25,8 +25,6 @@ Panda3D source. You'll find it in the directory direct/src/directscripts.
 Simply copy this JavaScript file to your web host, and reference it in your
 web page like this:
 
-
-
 .. code-block:: html
 
     <head>
@@ -43,8 +41,6 @@ web page like this:
     </script>
     ... other body content ...
     </body>
-
-
 
 That is, you must include a reference to RunPanda3D.js within the
 
@@ -70,14 +66,10 @@ the above call would generate an
 ``<object>`` element something like
 this:
 
-
-
 .. code-block:: html
 
     <object data="myapp.p3d" id="myapp_id" width="640" height="480">
     </object>
-
-
 
 (though it will also add either
 ``classid`` or

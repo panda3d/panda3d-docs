@@ -3,10 +3,9 @@
 DirectCheckButton
 =================
 
-DirectCheckButtons are similar to buttons, except they represent a binary
-state that is toggled when it is clicked. Their usage is almost identical to
-regular buttons, except that the text area and box area can be modified
-separately.
+DirectCheckButtons are similar to buttons, except they represent a binary state
+that is toggled when it is clicked. Their usage is almost identical to regular
+buttons, except that the text area and box area can be modified separately.
 
 ============== ================================================================================== ========================
 Keyword        Definition                                                                         Value
@@ -30,66 +29,53 @@ pressEffect    Whether or not the button sinks in when clicked                  
 Example
 -------
 
-
-
 .. code-block:: python
 
-    import direct.directbase.DirectStart
-    from direct.gui.OnscreenText import OnscreenText 
-    from direct.gui.DirectGui import *
-    from panda3d.core import *
-    
-    
-    # Add some text
-    bk_text = "This is my Demo"
-    textObject = OnscreenText(text = bk_text, pos = (0.95,-0.95), 
-    scale = 0.07,fg=(1,0.5,0.5,1),align=TextNode.ACenter,mayChange=1)
-    
-    # Callback function to set  text 
-    def setText(status):
-    	if(status):
-    		bk_text = "Checkbox Selected"
-    	else:
-    		bk_text = "Checkbox Not Selected"
-    	textObject.setText(bk_text)
-    
+   import direct.directbase.DirectStart
+   from direct.gui.OnscreenText import OnscreenText
+   from direct.gui.DirectGui import *
+   from panda3d.core import *
+
+   # Add some text
+   bk_text = "This is my Demo"
+   textObject = OnscreenText(text = bk_text, pos = (0.95,-0.95),
+   scale = 0.07,fg=(1,0.5,0.5,1),align=TextNode.ACenter,mayChange=1)
+
+   # Callback function to set  text
+   def setText(status):
+       if status:
+           bk_text = "Checkbox Selected"
+       else:
+           bk_text = "Checkbox Not Selected"
+    textObject.setText(bk_text)
+
     # Add button
     b = DirectCheckButton(text = "CheckButton" ,scale=.05,command=setText)
-    
+
     # Run the tutorial
-    run()
-
-
+    base.run()
 
 Programmatically changing the indicatorValue
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you programatically want to change the checkbutton's indicatorValue, you
-need to call ``setIndicatorValue`` afterwards
-to update the checkbutton, like:
-
+If you programatically want to change the checkbutton's indicatorValue, you need
+to call ``setIndicatorValue`` afterwards to update the checkbutton, like:
 
 .. code-block:: python
 
-    b["indicatorValue"] = True
-    b.setIndicatorValue()
-
-
+   b["indicatorValue"] = True
+   b.setIndicatorValue()
 
 boxImage and other box\* keywords
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Just as DirectButton may be passed a 4-tuple of values to be used in the four
-button states, the box\* keyword arguments may be supplied with multiple
-entries to denote the unchecked and checked state. To supply arguments to be
-used in the two states of the checkbox, construct a 3-tuple of values with a
-'None' in the final entry, i.e. (unchecked, checked, None). For example, to
-set two different images for the unchecked and checked states:
-
-
+button states, the box\* keyword arguments may be supplied with multiple entries
+to denote the unchecked and checked state. To supply arguments to be used in the
+two states of the checkbox, construct a 3-tuple of values with a 'None' in the
+final entry, i.e. (unchecked, checked, None). For example, to set two different
+images for the unchecked and checked states:
 
 .. code-block:: python
 
-    boxImage = ("pathToDisabledImage.jpg", "pathToEnabled.jpg", None)
-
-
+   boxImage = ("pathToDisabledImage.jpg", "pathToEnabled.jpg", None)

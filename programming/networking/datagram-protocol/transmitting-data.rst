@@ -15,14 +15,11 @@ receipt of a message.
 Sending a message
 -----------------
 
-
 To send a message along an established connection, the sender must first
 construct a PyDatagram containing the message. This involves instantiating a
 PyDatagram object and then populating its contents with the desired data. The
 type of the data is determined by the functions used to pack it; see the full
 documentation of the PyDatagram class for more details.
-
-
 
 .. code-block:: python
 
@@ -30,7 +27,7 @@ documentation of the PyDatagram class for more details.
     # Your style of how to store this information may differ; this is
     # only one way to tackle the problem
     PRINT_MESSAGE = 1
-    
+
     def myNewPyDatagram(self):
       # Send a test message
       myPyDatagram = PyDatagram()
@@ -38,27 +35,18 @@ documentation of the PyDatagram class for more details.
       myPyDatagram.addString("Hello, world!")
       return myPyDatagram
 
-
-
 As shown in the previous section, once the datagram is constructed you may
 then send it using a ConnectionWriter.
-
-
 
 .. code-block:: python
 
     cWriter.send(myPyDatagram, aConnection)
 
-
-
 Receiving a message
 -------------------
 
-
 As shown in the previous section, when a message is received via a
 QueuedConnectionReader, it can be retrieved into a NetDatagram:
-
-
 
 .. code-block:: python
 
@@ -66,26 +54,18 @@ QueuedConnectionReader, it can be retrieved into a NetDatagram:
     if cReader.getData(datagram):
       myProcessDataFunction(datagram)
 
-
-
 A NetDatagram contains the original information that was stored in the
 transmitted PyDatagram. It also contains knowledge of the connection over
 which it was received and the address of the connection. To retrieve the
 connection, use the getConnection method:
 
-
-
 .. code-block:: python
 
     sourceOfMessage = datagram.getConnection()
 
-
-
 To retrieve the contents of the message, use the PyDatagramIterator. The
 iterator class acts as the complement of the PyDatagram class; its methods can
 be used to retrieve the content that was encoded using PyDatagram.
-
-
 
 .. code-block:: python
 

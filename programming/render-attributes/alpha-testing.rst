@@ -20,58 +20,33 @@ attributes inherited from higher in the scene graph. In the following example,
 we create an attribute that would cause objects to render only if their alpha
 value is below one quarter intensity.
 
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         lowPassFilter = AlphaTestAttrib.make(RenderAttrib.MLess,0.25)
-    
-    
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        CPT(RenderAttrib) lowPassFilter = AlphaTestAttrib::make(PandaCompareFunc::M_less, 0.25);
-    
-    
 
+        CPT(RenderAttrib) lowPassFilter = AlphaTestAttrib::make(PandaCompareFunc::M_less, 0.25);
 
 And now, this attribute can be added to a node to enable the action.
 
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         nodePath.setAttrib(lowPassFilter)
-    
-    
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        nodePath.set_attrib(lowPassFilter);
-    
-    
 
+        nodePath.set_attrib(lowPassFilter);
 
 Incomplete Section
 ------------------
-
 
 Note: this section is incomplete. It will be updated soon.

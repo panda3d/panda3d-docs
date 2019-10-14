@@ -50,28 +50,22 @@ conversion tool first.
 The Bam Interface
 -----------------
 
-
 The easiest way to save geometry is to use to call
 ``writeBamFile(filename)`` from the NodePath that
 contains your geometry.
 
-
-
 .. code-block:: python
 
     myPanda=loader.loadModel("panda")
-    
+
     #do some fancy calculations on the normals, or texture coordinates that you dont
     #want to do at runtime
-    
+
     #Save your new custom Panda
     myPanda.writeBamFile("customPanda.bam")
 
-
-
 The Egg Interface
 -----------------
-
 
 One easy way to create ``.egg``
 file for geometry that has already been made is to create a
@@ -87,42 +81,38 @@ can create a series of EggVertex and EggPolygon objects. If you want to create
 some structure in your egg file, you can create one or more EggGroups to
 separate the polygons into different groups. Here is an example:
 
-
-
 .. code-block:: python
 
     def makeWedge(angleDegrees = 360, numSteps = 16):
         data = EggData()
-    
+
         vp = EggVertexPool('fan')
         data.addChild(vp)
-    
+
         poly = EggPolygon()
         data.addChild(poly)
-    
+
         v = EggVertex()
         v.setPos(Point3D(0, 0, 0))
         poly.addVertex(vp.addVertex(v))
-    
+
         angleRadians = deg2Rad(angleDegrees)
-    
+
         for i in range(numSteps + 1):
             a = angleRadians * i / numSteps
             y = math.sin(a)
             x = math.cos(a)
-    
+
             v = EggVertex()
             v.setPos(Point3D(x, 0, y))
             poly.addVertex(vp.addVertex(v))
-    
+
         # To write the egg file to disk, use this:
         data.writeEgg(Filename("wedge.egg"))
-    
+
         # To load the egg file and render it immediately, use this:
         node = loadEggData(data)
         return NodePath(node)
-
-
 
 See the generated API documentation for more complete information about the
 egg library.

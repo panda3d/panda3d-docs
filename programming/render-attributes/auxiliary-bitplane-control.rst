@@ -17,13 +17,9 @@ When per-pixel lighting is enabled via
 be asked to produce extra data into the auxiliary bitplanes. This is done by
 setting an AuxBitplaneAttrib:
 
-
-
 .. code-block:: python
 
     np.setAttrib(AuxBitplaneAttrib.make(bits))
-
-
 
 Where ``bits`` is a set of bits
 indicating what should be written into the auxiliary bitplanes.
@@ -37,7 +33,6 @@ When the shader generator is not enabled, this attrib has no effect.
 
 Values That Can be Requested
 ----------------------------
-
 
 The following is a list of bits that can be passed to AuxBitplaneAttrib.make:
 

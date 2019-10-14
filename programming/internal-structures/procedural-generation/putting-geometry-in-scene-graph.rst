@@ -8,45 +8,31 @@ Finally, now that you have a :ref:`geomvertexdata` and one or more
 :ref:`geomnode` to put the new geometry in the scene graph, so that it will be
 rendered.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         geom = Geom(vdata)
         geom.addPrimitive(prim)
-        
+
         node = GeomNode('gnode')
         node.addGeom(geom)
-        
+
         nodePath = render.attachNewNode(node)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         PT(Geom) geom;
         geom = new Geom(vdata);
         geom->add_primitive(prim);
-        
+
         PT(GeomNode) node;
         node = new GeomNode("gnode");
         node->add_geom(geom);
-        
-        NodePath nodePath = window->get_render().attach_new_node(node);
-    
-    
 
+        NodePath nodePath = window->get_render().attach_new_node(node);
 
 The Geom constructor requires a pointer to the GeomVertexData object you will
 be using. There is only one GeomVertexData associated with any particular

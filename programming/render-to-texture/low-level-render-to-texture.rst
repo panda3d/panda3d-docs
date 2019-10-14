@@ -33,39 +33,28 @@ The Simple API: makeTextureBuffer
 Here is a short snippet of code that creates a hidden window, creates a camera
 that renders into that window, and creates a scene graph for that camera:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         mybuffer = base.win.makeTextureBuffer("My Buffer", 512, 512)
         mytexture = mybuffer.getTexture()
         mybuffer.setSort(-100)
         mycamera = base.makeCamera(mybuffer)
         myscene = NodePath("My Scene")
         mycamera.reparentTo(myscene)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         PT(GraphicsOutput) mybuffer;
         PT(Texture) mytexture;
         PT(Camera) mycamera;
         PT(DisplayRegion) region;
         NodePath mycameraNP;
         NodePath myscene;
-        
+
         mybuffer = window->get_graphics_output()->make_texture_buffer("My Buffer", 512, 512);
         mytexture = mybuffer->get_texture();
         mybuffer->set_sort(-100);
@@ -75,9 +64,6 @@ that renders into that window, and creates a scene graph for that camera:
         region->set_camera(mycameraNP);
         myscene = NodePath("My Scene");
         mycameraNP.reparent_to(myscene)
-    
-    
-
 
 The ``makeTextureBuffer`` is the simple
 interface to the render-to-texture functionality. It creates a new hidden
@@ -136,30 +122,23 @@ If you need this level of control, you need to use a lower-level API. The
 low-level function that is called for the creation of all buffers and windows
 is makeOutput on the GraphicsEngine class.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         fb_prop = FrameBufferProperties()
         # Request 8 RGB bits, no alpha bits, and a depth buffer.
         fb_prop.setRgbColor(True)
         fb_prop.setRgbaBits(8, 8, 8, 0)
         fb_prop.setDepthBits(16)
-        
+
         # Create a WindowProperties object set to 512x512 size.
         win_prop = WindowProperties.size(512, 512)
-        
+
         # Don't open a window - force it to be an offscreen buffer.
         flags = GraphicsPipe.BF_refuse_window
-        
-        base.graphicsEngine.make_output(base.pipe, "My Buffer", -100, fb_prop, win_prop, flags, base.win.getGsg(), base.win)
-    
-    
 
+        base.graphicsEngine.make_output(base.pipe, "My Buffer", -100, fb_prop, win_prop, flags, base.win.getGsg(), base.win)
 
 The method takes a FrameBufferProperties object describing the requested
 amount of bits that are available in GPU memory, as well as a WindowProperties

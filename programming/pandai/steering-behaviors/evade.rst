@@ -10,13 +10,9 @@ https://www.youtube.com/watch?v=JchuRRHqPUQ
 
 In PandAI, 'Evade' is defined as :
 
-
-
 .. code-block:: python
 
     aiBehaviors.evade(NodePath target, double panic_distance, double relax_distance, float priority)
-
-
 
 where :
 
@@ -40,8 +36,6 @@ create your AICharacter object using the AICharacter constructor.
 
 The full working code in Panda3D :
 
-
-
 .. code-block:: python
 
     import direct.directbase.DirectStart
@@ -53,26 +47,26 @@ The full working code in Panda3D :
     from panda3d.ai import *
     #for Onscreen GUI
     from direct.gui.OnscreenText import OnscreenText
-    
+
     # Globals
     speed = 0.75
-    
+
     # Function to put instructions on the screen.
     font = loader.loadFont("cmss12")
     def addInstructions(pos, msg):
         return OnscreenText(text=msg, style=1, fg=(1,1,1,1), font = font,
                             pos=(-1.3, pos), align=TextNode.ALeft, scale = .05)
-    
+
     class World(DirectObject):
-    
+
         def __init__(self):
             base.disableMouse()
             base.cam.setPosHpr(0,0,55,0,-90,0)
-            
+
             self.loadModels()
             self.setAI()
             self.setMovement()
-    
+
         def loadModels(self):
             # Seeker
             ralphStartPos = Vec3(-10, 0, 0)
@@ -87,26 +81,26 @@ The full working code in Panda3D :
             self.target.setPos(5,0,0)
             self.target.setScale(1)
             self.target.reparentTo(render)
-          
+
         def setAI(self):
             #Creating AI World
             self.AIworld = AIWorld(render)
-     
+
             self.AIchar = AICharacter("evader",self.evader, 100, 0.05, 5)
             self.AIworld.addAiChar(self.AIchar)
             self.AIbehaviors = self.AIchar.getAiBehaviors()
-            
+
             self.AIbehaviors.evade(self.target, 5, 5)
             self.evader.loop("run")
-    
-            #AI World update        
+
+            #AI World update
             taskMgr.add(self.AIUpdate,"AIUpdate")
-            
-        #to update the AIWorld    
+
+        #to update the AIWorld
         def AIUpdate(self,task):
-            self.AIworld.update()            
+            self.AIworld.update()
             return Task.cont
-    
+
         #All the movement functions for the Target
         def setMovement(self):
             self.keyMap = {"left":0, "right":0, "up":0, "down":0}
@@ -120,12 +114,12 @@ The full working code in Panda3D :
             self.accept("arrow_down-up", self.setKey, ["down",0])
             #movement task
             taskMgr.add(self.Mover,"Mover")
-            
+
             addInstructions(0.9, "Use the Arrow keys to move the Red Target")
-    
+
         def setKey(self, key, value):
             self.keyMap[key] = value
-                
+
         def Mover(self,task):
             startPos = self.target.getPos()
             if (self.keyMap["left"]!=0):
@@ -136,9 +130,9 @@ The full working code in Panda3D :
                     self.target.setPos(startPos + Point3(0,speed,0))
             if (self.keyMap["down"]!=0):
                     self.target.setPos(startPos + Point3(0,-speed,0))
-                            
+
             return Task.cont
-     
+
     w = World()
     run()
 

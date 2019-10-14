@@ -77,37 +77,33 @@ To see the difference between
 below. You will need the nik-dragon model from the Cartoon Shading sample
 program, which has vertex colors and no texture:
 
-
-
 .. code-block:: python
 
     import direct.directbase.DirectStart
     from panda3d.core import ColorAttrib
-    
+
     # Load three copies of Nik's dragon, which has vertex colors.
     model1 = loader.loadModel("nik-dragon")
     model2 = loader.loadModel("nik-dragon")
     model3 = loader.loadModel("nik-dragon")
-    
+
     # Put them in the scene.
     model1.reparentTo(render)
     model2.reparentTo(render)
     model3.reparentTo(render)
-    
+
     # Arrange them left-to-right
     model1.setPos(-10,50,0)
     model2.setPos(  0,50,0)
     model3.setPos( 10,50,0)
-    
+
     # Model 1 will be left alone, so you can see the original.
     # Model 2 will be recolored light blue.
     # Model 3 will be tinted light blue.
     model2.setColor(0.6, 0.6, 1.0, 1.0)
     model3.setColorScale(0.6, 0.6, 1.0, 1.0)
-    
+
     run()
-
-
 
 This produces the following output:
 
@@ -131,4 +127,3 @@ Related Classes
 -  `NodePath <https://www.panda3d.org/apiref.php?page=NodePath>`__
 
 .. |Tinting-and-recoloring1.jpg| image:: tinting-and-recoloring1.jpg
-

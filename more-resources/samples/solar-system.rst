@@ -34,4 +34,3 @@ Back to the List of Sample Programs:
 
 .. |Screenshot-Sample-Programs-Solar-System.jpg| image:: screenshot-sample-programs-solar-system.jpg
 .. |Spirograph.gif| image:: spirograph.gif
-

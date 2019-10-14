@@ -25,24 +25,16 @@ functions and nested objects.
 
 For instance, if you write Python code that does this:
 
-
-
 .. code-block:: python
 
     base.appRunner.main.base = base
 
-
-
 Then your JavaScript code could do this:
-
-
 
 .. code-block:: javascript
 
     plugin = document.getElementById('myPlugin')
     plugin.main.base.toggleWireframe()
-
-
 
 which calls base.toggleWireframe(), a method that toggles wireframe rendering
 in the Panda3D window.

@@ -14,7 +14,6 @@ only a brief introduction; see the API reference for a complete list.
 Basic animation playing
 -----------------------
 
-
 Animations may either be played or looped. When an animation is played, the
 actor goes through the animation once. When an animation is looped, the
 animation will play continuously. There is no tweening done between the last
@@ -23,50 +22,29 @@ constructed with that thought in mind. Finally, animations may be stopped at
 any point. When an animation is stopped, the actor will stay in the position
 it stopped on.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         actor.play('Animation Name')
         actor.loop('Animation Name')
         actor.stop()
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        window->loop_animations(Actor);
-    
-    
 
+        window->loop_animations(Actor);
 
 You may use the ``pose()`` method
 to tell an actor to hold a particular frame of the animation. Frames are
 numbered beginning at 0.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
-        actor.pose('Animation Name', FrameNumber)
-    
-    
 
+        actor.pose('Animation Name', FrameNumber)
 
 Posing an actor to a frame doesn't automatically specify the start frame of
 the next starting animation. Instead, if you don't want to start at the first
@@ -76,59 +54,37 @@ frame, you can specify these using the optional parameters
 ``play()`` and
 ``loop()``:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         actor.play('Animation Name', fromFrame = 10)
         actor.loop('Animation Name', fromFrame = 24, toFrame = 36)
-    
-    
-
 
 However, the loop method does have another optional parameter called
 ``restart``, which is 1 by default,
 meaning the animation will restart from the beginning. If you pass it 0
 instead, then the animation will begin looping from the current frame:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         actor.pose('Animation Name', 30)
         actor.loop('Animation Name', restart = 0, fromFrame = 24, toFrame = 36)
-    
-    
-
 
 You can get more information about an animation with these functions:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         print actor.getNumFrames('Animation Name') #returns the total number of frames in the animation
         print actor.getCurrentAnim() #returns a string containing the name of the current playing animation
         print actor.getCurrentFrame('Animation Name') #returns the current frame of the animation.
-    
-    
-
 
 AnimControl
 -----------
-
 
 AnimControl is a class that provides control over a certain animation. You
 don't need to use this but this could be useful if you want to have the
@@ -137,16 +93,12 @@ NOTE: prior to Panda3D version 1.4, there is a required second parameter to
 actor.getAnimControl, which is the part name, or the literal string
 "modelRoot" if you don't have a multipart actor.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         myAnimControl=actor.getAnimControl('Animation Name') #get the AnimControl
-        
+
         myAnimControl.isPlaying() #returns a boolean whether the animation is playing or not
         myAnimControl.getFrame() #returns the current frame number
         myAnimControl #returns the speed of the animation, in frames per second
@@ -160,13 +112,9 @@ actor.getAnimControl, which is the part name, or the literal string
         myAnimControl.pose(frame) #poses at frame frame
         myAnimControl.setPlayRate(rate) #sets the playrate. explained further below
         myAnimControl.stop() #stops the animation
-    
-    
-
 
 Play rate
 ---------
-
 
 The animation play rate may be set to any floating point value, which can be
 used to speed up or slow down the animation. This is a scale factor on the
@@ -175,22 +123,14 @@ while 2.0 plays it twice as fast, and 0.5 plays it at half speed. It is also
 possible to play an animation backwards by specifying a negative play rate,
 for instance -1.0.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
-        actor.setPlayRate(newPlayRate, 'Animation Name')
-    
-    
 
+        actor.setPlayRate(newPlayRate, 'Animation Name')
 
 Blending
 --------
-
 
 Multiple different animations for an actor may be played at the same time, and
 the animations blended together at runtime. The net result is that, each
@@ -212,22 +152,15 @@ overall effect, with the
 ``setControlEffect()`` method (the default for
 each animation is 0.0, or no contribution). For example:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         actor.enableBlend()
         actor.setControlEffect('animation1', 0.2)
         actor.setControlEffect('animation2', 0.8)
         actor.loop('animation1')
         actor.loop('animation2')
-    
-    
-
 
 The above specifies that 20% of animation1 and 80% of animation2 will be
 visible on the character at the same time. Note that you still have to start
@@ -241,18 +174,11 @@ mode, you can stop a particular animation by name, if you want; or you can
 stop all of the animations by calling
 ``stop()`` with no parameters:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
-        actor.stop('animation1')
-    
-    
 
+        actor.stop('animation1')
 
 Note that specifying an animation name to stop() is only meaningful when you
 are in blend mode. When not in blend mode, actor.stop() will always stop
@@ -263,22 +189,14 @@ When you are done using blending and want to return to the normal mode of only
 playing one animation at a time, call
 ``disableBlend()``:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
-        actor.disableBlend()
-    
-    
 
+        actor.disableBlend()
 
 Half-body animation
 -------------------
-
 
 If you want different parts of your actor to play separate animations without
 blending them together you have to create subparts. Each of these can then
@@ -292,7 +210,6 @@ joints. Exclude always overwrite include.
     actor.makeSubpart("legs", ["Left Thigh", "Right Thigh"])
     actor.makeSubpart("torso", ["Head"], ["Left Thigh", "Right Thigh"])
 
-
 If you want to play an animation on a subpart make sure to pass the name.
 
 ::
@@ -300,10 +217,8 @@ If you want to play an animation on a subpart make sure to pass the name.
     actor.loop("walk", partName="legs")
     actor.loop("reload", partName="torso")
 
-
 Interpolation
 -------------
-
 
 Since Panda 1.3.0 intra-frame interpolation is supported. If you play an
 animation with only few frames per second you can see your model "jump" from
@@ -312,19 +227,12 @@ one frame to the next. If you enable interpolation between frames, those
 low as one frame per second or even less. Intra-frame interpolation is
 disabled by default. To enable it just add the following lines to your code
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         from panda3d.core import loadPrcFileData
         loadPrcFileData("", "interpolate-frames 1")
-    
-    
-
 
 From the FAQ:
 
@@ -343,7 +251,6 @@ cache)."
 Actor Intervals
 ---------------
 
-
 Another way to play an animation on an actor is to use an
 :ref:`ActorInterval <actor-intervals>`, which gives you a lot more
 frame-by-frame control over the animation, and is particularly useful when
@@ -354,7 +261,6 @@ use ActorInterval.
 
 The Task manager
 ----------------
-
 
 On a more complex program, you may find that Animations can not be loaded from
 any point in your program. In any application there needs to be exactly one

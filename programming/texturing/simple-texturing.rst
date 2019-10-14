@@ -53,4 +53,3 @@ regardless of the size of the texture.
 
 .. |The assignment of (u, v) values to texture images| image:: texture-uvs.png
 .. |The assignment of (u, v) values to vertices| image:: texture-smiley.png
-

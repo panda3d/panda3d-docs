@@ -168,4 +168,3 @@ relative transform to a vector.
 
 .. |Teapot with a grid applied| image:: tex-gen-teapot-xy.png
 .. |Teapot with a grid applied, rotated| image:: tex-gen-teapot-xz.png
-

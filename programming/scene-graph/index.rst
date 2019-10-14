@@ -53,7 +53,6 @@ arrangement of the scene graph:
    bounding box of an entire branch is outside the frustum, there is no need
    to examine the children.
 
-
 Beginners usually choose to make their tree completely flat--everything is
 inserted immediately beneath the root. This is actually a very good initial
 design. Eventually, you will find a reason to want to add a little more depth
@@ -97,51 +96,37 @@ instance), provide additional methods that are available only for nodes of
 that type, which you must invoke on the node itself. Here are some assorted
 examples:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         # NODEPATH METHODS:
         myNodePath.setPos(x, y, z)
         myNodePath.setColor(banana)
-        
+
         # LODNODE METHODS:
         myNodePath.node().addSwitch(1000, 100)
         myNodePath.node().setCenter(Point3(0, 5, 0))
-        
+
         # CAMERA NODE METHODS:
         myNodePath.node().setLens(PerspectiveLens())
         myNodePath.node().getCameraMask()
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         // NODEPATH METHODS:
         myNodePath.set_pos(x, y, z);
         myNodePath.set_color(banana);
-        
+
         // LODNODE METHODS:
         myNodePath.node()->add_switch(1000, 100);
         myNodePath.node()->set_center(LPoint3f(0, 5, 0));
-        
+
         // CAMERA NODE METHODS:
         myNodePath.node()->set_lens(new PerspectiveLens());
         myNodePath.node()->get_camera_mask();
-    
-    
-
 
 Always remember: when you invoke a method of
 ``NodePath``, you are actually
@@ -150,7 +135,6 @@ performing an operation on the node to which it points.
 In the example above, we call node-methods by first converting the NodePath
 into a node, and then immediately calling the node-method. This is the
 recommended style.
-
 
 .. toctree::
    :maxdepth: 2

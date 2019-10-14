@@ -70,67 +70,59 @@ and store, on the C++ object, a pointer to the new sub class.
 
 Let's first see an example of what **doesn't** work:
 
-
-
 .. code-block:: python
 
     import direct.directbase.DirectStart
     from panda3d.core import PandaNode
-    
+
     ## Here we define the new class, subclassing PandaNode
     ## and adding a new variable to it.
     class MyNewNode(PandaNode):
         def __init__(self, aName):
             PandaNode.__init__(self, aName)
             self.aVariable = "A value"
-    
-    ## Here we are creating a new node and we -think- 
+
+    ## Here we are creating a new node and we -think-
     ## we are placing it in the scene graph:
     myNewNode = MyNewNode("MyNewNode")
     aNodePath = aspect2d.attachNewNode(myNewNode)
-    
+
     ## Here we -attempt- to fetch the stored variable,
     ## but we'll get an error because aNodePath.node()
     ## returns a PandaNode, not myNewNode!
     print(aNodePath.node().aVariable)
 
-
-
 The workaround is for an instance of the new node class to store itself on the
 PandaNode, as a Python tag:
-
-
 
 .. code-block:: python
 
     import direct.directbase.DirectStart
     from panda3d.core import PandaNode
-    
+
     ## Here we define the new class, subclassing PandaNode
-    ## storing its own instance as a python tag and 
+    ## storing its own instance as a python tag and
     ## initializing a new variable.
     class MyNewNode(PandaNode):
         def __init__(self, aName):
             PandaNode.__init__(self, aName)
             PandaNode.setPythonTag(self, "subclass", self)
             self.aVariable = "A value"
-    
+
     ## Here we create a new node and we are aware we are
     ## placing its -PandaNode- in the scene graph.
     myNewNode = MyNewNode("MyNewNode")
     aNodePath = aspect2d.attachNewNode(myNewNode)
-    
+
     ## Now, first we fetch the panda node:
-    thePandaNode = aNodePath.node() 
-    
+    thePandaNode = aNodePath.node()
+
     ## then we fetch the instance of MyNewNode stored on it:
     theInstanceOfMyNewNode = thePandaNode.getPythonTag("subclass")
-    
-    ## and finally we fetch the variable we were 
+
+    ## and finally we fetch the variable we were
     ## interested in all along:
     print(theInstanceOfMyNewNode.aVariable)
-
-
 
 In the real world
 ~~~~~~~~~~~~~~~~~
@@ -143,20 +135,20 @@ either test for the type you are expecting (safe but makes the application
 more static) or you can test for the presence of the attribute itself (less
 safe but creates potentially more dynamic, expandable application).
 
-For example: 
+For example:
 
 .. code-block:: python
 
     ## here we setup the scene
     aNodePath = render.attachNewNode(anInstanceOfMyNewSubclass)
     aPandaNode = aNodePath.node()
-    
-    ## here we loop over all nodes under render,  
+
+    ## here we loop over all nodes under render,
     ## to find the one we are interested in:
     for child in render.getChildren()
         if child.hasPythonTag("subclass"):
            theInstanceOfASubclass = child.getPythonTag("subclass")
-    
+
            ## here we test for its type, which is safe
            ## but doesn't catch subclasses of the subclass
            ## or simply other objects that have the same
@@ -164,15 +156,13 @@ For example:
            if type(theInstanceOfASubclass ) == type(MyNewSubclass):
                theInstanceOfASubclass.aVariable = "a new value"
                continue
-    
+
            ## here instead we test for the presence of an
-           ## attribute, which mean that all compatible  
+           ## attribute, which mean that all compatible
            ## objects get modified:
            if hasattr(theInstanceOfASubclass, "aVariable"):
                theInstanceOfASubclass.aVariable = "a new value"
                continue
-
-
 
 Conclusion
 ~~~~~~~~~~

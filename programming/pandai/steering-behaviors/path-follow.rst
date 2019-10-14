@@ -18,7 +18,7 @@ In PandAI, path follow is defined as :
 
     aiBehaviors.pathFollow(float priority)
     aiBehaviors.addToPath(Vec3 position)
-    
+
     aiBehaviors.startFollow() // Required to start the follow
 
 Position is a point in
@@ -45,16 +45,16 @@ The full working code in Pand3D is :
     from direct.actor.Actor import Actor
     #for Pandai
     from panda3d.ai import *
-    
+
     class World(DirectObject):
-    
+
         def __init__(self):
             base.disableMouse()
             base.cam.setPosHpr(0,0,55,0,-90,0)
-            
+
             self.loadModels()
             self.setAI()
-           
+
         def loadModels(self):
             # Seeker
             ralphStartPos = Vec3(-10, 0, 0)
@@ -87,34 +87,34 @@ The full working code in Pand3D is :
             self.target4.setPos(-10,-10,0)
             self.target4.setScale(1)
             self.target4.reparentTo(render)
-            
+
             self.seeker.loop("run")
-          
+
         def setAI(self):
             #Creating AI World
             self.AIworld = AIWorld(render)
-     
+
             self.AIchar = AICharacter("seeker",self.seeker, 60, 0.05, 5)
             self.AIworld.addAiChar(self.AIchar)
             self.AIbehaviors = self.AIchar.getAiBehaviors()
-            
+
             #Path follow (note the order is reveresed)
             self.AIbehaviors.pathFollow()
             self.AIbehaviors.addToPath(self.target4.getPos())
             self.AIbehaviors.addToPath(self.target3.getPos())
             self.AIbehaviors.addToPath(self.target2.getPos())
             self.AIbehaviors.addToPath(self.target1.getPos())
-    
+
             self.AIbehaviors.startFollow()
-    
+
             #AI World update
             taskMgr.add(self.AIUpdate,"AIUpdate")
-            
-        #to update the AIWorld    
+
+        #to update the AIWorld
         def AIUpdate(self,task):
-            self.AIworld.update()            
+            self.AIworld.update()
             return Task.cont
-     
+
     w = World()
     run()
 

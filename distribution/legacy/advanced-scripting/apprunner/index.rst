@@ -12,8 +12,6 @@ application in a p3d file. There is a global instance of AppRunner available
 in base.appRunner whenever your application is running as a p3d file. In fact,
 this is a reliable way to test your run mode:
 
-
-
 .. code-block:: python
 
     if base.appRunner:
@@ -21,13 +19,10 @@ this is a reliable way to test your run mode:
     else:
         print("Running interactively")
 
-
-
 All of your interaction with the web environment will go through
 base.appRunner. There are several important members and methods of
 base.appRunner that facilitate communication with JavaScript and with the
 embedding web page. They are described in detail in the following pages.
-
 
 .. toctree::
    :maxdepth: 2

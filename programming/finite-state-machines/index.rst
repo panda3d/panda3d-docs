@@ -3,8 +3,6 @@
 Finite State Machines
 =====================
 
-
-
 .. only:: python
 
     A "Finite State Machine" is a concept from computer science. Strictly
@@ -21,14 +19,9 @@ Finite State Machines
     here. We recommend that new code use the FSM class instead, which is
     documented on the following pages.
 
-
-
-
 .. only:: cpp
 
     This section does not apply to C++ users.
-
-
 
 .. toctree::
    :maxdepth: 2

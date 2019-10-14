@@ -28,10 +28,6 @@ time you build it, what its final host URL will be. You can do this by calling
 packager.setHost() at the top of the pdef file (before the first class
 definition), like this:
 
-
-
 .. code-block:: python
 
     packager.setHost('http://myhost.com/myrootdir/')
-
-

@@ -198,4 +198,3 @@ the bottom row.
 .. |deriv-xi.png| image:: deriv-xi.png
 .. |matrix-c.png| image:: matrix-c.png
 .. |matrix-r.png| image:: matrix-r.png
-

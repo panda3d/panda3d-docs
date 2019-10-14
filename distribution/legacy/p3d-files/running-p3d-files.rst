@@ -10,13 +10,9 @@ Running p3d files
 Once you have built a p3d file, you may run it immediately with the panda3d
 program:
 
-
-
 .. code-block:: bash
 
     panda3d myapp.p3d
-
-
 
 Remember, you may need to add panda3d to your PATH first. On Windows, this is
 installed into c:\Program Files\Panda3D by default. If you are running on

@@ -35,13 +35,9 @@ can find the certificate under the Preferences menus, and save it (as a
 "backup") to a pkcs12 file on disk, with the .p12 extension. Then you can
 convert it to a pem file using openssl, with the command sequence:
 
-
-
 .. code-block:: bash
 
     openssl pkcs12 -in mycert.p12 -out mycert.pem -nodes
-
-
 
 Typically, the public key and private key will be combined in the same file.
 Keep this file safe.

@@ -16,33 +16,19 @@ handle both cases on a single polygon).
 You can control how the texture looks when it is magnified or minified by
 setting its filter type.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         texture.setMagfilter(filterType)
         texture.setMinfilter(filterType)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         texture.set_magfilter(filterType)
         texture.set_minfilter(filterType)
-    
-    
-
 
 filterType is a value from the FilterType enum of SamplerState (Texture in
 Panda3D versions prior to 1.9). There is a separate filterType setting for
@@ -78,34 +64,19 @@ minification of the following texture:
 FT_nearest
 ----------
 
-
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         texture.setMagfilter(SamplerState.FT_nearest)
         texture.setMinfilter(SamplerState.FT_nearest)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         texture.set_magfilter(SamplerState::FT_nearest)
         texture.set_minfilter(SamplerState::FT_nearest)
-    
-    
-
 
 |Magnification w/FTNearest| |Minification w/FTNearest|
 
@@ -115,34 +86,19 @@ to achieve a special pixelly effect.
 FT_linear
 ---------
 
-
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         texture.setMagfilter(SamplerState.FT_linear)
         texture.setMinfilter(SamplerState.FT_linear)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         texture.set_magfilter(SamplerState::FT_linear)
         texture.set_minfilter(SamplerState::FT_linear)
-    
-    
-
 
 |Magnification w/FTLinear| |Minification w/FTLinear|
 
@@ -151,7 +107,6 @@ general-purpose choice, though it isn't perfect.
 
 Mipmaps
 -------
-
 
 Many graphics tutorials will go on for pages and pages about exactly what
 mipmapping means and how it all works inside. We'll spare you those details
@@ -176,37 +131,22 @@ for advanced uses, and sometimes can be used to tweak the mipmap artifacts a
 bit (especially to reduce point 4, above). If you don't understand the
 description in the table above, it's not worth worrying about.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        texture.set_minfilter(SamplerState::FT_linear_mipmap_linear)
-    
-    
 
+        texture.set_minfilter(SamplerState::FT_linear_mipmap_linear)
 
 |Minification w/FTLinearMipmapLinear|
 
 Anisotropic Filtering
 ---------------------
-
 
 There is one final addition to the texture filtering equation: you can enable
 anisotropic filtering on top of any of the above filter modes, which enables a
@@ -217,31 +157,17 @@ the texture so much.
 
 To enable anisotropic filtering, you specify the degree:
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         texture.setAnisotropicDegree(degree)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        texture.set_anisotropic_degree(degree)
-    
-    
 
+        texture.set_anisotropic_degree(degree)
 
 The degree should be a power-of-two integer number. The default value is 1,
 which indicates no anisotropic filtering; set it to a higher number to
@@ -249,31 +175,17 @@ indicate the amount of filtering you require. Larger numbers are more
 expensive but produce a better result, up to the capability of your graphics
 card. Many graphics cards support up to 16x anisotropic filtering.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         texture.setAnisotropicDegree(2)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        texture.set_anisotropic_degree(2)
-    
-    
 
+        texture.set_anisotropic_degree(2)
 
 |Magnification w/anisotropic filtering| |Minification w/anisotropic filtering|
 
@@ -285,4 +197,3 @@ card. Many graphics cards support up to 16x anisotropic filtering.
 .. |Minification w/FTLinearMipmapLinear| image:: texture-min-mipmap-0.jpg
 .. |Magnification w/anisotropic filtering| image:: texture-mag-aniso.jpg
 .. |Minification w/anisotropic filtering| image:: texture-min-aniso.jpg
-

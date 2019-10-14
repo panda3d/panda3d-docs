@@ -37,4 +37,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Motion-Trails.jpg| image:: screenshot-sample-programs-motion-trails.jpg
-

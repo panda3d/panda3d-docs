@@ -22,13 +22,9 @@ There are a few things you need to do to activate this mode.
 mode; by default, it ignores the previous position information. To activate
 this mode, call:
 
-
-
 .. code-block:: python
 
     base.cTrav.setRespectPrevTransform(True)
-
-
 
 You only need to make this call once, at the beginning of your application (or
 whenever you create the CollisionTraverser). That switches the
@@ -54,23 +50,15 @@ disconnected scene graphs, and you shouldn't worry about it.
 3. Whenever you move an object from one point to another in your scene (except
 when you put it into your scene the first time), instead of using:
 
-
-
 .. code-block:: python
 
     object.setPos(newPos)
 
-
-
 You should use:
-
-
 
 .. code-block:: python
 
     object.setFluidPos(newPos)
-
-
 
 In general, ``setPos()`` means "put
 the object here, directly" and
@@ -88,7 +76,6 @@ while an object is moving under direct control of the application, however.
 Visualizing the previous transform
 ----------------------------------
 
-
 When you are using the setFluidPos() call, and you have called
 ``show()`` on your CollisionNode
 to make it visible, you will see the CollisionNode itself each frame, plus a
@@ -99,7 +86,6 @@ has been made on your CollisionTraverser, however.)
 
 Caveats
 -------
-
 
 At the present, the CollisionTraverser only uses the previous transform
 information when it is testing a CollisionSphere into a CollisionPolygon--that

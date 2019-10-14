@@ -30,4 +30,3 @@ initialAngleSpread Spread of initial angle   [0, 360]
 finalAngle         Final angle in degrees    [0, 360]
 fnalAngleSpread    Spread of final angle     [0, 360]
 ================== ========================= ==========
-

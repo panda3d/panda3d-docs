@@ -716,7 +716,7 @@ SwitchCondition
 ::
 
    <SwitchCondition> {
-      <Distance> { 
+      <Distance> {
          in out [fade] <Vertex> { x y z }
       }
    }

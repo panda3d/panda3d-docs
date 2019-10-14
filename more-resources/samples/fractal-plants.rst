@@ -24,4 +24,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Fractal-Plants.jpg| image:: screenshot-sample-programs-fractal-plants.jpg
-

@@ -17,36 +17,32 @@ dependent on the OS you are using. Hence all devices that are reccognized by
 your system will be available by the engine. Each connected device will be
 classified by one of the following device classes (DC)
 
-
-
 .. code-block:: python
 
     # It is not known what type of device this is.
     unknown
-    
+
     # This means that the device doesn't correspond to a physical
     # device, but rather to a dynamic source of input events.
     virtual_device
-    
+
     # A physical, alphabetical keyboard.
     keyboard
     mouse
     touch
-    
+
     # A gamepad with action buttons, a D-pad, and thumbsticks.
     gamepad
-    
+
     flight_stick
     steering_wheel
     dance_pad
-    
+
     # Head-mounted display.
     hmd
-    
+
     # 3D mouse, such as produced by 3Dconnexion.
     spatial_mouse
-
-
 
 These DC's are stored within the
 ``InputDevice.DeviceClass`` enum which can be
@@ -81,7 +77,6 @@ device.
 
 Here we'll check for the right thumbstick to be pressed
 
-
 .. code-block:: python
 
     gamepad = base.devices.getDevices(InputDevice.DeviceClass.gamepad)[0]
@@ -89,20 +84,15 @@ Here we'll check for the right thumbstick to be pressed
     if right_stick.pressed:
         # Do whatever you want when this button is pressed
 
-
-
 If you want to check which events are thrown on specific device input, you can
 set the following config variable for debugging.
 ``notify-level-device debug``
 
 Alternatively you can also add this line somewhere in your application
 
-
 .. code-block:: python
 
     messenger.toggleVerbose()
-
-
 
 Axes
 ----
@@ -115,17 +105,15 @@ be 0.0 when the respective control is in its default or resting position, and
 directions, and can have a value of down to -1.0.
 
 This sample will show how to get the left analog stick of the first gamepad
-device 
+device
 
 .. code-block:: python
 
     gamepad = base.devices.getDevices(InputDevice.DeviceClass.gamepad)[0]
     left_x = gamepad.findAxis(InputDevice.Axis.left_x)
-    
+
     # Access and use the value for whatever you need it
     left_x.value
-
-
 
 With the ``findAxis`` command we
 tell the device which axis we are interested in and finally get the axis value

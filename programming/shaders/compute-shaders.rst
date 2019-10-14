@@ -76,35 +76,33 @@ Example shader
 
 A typical compute shader (GLSL) looks as follows. All that the shader does is
 copy the contents of one texture to another, except that it swaps two
-channels. 
+channels.
 
 .. code-block:: glsl
 
     #version 430
-    
+
     // Set the number of invocations in the work group.
     // In this case, we operate on the image in 16x16 pixel tiles.
     layout (local_size_x = 16, local_size_y = 16) in;
-    
+
     // Declare the texture inputs
     uniform readonly image2D fromTex;
     uniform writeonly image2D toTex;
-    
+
     void main() {
       // Acquire the coordinates to the texel we are to process.
       ivec2 texelCoords = ivec2(gl_GlobalInvocationID.xy);
-    
+
       // Read the pixel from the first texture.
       vec4 pixel = imageLoad(fromTex, texelCoords);
-    
+
       // Swap the red and green channels.
       pixel.rg = pixel.gr;
-    
+
       // Now write the modified pixel to the second texture.
       imageStore(toTex, texelCoords, pixel);
     }
-
-
 
 This page does not attempt to teach how to make GLSL compute shaders - please
 refer to the GLSL documentation for that information.
@@ -116,31 +114,18 @@ A compute shader is typically never combined with other types of shaders, and
 therefore, loading a compute shader happens via a special call. At present,
 only GLSL compute shaders may be loaded.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         shader = Shader.load_compute(Shader.SL_GLSL, "compute_shader.glsl")
-    
-    
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         PT(Shader) shader;
         shader = Shader::load_compute(Shader::SL_GLSL, "compute_shader.glsl");
-    
-    
-
 
 The call ``make_compute`` can be used
 instead to load the shader from a string instead of a filename.
@@ -156,57 +141,44 @@ inserted into the scene graph. When Panda3D encounters one of these nodes
 during the draw process, it will ask OpenGL to dispatch the compute shader
 assigned to that node for the given amount of work groups.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         # Create the node
         node = ComputeNode("compute")
-        
+
         # We want to call it on a 512x512 image, keeping in
         # mind that the shader has a work group size of 16x16.
         node.add_dispatch(512 / 16, 512 / 16, 1)
-        
+
         # Put the node into the scene graph.
         node_path = render.attach_new_node(node)
-        
+
         # Assign the shader and the shader inputs.
         shader = Shader.load_compute(Shader.SL_GLSL, "compute_shader.glsl")
         node_path.set_shader(shader)
         node_path.set_shader_input("fromTex", myTex1)
         node_path.set_shader_input("toTex", myTex2)
-    
-    
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         PT(ComputeNode) node = new ComputeNode("compute");
-        
+
         // We want to call it on a 512x512 image, keeping in
         // mind that the shader has a work group size of 16x16.
         node->add_dispatch(512 / 16, 512 / 16, 1);
-        
+
         // Put the node into the scene graph.
         NodePath node_path = render.attach_new_node(node);
-        
+
         // Assign the shader and the shader inputs.
         PT(Shader) shader = Shader::load_compute(Shader::SL_GLSL, "compute_shader.glsl");
         node_path.set_shader(shader);
         node_path.set_shader_input("fromTex", myTex1);
         node_path.set_shader_input("toTex", myTex2);
-    
-    
-
 
 The ordering of nodes becomes especially important; you may not want a
 procedural texture to be rendered on another node before it is first generated
@@ -225,56 +197,44 @@ cumbersome to add a node to the scene graph only to remove it again in the
 next frame. For these use cases, there is a more lower-level operation to
 dispatch a compute shader:
 
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         # Create a dummy node and apply the shader to it
         shader = Shader.load_compute(Shader.SL_GLSL, "compute_shader.glsl")
         dummy = NodePath("dummy")
         dummy.set_shader(shader)
         dummy.set_shader_input("fromTex", myTex1)
         dummy.set_shader_input("toTex", myTex2)
-        
+
         # Retrieve the underlying ShaderAttrib
         sattr = dummy.get_attrib(ShaderAttrib)
-        
+
         # Dispatch the compute shader, right now!
         base.graphicsEngine.dispatch_compute((32, 32, 1), sattr, base.win.get_gsg())
-    
-    
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         // Create a dummy node and apply the shader to it
         PT(Shader) shader = Shader::load_compute(Shader::SL_GLSL, "compute_shader.glsl");
         NodePath dummy("dummy");
         dummy.set_shader(shader);
         dummy.set_shader_input("fromTex", myTex1);
         dummy.set_shader_input("toTex", myTex2);
-        
+
         // Retrieve the underlying ShaderAttrib
         CPT(ShaderAttrib) sattr = DCAST(ShaderAttrib,
           dummy.get_attrib(ShaderAttrib::get_class_type()));
-        
+
         // Our image has 32x32 tiles
         LVecBase3i work_groups(512/16, 512/16, 1);
-        
+
         // Dispatch the compute shader, right now!
         GraphicsEngine *engine = GraphicsEngine::get_global_ptr();
         engine->dispatch_compute(work_groups, sattr, win->get_gsg());
-    
-    
-
 
 Keep in mind that each call to
 ``dispatch_compute`` causes Panda3D to wait
@@ -305,42 +265,31 @@ On the application side, however, telling the shader which image to use still
 happens in the same way as usual, using the
 ``set_shader_input`` function. However, it
 is very important that the texture has a *sized* format, rather than a regular
-format: 
+format:
 
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         # WRONG
         tex.set_format(Texture.F_rgba)
-        
+
         # RIGHT
         tex.set_format(Texture.F_rgba8)
-        
+
         node_path.set_shader_input('fromTex', tex)
-    
-    
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         // WRONG
         tex->set_format(Texture::F_rgba);
-        
+
         // RIGHT
         tex->set_format(Texture::F_rgba8);
-        
-        node_path.set_shader_input("fromTex", tex);
-    
-    
 
+        node_path.set_shader_input("fromTex", tex);
 
 At time of writing, it is only possible to access the first mipmap level. It
 is not possible to automatically generate the other mipmap levels at the time
@@ -374,41 +323,28 @@ to an initial value before it is used. This is now possible using the
 specifies the color that Panda3D will clear the texture to. This color is used
 in absence of actual image data.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         # Set up a texture for procedural generation.
         tex = Texture("procedural-normal-map")
         tex.setup_2d_texture(512, 512, Texture.T_unsigned_byte, Texture.F_rgb8)
-        
+
         # Set the initial color of the texture.
         tex.set_clear_color((0.5, 0.5, 1.0, 0.0))
-    
-    
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         // Set up a texture for procedural generation.
         PT(Texture) tex = new Texture("procedural-normal-map");
         tex->setup_2d_texture(512, 512, Texture::T_unsigned_byte, Texture::F_rgb8);
-        
+
         // Set the initial color of the texture.
         LColor clear_color(0.5f, 0.5f, 1.0f, 0.0f);
         tex->set_clear_color(clear_color);
-    
-    
-
 
 The initial clear is implicit, but clearing a texture in a later frame
 requires explicit use of the
@@ -417,35 +353,22 @@ instructs Panda3D to clear the texture the next time it is used. It also
 clears any RAM images that may have been associated with the texture (similar
 to ``clear_ram_image()``).
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         # Tell Panda to fill the texture with a red color on the GPU.
         tex.set_clear_color((1.0, 0.0, 0.0, 0.0))
         tex.clear_image()
-    
-    
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         // Tell Panda to fill the texture with a red color on the GPU.
         LColor clear_color(1.0f, 0.0f, 0.0f, 0.0f);
         tex->set_clear_color(clear_color);
         tex->clear_image();
-    
-    
-
 
 When doing this, it is recommended that you enable the use of immutable
 texture storage, which is an experimental feature that allows Panda3D to

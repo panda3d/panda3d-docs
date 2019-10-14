@@ -6,42 +6,28 @@ Creating and filling a GeomVertexData
 Once you have a :ref:`geomvertexformat`, registered and ready to use, you can
 use it to create a :ref:`geomvertexdata`.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         vdata = GeomVertexData('name', format, Geom.UHStatic)
-    
-    
-
-
-
 
 .. only:: cpp
 
     Using a :ref:`custom vertex format <defining-your-own-geomvertexformat>`.
-    
-    
+
     .. code-block:: cpp
-    
+
         PT(GeomVertexData) vdata;
         vdata = new GeomVertexData("name", format, Geom::UH_static);
-    
+
     Or using a
     :ref:`Pre-defined vertex format <pre-defined-vertex-formats>`.
-    
-    
+
     .. code-block:: cpp
-    
+
         PT(GeomVertexData) vdata;
         vdata = new GeomVertexData("name", GeomVertexFormat::get_????(), Geom::UH_static);
-    
-    
-
 
 The first parameter to the GeomVertexData constructor is the name of the data,
 which is any arbitrary name you like. This name is mainly for documentation
@@ -78,67 +64,40 @@ table appropriately as you are adding new data, but this will cause every
 ``add_dataXX()`` call to be *much
 slower* than if you had specified a number of rows.
 
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         vdata.setNumRows(4)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
-        vdata->set_num_rows(4);
-    
-    
 
+        vdata->set_num_rows(4);
 
 Now that you have created a GeomVertexData, you should create a number of
 :ref:`GeomVertexWriters <more-about-geomvertexreader-geomvertexwriter-and-geomvertexrewriter>`,
 one for each column, to fill in the data.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         vertex = GeomVertexWriter(vdata, 'vertex')
         normal = GeomVertexWriter(vdata, 'normal')
         color = GeomVertexWriter(vdata, 'color')
         texcoord = GeomVertexWriter(vdata, 'texcoord')
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         GeomVertexWriter vertex, normal, color, texcoord;
         vertex = GeomVertexWriter(vdata, "vertex");
         normal = GeomVertexWriter(vdata, "normal");
         color = GeomVertexWriter(vdata, "color");
         texcoord = GeomVertexWriter(vdata, "texcoord");
-    
-    
-
 
 It is your responsibility to know which columns exist in the GeomVertexFormat
 you have used. It is legal to create a GeomVertexWriter for a column that
@@ -148,67 +107,53 @@ data.
 To add data, you can now iterate through your vertices and call one of the
 addData methods on each GeomVertexWriter.
 
-
-
 .. only:: python
 
-    
-    
     .. code-block:: python
-    
+
         vertex.addData3f(1, 0, 0)
         normal.addData3f(0, 0, 1)
         color.addData4f(0, 0, 1, 1)
         texcoord.addData2f(1, 0)
-        
+
         vertex.addData3f(1, 1, 0)
         normal.addData3f(0, 0, 1)
         color.addData4f(0, 0, 1, 1)
         texcoord.addData2f(1, 1)
-        
+
         vertex.addData3f(0, 1, 0)
         normal.addData3f(0, 0, 1)
         color.addData4f(0, 0, 1, 1)
         texcoord.addData2f(0, 1)
-        
+
         vertex.addData3f(0, 0, 0)
         normal.addData3f(0, 0, 1)
         color.addData4f(0, 0, 1, 1)
         texcoord.addData2f(0, 0)
-    
-    
-
-
-
 
 .. only:: cpp
 
-    
-    
     .. code-block:: cpp
-    
+
         vertex.add_data3f(1, 0, 0);
         normal.add_data3f(0, 0, 1);
         color.add_data4f(0, 0, 1, 1);
         texcoord.add_data2f(1, 0);
-        
+
         vertex.add_data3f(1, 1, 0);
         normal.add_data3f(0, 0, 1);
         color.add_data4f(0, 0, 1, 1);
         texcoord.add_data2f(1, 1);
-        
+
         vertex.add_data3f(0, 1, 0);
         normal.add_data3f(0, 0, 1);
         color.add_data4f(0, 0, 1, 1);
         texcoord.add_data2f(0, 1);
-        
+
         vertex.add_data3f(0, 0, 0);
         normal.add_data3f(0, 0, 1);
         color.add_data4f(0, 0, 1, 1);
         texcoord.add_data2f(0, 0);
-    
-    
-
 
 Each call to addData() adds a new row (vertex) to the vertex data, if there is
 not already one there. The above sample code creates the following data table:
@@ -220,7 +165,6 @@ not already one there. The above sample code creates the following data table:
 2  (0, 1, 0) (0, 0, 1) (0, 0, 1, 1) (0, 1)
 3  (0, 0, 0) (0, 0, 1) (0, 0, 1, 1) (0, 0)
 == ========= ========= ============ ========
-
 
 Note that there is no relationship between the different GeomVertexWriters,
 other than the fact that they are operating on the same table. Each

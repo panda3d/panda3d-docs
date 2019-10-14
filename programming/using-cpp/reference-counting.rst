@@ -51,14 +51,11 @@ still be reassigned, but the object may not be modified.
 
 This is a usage example:
 
-
 .. code-block:: cpp
 
     PT(TextNode) node = new TextNode("title");
-    
+
     node->set_text("I am a reference counted TextNode!");
-
-
 
 A ``PointerTo`` is functionally
 equivalent to a regular pointer, and it can cast implicitly to the appropriate
@@ -83,34 +80,28 @@ object itself already holds a reference count.
 
 The following code example highlights a case where it is not necessary:
 
-
 .. code-block:: cpp
 
     PT(TextNode) node;
     node = new TextNode("title");
-    
+
     use_text_node(node);
-    
+
     void use_text_node(TextNode *node) {
       node->do_something();
     }
 
-
-
 One crucial example where the return value of a function has to be a
 ``PointerTo`` is where the function
 may return a new instance of the object:
-
 
 .. code-block:: cpp
 
     PT(TextNode) make_text_node() {
       return new TextNode("title");
     }
-    
+
     PT(TextNode) node = make_text_node();
-
-
 
 Managing Reference Count
 ------------------------
@@ -161,8 +152,6 @@ deleted (or is about to be), and otherwise returns a regular reference-counted
 PointerTo that ensures you can access it for as long as you hold it. This is a
 common idiom to access a weak pointer:
 
-
-
 .. code-block:: cpp
 
     if (auto ptr = weak_ptr.lock()) {
@@ -170,8 +159,6 @@ common idiom to access a weak pointer:
     } else {
       // The pointer has been deleted.
     }
-
-
 
 Circular References
 -------------------
@@ -193,13 +180,12 @@ Stack Allocation
 In some rare cases, it is desirable to create a temporary instance of the
 object on the stack. To achieve this, it is necessary to call
 ``local_object()`` on the object directly
-after allocation: 
+after allocation:
 
 .. code-block:: cpp
 
     Texture tex;
     tex.local_object();
-
 
 However, this should only be used for very temporary objects, since reference
 counted objects are not meant to be passed by value.

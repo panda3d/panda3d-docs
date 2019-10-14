@@ -12,26 +12,18 @@ DirectGUI features of a :ref:`directlabel`. Use an OnscreenText whenever you
 want a quick way to display some ordinary text without a lot of fancy
 requirements.
 
-
-
 .. code-block:: python
 
     from direct.gui.OnscreenText import OnscreenText
     textObject = OnscreenText(text = 'my text string', pos = (-0.5, 0.02), scale = 0.07)
 
-
-
 The OnscreenText object inherits from NodePath, so all of the standard
 NodePath operations can be used on the text object. When you are ready to take
 the text away, use:
 
-
-
 .. code-block:: python
 
     textObject.destroy()
-
-
 
 The following keyword parameters may be specified to the constructor:
 

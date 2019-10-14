@@ -50,8 +50,6 @@ contains a random color pattern. This time, instead of assigning the new
 texture to the default TextureStage, we'll create a new TextureStage for it,
 so that both textures will still be in effect:
 
-
-
 .. code-block:: python
 
     smiley = loader.loadModel('smiley.egg')
@@ -59,8 +57,6 @@ so that both textures will still be in effect:
     tex = loader.loadTexture('maps/noise.rgb')
     ts = TextureStage('ts')
     smiley.setTexture(ts, tex)
-
-
 
 Note that we can create a new TextureStage object on the fly; the only
 parameter required to the TextureStage parameter is a name, which is
@@ -89,4 +85,3 @@ you loaded it; those textures are assigned at a different node level, on the
 Geom objects that make up the model.
 
 .. |Description| image:: multitex-smiley-noise.png
-

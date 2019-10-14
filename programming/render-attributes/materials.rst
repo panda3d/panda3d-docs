@@ -113,21 +113,17 @@ To use explicit materials, import the Materials module when you first begin
 your script. Then creating Materials is a matter of creating instances of the
 Material class and setting the relevant properties:
 
-
-
 .. code-block:: python
 
     import direct.directbase.DirectStart
     from panda3d.core import Material
-    
+
     myMaterial = Material()
     myMaterial.setShininess(5.0) #Make this material shiny
     myMaterial.setAmbient((0, 0, 1, 1)) #Make this material blue
-    
+
     myNode = loader.loadModel("panda") #Load the model to apply the material to
     myNode.setMaterial(myMaterial) #Apply the material to this nodePath
-
-
 
 Material Properties
 -------------------
@@ -177,27 +173,21 @@ When loading a model from a file, it may be useful to dynamically inspect
 which materials are present. This is possible using methods provided on the
 NodePath object that represents the model to which the materials are applied.
 
-
-
 .. code-block:: python
 
     # Find all materials
     mats = car.findAllMaterials()
-    
+
     # Find a specific material by name (wildcards allowed)
     blue = car.findMaterial("blueMetal")
-    
+
     # Find all materials whose name end in Metal
     coloredMetals = car.findAllMaterial("*Metal")
-
-
 
 In some cases, you may want to replace a material with a different one. An
 easy way to set the material for a node is just to apply it with an override
 value, meaning it takes precedence over a material applied to any node below
 it:
-
-
 
 .. code-block:: python
 
@@ -205,23 +195,17 @@ it:
     #...set up red material
     car.setMaterial(red, 1)
 
-
-
 However, this will set the material on all parts of the model. In this case,
 it will also give the wheels the same red metal look! As of Panda3D 1.10,
 there is an easy way to replace all instances of a specific material only:
-
-
 
 .. code-block:: python
 
     blue = car.findMaterial("blueMetal")
     red = Material()
     #...set up red material
-    
+
     car.replaceMaterial(blue, red)
-
-
 
 Related Classes
 ~~~~~~~~~~~~~~~

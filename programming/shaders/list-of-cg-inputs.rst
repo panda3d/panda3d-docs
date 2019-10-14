@@ -271,7 +271,6 @@ been greatly enhanced. The available input types are as follows:
 
 ::
 
-
     - Vec4
     - Vec3
     - Vec2
@@ -288,7 +287,6 @@ been greatly enhanced. The available input types are as follows:
     - PTAFloat
     - PTADouble
 
-
 (In Panda3D 1.9.0, the integer versions of these vectors and arrays are also
 supported.)
 
@@ -304,16 +302,12 @@ For example a parameter uniform float4x4 mat[4] (total of 16*4 elements) could
 be set with(the below list is just a sample and there are more ways to
 represent it):
 
-
-
 .. code-block:: python
 
     setShaderInput("input_name",PTALMat4f[4])
     setShaderInput(PTALVecBase4f[16])
     setShaderInput(PTAFloat[16*4])
     setShaderInput(PTADouble[16*4])
-
-
 
 But for some Cg input types there is no corresponding Panda3D type such as
 float3x2(Panda3D does not have a corresponding Mat3x2 class) Hence these input
@@ -327,8 +321,6 @@ This row wise input can be sent to the Cg shader in any of the following
 ways(Note that the below list is just a sample and there are more ways to
 represent it)
 
-
-
 .. code-block:: python
 
     setShaderInput(PTAFloat[6])
@@ -336,16 +328,12 @@ represent it)
     setShaderInput(PTALVecBase3f[2])
     setShaderInput(PTALVecBase2f[3])
 
-
-
 Now, the issue of common input types such as float, double, int, long. The GPU
 registers generally can handle only floats. Hence even if we do send a double
 it will be automatically type casted into float. Hence for such type of inputs
 we can use above types.
 
 For example, input types such as
-
-
 
 .. code-block:: python
 
@@ -356,32 +344,22 @@ For example, input types such as
     fixed3 var
     int3 var
 
-
-
 Can be sent to your Cg shader program by (the below list is just a sample and
 there are more ways to represent it)
-
-
 
 .. code-block:: python
 
     setShaderInput(PTAFloat[3])
     setShaderInput(PTADouble[3])
 
-
-
 Below is a sample code snippet that shows how you can use the new shader
 inputs.
-
-
 
 .. code-block:: python
 
     from panda3d.core import Vec4
     vec4 = Vec4(0.0,1.0,0.0,1.0)
     myModel.setShaderInput("Inputs.vec4",vec4)
-
-
 
 First import the necessary header to use the type of input. In our case it's
 Vec4. The next statement shows a Vec4 input type. Then set the Vec4 as a

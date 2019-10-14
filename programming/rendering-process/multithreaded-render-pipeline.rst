@@ -176,4 +176,3 @@ easily.
 .. |appculldraw.png| image:: appculldraw.png
 .. |app_cull_draw.png| image:: app-cull-draw.png
 .. |full_pipeline.png| image:: full-pipeline.png
-

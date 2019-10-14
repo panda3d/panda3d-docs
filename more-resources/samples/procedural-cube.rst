@@ -24,4 +24,3 @@ Back to the List of Sample Programs:
 :ref:`samples`
 
 .. |Screenshot-Sample-Programs-Procedural-Cube.jpg| image:: screenshot-sample-programs-procedural-cube.jpg
-

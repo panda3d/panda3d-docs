@@ -6,7 +6,6 @@ Performance Issue: Python Calculation
 Performance Issue: Python Calculation
 -------------------------------------
 
-
 The Panda3D engine is mostly written in C++, not Python. It would be false to
 assume that Panda3D is always slower than other game engines when used with
 Python. When you call a function in Python, Python calls the C++ equivalent,
@@ -47,16 +46,12 @@ option for last. You will have to have one compiled module for every platform
 your game is meant to run on. You can do something like this if you want to be
 really sure that your game will run on any platform out-of-the-box:
 
-
-
 .. code-block:: python
 
     try:
         import cVersionOfModule
     except ImportError:
         import pythonVersionOfModule
-
-
 
 Then the game will use the Python version of the module if the C++ version
 will fail to load. Your game will use the slow Python version in that case,
