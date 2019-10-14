@@ -82,8 +82,10 @@ that it needs to regenerate the original surface position from the screen
 position and depth value. The math for that deserves some explanation.
 
 We need to take a clip-space coordinate and depth-buffer value
-(x_clip,y_clip,z_clip,w_clip) and unproject it back to a view-space
-(x_view,y_view,z_view) coordinate. Lighting is then done in view-space.
+:math:`\begin{pmatrix}x_{clip}&y_{clip}&z_{clip}&w_{clip}\end{pmatrix}` and
+unproject it back to a view-space
+:math:`\begin{pmatrix}x_{view}&y_{view}&z_{view}\end{pmatrix}` coordinate.
+Lighting is then done in view-space.
 
 Okay, so here's the math. Panda uses the projection matrix to transform view-
 space into clip-space. But in practice, the projection matrix for a perspective
@@ -127,10 +129,14 @@ rescales the depth-value:
    depth &= 0.5 \cdot z_{screen} + 0.5
    \end{align*}
 
-So now we have some equations defining (x_clip,y_clip,z_clip,w_clip) in terms of
-(x_view,y_view,z_view), and (x_screen,y_screen,z_screen) in terms of
-(x_clip,y_clip,z_clip,w_clip). It's basic algebra to solve these equations for
-(x_view, y_view, z_view) in terms of (x_screen, y_screen, z_screen). Here, I
+So now we have some equations defining
+:math:`\begin{pmatrix}x_{clip}&y_{clip}&z_{clip}&w_{clip}\end{pmatrix}` in terms
+of :math:`\begin{pmatrix}x_{view}&y_{view}&z_{view}\end{pmatrix}`, and
+:math:`\begin{pmatrix}x_{screen}&y_{screen}&z_{screen}\end{pmatrix}` in terms of
+:math:`\begin{pmatrix}x_{clip}&y_{clip}&z_{clip}&w_{clip}\end{pmatrix}`.  It's
+basic algebra to solve these equations for
+:math:`\begin{pmatrix}x_{view}&y_{view}&z_{view}\end{pmatrix}` in terms of
+:math:`\begin{pmatrix}x_{screen}&y_{screen}&z_{screen}\end{pmatrix}`.  Here, I
 have shown all my algebraic steps:
 
 .. math::
@@ -193,7 +199,7 @@ So, here are the equations in their final form:
 
    \begin{align*}
    x_{view} &= \frac{x_{screen} \cdot x_{proj}}{depth + w} \\
-   y_{view} &= \frac{1 * y_{proj}}{depth + w} \\
+   y_{view} &= \frac{y_{proj}}{depth + w} \\
    z_{view} &= \frac{y_{screen} \cdot z_{proj}}{depth + w}
    \end{align*}
 
