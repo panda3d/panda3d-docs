@@ -107,9 +107,12 @@ the surface of an object.
 
 So when 3-D textures are used at all, they are often generated procedurally. One
 classic example of a procedural 3-D texture is wood grain; it is fairly easy to
-define a convincing woodgrain texture procedurally. The following code applies a
-woodgrain texture to the teapot, to make a teapot that looks like it was carved
-from a single block of wood:
+define a convincing woodgrain texture procedurally. For instance,
+:ref:`click here <woodgrain-example>` to view a Panda3D program that generates a
+woodgrain texture and stores it as a series of files named woodgrain_0.png,
+woodgrain_1.png, and so on. The following code applies this woodgrain texture to
+the teapot, to make a teapot that looks like it was carved from a single block
+of wood:
 
 .. code-block:: python
 
@@ -119,7 +122,7 @@ from a single block of wood:
    teapot.setTexPos(TextureStage.getDefault(), 0.44, 0.5, 0.2)
    teapot.setTexScale(TextureStage.getDefault(), 0.2)
 
-   tex = loader.load3DTexture('woodgrain_#.png')
+   tex = loader.load3DTexture('woodgrain-#.png')
    teapot.setTexture(tex)
 
 |A wooden teapot.|
