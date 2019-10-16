@@ -3,21 +3,19 @@
 Sample Programs: Gamepad
 ========================
 
-**The gamepad Sample Program**
+To run a sample program, you need to install Panda3D.
+If you're a Windows user, you'll find the sample programs in your start menu.
+If you're a Linux user, you'll find the sample programs in /usr/share/panda3d.
 
-To run a sample program, you need to install Panda3D. If you're a Windows
-user, you'll find the sample programs in your start menu. If you're a Linux
-user, you'll find the sample programs in /usr/share/panda3d.
-
-**Explanation**
+.. rubric:: Explanation
 
 This sample program shows how to use game controler devices such as gamepads,
 steering wheels and joysticks in Panda3D. Gamepad devices are mostly used to
 control characters in games using input from specialized devices. In this
-example we will control the camera to steer around the environment with either
-a gamepad device, steering wheel or flightstick device.
+example we will control the camera to steer around the environment with either a
+gamepad device, steering wheel or flightstick device.
 
-The controls are as follow:
+The controls are as follows:
 
 *gamepad:*
 
@@ -44,17 +42,17 @@ A                  Show an onscreen message
 Hat Up             Re-Set the wheels center position
 ================== =================================
 
-*flightstick*
+*flight stick:*
 
 ========== =========================
 Throttle   Accelerate camera forward
-Move Stick Controll camera rotations
+Move Stick Control camera rotations
 Trigger    Show an onscreen message
 ========== =========================
 
 For more information on devices, please consult the :ref:`joystick-support`
 section of the manual.
 
-**Back to the List of Sample Programs:**
+.. rubric:: Back to the List of Sample Programs:
 
 :ref:`samples`

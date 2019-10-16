@@ -3,17 +3,15 @@
 Sample Programs: Looking and Gripping
 =====================================
 
-The Looking and Gripping Sample Program
+To run a sample program, you need to install Panda3D.
+If you're a Windows user, you'll find the sample programs in your start menu.
+If you're a Linux user, you'll find the sample programs in /usr/share/panda3d.
 
-To run a sample program, you need to install Panda3D. If you're a Windows
-user, you'll find the sample programs in your start menu. If you're a Linux
-user, you'll find the sample programs in /usr/share/panda3d.
+.. rubric:: Screenshots
 
-Screenshots
+.. image:: screenshot-sample-programs-looking-and-gripping.jpg
 
-|Screenshot-Sample-Programs-Looking-and-Gripping.jpg|
-
-Explanation
+.. rubric:: Explanation
 
 This tutorial will cover how you can manipulate actor joints in Panda. Joints
 are essentially bones used by a 3D package (Maya, 3D Studio, XSI, etc) to
@@ -33,14 +31,13 @@ to "attach" objects that the character can hold. By using exposeJoint, the
 object will stay in the character's hand even if the hand is moving through an
 animation.
 
-NOTE: Models with joints will differ greatly from each other depending on how
-they were made and who made them. You may find that a certain model's joints
-are not oriented logically or practically. Also beware that joints may have
-limits on how far they can twist. Going beyond a joints limits may cause
-strange and unwanted deformations.
+.. note::
+   Models with joints will differ greatly from each other depending on how they
+   were made and who made them. You may find that a certain model's joints are
+   not oriented logically or practically. Also beware that joints may have
+   limits on how far they can twist. Going beyond a joints limits may cause
+   strange and unwanted deformations.
 
-Back to the List of Sample Programs:
+.. rubric:: Back to the List of Sample Programs:
 
 :ref:`samples`
-
-.. |Screenshot-Sample-Programs-Looking-and-Gripping.jpg| image:: screenshot-sample-programs-looking-and-gripping.jpg

@@ -3,17 +3,15 @@
 Sample Programs: Fireflies
 ==========================
 
-The Fireflies Sample Program
+To run a sample program, you need to install Panda3D.
+If you're a Windows user, you'll find the sample programs in your start menu.
+If you're a Linux user, you'll find the sample programs in /usr/share/panda3d.
 
-To run a sample program, you need to install Panda3D. If you're a Windows user,
-you'll find the sample programs in your start menu. If you're a Linux user,
-you'll find the sample programs in /usr/share/panda3d.
+.. rubric:: Screenshots
 
-Screenshots
+.. image:: screenshot-sample-programs-fireflies.jpg
 
-|Screenshot-Sample-Programs-Fireflies.jpg|
-
-Explanation
+.. rubric:: Explanation
 
 A nature scene with 500 fireflies: how do you do a high-polygon scene with 500
 lights, without a total performance collapse?
@@ -203,8 +201,6 @@ So, here are the equations in their final form:
    z_{view} &= \frac{y_{screen} \cdot z_{proj}}{depth + w}
    \end{align*}
 
-Back to the List of Sample Programs:
+.. rubric:: Back to the List of Sample Programs:
 
 :ref:`samples`
-
-.. |Screenshot-Sample-Programs-Fireflies.jpg| image:: screenshot-sample-programs-fireflies.jpg
