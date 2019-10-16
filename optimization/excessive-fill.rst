@@ -6,7 +6,6 @@ Performance Issue: Excessive Fill
 Transparency
 ------------
 
-
 In general, it is better for your graphics card to render the polygons
 front-to-back, because a depth test can be used to toss out the occluded
 fragments before they are written to the framebuffer.
@@ -26,8 +25,5 @@ M_alpha.
 For a more in-depth explanation on the various transparency modes, see
 :ref:`transparency-and-blending`.
 
-Incomplete Section
-------------------
 
-
-Note: this section is incomplete. It will be updated soon.
+.. note:: This section is incomplete. It will be updated soon.

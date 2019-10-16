@@ -254,11 +254,8 @@ snow.
 
 Note: resizing the particle Panel GUI window might crash the program.
 
-Incomplete Section
-------------------
 
-
-Note: this section is incomplete. It will be updated soon.
+.. note:: This section is incomplete. It will be updated soon.
 
 .. |Ppanel1.png| image:: ppanel1.png
 .. |Ppanel2.png| image:: ppanel2.png

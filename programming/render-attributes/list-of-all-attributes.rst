@@ -100,8 +100,5 @@ However, although the manual does not document these classes, the
 `Reference <https://www.panda3d.org/apiref.php?page=classes>`__ documentation
 does.
 
-Incomplete Section
-------------------
 
-
-Note: this section is incomplete. It will be updated soon.
+.. note:: This section is incomplete. It will be updated soon.

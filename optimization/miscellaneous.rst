@@ -11,14 +11,11 @@ of bad performance in your game.
    down a lot. Always try to stick to powers of two when
    :ref:`choosing a Texture Size <choosing-a-texture-size>`.
 -  You are printing too much to the console every frame. Printing to the
-   console, especially on windows, can cause a slow-down of your application.
+   console, especially on Windows, can cause a slow-down of your application.
    Always check your console whether its not flooded with errors or debug
-   messages. You might want to consider output buffering or, on windows, using
-   pythonw (python running with windows subsystem instead of console
-   subsystem) if you are experiencing this issue.
-
-Incomplete Section
-------------------
+   messages. You might want to consider output buffering or, on Windows, using
+   pythonw (python running with windows subsystem instead of console subsystem)
+   if you are experiencing this issue.
 
 
-Note: this section is incomplete. It will be updated soon.
+.. note:: This section is incomplete. It will be updated soon.

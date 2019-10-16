@@ -40,7 +40,5 @@ end of the line in a single call.
     better-supports Panda's SIMPLE_THREADS model, by avoiding blocking all threads
     while waiting for I/O to complete.
 
-Incomplete Section
-------------------
 
-Note: This section is incomplete.
+.. note:: This section is incomplete.

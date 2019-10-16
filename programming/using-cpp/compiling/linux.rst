@@ -5,9 +5,9 @@ How to compile a C++ Panda3D program on Linux
 
 .. only:: python
 
-    This page is related to C++ usage of Panda3D and not to Python usage. If you
-    are a Python user, please skip this page. For C++ users, please toggle to the
-    C++ version of this page.
+   This page is related to C++ usage of Panda3D and not to Python usage. If you
+   are a Python user, please skip this page. For C++ users, please toggle to the
+   C++ version of this page.
 
 .. only:: cpp
 

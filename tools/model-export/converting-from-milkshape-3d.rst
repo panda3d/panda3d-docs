@@ -71,7 +71,9 @@ NB: this have been written by a coder not an artist :-)
 Bugs in the Process
 -------------------
 
-Caution: at one time, it was discovered that there were two bugs in panda's
-X-file importer. One, it was case-sensitive and it should not be. Two, it did
-not handle hyphens in identifiers correctly. It is unknown whether or not these
-bugs have been fixed.
+.. caution::
+
+   At one time, it was discovered that there were two bugs in panda's X-file
+   importer. One, it was case-sensitive and it should not be. Two, it did not
+   handle hyphens in identifiers correctly. It is unknown whether or not these
+   bugs have been fixed.
