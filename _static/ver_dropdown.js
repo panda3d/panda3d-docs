@@ -16,6 +16,8 @@ window.addEventListener("DOMContentLoaded", function() {
         window.currentPagePath = pathComponents.slice(pathComponents.length - numComponents - 1).join('/');
 
         // Create a select option for each version
+        var isOutdated = false;
+        var latestVersion = null;
         for (var i = 0; i < versions.length; ++i) {
             var version = versions[i];
             var opt = document.createElement('option');
@@ -27,6 +29,12 @@ window.addEventListener("DOMContentLoaded", function() {
             window.versionDropdown.appendChild(opt);
             if (version.version == opts.VERSION) {
                 window.versionIndex = i;
+                if (version.outdated) {
+                    isOutdated = true;
+                }
+            }
+            if (version.latest) {
+                latestVersion = version.version;
             }
         }
 
@@ -34,6 +42,11 @@ window.addEventListener("DOMContentLoaded", function() {
         document.getElementById("version-static").style.display = "none";
         document.getElementById("version-dynamic").style.display = "block";
         window.versionDropdown.selectedIndex = window.versionIndex;
+
+        if (isOutdated) {
+            const latestPath = window.versionRoot + '/' + latestVersion + '/' + window.currentPagePath;
+            $('div.document').prepend('<div class="admonition warning"><p class="first admonition-title">Note</p><p class="last">You are browsing the documentation for an obsolete version. <a href="' + latestPath + '">Click here</a> to go to the latest version.</p></div>');
+        }
     });
 });
 
