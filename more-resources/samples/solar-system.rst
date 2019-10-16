@@ -17,7 +17,7 @@ This sample program shows planets orbiting around the sun, and a moon orbiting
 one of the planets. If you just stare at the moon, you'll realize that its
 motion is a spiral:
 
-.. image:: spirograph.gif
+.. image:: spirograph.png
 
 The motion of the moon is only simple if you think about it in relative terms:
 the moon is moving in a circle relative to the planet, and the planet is
