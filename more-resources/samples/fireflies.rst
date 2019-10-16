@@ -104,12 +104,12 @@ equations:
 
 .. math::
 
-   \begin{align*}
+   \begin{aligned}
    x_{clip} &= x_{view} \cdot A \\
    y_{clip} &= z_{view} \cdot C \\
    z_{clip} &= y_{view} \cdot B + D \\
    w_{clip} &= y_{view}
-   \end{align*}
+   \end{aligned}
 
 Look out, there has been a coordinate system change! In the scene graph, Z
 corresponds to "up", but in clip-space, Z is the depth value (and X,Y address a
@@ -120,12 +120,12 @@ rescales the depth-value:
 
 .. math::
 
-   \begin{align*}
+   \begin{aligned}
    x_{screen} &= \frac{x_{clip}}{w_{clip}} \\
    y_{screen} &= \frac{y_{clip}}{w_{clip}} \\
    z_{screen} &= \frac{z_{clip}}{w_{clip}} \\
    depth &= 0.5 \cdot z_{screen} + 0.5
-   \end{align*}
+   \end{aligned}
 
 So now we have some equations defining
 :math:`\begin{pmatrix}x_{clip}&y_{clip}&z_{clip}&w_{clip}\end{pmatrix}` in terms
@@ -139,7 +139,7 @@ have shown all my algebraic steps:
 
 .. math::
 
-   \begin{align*}
+   \begin{aligned}
    depth &= 0.5 \cdot z_{screen} + 0.5 \\
    depth &= \frac{z_{clip}}{w_{clip}} \cdot 0.5 + 0.5 \\
    depth &= \frac{y_{view} \cdot B + D}{y_{view}} \cdot 0.5 + 0.5 \\
@@ -149,13 +149,13 @@ have shown all my algebraic steps:
    (2 \cdot depth - 1.0) \cdot y_{view} + y_{view} \cdot -B &= D \\
    (2 \cdot depth - 1.0 - B) \cdot y_{view} &= D \\
    y_{view} &= \frac{0.5D}{depth - 0.5 - 0.5B}
-   \end{align*}
+   \end{aligned}
 
 |
 
 .. math::
 
-   \begin{align*}
+   \begin{aligned}
    x_{screen} &= \frac{x_{clip}}{w_{clip}} \\
    x_{screen} &= \frac{x_{view} \cdot A}{y_{view}} \\
    x_{screen} \cdot y_{view} &= x_{view} \cdot A \\
@@ -163,13 +163,13 @@ have shown all my algebraic steps:
    \frac{x_{screen} \cdot 0.5D}{depth - 0.5 - 0.5B} &= x_{view} \cdot A \\
    \frac{x_{screen} \cdot \frac{0.5D}{A}}{depth - 0.5 - 0.5B} &= x_{view} \\
    x_{view} &= \frac{x_{screen} \cdot \frac{0.5D}{A}}{depth - 0.5 - 0.5B}
-   \end{align*}
+   \end{aligned}
 
 |
 
 .. math::
 
-   \begin{align*}
+   \begin{aligned}
    y_{screen} &= \frac{y_{clip}}{w_{clip}} \\
    y_{screen} &= \frac{z_{view} \cdot C}{y_{view}} \\
    y_{screen} \cdot y_{view} &= z_{view} \cdot C \\
@@ -177,29 +177,29 @@ have shown all my algebraic steps:
    \frac{y_{screen} \cdot 0.5D}{depth - 0.5 - 0.5B} &= z_{view} \cdot C \\
    \frac{y_{screen} \cdot \frac{0.5D}{C}}{depth - 0.5 - 0.5B} &= z_{view} \\
    z_{view} &= \frac{y_{screen} \cdot \frac{0.5D}{C}}{depth - 0.5 - 0.5B}
-   \end{align*}
+   \end{aligned}
 
 To save our vertex and pixel shaders a little work, we can precompute these
 constants:
 
 .. math::
 
-   \begin{align*}
+   \begin{aligned}
    x_{proj} &= \frac{0.5D}{A} \\
    y_{proj} &= 0.5D \\
    z_{proj} &= \frac{0.5D}{C} \\
    w_{proj} &= -0.5-0.5B
-   \end{align*}
+   \end{aligned}
 
 So, here are the equations in their final form:
 
 .. math::
 
-   \begin{align*}
+   \begin{aligned}
    x_{view} &= \frac{x_{screen} \cdot x_{proj}}{depth + w} \\
    y_{view} &= \frac{y_{proj}}{depth + w} \\
    z_{view} &= \frac{y_{screen} \cdot z_{proj}}{depth + w}
-   \end{align*}
+   \end{aligned}
 
 .. rubric:: Back to the List of Sample Programs:
 

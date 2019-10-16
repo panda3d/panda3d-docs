@@ -21,12 +21,12 @@ that the purpose of a matrix is to transform an input-vector
 
 .. math::
 
-   \begin{align*}
+   \begin{aligned}
    x_o &= A \cdot x_i + B \cdot y_i + C \cdot z_i + D \cdot w_i \\
    y_o &= E \cdot x_i + F \cdot y_i + G \cdot z_i + H \cdot w_i \\
    z_o &= J \cdot x_i + K \cdot y_i + L \cdot z_i + M \cdot w_i \\
-   w_o &= N \cdot x_i + O \cdot y_i + P \cdot z_i + Q \cdot w_i \\
-   \end{align*}
+   w_o &= N \cdot x_i + O \cdot y_i + P \cdot z_i + Q \cdot w_i
+   \end{aligned}
 
 There are two different orders that you can store these coefficients in RAM::
 
