@@ -28,7 +28,7 @@ import os
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc', 'variations']
+extensions = ['sphinx.ext.autodoc', 'variations', 'sphinx.ext.graphviz']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -100,6 +100,23 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # If true, keep warnings as "system message" paragraphs in the built documents.
 #keep_warnings = False
+
+# Set default settings for embedded graphviz diagrams.
+graphviz_dot_args = [
+    "-Gfontname='Lato','proxima-nova','Helvetica Neue',Arial,sans-serif",
+    "-Nfontname='Lato','proxima-nova','Helvetica Neue',Arial,sans-serif",
+    "-Efontname='Lato','proxima-nova','Helvetica Neue',Arial,sans-serif",
+    "-Gfontsize=12.00",
+    "-Nfontsize=12.00",
+    "-Efontsize=12.00",
+    "-Gfontcolor=#404040",
+    "-Nfontcolor=#404040",
+    "-Efontcolor=#404040",
+    "-Gcolor=#404040",
+    "-Ncolor=#404040",
+    "-Ecolor=#404040",
+]
+graphviz_output_format = "svg"
 
 
 # -- Options for HTML output ----------------------------------------------
