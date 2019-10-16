@@ -16,6 +16,10 @@ Panda3D Related Books
 Panda3D Tutorial Series
 -----------------------
 
+`Beginner's Tutorial for Panda3D <https://arsthaumaturgis.github.io/Panda3DTutorial.io/>`__.
+This tutorial is designed to teach the basics of using Panda3D, from the
+fundamentals through to building a distributable.
+
 `MyGameFast <http://www.mygamefast.com/>`__. This tutorial aims to teach you how
 to make a game with Panda3D within a very short period of time. Each volume
 focuses on a particular type of game, and is subdivided into individual issues.
