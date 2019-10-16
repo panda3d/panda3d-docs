@@ -54,18 +54,18 @@ between C++ information and Python information.
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    If you already have a copy of Python, and you wish to use that instead of the
-   one provided with panda, it is easy to do so. Simply create a "panda.pth" file
-   inside your copy of Python, containing the path of the panda directory and the
-   bin directory within it on separate lines (for example C:\Program
-   Files\Panda3D-1.2.3 and C:\Program Files\Panda3D-1.2.3\bin). This will enable
-   your copy of Python to find the panda libraries.
+   one provided with Panda3D, it is easy to do so. Simply create a "panda.pth"
+   file inside your copy of Python, containing the path of the panda directory
+   and the bin directory within it on separate lines (for example
+   C:\\Panda3D-1.9.4-x64 and C:\\Panda3D-1.9.4-x64\\bin). This will enable your
+   copy of Python to find the Panda3D libraries.
 
    For this to work, the version of Python that you use must match the version
-   of Python included with panda. The panda libraries are compiled for that
+   of Python included with Panda3D. The Panda3D libraries are compiled for that
    particular version, and will not work with any other.
 
    Of course, if you do use your own copy of Python, you may wish to delete
-   panda's copy of Python, or at least, remove it from the PATH environment
+   Panda3D's copy of Python, or at least, remove it from the PATH environment
    variable. Otherwise, you will have two copies of Python, which can lead to
    confusion.
 
