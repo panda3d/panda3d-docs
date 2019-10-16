@@ -215,7 +215,7 @@ Particle Effects
 
    using-the-particle-panel
    loading-particle-systems
-   particle-effect-basic-parameters
-   particle-factories
-   particle-emitters
-   particle-renderers
+   basic-effect-parameters
+   factories
+   emitters
+   renderers
