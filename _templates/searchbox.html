@@ -1,15 +1,14 @@
-<span>Version</span>
+<div class="version" id="version-static">
+  {{ version }}
+</div>
+
 {% if currentvariation is defined %}
-  <select id="ver-dropdown" style="display: none;" onchange="dropdown_navigate('{{ pathto('../' ~ '\' + this.options[this.selectedIndex].value + \'' ~ '/' ~ currentvariation[0]|string() ~ '/' ~ pagename ~ file_suffix, 1) }}')">
-    {% for version_option in versions %}
-      <option{% if version_option == version %} selected{% endif %}>{{ version_option }}</option>
-    {% endfor %}
-  </select>
-  <noscript><span>{{ version }}</span></noscript>
-{% else %}
-  <span>{{ version }}</span>
+  <div id="version-dynamic" style="display: none;">
+    <span>Version</span>
+    <select id="ver-dropdown" onchange="window.switchVersion(this.options[this.selectedIndex].value)">
+    </select>
+  </div>
 {% endif %}
-<br />
 
 {% for variation in variations %}
   {% if variation[0]|string() == currentvariation[0]|string() %}

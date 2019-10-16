@@ -57,9 +57,6 @@ version = '1.10'
 # anywhere important, and I'm not keen on having to update this continuously.
 release = version
 
-# List of all versions in the switcher.
-versions = ['1.10', '1.9']
-
 # Whether to generate Python or C++ documentation.  TODO:
 tags.add('python')
 
@@ -150,7 +147,6 @@ html_context = {
     'github_version': version,
     'conf_py_path': '/',
     'version': version,
-    'versions': versions,
 }
 
 # Don't copy a _sources dir -- we already have a GitHub link
