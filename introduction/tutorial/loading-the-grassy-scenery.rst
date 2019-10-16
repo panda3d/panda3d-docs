@@ -3,8 +3,8 @@
 Loading the Grassy Scenery
 ==========================
 
-:ref:`the-scene-graph`
-----------------------
+:ref:`The Scene Graph <the-scene-graph>`
+----------------------------------------
 
 Panda3D contains a data structure called the *Scene Graph*. The Scene Graph is a
 tree containing all objects that need to be rendered. At the root of the tree is

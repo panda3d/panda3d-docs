@@ -32,8 +32,8 @@ Go ahead and try this camera control system. The problem with it is that it is
 sometimes awkward. It is not always easy to get the camera pointed in the
 direction we want.
 
-:ref:`tasks`
-------------
+:ref:`Tasks <tasks>`
+--------------------
 
 Update the Code
 ~~~~~~~~~~~~~~~
