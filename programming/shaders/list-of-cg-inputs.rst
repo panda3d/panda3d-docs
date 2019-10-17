@@ -267,25 +267,23 @@ Using Custom Shader Inputs
 --------------------------
 
 As of Panda3D 1.8.0, the capabilities for passing numeric shader inputs have
-been greatly enhanced. The available input types are as follows:
+been greatly enhanced. The available input types are as follows::
 
-::
-
-    - Vec4
-    - Vec3
-    - Vec2
-    - Point4
-    - Point3
-    - Point2
-    - Mat4
-    - Mat3
-    - PTALMatrix4f
-    - PTALMatrix3f
-    - PTALVecBase4f
-    - PTALVecBase3f
-    - PTALVecBase2f
-    - PTAFloat
-    - PTADouble
+   - Vec4
+   - Vec3
+   - Vec2
+   - Point4
+   - Point3
+   - Point2
+   - Mat4
+   - Mat3
+   - PTALMatrix4f
+   - PTALMatrix3f
+   - PTALVecBase4f
+   - PTALVecBase3f
+   - PTALVecBase2f
+   - PTAFloat
+   - PTADouble
 
 (In Panda3D 1.9.0, the integer versions of these vectors and arrays are also
 supported.)
@@ -298,16 +296,16 @@ The main concept of the shader inputs is that the Cg input format and type is
 independent to the Panda3D input. The only condition is that the number of
 elements passed by the user through the setShaderInput() function of Panda3D
 and the number of elements expected by the shader input should be the same.
-For example a parameter uniform float4x4 mat[4] (total of 16*4 elements) could
-be set with(the below list is just a sample and there are more ways to
-represent it):
+For example, a parameter uniform float4x4 mat[4] (total of 16*4 elements) could
+be set with: (the below list is just a sample and there are more ways to
+represent it)
 
 .. code-block:: python
 
-    setShaderInput("input_name",PTALMat4f[4])
-    setShaderInput(PTALVecBase4f[16])
-    setShaderInput(PTAFloat[16*4])
-    setShaderInput(PTADouble[16*4])
+   setShaderInput("input_name",PTALMat4f[4])
+   setShaderInput(PTALVecBase4f[16])
+   setShaderInput(PTAFloat[16*4])
+   setShaderInput(PTADouble[16*4])
 
 But for some Cg input types there is no corresponding Panda3D type such as
 float3x2(Panda3D does not have a corresponding Mat3x2 class) Hence these input
@@ -318,15 +316,15 @@ types can be initiated row-wise as
 4 5 6
 
 This row wise input can be sent to the Cg shader in any of the following
-ways(Note that the below list is just a sample and there are more ways to
+ways: (Note that the below list is just a sample and there are more ways to
 represent it)
 
 .. code-block:: python
 
-    setShaderInput(PTAFloat[6])
-    setShaderInput(PTADouble[6])
-    setShaderInput(PTALVecBase3f[2])
-    setShaderInput(PTALVecBase2f[3])
+   setShaderInput(PTAFloat[6])
+   setShaderInput(PTADouble[6])
+   setShaderInput(PTALVecBase3f[2])
+   setShaderInput(PTALVecBase2f[3])
 
 Now, the issue of common input types such as float, double, int, long. The GPU
 registers generally can handle only floats. Hence even if we do send a double
@@ -337,30 +335,29 @@ For example, input types such as
 
 .. code-block:: python
 
-    float3 var
-    bool3 var
-    half3 var
-    double3 var
-    fixed3 var
-    int3 var
+   float3 var
+   bool3 var
+   half3 var
+   double3 var
+   fixed3 var
+   int3 var
 
 Can be sent to your Cg shader program by (the below list is just a sample and
 there are more ways to represent it)
 
 .. code-block:: python
 
-    setShaderInput(PTAFloat[3])
-    setShaderInput(PTADouble[3])
+   setShaderInput(PTAFloat[3])
+   setShaderInput(PTADouble[3])
 
-Below is a sample code snippet that shows how you can use the new shader
-inputs.
+Below is a sample code snippet that shows how you can use the new shader inputs.
 
 .. code-block:: python
 
-    from panda3d.core import Vec4
-    vec4 = Vec4(0.0,1.0,0.0,1.0)
-    myModel.setShaderInput("Inputs.vec4",vec4)
+   from panda3d.core import Vec4
+   vec4 = Vec4(0.0,1.0,0.0,1.0)
+   myModel.setShaderInput("Inputs.vec4",vec4)
 
 First import the necessary header to use the type of input. In our case it's
-Vec4. The next statement shows a Vec4 input type. Then set the Vec4 as a
-shader input to your model.
+Vec4. The next statement shows a Vec4 input type. Then set the Vec4 as a shader
+input to your model.

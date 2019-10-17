@@ -62,10 +62,10 @@ Sequence:
    sound = loader.loadSfx('sound.wav')
 
    Sequence(
-            fadeIn,
-            SoundInterval(sound),
-            fadeOut
-           ).start()
+       fadeIn,
+       SoundInterval(sound),
+       fadeOut
+   ).start()
 
    base.run()
 

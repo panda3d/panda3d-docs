@@ -16,8 +16,8 @@ A typical form of a Panda program might look like:
        def method1():
            # Panda source goes here
 
-    w = World()
-    base.run() # main loop
+   w = World()
+   base.run() # main loop
 
 ``run()`` is a function that never returns. It is the main loop.
 

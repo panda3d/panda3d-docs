@@ -22,19 +22,19 @@ downloadFinished(). See the generated API documentation for more information.
 You might find the DWBPackageInstaller class, which stands for "DirectWaitBar
 PackageInstaller", even more convenient--it multiply inherits from
 PackageInstaller and DirectWaitBar, and defines the callback methods to update
-the GUI automatically as the package is downloading. For example, the
-following code will automatically download and install a package, and call
-your method packageInstalled when the download has finished. See the generated
-API documentation for more information.
+the GUI automatically as the package is downloading. For example, the following
+code will automatically download and install a package, and call your method
+packageInstalled when the download has finished. See the generated API
+documentation for more information.
 
 .. code-block:: python
 
-    from direct.p3d.DWBPackageInstaller import DWBPackageInstaller
+   from direct.p3d.DWBPackageInstaller import DWBPackageInstaller
 
-    self.pi = DWBPackageInstaller(base.appRunner,
-                                  parent = base.a2dTopRight,
-                                  scale = 0.5, pos = (-0.6, 0, -0.1),
-                                  finished = self.packageInstalled)
-    self.pi.addPackage('myPackage', 'myVersion',
-                       hostUrl = 'http://myhost.com/packages')
-    self.pi.donePackages()
+   self.pi = DWBPackageInstaller(base.appRunner,
+                                 parent = base.a2dTopRight,
+                                 scale = 0.5, pos = (-0.6, 0, -0.1),
+                                 finished = self.packageInstalled)
+   self.pi.addPackage('myPackage', 'myVersion',
+                      hostUrl = 'http://myhost.com/packages')
+   self.pi.donePackages()

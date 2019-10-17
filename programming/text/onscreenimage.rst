@@ -4,25 +4,25 @@ OnscreenImage
 =============
 
 Just like :ref:`onscreentext`, you can use OnscreenImage as a quick way to put
-an image onscreen. Use an OnscreenImage whenever you want a quick way to
-display an ordinary image without a lot of fancy requirements.
+an image onscreen. Use an OnscreenImage whenever you want a quick way to display
+an ordinary image without a lot of fancy requirements.
 
 .. code-block:: python
 
-    from direct.gui.OnscreenImage import OnscreenImage
-    imageObject = OnscreenImage(image = 'myImage.jpg', pos = (-0.5, 0, 0.02))
+   from direct.gui.OnscreenImage import OnscreenImage
+   imageObject = OnscreenImage(image='myImage.jpg', pos=(-0.5, 0, 0.02))
 
 If you want, you can change the image into another one using setImage():
 
 .. code-block:: python
 
-    imageObject.setImage('myImage2.jpg')
+   imageObject.setImage('myImage2.jpg')
 
 When you want to take the image away, use:
 
 .. code-block:: python
 
-    imageObject.destroy()
+   imageObject.destroy()
 
 The following keyword parameters may be specified to the constructor:
 
@@ -37,15 +37,16 @@ color  the (r, g, b, a) color of the geometry. This is normally a 4-tuple of flo
 parent the NodePath to parent the text to initially; the default is aspect2d.
 ====== ==================================================================================================================================================================================================================================================
 
-**NOTE:** To enable transparency in images, you must first set the
-TransparencyAttrib, otherwise the transparent parts of the image will be shown
-black:
+.. note::
 
-.. code-block:: python
+   To enable transparency in images, you must first set the TransparencyAttrib,
+   otherwise the transparent parts of the image will be shown black:
 
-    from panda3d.core import TransparencyAttrib
-    self.myImage=OnscreenImage(image = 'myImage.png', pos = (0, 0, 0))
-    self.myImage.setTransparency(TransparencyAttrib.MAlpha)
+   .. code-block:: python
 
-Since GIF's are not supported you should use PNG or TGA if you need
-transparency.
+      from panda3d.core import TransparencyAttrib
+      self.myImage = OnscreenImage(image='myImage.png', pos=(0, 0, 0))
+      self.myImage.setTransparency(TransparencyAttrib.MAlpha)
+
+   Since GIF's are not supported you should use PNG or TGA if you need
+   transparency.

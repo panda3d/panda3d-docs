@@ -38,10 +38,8 @@ Once you get this reference, you can use it to call any steering behavior.
 
 .. code-block:: python
 
-    //For example:
-
-         aiBehaviors = aiCharacter.getAiBehaviors();
-         aiBehaviors.seek(targetNodePath);
+   aiBehaviors = aiCharacter.getAiBehaviors();
+   aiBehaviors.seek(targetNodePath);
 
 -  Once you have read this page, you can proceed to explore the individual
    pages for each AI Behavior for details and even an example demo for each
@@ -57,14 +55,11 @@ with other behaviors.
 
 .. code-block:: python
 
-    //For example:
+   aiBehaviors.seek(targetNodePath_1, 0.5);
+   aiBehaviors.flee(targetNodePath_2, 0.5);
 
-        aiBehaviors.seek(targetNodePath_1, 0.5);
-        aiBehaviors.flee(targetNodePath_2, 0.5);
-
-This will cause the
-AICharacter's resultant force to be an equal balance of seeking
-'targetNodePath_1' and fleeing 'targetNodePath_2' .
+This will cause the AICharacter's resultant force to be an equal balance of
+seeking 'targetNodePath_1' and fleeing 'targetNodePath_2'.
 
 --------------
 
@@ -74,44 +69,43 @@ HELPER FUNCTIONS :
 
 For the AIWorld class:
 
-.. code-block:: python
+.. code-block:: cpp
 
-    void addAiChar(AICharacter aiChar);
+   void addAiChar(AICharacter aiChar);
 
-    void removeAiChar(string name);
+   void removeAiChar(string name);
 
-    void addFlock(Flock *flock);
+   void addFlock(Flock *flock);
 
-    void flockOff(int ID);
+   void flockOff(int ID);
 
-    void flockOn(int ID);
+   void flockOn(int ID);
 
-    Flock getFlock(int ID);
+   Flock getFlock(int ID);
 
 For the AICharacter class:
 
+.. code-block:: cpp
+
+   double getMass();
+
+   void setMass(double m);
+
+   LVecBase3 getVelocity();
+
+   double getMaxForce();
+
+   void setMaxForce(double max_force);
+
+   NodePath getNodePath();
+
+   void setNodePath(NodePath np);
+
+For the AIBehaviors class:
+
 .. code-block:: python
 
-    double getMass();
-
-    void setMass(double m);
-
-    LVecBase3f getVelocity();
-
-    double getMaxForce();
-
-    void setMaxForce(double max_force);
-
-    NodePath getNodePath();
-
-    void setNodePath(NodePath np);
-
-For the AIBehaviors
-class:
-
-.. code-block:: python
-
-    aiBehaviors.behaviorStatus(string AIName)
+   aiBehaviors.behaviorStatus(string AIName)
 
 This function
 returns the status of an AI Behavior whether it is active, paused, done or
@@ -124,7 +118,7 @@ To remove any AI after their call has been instantiated.
 
 .. code-block:: python
 
-    void removeAi(string "AIName");
+   void removeAi(string "AIName");
 
 -  Note for pathfinding removal, use pathfollow as the string name, since
    pathfinding is a subset of pathfollow.
@@ -133,9 +127,9 @@ To pause or resume any AI after their call has been instantiated.
 
 .. code-block:: python
 
-    void pauseAi(string "AIName");
+   void pauseAi(string "AIName");
 
-    void resumeAi(string "AIName");
+   void resumeAi(string "AIName");
 
 where AIName refers to:
 

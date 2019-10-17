@@ -110,9 +110,9 @@ defined in ``accept()`` are passed first, and then the parameters defined in
        def on_spam(self, a, b, c, d):
            print(a, b, c, d)
 
-    test = Test()
-    messenger.send('spam', ['foo', 'bar'])
-    base.run()
+   test = Test()
+   messenger.send('spam', ['foo', 'bar'])
+   base.run()
 
 A Note on Object Management
 ---------------------------
@@ -134,13 +134,13 @@ For example, the following code may not do what you expect:
            self.accept("FireZeMissiles", self._fireMissiles)
 
        def _fireMissiles(self):
-            print("Missiles fired! Oh noes!")
+           print("Missiles fired! Oh noes!")
 
-    foo = Test() # create our test object
-    del foo      # get rid of our test object
+   foo = Test() # create our test object
+   del foo      # get rid of our test object
 
-    messenger.send("FireZeMissiles") # oops! Why did those missiles fire?
-    base.run()
+   messenger.send("FireZeMissiles") # oops! Why did those missiles fire?
+   base.run()
 
 Try the example above, and you'll find that the missiles fire even though the
 object that would handle the event had been deleted.
@@ -166,10 +166,10 @@ define a "destroy" method for any custom classes you create, which calls
        def destroy(self):
            self.ignoreAll()
 
-    foo = Test()  # create our test object
-    foo.destroy() # get rid of our test object
+   foo = Test()  # create our test object
+   foo.destroy() # get rid of our test object
 
-    del foo
+   del foo
 
-    messenger.send("FireZeMissiles") # No missiles fire
-    base.run()
+   messenger.send("FireZeMissiles") # No missiles fire
+   base.run()

@@ -26,7 +26,7 @@ https address, like this:
 
 .. code-block:: python
 
-    packager.setHost('https://myhost.com/myrootdir/')
+   packager.setHost('https://myhost.com/myrootdir/')
 
 then Panda3D will understand that the contents.xml file should be downloaded
 via the https protocol. However, the remaining files will be downloaded via
@@ -38,8 +38,8 @@ the specific address with the downloadUrl parameter, e.g.:
 
 .. code-block:: python
 
-    packager.setHost('https://myhost.com/myrootdir/',
-                     downloadUrl = 'http://myhost.com:8080/myrootdir/')
+   packager.setHost('https://myhost.com/myrootdir/',
+                    downloadUrl = 'http://myhost.com:8080/myrootdir/')
 
 The first URL is the host URL, and is the address from which contents.xml will
 be downloaded, and is also the URL that should be specified when downloading

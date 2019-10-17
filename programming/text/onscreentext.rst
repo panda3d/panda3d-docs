@@ -4,26 +4,25 @@ OnscreenText
 ============
 
 The OnscreenText object is a convenience wrapper around
-:ref:`TextNode <text-node>`. You can use it as a quick way to put text
-onscreen without having to go through the trouble of creating a TextNode and
-setting properties on it. However, it doesn't have the full range of rendering
-options that you can get with TextNode directly; and it doesn't support the
-DirectGUI features of a :ref:`directlabel`. Use an OnscreenText whenever you
-want a quick way to display some ordinary text without a lot of fancy
-requirements.
+:ref:`TextNode <text-node>`. You can use it as a quick way to put text onscreen
+without having to go through the trouble of creating a TextNode and setting
+properties on it. However, it doesn't have the full range of rendering options
+that you can get with TextNode directly; and it doesn't support the DirectGUI
+features of a :ref:`directlabel`. Use an OnscreenText whenever you want a quick
+way to display some ordinary text without a lot of fancy requirements.
 
 .. code-block:: python
 
-    from direct.gui.OnscreenText import OnscreenText
-    textObject = OnscreenText(text = 'my text string', pos = (-0.5, 0.02), scale = 0.07)
+   from direct.gui.OnscreenText import OnscreenText
+   textObject = OnscreenText(text='my text string', pos=(-0.5, 0.02), scale=0.07)
 
-The OnscreenText object inherits from NodePath, so all of the standard
-NodePath operations can be used on the text object. When you are ready to take
-the text away, use:
+The OnscreenText object inherits from NodePath, so all of the standard NodePath
+operations can be used on the text object. When you are ready to take the text
+away, use:
 
 .. code-block:: python
 
-    textObject.destroy()
+   textObject.destroy()
 
 The following keyword parameters may be specified to the constructor:
 

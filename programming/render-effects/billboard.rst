@@ -95,11 +95,11 @@ options, you must create a BillboardEffect and apply it to the node yourself:
 .. code-block:: python
 
     myEffect = BillboardEffect.make(
-      upVector = vec3,
-      eyeRelative = bool,
-      axialRotate = bool,
-      offset = float,
-      lookAt = nodepath,
-      lookAtPoint = point3
+        upVector = vec3,
+        eyeRelative = bool,
+        axialRotate = bool,
+        offset = float,
+        lookAt = nodepath,
+        lookAtPoint = point3
     )
     myNodePath.node().setEffect(myEffect)

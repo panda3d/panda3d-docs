@@ -114,7 +114,7 @@ could do something like this:
 
 .. code-block:: python
 
-    teapot.setTexTransform(TextureStage.getDefault(), TransformState.makeHpr(VBase3(0, 90, 0)))
+   teapot.setTexTransform(TextureStage.getDefault(), TransformState.makeHpr(VBase3(0, 90, 0)))
 
 |Teapot with a grid applied, rotated|
 
@@ -142,8 +142,8 @@ space to teapot space, like this:
 
 .. code-block:: python
 
-    teapot.setTexGen(TextureStage.getDefault(), TexGenAttrib.MWorldPosition)
-    teapot.setTexProjector(TextureStage.getDefault(), render, teapot)
+   teapot.setTexGen(TextureStage.getDefault(), TexGenAttrib.MWorldPosition)
+   teapot.setTexProjector(TextureStage.getDefault(), render, teapot)
 
 It may seem a little circuitous to convert the teapot vertices to world space to
 generate the texture coordinates, and then convert the texture coordinates back

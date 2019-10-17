@@ -6,8 +6,8 @@ Setuptools Examples
 Simple Console Application
 --------------------------
 
-The most basic and simplest application to package is a simple console app
-with no dependencies:
+The most basic and simplest application to package is a simple console app with
+no dependencies:
 
 .. code-block:: python
 
@@ -29,8 +29,8 @@ The corresponding ``setup.py`` file could look like so:
        options = {
            'build_apps': {
                'console_apps': {'hello_world': 'main.py'},
-            }
-        }
+           }
+       }
    )
 
 Then, we can build the binaries using ``python setup.py build_apps``.
@@ -56,16 +56,16 @@ platforms must be defined in ``setup.py`` and ``win_amd64`` added to the list:
                    'macosx_10_6_x86_64',
                    'win_amd64',
                    'win32',
-                ],
-            }
-        }
+               ],
+           }
+       }
    )
 
 Asteroids Sample
 ----------------
 
-Below is an example of a setup.py that can be used to build the Asteroids
-sample program.
+Below is an example of a setup.py that can be used to build the Asteroids sample
+program.
 
 .. code-block:: python
 

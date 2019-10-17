@@ -21,16 +21,14 @@ before importing DirectStart:
 
 .. code-block:: python
 
-    from panda3d.core import loadPrcFileData
-    loadPrcFileData("", "want-directtools #t")
-    loadPrcFileData("", "want-tk #t")
+   from panda3d.core import loadPrcFileData
+   loadPrcFileData("", "want-directtools #t")
+   loadPrcFileData("", "want-tk #t")
 
 After enabling direct tools and starting panda, the Direct Session window
 should appear:
 
-|directtools1.jpg|
-
-.. |directtools1.jpg| image:: directtools1.jpg
+.. image:: directtools1.jpg
 
 Table of Contents
 -----------------

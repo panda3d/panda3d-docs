@@ -74,11 +74,11 @@ Here is an example of time reading in code:
 
 6. Keys that don't type a character are labeled as follows::
 
-      "escape", "f"+"1-12" (e.g. "f1","f2",..."f12"), "print_screen",
-      "scroll_lock", "backspace", "insert", "home", "page_up", "num_lock",
-      "tab",  "delete", "end", "page_down", "caps_lock", "enter", "arrow_left",
-      "arrow_up", "arrow_down", "arrow_right", "shift", "lshift", "rshift",
-      "control", "alt", "lcontrol", "lalt", "space", "ralt", "rcontrol"
+   "escape", "f"+"1-12" (e.g. "f1","f2",..."f12"), "print_screen",
+   "scroll_lock", "backspace", "insert", "home", "page_up", "num_lock",
+   "tab",  "delete", "end", "page_down", "caps_lock", "enter", "arrow_left",
+   "arrow_up", "arrow_down", "arrow_right", "shift", "lshift", "rshift",
+   "control", "alt", "lcontrol", "lalt", "space", "ralt", "rcontrol"
 
 Note that some key combinations (like ``print_screen`` on Windows) may be
 intercepted by the operating system and may therefore not be available. If you

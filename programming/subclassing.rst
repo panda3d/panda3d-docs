@@ -6,22 +6,21 @@ Subclassing
 Introduction
 ~~~~~~~~~~~~
 
-Both Python and C++, being object-oriented programming languages, take
-advantage of the concept known as "Inheritance", to allow for a class to
-subclass one or more other classes. This allows for the creation of a
-sub-class (or descendent class) that is said to "inherit" all the attributes
-of the super class (or ancestor class), usually with the purpose of expanding
-upon them.
+Both Python and C++, being object-oriented programming languages, take advantage
+of the concept known as "Inheritance", to allow for a class to subclass one or
+more other classes. This allows for the creation of a sub-class (or descendent
+class) that is said to "inherit" all the attributes of the super class (or
+ancestor class), usually with the purpose of expanding upon them.
 
 Subclassing pure-python classes from python or C++ classes from C++ is fairly
-straightforward and there's plenty of literature on the subject. The wikipedia
+straightforward and there's plenty of literature on the subject. The Wikipedia
 article on
 `inheritance <http://en.wikipedia.org/wiki/Inheritance_(computer_science)>`__
 is a good starting point before proceeding to the language-specific
 documentation.
 
-Special care however must be taken when creating a Python class that
-subclasses from a C++ class, as there are limitations to it.
+Special care however must be taken when creating a Python class that subclasses
+from a C++ class, as there are limitations to it.
 
 The Theory
 ~~~~~~~~~~
@@ -40,8 +39,8 @@ you're writing a Python class, not a C++ class.
 
 This means that whenever you create an instance of your new inherited class,
 you're creating an instance of the C++ class, the Python wrapper, and your
-Python inherited class. But then if you pass a pointer of your instance to
-some C++ method, all it receives is a pointer to the C++ class.
+Python inherited class. But then if you pass a pointer of your instance to some
+C++ method, all it receives is a pointer to the C++ class.
 
 In the context of Panda, if you create an instance of a new "node" class and
 store it in the scene graph, you are really only storing the underlying C++
@@ -72,57 +71,57 @@ Let's first see an example of what **doesn't** work:
 
 .. code-block:: python
 
-    import direct.directbase.DirectStart
-    from panda3d.core import PandaNode
+   import direct.directbase.DirectStart
+   from panda3d.core import PandaNode
 
-    ## Here we define the new class, subclassing PandaNode
-    ## and adding a new variable to it.
-    class MyNewNode(PandaNode):
-        def __init__(self, aName):
-            PandaNode.__init__(self, aName)
-            self.aVariable = "A value"
+   ## Here we define the new class, subclassing PandaNode
+   ## and adding a new variable to it.
+   class MyNewNode(PandaNode):
+       def __init__(self, aName):
+           PandaNode.__init__(self, aName)
+           self.aVariable = "A value"
 
-    ## Here we are creating a new node and we -think-
-    ## we are placing it in the scene graph:
-    myNewNode = MyNewNode("MyNewNode")
-    aNodePath = aspect2d.attachNewNode(myNewNode)
+   ## Here we are creating a new node and we -think-
+   ## we are placing it in the scene graph:
+   myNewNode = MyNewNode("MyNewNode")
+   aNodePath = aspect2d.attachNewNode(myNewNode)
 
-    ## Here we -attempt- to fetch the stored variable,
-    ## but we'll get an error because aNodePath.node()
-    ## returns a PandaNode, not myNewNode!
-    print(aNodePath.node().aVariable)
+   ## Here we -attempt- to fetch the stored variable,
+   ## but we'll get an error because aNodePath.node()
+   ## returns a PandaNode, not myNewNode!
+   print(aNodePath.node().aVariable)
 
 The workaround is for an instance of the new node class to store itself on the
 PandaNode, as a Python tag:
 
 .. code-block:: python
 
-    import direct.directbase.DirectStart
-    from panda3d.core import PandaNode
+   import direct.directbase.DirectStart
+   from panda3d.core import PandaNode
 
-    ## Here we define the new class, subclassing PandaNode
-    ## storing its own instance as a python tag and
-    ## initializing a new variable.
-    class MyNewNode(PandaNode):
-        def __init__(self, aName):
-            PandaNode.__init__(self, aName)
-            PandaNode.setPythonTag(self, "subclass", self)
-            self.aVariable = "A value"
+   ## Here we define the new class, subclassing PandaNode
+   ## storing its own instance as a python tag and
+   ## initializing a new variable.
+   class MyNewNode(PandaNode):
+       def __init__(self, aName):
+           PandaNode.__init__(self, aName)
+           PandaNode.setPythonTag(self, "subclass", self)
+           self.aVariable = "A value"
 
-    ## Here we create a new node and we are aware we are
-    ## placing its -PandaNode- in the scene graph.
-    myNewNode = MyNewNode("MyNewNode")
-    aNodePath = aspect2d.attachNewNode(myNewNode)
+   ## Here we create a new node and we are aware we are
+   ## placing its -PandaNode- in the scene graph.
+   myNewNode = MyNewNode("MyNewNode")
+   aNodePath = aspect2d.attachNewNode(myNewNode)
 
-    ## Now, first we fetch the panda node:
-    thePandaNode = aNodePath.node()
+   ## Now, first we fetch the panda node:
+   thePandaNode = aNodePath.node()
 
-    ## then we fetch the instance of MyNewNode stored on it:
-    theInstanceOfMyNewNode = thePandaNode.getPythonTag("subclass")
+   ## then we fetch the instance of MyNewNode stored on it:
+   theInstanceOfMyNewNode = thePandaNode.getPythonTag("subclass")
 
-    ## and finally we fetch the variable we were
-    ## interested in all along:
-    print(theInstanceOfMyNewNode.aVariable)
+   ## and finally we fetch the variable we were
+   ## interested in all along:
+   print(theInstanceOfMyNewNode.aVariable)
 
 In the real world
 ~~~~~~~~~~~~~~~~~
@@ -131,22 +130,22 @@ In a real-world scenario, while dealing with many nodes of arbitrary types,
 things get only marginally more difficult. Ultimately you'll want to access
 attributes that you know are present on nodes of one or more new subclasses.
 For this purpose, once you have a handle to the subclass instance, you can
-either test for the type you are expecting (safe but makes the application
-more static) or you can test for the presence of the attribute itself (less
-safe but creates potentially more dynamic, expandable application).
+either test for the type you are expecting (safe but makes the application more
+static) or you can test for the presence of the attribute itself (less safe but
+creates potentially more dynamic, expandable application).
 
 For example:
 
 .. code-block:: python
 
-    ## here we setup the scene
-    aNodePath = render.attachNewNode(anInstanceOfMyNewSubclass)
-    aPandaNode = aNodePath.node()
+   ## here we setup the scene
+   aNodePath = render.attachNewNode(anInstanceOfMyNewSubclass)
+   aPandaNode = aNodePath.node()
 
-    ## here we loop over all nodes under render,
-    ## to find the one we are interested in:
-    for child in render.getChildren()
-        if child.hasPythonTag("subclass"):
+   ## here we loop over all nodes under render,
+   ## to find the one we are interested in:
+   for child in render.getChildren()
+       if child.hasPythonTag("subclass"):
            theInstanceOfASubclass = child.getPythonTag("subclass")
 
            ## here we test for its type, which is safe
