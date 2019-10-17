@@ -58,7 +58,7 @@ NodePath around it:
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
       camNode = Camera('cam')
       camNP = NodePath(camNode)

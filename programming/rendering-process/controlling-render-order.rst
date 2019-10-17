@@ -30,27 +30,27 @@ in the graphics card for pixels that would be obscured anyway. This sort of
 hardware will draw things fastest when the scene is sorted in order from the
 nearest object to the farthest object, or "front-to-back" ordering.
 
-Finally, regardless of the rendering optimizations described above, a
-particular sorting order is required to render transparency properly (in the
-absence of the specialized transparency support that only a few graphics cards
-provide). Transparent and semitransparent objects are normally rendered by
-blending their semitransparent parts with what has already been drawn to the
-framebuffer, which means that it is important that everything that will appear
-behind a semitransparent object must have already been drawn before the
-semitransparent parts of the occluding object is drawn. This implies that all
-semitransparent objects must be drawn in order from farthest away to nearest,
-or in "back-to-front" ordering, and furthermore that the opaque objects should
-all be drawn before any of the semitransparent objects.
+Finally, regardless of the rendering optimizations described above, a particular
+sorting order is required to render transparency properly (in the absence of the
+specialized transparency support that only a few graphics cards provide).
+Transparent and semitransparent objects are normally rendered by blending their
+semitransparent parts with what has already been drawn to the framebuffer, which
+means that it is important that everything that will appear behind a
+semitransparent object must have already been drawn before the semitransparent
+parts of the occluding object is drawn. This implies that all semitransparent
+objects must be drawn in order from farthest away to nearest, or in "back-to-
+front" ordering, and furthermore that the opaque objects should all be drawn
+before any of the semitransparent objects.
 
-Panda achieves these sometimes conflicting sorting requirements through the
-use of bins.
+Panda achieves these sometimes conflicting sorting requirements through the use
+of bins.
 
 Cull Bins
 ---------
 
 The CullBinManager is a global object that maintains a list of all of the cull
-bins in the world, and their properties. Initially, there are five default
-bins, and they will be rendered in the following order:
+bins in the world, and their properties. Initially, there are five default bins,
+and they will be rendered in the following order:
 
 =========== ==== ================
 Bin Name    Sort Type
@@ -65,39 +65,38 @@ unsorted    50   BT_unsorted
 When Panda traverses the scene graph each frame for rendering, it assigns each
 Geom it encounters into one of the bins defined in the CullBinManager. (The
 above lists only the default bins. Additional bins may be created as needed,
-using either the ``CullBinManager::add_bin()``
-method, or the Config.prc
+using either the ``CullBinManager::add_bin()`` method, or the Config.prc
 ``cull-bin`` variable.)
 
 You may assign a node or nodes to an explicit bin using the
-``NodePath::set_bin()`` interface. set_bin()
-requires two parameters, the bin name and an integer sort parameter; the sort
-parameter is only meaningful if the bin type is BT_fixed (more on this below),
-but it must always be specified regardless.
+``NodePath::set_bin()`` interface. set_bin() requires two parameters, the bin
+name and an integer sort parameter; the sort parameter is only meaningful if the
+bin type is BT_fixed (more on this below), but it must always be specified
+regardless.
 
-If a node is not explicitly assigned to a particular bin, then Panda will
-assign it into either the "opaque" or the "transparent" bin, according to
-whether it has transparency enabled or not. (Note that the reverse is not
-true: explicitly assigning an object into the "transparent" bin does not
-automatically enable transparency for the object.)
+If a node is not explicitly assigned to a particular bin, then Panda will assign
+it into either the "opaque" or the "transparent" bin, according to whether it
+has transparency enabled or not. (Note that the reverse is not true: explicitly
+assigning an object into the "transparent" bin does not automatically enable
+transparency for the object.)
 
 When the entire scene has been traversed and all objects have been assigned to
 bins, then the bins are rendered in order according to their sort parameter.
 Within each bin, the contents are sorted according to the bin type.
 
 If you want simple geometry that's in back of something to render in front of
-something that it logically shouldn't, add the following code to the model
-that you want in front:
+something that it logically shouldn't, add the following code to the model that
+you want in front:
 
 .. code-block:: python
 
-    model.setBin("fixed", 0)
-    model.setDepthTest(False)
-    model.setDepthWrite(False)
+   model.setBin("fixed", 0)
+   model.setDepthTest(False)
+   model.setDepthWrite(False)
 
-The above code will only work for simple models. If your model self occludes
-(parts of the model covers other parts of the model), the code will not work
-as expected. An alternative method is to use a
+The above code will only work for simple models. If your model self-occludes
+(parts of the model covers other parts of the model), the code will not work as
+expected. An alternative method is to use a
 :ref:`display region <display-regions>` with
 ``displayRegion.clearDepthActive(True)``.
 

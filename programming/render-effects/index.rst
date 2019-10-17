@@ -40,10 +40,9 @@ TexProjectorEffect
    specified nodes.
 
 RenderEffect represents render properties that must be applied as soon as they
-are encountered in the scene graph, rather than propagating down to the
-leaves. This is different from RenderAttrib, which represents properties like
-color and texture that don't do anything until they propagate down to a
-GeomNode.
+are encountered in the scene graph, rather than propagating down to the leaves.
+This is different from RenderAttrib, which represents properties like color and
+texture that don't do anything until they propagate down to a GeomNode.
 
 You should not attempt to create or modify a RenderEffect directly; instead,
 use the make() method of the appropriate kind of effect you want. This will
@@ -51,22 +50,22 @@ allocate and return a new RenderEffect of the appropriate type, and it may
 share pointers if possible. Do not modify the new RenderEffect if you wish to
 change its properties; instead, create a new one.
 
-Once you have created a render Effect, you need to decide what it should
-affect. If you have an effect that should affect everything in the scene the
-NodePath in the next line of code is "render". If you only want it to affect
-specific objects, choose the appropriate place in the scene graph.
+Once you have created a render Effect, you need to decide what it should affect.
+If you have an effect that should affect everything in the scene the NodePath in
+the next line of code is "render". If you only want it to affect specific
+objects, choose the appropriate place in the scene graph.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        nodePath.node().setEffect(<Render Effect>)
+      nodePath.node().setEffect(<Render Effect>)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        nodePath.node()->set_effect(<Render Effect>);
+      nodePath.node()->set_effect(<Render Effect>);
 
 .. toctree::
    :maxdepth: 2

@@ -30,13 +30,13 @@ much light is striking the model. Materials are used to express how much of
 the light striking the model is reflected.
 
 Panda3D separates the light striking the model into two general categories:
-nondirectional, and directional. Directional light is light that comes
-straight from a particular lamp. Because we know where it's coming from, we
-also know what direction it is coming from. Nondirectional light is light that
-maybe came from somewhere, bounced around a bit, and then eventually hit the
-model. Because we don't know exactly where it came from, we don't know what
-direction it is coming from. Panda3D handles nondirectional and directional
-light separately.
+nondirectional, and directional. Directional light is light that comes straight
+from a particular lamp. Because we know where it's coming from, we also know
+what direction it is coming from. Nondirectional light is light that maybe came
+from somewhere, bounced around a bit, and then eventually hit the model.
+Because we don't know exactly where it came from, we don't know what direction
+it is coming from. Panda3D handles nondirectional and directional light
+separately.
 
 There are four kinds of lights in Panda3D: ambient, point, diffuse, and
 directional. The ambient light only creates nondirectional light. The other
@@ -115,22 +115,22 @@ Material class and setting the relevant properties:
 
 .. code-block:: python
 
-    import direct.directbase.DirectStart
-    from panda3d.core import Material
+   import direct.directbase.DirectStart
+   from panda3d.core import Material
 
-    myMaterial = Material()
-    myMaterial.setShininess(5.0) #Make this material shiny
-    myMaterial.setAmbient((0, 0, 1, 1)) #Make this material blue
+   myMaterial = Material()
+   myMaterial.setShininess(5.0) #Make this material shiny
+   myMaterial.setAmbient((0, 0, 1, 1)) #Make this material blue
 
-    myNode = loader.loadModel("panda") #Load the model to apply the material to
-    myNode.setMaterial(myMaterial) #Apply the material to this nodePath
+   myNode = loader.loadModel("panda") #Load the model to apply the material to
+   myNode.setMaterial(myMaterial) #Apply the material to this nodePath
 
 Material Properties
 -------------------
 
-The following table details the properties available in a material, its
-effects as well as the relevant setter method. Most of these properties have
-additional get and clear methods as well.
+The following table details the properties available in a material, its effects
+as well as the relevant setter method. Most of these properties have additional
+get and clear methods as well.
 
 ========= =================================================================================================================================================================================================================================================================== ================================
 Property  Effects                                                                                                                                                                                                                                                             Setter Method
@@ -146,66 +146,62 @@ Other Material Methods
 ----------------------
 
 Besides the setter methods covered above, you can also get material properties
-using their get methods, such as
-``material.getShininess()``,
+using their get methods, such as ``material.getShininess()``,
 ``material.getDiffuse()``, etc.
 
 Properties can also be reset by using the clear methods:
-``material.clearAmbient()``,``material.clearSpecular()``,
-etc. Shininess does not have a clear method.
+``material.clearAmbient()``,``material.clearSpecular()``, etc. Shininess does
+not have a clear method.
 
 Additionally you can check if a material has a property with the has methods:
-``material.hasAmbient()``,
-``material.hasEmission()``, etc.
+``material.hasAmbient()``, ``material.hasEmission()``, etc.
 
 Materials have two other methods that have not been covered yet,
-``setLocal(<bool>)`` and
-``setTwoside(<bool>)``. setLocal controls
-whether to use camera-relative specular highlights or orthogonal specular
-highlights. This should be set to True unless an orthogonal projection camera
-is in use. setTwoside controls if lighting should appear on both sides of a
-polygon. Both these methods have equivalent get methods.
+``setLocal(<bool>)`` and ``setTwoside(<bool>)``. setLocal controls whether to
+use camera-relative specular highlights or orthogonal specular highlights. This
+should be set to True unless an orthogonal projection camera is in use.
+setTwoside controls if lighting should appear on both sides of a polygon. Both
+these methods have equivalent get methods.
 
 Inspecting and Replacing Materials
 ----------------------------------
 
-When loading a model from a file, it may be useful to dynamically inspect
-which materials are present. This is possible using methods provided on the
-NodePath object that represents the model to which the materials are applied.
+When loading a model from a file, it may be useful to dynamically inspect which
+materials are present. This is possible using methods provided on the NodePath
+object that represents the model to which the materials are applied.
 
 .. code-block:: python
 
-    # Find all materials
-    mats = car.findAllMaterials()
+   # Find all materials
+   mats = car.findAllMaterials()
 
-    # Find a specific material by name (wildcards allowed)
-    blue = car.findMaterial("blueMetal")
+   # Find a specific material by name (wildcards allowed)
+   blue = car.findMaterial("blueMetal")
 
-    # Find all materials whose name end in Metal
-    coloredMetals = car.findAllMaterial("*Metal")
+   # Find all materials whose name end in Metal
+   coloredMetals = car.findAllMaterial("*Metal")
 
-In some cases, you may want to replace a material with a different one. An
-easy way to set the material for a node is just to apply it with an override
-value, meaning it takes precedence over a material applied to any node below
-it:
-
-.. code-block:: python
-
-    red = Material()
-    #...set up red material
-    car.setMaterial(red, 1)
-
-However, this will set the material on all parts of the model. In this case,
-it will also give the wheels the same red metal look! As of Panda3D 1.10,
-there is an easy way to replace all instances of a specific material only:
+In some cases, you may want to replace a material with a different one. An easy
+way to set the material for a node is just to apply it with an override value,
+meaning it takes precedence over a material applied to any node below it:
 
 .. code-block:: python
 
-    blue = car.findMaterial("blueMetal")
-    red = Material()
-    #...set up red material
+   red = Material()
+   #...set up red material
+   car.setMaterial(red, 1)
 
-    car.replaceMaterial(blue, red)
+However, this will set the material on all parts of the model. In this case, it
+will also give the wheels the same red metal look! As of Panda3D 1.10, there is
+an easy way to replace all instances of a specific material only:
+
+.. code-block:: python
+
+   blue = car.findMaterial("blueMetal")
+   red = Material()
+   #...set up red material
+
+   car.replaceMaterial(blue, red)
 
 Related Classes
 ~~~~~~~~~~~~~~~

@@ -196,7 +196,7 @@ object.
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
       myNodePath.look_at(otherObject);
 

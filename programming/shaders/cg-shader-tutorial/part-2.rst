@@ -16,31 +16,30 @@ The Shader
 
 .. code-block:: glsl
 
-    //Cg
-    /* lesson2.sha */
+   //Cg
+   /* lesson2.sha */
 
-    void vshader(
-        out float4 l_position : POSITION)
-    {
-        l_position = float4(0.0, 0.0, 0.0, 1.0);
-    }
+   void vshader(
+       out float4 l_position : POSITION)
+   {
+       l_position = float4(0.0, 0.0, 0.0, 1.0);
+   }
 
-    void fshader(
-        out float4 o_color : COLOR)
-    {
-        o_color = float4(1.0, 0.0, 1.0, 1.0);
-    }
+   void fshader(
+       out float4 o_color : COLOR)
+   {
+       o_color = float4(1.0, 0.0, 1.0, 1.0);
+   }
 
 We'll only go through the basics of this shader for now. Also note that not
 everything in this tutorial is a Cg requirement, some of the things such as
 variable names are Panda3d requirements.
 
-The first important thing in this shader is the first line, the
-``//Cg`` comment. Removing it
-will cause the shader to fail compilation. This is a panda requirement,
-telling the engine that the shader being loaded is a Cg shader. Second, you
-see two functions; vshader and fshader. These are the respective entry points
-for the vertex and fragment shaders.
+The first important thing in this shader is the first line, the ``//Cg``
+comment. Removing it will cause the shader to fail compilation. This is a panda
+requirement, telling the engine that the shader being loaded is a Cg shader.
+Second, you see two functions; vshader and fshader. These are the respective
+entry points for the vertex and fragment shaders.
 
 The only requirements for a vertex shader is that it has to generate a
 position. In Panda, objects move in three dimensions so having an output of 3
@@ -100,53 +99,53 @@ black screen, so theres no point in providing a screenshot for this one!
 
 .. code-block:: python
 
-    #Lesson2.py
+   #Lesson2.py
 
-    import sys
-    import direct.directbase.DirectStart
+   import sys
+   import direct.directbase.DirectStart
 
-    base.setBackgroundColor(0.0, 0.0, 0.0)
-    base.disableMouse()
+   base.setBackgroundColor(0.0, 0.0, 0.0)
+   base.disableMouse()
 
-    base.camLens.setNearFar(1.0, 50.0)
-    base.camLens.setFov(45.0)
+   base.camLens.setNearFar(1.0, 50.0)
+   base.camLens.setFov(45.0)
 
-    camera.setPos(0.0, -20.0, 10.0)
-    camera.lookAt(0.0, 0.0, 0.0)
+   camera.setPos(0.0, -20.0, 10.0)
+   camera.lookAt(0.0, 0.0, 0.0)
 
-    root = render.attachNewNode("Root")
+   root = render.attachNewNode("Root")
 
-    modelCube = loader.loadModel("cube.egg")
+   modelCube = loader.loadModel("cube.egg")
 
-    cubes = []
-    for x in [-3.0, 0.0, 3.0]:
-        cube = modelCube.copyTo(root)
-        cube.setPos(x, 0.0, 0.0)
-        cubes += [ cube ]
+   cubes = []
+   for x in [-3.0, 0.0, 3.0]:
+       cube = modelCube.copyTo(root)
+       cube.setPos(x, 0.0, 0.0)
+       cubes += [ cube ]
 
-    # Load the shader from the file.
-    shader = loader.loadShader("lesson2.sha")
-    # Assign the shader to work on the root node
-    # If you remove the line below, you will see
-    # that panda is actually rendering our scene.
-    root.setShader(shader)
+   # Load the shader from the file.
+   shader = loader.loadShader("lesson2.sha")
+   # Assign the shader to work on the root node
+   # If you remove the line below, you will see
+   # that panda is actually rendering our scene.
+   root.setShader(shader)
 
-    base.accept("escape", sys.exit)
-    base.accept("o", base.oobe)
+   base.accept("escape", sys.exit)
+   base.accept("o", base.oobe)
 
-    def move(x, y, z):
-        root.setX(root.getX() + x)
-        root.setY(root.getY() + y)
-        root.setZ(root.getZ() + z)
+   def move(x, y, z):
+       root.setX(root.getX() + x)
+       root.setY(root.getY() + y)
+       root.setZ(root.getZ() + z)
 
-    base.accept("d", move, [1.0, 0.0, 0.0])
-    base.accept("a", move, [-1.0, 0.0, 0.0])
-    base.accept("w", move, [0.0, 1.0, 0.0])
-    base.accept("s", move, [0.0, -1.0, 0.0])
-    base.accept("e", move, [0.0, 0.0, 1.0])
-    base.accept("q", move, [0.0, 0.0, -1.0])
+   base.accept("d", move, [1.0, 0.0, 0.0])
+   base.accept("a", move, [-1.0, 0.0, 0.0])
+   base.accept("w", move, [0.0, 1.0, 0.0])
+   base.accept("s", move, [0.0, -1.0, 0.0])
+   base.accept("e", move, [0.0, 0.0, 1.0])
+   base.accept("q", move, [0.0, 0.0, -1.0])
 
-    run()
+   base.run()
 
 Modifying the Shader
 --------------------
@@ -161,11 +160,11 @@ script. Examine the console output carefully.
 
 .. code-block:: glsl
 
-    void vshader(
-        out float4 l_position : POSITION)
-    {
-        l_position = float3(0.0, 0.0, 0.0, 1.0);
-    }
+   void vshader(
+       out float4 l_position : POSITION)
+   {
+       l_position = float3(0.0, 0.0, 0.0, 1.0);
+   }
 
 Now this next vertex shader does exactly the same thing as the original shader
 but shows how you can assign fixed length arrays to other fixed length arrays
@@ -173,12 +172,12 @@ in Cg.
 
 .. code-block:: glsl
 
-    void vshader(
-        out float4 l_position : POSITION)
-    {
-        float4 zero = float4(0.0, 0.0, 0.0, 1.0);
-        l_position = zero;
-    }
+   void vshader(
+       out float4 l_position : POSITION)
+   {
+       float4 zero = float4(0.0, 0.0, 0.0, 1.0);
+       l_position = zero;
+   }
 
 Finally lets do some useless maths in the vertex shader. Also note how you can
 assign a value to l_position more than once. You should try making your own
@@ -186,15 +185,15 @@ modifications to the shader and see if it can compile
 
 .. code-block:: glsl
 
-    void vshader(
-        out float4 l_position : POSITION)
-    {
-        float4 zero = float4(0.0, 0.0, 0.0, 1.0);
-        zero = zero * float4(1.0, 2.0, 3.0, 4.0);
-        zero = zero * 5.0;
-        l_position = zero;
-        l_position = float4(0.0, 0.0, 0.0, 1.0);
-    }
+   void vshader(
+       out float4 l_position : POSITION)
+   {
+       float4 zero = float4(0.0, 0.0, 0.0, 1.0);
+       zero = zero * float4(1.0, 2.0, 3.0, 4.0);
+       zero = zero * 5.0;
+       l_position = zero;
+       l_position = float4(0.0, 0.0, 0.0, 1.0);
+   }
 
 After modifying the vertex shader, try to modify the fragment shader on your
 own. In the next tutorial, we will improve the shader's usefulness.

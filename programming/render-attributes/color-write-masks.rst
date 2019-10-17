@@ -10,9 +10,9 @@ Color write masks enable you to block writes to the Red, Green, Blue, or Alpha
 channels of the framebuffer. This is not a frequently-used capability, but it
 does have a few applications:
 
--  When using red-blue 3D glasses, you might want to render the red image,
-   then the blue image. (In fact, Panda uses this technique automatically when
-   you set red-blue-stereo 1 in your Config.prc file.)
+-  When using red-blue 3D glasses, you might want to render the red image, then
+   the blue image. (In fact, Panda uses this technique automatically when you
+   set red-blue-stereo 1 in your Config.prc file.)
 
 -  Battletech Battle Pods connect 3 black-and-white monitors to a single R,G,B
    video card output (really!) With the help of color write masks, you could
@@ -22,8 +22,8 @@ does have a few applications:
    Using a color mask can avoid accidentally overwriting that data.
 
 Using a color write-mask is not free. During normal rendering, each pixel
-written to the frame buffer requires a memory write. With a color-mask active,
-a memory read-modify-write cycle is needed, which is more expensive.
+written to the frame buffer requires a memory write. With a color-mask active, a
+memory read-modify-write cycle is needed, which is more expensive.
 
 By default, color write masks are off.
 
@@ -34,16 +34,15 @@ To enable writes to all the channels of the framebuffer, use this:
 
 .. code-block:: python
 
-    bits = ColorWriteAttrib.CAlpha
-    bits |= ColorWriteAttrib.CRed
-    bits |= ColorWriteAttrib.CGreen
-    bits |= ColorWriteAttrib.CBlue
-    nodePath.setAttrib(ColorWriteAttrib.make(bits))
+   bits = ColorWriteAttrib.CAlpha
+   bits |= ColorWriteAttrib.CRed
+   bits |= ColorWriteAttrib.CGreen
+   bits |= ColorWriteAttrib.CBlue
+   nodePath.setAttrib(ColorWriteAttrib.make(bits))
 
-To disable writes to one or more channels, omit that bit. You can also use:
+To disable writes to one or more channels, omit that bit. You can also use the
+following to enable all bits:
 
 .. code-block:: python
 
-    nodePath.setAttrib(ColorWriteAttrib.make(ColorWriteAttrib.CAll))
-
-To enable all bits.
+   nodePath.setAttrib(ColorWriteAttrib.make(ColorWriteAttrib.CAll))

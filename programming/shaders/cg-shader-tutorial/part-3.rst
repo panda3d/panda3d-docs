@@ -18,19 +18,19 @@ The Shader
 
 .. code-block:: glsl
 
-    void vshader(
-        uniform float4x4 mat_modelproj,
-        in float4 vtx_position : POSITION,
-        out float4 l_position : POSITION)
-    {
-        l_position = mul(mat_modelproj, vtx_position);
-    }
+   void vshader(
+       uniform float4x4 mat_modelproj,
+       in float4 vtx_position : POSITION,
+       out float4 l_position : POSITION)
+   {
+       l_position = mul(mat_modelproj, vtx_position);
+   }
 
-    void fshader(
-        out float4 o_color : COLOR)
-    {
-        o_color = float4(1.0, 0.0, 1.0, 1.0);
-    }
+   void fshader(
+       out float4 o_color : COLOR)
+   {
+       o_color = float4(1.0, 0.0, 1.0, 1.0);
+   }
 
 The vshader function is called once for every processed vertex while fshader
 is called for every drawn pixel. Because our cube has 24 vertices, vshader is

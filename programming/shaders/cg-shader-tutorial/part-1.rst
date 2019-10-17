@@ -7,114 +7,113 @@ Cg Tutorial Part 1: The Baseline Panda App
 ------------------------------------------
 
 We'll start by setting up the tutorial project folder. Create a new folder for
-the tutorial and download the `tutorial
-media <http://code.google.com/p/p3dst/source/browse/trunk>`__ then put the
-files in the new folder. The zip file contains all the models and textures you
-will need to follow this tutorial series.
+the tutorial and download the
+`tutorial media <http://code.google.com/p/p3dst/source/browse/trunk>`__ then put
+the files in the new folder. The zip file contains all the models and textures
+you will need to follow this tutorial series.
 
-For this first lesson we'll just create a basic Panda python script. We will
-be modifying this python script as we continue the other lessons. Copy the
-script below and save it to the folder.
+For this first lesson we'll just create a basic Panda python script. We will be
+modifying this python script as we continue the other lessons. Copy the script
+below and save it to the folder.
 
 .. code-block:: python
 
-    # Lesson1.py
-    import sys
+   # Lesson1.py
+   import sys
 
-    import direct.directbase.DirectStart
-    from direct.interval.LerpInterval import LerpFunc
-    from panda3d.core import Texture, TextureStage
+   import direct.directbase.DirectStart
+   from direct.interval.LerpInterval import LerpFunc
+   from panda3d.core import Texture, TextureStage
 
-    base.setBackgroundColor(0.0, 0.0, 0.0)
-    base.disableMouse()
+   base.setBackgroundColor(0.0, 0.0, 0.0)
+   base.disableMouse()
 
-    base.camLens.setNearFar(1.0, 50.0)
-    base.camLens.setFov(45.0)
+   base.camLens.setNearFar(1.0, 50.0)
+   base.camLens.setFov(45.0)
 
-    camera.setPos(0.0, -20.0, 10.0)
-    camera.lookAt(0.0, 0.0, 0.0)
+   camera.setPos(0.0, -20.0, 10.0)
+   camera.lookAt(0.0, 0.0, 0.0)
 
-    root = render.attachNewNode("Root")
-    root.setPos(0.0, 0.0, 0.0)
+   root = render.attachNewNode("Root")
+   root.setPos(0.0, 0.0, 0.0)
 
-    textureArrow = loader.loadTexture("arrow.png")
-    textureArrow.setWrapU(Texture.WMClamp)
-    textureArrow.setWrapV(Texture.WMClamp)
+   textureArrow = loader.loadTexture("arrow.png")
+   textureArrow.setWrapU(Texture.WMClamp)
+   textureArrow.setWrapV(Texture.WMClamp)
 
-    stageArrow = TextureStage("Arrow")
-    stageArrow.setSort(1)
+   stageArrow = TextureStage("Arrow")
+   stageArrow.setSort(1)
 
-    textureCircle = loader.loadTexture("circle.png")
-    textureCircle.setWrapU(Texture.WMClamp)
-    textureCircle.setWrapV(Texture.WMClamp)
+   textureCircle = loader.loadTexture("circle.png")
+   textureCircle.setWrapU(Texture.WMClamp)
+   textureCircle.setWrapV(Texture.WMClamp)
 
-    stageCircle = TextureStage("Circle")
-    stageCircle.setSort(2)
+   stageCircle = TextureStage("Circle")
+   stageCircle.setSort(2)
 
-    modelCube = loader.loadModel("cube.egg")
+   modelCube = loader.loadModel("cube.egg")
 
-    cubes = []
-    for x in [-3.0, 0.0, 3.0]:
-        cube = modelCube.copyTo(root)
-        cube.setPos(x, 0.0, 0.0)
-        cubes += [ cube ]
+   cubes = []
+   for x in [-3.0, 0.0, 3.0]:
+       cube = modelCube.copyTo(root)
+       cube.setPos(x, 0.0, 0.0)
+       cubes += [ cube ]
 
-    base.accept("escape", sys.exit)
+   base.accept("escape", sys.exit)
 
-    base.accept("o", base.oobe)
+   base.accept("o", base.oobe)
 
-    def animate(t):
-        for i in range(len(cubes)):
-            cubes[i].setH(t * (2.0 ** i))
+   def animate(t):
+       for i in range(len(cubes)):
+           cubes[i].setH(t * (2.0 ** i))
 
-    interval = LerpFunc(animate, 5.0, 0.0, 360.0)
+   interval = LerpFunc(animate, 5.0, 0.0, 360.0)
 
-    base.accept("i", interval.start)
+   base.accept("i", interval.start)
 
-    def move(x, y, z):
-        root.setX(root.getX() + x)
-        root.setY(root.getY() + y)
-        root.setZ(root.getZ() + z)
+   def move(x, y, z):
+       root.setX(root.getX() + x)
+       root.setY(root.getY() + y)
+       root.setZ(root.getZ() + z)
 
-    base.accept("d", move, [1.0, 0.0, 0.0])
-    base.accept("a", move, [-1.0, 0.0, 0.0])
-    base.accept("w", move, [0.0, 1.0, 0.0])
-    base.accept("s", move, [0.0, -1.0, 0.0])
-    base.accept("e", move, [0.0, 0.0, 1.0])
-    base.accept("q", move, [0.0, 0.0, -1.0])
+   base.accept("d", move, [1.0, 0.0, 0.0])
+   base.accept("a", move, [-1.0, 0.0, 0.0])
+   base.accept("w", move, [0.0, 1.0, 0.0])
+   base.accept("s", move, [0.0, -1.0, 0.0])
+   base.accept("e", move, [0.0, 0.0, 1.0])
+   base.accept("q", move, [0.0, 0.0, -1.0])
 
-    run()
+   base.run()
 
-If you run that script, you'll get the following output below. The controls
-are q, w, e, a, s, d for moving the camera; 'o' for moving the camera via the
-mouse, 'i' to start the cubes rotating and 'esc' to quit. You will be
-modifying this script as you follow this tutorial series.
+If you run that script, you'll get the following output below. The controls are
+q, w, e, a, s, d for moving the camera; 'o' for moving the camera via the mouse,
+'i' to start the cubes rotating and 'esc' to quit. You will be modifying this
+script as you follow this tutorial series.
 
-|Cg_lesson1_screen.png|
+.. image:: cg-lesson1-screen.png
 
 3D Models, Shaders and Hardware
 -------------------------------
 
 Now that we have the basic script, lets take a look at how 3d models, shaders
-and the 3d hardware interact with each other. Please open the file cube.egg
-with a text editor. Egg files are human readable. We will need this
-information later on to understand how the vertex shader and the fragment
-shader works. You can also see how the model looks like in panda by using the
-pview model viewer.
+and the 3d hardware interact with each other. Please open the file cube.egg with
+a text editor. Egg files are human readable. We will need this information later
+on to understand how the vertex shader and the fragment shader works. You can
+also see how the model looks like in panda by using the pview model viewer.
 
-|Cg_tut_cube1.png|
+.. image:: cg-tut-cube1.png
 
 .. code-block:: text
 
-    // A vertex entry in an egg file
-    <Group> {
-      <VertexPool> Cube {
-        <Vertex> 0 {
-          1.0 1.0 -1.0
-          <UV> { 1.0 1.0 }
-          RGBA> { 1.0 0.0 0.0 1.0 }
-        }
-        ...
+   // A vertex entry in an egg file
+   <Group> {
+     <VertexPool> Cube {
+       <Vertex> 0 {
+         1.0 1.0 -1.0
+         <UV> { 1.0 1.0 }
+         RGBA> { 1.0 0.0 0.0 1.0 }
+       }
+       ...
 
 The cube has six faces. Each face has four different vertices. Therefore this
 cube has 24 vertices. Theoretically a cube only needs eight vertices with each
@@ -198,23 +197,20 @@ the scenegraph:
 
 .. code-block:: python
 
-    root.setTexture(stageArrow, textureArrow)
-    root.setTexture(stageCircle, textureCircle)
+   root.setTexture(stageArrow, textureArrow)
+   root.setTexture(stageCircle, textureCircle)
 
 You will notice that the textures get applied to all of the cubes. Now try
 placing the textures on individual cubes:
 
 .. code-block:: python
 
-    cubes[0].setTexture(stageArrow, textureArrow)
-    cubes[1].setTexture(stageCircle, textureCircle)
-    cubes[2].setTexture(stageArrow, textureArrow)
-    cubes[2].setTexture(stageCircle, textureCircle)
+   cubes[0].setTexture(stageArrow, textureArrow)
+   cubes[1].setTexture(stageCircle, textureCircle)
+   cubes[2].setTexture(stageArrow, textureArrow)
+   cubes[2].setTexture(stageCircle, textureCircle)
 
 Now that we have a general idea of how 3D hardware and models work, lets move
 on to using shaders.
 
 :ref:`Part 2: The simplest possible shader <cg-tutorial-part-2>`
-
-.. |Cg_lesson1_screen.png| image:: cg-lesson1-screen.png
-.. |Cg_tut_cube1.png| image:: cg-tut-cube1.png

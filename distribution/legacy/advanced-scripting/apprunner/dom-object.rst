@@ -7,9 +7,9 @@ The appRunner.dom object
 
    This article describes a deprecated feature as of Panda3D 1.10.0.
 
-Another important member of base.appRunner is the "dom" object. This is the
-top of the JavaScript DOM ("Document Object Model") hierarchy, and corresponds
-to the global scope (that is, the "window" object) in JavaScript.
+Another important member of base.appRunner is the "dom" object. This is the top
+of the JavaScript DOM ("Document Object Model") hierarchy, and corresponds to
+the global scope (that is, the "window" object) in JavaScript.
 
 In general, global objects and functions in JavaScript will be visible to the
 Python code as members of appRunner.dom. In particular,
@@ -21,8 +21,8 @@ For example, to update the value in a field called "username" on form called
 
 .. code-block:: python
 
-    login = base.appRunner.dom.document.getElementById('login')
-    login.username.value = 'username'
+   login = base.appRunner.dom.document.getElementById('login')
+   login.username.value = 'username'
 
 In general, anything you can do in JavaScript, you can do in Python, via the
 base.appRunner.dom object.
