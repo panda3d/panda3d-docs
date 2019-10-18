@@ -5,15 +5,14 @@ Panda3D Rendering Process
 
 The rendering process in Panda is comprised by four classes and their
 interactions: GraphicsPipe, GraphicsEngine, GraphicsStateGaurdian, and
-GraphicsOutput. The following sections will explain the purpose of each of
-these classes in detail.
+GraphicsOutput. The following sections will explain the purpose of each of these
+classes in detail.
 
 Note that the following interfaces are for the advanced user only. If you are
-writing a simple application that only needs to open a window and perform
-basic 3-D rendering, there is no need to use any of these interfaces, as the
+writing a simple application that only needs to open a window and perform basic
+3-D rendering, there is no need to use any of these interfaces, as the
 appropriate calls to open a default window are made automatically when you
-``import direct.directbase.DirectStart`` at the start of your
-application.
+``import direct.directbase.DirectStart`` at the start of your application.
 
 At some point, however, you may wish to understand more deeply how to manage
 your windows and buffers, and to do this it will help you to understand how

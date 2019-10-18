@@ -95,20 +95,23 @@ parameter in getAnimControl():
 .. code-block:: python
 
    # you can see you just need to call
-   # actor.getAnimControl('Animation Name','Part Name')
+   # actor.getAnimControl('Animation Name', 'Part Name')
    # to get access to the AnimControl of that part.
 
-   ac = actor.getAnimControl('Animation Name','Part Name')
-   ac.isPlaying() #returns a boolean whether the animation is playing or not
-   ac.getFrame() #returns the current frame number
-   ac.getFrameRate() #returns the speed of the animation, in frames per second
-   ac.getFullFframe() #returns a floating-point frame number. Note: This number keeps counting and may exceed the total number of frames.
-   ac.getFullFrame() #returns an integer frame number. Note: This number keeps counting and may exceed the total number of frames.
-   ac.getNextFrame() #returns the number of the next frame on the queue.
-   ac.getNumFrames() #returns the total number of frames
-   ac.getPlayRate() #returns the playrate. explained further below
-   ac.loop() #starts playing the animation in a loop
-   ac.play() #starts playing the animation
-   ac.pose(frame) #poses at frame frame
-   ac.setPlayRate(rate) #sets the playrate.  explained further below
-   ac.stop() #stops the animation
+   ac = actor.getAnimControl('Animation Name', 'Part Name')
+   ac.isPlaying() # Returns a boolean whether the animation is playing or not
+   ac.getFrame() # Returns the current frame number
+   ac.getFrameRate() # Returns the speed of the animation, in frames per second
+   ac.getFullFframe() # Returns a floating-point frame number.
+   ac.getFullFrame() # Returns an integer frame number.
+   ac.getNextFrame() # Returns the number of the next frame on the queue.
+   ac.getNumFrames() # Returns the total number of frames
+   ac.getPlayRate() # Returns the playrate. explained further below
+   ac.loop() # Starts playing the animation in a loop
+   ac.play() # Starts playing the animation
+   ac.pose(frame) # Poses at frame frame
+   ac.setPlayRate(rate) # Sets the playrate.  explained further below
+   ac.stop() # Stops the animation
+
+   # Note: the numbers returned by getFullFrame and getFullFframe keep counting
+   # and may exceed the total number of frames.

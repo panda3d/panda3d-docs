@@ -49,7 +49,7 @@ necessary to replace the "in" keyword with "attribute".
    in vec4 anything;
 
    // These two attributes will be present when hardware skinning is enabled.
-   // transform_index contains indices into the p3d_TransformTable array for the four most
+   // transform_index contains indices into the p3d_TransformTable array for the four
    // most influential joints, and transform_weight the corresponding weights.
    in vec4 transform_weight;
    in uvec4 transform_index;
@@ -86,39 +86,40 @@ any shader stage.
 
 .. code-block:: glsl
 
-   // This is probably the most important uniform.  It transforms a model-space coordinate
-   // into a clip-space (ie. relative to the window) coordinate.  This is usually used in
-   // the vertex shader to transform p3d_Vertex and store the result in gl_Position.
+   // This is probably the most important uniform, transforming a model-space
+   // coordinate into a clip-space (ie. relative to the window) coordinate.  This
+   // is usually used in the vertex shader to transform p3d_Vertex and store the
+   // result in gl_Position.
    uniform mat4 p3d_ModelViewProjectionMatrix;
 
    // These are parts of the above matrix.
    uniform mat4 p3d_ModelViewMatrix;
    uniform mat4 p3d_ProjectionMatrix;
 
-   // This is the upper 3x3 of the inverse transpose of the ModelViewMatrix.  It is used
-   // to transform the normal vector into view-space coordinates.
+   // This is the upper 3x3 of the inverse transpose of the ModelViewMatrix.  It is
+   // used to transform the normal vector into view-space coordinates.
    uniform mat3 p3d_NormalMatrix;
 
-   // These were added in Panda3D 1.9.0 and complement the existing range of matrices:
+   // These were added in Panda3D 1.9.0 and complement the existing matrices:
    uniform mat4 p3d_ModelMatrix;
    uniform mat4 p3d_ViewMatrix;
    uniform mat4 p3d_ViewProjectionMatrix;
 
-   // It is possible to append Inverse, Transpose, or InverseTranspose to any of the above
-   // matrix names to get an inverse and/or transpose version of the respective matrix.
+   // It's possible to append Inverse, Transpose, or InverseTranspose to any of the
+   // above matrix names to get an inverse and/or transpose version of that matrix:
    uniform mat4 p3d_ProjectionMatrixInverse;
    uniform mat4 p3d_ProjectionMatrixTranspose;
    uniform mat4 p3d_ModelViewMatrixInverseTranspose;
 
-   // These access the Nth texture applied to the model.  The index matches up with the
-   // index used by p3d_MultiTexCoordN, p3d_TangentN, and p3d_BinormalN.
+   // These access the Nth texture applied to the model.  The index matches up with
+   // the index used by p3d_MultiTexCoordN, p3d_TangentN, and p3d_BinormalN.
    // The sampler type should be adjusted to match the type of the texture.
    uniform sampler2D p3d_Texture0;
    uniform sampler2DArray p3d_Texture1;
    uniform sampler3D p3d_Texture2;
    uniform samplerCube p3d_Texture3;
 
-   // Like above, but "Shadow" should be appended if the texture has a shadow filter.
+   // As above, but "Shadow" should be appended if the texture has a shadow filter.
    uniform sampler2DShadow p3d_Texture0;
 
    // New in 1.10.0.  Contains the matrix generated from texture pos and scale.
@@ -152,15 +153,15 @@ any shader stage.
    // plane for a given index, it is guaranteed to contain vec4(0, 0, 0, 0).
    uniform vec4 p3d_ClipPlane[...];
 
-   // New in 1.9.0.  Reports the frame time of the current frame, for animated shaders.
+   // New in 1.9.0.  Reports the frame time of the current frame, for animations.
    uniform float osg_FrameTime;
    // The time elapsed since the previous frame.
    uniform float osg_DeltaFrameTime;
-   // New in 1.10.0.  Contains the number of frames elapsed since the start of the program.
+   // New in 1.10.0. Contains the number of frames elapsed since program start.
    uniform int osg_FrameNumber;
 
-   // New in 1.9.1.  If hardware skinning is enabled, this contains the transform of each
-   // joint.  Superfluous array entries will contain the identity matrix.
+   // New in 1.9.1.  If hardware skinning is enabled, this contains the transform
+   // of each joint.  Superfluous array entries will contain the identity matrix.
    uniform mat4 p3d_TransformTable[...];
 
    // New in 1.10.  Contains information for each non-ambient light.
@@ -169,13 +170,14 @@ any shader stage.
      // Primary light color.
      vec4 color;
 
-     // Light color broken up into components, for compatibility with legacy shaders.
+     // Light color broken up into components, for compatibility with legacy
+     // shaders.  These are now deprecated.
      vec4 ambient;
      vec4 diffuse;
      vec4 specular;
 
-     // View-space position.  If w=0, this is a directional light, with
-     // the xyz being -direction.
+     // View-space position.  If w=0, this is a directional light, with the xyz
+     // being -direction.
      vec4 position;
 
      // Spotlight-only settings

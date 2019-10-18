@@ -53,10 +53,14 @@ Example
    bar = DirectWaitBar(text="", value=50, pos=(0, .4, .4))
 
    # Create 4 buttons
-   button_1 = DirectButton(text="+1", scale=0.05, pos=(-.3,.6,0), command=incBar, extraArgs=[1])
-   button_10 = DirectButton(text="+10", scale=0.05, pos=(0,.6,0), command=incBar, extraArgs=[10])
-   button_m1 = DirectButton(text="-1", scale=0.05, pos=(0.3,.6,0), command=incBar, extraArgs=[-1])
-   button_m10 = DirectButton(text="-10", scale=0.05, pos=(0.6,.6,0), command=incBar, extraArgs=[-10])
+   button_1 = DirectButton(text="+1", scale=0.05, pos=(-.3, .6, 0),
+                           command=incBar, extraArgs=[1])
+   button_10 = DirectButton(text="+10", scale=0.05, pos=(0, .6, 0),
+                            command=incBar, extraArgs=[10])
+   button_m1 = DirectButton(text="-1", scale=0.05, pos=(0.3, .6, 0),
+                            command=incBar, extraArgs=[-1])
+   button_m10 = DirectButton(text="-10", scale=0.05, pos=(0.6, .6, 0),
+                             command=incBar, extraArgs=[-10])
 
    # Run the tutorial
    base.run()

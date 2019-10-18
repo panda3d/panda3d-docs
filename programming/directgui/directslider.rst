@@ -33,15 +33,15 @@ Example
 
 .. code-block:: python
 
-    import direct.directbase.DirectStart
-    from direct.gui.DirectGui import *
+   import direct.directbase.DirectStart
+   from direct.gui.DirectGui import *
 
-    def showValue():
-        print slider['value']
+   def showValue():
+       print(slider['value'])
 
-    slider = DirectSlider(range=(0,100), value=50, pageSize=3, command=showValue)
+   slider = DirectSlider(range=(0,100), value=50, pageSize=3, command=showValue)
 
-    run()
+   base.run()
 
 "range" sets values between 0 and 100 "value" sets initial value to 50
 "pageSize" sets the step between mouseclicks to 3 (approximately) "command"

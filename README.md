@@ -24,6 +24,9 @@ guidelines:
 
 * Running text should be wrapped to an 80-character ruler. Many editors have
   a feature to do this automatically (eg. Alt+Q in Sublime Text).
+  Code may exceed this, as long as it follows our code guidelines for the
+  respective language, with a strict limit of 86 characters relative to the base
+  indent of the code block (LaTeX starts wrapping code beyond that).
 * Please configure your editor to strip extra spaces at the end of a line.
 * Use a single blank newline at the end of each file.
 * Indentation for ReStructuredText should be 3 spaces, except code blocks,

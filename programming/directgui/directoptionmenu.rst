@@ -59,9 +59,9 @@ Example
        textObject.setText(output)
 
    # Create a frame
-   menu = DirectOptionMenu(text="options", scale=0.1, items=["item1", "item2", "item3"],
-                           initialitem=2, highlightColor=(0.65, 0.65, 0.65, 1),
-                           command=itemSel)
+   menu = DirectOptionMenu(text="options", scale=0.1, command=itemSel,
+                           items=["item1", "item2", "item3"], initialitem=2,
+                           highlightColor=(0.65, 0.65, 0.65, 1))
 
    # Run the tutorial
    base.run()
@@ -107,8 +107,9 @@ Dynamic Updating of a Menu
            textObject.setText(output)
 
    # Create a frame
-   menu = DirectOptionMenu(text="options", scale=0.1, items=["item1", "item2", "item3", "Add"],
-                           initialitem=2, highlightColor=(0.65, 0.65, 0.65, 1),
+   menu = DirectOptionMenu(text="options", scale=0.1, initialitem=2,
+                           items=["item1", "item2", "item3", "Add"],
+                           highlightColor=(0.65, 0.65, 0.65, 1),
                            command=itemSel, textMayChange=1)
 
    # Procedurally select a item

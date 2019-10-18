@@ -73,7 +73,7 @@ To explain how joints work, look at the following example:
    base.camera.lookAt(0, 0, -7.5)
 
    # We are going to be drawing some lines between the anchor points and the joints
-   lines = LineNodePath(parent = render, thickness = 3.0, colorVec = Vec4(1, 0, 0, 1))
+   lines = LineNodePath(parent=render, thickness=3.0, colorVec=(1, 0, 0, 1))
    def drawLines():
        # Draws lines between the smiley and frowney.
        lines.reset()
@@ -87,8 +87,8 @@ To explain how joints work, look at the following example:
    def simulationTask(task):
        # Step the simulation and set the new positions
        world.quickStep(globalClock.getDt())
-       frowney.setPosQuat(render, frowneyBody.getPosition(), Quat(frowneyBody.getQuaternion()))
-       smiley.setPosQuat(render, smileyBody.getPosition(), Quat(smileyBody.getQuaternion()))
+       frowney.setPosQuat(render, frowneyBody.getPosition(), frowneyBody.getQuaternion())
+       smiley.setPosQuat(render, smileyBody.getPosition(), smileyBody.getQuaternion())
        drawLines()
        return task.cont
 

@@ -8,7 +8,7 @@ Patching is a process of generating the difference between 2 files:
 .. code-block:: python
 
    p = Patchfile()
-   p.build(Filename('version_1.mf'), Filename('version_2.mf'), Filename('v1_to_v2.patch'))
+   p.build('version_1.mf', 'version_2.mf', 'v1_to_v2.patch')
 
 This will generate the file v1_to_v2.patch based on the differences between
 version_1.mf and version_2.mf. Then when you have version_1.mf and

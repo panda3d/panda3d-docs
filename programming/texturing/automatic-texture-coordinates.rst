@@ -114,7 +114,7 @@ could do something like this:
 
 .. code-block:: python
 
-   teapot.setTexTransform(TextureStage.getDefault(), TransformState.makeHpr(VBase3(0, 90, 0)))
+   teapot.setTexTransform(TextureStage.getDefault(), TransformState.makeHpr((0, 90, 0)))
 
 |Teapot with a grid applied, rotated|
 

@@ -97,25 +97,41 @@ Here are some examples in code:
 
 .. code-block:: python
 
-   self.accept('k', self.__spam) # calls the function __spam() on the k key event.
-   self.accept('k-up', self.__spam, [eggs, sausage, bacon,]) # calls __spam(eggs,sausage,bacon)
-   self.accept('escape', sys.exit) # exit on esc
-   self.accept('arrow_up', self.spamAndEggs) # call spamAndEggs when up is pressed
-   self.accept('arrow_up-repeat', self.spamAndEggs) # and at autorepeat if held
-   self.accept('arrow_up-up', self.spamAndEggs) # calls when the up arrow key is released
+   # Calls the function __spam() on the k key event.
+   self.accept('k', self.__spam)
+
+   # Calls __spam(eggs, sausage, bacon) on release of the K key.
+   self.accept('k-up', self.__spam, [eggs, sausage, bacon,])
+
+   # Exit on pressing the escape button.
+   self.accept('escape', sys.exit)
+
+   # Call spamAndEggs when up is pressed and at autorepeat if held.
+   self.accept('arrow_up', self.spamAndEggs)
+   self.accept('arrow_up-repeat', self.spamAndEggs)
+
+   # Calls when the up arrow key is released.
+   self.accept('arrow_up-up', self.spamAndEggs)
 
 .. code-block:: cpp
 
-   framework->define_key("k", "call k", __spam, NULL); // Calls the function __spam(const Event* eventPtr, void* dataPtr) on the k key event.
-   framework->define_key("k", "call k", __spam, &data); // Calls the function __spam(const Event* eventPtr, void* dataPtr) on the k key event.
-   framework->define_key("escape", "sys Exit", exit(0), NULL); // Exit on esc
-   framework->define_key("arrow_up", "spam and egg", spamAndEggs, NULL); // Call spamAndEggs(const Event* eventPtr, void* dataPtr) when up is pressed
-   framework->define_key("arrow_up-repeat", "spam and egg", spamAndEggs, NULL); // and at autorepeat if held
-   framework->define_key("arrow_up-up", "spam and egg", spamAndEggs, NULL); // Calls when the up arrow key is released
+   // Calls the function __spam(const Event* eventPtr, void* dataPtr) on the k key event.
+   framework->define_key("k", "call k", __spam, nullptr);
+   framework->define_key("k", "call k", __spam, &data);
 
-Please, note then when the Panda window is minimized or Panda3D loses focus
-somehow else, "-up" event is sent for all keys. Read this forum thread to learn
-more: https://discourse.panda3d.org/t/not-a-bug-solved-bug-with-up-events/4266
+   // Call spamAndEggs(const Event* eventPtr, void* dataPtr) when up is pressed
+   // and at autorepeat if held.
+   framework->define_key("arrow_up", "spam and egg", spamAndEggs, nullptr);
+   framework->define_key("arrow_up-repeat", "spam and egg", spamAndEggs, nullptr);
+
+   // Calls when the up arrow key is released
+   framework->define_key("arrow_up-up", "spam and egg", spamAndEggs, nullptr);
+
+.. note::
+
+   When the Panda window is minimized or Panda3D loses focus, the "-up" event is
+   sent for all currently held keys. Read this forum thread to learn more:
+   https://discourse.panda3d.org/t/not-a-bug-solved-bug-with-up-events/4266
 
 Modifier keys
 -------------

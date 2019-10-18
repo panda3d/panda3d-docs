@@ -218,7 +218,7 @@ are a few examples of working with subfiles:
    barIdx = m.findSubfile("bar.txt")
    if barIdx != -1:
        # It returns -1 if it doesn't exist
-       print m.readSubfile(barIdx)
+       print(m.readSubfile(barIdx))
        m.removeSubfile(barIdx)
    m.flush()
 
@@ -309,7 +309,7 @@ You can read encrypted multifiles the same way:
    m.setEncryptionFlag(True)
    m.setEncryptionPassword("foobar")
    # Prints the contents of the multifile
-   print m.readSubfile("bar.txt")
+   print(m.readSubfile("bar.txt"))
 
 At the OS prompt, to see the contents of a password protected multifile perform
 ``multify -tvf models.mf -p "mypass"``

@@ -125,7 +125,8 @@ doMethodLater().
 
 .. code-block:: python
 
-   taskMgr.doMethodLater(0, lambda task, posival = posival: posival.start(), 'startInterval')
+   taskMgr.doMethodLater(0, lambda task, posival=posival: posival.start(),
+                         'startInterval')
 
 I have a bunch of Maya Animations of one model in different mb files. I used maya2egg to port them into panda, but only one of the animations work.
 ---------------------------------------------------------------------------------------------------------------------------------------------------

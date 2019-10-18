@@ -67,8 +67,9 @@ YesNo Dialog Example
            output = "Button Selected is: No"
        textObject.setText(output)
 
-   #create a frame
-   dialog = YesNoDialog(dialogName="YesNoCancelDialog", text="Please choose:", command=itemSel)
+   # Create a frame
+   dialog = YesNoDialog(dialogName="YesNoCancelDialog", text="Please choose:",
+                        command=itemSel)
 
    base.camera.setPos(0, -20, 0)
    base.run()

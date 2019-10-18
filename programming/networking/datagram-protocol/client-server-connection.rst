@@ -38,7 +38,7 @@ The first step is to instantiate these four classes.
    cManager = QueuedConnectionManager()
    cListener = QueuedConnectionListener(cManager, 0)
    cReader = QueuedConnectionReader(cManager, 0)
-   cWriter = ConnectionWriter(cManager,0)
+   cWriter = ConnectionWriter(cManager, 0)
 
    activeConnections = [] # We'll want to keep track of these later
 
@@ -153,14 +153,14 @@ and the correct socket ID.
 
    port_address = 9099  # same for client and server
 
-   # a valid server URL. You can also use a DNS name
+   # A valid server URL. You can also use a DNS name
    # if the server has one, such as "localhost" or "panda3d.org"
    ip_address = "192.168.0.50"
 
-   # how long until we give up trying to reach the server?
-   timeout_in_miliseconds=3000  # 3 seconds
+   # How long, in milliseconds, until we give up trying to reach the server?
+   timeout = 3000  # 3 seconds
 
-   myConnection = cManager.openTCPClientConnection(ip_address, port_address, timeout_in_miliseconds)
+   myConnection = cManager.openTCPClientConnection(ip_address, port_address, timeout)
    if myConnection:
        cReader.addConnection(myConnection)  # receive messages from server
 
