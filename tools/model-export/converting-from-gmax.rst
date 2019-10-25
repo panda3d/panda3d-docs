@@ -57,13 +57,3 @@ GO button.
 
 After a few seconds the dialog will close and your newly exported .X model
 should be in the directory where you saved it to.
-
-Bugs in the Process
--------------------
-
-The GMax converter writes slightly nonstandard .X files; it writes the name
-"TextureFileName" instead of "TextureFilename" for each texture reference. It
-may also generate hyphens in identifiers. Both of these can confuse the X file
-parser in Panda3D version 1.0.4 and earlier (this will be fixed in a future
-release of Panda). In the meantime, the temporary workaround is to edit the .X
-file by hand to rename these strings to the correct case and remove hyphens.

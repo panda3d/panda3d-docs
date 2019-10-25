@@ -77,10 +77,3 @@ exporters may be required.
 Further, panda's native egg file format supports some esoteric things. For
 example, it supports blend targets (morph animations) and motion path curves,
 which are not supported by the X file format.
-
-.. caution::
-
-   At one time, it was discovered that there were two bugs in panda's X-file
-   importer. One, it was case-sensitive and it should not be. Two, it did not
-   handle hyphens in identifiers correctly. It is unknown whether or not these
-   bugs have been fixed.
