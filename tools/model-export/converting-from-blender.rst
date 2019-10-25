@@ -3,26 +3,25 @@
 Converting from Blender
 =======================
 
-Currently, there are two ways to get data from Blender into Panda3D. The most
-popular is almost certainly the YABEE exporter.
+Currently, there are several ways to get data from Blender into Panda3D. The
+most popular is almost certainly the YABEE exporter.
 
 Option 1: The Egg export Plugins for Blender
 --------------------------------------------
 
-
 There are several Blender plugins contributed by Panda3D users.
 
-YABEE is an exporter for Blender 2.5, 2.6, 2.7 and should work with most
-recent versions of blender (2.73a at moment of writing). It's documented and
-feature complete. YABEE can export:
+YABEE is an exporter for Blender 2.5, 2.6 and 2.7, but does not work with
+Blender 2.80 at the moment of writing. It is documented and feature complete.
+YABEE can export:
 
-| ``   Meshes``
-| ``   UV layers``
-| ``   Materials and textures (Partially)``
-| ``   Armature (skeleton) animation``
-| ``   ShapeKeys (morph) animation``
-| ``   <Tag> and Collision options export through Blender's "Game logic" -> "properties"``
-| ``   Non cyclic NURBS Curves``
+-  Meshes
+-  UV layers
+-  Materials and textures (Partially)
+-  Armature (skeleton) animation
+-  ShapeKeys (morph) animation
+-  <Tag> and Collision options export through Blender's "Game logic" -> "Properties"
+-  Non-cyclic NURBS Curves
 
 https://github.com/09th/YABEE
 
@@ -46,7 +45,6 @@ at http://xoomer.virgilio.it/glabro1/panda.html
 
 Option 2: The "X" File format
 -----------------------------
-
 
 There exists a free plugin for Blender that can export "X" (DirectX native)
 file format. Save the file from blender as an X file, then load it directly
