@@ -33,7 +33,6 @@ Panda's Filename Syntax. In most cases the relative path makes more sense.
    converting-from-3d-studio-max
    converting-from-maya
    converting-from-blender
-   converting-from-softimage
    converting-from-milkshape-3d
    converting-from-gmax
    converting-from-other-formats
