@@ -4,17 +4,17 @@ This repository contains a work-in-progress conversion from the old Mediawiki fo
 
 Since this new format is still quite rough around the edges, Panda3D's main website will still be linking to the old manual.
 
-## Todo List
+## To-do List
 - [x] Base conversion utilizing [the panda-sphinx repository](https://github.com/Moguri/panda-sphinx)
-- [ ] Manual fixes for formatting issues
+- [x] Manual fixes for formatting issues
 - [ ] Welcome page (index.rst)
 - [ ] Move API Reference from Doxygen to Sphinx
 - [ ] Spellcheck/proofread
 
 ## Building The Documentation
 ```
-pip3 install -r requirements.txt
-python3 -m sphinx ./source ./build
+pip install -r requirements.txt
+make html
 ```
 
 ## Coding Style
