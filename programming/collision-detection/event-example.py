@@ -3,7 +3,6 @@ from direct.showbase.DirectObject import DirectObject
 from direct.interval.IntervalGlobal import Sequence, Func, Wait
 from panda3d.core import CollisionTraverser, CollisionHandlerEvent
 from panda3d.core import CollisionNode, CollisionSphere
-from panda3d.core import VBase4
 
 
 class World(DirectObject):
@@ -56,15 +55,14 @@ class World(DirectObject):
 
     def collide(self, collEntry):
         print("WERT: object has collided into another object")
-        Sequence(Func(collEntry.getFromNodePath().getParent().setColor,
-                      VBase4(1, 0, 0, 1)),
-                 Wait(0.2),
-                 Func(collEntry.getFromNodePath().getParent().setColor,
-                      VBase4(0, 1, 0, 1)),
-                 Wait(0.2),
-                 Func(collEntry.getFromNodePath().getParent().setColor,
-                      VBase4(1, 1, 1, 1))).start()
-
+        collParent = collEntry.getFromNodePath().getParent()
+        Sequence(
+            Func(collParent.setColor, (1, 0, 0, 1)),
+            Wait(0.2),
+            Func(collParent.setColor, (0, 1, 0, 1)),
+            Wait(0.2),
+            Func(collParent.setColor, (1, 1, 1, 1)),
+        ).start()
 
     def collide2(self, collEntry):
         print("WERT.: object is no longer colliding with another object")
@@ -82,7 +80,7 @@ class World(DirectObject):
         radius = bounds.getRadius() * 1.1
 
         # Create a collision sphere and name it something understandable.
-        collSphereStr = 'CollisionHull' + str(self.collCount) + "_" + obj.getName()
+        collSphereStr = 'CollisionHull{0}_{1}'.format(self.collCount, obj.name)
         self.collCount += 1
         cNode = CollisionNode(collSphereStr)
         cNode.addSolid(CollisionSphere(center, radius))

@@ -112,7 +112,7 @@ WM_border_color
 
       texture.setWrapU(Texture.WM_border_color)
       texture.setWrapV(Texture.WM_border_color)
-      texture.setBorderColor(VBase4(0.4, 0.5, 1, 1))
+      texture.setBorderColor((0.4, 0.5, 1, 1))
 
 .. only:: cpp
 
@@ -120,7 +120,7 @@ WM_border_color
 
       texture->set_wrap_u(Texture::WM_border_color);
       texture->set_wrap_v(Texture::WM_border_color);
-      texture->set_border_color(Colorf(0.4, 0.5, 1, 1));
+      texture->set_border_color(LColor(0.4, 0.5, 1, 1));
 
 |WM_border_color|
 
@@ -183,7 +183,7 @@ WM_mirror_once
 
       texture.setWrapU(Texture.WM_mirror_once)
       texture.setWrapV(Texture.WM_mirror_once)
-      texture.setBorderColor(VBase4(0.4, 0.5, 1, 1))
+      texture.setBorderColor((0.4, 0.5, 1, 1))
 
 .. only:: cpp
 
@@ -191,7 +191,7 @@ WM_mirror_once
 
       texture->set_wrap_u(Texture::WM_mirror_once);
       texture->set_wrap_v(Texture::WM_mirror_once);
-      texture->set_border_color(Colorf(0.4, 0.5, 1, 1));
+      texture->set_border_color(LColor(0.4, 0.5, 1, 1));
 
 |WM_mirror_once|
 

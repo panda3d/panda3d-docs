@@ -7,6 +7,7 @@ import math
 lightGrain = (0.72, 0.72, 0.45)
 darkGrain = (0.49, 0.33, 0.11)
 
+
 def chooseGrain(p, xi, yi, radius):
     """ Applies the appropriate color to pixel (xi, yi), based on
     radius, the computed distance from the center of the trunk. """
@@ -23,6 +24,7 @@ def chooseGrain(p, xi, yi, radius):
              lightGrain[1] + t * (darkGrain[1] - lightGrain[1]),
              lightGrain[2] + t * (darkGrain[2] - lightGrain[2]))
 
+
 def calcRadius(xn, yn, x, y, z, noiseAmp):
     """ Calculates radius, the distance from the center of the trunk,
     for the 3-d point (x, y, z).  The point is perturbed with noise to
@@ -32,6 +34,7 @@ def calcRadius(xn, yn, x, y, z, noiseAmp):
     yp = y + yn.noise(x, y, z) * noiseAmp
 
     return math.sqrt(xp * xp + yp * yp)
+
 
 def makeWoodgrain(texSize, texZSize, noiseScale, noiseZScale,
                   noiseAmp, ringScale):
@@ -85,9 +88,10 @@ def makeWoodgrain(texSize, texZSize, noiseScale, noiseZScale,
 
     return tex
 
+
 # Create a 3-D texture.
-tex = makeWoodgrain(texSize = 256, texZSize = 8, noiseScale = 0.4,
-                    noiseZScale = 0.8, noiseAmp = 0.12, ringScale = 40)
+tex = makeWoodgrain(texSize=256, texZSize=8, noiseScale=0.4, noiseZScale=0.8,
+                    noiseAmp=0.12, ringScale=40)
 
 # Write out the texture.  This will generate woodgrain_0.png,
 # woodgrain_1.png, and so on, in the current directory.

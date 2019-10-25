@@ -42,26 +42,9 @@ Update your code as follows:
 
 .. only:: python
 
-   .. code-block:: python
-
-      from direct.showbase.ShowBase import ShowBase
-
-      class MyApp(ShowBase):
-
-          def __init__(self):
-              ShowBase.__init__(self)
-
-              # Load the environment model.
-              self.scene = self.loader.loadModel("models/environment")
-              # Reparent the model to render.
-              self.scene.reparentTo(self.render)
-              # Apply scale and position transforms on the model.
-              self.scene.setScale(0.25, 0.25, 0.25)
-              self.scene.setPos(-8, 42, 0)
-
-
-      app = MyApp()
-      app.run()
+   .. literalinclude:: loading-the-grassy-scenery.py
+      :language: python
+      :linenos:
 
    The ShowBase procedure ``loader.loadModel()`` loads the specified file, in
    this case the environment.egg file in the models folder. The return value is
@@ -71,32 +54,9 @@ Update your code as follows:
 
 .. only:: cpp
 
-   .. code-block:: cpp
-
-      #include "pandaFramework.h"
-      #include "pandaSystem.h"
-
-      int main(int argc, char *argv[]) {
-        // Load the window and set its title.
-        PandaFramework framework;
-        framework.open_framework(argc, argv);
-        framework.set_window_title("My Panda3D Window");
-        WindowFramework *window = framework.open_window();
-
-        // Load the environment model.
-        NodePath scene = window->load_model(framework.get_models(), "models/environment");
-        // Reparent the model to render.
-        scene.reparent_to(window->get_render());
-        // Apply scale and position transforms to the model.
-        scene.set_scale(0.25f, 0.25f, 0.25f);
-        scene.set_pos(-8, 42, 0);
-
-        // Run the engine.
-        framework.main_loop();
-        // Shut down the engine when done.
-        framework.close_framework();
-        return 0;
-      }
+   .. literalinclude:: loading-the-grassy-scenery.cxx
+      :language: cpp
+      :linenos:
 
    The ShowBase procedure ``window->load_model(framework.get_models(), "path")``
    loads the specified file, in this case the environment.egg file in the models
@@ -110,10 +70,8 @@ Run the Program
 
 Go ahead and run the program. You should see this:
 
-|Tutorial1.jpg|
+.. image:: tutorial1.jpg
 
 The rock and tree appear to be hovering. The camera is slightly below ground,
 and back-face culling is making the ground invisible to us. If we reposition the
 camera, the terrain will look better.
-
-.. |Tutorial1.jpg| image:: tutorial1.jpg

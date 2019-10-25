@@ -182,7 +182,7 @@ of gray, there will be a smooth blending between the colors.
 
       ts = TextureStage('ts')
       ts.setMode(TextureStage.MBlend)
-      ts.setColor(Vec4(1, 0, 0, 1))
+      ts.setColor((1, 0, 0, 1))
       smiley.setTexture(ts, tex)
 
 .. only:: cpp
@@ -191,7 +191,7 @@ of gray, there will be a smooth blending between the colors.
 
       PT(TextureStage) ts = new TextureStage("ts");
       ts->set_mode(TextureStage::M_blend);
-      ts->set_color(LVector4f(1, 0, 0, 1));
+      ts->set_color(LColor(1, 0, 0, 1));
       smiley.set_texture(ts, tex);
 
 |Blend mode, with a red image|
@@ -202,13 +202,13 @@ And we can change the color of the decal at will, simply with:
 
    .. code-block:: python
 
-      ts.setColor(Vec4(0, 0, 1, 1))
+      ts.setColor((0, 0, 1, 1))
 
 .. only:: cpp
 
    .. code-block:: cpp
 
-      ts->set_color(LVector4f(0, 0, 1, 1));
+      ts->set_color(LColor(0, 0, 1, 1));
 
 |Blend mode, with a blue image|
 

@@ -281,7 +281,7 @@ necessary to supply some user-provided data to the shader. For this, you need
 
    .. code-block:: cpp
 
-      myModel.set_shader_input("tint", LVector4f(1.0, 0.5, 0.5, 1.0));
+      myModel.set_shader_input("tint", LVector4(1.0, 0.5, 0.5, 1.0));
 
 The method ``set_shader_input()`` stores data that can be accessed by the
 shader. It is possible to store data of type ``Texture``, ``NodePath``, and any
@@ -335,7 +335,7 @@ and apply it to a camera:
 
       CPT(ShaderAttrib) attrib = ShaderAttrib::make();
       attrib = attrib.set_shader(Shader::load("myshader.sha"));
-      attrib = attrib.set_shader_input("tint", Vec4(1.0, 0.5, 0.5, 1.0));
+      attrib = attrib.set_shader_input("tint", LVector4(1.0, 0.5, 0.5, 1.0));
       camera.set_initial_state(attrib);
 
 Be careful: attribs are immutable objects. So when you apply a function like

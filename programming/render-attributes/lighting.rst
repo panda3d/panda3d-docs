@@ -168,7 +168,7 @@ important, but its orientation doesn't matter.
    .. code-block:: python
 
       plight = PointLight('plight')
-      plight.setColor(VBase4(0.2, 0.2, 0.2, 1))
+      plight.setColor((0.2, 0.2, 0.2, 1))
       plnp = render.attachNewNode(plight)
       plnp.setPos(10, 20, 0)
       render.setLight(plnp)
@@ -178,9 +178,9 @@ important, but its orientation doesn't matter.
    .. code-block:: cpp
 
       PT(PointLight) plight = new PointLight("sun");
-      plight->set_color(LVecBase4f(.7,.7,.7,1));
+      plight->set_color(LColor(.7, .7, .7, 1));
       NodePath plnp = render.attach_new_node(plight);
-      plnp.set_pos(500,500,500);
+      plnp.set_pos(500, 500, 500);
       render.set_light(plnp);
 
 Attenuation
@@ -193,7 +193,6 @@ linear, and quadratic.
 .. code-block:: python
 
    plight.setAttenuation((c, l, q))
-
 
 The default values for these constants are (1, 0, 0), respectively. This means
 that the intensity of a light is by default not dependent on the distance to the
@@ -233,7 +232,7 @@ rotate it to face in a different direction.
    .. code-block:: python
 
       dlight = DirectionalLight('dlight')
-      dlight.setColor(VBase4(0.8, 0.8, 0.5, 1))
+      dlight.setColor((0.8, 0.8, 0.5, 1))
       dlnp = render.attachNewNode(dlight)
       dlnp.setHpr(0, -60, 0)
       render.setLight(dlnp)
@@ -244,7 +243,7 @@ rotate it to face in a different direction.
 
       PT(DirectionalLight) d_light;
       d_light = new DirectionalLight("my d_light");
-      d_light->set_color(LVecBase4f(0.8, 0.8, 0.5, 1));
+      d_light->set_color(LColor(0.8, 0.8, 0.5, 1));
       NodePath dlnp = window->get_render().attach_new_node(d_light);
       dlnp.set_hpr(-30, -60, 0);
       window->get_render().set_light(dlnp);
@@ -266,7 +265,7 @@ overpower the other lights in the scene.
 .. code-block:: python
 
    alight = AmbientLight('alight')
-   alight.setColor(VBase4(0.2, 0.2, 0.2, 1))
+   alight.setColor((0.2, 0.2, 0.2, 1))
    alnp = render.attachNewNode(alight)
    render.setLight(alnp)
 
@@ -286,7 +285,7 @@ kinds of lights, which are two words. Thus, the class name is correctly spelled
 .. code-block:: python
 
    slight = Spotlight('slight')
-   slight.setColor(VBase4(1, 1, 1, 1))
+   slight.setColor((1, 1, 1, 1))
    lens = PerspectiveLens()
    slight.setLens(lens)
    slnp = render.attachNewNode(slight)

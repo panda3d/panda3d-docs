@@ -34,7 +34,7 @@ to do this is to walk through all the GeomNodes like this:
    .. code-block:: python
 
       geomNodeCollection = model.findAllMatches('**/+GeomNode')
-      for nodePath in geomNodeCollection.asList():
+      for nodePath in geomNodeCollection:
           geomNode = nodePath.node()
           processGeomNode(geomNode)
 
@@ -137,8 +137,8 @@ use vdata.hasColumn() to test this).
           vertex = GeomVertexReader(vdata, 'vertex')
           texcoord = GeomVertexReader(vdata, 'texcoord')
           while not vertex.isAtEnd():
-              v = vertex.getData3f()
-              t = texcoord.getData2f()
+              v = vertex.getData3()
+              t = texcoord.getData2()
               print("v = %s, t = %s" % (repr(v), repr(t)))
 
 .. only:: cpp
@@ -149,8 +149,8 @@ use vdata.hasColumn() to test this).
         GeomVertexReader vertex(vdata, "vertex");
         GeomVertexReader texcoord(vdata, "texcoord");
         while (!vertex.is_at_end()) {
-          LVector3f v = vertex.get_data3f();
-          LVector3f t = texcoord.get_data2f();
+          LVector3 v = vertex.get_data3();
+          LVector3 t = texcoord.get_data2();
           nout << "V = " << v << "T = " << t << endl;
         }
       }
@@ -181,7 +181,7 @@ vertex table, as above).
               for i in range(s, e):
                   vi = prim.getVertex(i)
                   vertex.setRow(vi)
-                  v = vertex.getData3f()
+                  v = vertex.getData3()
                   print("prim %s has vertex %s: %s" % (p, vi, repr(v)))
 
 .. only:: cpp
@@ -194,13 +194,14 @@ vertex table, as above).
         CPT(GeomPrimitive) prim = orig_prim->decompose();
 
         for (size_t k = 0; k < prim->get_num_primitives(); ++k) {
-        int s = prim->get_primitive_start(k);
-        int e = prim->get_primitive_end(k);
-        for (int i = s; i < e; ++i) {
-          int vi = prim->get_vertex(b);
-          vertex.set_row(vi);
-          LVector3f v = vertex.get_data3f();
-          nout << "prim " << k << " has vertex " << vi <<": " << v << endl;
+          int s = prim->get_primitive_start(k);
+          int e = prim->get_primitive_end(k);
+          for (int i = s; i < e; ++i) {
+            int vi = prim->get_vertex(b);
+            vertex.set_row(vi);
+            LVector3 v = vertex.get_data3();
+            nout << "prim " << k << " has vertex " << vi <<": " << v << endl;
+          }
         }
       }
 

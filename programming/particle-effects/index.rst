@@ -94,9 +94,9 @@ Particle Effects
       // negative values emit the particles toward the sphere center
       sphere_emitter->set_amplitude(1);
       sphere_emitter->set_amplitude_spread(0);
-      sphere_emitter->set_offset_force(LVector3f(0, 0, 0));
-      sphere_emitter->set_explicit_launch_vector(LVector3f(1, 0, 0));
-      sphere_emitter->set_radiate_origin(LPoint3f(0, 0, 0));
+      sphere_emitter->set_offset_force(LVector3(0, 0, 0));
+      sphere_emitter->set_explicit_launch_vector(LVector3(1, 0, 0));
+      sphere_emitter->set_radiate_origin(LPoint3(0, 0, 0));
 
    Renderer
    ~~~~~~~~
@@ -123,8 +123,8 @@ Particle Effects
       pt_particle_rend->set_alpha_mode(BaseParticleRenderer::PR_ALPHA_OUT);
       pt_particle_rend->set_user_alpha(1);
       pt_particle_rend->set_point_size(2.0);
-      pt_particle_rend->set_start_color(Colorf(1, 0, 0, 1)); // alpha value is ignored
-      pt_particle_rend->set_end_color(Colorf(1, 1, 0, 1));
+      pt_particle_rend->set_start_color(LColor(1, 0, 0, 1)); // alpha value is ignored
+      pt_particle_rend->set_end_color(LColor(1, 1, 0, 1));
       pt_particle_rend->set_blend_type(PointParticleRenderer::PointParticleBlendType::PP_BLEND_LIFE);
       pt_particle_rend->set_blend_method(BaseParticleRenderer::ParticleRendererBlendMethod::PP_BLEND_LINEAR);
       //pt_particle_rend->set_color_blend_mode(ColorBlendAttrib::Mode::M_inv_subtract);

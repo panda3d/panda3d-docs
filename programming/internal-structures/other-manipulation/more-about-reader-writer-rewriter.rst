@@ -51,19 +51,19 @@ the value of the data in the current column, converted to the requested type.
 The 'f' suffix indicates a floating-point value, while 'i' indicates an integer
 value; the digit indicates the number of components you expect to receive.
 
-For instance, getData2f() always returns a VBase2, regardless of the type of
-data actually stored in the column. If the column contains a 2-component value
-such as a 2-D texture coordinate, then the returned value will represent the (U,
-V) value in that column. However, if the column type does not match the
-requested type, a conversion is quietly made; for instance, if you call
-getData2f() but the column actually contains a 3-D texture coordinate, the third
-component will be omitted from the return value, which will still be a VBase2.
+For instance, getData2() always returns a VBase2, regardless of the type of data
+actually stored in the column. If the column contains a 2-component value such
+as a 2-D texture coordinate, then the returned value will represent the (U, V)
+value in that column. However, if the column type does not match the requested
+type, a conversion is quietly made; for instance, if you call getData2() but the
+column actually contains a 3-D texture coordinate, the third component will be
+omitted from the return value, which will still be a VBase2.
 
 Similarly, the setData and addData family of functions supported by
 GeomVertexWriter accept a value in the indicated format, and convert it to
-whatever format is required by the column. So if you call setData3f(), and the
+whatever format is required by the column. So if you call setData3(), and the
 column has three components, you will set all three components with the x, y, z
-parameters of setData3f(); but if the column has only two components, only the
+parameters of setData3(); but if the column has only two components, only the
 x, y parameters will be used to set those two components, and the third
 parameter will be ignored.
 
@@ -130,10 +130,10 @@ preserving the X and Y components, you might write a loop such as:
 
    vertex = GeomVertexRewriter(vdata, 'vertex')
    while not vertex.isAtEnd():
-       v = vertex.getData3f()
-       vertex.setData3f(v[0], v[1], 0.0)
+       v = vertex.getData3()
+       vertex.setData3(v[0], v[1], 0.0)
 
-Note that this example code calls getData3f() and setData3f() exactly once
+Note that this example code calls getData3() and setData3() exactly once
 through each iteration, which increments the current read row and current write
 row, respectively; so the current read row and current write row are kept in
 sync with each other.

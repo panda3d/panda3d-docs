@@ -248,7 +248,7 @@ F1 key:
             // Static world stuff.
             get_physics_world()->set_gravity(0, 0, -9.8);
 
-            PT(BulletPlaneShape) floor_shape = new BulletPlaneShape(*new LVecBase3f(0, 0, 1), 1);
+            PT(BulletPlaneShape) floor_shape = new BulletPlaneShape(LVecBase3(0, 0, 1), 1);
             PT(BulletRigidBodyNode) floor_rigid_node = new BulletRigidBodyNode("Ground");
 
             floor_rigid_node->add_shape(floor_shape);
@@ -258,7 +258,7 @@ F1 key:
             get_physics_world()->attach(floor_rigid_node);
 
             // Dynamic world stuff.
-            PT(BulletBoxShape) box_shape = new BulletBoxShape(*new LVecBase3f(0.5, 0.5, 0.5));
+            PT(BulletBoxShape) box_shape = new BulletBoxShape(LVecBase3(0.5, 0.5, 0.5));
             PT(BulletRigidBodyNode) box_rigid_node = new BulletRigidBodyNode("Box");
 
             box_rigid_node->set_mass(1.0); // Gravity affects this rigid node.

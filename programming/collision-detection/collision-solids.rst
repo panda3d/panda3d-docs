@@ -272,7 +272,7 @@ the AABB.
 
 .. code-block:: python
 
-   box = CollisionBox(Point3(minx,miny,minz),Point3(maxx,maxy,maxz))
+   box = CollisionBox(Point3(minx, miny, minz),Point3(maxx, maxy, maxz))
 
 Collision System Chart
 ----------------------
@@ -291,13 +291,13 @@ rows in the table below.
 In the table below, the solid is listed without its "Collision" preface, e.g.,
 "Sphere" instead of "CollisionSphere", to save on space.
 
-================ ============= ============= ========= ============ ========== =========== ============
-**From \\ Into** **FloorMesh** **InvSphere** **Plane** **Polygon**  **Sphere** **Capsule** **Box**
-Line             ''' '''       **Yes**       **Yes**   **Yes**      **Yes**    **Yes**     **1.10**
-Parabola         ''' '''       ''' '''       **Yes**   **Yes**      **Yes**    **Yes**     ''' '''
-Ray              **Yes\***     **Yes**       **Yes**   **Yes**      **Yes**    **Yes**     **Yes**
-Segment          ''' '''       **Yes**       **Yes**   **Yes**      **Yes**    **Yes**     **Yes**
-Sphere           **Yes**       **Yes**       **Yes**   **Yes**      **Yes**    **Yes**     **Yes**
-Box              ''' '''       ''' '''       **1.10**  ''' 1.10 ''' *' Yes*'   ''' '''     ''' 1.10 '''
-Capsule          ''' '''       ''' '''       **1.10**  ''' '''      *' 1.10*'  **1.10**    ''' 1.10 '''
-================ ============= ============= ========= ============ ========== =========== ============
+================ ============= ============= ========= =========== ========== =========== ========
+**From \\ Into** **FloorMesh** **InvSphere** **Plane** **Polygon** **Sphere** **Capsule** **Box**
+Line                           **Yes**       **Yes**   **Yes**     **Yes**    **Yes**     **1.10**
+Parabola                                     **Yes**   **Yes**     **Yes**    **Yes**
+Ray              **Yes\***     **Yes**       **Yes**   **Yes**     **Yes**    **Yes**     **Yes**
+Segment                        **Yes**       **Yes**   **Yes**     **Yes**    **Yes**     **Yes**
+Sphere           **Yes**       **Yes**       **Yes**   **Yes**     **Yes**    **Yes**     **Yes**
+Box                                          **1.10**  **1.10**    **Yes**                **1.10**
+Capsule                                      **1.10**              **1.10**   **1.10**    **1.10**
+================ ============= ============= ========= =========== ========== =========== ========

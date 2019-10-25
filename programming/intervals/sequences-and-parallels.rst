@@ -57,8 +57,8 @@ Sequence:
    s = OnscreenImage('wav_is_playing.png')
    s.reparentTo(aspect2d)
    s.setTransparency(1)
-   fadeIn = s.colorScaleInterval(3, Vec4(1,1,1,1), Vec4(1,1,1,0))
-   fadeOut = s.colorScaleInterval(3, Vec4(1,1,1,0))
+   fadeIn = s.colorScaleInterval(3, (1, 1, 1, 1), (1, 1, 1, 0))
+   fadeOut = s.colorScaleInterval(3, (1, 1, 1, 0))
    sound = loader.loadSfx('sound.wav')
 
    Sequence(

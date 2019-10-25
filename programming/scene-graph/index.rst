@@ -113,7 +113,7 @@ type, which you must invoke on the node itself. Here are some assorted examples:
 
       // LODNODE METHODS:
       myNodePath.node()->add_switch(1000, 100);
-      myNodePath.node()->set_center(LPoint3f(0, 5, 0));
+      myNodePath.node()->set_center(LPoint3(0, 5, 0));
 
       // CAMERA NODE METHODS:
       myNodePath.node()->set_lens(new PerspectiveLens());

@@ -15,14 +15,14 @@ exactly six 2-D images, which are folded together to make a cube.
 The six images of a cube map are numbered from 0 to 5, and each image
 corresponds to one particular face of the cube:
 
-======= =================================
-image 0 The *+u* (or *+x*) face (right)
-image 1 The *-u* (or *-x*) face (left)
-image 2 The *+v* (or *+y*) face (forward)
-image 3 The *-v* (or *-y*) face (back)
-image 4 The *+w* (or *+z*) face (up)
-image 5 The *-w* (or *-z*) face (down)
-======= =================================
+=========== =================================
+image 0     The *+u* (or *+x*) face (right)
+image 1     The *-u* (or *-x*) face (left)
+image 2     The *+v* (or *+y*) face (forward)
+image 3     The *-v* (or *-y*) face (back)
+image 4     The *+w* (or *+z*) face (up)
+image 5     The *-w* (or *-z*) face (down)
+=========== =================================
 
 By +x face, we mean the face of the cube farthest along the positive X axis. In
 Panda3D's default Z-up coordinate system, this is the right face. Similarly, the
@@ -33,12 +33,14 @@ and -u faces, though it is often easier to think of them as +x and -x.
 
 The faces are laid out according to the following diagram:
 
-|The arrangement of the six faces of a cube map|
+.. image:: exploded-cube-map.png
+   :alt: The arrangement of the six faces of a cube map
 
 Imagine that you cut out the above diagram and folded it into a cube. You'd end
 up with something like this:
 
-|A solid-mapped cube|
+.. image:: mapped-cube-map-solid.png
+   :alt: A solid-mapped cube
 
 Note that, when you hold the cube so that the axis indications for each face are
 in the appropriate direction (as in the picture above), several of the faces are
@@ -54,7 +56,8 @@ point within the 3-D texture coordinate space is colored according to the face
 of the cube it comes closest to. A sphere model with the cube map applied to it
 would pick up the same six faces:
 
-|A wireframe cube, showing the internal mapped space|
+.. image:: mapped-cube-map.png
+   :alt: A wireframe cube, showing the internal mapped space
 
 Note that, while a 3-D texture assigns a different pixel in the texture to every
 point within a volume, a cube map assigns a different pixel in the texture to
@@ -72,7 +75,3 @@ with the image sequence number, which in the case of a cube map will be a digit
 from 0 to 5. The above example, then, will load the six images "cubemap_0.png",
 "cubemap_1.png", "cubemap_2.png", "cubemap_3.png", "cubemap_4.png", and
 "cubemap_5.png", and assemble them into one cube map.
-
-.. |The arrangement of the six faces of a cube map| image:: exploded-cube-map.png
-.. |A solid-mapped cube| image:: mapped-cube-map-solid.png
-.. |A wireframe cube, showing the internal mapped space| image:: mapped-cube-map.png

@@ -118,7 +118,7 @@ class World(DirectObject):
         taskMgr.add(self.Mover,"Mover")
 
         self.dirnlight1 = DirectionalLight("dirn_light1")
-        self.dirnlight1.setColor(Vec4(1.0, 1.0, 1.0, 1.0))
+        self.dirnlight1.setColor((1.0, 1.0, 1.0, 1.0))
         self.dirnlightnode1 = render.attachNewNode(self.dirnlight1)
         self.dirnlightnode1.setHpr(0, 317, 0)
         render.setLight(self.dirnlightnode1)

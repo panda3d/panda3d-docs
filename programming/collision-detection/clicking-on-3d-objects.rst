@@ -87,23 +87,24 @@ Now assume that the function ``myFunction()`` is set up to be called for the
 
           # This makes the ray's origin the camera and makes the ray point
           # to the screen coordinates of the mouse.
-          pickerRay.setFromLens(base.camNode, mpos.getX(), mpos.getY())
+          pickerRay.setFromLens(base.camNode, mpos.x, mpos.y)
 
 .. only:: cpp
 
    .. code-block:: cpp
 
       void myFunction() {
-          if (!mouseWatcher->has_mouse()) {
-              // The mouse is probably outside the screen.
-              return;
-          }
-          // This gives up the screen coordinates of the mouse.
-          LPoint2f mpos = mouseWatcher->get_mouse();
+        if (!mouseWatcher->has_mouse()) {
+          // The mouse is probably outside the screen.
+          return;
+        }
 
-          // This makes the ray's origin the camera and makes the ray point
-          // to the screen coordinates of the mouse.
-          pickerRay->set_from_lens(window->get_camera(0), mpos.get_x(), mpos.get_y());
+        // This gives up the screen coordinates of the mouse.
+        LPoint2 mpos = mouseWatcher->get_mouse();
+
+        // This makes the ray's origin the camera and makes the ray point
+        // to the screen coordinates of the mouse.
+        pickerRay->set_from_lens(window->get_camera(0), mpos.get_x(), mpos.get_y());
       }
 
 After this, you now call the traverser like any other collision, get the
@@ -111,15 +112,15 @@ closest object and "pick" it.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        def myFunction():
-           mpos = base.mouseWatcherNode.getMouse()
-           pickerRay.setFromLens(base.camNode, mpos.getX(), mpos.getY())
+      def myFunction():
+          mpos = base.mouseWatcherNode.getMouse()
+          pickerRay.setFromLens(base.camNode, mpos.getX(), mpos.getY())
 
-           myTraverser.traverse(render)
-           # Assume for simplicity's sake that myHandler is a CollisionHandlerQueue.
-           if myHandler.getNumEntries() > 0:
+          myTraverser.traverse(render)
+          # Assume for simplicity's sake that myHandler is a CollisionHandlerQueue.
+          if myHandler.getNumEntries() > 0:
               # This is so we get the closest object
               myHandler.sortEntries()
               pickedObj = myHandler.getEntry(0).getIntoNodePath()
@@ -140,7 +141,6 @@ simplicity, we shall restrict this example to ``findNetTag()``.)
 .. only:: python
 
    Now you can edit ``myFunction()`` to look like this:
-
 
    .. code-block:: python
 

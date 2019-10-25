@@ -42,8 +42,8 @@ Example for closest hit:
 
    .. code-block:: cpp
 
-      LPoint3f pFrom = LPoint3f(0, 0, 0);
-      LPoint3f pTo = LPoint3f(10, 0, 0);
+      LPoint3 pFrom(0, 0, 0);
+      LPoint3 pTo(10, 0, 0);
       BulletAllHitsRayResult result = world->ray_test_closest(pFrom, pTo);
 
 Example for all hits:
@@ -71,8 +71,8 @@ Example for all hits:
 
    .. code-block:: cpp
 
-      LPoint3f pFrom = LPoint3f(0, 0, 0);
-      LPoint3f pTo = pFrom + LVector3d(1, 0, 0) * 99999;
+      LPoint3 pFrom = LPoint3(0, 0, 0);
+      LPoint3 pTo = pFrom + LVector3d(1, 0, 0) * 99999;
       BulletAllHitsRayResult result = world->ray_test_all(pFrom, pTo);
 
 Often users want to pick or select an object by clicking on it with the mouse.

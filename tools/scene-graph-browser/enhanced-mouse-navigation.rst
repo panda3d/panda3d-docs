@@ -12,7 +12,7 @@ clicking the middle mouse button changes the pivot point it uses to rotate
 around the environment. The middle mouse button will also move the camera
 depending on where the cursor is on the screen.
 
-|directtools2.jpg|
+.. image:: directtools2.jpg
 
 ==================================== ==============================================
 Middle Mouse Click                   Sets pivot point for rotating around the world
@@ -65,5 +65,3 @@ Shift + U          Upright camera                                               
 [                  Undo                                                          <                   Shrink widget
 ]                  Redo                                                          >                   Expand widget
 ================== ============================================================= =================== ==================================================
-
-.. |directtools2.jpg| image:: directtools2.jpg

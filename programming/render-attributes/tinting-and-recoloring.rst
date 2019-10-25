@@ -22,7 +22,7 @@ loader:
 Method                              Explanation
 =================================== ========================================================================================================================================================
 ColorAttrib.makeVertex()            Used by the model loader to indicate that the model has vertex colors stored in its vertex arrays.
-ColorAttrib.makeFlat(Vec4(R,G,B,A)) Used by the model loader to indicate that the model has a single flat color.
+ColorAttrib.makeFlat((R,G,B,A))     Used by the model loader to indicate that the model has a single flat color.
 ColorAttrib.makeOff()               Used by the model loader to indicate that no particular color was specified. Essentially the same as flat white, but possibly a little faster to render.
 =================================== ========================================================================================================================================================
 

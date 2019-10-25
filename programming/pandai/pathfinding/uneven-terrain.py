@@ -9,11 +9,11 @@
 # It uses PandAI pathfinding to move the character.
 
 import direct.directbase.DirectStart
-from panda3d.core import CollisionTraverser,CollisionNode
-from panda3d.core import CollisionHandlerQueue,CollisionRay
+from panda3d.core import CollisionTraverser, CollisionNode
+from panda3d.core import CollisionHandlerQueue, CollisionRay
 from panda3d.core import Filename
-from panda3d.core import PandaNode,NodePath,Camera,TextNode
-from panda3d.core import Vec3,Vec4,BitMask32
+from panda3d.core import PandaNode, NodePath, Camera, TextNode
+from panda3d.core import Vec3, BitMask32
 from direct.gui.OnscreenText import OnscreenText
 from direct.actor.Actor import Actor
 from direct.task.Task import Task

@@ -31,7 +31,7 @@ Sphere Shape
 ------------
 
 The most basic collision shape, a sphere with radius radius. The sphere is
-centered around it's origin.
+centered around its origin.
 
 .. only:: python
 
@@ -73,7 +73,7 @@ used for static objects.
 
         #include "bulletPlaneShape.h"
         ...
-        LVecBase3f normal(0, 0, 1);
+        LVecBase3 normal(0, 0, 1);
         double d = 1;
         PT(BulletPlaneShape) floor_shape = new BulletPlaneShape(normal, d);
         ...
@@ -104,7 +104,7 @@ will be twice the half extents, e. g. from -dx to +dx on the local x-axis.
         double dx = 0.5;
         double dy = 0.5;
         double dz = 0.5;
-        PT(BulletBoxShape) box_shape = new BulletBoxShape(LVecBase3f(dx,dy,dz));
+        PT(BulletBoxShape) box_shape = new BulletBoxShape(LVecBase3(dx, dy, dz));
 
 Cylinder Shape
 --------------
@@ -122,7 +122,7 @@ example creates two cylinder shapes, both with radius 0.5 and height 1.4.
         radius = 0.5
         height = 1.4
         shape1 = BulletCylinderShape(radius, height, ZUp)
-        shape2 = BulletCylinderShape(Vec3(radius, 0, 0.5*height), ZUp)
+        shape2 = BulletCylinderShape(Vec3(radius, 0, 0.5 * height), ZUp)
 
 .. only:: cpp
 
@@ -206,35 +206,35 @@ before mentioned table.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        shape1 = BulletBoxShape(Vec3(1.3, 1.3, 0.2))
-        shape2 = BulletBoxShape(Vec3(0.1, 0.1, 0.5))
-        shape3 = BulletBoxShape(Vec3(0.1, 0.1, 0.5))
-        shape4 = BulletBoxShape(Vec3(0.1, 0.1, 0.5))
-        shape5 = BulletBoxShape(Vec3(0.1, 0.1, 0.5))
+      shape1 = BulletBoxShape((1.3, 1.3, 0.2))
+      shape2 = BulletBoxShape((0.1, 0.1, 0.5))
+      shape3 = BulletBoxShape((0.1, 0.1, 0.5))
+      shape4 = BulletBoxShape((0.1, 0.1, 0.5))
+      shape5 = BulletBoxShape((0.1, 0.1, 0.5))
 
-        bodyNP.node().addShape(shape1, TransformState.makePos(Point3(0, 0, 0.1)))
-        bodyNP.node().addShape(shape2, TransformState.makePos(Point3(-1, -1, -0.5)))
-        bodyNP.node().addShape(shape3, TransformState.makePos(Point3(-1, 1, -0.5)))
-        bodyNP.node().addShape(shape4, TransformState.makePos(Point3(1, -1, -0.5)))
-        bodyNP.node().addShape(shape5, TransformState.makePos(Point3(1, 1, -0.5)))
+      bodyNP.node().addShape(shape1, TransformState.makePos(Point3(0, 0, 0.1)))
+      bodyNP.node().addShape(shape2, TransformState.makePos(Point3(-1, -1, -0.5)))
+      bodyNP.node().addShape(shape3, TransformState.makePos(Point3(-1, 1, -0.5)))
+      bodyNP.node().addShape(shape4, TransformState.makePos(Point3(1, -1, -0.5)))
+      bodyNP.node().addShape(shape5, TransformState.makePos(Point3(1, 1, -0.5)))
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        PT(BulletBoxShape) shape1 = new BulletBoxShape(LVecBase3f(0.1,0.1,0.5));
-        PT(BulletBoxShape) shape2 = new BulletBoxShape(LVecBase3f(0.1,0.1,0.5));
-        PT(BulletBoxShape) shape3 = new BulletBoxShape(LVecBase3f(0.1,0.1,0.5));
-        PT(BulletBoxShape) shape4 = new BulletBoxShape(LVecBase3f(0.1,0.1,0.5));
-        PT(BulletBoxShape) shape5 = new BulletBoxShape(LVecBase3f(0.1,0.1,0.5));
+      PT(BulletBoxShape) shape1 = new BulletBoxShape(LVecBase3(0.1, 0.1, 0.5));
+      PT(BulletBoxShape) shape2 = new BulletBoxShape(LVecBase3(0.1, 0.1, 0.5));
+      PT(BulletBoxShape) shape3 = new BulletBoxShape(LVecBase3(0.1, 0.1, 0.5));
+      PT(BulletBoxShape) shape4 = new BulletBoxShape(LVecBase3(0.1, 0.1, 0.5));
+      PT(BulletBoxShape) shape5 = new BulletBoxShape(LVecBase3(0.1, 0.1, 0.5));
 
-        np_body.node().add_shape (shape1, TransformState::make_pos(LPoint3f(0,0,0.1)));
-        np_body.node().add_shape (shape2, TransformState::make_pos(LPoint3f(-1,-1,-0.5)));
-        np_body.node().add_shape (shape3, TransformState::make_pos(LPoint3f(-1,1,-0.5)));
-        np_body.node().add_shape (shape4, TransformState::make_pos(LPoint3f(1,-1,-0.5)));
-        np_body.node().add_shape (shape5, TransformState::make_pos(LPoint3f(1,1,-0.5)));
+      np_body.node().add_shape(shape1, TransformState::make_pos(LPoint3(0, 0, 0.1)));
+      np_body.node().add_shape(shape2, TransformState::make_pos(LPoint3(-1, -1 ,-0.5)));
+      np_body.node().add_shape(shape3, TransformState::make_pos(LPoint3(-1, 1, -0.5)));
+      np_body.node().add_shape(shape4, TransformState::make_pos(LPoint3(1, -1 ,-0.5)));
+      np_body.node().add_shape(shape5, TransformState::make_pos(LPoint3(1, 1, -0.5)));
 
 Convex Hull Shape
 -----------------
@@ -265,12 +265,12 @@ Convex hull shapes can be created is several ways:
         # Add several vertices with a single call
         shape2 = BulletConvexHullShape()
         shape2.addArray([
-          Point3(1, 1, 2),
-          Point3(0, 0, 0),
-          Point3(2, 0, 0),
-          Point3(0, 2, 0),
-          Point3(2, 2, 0),
-          ])
+           Point3(1, 1, 2),
+           Point3(0, 0, 0),
+           Point3(2, 0, 0),
+           Point3(0, 2, 0),
+           Point3(2, 2, 0),
+        ])
 
         # Add all vertices which can be found in a Geom object
         geomNodes = loader.loadModel(path).findAllMatches('**/+GeomNode')
@@ -288,11 +288,11 @@ Convex hull shapes can be created is several ways:
 
         // Add each vertex separately
         PT(BulletConvexHullShape) convex_hull_shape = new BulletConvexHullShape();
-        convex_hull_shape->add_point(LPoint3f(1, 1, 2));
-        convex_hull_shape->add_point(LPoint3f(0, 0, 0));
-        convex_hull_shape->add_point(LPoint3f(2, 0, 0));
-        convex_hull_shape->add_point(LPoint3f(0, 2, 0));
-        convex_hull_shape->add_point(LPoint3f(2, 2, 0));
+        convex_hull_shape->add_point(LPoint3(1, 1, 2));
+        convex_hull_shape->add_point(LPoint3(0, 0, 0));
+        convex_hull_shape->add_point(LPoint3(2, 0, 0));
+        convex_hull_shape->add_point(LPoint3(0, 2, 0));
+        convex_hull_shape->add_point(LPoint3(2, 2, 0));
 
 Triangle Mesh Shape
 -------------------
@@ -328,11 +328,11 @@ triangles.
 
         #include "bulletTriangleMesh.h"
         ...
-        LPoint3f points_array[4] = {
-            LPoint3f(-10, -10, 0),
-            LPoint3f(-10, 10, 0),
-            LPoint3f(10, -10, 0),
-            LPoint3f(10, 10, 0),
+        LPoint3 points_array[4] = {
+            LPoint3(-10, -10, 0),
+            LPoint3(-10, 10, 0),
+            LPoint3(10, -10, 0),
+            LPoint3(10, 10, 0),
         };
 
         PT(BulletTriangleMesh) triangle_mesh = new BulletTriangleMesh;

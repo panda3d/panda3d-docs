@@ -156,7 +156,7 @@ collision groups the object belongs to.
 
     .. code-block:: cpp
 
-        BulletBoxShape *box_shape = new BulletBoxShape(LVecBase3f(0.5, 0.5, 0.5));
+        BulletBoxShape *box_shape = new BulletBoxShape(LVecBase3(0.5, 0.5, 0.5));
         BulletRigidBodyNode *body_rigid_node = new BulletRigidBodyNode("Body");
         body_rigid_node->add_shape(box_shape);
         physics_world->attach(box_rigid_node);

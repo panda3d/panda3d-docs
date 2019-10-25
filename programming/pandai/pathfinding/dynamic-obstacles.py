@@ -11,7 +11,8 @@ from direct.task import Task
 from direct.actor.Actor import Actor
 import math
 import random
-import random, sys, os, math
+import sys
+import os
 from direct.gui.DirectGui import *
 from direct.gui.OnscreenText import OnscreenText
 
@@ -26,34 +27,38 @@ MYDIR = Filename.fromOsSpecific(MYDIR).getFullpath()
 
 font = loader.loadFont("cmss12")
 
+
 # Function to put instructions on the screen.
 def addInstructions(pos, msg):
     return OnscreenText(text=msg, style=1, fg=(1, 1, 1, 1), font=font,
                         pos=(-1.3, pos), align=TextNode.ALeft, scale=.05)
+
 
 # Function to put title on the screen.
 def addTitle(text):
     return OnscreenText(text=text, style=1, fg=(1, 1, 1, 1), font=font,
                         pos=(1.3, -0.95), align=TextNode.ARight, scale=.07)
 
+
 class World(DirectObject):
 
     def __init__(self):
 
-        self.keyMap = {"left":0, "right":0, "forward":0}
+        self.keyMap = {"left": 0, "right": 0, "forward": 0}
 
         #base.disableMouse()
-        base.cam.setPosHpr(0,-210,135,0,327,0)
+        base.cam.setPosHpr(0, -210, 135, 0, 327, 0)
         self.done = []
         for i in range(4):
             self.done.append(False)
         self.toggle = False
         self.firstTime = False
 
-        self.title = addTitle("Pandai Tutorial: Dynamic Avoidance of Moving Obstacles")
-        self.inst1 = addInstructions(0.95, "[ESC]: Quit")
-        self.inst2 = addInstructions(0.90, "[Arrow Keys]: Move the blue Ralph")
-        self.inst3 = addInstructions(0.85, "Try and move the blue Ralph in the path of the other Ralphs")
+        addTitle("Pandai Tutorial: Dynamic Avoidance of Moving Obstacles")
+        addInstructions(0.95, "[ESC]: Quit")
+        addInstructions(0.90, "[Arrow Keys]: Move the blue Ralph")
+        addInstructions(0.85, "Try and move the blue Ralph in the path of the "
+                              "other Ralphs")
 
         self.loadModels()
         self.setAI()
@@ -62,7 +67,7 @@ class World(DirectObject):
 
         self.environ1 = loader.loadModel("models/skydome")
         self.environ1.reparentTo(render)
-        self.environ1.setPos(0,0,0)
+        self.environ1.setPos(0, 0, 0)
         self.environ1.setScale(1)
 
         self.environ2 = loader.loadModel("models/skydome")
@@ -73,18 +78,18 @@ class World(DirectObject):
 
         self.environ = loader.loadModel("models/plane_demo1")
         self.environ.reparentTo(render)
-        self.environ.setPos(0,0,0)
+        self.environ.setPos(0, 0, 0)
 
         self.Target = Actor("models/ralph",
-                            {"run":"models/ralph-run",
-                             "walk":"models/ralph-walk"})
-        self.Target.setColor(0,0,1)
-        self.Target.setPos(60,-60,0)
+                            {"run": "models/ralph-run",
+                             "walk": "models/ralph-walk"})
+        self.Target.setColor(0, 0, 1)
+        self.Target.setPos(60, -60, 0)
         self.Target.setScale(2)
         self.Target.reparentTo(render)
         self.Target.loop("run")
         self.Targetforward = NodePath("Targetforward")
-        self.Targetforward.setPos(0,-1,0)
+        self.Targetforward.setPos(0, -1, 0)
         self.Targetforward.reparentTo(self.Target)
 
         # Create the main character, Ralph
@@ -93,37 +98,37 @@ class World(DirectObject):
         self.positions_new = []
         for i in range(4):
             self.ralph.append(Actor("models/ralph",
-                                    {"run":"models/ralph-run",
-                                     "walk":"models/ralph-walk"}))
+                                    {"run": "models/ralph-run",
+                                     "walk": "models/ralph-walk"}))
             self.ralph[i].reparentTo(render)
             self.ralph[i].setScale(2)
 
             self.positions.append(NodePath(str(i)))
             self.positions_new.append(NodePath(str(i)))
             if(i<2):
-                self.ralph[i].setPos(Vec3(-61, -34 + (i * 40), 0))
+                self.ralph[i].setPos(Point3(-61, -34 + (i * 40), 0))
             else:
-                self.ralph[i].setPos(Vec3(61, -34 + ((i-2) * 40), 0))
+                self.ralph[i].setPos(Point3(61, -34 + ((i-2) * 40), 0))
 
             self.positions.append(NodePath(str(i)))
             self.positions_new.append(NodePath(str(i)))
 
-        self.positions[0].setPos(Vec3(-61, -34 + ((0) * 40), 0))
-        self.positions[1].setPos(Vec3(-53, -34 + ((1) * 40), 0))
-        self.positions[2].setPos(Vec3(53, -44 + ((0) * 40), 0))
-        self.positions[3].setPos(Vec3(61, -24 + ((1) * 40), 0))
+        self.positions[0].setPos(Point3(-61, -34 + ((0) * 40), 0))
+        self.positions[1].setPos(Point3(-53, -34 + ((1) * 40), 0))
+        self.positions[2].setPos(Point3(53, -44 + ((0) * 40), 0))
+        self.positions[3].setPos(Point3(61, -24 + ((1) * 40), 0))
 
-        self.positions_new[0].setPos(Vec3(61, -44 + ((0) * 40), 0))
-        self.positions_new[1].setPos(Vec3(53, -44 + ((1) * 40), 0))
-        self.positions_new[2].setPos(Vec3(-53, -24 + ((0) * 40), 0))
-        self.positions_new[3].setPos(Vec3(-61, -24 + ((1) * 40), 0))
+        self.positions_new[0].setPos(Point3(61, -44 + ((0) * 40), 0))
+        self.positions_new[1].setPos(Point3(53, -44 + ((1) * 40), 0))
+        self.positions_new[2].setPos(Point3(-53, -24 + ((0) * 40), 0))
+        self.positions_new[3].setPos(Point3(-61, -24 + ((1) * 40), 0))
 
     def setAI(self):
-        #Creating AI World
+        # Creating AI World
         self.AIworld = AIWorld(render)
 
         #self.accept("enter", self.setMove)
-        #movement
+        # Movement
         self.accept("arrow_left", self.setKey, ["left", 1])
         self.accept("arrow_right", self.setKey, ["right", 1])
         self.accept("arrow_up", self.setKey, ["forward", 1])
@@ -141,8 +146,8 @@ class World(DirectObject):
             self.AIbehaviors.append(char.getAiBehaviors())
             self.AIbehaviors[i].initPathFind("models/navmesh.csv")
 
-        #AI World update
-        taskMgr.add(self.AIUpdate,"AIUpdate")
+        # AI World update
+        taskMgr.add(self.AIUpdate, "AIUpdate")
 
         taskMgr.add(self.Mover, "mover")
 
@@ -159,7 +164,7 @@ class World(DirectObject):
                     self.AIbehaviors[i].addDynamicObstacle(self.ralph[3])
                 if i == 2:
                     self.AIbehaviors[i].pathFindTo(self.positions_new[2], "addPath")
-                if i== 3:
+                if i == 3:
                     self.AIbehaviors[i].pathFindTo(self.positions_new[3], "addPath")
                 if self.firstTime is False:
                     self.AIbehaviors[i].addDynamicObstacle(self.Target)
@@ -181,7 +186,7 @@ class World(DirectObject):
                 self.ralph[i].loop("run")
 
     # To update the AIWorld
-    def AIUpdate(self,task):
+    def AIUpdate(self, task):
         self.AIworld.update()
         for i in range(4):
             #print(str(i) + " " + self.AIbehaviors[i].behaviorStatus("pathfollow"))
@@ -208,7 +213,7 @@ class World(DirectObject):
     def setKey(self, key, value):
         self.keyMap[key] = value
 
-    def Mover(self,task):
+    def Mover(self, task):
         startPos = self.Target.getPos()
 
         if self.keyMap["left"] != 0:
