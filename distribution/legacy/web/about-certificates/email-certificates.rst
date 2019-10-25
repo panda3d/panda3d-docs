@@ -37,7 +37,7 @@ convert it to a pem file using openssl, with the command sequence:
 
 .. code-block:: bash
 
-    openssl pkcs12 -in mycert.p12 -out mycert.pem -nodes
+   openssl pkcs12 -in mycert.p12 -out mycert.pem -nodes
 
 Typically, the public key and private key will be combined in the same file.
 Keep this file safe.

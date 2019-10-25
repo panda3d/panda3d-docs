@@ -14,10 +14,10 @@ this is a reliable way to test your run mode:
 
 .. code-block:: python
 
-    if base.appRunner:
-        print("Running in a p3d file")
-    else:
-        print("Running interactively")
+   if base.appRunner:
+       print("Running in a p3d file")
+   else:
+       print("Running interactively")
 
 All of your interaction with the web environment will go through
 base.appRunner. There are several important members and methods of

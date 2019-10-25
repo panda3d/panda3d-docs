@@ -24,7 +24,7 @@ end of the file.
 
 .. code-block:: text
 
-    my-game-server panda3dgame.com
+   my-game-server panda3dgame.com
 
 Note
 that I invented the variable name "my-game-server" out of thin air. This
@@ -39,17 +39,17 @@ using the methods ``setValue()`` and
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        from panda3d.core import ConfigVariableString
+      from panda3d.core import ConfigVariableString
 
-        myGameServer = ConfigVariableString('my-game-server', '127.0.0.1')
-        print('Server specified in config file: ', myGameServer.getValue())
+      myGameServer = ConfigVariableString('my-game-server', '127.0.0.1')
+      print('Server specified in config file: ', myGameServer.getValue())
 
-        # Allow the user to change servers on the command-line.
-        if (sys.argv[1] == '--server'):
-            myGameServer.setValue(sys.argv[2])
-        print('Server that we will use: ', myGameServer.getValue())
+      # Allow the user to change servers on the command-line.
+      if (sys.argv[1] == '--server'):
+          myGameServer.setValue(sys.argv[2])
+      print('Server that we will use: ', myGameServer.getValue())
 
 The second parameter to the ConfigVariableString constructor is the default
 value that should be returned, in case the line "my-game-server" does not
@@ -58,8 +58,8 @@ which is a description of the purpose of the variable.
 
 .. only:: python
 
-    This string will be displayed when the user executes the command
-    ``print(cvMgr)``.
+   This string will be displayed when the user executes the command
+   ``print(cvMgr)``.
 
 The types of configuration variable are:
 
@@ -83,27 +83,27 @@ empty list or search path.
 
 .. only:: python
 
-    To display the current value of a particular variable interactively (for a
-    string-type variable in this example), type the following:
+   To display the current value of a particular variable interactively (for a
+   string-type variable in this example), type the following:
 
-    .. code-block:: python
+   .. code-block:: python
 
-        print(ConfigVariableString("my-game-server"))
+      print(ConfigVariableString("my-game-server"))
 
 Panda3D will automatically load any PRC files it finds in its standard config
 directory at start-up.
 
 .. only:: python
 
-    You can view a list of the files it has actually loaded with the following
-    command:
+   You can view a list of the files it has actually loaded with the following
+   command:
 
-    .. code-block:: python
+   .. code-block:: python
 
-        print(cpMgr)
+      print(cpMgr)
 
-    It is helpful
-    to do this to ensure that you are editing the correct Config.prc file.
+   It is helpful
+   to do this to ensure that you are editing the correct Config.prc file.
 
 Sometimes, it is desirable to load an additional configuration file from disk,
 by giving an explicit filename. To do so, use
@@ -113,19 +113,19 @@ Windows.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        from panda3d.core import loadPrcFile
+      from panda3d.core import loadPrcFile
 
-        loadPrcFile("config/Config.prc")
+      loadPrcFile("config/Config.prc")
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        #include "load_prc_file.h"
+      #include "load_prc_file.h"
 
-        load_prc_file("config/Config.prc");
+      load_prc_file("config/Config.prc");
 
 The filename you specify is searched for along the model-path, in the same way
 that an Egg or Bam file is searched for when you use
@@ -135,11 +135,11 @@ You should load your own PRC file before
 
 .. only:: python
 
-    instantiating ShowBase.
+   instantiating ShowBase.
 
 .. only:: cpp
 
-    opening the window.
+   opening the window.
 
 ``Changing configuration data later on won't affect the window/environment that has already been created.``
 
@@ -156,7 +156,7 @@ For example, let's say that Panda3D's configuration file contains this line:
 
 .. code-block:: text
 
-    fullscreen #f
+   fullscreen #f
 
 By default, Panda3D
 programs will run in a window; not fullscreen. However, if you do this, then
@@ -165,19 +165,19 @@ fullscreen-flag to true, and your program will run in fullscreen.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        from panda3d.core import loadPrcFileData
+      from panda3d.core import loadPrcFileData
 
-        loadPrcFileData('', 'fullscreen true')
+      loadPrcFileData('', 'fullscreen true')
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        #include "load_prc_file.h"
+      #include "load_prc_file.h"
 
-        load_prc_file_data("", "fullscreen true");
+      load_prc_file_data("", "fullscreen true");
 
 There are other ways to go to fullscreen. This is not necessarily the most
 straightforward approach, but it illustrates the point.
@@ -187,16 +187,16 @@ with the ``listVariables()`` command:
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        cvMgr = ConfigVariableManager.getGlobalPtr()
-        cvMgr.listVariables()
+      cvMgr = ConfigVariableManager.getGlobalPtr()
+      cvMgr.listVariables()
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        ConfigVariableManager::get_global_ptr()->list_variables();
+      ConfigVariableManager::get_global_ptr()->list_variables();
 
 For a more complete documentation about Panda3D's configuration system, view
 the `original documentation

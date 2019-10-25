@@ -13,7 +13,7 @@ If you're a Linux user, you'll find the sample programs in /usr/share/panda3d.
 
 .. rubric:: Explanation
 
-In this tutorial, you will learn how to create particle effects in Panda3d.
+In this tutorial, you will learn how to create particle effects in Panda3D.
 Particle effects are systems simulated by the movement of many small objects, or
 particles. They are commonly used to simulate phenomenon like explosions,
 sparks, fire, smoke, and steam to name a few. Particle effect systems are very

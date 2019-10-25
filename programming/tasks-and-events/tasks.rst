@@ -172,9 +172,9 @@ The Do-Later Task
 
    .. code-block:: python
 
-       taskMgr.remove(task)
-       task.delayTime += 1
-       taskMgr.add(task)
+      taskMgr.remove(task)
+      task.delayTime += 1
+      taskMgr.add(task)
 
    Although there is a public member ``task.wakeTime`` which stores the time at
    which the task should wake up, you should not attempt to modify this. Doing

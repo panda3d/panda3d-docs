@@ -7,11 +7,11 @@ MeshDrawer is a class with which you can draw geometry from
 
 .. only:: python
 
-    python
+   python
 
 .. only:: cpp
 
-    c++
+   c++
 
 ``every frame as fast as possible.  Common cases where you might want to use it include: projectiles such as bullets, trails, and laser beams; and UI elements such as health bars, labels, icons, and motion lines.``
 
@@ -19,23 +19,23 @@ You create a MeshDrawer like this:
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        generator = MeshDrawer()
-        generator.setBudget(1000)
-        generatorNode = generator.getRoot()
-        generatorNode.reparentTo(render)
+      generator = MeshDrawer()
+      generator.setBudget(1000)
+      generatorNode = generator.getRoot()
+      generatorNode.reparentTo(render)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        #include "meshDrawer.h"
-        ...
-        MeshDrawer generator = MeshDrawer();
-        generator.set_budget(1000);
-        NodePath generatorNode = generator.get_root();
-        generatorNode.reparent_to(window->get_render());
+      #include "meshDrawer.h"
+      ...
+      MeshDrawer generator = MeshDrawer();
+      generator.set_budget(1000);
+      NodePath generatorNode = generator.get_root();
+      generatorNode.reparent_to(window->get_render());
 
 Basically this creates a MeshDrawer that will draw at most 1000 triangles or
 500 billboarded quads on screen. Then it gets the root node inside the
@@ -48,25 +48,25 @@ you probably had to do this to the special FX node's you have any ways.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        generatorNode.setDepthWrite(False)
-        generatorNode.setTransparency(True)
-        generatorNode.setTwoSided(True)
-        generatorNode.setTexture(loader.loadTexture("radarplate.png"))
-        generatorNode.setBin("fixed",0)
-        generatorNode.setLightOff(True)
+      generatorNode.setDepthWrite(False)
+      generatorNode.setTransparency(True)
+      generatorNode.setTwoSided(True)
+      generatorNode.setTexture(loader.loadTexture("radarplate.png"))
+      generatorNode.setBin("fixed",0)
+      generatorNode.setLightOff(True)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        generatorNode.set_depth_write(false);
-        generatorNode.set_transparency(TransparencyAttrib::M_alpha);
-        generatorNode.set_two_sided(true);
-        generatorNode.set_texture(TexturePool::load_texture("radarplate.png"));
-        generatorNode.set_bin("fixed",0);
-        generatorNode.set_light_off();
+      generatorNode.set_depth_write(false);
+      generatorNode.set_transparency(TransparencyAttrib::M_alpha);
+      generatorNode.set_two_sided(true);
+      generatorNode.set_texture(TexturePool::load_texture("radarplate.png"));
+      generatorNode.set_bin("fixed",0);
+      generatorNode.set_light_off();
 
 The MeshDrawer is used in kind of an old style draw loop. I recommend creating
 a specific task for MeshDrawer so that you can see how much time it eats up
@@ -77,41 +77,41 @@ at the start.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        def drawtask(taks):
-            generator.begin(base.cam,render)
+      def drawtask(taks):
+          generator.begin(base.cam,render)
 
-            ... your draw code ...
+          ... your draw code ...
 
-            generator.end()
-            return taks.cont
-        taskMgr.add(drawtask, "meshdrawer task")
+          generator.end()
+          return taks.cont
+      taskMgr.add(drawtask, "meshdrawer task")
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        void drawTask(){
-            //you'll need access to the window and the generator
-            //call this method in your update or use a task.
-            generator.begin(window->get_camera_group(),window->get_render());
+      void drawTask(){
+          //you'll need access to the window and the generator
+          //call this method in your update or use a task.
+          generator.begin(window->get_camera_group(),window->get_render());
 
-            ... your draw code ...
+          ... your draw code ...
 
-            generator.end()
-        }
+          generator.end()
+      }
 
 Inside it you can call many different MeshDrawer functions
 see:
 
 .. only:: python
 
-    https://www.panda3d.org/reference/1.8.1/python/classpanda3d.core.MeshDrawer.php
+   https://www.panda3d.org/reference/1.8.1/python/classpanda3d.core.MeshDrawer.php
 
 .. only:: cpp
 
-    https://www.panda3d.org/reference/1.8.1/cxx/classMeshDrawer.php
+   https://www.panda3d.org/reference/1.8.1/cxx/classMeshDrawer.php
 
 ``This is for version 1.8.1``
 
@@ -127,13 +127,13 @@ the texture per billboard. For instance you might have a images of the entire
 forest in one texture and only render the trees you want by specifying their
 UV cords.
 
-MeshDrawer works by using calls similar to Panda3d's animation system and
+MeshDrawer works by using calls similar to Panda3D's animation system and
 basically creates a buffer of undefined vertices which is then morphed into
 the shape you specify. Triangles which don't get used are turned into micro
 (0,0,0) triangles so that they will not be visible. Then those vertices are
 shipped to the GPU every frame, it's good to keep a low count of triangles in
 this buffer. This is also why the begin and end are needed to mark the vertex
-as being edited and then submit them back to Panda3d when finished.
+as being edited and then submit them back to Panda3D when finished.
 
 You can also take a look at MeshDrawer2D.
 

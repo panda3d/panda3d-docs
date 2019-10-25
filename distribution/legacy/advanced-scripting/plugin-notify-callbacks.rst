@@ -42,10 +42,10 @@ your own JavaScript functions, e.g.:
 
 .. code-block:: html
 
-    <object width="640" height="480"
-      type="application/x-panda3d" data="myapp.p3d">
-      onWindowOpen="MyWindowFunction()"
-    </object>
+   <object width="640" height="480"
+     type="application/x-panda3d" data="myapp.p3d">
+     onWindowOpen="MyWindowFunction()"
+   </object>
 
 You should use the appropriate embedding syntax as described in
 :ref:`advanced-object-tags`.

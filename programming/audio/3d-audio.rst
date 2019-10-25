@@ -16,8 +16,8 @@ used for 3D audio.
 
 .. code-block:: python
 
-    from direct.showbase import Audio3DManager
-    audio3d = Audio3DManager.Audio3DManager(base.sfxManagerList[0], camera)
+   from direct.showbase import Audio3DManager
+   audio3d = Audio3DManager.Audio3DManager(base.sfxManagerList[0], camera)
 
 To create a sound that is positional, you need to use the
 ``loadSfx()`` function on the
@@ -27,14 +27,14 @@ non-positional sounds. e.g.
 
 .. code-block:: python
 
-    mySound = audio3d.loadSfx('blue.wav')
+   mySound = audio3d.loadSfx('blue.wav')
 
 Sounds can be attached to objects such that when they move, the sound source
 will move along with them.
 
 .. code-block:: python
 
-    audio3d.attachSoundToObject(mySound, teapot)
+   audio3d.attachSoundToObject(mySound, teapot)
 
 You can use the ``Audio3DManager's setSoundVelocity()`` and
 ``setListenerVelocity()`` to set the velocity of
@@ -47,12 +47,12 @@ their position, you can call
 
 .. code-block:: python
 
-    audio3d.setSoundVelocity(sound,velocityVector)
-    audio3d.setListenerVelocity(velocityVector)
+   audio3d.setSoundVelocity(sound,velocityVector)
+   audio3d.setListenerVelocity(velocityVector)
 
-    base.cTrav = CollisionTraverser()
-    audio3d.setSoundVelocityAuto(sound)
-    audio3d.setListenerVelocityAuto()
+   base.cTrav = CollisionTraverser()
+   audio3d.setSoundVelocityAuto(sound)
+   audio3d.setListenerVelocityAuto()
 
 Currently, for the latter to work, a CollisionTraverser must be attached to
 base.cTrav as you see in the example. If you already have one assigned to do
@@ -67,7 +67,7 @@ another scale you'll need to use
 
 .. code-block:: python
 
-    audio3d.setDistanceFactor(scale)
+   audio3d.setDistanceFactor(scale)
 
 You can adjust the rate that sounds attenuate by distance. If you want to
 position the sounds but don't want the volume to be effected by their
@@ -75,4 +75,4 @@ distance, you can set the drop off factor to 0.
 
 .. code-block:: python
 
-    audio3d.setDropOffFactor(scale)
+   audio3d.setDropOffFactor(scale)

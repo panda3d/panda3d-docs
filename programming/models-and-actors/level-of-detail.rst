@@ -11,45 +11,45 @@ cheaper shader. LOD can also be used to hide objects when they are far away.
 
 .. only:: cpp
 
-    Include file:
+   Include file:
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        #include "lodNode.h"
+      #include "lodNode.h"
 
 To create an LODNode and NodePath:
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        lod = LODNode('my LOD node')
-        lod_np = NodePath(lod)
-        lod_np.reparentTo(render)
+      lod = LODNode('my LOD node')
+      lod_np = NodePath(lod)
+      lod_np.reparentTo(render)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        PT(LODNode) lod = new LODNode("my LOD node");
-        NodePath lod_np (lod);
-        lod_np.reparent_to(render);
+      PT(LODNode) lod = new LODNode("my LOD node");
+      NodePath lod_np (lod);
+      lod_np.reparent_to(render);
 
 To add a level of detail to the LODNode:
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        lod.addSwitch(50.0, 0.0)
-        my_model.reparentTo(lod_np)
+      lod.addSwitch(50.0, 0.0)
+      my_model.reparentTo(lod_np)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        lod->add_switch(50.0, 0.0);
-        my_model.reparent_to(lod_np);
+      lod->add_switch(50.0, 0.0);
+      my_model.reparent_to(lod_np);
 
 my_model can be any NodePath you like.
 

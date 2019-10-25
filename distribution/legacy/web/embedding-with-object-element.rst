@@ -23,10 +23,10 @@ file, with code like this:
 
 .. code-block:: html
 
-    <object width="640" height="480"
-      classid="CLSID:924B4927-D3BA-41EA-9F7E-8A89194AB3AC">
-        <param name="data" value="myapp.p3d">
-    </object>
+   <object width="640" height="480"
+     classid="CLSID:924B4927-D3BA-41EA-9F7E-8A89194AB3AC">
+       <param name="data" value="myapp.p3d">
+   </object>
 
 Note that the width and height are specified as attributes to the
 ``<object>`` element. The classid
@@ -42,9 +42,9 @@ little bit different:
 
 .. code-block:: html
 
-    <object width="640" height="480"
-      type="application/x-panda3d" data="myapp.p3d">
-    </object>
+   <object width="640" height="480"
+     type="application/x-panda3d" data="myapp.p3d">
+   </object>
 
 In non-Internet Explorer browsers, you identify the Panda3D plugin with the
 string ``type="application/x-panda3d"``, instead of with
@@ -65,13 +65,13 @@ element. So, for instance, the above examples could be written like this:
 
 .. code-block:: html
 
-    <object width="640" height="480"
-      type="application/x-panda3d" data="myapp.p3d">
-        <object width="640" height="480"
-          classid="CLSID:924B4927-D3BA-41EA-9F7E-8A89194AB3AC">
-            <param name="data" value="myapp.p3d">
-        </object>
-    </object>
+   <object width="640" height="480"
+     type="application/x-panda3d" data="myapp.p3d">
+       <object width="640" height="480"
+         classid="CLSID:924B4927-D3BA-41EA-9F7E-8A89194AB3AC">
+           <param name="data" value="myapp.p3d">
+       </object>
+   </object>
 
 The outer ``<object>`` element is
 the non-Internet Explorer version, and in case that isn't understood (for

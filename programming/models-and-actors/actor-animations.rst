@@ -66,11 +66,11 @@ You can get more information about an animation with these functions:
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-       print(actor.getNumFrames('Animation Name')) # returns the total number of frames in the animation
-       print(actor.getCurrentAnim()) # returns a string containing the name of the current playing animation
-       print(actor.getCurrentFrame('Animation Name')) # returns the current frame of the animation.
+      print(actor.getNumFrames('Animation Name')) # returns the total number of frames in the animation
+      print(actor.getCurrentAnim()) # returns a string containing the name of the current playing animation
+      print(actor.getCurrentFrame('Animation Name')) # returns the current frame of the animation.
 
 AnimControl
 -----------
@@ -87,23 +87,23 @@ control functions over a certain animation in a separate class.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        myAnimControl = actor.getAnimControl('Animation Name') #get the AnimControl
+      myAnimControl = actor.getAnimControl('Animation Name') #get the AnimControl
 
-        myAnimControl.isPlaying() #returns a boolean whether the animation is playing or not
-        myAnimControl.getFrame() #returns the current frame number
-        myAnimControl #returns the speed of the animation, in frames per second
-        myAnimControl.getFullFframe() #returns a floating-point frame number exceeding the framecount. Not recommended.
-        myAnimControl.getFullFrame() #returns an integer frame number exceeding the framecount. Not recommended.
-        myAnimControl.getNextFrame() #returns the number of the next frame on the queue.
-        myAnimControl.getNumFrames() #returns the total number of frames
-        myAnimControl.getPlayRate() #returns the playrate. explained further below
-        myAnimControl.loop() #starts playing the animation in a loop
-        myAnimControl.play() #starts playing the animation
-        myAnimControl.pose(frame) #poses at frame frame
-        myAnimControl.setPlayRate(rate) #sets the playrate. explained further below
-        myAnimControl.stop() #stops the animation
+      myAnimControl.isPlaying() #returns a boolean whether the animation is playing or not
+      myAnimControl.getFrame() #returns the current frame number
+      myAnimControl #returns the speed of the animation, in frames per second
+      myAnimControl.getFullFframe() #returns a floating-point frame number exceeding the framecount. Not recommended.
+      myAnimControl.getFullFrame() #returns an integer frame number exceeding the framecount. Not recommended.
+      myAnimControl.getNextFrame() #returns the number of the next frame on the queue.
+      myAnimControl.getNumFrames() #returns the total number of frames
+      myAnimControl.getPlayRate() #returns the playrate. explained further below
+      myAnimControl.loop() #starts playing the animation in a loop
+      myAnimControl.play() #starts playing the animation
+      myAnimControl.pose(frame) #poses at frame frame
+      myAnimControl.setPlayRate(rate) #sets the playrate. explained further below
+      myAnimControl.stop() #stops the animation
 
 Play rate
 ---------

@@ -143,7 +143,7 @@ DirectGUI
 
    .. code-block:: python
 
-       myDirectObject['keyword'] = value
+      myDirectObject['keyword'] = value
 
    Most properties can be updated in this way, although position and other
    transform-related values cannot be updated via the keyword parameters--
@@ -157,7 +157,7 @@ DirectGUI
 
    .. code-block:: python
 
-       myDirectObject.resetFrameSize()
+      myDirectObject.resetFrameSize()
 
    If you don't do this, you may find, for example, that a button isn't
    clickable because it believes it has a zero-width frame.
@@ -166,7 +166,7 @@ DirectGUI
 
    .. code-block:: python
 
-       myDirectObject.destroy()
+      myDirectObject.destroy()
 
    It is not sufficient to simply call ``removeNode()``, since the DirectGUI
    system adds a number of messenger hooks that need to be cleaned up. However,

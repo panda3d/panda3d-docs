@@ -13,15 +13,15 @@ do the following:
 
    .. code-block:: python
 
-       mySound.setLoop(True)
-       mySound.play()
+      mySound.setLoop(True)
+      mySound.play()
 
 .. only:: cpp
 
    .. code-block:: cpp
 
-       mySound->set_loop(true);
-       mySound->play();
+      mySound->set_loop(true);
+      mySound->play();
 
 To stop a sound from looping pass False in the ``set_loop`` function.
 

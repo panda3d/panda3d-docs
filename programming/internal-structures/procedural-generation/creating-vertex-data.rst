@@ -8,26 +8,26 @@ use it to create a :ref:`geomvertexdata`.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        vdata = GeomVertexData('name', format, Geom.UHStatic)
+      vdata = GeomVertexData('name', format, Geom.UHStatic)
 
 .. only:: cpp
 
-    Using a :ref:`custom vertex format <defining-your-own-geomvertexformat>`.
+   Using a :ref:`custom vertex format <defining-your-own-geomvertexformat>`.
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        PT(GeomVertexData) vdata;
-        vdata = new GeomVertexData("name", format, Geom::UH_static);
+      PT(GeomVertexData) vdata;
+      vdata = new GeomVertexData("name", format, Geom::UH_static);
 
-    Or using a
-    :ref:`Pre-defined vertex format <pre-defined-vertex-formats>`.
+   Or using a
+   :ref:`Pre-defined vertex format <pre-defined-vertex-formats>`.
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        PT(GeomVertexData) vdata;
-        vdata = new GeomVertexData("name", GeomVertexFormat::get_????(), Geom::UH_static);
+      PT(GeomVertexData) vdata;
+      vdata = new GeomVertexData("name", GeomVertexFormat::get_????(), Geom::UH_static);
 
 The first parameter to the GeomVertexData constructor is the name of the data,
 which is any arbitrary name you like. This name is mainly for documentation

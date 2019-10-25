@@ -260,13 +260,13 @@ a regular format:
 
    .. code-block:: python
 
-       # WRONG
-       tex.set_format(Texture.F_rgba)
+      # WRONG
+      tex.set_format(Texture.F_rgba)
 
-       # RIGHT
-       tex.set_format(Texture.F_rgba8)
+      # RIGHT
+      tex.set_format(Texture.F_rgba8)
 
-       node_path.set_shader_input('fromTex', tex)
+      node_path.set_shader_input('fromTex', tex)
 
 .. only:: cpp
 

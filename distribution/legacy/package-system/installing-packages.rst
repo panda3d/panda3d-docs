@@ -10,7 +10,7 @@ Installing packages
 A package file is a Panda3D multifile. When a package is installed onto a
 user's machine, it means the multifile is downloaded and placed in its own
 subdirectory of the Panda3D installation directory (e.g.
-~/Library/Caches/Panda3d, on Mac). This directory name is then stored in the
+~/Library/Caches/Panda3D, on Mac). This directory name is then stored in the
 environment variable PACKAGENAME_ROOT, where PACKAGENAME is the name of the
 package converted to uppercase, e.g. PANDA3D_ROOT or ODE_ROOT. (You can query
 this environment variable name at runtime with

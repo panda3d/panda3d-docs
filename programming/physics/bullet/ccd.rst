@@ -23,16 +23,16 @@ to setup this sphere, and a CCD motion threshold:
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        bodyNP.node().setCcdMotionThreshold(1e-7)
-        bodyNP.node().setCcdSweptSphereRadius(0.50)
+      bodyNP.node().setCcdMotionThreshold(1e-7)
+      bodyNP.node().setCcdSweptSphereRadius(0.50)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        TODO
+      TODO
 
 We have to set up the swept sphere only on the fast moving dynamic bodies.
 There is no need to do anything for the static or slow moving obstacles.
@@ -43,58 +43,58 @@ is a sample showing one way to implement shooting bullets.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        bullets = []
+      bullets = []
 
-        def removeBullet(task):
-          if len(bullets) < 1: return
+      def removeBullet(task):
+        if len(bullets) < 1: return
 
-          bulletNP = bullets.pop(0)
-          world.removeRigidBody(bulletNP.node())
+        bulletNP = bullets.pop(0)
+        world.removeRigidBody(bulletNP.node())
 
-          return task.done
+        return task.done
 
-        def shootBullet(ccd):
-          # Get from/to points from mouse click
-          pMouse = base.mouseWatcherNode.getMouse()
-          pFrom = Point3()
-          pTo = Point3()
-          base.camLens.extrude(pMouse, pFrom, pTo)
+      def shootBullet(ccd):
+        # Get from/to points from mouse click
+        pMouse = base.mouseWatcherNode.getMouse()
+        pFrom = Point3()
+        pTo = Point3()
+        base.camLens.extrude(pMouse, pFrom, pTo)
 
-          pFrom = render.getRelativePoint(base.cam, pFrom)
-          pTo = render.getRelativePoint(base.cam, pTo)
+        pFrom = render.getRelativePoint(base.cam, pFrom)
+        pTo = render.getRelativePoint(base.cam, pTo)
 
-          # Calculate initial velocity
-          v = pTo - pFrom
-          v.normalize()
-          v *= 10000.0
+        # Calculate initial velocity
+        v = pTo - pFrom
+        v.normalize()
+        v *= 10000.0
 
-          # Create bullet
-          shape = BulletBoxShape(Vec3(0.5, 0.5, 0.5))
-          body = BulletRigidBodyNode('Bullet')
-          bodyNP = render.attachNewNode(body)
-          bodyNP.node().addShape(shape)
-          bodyNP.node().setMass(2.0)
-          bodyNP.node().setLinearVelocity(v)
-          bodyNP.setPos(pFrom)
-          bodyNP.setCollideMask(BitMask32.allOn())
+        # Create bullet
+        shape = BulletBoxShape(Vec3(0.5, 0.5, 0.5))
+        body = BulletRigidBodyNode('Bullet')
+        bodyNP = render.attachNewNode(body)
+        bodyNP.node().addShape(shape)
+        bodyNP.node().setMass(2.0)
+        bodyNP.node().setLinearVelocity(v)
+        bodyNP.setPos(pFrom)
+        bodyNP.setCollideMask(BitMask32.allOn())
 
-          # Enable CCD
-          bodyNP.node().setCcdMotionThreshold(1e-7)
-          bodyNP.node().setCcdSweptSphereRadius(0.50)
+        # Enable CCD
+        bodyNP.node().setCcdMotionThreshold(1e-7)
+        bodyNP.node().setCcdSweptSphereRadius(0.50)
 
-          world.attachRigidBody(bodyNP.node())
+        world.attachRigidBody(bodyNP.node())
 
-          # Remove the bullet again after 1 second
-          bullets.append(bodyNP)
-          taskMgr.doMethodLater(1, removeBullet, 'removeBullet')
+        # Remove the bullet again after 1 second
+        bullets.append(bodyNP)
+        taskMgr.doMethodLater(1, removeBullet, 'removeBullet')
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        TODO
+      TODO
 
 Most of the code is related to finding the initial velocity vector for the
 bullet, which is calculated from the mouse position when shooting the bullet.

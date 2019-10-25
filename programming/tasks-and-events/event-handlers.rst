@@ -145,7 +145,7 @@ For example, the following code may not do what you expect:
 Try the example above, and you'll find that the missiles fire even though the
 object that would handle the event had been deleted.
 
-One solution (patterned after other parts of the Panda3d architecture) is to
+One solution (patterned after other parts of the Panda3D architecture) is to
 define a "destroy" method for any custom classes you create, which calls
 "ignoreAll" to unregister from the event-handler system.
 

@@ -24,7 +24,7 @@ this mode, call:
 
 .. code-block:: python
 
-    base.cTrav.setRespectPrevTransform(True)
+   base.cTrav.setRespectPrevTransform(True)
 
 You only need to make this call once, at the beginning of your application (or
 whenever you create the CollisionTraverser). That switches the
@@ -52,13 +52,13 @@ when you put it into your scene the first time), instead of using:
 
 .. code-block:: python
 
-    object.setPos(newPos)
+   object.setPos(newPos)
 
 You should use:
 
 .. code-block:: python
 
-    object.setFluidPos(newPos)
+   object.setFluidPos(newPos)
 
 In general, ``setPos()`` means "put
 the object here, directly" and

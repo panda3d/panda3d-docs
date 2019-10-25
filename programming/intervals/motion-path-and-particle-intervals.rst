@@ -13,7 +13,7 @@ the motion path and the NodePath it is affecting.
 
 .. code-block:: python
 
-    intervalName = MopathInterval("Motion Path Name", NodePath, "Interval Name")
+   intervalName = MopathInterval("Motion Path Name", NodePath, "Interval Name")
 
 Read more about :ref:`motion-paths`.
 
@@ -24,12 +24,12 @@ Particle effects can be run from inside intervals as well:
 
 .. code-block:: python
 
-    intervalName = ParticleInterval(
-        "Particle Effect Name",
-        parent,
-        worldRelative = 1,
-        loop = 0 or 1,
-        duration = myDuration
-    )
+   intervalName = ParticleInterval(
+       "Particle Effect Name",
+       parent,
+       worldRelative = 1,
+       loop = 0 or 1,
+       duration = myDuration
+   )
 
 Read more about :ref:`particle-effects`.

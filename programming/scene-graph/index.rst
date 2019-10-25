@@ -91,17 +91,17 @@ type, which you must invoke on the node itself. Here are some assorted examples:
 
    .. code-block:: python
 
-       # NODEPATH METHODS:
-       myNodePath.setPos(x, y, z)
-       myNodePath.setColor(banana)
+      # NODEPATH METHODS:
+      myNodePath.setPos(x, y, z)
+      myNodePath.setColor(banana)
 
-       # LODNODE METHODS:
-       myNodePath.node().addSwitch(1000, 100)
-       myNodePath.node().setCenter(Point3(0, 5, 0))
+      # LODNODE METHODS:
+      myNodePath.node().addSwitch(1000, 100)
+      myNodePath.node().setCenter(Point3(0, 5, 0))
 
-       # CAMERA NODE METHODS:
-       myNodePath.node().setLens(PerspectiveLens())
-       myNodePath.node().getCameraMask()
+      # CAMERA NODE METHODS:
+      myNodePath.node().setLens(PerspectiveLens())
+      myNodePath.node().getCameraMask()
 
 .. only:: cpp
 

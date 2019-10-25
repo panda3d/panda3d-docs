@@ -30,4 +30,4 @@ definition), like this:
 
 .. code-block:: python
 
-    packager.setHost('http://myhost.com/myrootdir/')
+   packager.setHost('http://myhost.com/myrootdir/')

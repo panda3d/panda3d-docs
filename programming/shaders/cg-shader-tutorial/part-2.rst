@@ -33,7 +33,7 @@ The Shader
 
 We'll only go through the basics of this shader for now. Also note that not
 everything in this tutorial is a Cg requirement, some of the things such as
-variable names are Panda3d requirements.
+variable names are Panda3D requirements.
 
 The first important thing in this shader is the first line, the ``//Cg``
 comment. Removing it will cause the shader to fail compilation. This is a panda

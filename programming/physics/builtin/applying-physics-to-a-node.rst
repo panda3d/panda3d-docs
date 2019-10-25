@@ -20,15 +20,15 @@ addLinearForce method (for translational forces) or the addAngularForce method
 
 .. code-block:: python
 
-    actorNode.addLinearForce(pusherForce)
-    actorNode.addAngularForce(spinnerForce)
+   actorNode.addLinearForce(pusherForce)
+   actorNode.addAngularForce(spinnerForce)
 
 Conversely, forces can be removed using the corresponding remove calls:
 
 .. code-block:: python
 
-    actorNode.removeLinearForce(pusherForce)
-    actorNode.removeAngularForce(spinnerForce)
+   actorNode.removeLinearForce(pusherForce)
+   actorNode.removeAngularForce(spinnerForce)
 
 By default, linear forces don't factor in the mass of the object upon which
 they act (meaning they are more like accelerations). To factor in the mass of
@@ -37,7 +37,7 @@ mass-dependent calculations:
 
 .. code-block:: python
 
-    pusherForce.setMassDependent(1)
+   pusherForce.setMassDependent(1)
 
 Example 1: Gravity
 ------------------
@@ -46,12 +46,12 @@ To apply a gravitational pull to the "jetpack guy" from the previous example:
 
 .. code-block:: python
 
-    gravityFN=ForceNode('world-forces')
-    gravityFNP=render.attachNewNode(gravityFN)
-    gravityForce=LinearVectorForce(0,0,-9.81) #gravity acceleration
-    gravityFN.addForce(gravityForce)
+   gravityFN=ForceNode('world-forces')
+   gravityFNP=render.attachNewNode(gravityFN)
+   gravityForce=LinearVectorForce(0,0,-9.81) #gravity acceleration
+   gravityFN.addForce(gravityForce)
 
-    base.physicsMgr.addLinearForce(gravityForce)
+   base.physicsMgr.addLinearForce(gravityForce)
 
 Since the gravitational force is relative to the entire world (and shouldn't
 change if, for example, the jetpack guy tumbles head-over-heels), the
@@ -73,19 +73,19 @@ ForceNode alters the effect:
 
 .. code-block:: python
 
-    thruster=NodePath("thruster") # make a thruster for the jetpack
-    thruster.reparentTo(jetpackGuy)
-    thruster.setPos(0,-2,3)
+   thruster=NodePath("thruster") # make a thruster for the jetpack
+   thruster.reparentTo(jetpackGuy)
+   thruster.setPos(0,-2,3)
 
-    thrusterFN=ForceNode('jetpackGuy-thruster') # Attach a thruster force
-    thrusterFNP=thruster.attachNewNode(thrusterFN)
-    thrusterForce=LinearVectorForce(0,0,4000)
-    thrusterForce.setMassDependent(1)
-    thrusterFN.addForce(thrusterForce)
+   thrusterFN=ForceNode('jetpackGuy-thruster') # Attach a thruster force
+   thrusterFNP=thruster.attachNewNode(thrusterFN)
+   thrusterForce=LinearVectorForce(0,0,4000)
+   thrusterForce.setMassDependent(1)
+   thrusterFN.addForce(thrusterForce)
 
-    an.getPhysical(0).addLinearForce(thrusterForce)
+   an.getPhysical(0).addLinearForce(thrusterForce)
 
-    thruster.setP(-45) # bend the thruster nozzle out at 45 degrees
+   thruster.setP(-45) # bend the thruster nozzle out at 45 degrees
 
 When this force is applied to the jetpack guy, it will push upwards and
 forwards. If the thruster's pitch and roll were controlled (say, by a

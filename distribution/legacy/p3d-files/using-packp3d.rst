@@ -19,7 +19,7 @@ command:
 
 .. code-block:: bash
 
-    packp3d -o myapp.p3d -d c:/myapp
+   packp3d -o myapp.p3d -d c:/myapp
 
 where "myapp.p3d" is the p3d file you want to produce, and "c:/myapp" is the
 folder containing your application, including all of its code and models.

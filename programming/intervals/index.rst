@@ -106,7 +106,7 @@ interval.
 
 .. code-block:: python
 
-    interval.isPlaying()
+   interval.isPlaying()
 
 Returns true if the interval is currently playing, or false if it was not
 started, has already finished, or has been explicitly paused or finished.

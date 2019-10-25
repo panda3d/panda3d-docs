@@ -84,8 +84,8 @@ If you'll run this example code you might not see the position interval.
    base.run()
 
 But you will see the interval being played if you comment out the for-loop. What
-is going on? It looks like Panda3d had skipped the interval, even though it was
-after the loop, as if Panda3d had "lost focus" when running the loop and even
+is going on? It looks like Panda3D had skipped the interval, even though it was
+after the loop, as if Panda3D had "lost focus" when running the loop and even
 after it had finished it needed some time to start running normally again.
 
 The problem is that everything that happens within one frame is deemed to happen

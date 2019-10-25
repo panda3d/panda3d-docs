@@ -9,8 +9,8 @@ these audio managers with the following code:
 
 .. code-block:: python
 
-    sfxMgr = base.sfxManagerList[0]
-    musicMgr = base.musicManager
+   sfxMgr = base.sfxManagerList[0]
+   musicMgr = base.musicManager
 
 In ``base``,
 ``sfxManagerList`` is a list of
@@ -32,10 +32,10 @@ groups.
 
 .. code-block:: python
 
-    base.disableAllAudio()
-    base.enableAllAudio()
-    base.enableMusic(True)
-    base.enableSoundEffects(True)
+   base.disableAllAudio()
+   base.enableAllAudio()
+   base.enableMusic(True)
+   base.enableSoundEffects(True)
 
 Positional audio is implemented through a wrapper of these objects and is
 covered in the next section, :ref:`3d-audio`.

@@ -25,38 +25,38 @@ For example:
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        prim = GeomTriangles(Geom.UHStatic)
+      prim = GeomTriangles(Geom.UHStatic)
 
-        prim.addVertex(0)
-        prim.addVertex(1)
-        prim.addVertex(2)
-        # thats the first triangle
+      prim.addVertex(0)
+      prim.addVertex(1)
+      prim.addVertex(2)
+      # thats the first triangle
 
-        # you can also add a few at once
-        prim.addVertices(2, 1, 3)
+      # you can also add a few at once
+      prim.addVertices(2, 1, 3)
 
-        prim.addVertices(0, 5, 6)
+      prim.addVertices(0, 5, 6)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        // In order for this to work you need to have included "geomTriangles.h"
+      // In order for this to work you need to have included "geomTriangles.h"
 
-        PT(GeomTriangles) prim;
-        prim = new GeomTriangles(Geom::UH_static);
+      PT(GeomTriangles) prim;
+      prim = new GeomTriangles(Geom::UH_static);
 
-        prim->add_vertex(0);
-        prim->add_vertex(1);
-        prim->add_vertex(2);
-        // thats the first triangle
+      prim->add_vertex(0);
+      prim->add_vertex(1);
+      prim->add_vertex(2);
+      // thats the first triangle
 
-        // you can also add a few at once
-        prim->add_vertices(2, 1, 3);
+      // you can also add a few at once
+      prim->add_vertices(2, 1, 3);
 
-        prim->add_vertices(0, 5, 6);
+      prim->add_vertices(0, 5, 6);
 
 
 Note that the GeomPrimitive constructor requires one parameter, which is a

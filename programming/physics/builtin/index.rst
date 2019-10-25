@@ -12,7 +12,7 @@ update the interactions of physics-enabled objects in the scene.
 
 .. code-block:: python
 
-    base.enableParticles()
+   base.enableParticles()
 
 The rest of this section will address how to prepare a model for physical
 interactions and apply forces to the model.

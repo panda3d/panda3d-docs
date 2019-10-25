@@ -29,5 +29,5 @@ A sample command sequence to generate a self-signed certificate follows:
 
 .. code-block:: bash
 
-    openssl genrsa 1024 > mycert.pem
-    openssl req -new -x509 -nodes -sha1 -days 365 -key mycert.pem >> mycert.pem
+   openssl genrsa 1024 > mycert.pem
+   openssl req -new -x509 -nodes -sha1 -days 365 -key mycert.pem >> mycert.pem

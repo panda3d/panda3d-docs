@@ -15,19 +15,19 @@ GeomVertexArrayFormat, and add columns one at a time by calling addColumn():
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        array = GeomVertexArrayFormat()
-        array.addColumn("vertex", 3, Geom.NTFloat32, Geom.CPoint)
+      array = GeomVertexArrayFormat()
+      array.addColumn("vertex", 3, Geom.NTFloat32, Geom.CPoint)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        PT(GeomVertexArrayFormat) array;
-        array = new GeomVertexArrayFormat();
-        array->add_column(InternalName::make("vertex"), 3,
-                          Geom::NT_float32, Geom::C_point);
+      PT(GeomVertexArrayFormat) array;
+      array = new GeomVertexArrayFormat();
+      array->add_column(InternalName::make("vertex"), 3,
+                        Geom::NT_float32, Geom::C_point);
 
 The parameters to addColumn() are, in order, the column name, the number of
 components, the numeric type, and the contents specification. See
@@ -53,40 +53,40 @@ For instance, to define a vertex format that includes a vertex position and a
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        array = GeomVertexArrayFormat()
-        array.addColumn("vertex", 3, Geom.NTFloat32, Geom.CPoint)
-        array.addColumn("texcoord", 2, Geom.NTFloat32, Geom.CTexcoord)
+      array = GeomVertexArrayFormat()
+      array.addColumn("vertex", 3, Geom.NTFloat32, Geom.CPoint)
+      array.addColumn("texcoord", 2, Geom.NTFloat32, Geom.CTexcoord)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        PT(GeomVertexArrayFormat) array;
-        array = new GeomVertexArrayFormat();
-        array->add_column(InternalName::make("vertex"), 3,
-                          Geom::NT_float32, Geom::C_point);
-        array->add_column(InternalName::make("texcoord"), 2,
-                          Geom::NT_float32, Geom::C_texcoord);
+      PT(GeomVertexArrayFormat) array;
+      array = new GeomVertexArrayFormat();
+      array->add_column(InternalName::make("vertex"), 3,
+                        Geom::NT_float32, Geom::C_point);
+      array->add_column(InternalName::make("texcoord"), 2,
+                        Geom::NT_float32, Geom::C_texcoord);
 
 Once you have defined the columns of your array, you should create a
 GeomVertexFormat to hold the array:
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        format = GeomVertexFormat()
-        format.addArray(array)
+      format = GeomVertexFormat()
+      format.addArray(array)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        PT(GeomVertexFormat) unregistered_format;
-        unregistered_format = new GeomVertexFormat();
-        unregistered_format->add_array(array);
+      PT(GeomVertexFormat) unregistered_format;
+      unregistered_format = new GeomVertexFormat();
+      unregistered_format->add_array(array);
 
 If you want your format to consist of multiple different arrays, you can
 create additional arrays and add them at this point as well.
@@ -100,16 +100,16 @@ object.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        format = GeomVertexFormat.registerFormat(format)
+      format = GeomVertexFormat.registerFormat(format)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        CPT(GeomVertexFormat) format;
-        format = GeomVertexFormat::register_format(unregistered_format);
+      CPT(GeomVertexFormat) format;
+      format = GeomVertexFormat::register_format(unregistered_format);
 
 You should always register a format with a syntax similar to the above: that
 is, you should use the return value of registerFormat as your new, registered

@@ -25,35 +25,35 @@ background), and then start your Direct/Panda client with the following in your
 
 .. only:: python
 
-    Config.prc file:
+   Config.prc file:
 
-    .. code-block:: text
+   .. code-block:: text
 
-        want-pstats 1
+      want-pstats 1
 
-    Or, at runtime, issue the Python command:
+   Or, at runtime, issue the Python command:
 
-    .. code-block:: python
+   .. code-block:: python
 
-        PStatClient.connect()
+      PStatClient.connect()
 
 .. only:: cpp
 
-    startup code:
+   startup code:
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        // Includes: pStatClient.h
+      // Includes: pStatClient.h
 
-        if (PStatClient::is_connected()) {
-          PStatClient::disconnect();
-        }
+      if (PStatClient::is_connected()) {
+        PStatClient::disconnect();
+      }
 
-        string host = ""; // Empty = default config var value
-        int port = -1; // -1 = default config var value
-        if (!PStatClient::connect(host, port)) {
-          std::cout << "Could not connect to PStat server." << std::endl;
-        }
+      string host = ""; // Empty = default config var value
+      int port = -1; // -1 = default config var value
+      if (!PStatClient::connect(host, port)) {
+        std::cout << "Could not connect to PStat server." << std::endl;
+      }
 
 Or if you're running pview, press shift-S.
 

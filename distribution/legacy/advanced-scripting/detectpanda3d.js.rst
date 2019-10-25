@@ -17,20 +17,20 @@ HTML document like this:
 
 .. code-block:: html
 
-    <script src="DetectPanda3D.js" language="javascript"></script>
+   <script src="DetectPanda3D.js" language="javascript"></script>
 
 Then elsewhere, presumably in the section of your document, you can reference
 it like this:
 
 .. code-block:: html
 
-    <script language="javascript">
-    if (detectPanda3D()) {
-       ... plugin installed
-    } else {
-       ... plugin not installed
-    }
-    </script>
+   <script language="javascript">
+   if (detectPanda3D()) {
+      ... plugin installed
+   } else {
+      ... plugin not installed
+   }
+   </script>
 
 The function takes two optional parameters. The first parameter, if specified,
 is the URL of another page to redirect to, and the second parameter should be
@@ -43,9 +43,9 @@ the second parameter, like this:
 
 .. code-block:: html
 
-    <script language="javascript">
-    detectPanda3D('http://my.host.net/needsPlugin.html', False);
-    </script>
+   <script language="javascript">
+   detectPanda3D('http://my.host.net/needsPlugin.html', False);
+   </script>
 
 Note that this JavaScript function only detects whether the plugin is
 installed; it cannot report the plugin version number, and even if the plugin

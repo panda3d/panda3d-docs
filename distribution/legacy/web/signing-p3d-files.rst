@@ -16,7 +16,7 @@ at the time you generate it:
 
 .. code-block:: bash
 
-    packp3d -S mycert.pem -o myapp.p3d -d c:/myapp
+   packp3d -S mycert.pem -o myapp.p3d -d c:/myapp
 
 The above is the appropriate command to use if your public key and private key
 are combined in the same file. If they are separate, you can specify both
@@ -29,8 +29,8 @@ multify command:
 
 .. code-block:: bash
 
-    multify -S mycert.pem -uvf myapp.p3d
-    multify -S mycert.pem,mychain.pem,myprivate.pem -uvf myapp.p3d
+   multify -S mycert.pem -uvf myapp.p3d
+   multify -S mycert.pem,mychain.pem,myprivate.pem -uvf myapp.p3d
 
 You can add multiple signatures to a p3d file. If the user has already
 approved any of the certificates used to sign a p3d file, then that p3d file

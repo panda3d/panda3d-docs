@@ -28,37 +28,37 @@ refer to the manual page on :ref:`collision-bitmasks`.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        from panda3d.core import BitMask32
+      from panda3d.core import BitMask32
 
-        mask1 = BitMask32.allOn()
-        mask2 = BitMask32.allOff()
-        mask3 = BitMask32.bit(2)
-        mask4 = BitMask32.bit(5)
-        mask5 = BitMask32(0x3)
+      mask1 = BitMask32.allOn()
+      mask2 = BitMask32.allOff()
+      mask3 = BitMask32.bit(2)
+      mask4 = BitMask32.bit(5)
+      mask5 = BitMask32(0x3)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        #include "panda3d/bitMask.h"
+      #include "panda3d/bitMask.h"
 
-        BitMask32 mask1 = BitMask32::all_on();
-        BitMask32 mask2 = BitMask32::all_off();
-        BitMask32 mask3 = BitMask32::bit(2);
-        BitMask32 mask4 = BitMask32::bit(5);
-        BitMask32 mask5 = BitMask32(0x3);
+      BitMask32 mask1 = BitMask32::all_on();
+      BitMask32 mask2 = BitMask32::all_off();
+      BitMask32 mask3 = BitMask32::bit(2);
+      BitMask32 mask4 = BitMask32::bit(5);
+      BitMask32 mask5 = BitMask32(0x3);
 
 Given the above bit masks we would get the following results for collision:
 
 ::
 
-    mask1 and mask2 = false
-    mask1 vs. mask3 = true
-    mask3 vs. mask4 = false
-    mask3 vs. mask5 = true
-    mask4 vs. mask5 = false
+   mask1 and mask2 = false
+   mask1 vs. mask3 = true
+   mask3 vs. mask4 = false
+   mask3 vs. mask5 = true
+   mask4 vs. mask5 = false
 
 Group Masks
 -----------
@@ -95,35 +95,35 @@ The following code segment shows how this matrix is represented in code.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        # Group 0 never collides
-        world.setGroupCollisionFlag(0, 0, False)
-        world.setGroupCollisionFlag(0, 1, False)
-        world.setGroupCollisionFlag(0, 2, False)
+      # Group 0 never collides
+      world.setGroupCollisionFlag(0, 0, False)
+      world.setGroupCollisionFlag(0, 1, False)
+      world.setGroupCollisionFlag(0, 2, False)
 
-        # Group 1 only collides with Group 2
-        world.setGroupCollisionFlag(1, 1, False)
-        world.setGroupCollisionFlag(1, 2, True)
+      # Group 1 only collides with Group 2
+      world.setGroupCollisionFlag(1, 1, False)
+      world.setGroupCollisionFlag(1, 2, True)
 
-        # Group 2 only collides with itself
-        world.setGroupCollisionFlag(2, 2, True)
+      # Group 2 only collides with itself
+      world.setGroupCollisionFlag(2, 2, True)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        // Group 0 never collides
-        physics_world->set_group_collision_flag(0, 0, false);
-        physics_world->set_group_collision_flag(0, 1, false);
-        physics_world->set_group_collision_flag(0, 2, false);
+      // Group 0 never collides
+      physics_world->set_group_collision_flag(0, 0, false);
+      physics_world->set_group_collision_flag(0, 1, false);
+      physics_world->set_group_collision_flag(0, 2, false);
 
-        // Group 1 only collides with Group 2
-        physics_world->set_group_collision_flag(1, 1, false);
-        physics_world->set_group_collision_flag(1, 2, true);
+      // Group 1 only collides with Group 2
+      physics_world->set_group_collision_flag(1, 1, false);
+      physics_world->set_group_collision_flag(1, 2, true);
 
-        // Group 2 only collides with itself
-        physics_world->set_group_collision_flag(2, 2, true);
+      // Group 2 only collides with itself
+      physics_world->set_group_collision_flag(2, 2, true);
 
 Please note that this group matrix is ignored by :ref:`queries <queries>`,
 which take a mask that directly indicates which groups to match against.
@@ -137,35 +137,35 @@ collision groups the object belongs to.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        shape = shape = BulletBoxShape(Vec3(0.5, 0.5, 0.5))
+      shape = shape = BulletBoxShape(Vec3(0.5, 0.5, 0.5))
 
-        body = BulletRigidBodyNode('Body')
-        body.addShape(shape)
+      body = BulletRigidBodyNode('Body')
+      body.addShape(shape)
 
-        world.attachRigidBody(body)
+      world.attachRigidBody(body)
 
-        bodyNP = self.worldNP.attachNewNode(body)
-        bodyNP.setPos(0, 0, -1)
+      bodyNP = self.worldNP.attachNewNode(body)
+      bodyNP.setPos(0, 0, -1)
 
-        # Set it to be a part of group 0
-        bodyNP.setCollideMask(BitMask32.bit(0))
+      # Set it to be a part of group 0
+      bodyNP.setCollideMask(BitMask32.bit(0))
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        BulletBoxShape *box_shape = new BulletBoxShape(LVecBase3(0.5, 0.5, 0.5));
-        BulletRigidBodyNode *body_rigid_node = new BulletRigidBodyNode("Body");
-        body_rigid_node->add_shape(box_shape);
-        physics_world->attach(box_rigid_node);
+      BulletBoxShape *box_shape = new BulletBoxShape(LVecBase3(0.5, 0.5, 0.5));
+      BulletRigidBodyNode *body_rigid_node = new BulletRigidBodyNode("Body");
+      body_rigid_node->add_shape(box_shape);
+      physics_world->attach(box_rigid_node);
 
-        NodePath np_body = window->get_render().attach_new_node(box_rigid_node);
-        np_body.set_pos(0, 0, 2);
+      NodePath np_body = window->get_render().attach_new_node(box_rigid_node);
+      np_body.set_pos(0, 0, 2);
 
-        // Set it to be a part of group 0
-        np_body.set_collide_mask(BitMask32::bit(0));
+      // Set it to be a part of group 0
+      np_body.set_collide_mask(BitMask32::bit(0));
 
 PandaNodes have two kinds of collide masks, a "from" collide mask and an
 "into" collide mask. Panda3D's internal collision system requires both masks
@@ -174,15 +174,15 @@ following line is an alternate way to set the collide mask:
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        bodyNP.node().setIntoCollideMask(mask)
+      bodyNP.node().setIntoCollideMask(mask)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        np_box.node()->set_into_collide_mask(mask);
+      np_box.node()->set_into_collide_mask(mask);
 
 This way of setting collide masks can be used for rigid bodies and ghost
 objects. Soft body collisions (and soft body vs. rigid body collisions) are
@@ -201,14 +201,14 @@ combine multiple bitmasks.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        # Set it to be a part of groups 0 and 2
-        bodyNP.setCollideMask(BitMask32.bit(0) | BitMask32.bit(2))
+      # Set it to be a part of groups 0 and 2
+      bodyNP.setCollideMask(BitMask32.bit(0) | BitMask32.bit(2))
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        // Set it to be a part of groups 0 and 2
-        np_body.set_collide_mask(BitMask32::bit(0) | BitMask32::bit(2));
+      // Set it to be a part of groups 0 and 2
+      np_body.set_collide_mask(BitMask32::bit(0) | BitMask32::bit(2));

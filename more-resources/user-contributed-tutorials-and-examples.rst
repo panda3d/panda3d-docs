@@ -42,10 +42,10 @@ https://discourse.panda3d.org/t/panda3d-code-collection/14472
 Demomaster application framework with wxpython navigator:
 https://discourse.panda3d.org/t/demomaster-application-framework-with-wxpython-navigator/5519
 
-Panda3d Terrain System:
+Panda3D Terrain System:
 https://github.com/Craig-Macomber/Panda3D-Terrain-System
 
-Panda3d Shader Generator:
+Panda3D Shader Generator:
 https://github.com/Craig-Macomber/Panda3D-Shader-Generator
 
 Infinite Procedural Terrain Engine:

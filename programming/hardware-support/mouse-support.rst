@@ -7,50 +7,50 @@ Panda3D has mouse support built in.
 
 .. only:: python
 
-    In Python, the default action of the mouse is to control the camera. If you
-    want to disable this functionality you can use the command:
+   In Python, the default action of the mouse is to control the camera. If you
+   want to disable this functionality you can use the command:
 
-    .. code-block:: python
+   .. code-block:: python
 
-        base.disableMouse()
+      base.disableMouse()
 
-    This function's name is slightly misleading. It only disables the task that
-    drives the camera around, it doesn't disable the mouse itself. You can still
-    get the position of the mouse, as well as the mouse clicks.
+   This function's name is slightly misleading. It only disables the task that
+   drives the camera around, it doesn't disable the mouse itself. You can still
+   get the position of the mouse, as well as the mouse clicks.
 
 .. only:: cpp
 
-    In C++, you need to do the following if you want the mouse to control the
-    camera:
+   In C++, you need to do the following if you want the mouse to control the
+   camera:
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        window->setup_trackball();
+      window->setup_trackball();
 
-    You don't need to do this to enable the mouse itself, only to enable a task
-    that drives the camera around. You can still get the position of the mouse, as
-    well as the mouse clicks, even if you don't enable this "trackball mode".
+   You don't need to do this to enable the mouse itself, only to enable a task
+   that drives the camera around. You can still get the position of the mouse, as
+   well as the mouse clicks, even if you don't enable this "trackball mode".
 
 To get the position:
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        if base.mouseWatcherNode.hasMouse():
-          x=base.mouseWatcherNode.getMouseX()
-          y=base.mouseWatcherNode.getMouseY()
+      if base.mouseWatcherNode.hasMouse():
+        x=base.mouseWatcherNode.getMouseX()
+        y=base.mouseWatcherNode.getMouseY()
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        if (mouseWatcher->has_mouse()){
-          if (window->get_graphics_window()){
-            int x = window->get_graphics_window()->get_pointer(0).get_x();
-            int y = window->get_graphics_window()->get_pointer(0).get_y();
-          }
+      if (mouseWatcher->has_mouse()){
+        if (window->get_graphics_window()){
+          int x = window->get_graphics_window()->get_pointer(0).get_x();
+          int y = window->get_graphics_window()->get_pointer(0).get_y();
         }
+      }
 
 The mouse clicks generate "events." To understand what events are, and how to
 process them, you will need to read the
@@ -73,12 +73,12 @@ your :ref:`Config.prc <configuring-panda3d>` or this section of code:
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        from pandac.PandaModules import WindowProperties
-        props = WindowProperties()
-        props.setCursorHidden(True)
-        base.win.requestProperties(props)
+      from pandac.PandaModules import WindowProperties
+      props = WindowProperties()
+      props.setCursorHidden(True)
+      base.win.requestProperties(props)
 
 Re-enabling mouse control
 
@@ -87,12 +87,12 @@ mouseInterfaceNode to the current camera transformation :
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        mat=Mat4(camera.getMat())
-        mat.invertInPlace()
-        base.mouseInterfaceNode.setMat(mat)
-        base.enableMouse()
+      mat=Mat4(camera.getMat())
+      mat.invertInPlace()
+      base.mouseInterfaceNode.setMat(mat)
+      base.enableMouse()
 
 Otherwise the camera would be placed back to the last position when the mouse
 control was enabled.
@@ -123,35 +123,35 @@ distractingly "sticks" to the center of the window.
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        // To set relative mode and hide the cursor:
-        WindowProperties props = window->get_graphics_window()->get_properties();
-        props.set_cursor_hidden (true);
-        props.set_mouse_mode (WindowProperties::M_relative);
-        window->get_graphics_window()->request_properties (props);
+      // To set relative mode and hide the cursor:
+      WindowProperties props = window->get_graphics_window()->get_properties();
+      props.set_cursor_hidden (true);
+      props.set_mouse_mode (WindowProperties::M_relative);
+      window->get_graphics_window()->request_properties (props);
 
-        // To revert to normal mode:
-        WindowProperties props = window->get_graphics_window()->get_properties();
-        props.set_cursor_hidden (false);
-        props.set_mouse_mode (WindowProperties::M_absolute);
-        window->get_graphics_window()->request_properties (props);
+      // To revert to normal mode:
+      WindowProperties props = window->get_graphics_window()->get_properties();
+      props.set_cursor_hidden (false);
+      props.set_mouse_mode (WindowProperties::M_absolute);
+      window->get_graphics_window()->request_properties (props);
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        # To set relative mode and hide the cursor:
-        props = WindowProperties()
-        props.setCursorHidden(True)
-        props.setMouseMode(WindowProperties.M_relative)
-        self.base.win.requestProperties(props)
+      # To set relative mode and hide the cursor:
+      props = WindowProperties()
+      props.setCursorHidden(True)
+      props.setMouseMode(WindowProperties.M_relative)
+      self.base.win.requestProperties(props)
 
-        # To revert to normal mode:
-        props = WindowProperties()
-        props.setCursorHidden(False)
-        props.setMouseMode(WindowProperties.M_absolute)
-        self.base.win.requestProperties(props)
+      # To revert to normal mode:
+      props = WindowProperties()
+      props.setCursorHidden(False)
+      props.setMouseMode(WindowProperties.M_absolute)
+      self.base.win.requestProperties(props)
 
 Confined mouse mode
 
@@ -174,20 +174,20 @@ For example:
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        mw = base.mouseWatcherNode
+      mw = base.mouseWatcherNode
 
-        if mw.hasMouse():
-          # get the position, which at center is (0, 0)
-          x, y = mw.getMouseX(), mw.getMouseY()
+      if mw.hasMouse():
+        # get the position, which at center is (0, 0)
+        x, y = mw.getMouseX(), mw.getMouseY()
 
-          # move mouse back to center
-          props = base.win.getProperties()
-          base.win.movePointer(0,
-                    int(props.getXSize() / 2),
-                    int(props.getYSize() / 2))
-          # now, x and y can be considered relative movements
+        # move mouse back to center
+        props = base.win.getProperties()
+        base.win.movePointer(0,
+                  int(props.getXSize() / 2),
+                  int(props.getYSize() / 2))
+        # now, x and y can be considered relative movements
 
 Of course, the mouse must initially be centered, or else the first event will
 yield a large "movement" depending where the cursor happened to be at program
@@ -206,22 +206,22 @@ events have been processed, using the TaskManager method
 
 .. only:: python
 
-    For example:
+   For example:
 
-    .. code-block:: python
+   .. code-block:: python
 
-        def setMouseMode(...):
-            ...
-            base.win.requestProperties(props)
-            base.taskMgr.doMethodLater(0, resolveMouse, "Resolve mouse setting")
-            ...
+      def setMouseMode(...):
+          ...
+          base.win.requestProperties(props)
+          base.taskMgr.doMethodLater(0, resolveMouse, "Resolve mouse setting")
+          ...
 
-        def resolveMouse(task):
-            props = base.win.getProperties()
+      def resolveMouse(task):
+          props = base.win.getProperties()
 
-            actualMode = props.getMouseMode()
-            if actualMode != WindowProperties.M_relative:
-                # did not get requested mode... perhaps try another.
+          actualMode = props.getMouseMode()
+          if actualMode != WindowProperties.M_relative:
+              # did not get requested mode... perhaps try another.
 
 Multiple Mice
 
@@ -254,12 +254,12 @@ So to print out the positions of the mice, use this:
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        for mouse in base.pointerWatcherNodes:
-          print("NAME=", mouse.getName())
-          print("X=", mouse.getMouseX())
-          print("Y=", mouse.getMouseY())
+      for mouse in base.pointerWatcherNodes:
+        print("NAME=", mouse.getName())
+        print("X=", mouse.getMouseX())
+        print("Y=", mouse.getMouseY())
 
 Each mouse will have a name-string, which might be something along the lines
 of "Micrologic High-Precision Gaming Mouse 2.0 #20245/405". The name is the

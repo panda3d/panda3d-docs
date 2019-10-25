@@ -54,4 +54,4 @@ archive: https://www.panda3d.org/download/noversion/bullet-samples.zip
 
 .. only:: cpp
 
-    Note: All samples are currently available in Python code only.
+   Note: All samples are currently available in Python code only.

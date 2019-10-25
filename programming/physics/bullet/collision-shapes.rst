@@ -35,20 +35,20 @@ centered around its origin.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        from panda3d.bullet import BulletSphereShape
-        radius = 0.5
-        shape = BulletSphereShape(radius)
+      from panda3d.bullet import BulletSphereShape
+      radius = 0.5
+      shape = BulletSphereShape(radius)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        #include "bulletSphereShape.h"
-        ...
-        double radius = 0.5;
-        PT(BulletSphereShape) sphere_shape = new BulletSphereShape(radius);
+      #include "bulletSphereShape.h"
+      ...
+      double radius = 0.5;
+      PT(BulletSphereShape) sphere_shape = new BulletSphereShape(radius);
 
 Plane Shape
 -----------
@@ -60,23 +60,23 @@ used for static objects.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        from panda3d.bullet import BulletPlaneShape
-        normal = Vec3(0, 0, 1)
-        d = 0
-        shape = BulletPlaneShape(normal, d)
+      from panda3d.bullet import BulletPlaneShape
+      normal = Vec3(0, 0, 1)
+      d = 0
+      shape = BulletPlaneShape(normal, d)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        #include "bulletPlaneShape.h"
-        ...
-        LVecBase3 normal(0, 0, 1);
-        double d = 1;
-        PT(BulletPlaneShape) floor_shape = new BulletPlaneShape(normal, d);
-        ...
+      #include "bulletPlaneShape.h"
+      ...
+      LVecBase3 normal(0, 0, 1);
+      double d = 1;
+      PT(BulletPlaneShape) floor_shape = new BulletPlaneShape(normal, d);
+      ...
 
 Box Shape
 ---------
@@ -87,24 +87,24 @@ will be twice the half extents, e. g. from -dx to +dx on the local x-axis.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        from panda3d.bullet import BulletBoxShape
-        dx = 0.5
-        dy = 0.5
-        dz = 1.0
-        shape = BulletBoxShape(Vec3(dx, dy, dz))
+      from panda3d.bullet import BulletBoxShape
+      dx = 0.5
+      dy = 0.5
+      dz = 1.0
+      shape = BulletBoxShape(Vec3(dx, dy, dz))
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        #include "bulletBoxShape.h"
-        ...
-        double dx = 0.5;
-        double dy = 0.5;
-        double dz = 0.5;
-        PT(BulletBoxShape) box_shape = new BulletBoxShape(LVecBase3(dx, dy, dz));
+      #include "bulletBoxShape.h"
+      ...
+      double dx = 0.5;
+      double dy = 0.5;
+      double dz = 0.5;
+      PT(BulletBoxShape) box_shape = new BulletBoxShape(LVecBase3(dx, dy, dz));
 
 Cylinder Shape
 --------------
@@ -116,23 +116,23 @@ example creates two cylinder shapes, both with radius 0.5 and height 1.4.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        from panda3d.bullet import BulletCylinderShape
-        radius = 0.5
-        height = 1.4
-        shape1 = BulletCylinderShape(radius, height, ZUp)
-        shape2 = BulletCylinderShape(Vec3(radius, 0, 0.5 * height), ZUp)
+      from panda3d.bullet import BulletCylinderShape
+      radius = 0.5
+      height = 1.4
+      shape1 = BulletCylinderShape(radius, height, ZUp)
+      shape2 = BulletCylinderShape(Vec3(radius, 0, 0.5 * height), ZUp)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        #include "bulletCylinderShape.h"
-        ...
-        double radius = 0.5;
-        double height = 1.4;
-        PT(BulletCylinderShape) cylinder_shape_one = new BulletCylinderShape(radius, height);
+      #include "bulletCylinderShape.h"
+      ...
+      double radius = 0.5;
+      double height = 1.4;
+      PT(BulletCylinderShape) cylinder_shape_one = new BulletCylinderShape(radius, height);
 
 Capsule Shape
 -------------
@@ -148,22 +148,22 @@ the height of the cylindrical part, plus twice the radius.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        from panda3d.bullet import BulletCapsuleShape
-        radius = 0.5
-        height = 1.0
-        shape = BulletCapsuleShape(radius, height, ZUp)
+      from panda3d.bullet import BulletCapsuleShape
+      radius = 0.5
+      height = 1.0
+      shape = BulletCapsuleShape(radius, height, ZUp)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        #include "bulletCapsuleShape.h"
-        ...
-        double radius = 0.5;
-        double height = 1.0;
-        PT(BulletCapsuleShape) capsule_shape = new BulletCapsuleShape(radius, height);
+      #include "bulletCapsuleShape.h"
+      ...
+      double radius = 0.5;
+      double height = 1.0;
+      PT(BulletCapsuleShape) capsule_shape = new BulletCapsuleShape(radius, height);
 
 Cone Shape
 ----------
@@ -173,22 +173,22 @@ the radius of the circular base of the cone, and it's height.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        from panda3d.bullet import BulletConeShape
-        radius = 0.6
-        height = 1.0
-        shape = BulletConeShape(radius, height, ZUp)
+      from panda3d.bullet import BulletConeShape
+      radius = 0.6
+      height = 1.0
+      shape = BulletConeShape(radius, height, ZUp)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        #include "bulletConeShape.h"
-        ...
-        double radius = 0.6;
-        double height = 1.0;
-        PT(BulletConeShape) cone_shape = new BulletConeShape(radius, height);
+      #include "bulletConeShape.h"
+      ...
+      double radius = 0.6;
+      double height = 1.0;
+      PT(BulletConeShape) cone_shape = new BulletConeShape(radius, height);
 
 Compound Shape
 --------------
@@ -250,49 +250,49 @@ Convex hull shapes can be created is several ways:
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        from panda3d.bullet import BulletConvexHullShape
+      from panda3d.bullet import BulletConvexHullShape
 
-        # Add each vertex separately
-        shape1 = BulletConvexHullShape()
-        shape1.addPoint(Point3(1, 1, 2))
-        shape1.addPoint(Point3(0, 0, 0))
-        shape1.addPoint(Point3(2, 0, 0))
-        shape1.addPoint(Point3(0, 2, 0))
-        shape1.addPoint(Point3(2, 2, 0))
+      # Add each vertex separately
+      shape1 = BulletConvexHullShape()
+      shape1.addPoint(Point3(1, 1, 2))
+      shape1.addPoint(Point3(0, 0, 0))
+      shape1.addPoint(Point3(2, 0, 0))
+      shape1.addPoint(Point3(0, 2, 0))
+      shape1.addPoint(Point3(2, 2, 0))
 
-        # Add several vertices with a single call
-        shape2 = BulletConvexHullShape()
-        shape2.addArray([
-           Point3(1, 1, 2),
-           Point3(0, 0, 0),
-           Point3(2, 0, 0),
-           Point3(0, 2, 0),
-           Point3(2, 2, 0),
-        ])
+      # Add several vertices with a single call
+      shape2 = BulletConvexHullShape()
+      shape2.addArray([
+         Point3(1, 1, 2),
+         Point3(0, 0, 0),
+         Point3(2, 0, 0),
+         Point3(0, 2, 0),
+         Point3(2, 2, 0),
+      ])
 
-        # Add all vertices which can be found in a Geom object
-        geomNodes = loader.loadModel(path).findAllMatches('**/+GeomNode')
-        geomNode = geomNodes.getPath(0).node()
-        geom = geomNode.getGeom(0)
-        shape3 = BulletConvexHullShape()
-        shape3.addGeom(geom)
+      # Add all vertices which can be found in a Geom object
+      geomNodes = loader.loadModel(path).findAllMatches('**/+GeomNode')
+      geomNode = geomNodes.getPath(0).node()
+      geom = geomNode.getGeom(0)
+      shape3 = BulletConvexHullShape()
+      shape3.addGeom(geom)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        #include "bulletConvexHullShape.h"
-        ...
+      #include "bulletConvexHullShape.h"
+      ...
 
-        // Add each vertex separately
-        PT(BulletConvexHullShape) convex_hull_shape = new BulletConvexHullShape();
-        convex_hull_shape->add_point(LPoint3(1, 1, 2));
-        convex_hull_shape->add_point(LPoint3(0, 0, 0));
-        convex_hull_shape->add_point(LPoint3(2, 0, 0));
-        convex_hull_shape->add_point(LPoint3(0, 2, 0));
-        convex_hull_shape->add_point(LPoint3(2, 2, 0));
+      // Add each vertex separately
+      PT(BulletConvexHullShape) convex_hull_shape = new BulletConvexHullShape();
+      convex_hull_shape->add_point(LPoint3(1, 1, 2));
+      convex_hull_shape->add_point(LPoint3(0, 0, 0));
+      convex_hull_shape->add_point(LPoint3(2, 0, 0));
+      convex_hull_shape->add_point(LPoint3(0, 2, 0));
+      convex_hull_shape->add_point(LPoint3(2, 2, 0));
 
 Triangle Mesh Shape
 -------------------
@@ -310,36 +310,36 @@ triangles.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        from panda3d.bullet import BulletTriangleMeshShape
-        p0 = Point3(-10, -10, 0)
-        p1 = Point3(-10, 10, 0)
-        p2 = Point3(10, -10, 0)
-        p3 = Point3(10, 10, 0)
-        mesh = BulletTriangleMesh()
-        mesh.addTriangle(p0, p1, p2)
-        mesh.addTriangle(p1, p2, p3)
-        shape = BulletTriangleMeshShape(mesh, dynamic=False)
+      from panda3d.bullet import BulletTriangleMeshShape
+      p0 = Point3(-10, -10, 0)
+      p1 = Point3(-10, 10, 0)
+      p2 = Point3(10, -10, 0)
+      p3 = Point3(10, 10, 0)
+      mesh = BulletTriangleMesh()
+      mesh.addTriangle(p0, p1, p2)
+      mesh.addTriangle(p1, p2, p3)
+      shape = BulletTriangleMeshShape(mesh, dynamic=False)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        #include "bulletTriangleMesh.h"
-        ...
-        LPoint3 points_array[4] = {
-            LPoint3(-10, -10, 0),
-            LPoint3(-10, 10, 0),
-            LPoint3(10, -10, 0),
-            LPoint3(10, 10, 0),
-        };
+      #include "bulletTriangleMesh.h"
+      ...
+      LPoint3 points_array[4] = {
+          LPoint3(-10, -10, 0),
+          LPoint3(-10, 10, 0),
+          LPoint3(10, -10, 0),
+          LPoint3(10, 10, 0),
+      };
 
-        PT(BulletTriangleMesh) triangle_mesh = new BulletTriangleMesh;
-        triangle_mesh->add_triangle(points_array[0], points_array[1], points_array[2]);
-        triangle_mesh->add_triangle(points_array[1], points_array[2], points_array[3]);
+      PT(BulletTriangleMesh) triangle_mesh = new BulletTriangleMesh;
+      triangle_mesh->add_triangle(points_array[0], points_array[1], points_array[2]);
+      triangle_mesh->add_triangle(points_array[1], points_array[2], points_array[3]);
 
-        PT(BulletTriangleMeshShape) triangle_mesh_shape = new BulletTriangleMeshShape(triangle_mesh, false);
+      PT(BulletTriangleMeshShape) triangle_mesh_shape = new BulletTriangleMeshShape(triangle_mesh, false);
 
 We can use a convenience method to add all triangles from a Geom object with
 one method call. The geom will be decomposed first, so it does not have to
@@ -347,20 +347,20 @@ contain only triangles; for example, it can contain triangle strips too.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        from panda3d.bullet import BulletTriangleMesh
-        mesh = BulletTriangleMesh()
-        mesh.addGeom(geom)
+      from panda3d.bullet import BulletTriangleMesh
+      mesh = BulletTriangleMesh()
+      mesh.addGeom(geom)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        #include "bulletTriangleMesh.h"
-        ...
-        PT(BulletTriangleMesh) triangle_mesh = new BulletTriangleMesh();
-        triangle_mesh->add_geom(geom);
+      #include "bulletTriangleMesh.h"
+      ...
+      PT(BulletTriangleMesh) triangle_mesh = new BulletTriangleMesh();
+      triangle_mesh->add_geom(geom);
 
 Heightfield Shape
 -----------------
@@ -370,27 +370,27 @@ construct a terrain mesh with only a few lines of code.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        from panda3d.core import Filename
-        from panda3d.core import PNMImage
-        from panda3d.bullet import BulletHeightfieldShape
-        from panda3d.bullet import ZUp
-        height = 10.0
-        img = PNMImage(Filename('elevation.png'))
-        shape = BulletHeightfieldShape(img, height, ZUp)
+      from panda3d.core import Filename
+      from panda3d.core import PNMImage
+      from panda3d.bullet import BulletHeightfieldShape
+      from panda3d.bullet import ZUp
+      height = 10.0
+      img = PNMImage(Filename('elevation.png'))
+      shape = BulletHeightfieldShape(img, height, ZUp)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        #include "pnmImage.h"
-        #include "bulletHeightfieldShape.h"
+      #include "pnmImage.h"
+      #include "bulletHeightfieldShape.h"
 
-        PNMImage pnm_image;
-        pnm_image.read(Filename("models/elevation.png"));
+      PNMImage pnm_image;
+      pnm_image.read(Filename("models/elevation.png"));
 
-        PT(BulletHeightfieldShape) heightfield_shape = new BulletHeightfieldShape(*pnm_image, height);
+      PT(BulletHeightfieldShape) heightfield_shape = new BulletHeightfieldShape(*pnm_image, height);
 
 The heightfield shape will be oriented the same way as a GeoMipTerrain created
 from the same image, but GeoMipTerrain and BulletHeightfieldShape have
@@ -401,34 +401,34 @@ relative to the static rigid body node.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        from panda3d.core import Filename
-        offset = img.getXSize() / 2.0 - 0.5
-        terrain = GeoMipTerrain('terrain')
-        terrain.setHeightfield(img)
-        terrainNP = terrain.getRoot()
-        terrainNP.setSz(height)
-        terrainNP.setPos(-offset, -offset, -height / 2.0)
+      from panda3d.core import Filename
+      offset = img.getXSize() / 2.0 - 0.5
+      terrain = GeoMipTerrain('terrain')
+      terrain.setHeightfield(img)
+      terrainNP = terrain.getRoot()
+      terrainNP.setSz(height)
+      terrainNP.setPos(-offset, -offset, -height / 2.0)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        GeoMipTerrain *terrain = get_geomip_terrain();
-        terrain->set_heightfield(*pnm_image);
-        terrain->set_block_size(32);
-        terrain->set_near(50);
-        terrain->set_far(100);
-        terrain->set_focal_point(window->get_camera_group());
+      GeoMipTerrain *terrain = get_geomip_terrain();
+      terrain->set_heightfield(*pnm_image);
+      terrain->set_block_size(32);
+      terrain->set_near(50);
+      terrain->set_far(100);
+      terrain->set_focal_point(window->get_camera_group());
 
-        NodePath terrain_root = terrain->get_root();
+      NodePath terrain_root = terrain->get_root();
 
-        float offset = pnm_image->get_x_size() / 2.0 - 0.5;
-        terrain_root.set_pos(-offset, -offset, -height / 2.0);
+      float offset = pnm_image->get_x_size() / 2.0 - 0.5;
+      terrain_root.set_pos(-offset, -offset, -height / 2.0);
 
-        terrain_root.set_scale(terrain_root.get_scale().get_x(), terrain_root.get_scale().get_y(), height);
-        terrain_root.reparent_to(window->get_render());
+      terrain_root.set_scale(terrain_root.get_scale().get_x(), terrain_root.get_scale().get_y(), height);
+      terrain_root.reparent_to(window->get_render());
 
 Soft Body Shape
 ---------------

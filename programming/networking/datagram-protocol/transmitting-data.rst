@@ -40,7 +40,7 @@ send it using a ConnectionWriter.
 
 .. code-block:: python
 
-    cWriter.send(myPyDatagram, aConnection)
+   cWriter.send(myPyDatagram, aConnection)
 
 Receiving a message
 -------------------

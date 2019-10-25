@@ -15,43 +15,43 @@ settings have to be done. The following code will create rectangular path with
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        from panda3d.bullet import BulletSoftBodyNode
+      from panda3d.bullet import BulletSoftBodyNode
 
-        info = self.world.getWorldInfo()
-        info.setAirDensity(1.2)
-        info.setWaterDensity(0)
-        info.setWaterOffset(0)
-        info.setWaterNormal(Vec3(0, 0, 0))
+      info = self.world.getWorldInfo()
+      info.setAirDensity(1.2)
+      info.setWaterDensity(0)
+      info.setWaterOffset(0)
+      info.setWaterNormal(Vec3(0, 0, 0))
 
-        resx = 31
-        resy = 31
+      resx = 31
+      resy = 31
 
-        p00 = Point3(-8, -8, 0)
-        p10 = Point3( 8, -8, 0)
-        p01 = Point3(-8,  8, 0)
-        p11 = Point3( 8,  8, 0)
+      p00 = Point3(-8, -8, 0)
+      p10 = Point3( 8, -8, 0)
+      p01 = Point3(-8,  8, 0)
+      p11 = Point3( 8,  8, 0)
 
-        fixeds = 1+2+4+8
-        gendiags = True
+      fixeds = 1+2+4+8
+      gendiags = True
 
-        bodyNode = BulletSoftBodyNode.makePatch(info, p00, p10, p01, p11, resx, resy, fixeds, gendiags)
+      bodyNode = BulletSoftBodyNode.makePatch(info, p00, p10, p01, p11, resx, resy, fixeds, gendiags)
 
-        material = bodyNode.appendMaterial()
-        material.setLinearStiffness(0.4)
-        bodyNode.generateBendingConstraints(2, material)
+      material = bodyNode.appendMaterial()
+      material.setLinearStiffness(0.4)
+      bodyNode.generateBendingConstraints(2, material)
 
-        bodyNode.setTotalMass(50.0)
-        bodyNode.getShape(0).setMargin(0.5)
-        bodyNP = self.worldNP.attachNewNode(bodyNode)
-        world.attachSoftBody(bodyNode)
+      bodyNode.setTotalMass(50.0)
+      bodyNode.getShape(0).setMargin(0.5)
+      bodyNP = self.worldNP.attachNewNode(bodyNode)
+      world.attachSoftBody(bodyNode)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        TODO
+      TODO
 
 First we have to configure the soft body world properties, like we did for
 soft body ropes too. Next we define variables for the resolution in x- and
@@ -86,23 +86,23 @@ snippet shows how use this helper method.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        from panda3d.core import GeomVertexFormat
-        from panda3d.bulletimport BulletHelper
+      from panda3d.core import GeomVertexFormat
+      from panda3d.bulletimport BulletHelper
 
-        fmt = GeomVertexFormat.getV3n3t2()
-        geom = BulletHelper.makeGeomFromFaces(bodyNode, fmt, True)
-        bodyNode.linkGeom(geom)
-        visNode = GeomNode('')
-        visNode.addGeom(geom)
-        visNP = bodyNP.attachNewNode(visNode)
+      fmt = GeomVertexFormat.getV3n3t2()
+      geom = BulletHelper.makeGeomFromFaces(bodyNode, fmt, True)
+      bodyNode.linkGeom(geom)
+      visNode = GeomNode('')
+      visNode.addGeom(geom)
+      visNP = bodyNP.attachNewNode(visNode)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        TODO
+      TODO
 
 The third parameter to ``makeGeomFromFaces``
 is set to ``True``, making the
@@ -117,17 +117,17 @@ following code shows a convenience method which will do this for us.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        tex = loader.loadTexture('models/panda.jpg')
-        visNP.setTexture(tex)
-        BulletHelper.makeTexcoordsForPatch(geom, resx, resy)
+      tex = loader.loadTexture('models/panda.jpg')
+      visNP.setTexture(tex)
+      BulletHelper.makeTexcoordsForPatch(geom, resx, resy)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        TODO
+      TODO
 
 Note: It is also possible to render soft body patches using a
 ``NurbsSurfaceEvaluator`` and

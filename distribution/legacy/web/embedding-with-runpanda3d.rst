@@ -27,20 +27,20 @@ web page like this:
 
 .. code-block:: html
 
-    <head>
-    ... other head content ...
-    <script src="RunPanda3D.js" type="text/javascript"></script>
-    ... other head content ...
-    </head>
-    <body>
-    ... other body content ...
-    <script type="text/javascript">
-    P3D_RunContent('data', 'myapp.p3d', 'id', 'myapp_id',
-        'width', '640', 'height', '480')
-    }
-    </script>
-    ... other body content ...
-    </body>
+   <head>
+   ... other head content ...
+   <script src="RunPanda3D.js" type="text/javascript"></script>
+   ... other head content ...
+   </head>
+   <body>
+   ... other body content ...
+   <script type="text/javascript">
+   P3D_RunContent('data', 'myapp.p3d', 'id', 'myapp_id',
+       'width', '640', 'height', '480')
+   }
+   </script>
+   ... other body content ...
+   </body>
 
 That is, you must include a reference to RunPanda3D.js within the
 
@@ -68,8 +68,8 @@ this:
 
 .. code-block:: html
 
-    <object data="myapp.p3d" id="myapp_id" width="640" height="480">
-    </object>
+   <object data="myapp.p3d" id="myapp_id" width="640" height="480">
+   </object>
 
 (though it will also add either
 ``classid`` or

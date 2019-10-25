@@ -35,7 +35,7 @@ it directly on the node itself, not on the NodePath:
 
 .. code-block:: python
 
-    nodePath.node().setFromCollideMask(BitMask32(0x10))
+   nodePath.node().setFromCollideMask(BitMask32(0x10))
 
 However, the into collide mask may be set on the NodePath, for convenience;
 this recursively modifies the into collide mask for all the nodes at the given
@@ -43,7 +43,7 @@ NodePath level and below.
 
 .. code-block:: python
 
-    nodePath.setCollideMask(newMask, bitsToChange, nodeType)
+   nodePath.setCollideMask(newMask, bitsToChange, nodeType)
 
 The parameter newMask specifies the new mask to apply. The remaining
 parameters are optional; if they are omitted, then every node at nodePath
@@ -59,14 +59,14 @@ Examples:
 
 .. code-block:: python
 
-    nodePath.setCollideMask(BitMask32(0x10))
+   nodePath.setCollideMask(BitMask32(0x10))
 
 This sets the into collide mask of nodePath, and all children of nodePath, to
 the value 0x10, regardless of the value each node had before.
 
 .. code-block:: python
 
-    nodePath.setCollideMask(BitMask32(0x04), BitMask32(0xff))
+   nodePath.setCollideMask(BitMask32(0x04), BitMask32(0xff))
 
 This replaces the lower 8 bits of nodePath and all of its children with the
 value 0x04, leaving the upper 24 bits of each node unchanged.
@@ -105,7 +105,7 @@ create a box into only "ralph" can collide:
 
 .. code-block:: python
 
-    ralph=loader.loadModel("ralph")
-    ralph.setCollideMask(BitMask32.bit(0))
-    box=loader.loadModel("box")
-    box.find("**/Cube;+h").setCollideMask(BitMask32.bit(0))
+   ralph=loader.loadModel("ralph")
+   ralph.setCollideMask(BitMask32.bit(0))
+   box=loader.loadModel("box")
+   box.find("**/Cube;+h").setCollideMask(BitMask32.bit(0))

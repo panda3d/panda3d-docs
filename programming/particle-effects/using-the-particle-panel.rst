@@ -5,7 +5,7 @@ Using the Particle Panel
 
 The Particle Panel can be invoked by running the Particle Panel sample program,
 which should be located at Panda3D-1.X.X/samples/Particles in Windows. The
-Panda3d engine uses text files for storing particle effects. You don't need to
+Panda3D engine uses text files for storing particle effects. You don't need to
 use the Particle Panel to create particle effects, you can just create those
 files in your text editor, or set all the parameters in your code, however it
 makes everything a lot easier and you can see all your changes immediately in

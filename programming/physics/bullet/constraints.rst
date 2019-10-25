@@ -66,26 +66,26 @@ snippet
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        shape = BulletBoxShape(Vec3(0.5, 0.5, 0.5))
+      shape = BulletBoxShape(Vec3(0.5, 0.5, 0.5))
 
-        npA = self.worldNP.attachNewNode(BulletRigidBodyNode('A'))
-        npA.node().setMass(1.0)
-        npA.node().addShape(shape)
-        npA.setPos(10, 0, 5)
-        world.attachRigidBody(npA.node())
+      npA = self.worldNP.attachNewNode(BulletRigidBodyNode('A'))
+      npA.node().setMass(1.0)
+      npA.node().addShape(shape)
+      npA.setPos(10, 0, 5)
+      world.attachRigidBody(npA.node())
 
-        npB = self.worldNP.attachNewNode(BulletRigidBodyNode('B'))
-        npB.node().addShape(shape)
-        npB.setPos(10, 0, -5)
-        self.world.attachRigidBody(npB.node())
+      npB = self.worldNP.attachNewNode(BulletRigidBodyNode('B'))
+      npB.node().addShape(shape)
+      npB.setPos(10, 0, -5)
+      self.world.attachRigidBody(npB.node())
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        TODO
+      TODO
 
 In the above example body A is dynamic, and body B is static. This means body
 A will fall down since it is affected by gravity, but body B will always stay
@@ -106,25 +106,25 @@ Finally we add the new constraint to the physics world.
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        frameA = TransformState.makePosHpr(Point3(0, 0, -5), Vec3(0, 0, -90))
-        frameB = TransformState.makePosHpr(Point3(0, 0, 5), Vec3(0, 0, -90))
+      frameA = TransformState.makePosHpr(Point3(0, 0, -5), Vec3(0, 0, -90))
+      frameB = TransformState.makePosHpr(Point3(0, 0, 5), Vec3(0, 0, -90))
 
-        swing1 = 60 # degrees
-        swing2 = 36 # degrees
-        twist = 120 # degrees
+      swing1 = 60 # degrees
+      swing2 = 36 # degrees
+      twist = 120 # degrees
 
-        cs = BulletConeTwistConstraint(npA.node(), npB.node(), frameA, frameB)
-        cs.setDebugDrawSize(2.0)
-        cs.setLimit(swing1, swing2, twist)
-        world.attachConstraint(cs)
+      cs = BulletConeTwistConstraint(npA.node(), npB.node(), frameA, frameB)
+      cs.setDebugDrawSize(2.0)
+      cs.setLimit(swing1, swing2, twist)
+      world.attachConstraint(cs)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        TODO
+      TODO
 
 In this case we have set the following limits:
 
@@ -148,18 +148,18 @@ the constraint, for example like in the following snippet
 
 .. only:: python
 
-    .. code-block:: python
+   .. code-block:: python
 
-        frameA = TransformState.makePosHpr(Point3(0, 0, -5), Vec3(0, 0, -90))
+      frameA = TransformState.makePosHpr(Point3(0, 0, -5), Vec3(0, 0, -90))
 
-        cs = BulletConeTwistConstraint(npA.node(), frameA)
-        world.attachConstraint(cs)
+      cs = BulletConeTwistConstraint(npA.node(), frameA)
+      world.attachConstraint(cs)
 
 .. only:: cpp
 
-    .. code-block:: cpp
+   .. code-block:: cpp
 
-        TODO
+      TODO
 
 .. |BulletHinge.png| image:: bullethinge.png
 .. |BulletSlider.png| image:: bulletslider.png

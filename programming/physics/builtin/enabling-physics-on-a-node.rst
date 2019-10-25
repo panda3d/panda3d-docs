@@ -24,13 +24,13 @@ base.physicsMgr, which will often be suitable for most applications.
 
 .. code-block:: python
 
-    node = NodePath("PhysicsNode")
-    node.reparentTo(render)
-    an = ActorNode("jetpack-guy-physics")
-    anp = node.attachNewNode(an)
-    base.physicsMgr.attachPhysicalNode(an)
-    jetpackGuy = loader.loadModel("models/jetpack_guy")
-    jetpackGuy.reparentTo(anp)
+   node = NodePath("PhysicsNode")
+   node.reparentTo(render)
+   an = ActorNode("jetpack-guy-physics")
+   anp = node.attachNewNode(an)
+   base.physicsMgr.attachPhysicalNode(an)
+   jetpackGuy = loader.loadModel("models/jetpack_guy")
+   jetpackGuy.reparentTo(anp)
 
 Now, the "jetpackGuy" model will be updated every frame with the physics
 applied to it.
@@ -41,4 +41,4 @@ use the getPhysicsObject call.
 
 .. code-block:: python
 
-    an.getPhysicsObject().setMass(136.077)   # about 300 lbs
+   an.getPhysicsObject().setMass(136.077)   # about 300 lbs

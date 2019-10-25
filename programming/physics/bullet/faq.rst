@@ -4,7 +4,7 @@ Bullet FAQ
 ==========
 
 This page contains answers to often asked question and elaborations on
-different topics related to the Bullet Panda3d module.
+different topics related to the Bullet Panda3D module.
 
 Bullet and Scale
 ----------------

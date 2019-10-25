@@ -40,13 +40,13 @@ For instance, if you want to copy the (X, Y) position of each vertex to its
 
    .. code-block:: cpp
 
-       GeomVertexWriter texcoord(vdata, "texcoord");
-       GeomVertexReader vertex(vdata, "vertex");
+      GeomVertexWriter texcoord(vdata, "texcoord");
+      GeomVertexReader vertex(vdata, "vertex");
 
-       while (!vertex.is_at_end()) {
-         LVector3 v = vertex.get_data3();
-         texcoord.set_data2(v[0], v[1]);
-       }
+      while (!vertex.is_at_end()) {
+        LVector3 v = vertex.get_data3();
+        texcoord.set_data2(v[0], v[1]);
+      }
 
 .. important::
 

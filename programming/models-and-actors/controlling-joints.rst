@@ -10,7 +10,7 @@ this, use controlJoint.
 
 .. code-block:: python
 
-    myNodePath = actor.controlJoint(None,"modelRoot","Joint Name")
+   myNodePath = actor.controlJoint(None,"modelRoot","Joint Name")
 
 This creates a dummy node. Every frame, the transform is copied from the dummy
 node into the joint. By setting the transform of the dummy node, you can
