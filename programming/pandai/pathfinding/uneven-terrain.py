@@ -8,19 +8,22 @@
 # around on uneven terrain, as well as implementing a fully rotatable camera.
 # It uses PandAI pathfinding to move the character.
 
-import direct.directbase.DirectStart
+from direct.showbase.ShowBase import ShowBase
 from panda3d.core import CollisionTraverser, CollisionNode
 from panda3d.core import CollisionHandlerQueue, CollisionRay
 from panda3d.core import Filename
-from panda3d.core import PandaNode, NodePath, Camera, TextNode
+from panda3d.core import PandaNode, NodePath, TextNode
 from panda3d.core import Vec3, BitMask32
 from direct.gui.OnscreenText import OnscreenText
 from direct.actor.Actor import Actor
 from direct.task.Task import Task
 from direct.showbase.DirectObject import DirectObject
-import random, sys, os, math
+import sys
+import os
 
 from panda3d.ai import *
+
+base = ShowBase()
 
 SPEED = 0.5
 
@@ -30,36 +33,44 @@ MYDIR = Filename.fromOsSpecific(MYDIR).getFullpath()
 
 font = loader.loadFont("cmss12")
 
+
 # Function to put instructions on the screen.
 def addInstructions(pos, msg):
     return OnscreenText(text=msg, style=1, fg=(1, 1, 1, 1), font=font,
                         pos=(-1.3, pos), align=TextNode.ALeft, scale=.05)
 
+
 # Function to put title on the screen.
 def addTitle(text):
     return OnscreenText(text=text, style=1, fg=(1, 1, 1, 1), font=font,
-                        pos=(1.3,-0.95), align=TextNode.ARight, scale=.07)
+                        pos=(1.3, -0.95), align=TextNode.ARight, scale=.07)
+
 
 class World(DirectObject):
 
     def __init__(self):
-
-        #self.switchState = False
         self.switchState = True
         self.switchCam = False
         self.path_no = 1
-        self.keyMap = {"left":0, "right":0, "forward":0, "cam-left":0, "cam-right":0}
+        self.keyMap = {
+            "left": 0,
+            "right": 0,
+            "forward": 0,
+            "cam-left": 0,
+            "cam-right": 0
+        }
         base.win.setClearColor((0, 0, 0, 1))
         base.cam.setPosHpr(17.79, -87.64, 90.16, 38.66, 325.36, 0)
         # Post the instructions
 
-        self.title = addTitle("Pandai Tutorial: Roaming Ralph (Walking on Uneven Terrain) working with pathfinding")
-        self.inst1 = addInstructions(0.95, "[ESC]: Quit")
-        self.inst2 = addInstructions(0.90, "[Space - do Only once]: Start Pathfinding")
-        self.inst3 = addInstructions(0.85, "[Enter]: Change camera view")
-        #self.inst4 = addInstructions(0.80, "[Up Arrow]: Run Ralph Forward")
-        #self.inst6 = addInstructions(0.70, "[A]: Rotate Camera Left")
-        #self.inst7 = addInstructions(0.65, "[S]: Rotate Camera Right")
+        addTitle("Pandai Tutorial: Roaming Ralph (Walking on Uneven Terrain) "
+                 "working with pathfinding")
+        addInstructions(0.95, "[ESC]: Quit")
+        addInstructions(0.90, "[Space - do Only once]: Start Pathfinding")
+        addInstructions(0.85, "[Enter]: Change camera view")
+        addInstructions(0.80, "[Up Arrow]: Run Ralph Forward")
+        addInstructions(0.70, "[A]: Rotate Camera Left")
+        addInstructions(0.65, "[S]: Rotate Camera Right")
 
         # Set up the environment
         #
@@ -92,19 +103,18 @@ class World(DirectObject):
         #ralphStartPos = self.environ.find("**/start_point").getPos()
         ralphStartPos = Vec3(-98.64, -20.60, 0)
         self.ralph = Actor("models/ralph",
-                           {"run":"models/ralph-run",
-                            "walk":"models/ralph-walk"})
+                           {"run": "models/ralph-run",
+                            "walk": "models/ralph-walk"})
         self.ralph.reparentTo(render)
         self.ralph.setScale(1)
         self.ralph.setPos(ralphStartPos)
 
-        ralphaiStartPos = Vec3(-50, 20, 0)
         self.ralphai = Actor("models/ralph",
-                             {"run":"models/ralph-run",
-                              "walk":"models/ralph-walk"})
+                             {"run": "models/ralph-run",
+                              "walk": "models/ralph-walk"})
 
         self.pointer = loader.loadModel("models/arrow")
-        self.pointer.setColor(1,0,0)
+        self.pointer.setColor(1, 0, 0)
         self.pointer.setPos(-7.5, -1.2, 0)
         self.pointer.setScale(3)
         self.pointer.reparentTo(render)
@@ -144,7 +154,7 @@ class World(DirectObject):
         # Set up the camera
 
         #base.disableMouse()
-        #base.camera.setPos(self.ralph.getX(),self.ralph.getY()+10,2)
+        #base.camera.setPos(self.ralph.getX(), self.ralph.getY() + 10, 2)
 
         # We will detect the height of the terrain by creating a collision
         # ray and casting it downward toward the terrain.  One ray will
@@ -200,7 +210,7 @@ class World(DirectObject):
             base.cam.setPosHpr(17.79, -87.64, 90.16, 38.66, 325.36, 0)
             #base.camera.setPos(self.ralph.getX(),self.ralph.getY()+10,2)
 
-    #Records the state of the arrow keys
+    # Records the state of the arrow keys
     def setKey(self, key, value):
         self.keyMap[key] = value
 
@@ -245,7 +255,7 @@ class World(DirectObject):
         else:
             if self.isMoving:
                 self.ralph.stop()
-                self.ralph.pose("walk",5)
+                self.ralph.pose("walk", 5)
                 self.isMoving = False
 
         # If the camera is too far from ralph, move it closer.
@@ -276,10 +286,10 @@ class World(DirectObject):
         for i in range(self.ralphGroundHandler.getNumEntries()):
             entry = self.ralphGroundHandler.getEntry(i)
             entries.append(entry)
-        entries.sort(lambda x,y: cmp(y.getSurfacePoint(render).getZ(),
-                                     x.getSurfacePoint(render).getZ()))
-        if (len(entries)>0) and (entries[0].getIntoNode().getName() == "terrain"):
-            self.ralph.setZ(entries[0].getSurfacePoint(render).getZ())
+        entries.sort(lambda x, y: cmp(y.getSurfacePoint(render).z,
+                                      x.getSurfacePoint(render).z))
+        if entries and entries[0].getIntoNode().getName() == "terrain":
+            self.ralph.setZ(entries[0].getSurfacePoint(render).z)
         else:
             self.ralph.setPos(startpos)
 
@@ -291,10 +301,10 @@ class World(DirectObject):
             for i in range(self.camGroundHandler.getNumEntries()):
                 entry = self.camGroundHandler.getEntry(i)
                 entries.append(entry)
-            entries.sort(lambda x,y: cmp(y.getSurfacePoint(render).getZ(),
-                                         x.getSurfacePoint(render).getZ()))
-            if len(entries) > 0 and entries[0].getIntoNode().getName() == "terrain":
-                base.camera.setZ(entries[0].getSurfacePoint(render).getZ() + 1.0)
+            entries.sort(lambda x, y: cmp(y.getSurfacePoint(render).z,
+                                          x.getSurfacePoint(render).z))
+            if entries and entries[0].getIntoNode().getName() == "terrain":
+                base.camera.setZ(entries[0].getSurfacePoint(render).z + 1.0)
             if base.camera.getZ() < self.ralph.getZ() + 2.0:
                 base.camera.setZ(self.ralph.getZ() + 2.0)
 
@@ -311,7 +321,7 @@ class World(DirectObject):
         return Task.cont
 
     def setAI(self):
-        #Creating AI World
+        # Creating AI World
         self.AIworld = AIWorld(render)
 
         self.accept("space", self.setMove)
@@ -321,7 +331,7 @@ class World(DirectObject):
 
         self.AIbehaviors.initPathFind("models/navmesh.csv")
 
-        #AI World update
+        # AI World update
         taskMgr.add(self.AIUpdate, "AIUpdate")
 
     def setMove(self):
@@ -330,8 +340,8 @@ class World(DirectObject):
         self.AIbehaviors.pathFindTo(self.pointer)
         self.ralph.loop("run")
 
-    #to update the AIWorld
-    def AIUpdate(self,task):
+    # To update the AIWorld
+    def AIUpdate(self, task):
         self.AIworld.update()
         self.move()
 
@@ -346,6 +356,7 @@ class World(DirectObject):
             self.AIbehaviors.pathFindTo(self.pointer, "addPath")
 
         return Task.cont
+
 
 w = World()
 base.run()

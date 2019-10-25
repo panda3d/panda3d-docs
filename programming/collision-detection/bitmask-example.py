@@ -37,7 +37,7 @@ class World(DirectObject):
         self.maskPos = 0
 
         # First we create a floor collision plane.
-        floorNode = render.attachNewNode("Floor NodePath")
+        floorNode = base.render.attachNewNode("Floor NodePath")
         # Create a collision plane solid.
         collPlane = CollisionPlane(Plane(Vec3(0, 0, 1), Point3(0, 0, 0)))
         # Call our function that creates a nodepath with a collision node.
@@ -53,8 +53,8 @@ class World(DirectObject):
         collSphere = CollisionSphere(0, 0, 0, 1.5)
 
         # Make a smiley.
-        smiley = loader.loadModel('smiley')
-        smiley.reparentTo(render)
+        smiley = base.loader.loadModel('smiley')
+        smiley.reparentTo(base.render)
         smiley.setPos(-3, 3, 3)
         smiley.setName("Smiley")
         smileyCollisionNP = self.makeCollisionNodePath(smiley, collSphere)
@@ -63,8 +63,8 @@ class World(DirectObject):
         smileyCollisionNP.node().setIntoCollideMask(goodMask)
 
         # Make a frowney.
-        frowney = loader.loadModel('frowney')
-        frowney.reparentTo(render)
+        frowney = base.loader.loadModel('frowney')
+        frowney.reparentTo(base.render)
         frowney.setPos(-3, 3, 7)
         frowney.setName("Frowney")
         frowneyCollisionNP = self.makeCollisionNodePath(frowney, collSphere)
@@ -79,7 +79,7 @@ class World(DirectObject):
         # since we're not adding them to the traverser as from objects.
 
         # Make a collision ray that passes through all of the objects.
-        self.pointerNode = render.attachNewNode("Main Collider")
+        self.pointerNode = base.render.attachNewNode("Main Collider")
         self.pointerNode.setPos(-3, 3, 10)
         # Create a ray collision solid that points downwards.
         raySolid = CollisionRay(0, 0, 0, 0, 0, -1)
@@ -95,7 +95,7 @@ class World(DirectObject):
         base.camera.setPos(20, -20, 5)
         base.camera.lookAt(0, 0, 5)
         # Debug mode for collision traversers; shows collisions visually.
-        base.cTrav.showCollisions(render)
+        base.cTrav.showCollisions(base.render)
 
         # Setup the title text.
         collideText = self.maskList[self.maskPos][0]

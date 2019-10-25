@@ -1,15 +1,12 @@
 # This tutorial provides an example of creating a character and having it walk
 # around using PandAI and dynamic obstacle pathfinding
 
-import direct.directbase.DirectStart
+from direct.showbase.ShowBase import ShowBase
 from panda3d.core import *
 from direct.showbase.DirectObject import DirectObject
 from direct.interval.IntervalGlobal import *
-from direct.fsm import FSM
-from direct.fsm import State
 from direct.task import Task
 from direct.actor.Actor import Actor
-import math
 import random
 import sys
 import os
@@ -17,6 +14,8 @@ from direct.gui.DirectGui import *
 from direct.gui.OnscreenText import OnscreenText
 
 from panda3d.ai import *
+
+base = ShowBase()
 
 speed = 0.2
 turnspeed = 3.5
@@ -105,10 +104,10 @@ class World(DirectObject):
 
             self.positions.append(NodePath(str(i)))
             self.positions_new.append(NodePath(str(i)))
-            if(i<2):
+            if i < 2:
                 self.ralph[i].setPos(Point3(-61, -34 + (i * 40), 0))
             else:
-                self.ralph[i].setPos(Point3(61, -34 + ((i-2) * 40), 0))
+                self.ralph[i].setPos(Point3(61, -34 + ((i - 2) * 40), 0))
 
             self.positions.append(NodePath(str(i)))
             self.positions_new.append(NodePath(str(i)))
@@ -189,9 +188,8 @@ class World(DirectObject):
     def AIUpdate(self, task):
         self.AIworld.update()
         for i in range(4):
-            #print(str(i) + " " + self.AIbehaviors[i].behaviorStatus("pathfollow"))
-            if (self.AIbehaviors[i].behaviorStatus("pursue") == "done" or
-                self.AIbehaviors[i].behaviorStatus("pursue") == "paused"):
+            status = self.AIbehaviors[i].behaviorStatus("pursue")
+            if status == "done" or status == "paused":
                 self.done[i] = True
 
         j = 0
@@ -225,6 +223,7 @@ class World(DirectObject):
             self.Target.setPos(startPos + forwardvector * speed)
 
         return Task.cont
+
 
 w = World()
 base.run()

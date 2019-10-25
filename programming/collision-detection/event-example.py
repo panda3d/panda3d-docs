@@ -20,8 +20,8 @@ class World(DirectObject):
         self.collCount = 0
 
         # Load a model. Reparent it to the camera so we can move it.
-        s = loader.loadModel('smiley')
-        s.reparentTo(camera)
+        s = base.loader.loadModel('smiley')
+        s.reparentTo(base.camera)
         s.setPos(0, 25, 0)
 
         # Setup a collision solid for this model.
@@ -36,8 +36,8 @@ class World(DirectObject):
         print(sColl[1])
 
         # Load another model.
-        t = loader.loadModel('smiley')
-        t.reparentTo(render)
+        t = base.loader.loadModel('smiley')
+        t.reparentTo(base.render)
         t.setPos(5, 25, 0)
 
         # Setup a collision solid for this model.

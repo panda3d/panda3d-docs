@@ -32,7 +32,7 @@ To load a multiview texture, use:
 
    .. code-block:: python
 
-      tex = loader.loadTexture('filename_#.png', multiview = True)
+      tex = loader.loadTexture('filename_#.png', multiview=True)
 
 .. only:: cpp
 
@@ -57,7 +57,7 @@ right view.
 
    .. code-block:: python
 
-      tex = loader.loadCubeMap('cubemap_##.png', multiview = True)
+      tex = loader.loadCubeMap('cubemap_##.png', multiview=True)
 
 .. only:: cpp
 
@@ -79,7 +79,7 @@ that out based on the number of images files alone.
 
    .. code-block:: python
 
-      tex = loader.load3DTexture('tex3d_#.png', multiview = True, numViews = 2)
+      tex = loader.load3DTexture('tex3d_#.png', multiview=True, numViews=2)
 
 .. only:: cpp
 
