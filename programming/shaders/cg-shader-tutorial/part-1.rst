@@ -8,7 +8,7 @@ Cg Tutorial Part 1: The Baseline Panda App
 
 We'll start by setting up the tutorial project folder. Create a new folder for
 the tutorial and download the
-`tutorial media <http://code.google.com/p/p3dst/source/browse/trunk>`__ then put
+`tutorial media <https://code.google.com/archive/p/p3dst/source>`__ then put
 the files in the new folder. The zip file contains all the models and textures
 you will need to follow this tutorial series.
 

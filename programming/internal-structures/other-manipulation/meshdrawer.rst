@@ -107,13 +107,11 @@ see:
 
 .. only:: python
 
-   https://www.panda3d.org/reference/1.8.1/python/classpanda3d.core.MeshDrawer.php
+   https://www.panda3d.org/reference/python/classpanda3d.core.MeshDrawer.php
 
 .. only:: cpp
 
-   https://www.panda3d.org/reference/1.8.1/cxx/classMeshDrawer.php
-
-``This is for version 1.8.1``
+   https://www.panda3d.org/reference/cxx/classMeshDrawer.php
 
 Many of the calls take a frame of Vec4() type. The frame is the
 Vec4(x,y,width,height) coordinates inside the texture. Frame of Vec4(0,0,1,1)

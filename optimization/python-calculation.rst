@@ -26,18 +26,18 @@ called from your Python code.
 You might be able to get away with not using C++ at all though.
 
 -  See if you can optimize your code. The Python website has a
-   `page <http://wiki.python.org/moin/PythonSpeed/PerformanceTips>`__ for
+   `page <https://wiki.python.org/moin/PythonSpeed/PerformanceTips>`__ for
    various performance tips. Very often performance can be improved by simply
    writing better Python code.
 -  There are many Python libraries which can improve performance for certain
-   tasks, like `Numpy <http://numpy.scipy.org/>`__.
--  The `Cython <http://cython.org/>`__ language is also an option. Read
-   `this <https://www.panda3d.org/blog/?p=173>`__ blog entry to find out more
-   about Cython and how it can be used with Panda3D.
+   tasks, like `Numpy <https://numpy.org/>`__.
+-  The `Cython <https://cython.org/>`__ language is also an option. Read
+   `this <https://www.panda3d.org/blog/panda3d-and-cython/>`__ blog entry to
+   find out more about Cython and how it can be used with Panda3D.
 
 If none of these options help you, you will have to write a C++ version of the
 bottleneck function or class and make it accessible from your Python code.
-`This <http://wiki.python.org/moin/IntegratingPythonWithOtherLanguages#C.2BAC8-C.2B-.2B->`__
+`This <https://wiki.python.org/moin/IntegratingPythonWithOtherLanguages#C.2BAC8-C.2B-.2B->`__
 page from the Python website shows you the many options you have.
 
 Note that unlike Python modules, C++ modules are not cross-platform and might

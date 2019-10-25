@@ -22,8 +22,8 @@ There are several plug-ins required to export .X files from gmax:
    whole thing.
 
 2. Next, download programs
-   `MDLCommander <http://hometown.aol.de/_ht_a/docmoriarty3/fs2002/en/mdlcommander_dl.html>`__
-   and `Middleman <http://thegreatptmd.tripod.com/>`__.
+   `MDLCommander <http://www.docmoriarty.com/msfs/en/mdlcommander_dl.html>`__
+   and Middleman (current location unknown).
 
 3. After download, you’ll see that the 'fs2004_sdk-gmax-setup' is an exe. If
    you install it in the default gmax directory, you’ll end up with a lot of

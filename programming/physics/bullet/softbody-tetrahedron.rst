@@ -48,8 +48,8 @@ of indices.
 Assuming we don't have the tetrahedral data prepared for us; in this case we
 need to create it ourselves. A good tool for this purpose is "tetgen", which is
 a tetrahedral mesh generator and Delaunay triangulator. The tetgen homepage is
-http://tetgen.berlios.de . Panda3D Bullet module has support for setting up soft
-bodies directly from tetgen mesh files:
+https://www.berlios.de/software/tetgen/ . Panda3D Bullet module has support for
+setting up soft bodies directly from tetgen mesh files:
 
 .. only:: python
 

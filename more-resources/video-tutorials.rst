@@ -102,6 +102,6 @@ How Panda's built-in ODE integration is intended to be used.
 
 *Recorded July 2, 2008* How the Actor class is implemented, and how to use it.
 
-`Plugin flow <http://vimeo.com/14704672>`__
+`Plugin flow <https://vimeo.com/14704672>`__
 
 *Recorded August 31, 2010* The Panda3D web plugin design and flow.

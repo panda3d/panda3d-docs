@@ -38,26 +38,25 @@ Recommended Libraries
 Python
 ~~~~~~
 
-http://www.python.org/
+https://www.python.org/
 
 Panda3D is way easier and faster to code with when using Python bindings.
 
-License: `PSF
-license <http://www.python.org/download/releases/2.6.2/license>`__
+License: `PSF license <https://docs.python.org/license.html>`__
 
 ZLib
 ~~~~
 
-http://www.zlib.net/
+https://www.zlib.net/
 
 Used for a range of compression and decompression tasks, particularly .pz files.
 
-License: `zlib license <http://www.zlib.net/zlib_license.html>`__
+License: `zlib license <https://www.zlib.net/zlib_license.html>`__
 
 libjpeg
 ~~~~~~~
 
-http://www.ijg.org
+https://www.ijg.org/
 
 JPEG library. Required to read and save JPEG files. As of Panda 1.10, Panda3D
 will fall back to stb_image for loading .jpg files when building without
@@ -80,11 +79,11 @@ license <http://www.libpng.org/pub/png/src/libpng-LICENSE.txt>`__
 OpenSSL
 ~~~~~~~
 
-http://www.openssl.org
+https://www.openssl.org/
 
 Provides some networking and encryption support. Required for HTTPClient, and
 for pencrypt/pdecrypt and related functionality, as well as SSL networking.
-License: `OpenSSL license <http://www.openssl.org/source/license.html>`__
+License: `OpenSSL license <https://www.openssl.org/source/license.html>`__
 
 License note:
 
@@ -94,17 +93,17 @@ Must include this acknowledgement with distribution:
 
    This product includes software written by Tim Hudson (tjh@cryptsoft.com)
 
-`Some governments <http://rechten.uvt.nl/koops/cryptolaw>`__ place restrictions
-on cryptography.
+`Some governments <http://www.cryptolaw.org/>`__ place restrictions on
+cryptography.
 
 libvorbis
 ~~~~~~~~~
 
-http://xiph.org/vorbis/
+https://xiph.org/vorbis/
 
 Used to load .ogg files encoded with Vorbis encoding.
 
-License: `BSD <http://svn.xiph.org/trunk/vorbis/COPYING>`__
+License: `BSD <https://svn.xiph.org/trunk/vorbis/COPYING>`__
 
 Freetype
 ~~~~~~~~
@@ -125,18 +124,18 @@ documentation.
 GTK2
 ~~~~
 
-http://www.gtk.org
+https://www.gtk.org/
 
 The Gimp ToolKit is used by only by the PStats server on non-Windows platforms.
 This is a separate utility that can easily be deleted and is only used when
 profiling applications.
 
-License: `GNU LGPL <http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html>`__
+License: `GNU LGPL <https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html>`__
 
 OpenAL Soft
 ~~~~~~~~~~~
 
-http://openal-soft.org
+https://openal-soft.org
 
 The Open Audio Library is a free alternative to FMOD and supports nearly the
 same features, including 3D surround sound. We ship the OpenAL Soft
@@ -148,13 +147,13 @@ License: LGPL
 Cg Toolkit
 ~~~~~~~~~~
 
-http://developer.nvidia.com/object/cg_toolkit.html
+https://developer.nvidia.com/cg-toolkit
 
 Nvidia's Cg Toolkit is required for Panda's Cg support. At the moment, it cannot
 be removed without recompiling Panda3D from source code.
 
 License:
-`Proprietary <http://developer.download.nvidia.com/cg/Cg_2.2/license.pdf>`__
+`Proprietary <https://developer.download.nvidia.com/cg/Cg_2.2/license.pdf>`__
 
 License note: Required to use the Panda3D Shader Generator, which utilizes
 Nvidia Cg.
@@ -167,12 +166,12 @@ http://eigen.tuxfamily.org/
 Optimized linear algebra library. Optional, but improves performance of matrix
 operations significantly.
 
-License: `MPL2 <http://www.mozilla.org/MPL/2.0/>`__
+License: `MPL2 <https://www.mozilla.org/en-US/MPL/2.0/>`__
 
 libsquish
 ~~~~~~~~~
 
-http://code.google.com/p/libsquish/
+https://code.google.com/archive/p/libsquish/
 
 Libsquish gives DXT support. This improves Panda's support for pre-compressed
 texture images such as dds files, and it allows Panda to streamline compression
@@ -180,25 +179,25 @@ of textures images at load time. However, even without this library, Panda can
 still compress and use compressed textures, by relying on the interfaces built
 into your graphics driver.
 
-License: MIT license
+License: `MIT License <https://opensource.org/licenses/mit-license.php>`__
 
 libtiff
 ~~~~~~~
 
-http://www.remotesensing.org/libtiff
+http://libtiff.org/
 
 Tiff image format support.
 
-License: `libtiff license <http://www.epsiia.com/licenses/libtiff.html>`__
+License: `libtiff license <https://spdx.org/licenses/libtiff.html>`__
 
 OpenEXR
 ~~~~~~~
 
-http://www.openexr.com/
+https://www.openexr.com/
 
 OpenEXR image format support. New in 1.10.
 
-License: `BSD license <http://www.openexr.com/license.html>`__
+License: `Modified BSD license <https://www.openexr.com/license.html>`__
 
 DirectX (Windows only)
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -212,13 +211,13 @@ License: Proprietary
 X libraries (Linux/FreeBSD only)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-http://www.x.org/
+https://www.x.org/wiki/
 
 X libraries: X11 (display system), Xrandr (support for changing resolution),
 Xxf86dga (provides relative mouse mode), Xcursor (provides custom cursor image
 support).
 
-License: `MIT License <http://opensource.org/licenses/mit-license.php>`__
+License: `MIT License <https://opensource.org/licenses/mit-license.php>`__
 
 MFC (Windows only)
 ~~~~~~~~~~~~~~~~~~
@@ -232,7 +231,7 @@ License: Proprietary
 NPAPI
 ~~~~~
 
-https://code.google.com/p/npapi-sdk/
+https://code.google.com/archive/p/npapi-sdk
 
 Netscape plugin API (a set of interfaces to write browser plug-ins). It is
 only necessary to compile the Panda3D browser plug-in.
@@ -284,14 +283,14 @@ fees. Please use .ogg or .opus instead.
 FMOD Ex
 ~~~~~~~
 
-http://www.fmod.org
+https://www.fmod.com/
 
 FMOD Ex is a proprietary audio library that supports various effects and
 surround sound. You must have one of FMOD or OpenAL to build support for
 Panda's sound interfaces. (However, you can use external sound libraries such
 as pygame, even without these two.)
 
-License: `Proprietary <http://www.fmod.org/index.php/sales>`__
+License: `Proprietary <https://www.fmod.com/index.php/sales>`__
 
 License note: Non-commercial distribution costs nothing. Commercial
 distribution costs between US$100 and US$6000 depending on FMOD licensing
@@ -300,7 +299,7 @@ option.
 Bullet Physics
 ~~~~~~~~~~~~~~
 
-http://bulletphysics.org
+https://pybullet.org
 
 Physics Library.
 
@@ -309,7 +308,7 @@ License: `zlib license <http://www.zlib.net/zlib_license.html>`__
 PhysX
 ~~~~~
 
-https://developer.nvidia.com/physx
+https://developer.nvidia.com/gameworks-physx-overview
 
 NVIDIA physics library.
 
@@ -318,25 +317,25 @@ License: Proprietary.
 Open Dynamics Engine (ODE)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-http://www.ode.org
+https://www.ode.org
 
 One of the most versatile, free physics engines.
 
-License: `LGPL or Modified BSD License <http://www.ode.org/ode-license.html>`__
+License: `LGPL or Modified BSD License <https://www.ode.org/index.html#3.>`__
 
 OpenGL ES
 ~~~~~~~~~
 
-http://www.khronos.org/opengles/
+https://www.khronos.org/opengles/
 
-OpenGL for embedded systems: GLES (http://www.khronos.org/registry/gles/),
-GLES2 (http://www.khronos.org/opengles/2_X/) and EGL
-(http://www.khronos.org/registry/egl/) libraries.
+OpenGL for embedded systems:
+GLES (https://www.khronos.org/registry/OpenGL/index_es.php),
+EGL (https://www.khronos.org/registry/EGL/) libraries.
 
 3ds Max SDK
 ~~~~~~~~~~~
 
-http://www.autodesk.com/products/autodesk-3ds-max/overview
+https://www.autodesk.com/products/3ds-max/overview
 
 Used to create exporters for Autodesk 3ds Max.
 
@@ -345,7 +344,7 @@ License: Proprietary.
 Maya SDK
 ~~~~~~~~
 
-http://www.autodesk.com/products/autodesk-maya/overview
+https://www.autodesk.com/products/maya/overview
 
 The necessary libraries are part of the Maya installation. From Maya 2016.5
 onward, the headers are also part of the Maya installation; before, they were
@@ -358,7 +357,7 @@ License: Proprietary.
 speedtree
 ~~~~~~~~~
 
-http://www.speedtree.com/
+https://store.speedtree.com/
 
 Library for rendering trees.
 
@@ -367,16 +366,16 @@ License: Proprietary.
 libRocket
 ~~~~~~~~~
 
-http://librocket.com/
+https://github.com/libRocket/libRocket
 
 C++ user interface middleware package based on the HTML and CSS standards.
 
-License: `MIT License <http://librocket.com/wiki/license>`__
+License: `MIT License <https://opensource.org/licenses/mit-license.php>`__
 
 OpenCV
 ~~~~~~
 
-http://opencv.org
+https://opencv.org/
 
 An alternate library that provides support for video textures and webcam,
 similar to FFMPEG. This is only really useful on macOS, where this is the only
@@ -387,7 +386,7 @@ License: BSD license
 FCollada
 ~~~~~~~~
 
-https://collada.org/mediawiki/index.php/FCollada
+https://www.khronos.org/collada/wiki/FCollada
 
 FCollada is an open-source C++ library which offers support for COLLADA
 interoperability, used for dae2egg and for loading dae files directly into
@@ -395,7 +394,7 @@ Panda.
 
 Use of FCollada in Panda is deprecated.
 
-License: MIT license
+License: `MIT License <https://opensource.org/licenses/mit-license.php>`__
 
 FFTW2
 ~~~~~
@@ -437,21 +436,11 @@ https://github.com/vrpn/vrpn/wiki
 Virtual-Reality Peripheral Network, for using a range of different types of
 trackers and controllers with Panda3D.
 
-License: as of July 22, 2010, future versions of VRPN (versions 7.27 and
-higher) are being released under the `Boost Software License
-1.0 <https://github.com/vrpn/vrpn/blob/master/README.Legal>`__
+License: as of July 22, 2010, future versions of VRPN (versions 7.27 and higher)
+are being released under the
+`Boost Software License 1.0 <https://github.com/vrpn/vrpn/wiki/License>`__
 
-Prior version licensed under `Public
-domain <http://www.cs.unc.edu/Research/vrpn/obtaining_vrpn.html>`__
-
-awesomium
-~~~~~~~~~
-
-http://awesomium.com/
-
-Windowless port of Chromium/WebKit. Can be used to render HTML pages.
-
-License: `Proprietary <https://awesomium.com/buy/>`__
+Prior versions were released into the public domain.
 
 Build Tools (for compilation only)
 ----------------------------------
@@ -484,15 +473,14 @@ MPEG
 ~~~~
 
 Other MPEG related formats are restricted by
-`patents <http://www.mpegla.com/main/default.aspx>`__ as well. Finding the
+`patents <https://www.mpegla.com/>`__ as well. Finding the
 prices of licenses for these formats is not even as easy as it was with MP3.
-More info
-`here <http://bemasc.net/wordpress/2010/02/02/no-you-cant-do-that-with-h264/>`__.
 
 Recommended Alternatives
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Free alternatives exist and are highly encouraged. These formats include `Ogg
-Vorbis <http://www.vorbis.com>`__ (lossy), `Opus <https://opus-codec.org>`__
-(lossy) and `Ogg FLAC <http://flac.sourceforge.net>`__ (lossless) for audio,
-and `Ogg Theora <http://www.theora.org>`__ for video.
+Free alternatives exist and are highly encouraged. These formats include
+`Ogg Vorbis <https://xiph.org/vorbis/>`__ (lossy),
+`Opus <https://opus-codec.org>`__ (lossy) and
+`Ogg FLAC <https://xiph.org/flac/>`__ (lossless) for audio, and
+`Ogg Theora <https://www.theora.org/>`__ for video.

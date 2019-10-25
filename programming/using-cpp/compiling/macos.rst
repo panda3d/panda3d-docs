@@ -72,4 +72,4 @@ How to compile a C++ Panda3D program on macOS
 
    * If you get an error running your executable like "dyld: Library not loaded:
      @executable_path/../Library/Frameworks/Cg.framework/Cg" means you need to
-     install Cg library from http://developer.nvidia.com/object/cg_download.html
+     install Cg library from https://developer.nvidia.com/cg-toolkit-download

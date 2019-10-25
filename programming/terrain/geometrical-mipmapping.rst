@@ -226,5 +226,5 @@ Notes
 
 -  The GeoMipTerrain class implements part of the GeoMipMapping algorithm,
    described in
-   `this paper <http://www.flipcode.com/archives/article_geomipmaps.pdf>`__ by
+   `this paper <https://www.flipcode.com/archives/article_geomipmaps.pdf>`__ by
    Willem H. de Boer.

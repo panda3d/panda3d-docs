@@ -79,7 +79,7 @@ you need to get them in global coordinate space, this is done here by specifying
 ``render`` as first argument.
 
 Then, a mass is set for the body. The first argument specified in the setBox
-call is the `density <http://en.wikipedia.org/wiki/Density>`__ of the object,
+call is the `density <https://en.wikipedia.org/wiki/Density>`__ of the object,
 the second is the dimensions (lx, ly, lz) of the box. Each material has it's own
 density, for example, water has a density of 1000 kg/m³, copper usually between
 8920 and 8960 kg/m³. The value shown in the example above is the density for

@@ -29,7 +29,7 @@ Table of Contents
 More information
 ----------------
 
--  The `API reference <https://www.panda3d.org/reference/python/namespace!panda3d.ode>`__
+-  The `API reference <https://www.panda3d.org/reference/python/namespacepanda3d.ode.php>`__
    can list the classes and methods available (all of the classes are prefixed
    with Ode), although the function descriptions are lacking. It might also be
    useful to look at the
@@ -37,5 +37,5 @@ More information
    which uses very similar class and method names.
 -  Developers from Walt Disney VR Studio have held a lecture about using the
    ODE system with Panda3D. Click
-   `here <http://video.google.com/videoplay?docid=6429726243770234547&hl=en>`__
+   `here <https://www.youtube.com/watch?v=9qgPyk22Zls>`__
    to watch a video recording of it. (Recorded June 18, 2008)

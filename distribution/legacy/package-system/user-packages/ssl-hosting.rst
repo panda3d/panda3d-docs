@@ -26,20 +26,20 @@ https address, like this:
 
 .. code-block:: python
 
-   packager.setHost('https://myhost.com/myrootdir/')
+   packager.setHost('https://example.com/myrootdir/')
 
-then Panda3D will understand that the contents.xml file should be downloaded
-via the https protocol. However, the remaining files will be downloaded via
-ordinary http protocol, from the same address, e.g. http://myhost/myrootdir/ .
-This avoids the overhead of https on every download, and also allows
-downloading from mirror hosts to distribute the download burden. If your
-cleartext http address it not the same as the https address, you can specify
-the specific address with the downloadUrl parameter, e.g.:
+then Panda3D will understand that the contents.xml file should be downloaded via
+the https protocol. However, the remaining files will be downloaded via ordinary
+http protocol, from the same address, e.g. http://example.com/myrootdir/ . This
+avoids the overhead of https on every download, and also allows downloading from
+mirror hosts to distribute the download burden. If your cleartext http address
+it not the same as the https address, you can specify the specific address with
+the downloadUrl parameter, e.g.:
 
 .. code-block:: python
 
-   packager.setHost('https://myhost.com/myrootdir/',
-                    downloadUrl = 'http://myhost.com:8080/myrootdir/')
+   packager.setHost('https://example.com/myrootdir/',
+                    downloadUrl = 'http://example.com:8080/myrootdir/')
 
 The first URL is the host URL, and is the address from which contents.xml will
 be downloaded, and is also the URL that should be specified when downloading

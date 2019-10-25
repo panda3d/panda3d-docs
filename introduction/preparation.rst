@@ -77,15 +77,15 @@ between C++ information and Python information.
 
    Links from the official Python website:
 
-   -  `Official Website - http://www.python.org <http://www.python.org>`__
-   -  `Current Python Documentation <http://docs.python.org/>`__
-   -  `Python Documentation <http://www.python.org/doc>`__
+   -  `Official Website - https://www.python.org <https://www.python.org>`__
+   -  `Current Python Documentation <https://docs.python.org/>`__
+   -  `Python Documentation <https://www.python.org/doc/>`__
 
    Here are some other good links for learning Python:
 
-   -  `Byte of Python <http://www.swaroopch.com/notes/python/>`__
-   -  `Dive Into Python <http://www.diveintopython.net>`__
-   -  `Beginner's Guide from Python's wiki <http://wiki.python.org/moin/BeginnersGuide>`__
+   -  `Byte of Python <https://python.swaroopch.com>`__
+   -  `Dive Into Python <http://diveintopython.net/>`__
+   -  `Beginner's Guide from Python's wiki <https://wiki.python.org/moin/BeginnersGuide>`__
    -  `The Standard Python Library <http://www.effbot.org/zone/librarybook-index.htm>`__
    -  `Introduction to OOP with Python <http://www.voidspace.org.uk/python/articles/OOP.shtml>`__
 
@@ -104,7 +104,7 @@ between C++ information and Python information.
    Here are a few links to C++ tutorials that might be useful for you:
 
    -  http://www.cplusplus.com/doc/tutorial/
-   -  `www.learncpp.com <http://www.learncpp.com/>`__
+   -  `www.learncpp.com <https://www.learncpp.com/>`__
 
    The binaries of the last Windows release are built with Microsoft Visual C++
    2015. If you want to use the provided binaries you can use this version, but

@@ -31,8 +31,8 @@ relevant to Panda3D's interfaces. It is by no means a comprehensive manual
 covering everything about compute shaders. In particular, image access
 concurrency, shared or coherent variables, and memory barriers are not covered
 here at all. Please refer to the
-`OpenGL documentation <http://www.opengl.org/wiki/Compute_Shader>`__ for more
-information.
+`OpenGL documentation <https://www.khronos.org/opengl/wiki/Compute_Shader>`__
+for more information.
 
 Work groups
 -----------
@@ -290,7 +290,7 @@ write to them, and reading from them has to be done using a ``sampler2D`` or
 ``sampler2DShadow`` object. You can use the ``texelFetch`` function with
 samplers so that you can still use integer texel coordinates.
 
-`Atomic image access <http://www.opengl.org/wiki/Image_Load_Store#Atomic_operations>`__
+`Atomic image access <https://www.khronos.org/opengl/wiki/Image_Load_Store#Atomic_operations>`__
 is only supported for textures with the integer ``F_r32i`` format. Atomic image
 operations are slower, but they come with an extra guarantee that no two
 invocations write or read from the image texel at the same time.

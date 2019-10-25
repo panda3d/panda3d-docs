@@ -30,18 +30,17 @@ A package is identified with four pieces of information:
 -  The host URL
 
 It all starts with the host URL. The host URL is used throughout the Panda3D
-plugin system to refer to a particular download server. It is possible to
-build and host your own packages that the plugin can download; you will need
-to supply a host URL. You should be careful to always specify the host URL
-with precisely the same string, because that is a unique identifier within the
-plugin system; for instance, don't use
-"http://myhost.mydomain.net:/my/root_dir" in one place, and
-"http://myhost.mydomain.net:/my/root_dir/" in another, even though the two
+plugin system to refer to a particular download server. It is possible to build
+and host your own packages that the plugin can download; you will need to supply
+a host URL. You should be careful to always specify the host URL with precisely
+the same string, because that is a unique identifier within the plugin system;
+for instance, don't use "http://myhost.example.net/my/root_dir" in one place,
+and "http://myhost.example.net/my/root_dir/" in another, even though the two
 URL's are technically equivalent.
 
 This can be any URL, but there must exist a file called contents.xml at that
-URL, e.g. if the host URL is "http://myhost.mydomain.net/my/root_dir", then
-there must exist a file "http://myhost.mydomain.net/my/root_dir/contents.xml".
+URL, e.g. if the host URL is "http://myhost.example.net/my/root_dir", then
+there must exist a file "http://myhost.example.net/my/root_dir/contents.xml".
 This file is the key piece of information that the plugin uses to determine
 which packages are provided by that host, and whether they need to be updated
 for a particular user.

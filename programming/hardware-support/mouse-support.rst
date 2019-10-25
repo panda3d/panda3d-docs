@@ -284,19 +284,17 @@ To use raw mouse input under Linux, the panda program needs to open the device
 files /dev/input/event\*. On many Linux distributions, the permission bits are
 set such that this is not possible.
 
-It is not a good idea to just change the permission bits. Doing so introduces
-a huge security hole in which any logged in user can monitor the mice, the
-joysticks, and the keyboard --- including any passwords that may be typed. The
-correct solution is to change the ownership of the input devices whenever a
+It is not a good idea to just change the permission bits. Doing so introduces a
+huge security hole in which any logged in user can monitor the mice, the
+joysticks, and the keyboard --- including any passwords that may be typed.
+The correct solution is to change the ownership of the input devices whenever a
 user sits down at the console. There is a module, pam_console, that does this,
-but it is now obsoleted, and has been removed from several distros. The
-`Fedora pam_console
-removal <http://fedoraproject.org/wiki/Releases/FeatureRemovePAMConsole>`__
-page states that ACLs set by the HAL should replace pam_console's
-functionality. Currently, since it does not seem that HAL provides this yet,
-the best course of action is to make an 'input' group as described on `the
-Gizmod
-wiki <http://gizmod.wiki.sourceforge.net/HOWTO+-+Setting+Input+Device+Permissions+-+Creating+a+udev+Rule>`__.
+but it is now obsoleted, and has been removed from several distros.
+The `Fedora pam_console removal <https://fedoraproject.org/wiki/Releases/FeatureRemovePAMConsole>`__
+page states that ACLs set by the HAL should replace pam_console's functionality.
+Currently, since it does not seem that HAL provides this yet, the best course of
+action is to make an 'input' group as described on
+`this page <https://puredata.info/docs/faq/how-can-i-set-permissions-so-hid-can-read-devices-in-gnu-linux>`__.
 
 If you are building a stand-alone arcade machine that does not allow remote
 login and probably doesn't even have a net connection, then changing the

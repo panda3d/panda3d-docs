@@ -36,7 +36,7 @@ exporter for Blender 2.4. It supports static meshes and armature animation,
 materials, vertex colors, alpha textures, tags, object types, etc. It also has
 advanced features such as automatic invocation of Panda tools (egg2bam,
 egg-optchar and pview) and Motion Extraction. You can find it at
-http://sourceforge.net/projects/chicken-export/
+https://sourceforge.net/projects/chicken-export/
 
 --------------
 

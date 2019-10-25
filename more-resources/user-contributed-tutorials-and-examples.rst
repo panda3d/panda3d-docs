@@ -24,9 +24,11 @@ Pac-Bat pac-man clone: https://discourse.panda3d.org/t/pac-bat/11035
 
 A3P: https://discourse.panda3d.org/t/a3p-formerly-stainless/7335
 
-Naith: http://code.google.com/p/naith/
+Naith: https://code.google.com/archive/p/naith
 
 3d-rama pong: https://discourse.panda3d.org/t/3d-rama-pong/9427
+
+Yorg: https://www.ya2.it/pages/yorg.html
 
 The Traveling Fox: https://discourse.panda3d.org/t/the-traveling-fox/15815
 

@@ -6,7 +6,7 @@ Installing Panda3D in Windows
 If you have already installed Panda previously, you should uninstall it before
 installing a new version. Once your machine is clean of all previous versions of
 Panda3D, you should download the windows installer from the
-`download <https://www.panda3d.org/download.php>`__ page. Run the installer, and
+`download page <https://www.panda3d.org/download/>`__. Run the installer, and
 follow the prompts:
 
 |Install-1.jpg|

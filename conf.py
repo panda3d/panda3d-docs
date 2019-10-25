@@ -297,6 +297,9 @@ texinfo_documents = [
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
 
+# When running the linkcheck, don't try any example.net/org/com domains.
+linkcheck_ignore = [r'https?://(.+\.)?example\.(com|net|org)(/.*)?']
+linkcheck_anchors = False
 
 autodoc_mock_import = [
     'direct.directbase.DirectStart',

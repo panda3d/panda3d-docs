@@ -56,9 +56,9 @@ Typical usage to run a program under control of the debugger is:
    (Pdb)
 
 Detailed information about pdb can be found
-`here <http://www.python.org/doc/current/lib/module-pdb.html>`__. In addition to
-pdb, python also has two modules called ``inspect`` and ``traceback``.
-``inspect`` supplies functions to extract information from all kinds of objects,
-including the Python call stack and source files. The ``traceback`` module lets
-you extract, format and output information about tracebacks as normally produced
-by uncaught exceptions.
+`here <https://docs.python.org/library/pdb.html>`__. In addition to pdb, Python
+also has two modules called ``inspect`` and ``traceback``. ``inspect`` supplies
+functions to extract information from all kinds of objects, including the Python
+call stack and source files. The ``traceback`` module lets you extract, format
+and output information about tracebacks as normally produced by uncaught
+exceptions.

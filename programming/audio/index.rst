@@ -9,16 +9,16 @@ Sound System Options
 To play audio in your game, Panda3D can offer you the following three choices
 of audio libraries:
 
--  `OpenAL <http://connect.creativelabs.com/openal/default.aspx>`__ is a
-   well-known and popular open-source audio library. Panda3D uses the `OpenAL
-   Soft <http://openal-soft.org/>`__ implementation.
--  `FMOD <http://www.fmod.org/>`__ is a powerful proprietary cross-platform
+-  `OpenAL <https://www.openal.org/>`__ is a well-known and popular open-source
+   audio library. Panda3D uses the `OpenAL Soft <https://openal-soft.org/>`__
+   implementation.
+-  `FMOD <https://www.fmod.com/>`__ is a powerful proprietary cross-platform
    sound engine that supports various types of sound files - MP3, WAV, AIFF,
    MIDI, MOD, WMA, and OGG Vorbis. However, its license restricts you from
    using it for commercial purposes unless you actually purchase a special
    license. Non-commercial use of FMOD is free of charge. (For more
-   information on this, visit the `FMOD
-   Licenses <http://www.fmod.org/index.php/sales>`__ page.)
+   information on this, visit the
+   `FMOD Licenses <https://www.fmod.com/index.php/sales>`__ page.)
 -  `Miles <http://www.radgametools.com/miles.htm>`__ is a sound system that is
    not included in the downloadable binaries of Panda3D. In order to use this
    you will need to purchase Miles and compile Panda3D from scratch using the

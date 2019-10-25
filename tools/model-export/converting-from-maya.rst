@@ -261,7 +261,7 @@ package.
 
 |Egg_Gui_simple.jpg|
 
-For viewing the video tutorial click `here <http://vimeo.com/11445320>`__
+For viewing the video tutorial click `here <https://vimeo.com/11445320>`__
 
 This application presents two modes for exporting a model or animation from
 Maya. Upon opening the application the simple mode is presented show above.
@@ -330,7 +330,7 @@ track.
 **ADVANCED MODE**
 
 |Egg_Gui_advanced.jpg| For viewing the video tutorial click
-`here <http://vimeo.com/11445391>`__
+`here <https://vimeo.com/11445391>`__
 
 In the beginning Simple Mode should cover the basics of single file exporting.
 However, once you’ve had to load the application a few times and enter the same
@@ -373,7 +373,7 @@ files” checkbox next to the Run Batch button.
 Using the Egg-Palletize Tool
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For viewing the video tutorial click `here <http://vimeo.com/11445357>`__
+For viewing the video tutorial click `here <https://vimeo.com/11445357>`__
 
 Egg-palettize is an optimization tool in Panda for you to group your textures.
 You can have your textures placed in a single palette. In the advance mode of

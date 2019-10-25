@@ -19,7 +19,7 @@ this. If you start writing your own shaders without any prior knowledge about a
 C-like language it is as hard as starting to write a Panda3D application without
 knowing anything about Python. Some resources you might want to look at:
 
--  `C Programming Wikibook <http://en.wikibooks.org/wiki/C_Programming>`__
+-  `C Programming Wikibook <https://en.wikibooks.org/wiki/C_Programming>`__
 
 You should have a solid grasp of Panda basics. Read
 :ref:`the hello world <tutorial>` tutorial and understand the "Solar System"
@@ -29,10 +29,10 @@ interested in writing a shadow mapping shader, it helps to have a solid
 understanding of how the :ref:`depth buffer <depth-test-and-depth-write>` works.
 
 Read the first chapter from
-`NVIDIA's Cg Tutorial <http://http.developer.nvidia.com/CgTutorial/cg_tutorial_chapter01.html>`__.
+`NVIDIA's Cg Tutorial <https://developer.download.nvidia.com/CgTutorial/cg_tutorial_chapter01.html>`__.
 You do not have to understand it fully, but at least you know who invented Cg
-and what it is for. The `NVIDIA <http://developer.nvidia.com>`__ and
-`ATI <http://developer.amd.com>`__ developer sites also have plenty of useful
+and what it is for. The `NVIDIA <https://developer.nvidia.com>`__ and
+`ATI <https://developer.amd.com>`__ developer sites also have plenty of useful
 information about shaders.
 
 You should also have the

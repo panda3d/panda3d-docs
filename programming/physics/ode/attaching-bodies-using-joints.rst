@@ -16,7 +16,7 @@ they are not attached to each other. This is where Joints come in.
 Joints are basically used to attach bodies to each other, or to attach a body to
 the environment. There are several different kinds of joints: OdeHingeJoint,
 OdeBallJoint, OdeSliderJoint, just to name a few. (Check the
-`API Reference <https://www.panda3d.org/reference/1.7.2/python/namespacepanda3d.ode.php>`__
+`API Reference <https://www.panda3d.org/reference/python/namespacepanda3d.ode.php>`__
 for a more complete list).
 
 OdeBallJoint example

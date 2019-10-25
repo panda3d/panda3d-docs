@@ -28,32 +28,33 @@ The issues cover individual aspects of the task and are short and to the point.
 Panda3D Specific Resources
 --------------------------
 
-`Alice Gallery <http://alice.org/pandagallery/>`__. This site holds many of the
-models created for use with `Alice <http://alice.org/>`__ but exported into the
-.egg format. Be advised though, some of these models may not work properly.
+`Alice Gallery <https://www.alice.org/pandagallery/>`__. This site holds many of
+the models created for use with `Alice <https://www.alice.org>`__ but exported
+into the .egg format. Be advised though, some of these models may not work
+properly.
 
 Python Libraries
 ----------------
 
-`Pygame. <http://www.pygame.org/wiki/about>`__ GNU LGPL. Pygame is a set of
+`pygame <https://www.pygame.org/wiki/about>`__, GNU LGPL. Pygame is a set of
 Python modules designed for writing games. It includes Python bindings for SDL.
 Sound support is another free alternative to FMOD alongside Panda3D's
 implementation of OpenAL.
 
-`Twisted <http://twistedmatrix.com/trac/>`__ MIT-style license. An event-driven
-networking framework.
+`Twisted <https://twistedmatrix.com/trac/>`__, MIT-style license. An
+event-driven networking framework.
 
 Useful Tools
 ------------
 
-`Blender. <http://www.blender.org>`__ 3D modeling and animation. Extensible in
+`Blender <https://www.blender.org/>`__. 3D modeling and animation. Extensible in
 Python. Very fast user interface. Models can be exported to Panda3D using the
 `YABEE <https://github.com/09th/YABEE>`__ Egg exporter.
 
-`The GIMP. <http://www.gimp.org>`__ A very capable free software raster image
+`The GIMP <https://www.gimp.org>`__. A very capable free software raster image
 editor. Useful for converting image formats, creating and editing textures.
 
-`Audacity. <http://audacity.sourceforge.net/>`__ Audacity is free, open source
+`Audacity <https://www.audacityteam.org/>`__. Audacity is free, open source
 software for recording and editing sounds. It is available for Mac OS X,
 Microsoft Windows, GNU/Linux, and other operating systems.
 

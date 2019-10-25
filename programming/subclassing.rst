@@ -15,7 +15,7 @@ ancestor class), usually with the purpose of expanding upon them.
 Subclassing pure-python classes from python or C++ classes from C++ is fairly
 straightforward and there's plenty of literature on the subject. The Wikipedia
 article on
-`inheritance <http://en.wikipedia.org/wiki/Inheritance_(computer_science)>`__
+`inheritance <https://en.wikipedia.org/wiki/Inheritance_(computer_science)>`__
 is a good starting point before proceeding to the language-specific
 documentation.
 

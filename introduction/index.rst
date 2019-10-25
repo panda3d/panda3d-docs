@@ -55,8 +55,8 @@ and most powerful engines you will ever use, and we welcome your participation.
 
 If you are just getting started with programming, we suggest that your best
 option is to start with a class on programming. Alternately, you could try
-teaching yourself using a training tool like `Alice <http://alice.org>`__, from
-CMU.
+teaching yourself using a training tool like `Alice <https://www.alice.org>`__,
+from CMU.
 
 Panda3D supports the full range of what modern engines should: it provides
 convenient support for normal mapping, gloss mapping, HDR, cartoon shading and
@@ -93,7 +93,7 @@ this reason, Panda3D makes it easy to disable or remove these restricted third-
 party libraries, and most of the time it offers an alternative. For example, it
 also comes with OpenAL which you can use instead of FMOD.
 
-You can read `Panda3D's License <https://www.panda3d.org/license.php>`__.
+You can read `Panda3D's License <https://www.panda3d.org/license/>`__.
 
 Who is Working on Panda3D
 -------------------------
