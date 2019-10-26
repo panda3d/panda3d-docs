@@ -1,0 +1,27 @@
+name: Deployment
+on:
+  push:
+    branches:
+      - "[0-9]+.[0-9]+"
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.7'
+    - name: Install requirements
+      run: |
+        sudo apt-get install --no-install-recommends graphviz
+        pip install -r requirements.txt
+    - name: Build HTML manual
+      run: |
+        sphinx-build -a -j auto -d _doctrees -D html_absolute_url_root=/docs/ -D html_link_suffix= -D version=$(basename ${{ github.ref }}) -A version=$(basename ${{ github.ref }}) -A github_version=$(basename ${{ github.ref }}) . _html
+    - name: Sync to server
+      run: |
+        echo "${{ secrets.SSH_IDENTITY }}" > id_rsa
+        chmod 600 id_rsa
+        rsync -vzr -e 'ssh -l ${{ secrets.SSH_USER }} -p ${{ secrets.SSH_PORT }} -i id_rsa -o StrictHostKeyChecking=no' _html/ "panda3d.org:${{ secrets.DOCS_ROOT }}/$(basename ${{ github.ref }})/"
+        rm -f id_rsa
