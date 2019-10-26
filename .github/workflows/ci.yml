@@ -1,0 +1,56 @@
+name: Continuous Integration
+on: [push, pull_request]
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.7'
+    - name: Install requirements
+      run: |
+        pip install -r requirements.txt
+        pip install flake8 doc8
+    - name: Test Python code style
+      run: |
+        flake8
+    - name: Test reStructuredText code style
+      run: |
+        doc8 --ignore=D001
+    - name: Run linkcheck
+      run: |
+        make linkcheck
+
+  build-html:
+    name: Build HTML
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.7'
+    - name: Install requirements
+      run: |
+        sudo apt-get install --no-install-recommends graphviz
+        pip install -r requirements.txt
+    - name: Build HTML manual
+      run: |
+        make html
+
+  build-pdf:
+    name: Build PDF
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.7'
+    - name: Install requirements
+      run: |
+        sudo apt-get install --no-install-recommends graphviz latexmk texlive-fonts-recommended texlive-latex-extra
+        pip install -r requirements.txt
+    - name: Build PDF manual
+      run: |
+        make latexpdf
