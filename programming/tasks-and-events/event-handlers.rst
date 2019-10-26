@@ -160,7 +160,7 @@ define a "destroy" method for any custom classes you create, which calls
            self.accept("FireZeMissiles", self._fireMissiles)
 
        def _fireMissiles(self):
-           print "Missiles fired! Oh noes!"
+           print("Missiles fired! Oh noes!")
 
        # function to get rid of me
        def destroy(self):
