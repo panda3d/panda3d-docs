@@ -18,4 +18,4 @@ forth over the grass.
    controlling-the-camera
    loading-and-animating-the-panda-model
    using-intervals-to-move-the-panda
-   tutorial-end
+   end
