@@ -9,11 +9,17 @@ window.addEventListener("DOMContentLoaded", function() {
         }
         window.versionIndex = 0;
 
-        // Determine the version root
-        var numComponents = window.DOCUMENTATION_OPTIONS.URL_ROOT.match(/\.\./g).length;
         var pathComponents = window.location.pathname.split(/[\/\\]+/g);
-        window.versionRoot = pathComponents.slice(0, pathComponents.length - numComponents - 2).join('/');
-        window.currentPagePath = pathComponents.slice(pathComponents.length - numComponents - 1).join('/');
+        if (opts.URL_ROOT[0] === '/') {
+            // Absolute path, eg. in case of the 404 page.
+            window.versionRoot = opts.URL_ROOT.replace(/\/[^\/]+\/?$/g, '');
+            var numComponents = window.versionRoot.match(/\//g).length;
+            window.currentPagePath = pathComponents.slice(numComponents + 2).join('/');
+        } else {
+            var numComponents = opts.URL_ROOT.match(/\.\./g).length;
+            window.versionRoot = pathComponents.slice(0, pathComponents.length - numComponents - 2).join('/');
+            window.currentPagePath = pathComponents.slice(pathComponents.length - numComponents - 1).join('/');
+        }
 
         // Create a select option for each version
         var isOutdated = false;
