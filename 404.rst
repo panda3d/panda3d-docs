@@ -1,0 +1,14 @@
+:orphan:
+
+Not Found
+=========
+
+The requested page was not found in this version of the documentation.  It may
+exist in a previous version; use the version selector in the sidebar to try a
+different version.  Otherwise, the search feature may help you find what you are
+looking for.
+
+If you have arrived here because you followed a link in the official
+documentation, please
+`file an issue <https://github.com/panda3d/panda3d-docs/issues>`__ to make us
+aware of this.

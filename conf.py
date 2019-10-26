@@ -306,3 +306,54 @@ autodoc_mock_import = [
     'direct.directbase.ThreeUpStart',
     'direct.directbase.TestStart',
 ]
+
+
+def on_builder_inited(app):
+    app.builder.get_relative_uri = \
+        lambda from_, to, typ=None: \
+            app.config.html_absolute_url_root + version + '/' + app.builder.get_target_uri(to, typ)
+
+
+def on_html_page_context(app, pagename, templatename, context, doctree):
+    def pathto(otheruri, resource=False, baseuri=None):
+        if resource and '://' in otheruri:
+            # allow non-local resources given by scheme
+            return otheruri
+
+        if not resource:
+            otheruri = app.builder.get_target_uri(otheruri)
+
+        if baseuri is None:
+            baseuri = app.config.html_absolute_url_root + version + '/'
+
+        if not baseuri.startswith('/'):
+            raise BaseURIError('"baseuri" must be absolute')
+
+        if not otheruri.startswith('/'):
+            otheruri = '/' + otheruri
+
+        if otheruri:
+            if baseuri.endswith('/'):
+                baseuri = baseuri[:-1]
+            otheruri = baseuri + otheruri
+
+        uri = otheruri or '#'
+        return uri
+
+    context['pathto'] = pathto
+
+
+def on_config_inited(app, config):
+    if config.html_absolute_url_root:
+        app.connect('builder-inited', on_builder_inited)
+        app.connect('html-page-context', on_html_page_context)
+
+        # This normally runs before our hook, so it still picks up the old
+        # pathto, hence we need to register it again
+        from sphinx.builders.html import setup_js_tag_helper
+        app.connect('html-page-context', setup_js_tag_helper)
+
+
+def setup(app):
+    app.add_config_value('html_absolute_url_root', None, 'html')
+    app.connect('config-inited', on_config_inited)
