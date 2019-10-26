@@ -22,10 +22,12 @@ The events can be accepted with the following code:
       self.acceptOnce(<event name>, <function>)
       self.acceptOnce(<event name>, <function>, <parameters list>)
 
-.. code-block:: cpp
+.. only:: cpp
 
-   framework->define_key(<event name>, <description>, <function>, nullptr);
-   framework->define_key(<event name>, <description>, <function>, <data>);
+   .. code-block:: cpp
+
+      framework->define_key(<event name>, <description>, <function>, nullptr);
+      framework->define_key(<event name>, <description>, <function>, <data>);
 
 <event name> is a string that labels the event. <function> is a python function
 to be called when the event is sent. <parameters list> is a python list of
