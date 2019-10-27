@@ -13,3 +13,4 @@ Table of Contents
    optimization/index
    tools/index
    more-resources/index
+   reference/index

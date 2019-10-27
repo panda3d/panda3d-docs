@@ -28,7 +28,13 @@ import os
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc', 'variations', 'sphinx.ext.graphviz']
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
+    'sphinx_autopackagesummary',
+    'variations',
+    'sphinx.ext.graphviz',
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -301,11 +307,52 @@ texinfo_documents = [
 linkcheck_ignore = [r'https?://(.+\.)?example\.(com|net|org)(/.*)?']
 linkcheck_anchors = False
 
-autodoc_mock_import = [
+# Set a list of modules that do bad things when imported, and should not be
+# considered for API generation.
+# It's fine to keep this list here; it should never grow, because we should not
+# introduce new modules that don't have proper __name__ == __main__ checks or
+# rely on builtins.
+autosummary_mock_imports = [
     'direct.directbase.DirectStart',
-    'direct.directbase.ThreeUpStart',
     'direct.directbase.TestStart',
+    'direct.directbase.ThreeUpStart',
+    'direct.directdevices.DirectFastrak',
+    'direct.directdevices.DirectJoybox',
+    'direct.directdevices.DirectRadamec',
+    'direct.directscripts.eggcacher',
+    'direct.directscripts.extract_docs',
+    'direct.directscripts.gendocs',
+    'direct.directtools.DirectSession',
+    'direct.directutil.DirectMySQLdb',
+    'direct.directutil.DirectMySQLdbConnection',
+    'direct.directutil.MemoryLeakHelpers',
+    'direct.dist.commands',
+    'direct.dist.icon',
+    'direct.dist.pefile',
+    'direct.dist.pfreeze',
+    'direct.leveleditor.LevelEditorStart',
+    'direct.leveleditor.testData',
+    'direct.p3d.packp3d',
+    'direct.p3d.pdeploy',
+    'direct.p3d.pmerge',
+    'direct.p3d.ppackage',
+    'direct.p3d.ppatcher',
+    'direct.p3d.runp3d',
+    'direct.plugin_installer.make_installer',
+    'direct.plugin_installer.make_xpi',
+    'direct.plugin_npapi.make_osx_bundle',
+    'direct.plugin_standalone.make_osx_bundle',
+    'direct.showbase.VerboseImport',
+    'direct.wxwidgets.WxPandaShell',
+    'direct.wxwidgets.WxPandaStart',
 ]
+
+autoclass_content = "both"
+autodoc_default_options = {
+    "members": True,
+    "show-inheritance": True,
+}
+autosummary_generate = True
 
 
 def on_builder_inited(app):
