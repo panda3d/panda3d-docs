@@ -71,3 +71,9 @@ body, .wy-body-for-nav {
 .wy-menu-vertical a:active {
     background-color: #735cdd;
 }
+
+/* center inheritance diagrams */
+.inheritance.graphviz {
+    margin: 15px auto;
+    display: block;
+}

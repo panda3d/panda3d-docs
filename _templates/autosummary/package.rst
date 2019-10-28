@@ -1,3 +1,5 @@
+:github_url: https://github.com/panda3d/panda3d/tree/master/{{ fullname | replace("direct.", "direct/src/") | replace(".", "/") }}/
+
 {{ fullname | escape | underline }}
 
 .. only:: cpp
@@ -8,6 +10,8 @@
 .. only:: python
 
    .. automodule:: {{ fullname }}
+      :members:
+      :undoc-members:
 
       .. autopackagesummary:: {{ fullname }}
          :toctree: .

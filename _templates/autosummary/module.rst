@@ -1,4 +1,6 @@
-{{ fullname | escape | underline}}
+:github_url: https://github.com/panda3d/panda3d/blob/master/{{ fullname | replace("direct.", "direct/src/") | replace(".", "/") }}.py
+
+{{ fullname | escape | underline }}
 
 .. only:: cpp
 
@@ -8,3 +10,12 @@
 .. only:: python
 
    .. automodule:: {{ fullname }}
+      :members:
+      :undoc-members:
+
+      {% if classes %}
+      .. rubric:: Inheritance diagram:
+
+      .. inheritance-diagram:: {{ fullname }}
+         :parts: 1
+      {% endif %}

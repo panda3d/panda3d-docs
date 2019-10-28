@@ -14,6 +14,7 @@
 
 import sys
 import os
+import types
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -34,6 +35,8 @@ extensions = [
     'sphinx_autopackagesummary',
     'variations',
     'sphinx.ext.graphviz',
+    'sphinxcontrib.napoleon',
+    'sphinx.ext.inheritance_diagram',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -319,9 +322,7 @@ autosummary_mock_imports = [
     'direct.directdevices.DirectFastrak',
     'direct.directdevices.DirectJoybox',
     'direct.directdevices.DirectRadamec',
-    'direct.directscripts.eggcacher',
-    'direct.directscripts.extract_docs',
-    'direct.directscripts.gendocs',
+    'direct.directscripts',
     'direct.directtools.DirectSession',
     'direct.directutil.DirectMySQLdb',
     'direct.directutil.DirectMySQLdbConnection',
@@ -347,12 +348,38 @@ autosummary_mock_imports = [
     'direct.wxwidgets.WxPandaStart',
 ]
 
-autoclass_content = "both"
 autodoc_default_options = {
     "members": True,
     "show-inheritance": True,
 }
+autodoc_inherit_docstrings = False
 autosummary_generate = True
+# Prevent prepending module name to all classes/functions
+add_module_names = False
+
+inheritance_graph_attrs = {
+    "rankdir": "BT",
+    #"splines": "ortho",
+}
+inheritance_node_attrs = {
+    "fontsize": 11,
+    "style": '""',
+}
+inheritance_edge_attrs = {
+    "arrowsize": 0.75,
+    "style": '""',
+}
+
+
+def on_autodoc_skip_member(app, what, name, obj, skip, options):
+    # Always document constructors.
+    if name == '__init__':
+        return False
+
+    # Don't document method aliases.  This also has the side-effect of
+    # excluding private members, which is OK.
+    if isinstance(obj, types.FunctionType) and obj.__name__ != name:
+        return True
 
 
 def on_builder_inited(app):
@@ -401,6 +428,65 @@ def on_config_inited(app, config):
         app.connect('html-page-context', setup_js_tag_helper)
 
 
+# This is an awful hack to get the inheritance graphs to incorporate the
+# current variation into the links properly, and, at the same time, not
+# generate the arrow connections inverted. :-/
+def generate_dot(self, name, urls={}, env=None,
+                 graph_attrs={}, node_attrs={}, edge_attrs={}):
+    g_attrs = self.default_graph_attrs.copy()
+    n_attrs = self.default_node_attrs.copy()
+    e_attrs = self.default_edge_attrs.copy()
+    g_attrs.update(graph_attrs)
+    n_attrs.update(node_attrs)
+    e_attrs.update(edge_attrs)
+    if env:
+        g_attrs.update(env.config.inheritance_graph_attrs)
+        n_attrs.update(env.config.inheritance_node_attrs)
+        e_attrs.update(env.config.inheritance_edge_attrs)
+
+    res = []  # type: List[str]
+    res.append('digraph %s {\n' % name)
+    res.append(self._format_graph_attrs(g_attrs))
+
+    for name, fullname, bases, tooltip in sorted(self.class_info):
+        if name == 'DTOOL_SUPER_BASE':
+            continue
+
+        # Write the node
+        this_node_attrs = n_attrs.copy()
+        if fullname in urls:
+            url = urls[fullname]
+            # Fix the URL reference to contain the current variation.
+            if env and env.config.graphviz_output_format.lower() == 'svg' and \
+               getattr(env.app.builder, 'current_variation', None):
+                url = '../' \
+                    + env.app.builder.current_variation[0] \
+                    + '/reference/' \
+                    + os.path.basename(url)
+
+            this_node_attrs['URL'] = '"%s"' % url
+            this_node_attrs['target'] = '"_top"'
+        if tooltip:
+            this_node_attrs['tooltip'] = tooltip
+        res.append('  "%s" [%s];\n' %
+                   (name, self._format_node_attrs(this_node_attrs)))
+
+        # Write the edges
+        for base_name in bases:
+            if base_name == 'DTOOL_SUPER_BASE':
+                continue
+            res.append('  "%s" -> "%s" [%s];\n' %
+                       (name, base_name,
+                        self._format_node_attrs(e_attrs)))
+    res.append('}\n')
+    return ''.join(res)
+
+
 def setup(app):
+    from sphinx.ext.inheritance_diagram import InheritanceGraph
+    InheritanceGraph.generate_dot = generate_dot
+
     app.add_config_value('html_absolute_url_root', None, 'html')
     app.connect('config-inited', on_config_inited)
+
+    app.connect('autodoc-skip-member', on_autodoc_skip_member)
