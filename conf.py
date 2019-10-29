@@ -439,6 +439,12 @@ def on_config_inited(app, config):
         from sphinx.builders.html import setup_js_tag_helper
         app.connect('html-page-context', setup_js_tag_helper)
 
+    # Used in searchbox.html.
+    if config.html_link_suffix is None:
+        config.html_context['link_suffix'] = config.html_link_suffix
+    else:
+        config.html_context['link_suffix'] = config.html_file_suffix
+
 
 # This is an awful hack to get the inheritance graphs to incorporate the
 # current variation into the links properly, and, at the same time, not
