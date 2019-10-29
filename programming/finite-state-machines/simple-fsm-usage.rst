@@ -6,8 +6,8 @@ Simple FSM Usage
 .. only:: python
 
    A Panda3D FSM is implemented by defining a new Python class which inherits
-   from the class direct.fsm.FSM.FSM (normally imported as simply FSM), and
-   defining the appropriate enter and exit methods on the class.
+   from the class :py:class:`direct.fsm.FSM.FSM` (normally imported as simply
+   FSM), and defining the appropriate enter and exit methods on the class.
 
    FSM states are represented by name strings, which should not contain spaces
    or punctuation marks; by Panda3D convention, state names should begin with a
@@ -30,11 +30,12 @@ Simple FSM Usage
 
    An FSM starts and finishes in the state named "Off". When the FSM is created,
    it is already in "Off"; and when you destroy it (by calling
-   ``fsm.cleanup()``), it automatically transitions back to "Off".
+   :py:meth:`fsm.cleanup() <direct.fsm.FSM.FSM.cleanup>`), it automatically
+   transitions back to "Off".
 
    To request an FSM to transition explicitly to a new state, use the call
-   ``fsm.request('StateName')``, where StateName is the state you would like it
-   to transition to.
+   :py:meth:`fsm.request('StateName') <direct.fsm.FSM.FSM.request>`, where
+   StateName is the state you would like it to transition to.
 
    Arguments to enterStateName methods
    -----------------------------------
@@ -120,7 +121,7 @@ Simple FSM Usage
    If you do not assign anything to ``self.defaultTransitions()``, then all
    transitions are legal. However, if you do assign a map like the above, then
    requesting a transition that is not listed in the map will raise the
-   exception ``FSM.RequestDenied``.
+   exception :py:exc:`FSM.RequestDenied <direct.fsm.FSM.RequestDenied>`.
 
 .. only:: cpp
 

@@ -8,7 +8,8 @@ exported to egg files. These egg files are then imported into a program, and
 various nodes can then use the motion path for complex movement. A viable egg
 file for a motion path has the “curve” tag.
 
-First, the Mopath and MopathInterval modules must be loaded. While motion
+First, the :py:mod:`~direct.directutil.Mopath` and
+:py:mod:`~direct.interval.MopathInterval` modules must be loaded. While motion
 paths come with their own play functions, a motion path interval allows for
 more functionality.
 

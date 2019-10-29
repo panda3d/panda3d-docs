@@ -18,9 +18,9 @@ ShowBase
       base = ShowBase()
       base.run()
 
-   The class
-   `ShowBase <https://www.panda3d.org/reference/python/direct.showbase.ShowBase.ShowBase>`__
-   inherits from DirectObject. Under Linux, the relevant file can be found in::
+   The class :py:class:`~direct.showbase.ShowBase.ShowBase` inherits from
+   :py:class:`~direct.showbase.DirectObject.DirectObject`.
+   Under Linux, the relevant file can be found in::
 
       /usr/share/panda3d/direct/showbase/
 

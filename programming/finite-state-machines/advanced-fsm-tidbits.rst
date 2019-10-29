@@ -21,10 +21,11 @@ Advanced FSM Tidbits
    If you request an FSM to make a transition, and the request fails, you might
    consider this an error condition, and you might prefer to have your code to
    stop right away rather than continuing. In this case, you should call
-   ``fsm.demand()`` instead. The syntax is the same as that for ``request()``,
-   but instead of returning None on failure, it will always raise an exception
-   if the state transition is denied. There is no return value from
-   ``demand()``; if it returns, the transition was accepted.
+   :py:meth:`fsm.demand() <direct.fsm.FSM.FSM.demand>` instead. The syntax is
+   the same as that for ``request()``, but instead of returning None on failure,
+   it will always raise an exception if the state transition is denied. There is
+   no return value from ``demand()``; if it returns, the transition was
+   accepted.
 
    FSM.AlreadyInTransition
    -----------------------
@@ -37,9 +38,10 @@ Advanced FSM Tidbits
 
    During this transition time, it is not legal to call ``fsm.request()`` to
    request a new state. If you try to do this, the FSM will raise the exception
-   ``FSM.AlreadyInTransition``. This is a particularly common error if some
-   cleanup code that is called from the exitStateName method has a side-effect
-   that triggers a transition to a new state.
+   :py:exc:`FSM.AlreadyInTransition <direct.fsm.FSM.AlreadyInTransition>`.
+   This is a particularly common error if some cleanup code that is called from
+   the exitStateName method has a side-effect that triggers a transition to a
+   new state.
 
    However, there's a simple solution to this problem: call ``fsm.demand()``
    instead. Unlike ``request()``, ``demand()`` can be called while the FSM is
@@ -50,20 +52,21 @@ Advanced FSM Tidbits
    forceTransition()
    -----------------
 
-   There is also a method ``fsm.forceTransition()``. This is similar to
-   ``demand()`` in that it never fails and does not have a return value, but
-   it's different in that it completely bypasses the filter function. You should
-   therefore only pass an uppercase state name (along with any optional
-   arguments) to forceTransition, never a lowercase input string. The FSM will
-   always transition to the named state, even if it wouldn't otherwise be
-   allowed. Thus, ``forceTransition()`` can be useful in special cases to skip
-   to another state that's not necessarily connected to the current state (for
-   instance, to handle emergency cleanup when an exception occurs). Be careful
-   that you don't overuse ``forceTransition()``, though; consider whether
-   ``demand()`` would be a better choice. If you find yourself making lots of
-   calls to ``forceTransition()``, it may be that your filter functions (or your
-   defaultTransitions) are poorly written and are disallowing what should be
-   legitimate state transitions.
+   There is also a method
+   :py:meth:`fsm.forceTransition() <direct.fsm.FSM.FSM.forceTransition>`.
+   This is similar to ``demand()`` in that it never fails and does not have a
+   return value, but it's different in that it completely bypasses the filter
+   function. You should therefore only pass an uppercase state name (along with
+   any optional arguments) to forceTransition, never a lowercase input string.
+   The FSM will always transition to the named state, even if it wouldn't
+   otherwise be allowed. Thus, ``forceTransition()`` can be useful in special
+   cases to skip to another state that's not necessarily connected to the
+   current state (for instance, to handle emergency cleanup when an exception
+   occurs). Be careful that you don't overuse ``forceTransition()``, though;
+   consider whether ``demand()`` would be a better choice. If you find yourself
+   making lots of calls to ``forceTransition()``, it may be that your filter
+   functions (or your defaultTransitions) are poorly written and are
+   disallowing what should be legitimate state transitions.
 
    Filtering the optional arguments
    --------------------------------
@@ -74,8 +77,8 @@ Advanced FSM Tidbits
    transition to, or it returns None to indicate the transition is denied.
 
    However, the filter function can also return a tuple. If it returns a tuple,
-   it should be of the form ('StateName', arg1, arg2, ...), where arg1, arg2,
-   ... represent the optional arguments that should be passed to the
+   it should be of the form ``('StateName', arg1, arg2, ...)``, where arg1,
+   arg2, ... represent the optional arguments that should be passed to the
    enterStateName method. Usually, these are the same arguments that were passed
    to the filterStateName method (in this case, you can generate the return
    value tuple with the python syntax ``('StateName',) + args``).

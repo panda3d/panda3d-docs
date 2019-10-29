@@ -131,7 +131,7 @@ reimplementing Python's "thread" and "threading" modules, these work the same as
 the Python built-in threading modules but are actually safe to use with Panda3D.
 
 You can get access to Panda3D's implementation of Python's "thread" module by
-importing the "thread" module from direct.stdpy:
+importing the "thread" module from :py:mod:`direct.stdpy`:
 
 .. code-block:: python
 

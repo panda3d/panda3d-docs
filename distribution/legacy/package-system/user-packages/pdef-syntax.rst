@@ -24,17 +24,18 @@ are declared.
 The above sample generates a package called "mypackage", which contains the file
 neededfile.dll and the Python module my/python/module.py, as well as all files
 that those two files reference in turn; it also includes all of the contents of
-c:\my\root_dir .
+c:\\my\\root_dir .
 
 More details of the pdef syntax will be provided soon. In the meantime, you
 can also examine the file direct/src/p3d/panda3d.pdef, for a sample file that
 produces the panda3d package itself (as well as some related packages).
 
-You can also examine the file direct/src/p3d/Packager.py; any method of Packager
-named do_foo() produces a package function you can call named foo().
-For instance, there is a Packager.do_file() method that accepts a Filename (as
-well as other optional parameters); this method is called when file() appears
-within a class definition in a pdef file.
+You can also examine the file direct/src/p3d/Packager.py; any method of
+:py:class:`~direct.p3d.Packager` named do_foo() produces a package function you
+can call named foo().
+For instance, there is a :py:meth:`~direct.p3d.Packager.Packager.do_file()`
+method that accepts a Filename (as well as other optional parameters); this
+method is called when file() appears within a class definition in a pdef file.
 
 Sometimes the files and modules you wish to include are not on the path, and
 thus can not be found. To see what is on the path is when your pdef file is run,
@@ -76,7 +77,7 @@ example p3d could be as follows:
 
 Generally what ppackage is pretty good about finding what modules are imported
 and automatically including them, but there are cases where this fails and
-explicitly specifying something like "module('api.*.*')" is useful.
+explicitly specifying something like ``module('api.*.*')`` is useful.
 
 As of Panda3D 1.7.1, you can specify an optional 'required' parameter to the
 file() or module() function call. By setting it to true, you can indicate that

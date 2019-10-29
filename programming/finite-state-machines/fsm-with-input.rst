@@ -138,10 +138,11 @@ FSM with input
               key = (self.state, request)
               return self.nextState.get(key)
 
-   The base FSM class defines a ``defaultFilter()`` method that implements the
-   default FSM transition rules (that is, allow all direct-to-state (uppercase)
-   transition requests unless ``self.defaultTransitions`` is defined; in either
-   case, quietly ignore input (lowercase) requests).
+   The base FSM class defines a :py:meth:`~direct.fsm.FSM.FSM.defaultFilter()`
+   method that implements the default FSM transition rules (that is, allow all
+   direct-to-state (uppercase) transition requests unless
+   ``self.defaultTransitions`` is defined; in either case, quietly ignore input
+   (lowercase) requests).
 
    In practice, you can mix- and-match the use of the defaultFilter method and
    your own custom methods. The defaultFilter method will be called only if a

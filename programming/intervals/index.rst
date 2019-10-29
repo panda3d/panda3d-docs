@@ -7,11 +7,11 @@ Panda3D's Interval system is a sophisticated mechanism for playback of scripted
 actions. With the use of Intervals, you can build up a complex interplay of
 animations, sound effects, or any other actions, and play the script on demand.
 
-The core of system is the ``Interval`` class. There are several different kinds
-of Intervals, which will be discussed in detail in the following pages, but all
-of them have in common the following property: each Interval represents an
-action (or a series of actions) that occur over a specific, finite interval of
-time (hence the name).
+The core of system is the :py:class:`~direct.interval.Interval.Interval` class.
+There are several different kinds of Intervals, which will be discussed in
+detail in the following pages, but all of them have in common the following
+property: each Interval represents an action (or a series of actions) that
+occurs over a specific, finite interval of time (hence the name).
 
 The real power of the Interval system comes from :ref:`sequences-and-parallels`,
 which are a special kind of Interval that can contain nested Intervals of any

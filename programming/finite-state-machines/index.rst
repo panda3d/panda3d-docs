@@ -17,10 +17,10 @@ Finite State Machines
    state to state as you need it to.
 
    You may come across some early Panda3D code that creates an instance of the
-   ClassicFSM class. ClassicFSM is an earlier implementation of the FSM class,
-   and is now considered deprecated. It is no longer documented here. We
-   recommend that new code use the FSM class instead, which is documented on the
-   following pages.
+   ClassicFSM class. :py:class:`~direct.fsm.ClassicFSM.ClassicFSM` is an earlier
+   implementation of the FSM class, and is now considered deprecated. It is no
+   longer documented here. We recommend that new code use the FSM class instead,
+   which is documented on the following pages.
 
 .. only:: cpp
 
