@@ -9,9 +9,12 @@
 
 .. only:: python
 
+   .. default-role:: obj
+
    .. automodule:: {{ fullname }}
       :members:
       :undoc-members:
+      :ignore-module-all:
 
       .. autopackagesummary:: {{ fullname }}
          :toctree: .

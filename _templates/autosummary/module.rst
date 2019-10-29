@@ -9,12 +9,15 @@
 
 .. only:: python
 
+   .. default-role:: obj
+
    .. automodule:: {{ fullname }}
       :members:
       :undoc-members:
+      :ignore-module-all:
 
       {% if classes %}
-      .. rubric:: Inheritance diagram:
+      .. rubric:: Inheritance diagram
 
       .. inheritance-diagram:: {{ fullname }}
          :parts: 1

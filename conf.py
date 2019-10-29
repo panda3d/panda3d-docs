@@ -37,6 +37,7 @@ extensions = [
     'sphinx.ext.graphviz',
     'sphinxcontrib.napoleon',
     'sphinx.ext.inheritance_diagram',
+    'sphinx.ext.viewcode',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -327,10 +328,14 @@ autosummary_mock_imports = [
     'direct.directutil.DirectMySQLdb',
     'direct.directutil.DirectMySQLdbConnection',
     'direct.directutil.MemoryLeakHelpers',
-    'direct.dist.commands',
-    'direct.dist.icon',
-    'direct.dist.pefile',
     'direct.dist.pfreeze',
+    'direct.filter.filterBloomI',
+    'direct.filter.filterBloomX',
+    'direct.filter.filterBloomY',
+    'direct.filter.filterBlurX',
+    'direct.filter.filterBlurY',
+    'direct.filter.filterCopy',
+    'direct.filter.filterDown4',
     'direct.leveleditor.LevelEditorStart',
     'direct.leveleditor.testData',
     'direct.p3d.packp3d',
@@ -353,6 +358,7 @@ autodoc_default_options = {
     "show-inheritance": True,
 }
 autodoc_inherit_docstrings = False
+napoleon_custom_sections = ["Usage", "Features"]
 autosummary_generate = True
 # Prevent prepending module name to all classes/functions
 add_module_names = False
