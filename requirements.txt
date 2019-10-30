@@ -4,4 +4,5 @@ sphinx-variations>=1.0
 sphinx-rtd-theme==0.4.3
 sphinx-autopackagesummary>=1.0
 sphinxcontrib-napoleon
-panda3d==1.10.*
+panda3d~=1.10.0.dev
+Pmw
