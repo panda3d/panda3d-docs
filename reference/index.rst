@@ -16,10 +16,9 @@ panda3d - Core library
 
 .. py:module:: panda3d
 
-.. autosummary::
-
-   panda3d.core
-   panda3d.direct
+.. autopackagesummary:: panda3d
+   :toctree: .
+   :template: autosummary/panda3d-module.rst
 
 direct - Python support library
 -------------------------------
@@ -38,7 +37,7 @@ in the :py:mod:`panda3d.direct` module.
 
    .. autopackagesummary:: direct
       :toctree: .
-      :template: autosummary/package.rst
+      :template: autosummary/direct-package.rst
 
 .. only:: cpp
 

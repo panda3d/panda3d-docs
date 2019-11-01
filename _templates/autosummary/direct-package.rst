@@ -18,3 +18,4 @@
 
       .. autopackagesummary:: {{ fullname }}
          :toctree: .
+         :template: autosummary/direct-module.rst

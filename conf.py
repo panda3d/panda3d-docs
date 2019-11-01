@@ -38,6 +38,7 @@ extensions = [
     'sphinxcontrib.napoleon',
     'sphinx.ext.inheritance_diagram',
     'sphinx.ext.viewcode',
+    'sphinx_interrogatedb',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -363,6 +364,20 @@ autosummary_generate = True
 # Prevent prepending module name to all classes/functions
 add_module_names = False
 
+# Map to camel-case for now.
+autodoc_interrogatedb_mangle_type_names = False
+autodoc_interrogatedb_mangle_function_names = True
+
+# Set the directory where the .in files should be located.
+try:
+    import pandac
+except ImportError:
+    pandac = None
+if pandac:
+    interrogatedb_search_path = [
+        os.path.join(os.path.dirname(pandac.__file__), "input")]
+
+# Set some default graphviz attributes for the inheritance diagrams.
 inheritance_graph_attrs = {
     "rankdir": "BT",
     #"splines": "ortho",
@@ -375,6 +390,147 @@ inheritance_edge_attrs = {
     "arrowsize": 0.75,
     "style": '""',
 }
+
+
+def convert_doxygen_docstring(lines):
+    """Converts a doxygen-style C++ block comment to a Sphinx-style one."""
+    lines = lines[:]
+    newlines = []
+    indent = 0
+    reading_desc = False
+
+    while lines:
+        line = lines.pop(0)
+        if line.startswith("////"):
+            continue
+
+        line = line.rstrip()
+        if line.startswith('///<'):
+            strline = line[4:]
+        else:
+            strline = line
+
+        strline = strline.lstrip('/ \t')
+
+        if strline == "**" or strline == "*/":
+            continue
+
+        if strline.startswith("** "):
+            strline = strline[3:]
+        elif strline.startswith("* "):
+            strline = strline[2:]
+        elif strline == "*":
+            strline = ""
+
+        strline = strline.lstrip(' \t')
+
+        if strline.startswith('@'):
+            special = strline.split(' ', 1)[0][1:]
+            if special == 'par' and strline.endswith(':') and lines and '@code' in lines[0]:
+                newlines.append('   '*indent + strline[5:] + ':')
+                newlines.append('')
+                line = lines.pop(0)
+                offset = line.index('@code')
+                while lines:
+                    line = lines.pop(0)
+                    if '@endverbatim' in line or '@endcode' in line:
+                        break
+                    newlines.append('   ' + line[offset:])
+
+                newlines.append('')
+                continue
+            elif special == "verbatim" or special == "code":
+                if newlines and newlines[-1]:
+                    newlines.append('')
+
+                newlines.append('.. code-block:: guess')
+                newlines.append('')
+                offset = line.index('@' + special)
+                while lines:
+                    line = lines.pop(0)
+                    if '@endverbatim' in line or '@endcode' in line:
+                        break
+                    newlines.append('   ' + line[offset:])
+
+                newlines.append('')
+                continue
+            elif special == "f[":
+                if newlines and newlines[-1]:
+                    newlines.append('')
+
+                newlines.append('.. math::')
+                newlines.append('')
+                offset = line.index('@' + special)
+                while lines:
+                    line = lines.pop(0)
+                    if '@f]' in line:
+                        break
+                    newlines.append('   ' + line[offset:])
+
+                newlines.append('')
+                continue
+            elif special == 'param':
+                #TODO
+                #if extra is not None:
+                #    _, name, desc = strline.split(' ', 2)
+                #    extra['param:' + name] = desc
+                continue
+            elif special in ('brief', 'return', 'returns', 'deprecated'):
+                #TODO
+                #if extra is not None:
+                #    _, value = strline.split(' ', 1)
+                #    extra[special] = value
+                continue
+            elif special == 'details':
+                strline = strline[9:]
+            elif special == 'sa' or special == 'see':
+                if newlines and newlines[-1]:
+                    newlines.append('')
+
+                _, value = strline.split(' ', 1)
+                values = value.split(',')
+
+                for i, value in enumerate(values):
+                    value = value.strip().replace('::', '.')
+                    if '(' in value:
+                        value = value.split('(', 1)[0]
+                        value += '()'
+                    values[i] = ':py:obj:`{}`'.format(value)
+
+                if special == 'see':
+                    newlines.append('See {}.'.format(', '.join(values)))
+                else:
+                    newlines.append('See also {}.'.format(', '.join(values)))
+                newlines.append('')
+                continue
+            elif special == 'note':
+                if newlines and newlines[-1]:
+                    newlines.append('')
+
+                newlines.append('.. note:: ')
+                newlines.append('')
+                newlines.append('   ' + strline[6:])
+                while lines and lines[0].startswith('     '):
+                    line = lines.pop(0)
+                    newlines.append('   ' + line.lstrip(' *\t'))
+
+                newlines.append('')
+                continue
+            elif special == 'since':
+                if newlines and newlines[-1]:
+                    newlines.append('')
+
+                newlines.append('.. versionadded:: ' + strline[7:])
+                newlines.append('')
+                continue
+            else:
+                print("Unhandled documentation tag: @" + special)
+
+        if strline or len(newlines) > 0:
+            strline = strline.replace('<b>', '**').replace('</b>', '**')
+            newlines.append('   '*indent + strline)
+
+    return newlines
 
 
 def on_autodoc_skip_member(app, what, name, obj, skip, options):
@@ -398,6 +554,9 @@ def on_autodoc_process_docstring(app, what, name, obj, options, lines):
         name == 'direct.fsm.FourStateAI.FourStateAI.__init__') \
        and 'are used:' in lines:
         lines[lines.index('are used:')] = 'are used::'
+
+    if lines and lines[0].lstrip().startswith('/**'):
+        lines[:] = convert_doxygen_docstring(lines)
 
 
 def on_builder_inited(app):
