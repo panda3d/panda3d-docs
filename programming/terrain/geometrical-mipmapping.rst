@@ -215,7 +215,8 @@ automatically take care of it at the next ``update()`` call.
 Notes
 ~~~~~
 
--  For a full function overview, see the API reference.
+-  For a full function overview, see the :class:`~panda3d.core.GeoMipTerrain`
+   page in the API Reference.
 
 -  The GeoMipTerrain generates texture coordinates between 0 and 1, making the
    texture stretched over the entire terrain. If you are using a shader, please

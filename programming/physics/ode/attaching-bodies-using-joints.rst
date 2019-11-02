@@ -15,9 +15,8 @@ they are not attached to each other. This is where Joints come in.
 
 Joints are basically used to attach bodies to each other, or to attach a body to
 the environment. There are several different kinds of joints: OdeHingeJoint,
-OdeBallJoint, OdeSliderJoint, just to name a few. (Check the
-`API Reference <https://www.panda3d.org/reference/python/namespacepanda3d.ode.php>`__
-for a more complete list).
+OdeBallJoint, OdeSliderJoint, just to name a few. (Check the :mod:`panda3d.ode`
+page in the API Reference for a more complete list.)
 
 OdeBallJoint example
 --------------------
@@ -115,6 +114,6 @@ joint is used to set the two bodies that are attached; you can replace either
 argument with None to attach them to the environment. The ``setAnchor`` method
 is used to set the anchor point for the joints.
 
-At this image you can see how the joints are set up: |BallJointExample2.jpg|
+In this image you can see how the joints are set up:
 
-.. |BallJointExample2.jpg| image:: balljointexample2.jpg
+.. image:: balljointexample2.jpg

@@ -168,9 +168,8 @@ occurs. You need to set the name of the event by doing:
 
 You can then use this event name in an ``accept()`` call. The parameter passed
 to the event is an OdeCollisionEntry, which holds all the geoms and contacts in
-the collision. See the API reference page for
-`OdeCollisionEntry <https://www.panda3d.org/apiref.php?page=OdeCollisionEntry>`__
-for more details.
+the collision. See the API Reference page for
+:class:`~panda3d.ode.OdeCollisionEntry` for more details.
 
 The following code shows how it works (the methods used are not real):
 

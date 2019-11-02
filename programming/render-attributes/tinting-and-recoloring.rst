@@ -115,6 +115,6 @@ medium-blue color, but this only tints the model.
 Related Classes
 ---------------
 
--  `ColorScaleAttrib <https://www.panda3d.org/apiref.php?page=ColorScaleAttrib>`__
--  `ColorAttrib <https://www.panda3d.org/apiref.php?page=ColorAttrib>`__
--  `NodePath <https://www.panda3d.org/apiref.php?page=NodePath>`__
+-  :class:`panda3d.core.ColorScaleAttrib`
+-  :class:`panda3d.core.ColorAttrib`
+-  :class:`panda3d.core.NodePath`

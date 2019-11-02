@@ -174,4 +174,4 @@ returns the children of the current node as a NodePathCollection.
       }
 
 For more information and a complete list of NodePath functions please see the
-`API reference <https://www.panda3d.org/apiref.php?page=NodePath>`__.
+:class:`~panda3d.core.NodePath` page in the API Reference.

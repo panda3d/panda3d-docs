@@ -60,7 +60,7 @@ try using a quick sound at first, like a clap.
 You can add more than just reverb to your sound. The full list of available
 filters is here:
 
-https://www.panda3d.org/apiref.php?page=FilterProperties
+:class:`panda3d.core.FilterProperties`
 
 Below is a sample program for adding a reverb effect:
 

@@ -20,5 +20,4 @@ the physics engine:
    [[Collision Handlers]]. If you intend to use a PhysicsCollisionHandler to
    prevent a model from falling through a floor (for example, if the scene has
    gravity applied), be sure to look at the friction coefficient options on
-   the [https://www.panda3d.org/apiref.php?page=PhysicsCollisionHandler
-   PhyicsCollisionHandler].
+   the :class:`~panda3d.physics.PhysicsCollisionHandler`.

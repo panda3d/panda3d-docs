@@ -111,8 +111,8 @@ provides the following methods:
    total mass.
 -  ``rotate(matrix)``: Rotates the matrix using the specified Mat3 object.
 
-More methods are listed in the
-`API reference <https://www.panda3d.org/apiref.php?page=OdeMass>`__.
+More methods are listed on the :class:`~panda3d.ode.OdeMass` page in the API
+Reference.
 
 For more complex shapes, you might want to decompose the object into several
 simple ones, and use the ``add(other)`` method to add the masses together. If

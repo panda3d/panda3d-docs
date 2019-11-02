@@ -170,9 +170,9 @@ compression level (1-9). There is also ``updateSubfile``, which does the same
 thing but if the file already exists, only updates it if the content is
 different.
 
-There are several other methods which operate on subfiles, which you can find in
-the `API Reference. <https://www.panda3d.org/apiref.php?page=Multifile>`__ Here
-are a few examples of working with subfiles:
+There are several other methods which operate on subfiles, which you can find on
+the :class:`~panda3d.core.Multifile` page in the API Reference.
+Here are a few examples of working with subfiles:
 
 .. code-block:: python
 

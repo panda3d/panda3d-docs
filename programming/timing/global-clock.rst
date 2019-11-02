@@ -3,9 +3,7 @@
 The Global Clock
 ================
 
-The global clock is an instance of the
-`ClockObject <https://www.panda3d.org/reference/python/class!panda3d.core.ClockObject>`__
-class.
+The global clock is an instance of the :class:`~panda3d.core.ClockObject` class.
 
 .. only:: python
 

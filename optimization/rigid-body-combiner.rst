@@ -67,4 +67,4 @@ lighting. Here is a small example showing a random cloud of boxes:
 Note: :ref:`RenderEffects <render-effects>` such as
 :ref:`Billboards <billboard-effects>` are not supported below this node. For
 more information and a complete list of RigidBodyCombiner methods please see the
-`API reference <https://www.panda3d.org/apiref.php?page=RigidBodyCombiner>`__.
+:class:`~panda3d.core.RigidBodyCombiner` page in the API Reference.

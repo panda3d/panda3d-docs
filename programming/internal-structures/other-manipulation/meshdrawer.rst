@@ -102,16 +102,8 @@ at the start.
           generator.end()
       }
 
-Inside it you can call many different MeshDrawer functions
-see:
-
-.. only:: python
-
-   https://www.panda3d.org/reference/python/classpanda3d.core.MeshDrawer.php
-
-.. only:: cpp
-
-   https://www.panda3d.org/reference/cxx/classMeshDrawer.php
+See the :class:`~panda3d.core.MeshDrawer` page in the API Reference to see a
+complete overview of the available methods.
 
 Many of the calls take a frame of Vec4() type. The frame is the
 Vec4(x,y,width,height) coordinates inside the texture. Frame of Vec4(0,0,1,1)

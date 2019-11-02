@@ -8,8 +8,7 @@ various functionality that Panda3D provides.
 
 This manual does not attempt to be complete in the sense of listing every
 class, function, and method provided by Panda3D. If that's what you're looking
-for, go to the `Reference
-Section <https://www.panda3d.org/apiref.php?page=classes>`__ instead.
+for, go to the :ref:`Reference Section <reference>` instead.
 
 The purpose of this manual is to:
 
@@ -20,8 +19,7 @@ The purpose of this manual is to:
 3. Give you a general understanding of how to build games in Panda3D.
 
 In time, though, you will need to supplement the knowledge provided by this
-manual by studying the `Reference
-Section <https://www.panda3d.org/apiref.php?page=classes>`__.
+manual by studying the :ref:`Reference Section <reference>`.
 
 
 .. toctree::

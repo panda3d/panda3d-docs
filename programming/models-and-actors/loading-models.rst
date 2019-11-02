@@ -85,8 +85,9 @@ library function, or one of the panda utility programs:
 Panda uses the ``Filename`` class to store Panda-style filenames; many Panda
 functions expect a Filename object as a parameter. The Filename class also
 contains several useful methods for path manipulation and file access, as well
-as for converting between Windows-style filenames and Panda-style filenames; see
-the API reference for a more complete list.
+as for converting between Windows-style filenames and Panda-style filenames;
+see the :class:`~panda3d.core.Filename` page in the API Reference for a more
+complete list.
 
 To convert a Windows filename to a Panda pathname, use code similar to the
 following:

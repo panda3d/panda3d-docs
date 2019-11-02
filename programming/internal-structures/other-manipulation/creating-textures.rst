@@ -112,8 +112,8 @@ regardless of whether the image is a grayscale or a color image, you can use
 you want to weight the colors use ``getBright(x,y, r,g,b)`` where r,g,b are the
 weights for their respective channels.
 
-There are several other useful functions in the class this the API Reference for
-more information.
+There are several other useful functions in the class, which are described on
+the :class:`~panda3d.core.PNMImage` page in the API Reference.
 
 Getting the Image of a Texture
 ------------------------------

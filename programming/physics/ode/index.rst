@@ -29,10 +29,9 @@ Table of Contents
 More information
 ----------------
 
--  The `API reference <https://www.panda3d.org/reference/python/namespacepanda3d.ode.php>`__
-   can list the classes and methods available (all of the classes are prefixed
-   with Ode), although the function descriptions are lacking. It might also be
-   useful to look at the
+-  The :mod:`panda3d.ode` page in the API Reference can list the classes and
+   methods available (all of the classes are prefixed with `Ode`), although the
+   function descriptions are lacking. It might also be useful to look at the
    `PyODE API reference <http://pyode.sourceforge.net/api-1.2.0/public/ode-module.html>`__,
    which uses very similar class and method names.
 -  Developers from Walt Disney VR Studio have held a lecture about using the

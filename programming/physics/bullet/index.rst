@@ -37,8 +37,7 @@ Table of Contents
    samples
 
 All Bullet classes are prefixed with "Bullet". A list of all classes and their
-methods can be found within the `API
-reference <https://www.panda3d.org/reference/python/namespace!panda3d.bullet>`__.
+methods can be found from the :mod:`panda3d.bullet` page of the API Reference.
 However, the class and function descriptions are still missing.
 
 .. note::

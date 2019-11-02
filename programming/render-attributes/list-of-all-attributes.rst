@@ -97,8 +97,7 @@ AudioVolumeAttrib, CullBinAttrib, DepthOffsetAttrib, RenderModeAttrib,
 RescaleNormalAttrib, ShadeModelAttrib
 
 However, although the manual does not document these classes, the
-`Reference <https://www.panda3d.org/apiref.php?page=classes>`__ documentation
-does.
+:ref:`reference` documentation does.
 
 
 .. note:: This section is incomplete. It will be updated soon.

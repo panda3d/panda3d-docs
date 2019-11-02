@@ -206,5 +206,5 @@ an easy way to replace all instances of a specific material only:
 Related Classes
 ~~~~~~~~~~~~~~~
 
--  `Material <https://www.panda3d.org/apiref.php?page=Material>`__
--  `MaterialCollection <https://www.panda3d.org/apiref.php?page=MaterialCollection>`__
+-  :class:`panda3d.core.Material`
+-  :class:`panda3d.core.MaterialCollection`

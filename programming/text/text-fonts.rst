@@ -79,8 +79,7 @@ used, the default font quality won't be enough and the characters will show
 noticeable blurring, especially along curving edges. The way to overcome this is
 to set appropriately the *pixels per unit* value of the font object. This is
 done through the method ``setPixelPerUnit()`` of the class
-`DynamicTextFont <https://www.panda3d.org/reference/python/classpanda3d.core.DynamicTextFont.php>`__,
-i.e.:
+:class:`~panda3d.core.DynamicTextFont`, i.e.:
 
 .. only:: python
 
@@ -103,8 +102,7 @@ rasterized and mapped onto a polygon as the need arises. Changes to the font
 object (such as resetting the pixels per unit value) will regenerate the
 textures for all characters that have been generated so far, a small price to
 pay for the flexibility of a dynamic font. When a font is loaded from an egg
-file instead, the returned object is a
-`StaticTextFont <https://www.panda3d.org/reference/python/panda3d.core.php>`__
+file instead, the returned object is a :class:`~panda3d.core.StaticTextFont`
 that provides a much restricted functionality. Effectively these kind of egg
 files are "frozen" fonts: their characters have been permanently rendered into a
 texture and cannot be easily changed from inside your application.
