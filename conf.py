@@ -705,10 +705,12 @@ def on_config_inited(app, config):
         app.connect('html-page-context', setup_js_tag_helper)
 
     # Used in searchbox.html.
-    if config.html_link_suffix is None:
+    if config.html_link_suffix is not None:
         config.html_context['link_suffix'] = config.html_link_suffix
-    else:
+    elif config.html_file_suffix is not None:
         config.html_context['link_suffix'] = config.html_file_suffix
+    else:
+        config.html_context['link_suffix'] = '.html'
 
 
 # This is an awful hack to get the inheritance graphs to incorporate the
