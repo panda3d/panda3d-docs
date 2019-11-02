@@ -9,6 +9,14 @@
 
 .. only:: python
 
+   .. code-block:: python
+
+      {% if classes %}
+      from {{ fullname }} import {{ (classes + functions) | join(', ') }}
+      {% else %}
+      import {{ fullname }}
+      {% endif %}
+
    .. default-role:: obj
 
    .. automodule:: {{ fullname }}
