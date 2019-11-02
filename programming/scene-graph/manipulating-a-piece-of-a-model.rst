@@ -3,19 +3,20 @@
 Manipulating a Piece of a Model
 ===============================
 
-Every model, when loaded, becomes a ``ModelNode`` in the scene graph. Beneath
-the ``ModelNode`` are one or more ``GeomNodes`` containing the actual polygons.
+Every model, when loaded, becomes a :class:`~panda3d.core.ModelNode` in the
+scene graph. Beneath the :class:`~panda3d.core.ModelNode` are one or more
+:class:`GeomNodes <panda3d.core.GeomNode>` containing the actual polygons.
 If you want to manipulate a piece of a model, for instance, if you want to
 change the texture of just part of a model, you need a pointer to the relevant
 GeomNode.
 
 In order to obtain such a pointer, you must first ensure that the relevant
-geometry is in a ``GeomNode`` of its own (and not merged with all the other
-geometry). In other words, you must ensure that panda's optimization mechanisms
-do not cause the geometry to be merged with the geometry of the rest of the
-model. While normally this optimization is a good thing, if you want to change
-textures on a specific part of the model (for example, just a character's face)
-you will need this geometry to be separate.
+geometry is in a :class:`~panda3d.core.GeomNode` of its own (and not merged with
+all the other geometry). In other words, you must ensure that panda's
+optimization mechanisms do not cause the geometry to be merged with the geometry
+of the rest of the model. While normally this optimization is a good thing, if
+you want to change textures on a specific part of the model (for example, just a
+character's face) you will need this geometry to be separate.
 
 There are two different ways that you should do this, according to the type of
 model it is.
@@ -56,7 +57,8 @@ written into the directory named by the "-d" parameter.
 The "-flag" switch will ensure that panda does not rearrange the geometry for
 the named polyset, folding it into the model as a whole. It also assigns the
 polyset a meaningful name. Once you have labeled the relevant piece of geometry,
-you can obtain a pointer to it using the ``find`` method:
+you can obtain a pointer to it using the :meth:`~panda3d.core.NodePath.find`
+method:
 
 .. only:: python
 
@@ -71,9 +73,10 @@ you can obtain a pointer to it using the ``find`` method:
       NodePath myModelsHead = myModel.find("**/theHead");
 
 With this NodePath, you can manipulate the head separately from the rest of the
-model. For example, you can move the piece using ``setPos``, or change its
-texture using ``setTexture``, or for that matter, do anything that you would do
-to any other scene graph node.
+model. For example, you can move the piece using
+:meth:`~panda3d.core.NodePath.setPos`, or change its texture using
+:meth:`~panda3d.core.NodePath.setTexture`, or for that matter, do anything that
+you would do to any other scene graph node.
 
 Unanimated (environment) models
 -------------------------------

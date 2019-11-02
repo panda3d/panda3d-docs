@@ -8,7 +8,7 @@ graph, especially to get a sub-part of a model that was loaded from a single
 file. There are a number of methods dedicated to finding entrenched nodes and
 returning the NodePaths.
 
-First, and most useful, is the ls() command:
+First, and most useful, is the :meth:`~panda3d.core.NodePath.ls` command:
 
 .. only:: python
 
@@ -28,12 +28,14 @@ lists the transforms and :ref:`render-attributes` that are on each node. This is
 an especially useful command for when you're running interactively with Python;
 it's a good way to check that the scene graph is what you think it should be.
 
-The two methods ``find()`` and ``findAllMatches()`` will return a ``NodePath``
-and a ``NodePathCollection`` respectively. These methods require a path string
-as an argument. Searches can based on name or type. In its simplest form this
-path consists of a series of node names separated by slashes, like a directory
-pathname. When creating the string each component may optionally consist of one
-of the following special names, instead of a node name.
+The two methods :meth:`~panda3d.core.NodePath.find` and
+:meth:`~panda3d.core.NodePath.findAllMatches` will return a
+:class:`~panda3d.core.NodePath` and a :class:`~panda3d.core.NodePathCollection`
+respectively. These methods require a path string as an argument. Searches can
+based on name or type. In its simplest form this path consists of a series of
+node names separated by slashes, like a directory pathname. When creating the
+string each component may optionally consist of one of the following special
+names, instead of a node name.
 
 ============== =======================================================
 ``*``          Matches exactly one node of any name
@@ -85,10 +87,11 @@ the special flags with no extra spaces or punctuation.
 
 The default flags are ``+h-s-i``.
 
-The ``find()`` method searches for a single node that matches the path string
-given. If there are multiple matches, the method returns the shortest match. If
-it finds no match, it will return an empty NodePath. On the other hand,
-``findAllMatches()`` will return all NodePaths found, shortest first.
+The :meth:`~panda3d.core.NodePath.find` method searches for a single node that
+matches the path string given. If there are multiple matches, the method returns
+the shortest match. If it finds no match, it will return an empty NodePath. On
+the other hand, :meth:`~panda3d.core.NodePath.findAllMatches` will return all
+NodePaths found, shortest first.
 
 .. only:: python
 
@@ -151,9 +154,11 @@ a name that begins with "red".
 This will search myNodePath recursively using tag/value. Tag name is "type" and
 tag value is "weaponMount". All matches found will be returned.
 
-In addition there are also the methods ``getParent()`` and ``getChildren()``.
-``getParent()`` returns the NodePath of the parent node. ``getChildren()``
-returns the children of the current node as a NodePathCollection.
+In addition there are also the methods :meth:`~panda3d.core.NodePath.getParent`
+and :meth:`~panda3d.core.NodePath.getChildren`.
+:meth:`~panda3d.core.NodePath.getParent` returns the NodePath of the parent node.
+:meth:`~panda3d.core.NodePath.getChildren` returns the children of the current
+node as a :class:`~panda3d.core.NodePathCollection`.
 
 .. only:: python
 

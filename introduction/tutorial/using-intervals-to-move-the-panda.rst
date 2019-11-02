@@ -16,8 +16,9 @@ process that modifies the property over the specified period of time.
 :ref:`Sequences <sequences-and-parallels>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Sequences*, also called *MetaIntervals* are tasks that execute one interval
-after another.
+*Sequences*, sometimes called *MetaIntervals*, are a type of interval that
+contains other intervals.  Playing a sequence will cause each contained interval
+to execute in sequence, one after the other.
 
 The Program
 -----------
