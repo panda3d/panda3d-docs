@@ -13,7 +13,8 @@ CollisionHandlerQueue
 
 The simplest kind of CollisionHandler, this object simply records the collisions
 that were detected during the most recent traversal. You can then iterate
-through the list using ``queue.getNumEntries()`` and ``queue.getEntry()``:
+through the list using ``queue.getNumEntries()`` and ``queue.getEntry()``, or
+in Python using the shorthand ``queue.getEntries()``:
 
 .. only:: python
 
@@ -37,7 +38,7 @@ through the list using ``queue.getNumEntries()`` and ``queue.getEntry()``:
 
       for (int i = 0; i < queue->get_num_entries(); ++i) {
         CollisionEntry *entry = queue->get_entry(i);
-        cout << *entry << endl;
+        std::cout << *entry << endl;
       }
 
 By default, the :ref:`collision-entries` appear in the queue in no particular
