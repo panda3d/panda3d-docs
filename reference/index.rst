@@ -11,6 +11,13 @@ API Reference
    complete overview of all the classes and functions defined in these two
    libraries.
 
+.. only:: cpp
+
+   The C++ part of the API reference is still under construction.  In the
+   meantime, please refer to the older Doxygen reference:
+
+   https://www.panda3d.org/reference/cxx/
+
 panda3d - Core library
 ----------------------
 
