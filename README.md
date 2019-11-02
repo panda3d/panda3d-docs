@@ -8,7 +8,7 @@ Since this new format is still quite rough around the edges, Panda3D's main webs
 - [x] Base conversion utilizing [the panda-sphinx repository](https://github.com/Moguri/panda-sphinx)
 - [x] Manual fixes for formatting issues
 - [ ] Welcome page (index.rst)
-- [ ] Move API Reference from Doxygen to Sphinx
+- [x] Move API Reference from Doxygen to Sphinx
 - [ ] Spellcheck/proofread
 
 ## Building The Documentation
