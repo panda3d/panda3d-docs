@@ -89,27 +89,68 @@ There are of course cases where you don't know the density (although it is easy
 to calculate), or when the object is not easy to fit in a box shape. OdeMass
 provides the following methods:
 
--  ``setZero()``: Sets all the mass parameters to 0, meaning it will have no
-   mass at all.
--  ``setSphere(density, radius)``: This specifies that the object's mass is
-   spherical with the given radius.
--  ``setSphereTotal(total_mass, radius)``: Use this if you don't know the
-   density but do know the total mass of the object.
--  ``setBox(density, lx, ly, lz)``: Use this for box-shaped objects.
--  ``setBoxTotal(total_mass, lx, ly, lz)``: The same as the former, but
-   specifies the total mass instead of the density.
--  ``setCylinder(density, direction, radius, length)``: To be used for objects
-   shaped like a cylinder.
--  ``setCylinderTotal(total_mass, direction, radius, length)``: Again the same
-   cylinder, but specifies the mass instead of the density.
--  ``setCapsule(density, direction, radius, length)``: A capsule is similar to a
-   cylinder, but has capped edges.
--  ``setCapsuleTotal(total_mass, direction, radius, length)``: Use this if you
-   only have a mass and not the density.
--  ``add(other)``: Adds an other OdeMass object to this mass.
--  ``adjust(total_mass)``: Adjusts the mass parameters to have the specified
-   total mass.
--  ``rotate(matrix)``: Rotates the matrix using the specified Mat3 object.
+.. currentmodule:: panda3d.core
+
+.. py:method:: OdeMass.setZero()
+   :noindex:
+
+   Sets all the mass parameters to 0, meaning it will have no mass at all.
+
+.. py:method:: OdeMass.setSphere(density, radius)
+   :noindex:
+
+   This specifies that the object's mass is spherical with the given radius.
+
+.. py:method:: OdeMass.setSphereTotal(total_mass, radius)
+   :noindex:
+
+   Use this if you don't know the density but do know the total mass of the
+   object.
+
+.. py:method:: OdeMass.setBox(density, lx, ly, lz)
+   :noindex:
+
+   Use this for box-shaped objects.
+
+.. py:method:: OdeMass.setBoxTotal(total_mass, lx, ly, lz)
+   :noindex:
+
+   The same as the former, but specifies the total mass instead of the density.
+
+.. py:method:: OdeMass.setCylinder(density, direction, radius, length)
+   :noindex:
+
+   To be used for objects shaped like a cylinder.
+
+.. py:method:: OdeMass.setCylinderTotal(total_mass, direction, radius, length)
+   :noindex:
+
+   Again the same cylinder, but specifies the mass instead of the density.
+
+.. py:method:: OdeMass.setCapsule(density, direction, radius, length)
+   :noindex:
+
+   A capsule is similar to a cylinder, but has capped edges.
+
+.. py:method:: OdeMass.setCapsuleTotal(total_mass, direction, radius, length)
+   :noindex:
+
+   Use this if you only have a mass and not the density.
+
+.. py:method:: OdeMass.add(other)
+   :noindex:
+
+   Adds an other OdeMass object to this mass.
+
+.. py:method:: OdeMass.adjust(total_mass)
+   :noindex:
+
+   Adjusts the mass parameters to have the specified total mass.
+
+.. py:method:: OdeMass.rotate(matrix)
+   :noindex:
+
+   Rotates the matrix using the specified Mat3 object.
 
 More methods are listed on the :class:`~panda3d.ode.OdeMass` page in the API
 Reference.
