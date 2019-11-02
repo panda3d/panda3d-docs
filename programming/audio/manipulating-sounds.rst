@@ -132,10 +132,11 @@ will get the current time the 'playback head' of a sound is at in seconds.
 
 will set the 'playhead head' of a sound to n (where is seconds).
 
-.. note::
+.. caution::
 
-   Sounds will start playing *immediately* after the command is issued, and
-   calling ``play`` will cause the sound to start over from the beginning.
+   When using the default OpenAL back-end, setting the time will *not* take
+   effect immediately.  You will need to call ``play()`` to restart the sound
+   at the configured position.
 
 Changing Playback Speed
 -----------------------
