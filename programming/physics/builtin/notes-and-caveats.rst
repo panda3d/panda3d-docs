@@ -17,7 +17,7 @@ the physics engine:
 #. If a NodePath that is controlled by an ActorNode also needs collision
    calculations done upon it, be sure to use the PhysicsCollisionHandler
    instead of CollisionHandlerPusher. More info can be found in the section on
-   [[Collision Handlers]]. If you intend to use a PhysicsCollisionHandler to
+   :ref:`collision-handlers`. If you intend to use a PhysicsCollisionHandler to
    prevent a model from falling through a floor (for example, if the scene has
    gravity applied), be sure to look at the friction coefficient options on
    the :class:`~panda3d.physics.PhysicsCollisionHandler`.
