@@ -563,7 +563,18 @@ def convert_doxygen_docstring(lines, name):
                 #    _, name, desc = strline.split(' ', 2)
                 #    extra['param:' + name] = desc
                 continue
-            elif special in ('brief', 'return', 'returns', 'deprecated'):
+            elif special == 'deprecated':
+                if newlines and newlines[-1]:
+                    newlines.append('')
+
+                _, value = strline.split(' ', 1)
+
+                # I'd love to use the proper Sphinx deprecated tag, but it
+                # requires a version number, whereas Doxygen doesn't.
+                newlines.append('*Deprecated:* ' + convert_doxygen_format(value, name))
+                newlines.append('')
+                continue
+            elif special in ('brief', 'return', 'returns'):
                 #TODO
                 #if extra is not None:
                 #    _, value = strline.split(' ', 1)
