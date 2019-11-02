@@ -11,25 +11,23 @@ through this canvas through the use of one or two
 :ref:`DirectScrollBars <directscrollbar>` on the right and bottom of the
 frame. DirectScrolledFrame is available beginning with Panda3D version 1.1.
 
-The ``frameSize`` parameter controls
-the size and placement of the visible, onscreen frame; use the
-``canvasSize`` parameter to control
-the size of the larger virtual canvas.
+The ``frameSize`` parameter controls the size and placement of the visible,
+onscreen frame; use the ``canvasSize`` parameter to control the size of the
+larger virtual canvas.
 
 You can then parent any widgets you like to the NodePath returned by
-``myFrame.getCanvas()``. The DirectGui items
-you attach to this canvas NodePath will be visible through the small window;
-you should position them within the virtual canvas using values within the
-coordinate range you established via the
-``canvasSize`` parameter.
+:meth:`myFrame.getCanvas() <direct.gui.DirectScrolledFrame.DirectScrolledFrame.getCanvas>`
+The DirectGui items you attach to this canvas NodePath will be visible through
+the small window; you should position them within the virtual canvas using
+values within the coordinate range you established via the ``canvasSize``
+parameter.
 
 By default, the scroll bars are automatically created with the
 DirectScrolledFrame and will be hidden automatically when they are not needed
 (that is, if the virtual frame size is equal to or smaller than the onscreen
 frame size). You can adjust either frame size at runtime and the scroll bars
 will automatically adjust as needed. If you would prefer to manage the scroll
-bars yourself, you can set one or both of
-``manageScrollBars`` and
+bars yourself, you can set one or both of ``manageScrollBars`` and
 ``autoHideScrollBars`` to False.
 
 ========================================================= ========================================================================================================== ====================================================
@@ -52,7 +50,7 @@ scrolled frame on the middle of the screen:
    from direct.gui.DirectGui import *
    import direct.directbase.DirectStart
 
-   myframe = DirectScrolledFrame(canvasSize = (-2,2,-2,2), frameSize = (-.5,.5,-.5,.5))
+   myframe = DirectScrolledFrame(canvasSize=(-2, 2, -2, 2), frameSize=(-.5, .5, -.5, .5))
    myframe.setPos(0, 0, 0)
 
    run()
