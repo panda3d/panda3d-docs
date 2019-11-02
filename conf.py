@@ -730,7 +730,7 @@ def generate_dot(self, name, urls={}, env=None,
         e_attrs.update(env.config.inheritance_edge_attrs)
 
     res = []  # type: List[str]
-    res.append('digraph %s {\n' % name)
+    res.append('strict digraph %s {\n' % name)
     res.append(self._format_graph_attrs(g_attrs))
 
     for name, fullname, bases, tooltip in sorted(self.class_info):
