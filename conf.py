@@ -309,7 +309,8 @@ texinfo_documents = [
 #texinfo_no_detailmenu = False
 
 # When running the linkcheck, don't try any example.net/org/com domains.
-linkcheck_ignore = [r'https?://(.+\.)?example\.(com|net|org)(/.*)?']
+linkcheck_ignore = [r'https?://(.+\.)?example\.(com|net|org)(/.*)?',
+                    'http://server:port/path']
 linkcheck_anchors = False
 
 # Set a list of modules that do bad things when imported, and should not be
