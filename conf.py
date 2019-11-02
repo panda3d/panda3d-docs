@@ -15,6 +15,8 @@
 import sys
 import os
 import types
+import re
+from sphinx_interrogatedb import idb
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -393,8 +395,93 @@ inheritance_edge_attrs = {
 }
 
 
-def convert_doxygen_docstring(lines):
-    """Converts a doxygen-style C++ block comment to a Sphinx-style one."""
+def resolve_reference(ref, rel):
+    """Looks up an interrogate symbol to its canonical name.  The second
+    argument is the fully qualified name it should be seen relative to, which
+    may be a module name, or a module name followed by an object name.
+
+    If found, returns a 2-tuple (type, fqname), else None."""
+
+    # Find out which module we should be looking in.
+    modname = None
+    relpath = None
+    rel_parts = rel.split('.')
+    for i in range(len(rel_parts), 0, -1):
+        try_modname = '.'.join(rel_parts[:i])
+        if idb.has_module(try_modname):
+            modname = try_modname
+            relpath = rel_parts[i:]
+            break
+
+    if not modname:
+        return None
+
+    refpath = ref.replace('::', '.').split('.')
+
+    # Say `rel` is "panda3d.core.NodePath.node",
+    # and `ref` is "PandaNode.final", then we will try these in this order:
+    # - panda3d.core::NodePath.node.PandaNode.final
+    # - panda3d.core::NodePath.PandaNode.final
+    # - panda3d.core::PandaNode.final
+
+    for i in range(len(relpath), -1, -1):
+        search = relpath[:i] + refpath
+        ifunc = idb.lookup_function(modname, search)
+        if ifunc:
+            # Grab the mangled function name.
+            func_name = idb.get_function_name(ifunc, mangle=True)
+            return ('meth', '.'.join(relpath[:i] + refpath[:-1] + [func_name]))
+
+        itype = idb.lookup_type(modname, search)
+        if itype:
+            # Grab the original type name.
+            type_name = idb.get_type_name(itype, mangle=False, scoped=True)
+            return ('class', type_name)
+
+
+def convert_doxygen_format(line, name):
+    """Converts a single line of Doxygen formatting to Sphinx.
+    The name argument is the fully qualified name of the current module, class
+    or function, and is used to resolve references."""
+
+    line = line.replace('<b>', '**').replace('</b>', '**')
+
+    # Single backticks in doxygen map to doubles in Sphinx
+    line = line.replace('`', '``')
+
+    # But double backticks are literal backticks
+    line = line.replace('````', '\\`')
+
+    # Search for method and class references.  We pick them up either when they
+    # have a scoping operator, or when they end with (), or we would match all
+    # the words in the text!
+    origline = line
+    for m in re.finditer(r'\b([a-zA-Z_][a-zA-Z0-9_.:]*)\(\)|\b([a-zA-Z_][a-zA-Z0-9_]*::[a-zA-Z_][a-zA-Z0-9_.:]*)\b', origline):
+        result = resolve_reference(m.group(0).rstrip('()'), name)
+        if not result:
+            continue
+
+        if '::' in m.group():
+            # We want a scoped name, apparently.
+            ref = ':{0}:`{1}`'.format(*result)
+        else:
+            ref = ':{0}:`~{1}`'.format(*result)
+
+        # Are we inside double-backticks?
+        if origline[:m.start()].count('``') % 2 != 0:
+            # Only replace if it's entirely wrapped in backticks.
+            line = line.replace('``' + m.group() + '``', ref)
+        else:
+            line = line.replace(m.group(), ref)
+
+    return line
+
+
+def convert_doxygen_docstring(lines, name):
+    """Converts a doxygen-style C++ block comment to a Sphinx-style one.
+    The name argument is the fully qualified name of the current module, class
+    or function, and is used to resolve references."""
+
     lines = lines[:]
     newlines = []
     indent = 0
@@ -492,11 +579,11 @@ def convert_doxygen_docstring(lines):
                 values = value.split(',')
 
                 for i, value in enumerate(values):
-                    value = value.strip().replace('::', '.')
-                    if '(' in value:
-                        value = value.split('(', 1)[0]
-                        value += '()'
-                    values[i] = ':py:obj:`{}`'.format(value)
+                    result = resolve_reference(value.partition('(')[0], name)
+                    if result:
+                        values[i] = ':{0}:`{1}`'.format(*result)
+                    else:
+                        values[i] = ':obj:`{0}`'.format(value)
 
                 if special == 'see':
                     newlines.append('See {}.'.format(', '.join(values)))
@@ -510,10 +597,10 @@ def convert_doxygen_docstring(lines):
 
                 newlines.append('.. note:: ')
                 newlines.append('')
-                newlines.append('   ' + strline[6:])
+                newlines.append('   ' + convert_doxygen_format(strline[6:], name))
                 while lines and lines[0].startswith('     '):
-                    line = lines.pop(0)
-                    newlines.append('   ' + line.lstrip(' *\t'))
+                    line = lines.pop(0).lstrip(' *\t')
+                    newlines.append('   ' + convert_doxygen_format(line, name))
 
                 newlines.append('')
                 continue
@@ -528,8 +615,7 @@ def convert_doxygen_docstring(lines):
                 print("Unhandled documentation tag: @" + special)
 
         if strline or len(newlines) > 0:
-            strline = strline.replace('<b>', '**').replace('</b>', '**')
-            newlines.append('   '*indent + strline)
+            newlines.append('   '*indent + convert_doxygen_format(strline, name))
 
     return newlines
 
@@ -556,8 +642,10 @@ def on_autodoc_process_docstring(app, what, name, obj, options, lines):
        and 'are used:' in lines:
         lines[lines.index('are used:')] = 'are used::'
 
-    if lines and lines[0].lstrip().startswith('/**'):
-        lines[:] = convert_doxygen_docstring(lines)
+    if lines:
+        line0 = lines[0].lstrip()
+        if line0.startswith('/**') or line0.startswith('// '):
+            lines[:] = convert_doxygen_docstring(lines, name)
 
 
 def on_builder_inited(app):
