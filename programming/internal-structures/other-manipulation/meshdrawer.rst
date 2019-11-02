@@ -3,17 +3,10 @@
 MeshDrawer
 ==========
 
-MeshDrawer is a class with which you can draw geometry from
-
-.. only:: python
-
-   python
-
-.. only:: cpp
-
-   c++
-
-``every frame as fast as possible.  Common cases where you might want to use it include: projectiles such as bullets, trails, and laser beams; and UI elements such as health bars, labels, icons, and motion lines.``
+MeshDrawer is a class with which you can draw geometry every frame as fast as
+possible.  Common cases where you might want to use it include: projectiles such
+as bullets, trails, and laser beams; and UI elements such as health bars,
+labels, icons, and motion lines.
 
 You create a MeshDrawer like this:
 
@@ -79,27 +72,28 @@ at the start.
 
    .. code-block:: python
 
-      def drawtask(taks):
+      def drawtask(task):
           generator.begin(base.cam,render)
 
           ... your draw code ...
 
           generator.end()
-          return taks.cont
+          return task.cont
+
       taskMgr.add(drawtask, "meshdrawer task")
 
 .. only:: cpp
 
    .. code-block:: cpp
 
-      void drawTask(){
-          //you'll need access to the window and the generator
-          //call this method in your update or use a task.
-          generator.begin(window->get_camera_group(),window->get_render());
+      void drawTask() {
+        // You'll need access to the window and the generator
+        // Call this method in your update or use a task.
+        generator.begin(window->get_camera_group(), window->get_render());
 
-          ... your draw code ...
+        ... your draw code ...
 
-          generator.end()
+        generator.end()
       }
 
 See the :class:`~panda3d.core.MeshDrawer` page in the API Reference to see a
@@ -125,7 +119,7 @@ shipped to the GPU every frame, it's good to keep a low count of triangles in
 this buffer. This is also why the begin and end are needed to mark the vertex
 as being edited and then submit them back to Panda3D when finished.
 
-You can also take a look at MeshDrawer2D.
+You can also take a look at :class:`~panda3d.core.MeshDrawer2D`.
 
 It follows a similar pattern as MeshDrawer but has stuff that is useful to
 draw in 2d. Major differences is that its begin() takes no arguments and it
