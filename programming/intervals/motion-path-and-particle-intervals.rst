@@ -20,16 +20,16 @@ Read more about :ref:`motion-paths`.
 ParticleInterval
 ----------------
 
-Particle effects can be run from inside intervals as well:
+Particle effects can be run from inside intervals as well, using the
+:py:class:`~direct.interval.ParticleInterval.ParticleInterval` class:
 
 .. code-block:: python
 
    intervalName = ParticleInterval(
-       "Particle Effect Name",
+       particleEffect,
        parent,
-       worldRelative = 1,
-       loop = 0 or 1,
-       duration = myDuration
+       worldRelative=True,
+       duration=myDuration
    )
 
 Read more about :ref:`particle-effects`.
