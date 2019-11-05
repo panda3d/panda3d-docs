@@ -395,6 +395,34 @@ inheritance_edge_attrs = {
 }
 
 
+class ExcludeDocumenter(autodoc.Documenter):
+    """Special documenter that excludes certain types from autosummary.
+
+    It works by matching our desired excluded types, but because it has a
+    special objtype not recognized by autosummary, it won't be included."""
+
+    objtype = "exclude"
+
+    priority = 99
+
+    @classmethod
+    def can_document_member(cls, member, membername, isattr, parent):
+        # We only want to trigger autosummary, which always passes the empty
+        # string as membername.
+        if membername:
+            return False
+
+        if isinstance(member, type):
+            if member.__name__.startswith("PointerToBase_ReferenceCountedVector_"):
+                return True
+
+        return False
+
+    def generate(self, *args, **kwargs):
+        # This should never even be invoked by autodoc.
+        return
+
+
 def resolve_reference(ref, rel):
     """Looks up an interrogate symbol to its canonical name.  The second
     argument is the fully qualified name it should be seen relative to, which
@@ -776,3 +804,5 @@ def setup(app):
 
     app.connect('autodoc-skip-member', on_autodoc_skip_member)
     app.connect('autodoc-process-docstring', on_autodoc_process_docstring)
+
+    app.add_autodocumenter(ExcludeDocumenter)
