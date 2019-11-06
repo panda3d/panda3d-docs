@@ -17,6 +17,7 @@ import os
 import types
 import re
 from sphinx_interrogatedb import idb
+from sphinx.ext import autodoc
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
