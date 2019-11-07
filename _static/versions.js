@@ -13,10 +13,10 @@ window.addEventListener("DOMContentLoaded", function() {
         if (opts.URL_ROOT[0] === '/') {
             // Absolute path, eg. in case of the 404 page.
             window.versionRoot = opts.URL_ROOT.replace(/\/[^\/]+\/?$/g, '');
-            var numComponents = window.versionRoot.match(/\//g).length;
+            var numComponents = (window.versionRoot.match(/\//g) || []).length;
             window.currentPagePath = pathComponents.slice(numComponents + 2).join('/');
         } else {
-            var numComponents = opts.URL_ROOT.match(/\.\./g).length;
+            var numComponents = (opts.URL_ROOT.match(/\.\./g) || []).length;
             window.versionRoot = pathComponents.slice(0, pathComponents.length - numComponents - 2).join('/');
             window.currentPagePath = pathComponents.slice(pathComponents.length - numComponents - 1).join('/');
         }
