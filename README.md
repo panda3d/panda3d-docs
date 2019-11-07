@@ -4,6 +4,8 @@ This repository contains a work-in-progress conversion from the old Mediawiki fo
 
 Since this new format is still quite rough around the edges, Panda3D's main website will still be linking to the old manual.
 
+The documentation can be found at: https://docs.panda3d.org/
+
 ## To-do List
 - [x] Base conversion utilizing [the panda-sphinx repository](https://github.com/Moguri/panda-sphinx)
 - [x] Manual fixes for formatting issues
