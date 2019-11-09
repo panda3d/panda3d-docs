@@ -8,12 +8,15 @@ Particle Effects
    Particle effects involve the use of several small images acting on the same
    set of forces. These particles are created, they move, and they die out.
    These systems are dynamic and may be used for such effects as explosions,
-   smoke, bubbling liquid and swarms. In essence, any particle effect needs
-   three key parts: the renderer, the emitter, and the factory. The renderer
-   translates the particle object into a visible object on the screen. The
-   emitter assigns initial locations and velocity vectors for the particles. The
-   factory generates particles and assigns their attributes. There are many
-   different types of each part, and they each have their own parameters.
+   smoke, bubbling liquid and swarms.
+
+   In essence, any particle effect needs three key parts: the renderer, the
+   emitter, and the factory. The renderer translates the particle object into a
+   visible object on the screen. The emitter assigns initial locations and
+   velocity vectors for the particles. The factory generates particles and
+   assigns their attributes. There are many different types of each part, and
+   they each have their own parameters.
+
    Creating your own particle effects using code alone may be difficult. A
    particle effect panel is available to ease through this process. This section
    will discuss using the particle panel and the large number of variables
@@ -25,10 +28,12 @@ Particle Effects
    and many other fuzzy effects are created procedurally using particle systems.
    It's important not to make the assumption that particles must have the size
    of a 'particle' that is very small, particles can have any size and any mass.
-   Particles are physical entities which inherit PhysicsObject. Panda3D provides
-   a tool which simplifies testing particle systems. The tool is called
-   "Particle Panel" and is written in Python. The link to run the particle panel
-   is in the same folder as the particle sample which comes with Panda3D.
+   Particles are physical entities which inherit PhysicsObject.
+
+   Panda3D provides a tool which simplifies testing particle systems. The tool
+   is called "Particle Panel" and is written in Python. The link to run the
+   particle panel is in the same folder as the particle sample which comes with
+   Panda3D.
 
    A particle system in Panda3D consists of 6 components:
 
