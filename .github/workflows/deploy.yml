@@ -18,7 +18,7 @@ jobs:
         pip install -r requirements.txt
     - name: Build HTML manual
       run: |
-        sphinx-build -a -j auto -d _doctrees -D html_absolute_url_root=/ -D html_link_suffix= -D version=$(basename ${{ github.ref }}) -A version=$(basename ${{ github.ref }}) -A github_version=$(basename ${{ github.ref }}) -A theme_canonical_url=https://docs.panda3d.org/${{ github.ref }}/ . _html
+        sphinx-build -a -j auto -d _doctrees -D html_absolute_url_root=/ -D html_link_suffix= -D version=$(basename ${{ github.ref }}) -A version=$(basename ${{ github.ref }}) -A github_version=$(basename ${{ github.ref }}) -A theme_canonical_url=https://docs.panda3d.org/$(basename ${{ github.ref }})/ . _html
     - name: Sync to server
       run: |
         echo "${{ secrets.SSH_IDENTITY }}" > id_rsa
