@@ -32,13 +32,15 @@ window.addEventListener("DOMContentLoaded", function() {
             if (version.tag) {
                 opt.innerHTML += ' (' + version.tag + ')';
             }
-            window.versionDropdown.appendChild(opt);
             if (version.version == opts.VERSION) {
                 window.versionIndex = i;
                 if (version.outdated) {
                     isOutdated = true;
                 }
+            } else if (version.hidden) {
+                continue;
             }
+            window.versionDropdown.appendChild(opt);
             if (version.latest) {
                 latestVersion = version.version;
             }
