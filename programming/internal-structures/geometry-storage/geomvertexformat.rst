@@ -249,12 +249,12 @@ getName()
    color
       This defines an RGBA color value. If this column is not present, the
       default vertex color is white (unless it is overridden with a
-      nodePath.setColor() call). Internally, OpenGL expects the color format
-      to be Geom.NTUint8 (or Geom.NTFloat32), Geom.C_color, 4 components,
-      while DirectX expects the color to be Geom.NTPackedDabc, Geom.C_color,
-      1 component. In fact, you may use either format regardless of your
-      current rendering backend, and Panda will automatically convert the
-      column as necessary.
+      :meth:`nodePath.setColor() <.NodePath.setColor>` call).
+      Internally, OpenGL expects the color format to be Geom.NTUint8 (or
+      Geom.NTFloat32), Geom.C_color, 4 components, while DirectX expects the
+      color to be Geom.NTPackedDabc, Geom.C_color, 1 component.
+      In fact, you may use either format regardless of your current rendering
+      backend, and Panda will automatically convert the column as necessary.
 
    rotate
       \
@@ -262,15 +262,16 @@ getName()
       \
    aspect_ratio
       These three columns are used when rendering sprites (that is, GeomPoints
-      with nodePath.setRenderModeThickness() in effect). If present, they
-      control the rotation counterclockwise in degrees, the per-vertex
-      thickness, and the aspect ratio of the square, respectively. Each of
-      these should be Geom.NTFloat32, Geom.C_other, 1 component.
+      with :meth:`nodePath.setRenderModeThickness() <.NodePath.setRenderModeThickness>`
+      in effect).
+      If present, they control the rotation counterclockwise in degrees, the
+      per-vertex thickness, and the aspect ratio of the square, respectively.
+      Each of these should be Geom.NTFloat32, Geom.C_other, 1 component.
       The remaining column names have meaning only to define vertex animation,
       for instance to implement Actors. Although these column names are
       documented below, vertex animation is an advanced feature of the Panda
-      vertex representation; we recommend you let Panda take care of setting
-      up the vertex animation tables, rather than attempting to create them
+      vertex representation; we recommend you let Panda take care of setting up
+      the vertex animation tables, rather than attempting to create them
       yourself.
 
    transform_blend

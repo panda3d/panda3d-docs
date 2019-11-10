@@ -6,8 +6,8 @@ Fog
 Basic Fog
 ---------
 
-To turn on fog, create an object of class ``Fog``, and then apply it using the
-``setFog`` operator:
+To turn on fog, create an object of class :class:`.Fog`, and then apply it using
+the :meth:`.NodePath.setFog` method:
 
 .. code-block:: python
 
@@ -25,12 +25,13 @@ for instance), then the fog's position is ignored, and the fog is
 camera-relative. Likewise, if the fog is exponential, the fog's position is
 ignored, and the fog is camera-relative.
 
-The ``setFog`` directive creates a fog attribute object. Like any
-:ref:`Render Attribute <render-attributes>`, the fog attribute affects the node
-that it is attached to, and any nodes below it in the scene graph. So you can
-easily cause only a subset of the objects (or just a single model) to be
-affected by the fog, by calling ``setFog`` on the root of the subgraph you want
-to be affected. To remove the fog attribute later, use the ``clearFog`` method:
+The :meth:`~.NodePath.setFog` method creates a fog attribute object.
+Like any :ref:`Render Attribute <render-attributes>`, the fog attribute affects
+the node that it is attached to, and any nodes below it in the scene graph. So
+you can easily cause only a subset of the objects (or just a single model) to be
+affected by the fog, by calling :meth:`~.NodePath.setFog` on the root of
+the subgraph you want to be affected.
+To remove the fog attribute later, use the :meth:`~.NodePath.clearFog` method:
 
 .. code-block:: python
 
@@ -48,30 +49,35 @@ Fog Modes
 
 There are three fog modes in Panda: ``Fog.MExponential``,
 ``Fog.MExponentialSquared`` and ``Fog.MLinear``. You can switch the mode of a
-``Fog`` object using ``fog.getMode()`` and ``fog.setMode(Fog.Mode)``. This
-explicit mode switching isn't normally necessary, as ``Fog`` methods implicitly
-switch the mode for you.
+:class:`.Fog` object using :meth:`fog.getMode() <.Fog.getMode>` and
+:meth:`fog.setMode(Fog.Mode) <.Fog.setMode>`.
+This explicit mode switching isn't normally necessary, as
+:class:`.Fog` methods implicitly switch the mode for you.
 
-A ``Fog`` object in Panda3D is a node that can be parented into the scene graph
-with a position, colour and orientation like any other node (importantly,
-``Fog`` is a subclass of ``PandaNode``, not of ``NodePath``) (do ``Fog`` nodes
-have a scale?).
+A :class:`.Fog` object in Panda3D is a node that can be parented into the scene
+graph with a position, colour and orientation like any other node (importantly,
+:class:`.Fog` is a subclass of :class:`.PandaNode`, not of :class:`.NodePath`)
+(do :class:`.Fog` nodes have a scale?).
 
-The position of a ``Fog`` node in the scene graph does not determine which
+The position of a :class:`.Fog` node in the scene graph does not determine which
 objects the fog affects, it determines the origin and direction of the fog when
 it is in linear mode. When a fog node is in exponential mode its position and
-orientation in the scene graph are irrelevant. Either way, a ``Fog`` node must
-be activated by calling ``nodePath.setFog(fogNode)`` on some ``NodePath`` in the
-scene graph. Which ``NodePath`` you call the ``setFog`` method on determines
-which parts of the scene will be fogged: that ``NodePath`` and all its children.
+orientation in the scene graph are irrelevant. Either way, a
+:class:`.Fog` node must be activated by calling
+:meth:`nodePath.setFog(fogNode) <.NodePath.setFog>` on some :class:`.NodePath`
+in the scene graph.
+Which :class:`.NodePath` you call the :meth:`~.NodePath.setFog` method on
+determines which parts of the scene will be fogged: that :class:`.NodePath` and
+all its children.
 
 Linear Fog
 ~~~~~~~~~~
 
-This is the default mode. In this mode the position and orientation of a ``Fog``
-node are important. A linear-mode ``Fog`` node must first be parented into the
-scene graph, then activated by calling ``setFog(fogNode)`` on some ``NodePath``
-in the scene graph.
+This is the default mode. In this mode the position and orientation of a
+:class:`.Fog` node are important.
+A linear-mode :class:`.Fog` node must first be parented into the scene graph,
+then activated by calling :meth:`setFog(fogNode) <.NodePath.setFog>` on some
+:class:`.NodePath` in the scene graph.
 
 Setup a linear fog node at the origin:
 
@@ -89,16 +95,16 @@ In linear mode, the onset and opaque distances of the fog are defined as offsets
 along the local forward (+Y) axis of the fog node. The onset distance is the
 distance from the fog node at which the fog will begin to have effect, and the
 opaque distance is the distance from the fog node at which the fog will be
-completely opaque. From reading the API page for the ``Fog`` class, it sounds as
-if beyond this opaque point there is no fog (rather than continuing opaque fog
-up to the location of the fog node as you might expect): "the fog will be
-rendered as if it extended along the vector from the onset point to the opaque
-point."
+completely opaque. From reading the API page for the :class:`.Fog`
+class, it sounds as if beyond this opaque point there is no fog (rather than
+continuing opaque fog up to the location of the fog node as you might expect):
+"the fog will be rendered as if it extended along the vector from the onset
+point to the opaque point."
 
 These settings can be modified using the methods ``getLinearOnsetPoint()``,
 ``getLinearOpaquePoint()``, ``setLinearOnsetPoint(float x,y,z)``,
 ``setLinearOpaquePoint(Point3D pos)`` and
-``setLinearRange(float onset, float opaque)`` of ``Fog``.
+``setLinearRange(float onset, float opaque)`` of :class:`.Fog`.
 
 There is a hardware issue with rendering fog which means that linear fog can
 breakdown and vanish depending on the angle from which it is viewed:
@@ -111,17 +117,18 @@ breakdown and vanish depending on the angle from which it is viewed:
    increases, the accuracy of the effect diminishes, up to a complete
    breakdown of the effect at a 90 degree angle."
 
-The ``Fog`` method ``setLinearFallback(float angle, float onset, float opaque)``
+The :class:`.Fog` method
+:meth:`setLinearFallback(float angle, float onset, float opaque) <.Fog.setLinearFallback>`
 defines how the fog should be rendered when the fog effect is diminished in this
 way. ``angle`` is the minimum viewing angle (angle between the camera direction
 and fog direction) at which the fallback effect will be employed. ``onset`` and
 ``opaque`` specify camera-relative onset and opaque distances that will be
-fallen back on, overriding the ``Fog`` node’s own onset and opaque distances.
+fallen back on, overriding the :class:`.Fog` node’s own onset and
+opaque distances.
 
-The ``setLinearFallback(float angle, float onset, float opaque)`` workaround
-will only look good in certain situations, for example when the fog is deep
-inside a dark cave. So in general, exponential mode fog is more useful than the
-default linear mode fog.
+The linear fallback workaround will only look good in certain situations, for
+example when the fog is deep inside a dark cave. So in general, exponential mode
+fog is more useful than the default linear mode fog.
 
 Exponential Fog
 ~~~~~~~~~~~~~~~

@@ -138,7 +138,7 @@ because of instancing. For example, you cannot fetch the parent of a node. You
 cannot determine its global color, or any other global attribute. All of these
 queries are ill-defined, because a single node can have many positions, many
 colors, many parents. Yet these queries are essential. It was therefore
-necessary for the panda3d designers to come up with some way to perform these
+necessary for the Panda3D designers to come up with some way to perform these
 queries, even though a node can be in multiple locations at the same time.
 
 The solution is based on the following observation: if I had a pointer to the

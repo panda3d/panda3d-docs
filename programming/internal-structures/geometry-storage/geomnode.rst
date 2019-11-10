@@ -51,7 +51,7 @@ When a model is loaded from an egg file, normally all the state definitions
 required to render the geometry will be stored on these per-Geom state
 definitions, rather than at the GeomNode level. These per-Geom states will
 override any state that is inherited from the scene graph, unless that scene
-graph state has a priority higher than the default priority of zero. (This is
-why it is necessary to specify a second parameter of 1 to the
-nodePath.setTexture() call, if you want to replace a texture that was applied
-to a model in the egg file.)
+graph state has a priority higher than the default priority of zero.
+(This is why it is necessary to specify a second parameter of 1 to the
+:meth:`nodePath.setTexture() <.NodePath.setTexture>` call, if you want to
+replace a texture that was applied to a model in the egg file.)

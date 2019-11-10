@@ -12,11 +12,11 @@ DirectGUI
    for any program. The DirectGui system is used to create buttons, labels, text
    entries, and frames within the program. All of these items can be decorated
    with text, images, and 3D graphics. Commands may be associated with these
-   items as well. Since these objects inherit from the NodePath class, anything
-   done to a NodePath may be done to them, such as show()/hide(), setPos(),
-   posInterval(), and so on. Also, since DirectGui objects are by default
-   parented to the node aspect2d, they will stay on the screen no matter how the
-   user navigates through the world.
+   items as well. Since these objects inherit from the :class:`.NodePath` class,
+   anything done to a NodePath may be done to them, such as show()/hide(),
+   setPos(), posInterval(), and so on. Also, since DirectGui objects are by
+   default parented to the node aspect2d, they will stay on the screen no matter
+   how the user navigates through the world.
 
    You can specify the parent nodepath for any DirectGUI object using the
    parent= argument. You can use base.aspect2d for center-oriented pacement, and
@@ -53,12 +53,12 @@ DirectGUI
    A DirectGui's geom can be any NodePath that you design, to represent the
    appearance of the gui object. Typically, this will be a model that you
    created via the program ``egg-texture-cards``. This little program takes a
-   png or other picture and turns it into an egg. See
-   :ref:`Automatic_Texture_Animation <automatic-texture-animation>`, for more
-   details. Using this interface, you can completely customize the look of the
-   DirectGui object to suit your needs. You can specify the geom object using
-   the ``geom`` keyword, and like the text parameter, you can also control the
-   geom's placement using keywords like ``geom_parameter``.
+   png or other picture and turns it into an egg.
+   See :ref:`automatic-texture-animation` for more details.
+   Using this interface, you can completely customize the look of the DirectGui
+   object to suit your needs. You can specify the geom object using the ``geom``
+   keyword, and like the text parameter, you can also control the geom's
+   placement using keywords like ``geom_parameter``.
 
    The image is less often used. It is the filename of a texture image (or an
    already-loaded Texture object). It is intended for displaying a simple
@@ -168,11 +168,11 @@ DirectGUI
 
       myDirectObject.destroy()
 
-   It is not sufficient to simply call ``removeNode()``, since the DirectGUI
-   system adds a number of messenger hooks that need to be cleaned up. However,
-   if you have a hierarchy of DirectGUI objects, for instance a number of
-   buttons parented to a frame, it is sufficient to call destroy() only on the
-   topmost object; it will propagate downwards.
+   It is not sufficient to simply call :meth:`~.NodePath.removeNode()`, since
+   the DirectGUI system adds a number of messenger hooks that need to be cleaned
+   up. However, if you have a hierarchy of DirectGUI objects, for instance a
+   number of buttons parented to a frame, it is sufficient to call destroy()
+   only on the topmost object; it will propagate downwards.
 
 .. only:: cpp
 
