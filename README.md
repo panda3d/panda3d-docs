@@ -40,5 +40,12 @@ guidelines:
 * When choosing a location for a new manual page, keep the filename concise, and
   try to avoid creating redundancy in the path. For example, prefer
   `bullet/tutorial.rst` over `the-bullet-integration/bullet-tutorial.rst`.
+* Page titles should be underlined with `===`, sections with `---`, and finally,
+  sub-sections with `^^^`, and the underline should be as wide as the title.
+* You can link to a class in the API reference using ``:class:`.NodePath` `` and
+  to a method with ``:meth:`.NodePath.reparentTo()` `` if you want to include
+  the class prefix, or ``:meth:`~.NodePath.reparentTo()` `` if you just want to
+  show the name of the method, like `reparentTo()`.  You can use custom text as
+  well, like ``:meth:`myNodePath.reparentTo(render) <.NodePath.reparentTo>` ``.
 * See the [Python guide](https://devguide.python.org/documenting/#style-guide)
   for more information.
