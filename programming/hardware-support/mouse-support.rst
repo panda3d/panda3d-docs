@@ -38,15 +38,15 @@ To get the position:
    .. code-block:: python
 
       if base.mouseWatcherNode.hasMouse():
-        x=base.mouseWatcherNode.getMouseX()
-        y=base.mouseWatcherNode.getMouseY()
+        x = base.mouseWatcherNode.getMouseX()
+        y = base.mouseWatcherNode.getMouseY()
 
 .. only:: cpp
 
    .. code-block:: cpp
 
-      if (mouseWatcher->has_mouse()){
-        if (window->get_graphics_window()){
+      if (mouseWatcher->has_mouse()) {
+        if (window->get_graphics_window()) {
           int x = window->get_graphics_window()->get_pointer(0).get_x();
           int y = window->get_graphics_window()->get_pointer(0).get_y();
         }
@@ -68,7 +68,7 @@ wheel_up   Mouse Wheel rolled upwards
 wheel_down Mouse Wheel rolled downwards
 ========== ============================
 
-If you want to hide the mouse cursor, you want the line: "cursor hidden #t" in
+If you want to hide the mouse cursor, you want the line: `cursor-hidden true` in
 your :ref:`Config.prc <configuring-panda3d>` or this section of code:
 
 .. only:: python
@@ -81,15 +81,16 @@ your :ref:`Config.prc <configuring-panda3d>` or this section of code:
       base.win.requestProperties(props)
 
 Re-enabling mouse control
+-------------------------
 
 If you need to re-enable the mouse control of the camera, you have to adjust
-mouseInterfaceNode to the current camera transformation :
+mouseInterfaceNode to the current camera transformation:
 
 .. only:: python
 
    .. code-block:: python
 
-      mat=Mat4(camera.getMat())
+      mat = Mat4(camera.getMat())
       mat.invertInPlace()
       base.mouseInterfaceNode.setMat(mat)
       base.enableMouse()
@@ -98,11 +99,13 @@ Otherwise the camera would be placed back to the last position when the mouse
 control was enabled.
 
 Mouse modes
+-----------
 
 You may configure the mouse mode, which controls how the mouse cursor operates
 in the window.
 
 Absolute mouse mode
+^^^^^^^^^^^^^^^^^^^
 
 By default, the mouse is in "absolute" mode, meaning the cursor can freely
 move outside the window. This mode is typical for desktop applications.
@@ -114,6 +117,7 @@ get movement events no matter how far the user moves the mouse.
 Two other mouse modes can help with this.
 
 Relative mouse mode
+^^^^^^^^^^^^^^^^^^^
 
 In relative mode, the mouse cursor is kept at the center of the window, and
 only relative movement events are reported.
@@ -127,15 +131,15 @@ distractingly "sticks" to the center of the window.
 
       // To set relative mode and hide the cursor:
       WindowProperties props = window->get_graphics_window()->get_properties();
-      props.set_cursor_hidden (true);
-      props.set_mouse_mode (WindowProperties::M_relative);
-      window->get_graphics_window()->request_properties (props);
+      props.set_cursor_hidden(true);
+      props.set_mouse_mode(WindowProperties::M_relative);
+      window->get_graphics_window()->request_properties(props);
 
       // To revert to normal mode:
       WindowProperties props = window->get_graphics_window()->get_properties();
-      props.set_cursor_hidden (false);
-      props.set_mouse_mode (WindowProperties::M_absolute);
-      window->get_graphics_window()->request_properties (props);
+      props.set_cursor_hidden(false);
+      props.set_mouse_mode(WindowProperties::M_absolute);
+      window->get_graphics_window()->request_properties(props);
 
 .. only:: python
 
@@ -154,6 +158,7 @@ distractingly "sticks" to the center of the window.
       self.base.win.requestProperties(props)
 
 Confined mouse mode
+^^^^^^^^^^^^^^^^^^^
 
 In Panda3D version 1.9.1 there is a new mode called "confined." In this mode,
 panda will try to use the desktop's native facilities to constrain the mouse
@@ -179,21 +184,22 @@ For example:
       mw = base.mouseWatcherNode
 
       if mw.hasMouse():
-        # get the position, which at center is (0, 0)
-        x, y = mw.getMouseX(), mw.getMouseY()
+          # get the position, which at center is (0, 0)
+          x, y = mw.getMouseX(), mw.getMouseY()
 
-        # move mouse back to center
-        props = base.win.getProperties()
-        base.win.movePointer(0,
-                  int(props.getXSize() / 2),
-                  int(props.getYSize() / 2))
-        # now, x and y can be considered relative movements
+          # move mouse back to center
+          props = base.win.getProperties()
+          base.win.movePointer(0,
+                               props.getXSize() // 2,
+                               props.getYSize() // 2)
+          # now, x and y can be considered relative movements
 
 Of course, the mouse must initially be centered, or else the first event will
 yield a large "movement" depending where the cursor happened to be at program
 start.
 
 Validating mouse mode
+^^^^^^^^^^^^^^^^^^^^^
 
 Note that not all desktops support relative or confined modes. Unfortunately,
 you cannot tell in a portable way if a given mode is supported; also, since
@@ -202,7 +208,7 @@ immediately detect if it took effect.
 
 The way to test this is to check whether your request was honored, after
 events have been processed, using the TaskManager method
-``doMethodLater()``.
+:py:meth:`~direct.task.Task.TaskManager.doMethodLater()`.
 
 .. only:: python
 
@@ -224,6 +230,7 @@ events have been processed, using the TaskManager method
               # did not get requested mode... perhaps try another.
 
 Multiple Mice
+-------------
 
 If you have multiple mice connected to a single machine, it is possible to get
 mouse movements and buttons for each individual mouse. This is called raw
@@ -231,17 +238,16 @@ mouse input. It is really only useful if you are building an arcade machine
 that has lots of trackballs or spinners.
 
 In order to use raw mouse input, you first need to enable it. To do so, add
-the following line to your panda configuration file:
+the following line to your panda configuration file::
 
-``read-raw-mice #t``
+   read-raw-mice #t
 
 This causes the panda main window to be created with the "raw_mice" window
 property. That window property, in turn, causes the window to track and store
 the positions and buttons of the raw mice. Then, that data is extracted from
-the main window by objects of class MouseWatcher. The application program can
+the main window by objects of class :class:`.MouseWatcher`. The application program can
 fetch the mouse data from the MouseWatchers. The global variable
-``base.pointerWatcherNodes`` contains the
-``MouseWatcher`` s.
+``base.pointerWatcherNodes`` contains the ``MouseWatcher`` s.
 
 The first MouseWatcher on the list always represents the system mouse pointer
 - a virtual mouse that moves around whenever any of the physical mice do.
@@ -279,6 +285,7 @@ example, the "mousedev3" specifier means that the mouse sending the event is
 ``base.pointerWatcherNode[3]``.
 
 Multiple Mice under Linux
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To use raw mouse input under Linux, the panda program needs to open the device
 files /dev/input/event\*. On many Linux distributions, the permission bits are
