@@ -691,7 +691,7 @@ def on_autodoc_process_docstring(app, what, name, obj, options, lines):
 def on_builder_inited(app):
     app.builder.get_relative_uri = \
         lambda from_, to, typ=None: \
-            app.config.html_absolute_url_root + version + '/' + app.builder.get_target_uri(to, typ)
+            app.config.html_absolute_url_root + app.config.version + '/' + app.builder.get_target_uri(to, typ)
 
 
 def on_html_page_context(app, pagename, templatename, context, doctree):
