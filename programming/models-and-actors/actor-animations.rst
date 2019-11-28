@@ -4,11 +4,13 @@ Actor Animations
 ================
 
 Since the Actor class inherits from NodePath, everything that can be done to a
-NodePath, such as ``reparentTo()`` and ``setPos()``, etc., may also be done to
-an Actor. In addition to the basic NodePath functionality, Actors have several
-additional methods to control animation. In order for Actors to animate, their
-pointer (variable) must be retained in memory. The following is only a brief
-introduction; see the API reference for a complete list.
+NodePath, such as :meth:`~.NodePath.reparentTo` and :meth:`~.NodePath.setPos`,
+etc., may also be done to an Actor.
+In addition to the basic NodePath functionality, Actors have several additional
+methods to control animation. In order for Actors to animate, their pointer
+(variable) must be retained in memory.
+The following is only a brief introduction; see the API reference page for
+:py:mod:`~direct.actor.Actor` for a complete list.
 
 Basic animation playing
 -----------------------
@@ -29,8 +31,9 @@ stopped on.
       actor.loop('Animation Name')
       actor.stop()
 
-You may use the ``pose()`` method to tell an actor to hold a particular frame of
-the animation. Frames are numbered beginning at 0.
+You may use the :py:meth:`~direct.actor.Actor.Actor.pose()` method to tell an
+actor to hold a particular frame of the animation.
+Frames are numbered beginning at 0.
 
 .. only:: python
 
@@ -41,7 +44,8 @@ the animation. Frames are numbered beginning at 0.
 Posing an actor to a frame doesn't automatically specify the start frame of the
 next starting animation. Instead, if you don't want to start at the first frame,
 you can specify these using the optional parameters ``fromFrame`` and
-``toFrame`` to the methods ``play()`` and ``loop()``:
+``toFrame`` to the methods :py:meth:`~direct.actor.Actor.Actor.play()` and
+:py:meth:`~direct.actor.Actor.Actor.loop()`:
 
 .. only:: python
 
@@ -159,9 +163,10 @@ different play rates). Starting or stopping an animation in blend mode does not
 change its control effect; you must set an animation's control effect to 0.0 if
 you don't want it to have any more affect on the actor.
 
-When you call ``stop()`` in blend mode, you can stop a particular animation by
-name, if you want; or you can stop all of the animations by calling ``stop()``
-with no parameters:
+When you call :py:meth:`~direct.actor.Actor.Actor.stop()` in blend mode, you can
+stop a particular animation by name, if you want; or you can stop all of the
+animations by calling :py:meth:`~direct.actor.Actor.Actor.stop()` with no
+parameters:
 
 .. only:: python
 
