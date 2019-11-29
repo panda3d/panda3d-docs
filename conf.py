@@ -359,8 +359,8 @@ autosummary_mock_imports = [
 ]
 
 autodoc_default_options = {
-    "members": True,
-    "show-inheritance": True,
+    "members": None,
+    "show-inheritance": None,
 }
 autodoc_inherit_docstrings = False
 napoleon_custom_sections = ["Usage", "Features"]
