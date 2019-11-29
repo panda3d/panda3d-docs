@@ -8,10 +8,9 @@ in a distributable form (e.g., zip archives, Windows installers, tarballs) using
 `Setuptools <https://setuptools.readthedocs.io/en/latest/>`__. These packages
 can then be hosted on a website or store front for distribution to end users.
 
-The new Setuptools-based process is a replacement for
-:ref:`the old distribution method <using-the-legacy-distribution-method>`, which was more complex to
-use and maintain, required special builds of Panda3D, and did not work with
-Python 3.
+The new Setuptools-based process is a replacement for the old distribution
+method, which was more complex to use and maintain, required special builds of
+Panda3D, and did not work with Python 3.
 
 From the `Setuptools
 documentation <https://setuptools.readthedocs.io/en/latest/>`__, "Setuptools
@@ -61,4 +60,3 @@ can be used with Panda3D.
    packaging-binaries
    setuptools-examples
    thirdparty-licenses
-   legacy/index

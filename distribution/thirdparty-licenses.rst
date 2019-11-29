@@ -219,23 +219,6 @@ support).
 
 License: `MIT License <https://opensource.org/licenses/mit-license.php>`__
 
-MFC (Windows only)
-~~~~~~~~~~~~~~~~~~
-
-http://msdn.microsoft.com/en-us/library/d06h2x6e%28VS.80%29.aspx
-
-Windows MFC libraries. Used by the ActiveX plug-in.
-
-License: Proprietary
-
-NPAPI
-~~~~~
-
-https://code.google.com/archive/p/npapi-sdk
-
-Netscape plugin API (a set of interfaces to write browser plug-ins). It is
-only necessary to compile the Panda3D browser plug-in.
-
 Optional
 --------
 

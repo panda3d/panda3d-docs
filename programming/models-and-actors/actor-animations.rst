@@ -83,12 +83,6 @@ AnimControl is a class that provides control over a certain animation. You don't
 need to use this but this could be useful if you want to have the animation
 control functions over a certain animation in a separate class.
 
-.. note::
-
-   Prior to Panda3D version 1.4, there is a required second parameter to
-   actor.getAnimControl, which is the part name, or the literal string
-   "modelRoot" if you don't have a multipart actor.
-
 .. only:: python
 
    .. code-block:: python
@@ -212,12 +206,12 @@ If you want to play an animation on a subpart make sure to pass the name.
 Interpolation
 -------------
 
-Since Panda 1.3.0 intra-frame interpolation is supported. If you play an
-animation with only few frames per second you can see your model "jump" from one
-frame to the next. If you enable interpolation between frames, those "jumps"
-will be smoothed out. This allows smooth animations with framerates as low as
-one frame per second or even less. Intra-frame interpolation is disabled by
-default. To enable it just add the following lines to your code
+Intra-frame interpolation is also supported. If you play an animation with only
+few frames per second you can see your model "jump" from one frame to the next.
+If you enable interpolation between frames, those "jumps" will be smoothed out.
+This allows smooth animations with framerates as low as one frame per second or
+even less. Intra-frame interpolation is disabled by default. To enable it, just
+add the following lines to your code
 
 .. only:: python
 

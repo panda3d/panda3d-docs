@@ -3,12 +3,11 @@
 List of GLSL Shader Inputs
 ==========================
 
-In general, especially as of Panda3D version 1.9.0, the majority of GLSL shader
-input types can be specified from a Panda3D application using a call to
-``set_shader_input()``. However, it is often desirable to let Panda3D
-automatically fill in the values of shader inputs, especially for inputs that
-derive their values from the render state or 3-D transformation of the currently
-rendered model.
+In general, the majority of GLSL shader input types can be specified from a
+Panda3D application using a call to ``set_shader_input()``. However, it is often
+desirable to let Panda3D automatically fill in the values of shader inputs,
+especially for inputs that derive their values from the render state or 3-D
+transformation of the currently rendered model.
 
 This page demonstrates which shader input names have a special meaning and will
 be automatically filled in by Panda3D when the shader is used. Note that the
@@ -44,8 +43,8 @@ necessary to replace the "in" keyword with "attribute".
    in vec3 p3d_Tangent1;
 
    // A vertex column named "anything".  The number of components should match up with
-   // that of the vertex array.  "uvec" and "ivec" variants are allowed in Panda3D 1.9.0
-   // and above for integer vertex arrays to access un-normalized data.
+   // that of the vertex array.  "uvec" and "ivec" variants are allowed for integer
+   // vertex arrays to access un-normalized data.
    in vec4 anything;
 
    // These two attributes will be present when hardware skinning is enabled.
@@ -95,15 +94,13 @@ any shader stage.
    // These are parts of the above matrix.
    uniform mat4 p3d_ModelViewMatrix;
    uniform mat4 p3d_ProjectionMatrix;
+   uniform mat4 p3d_ModelMatrix;
+   uniform mat4 p3d_ViewMatrix;
+   uniform mat4 p3d_ViewProjectionMatrix;
 
    // This is the upper 3x3 of the inverse transpose of the ModelViewMatrix.  It is
    // used to transform the normal vector into view-space coordinates.
    uniform mat3 p3d_NormalMatrix;
-
-   // These were added in Panda3D 1.9.0 and complement the existing matrices:
-   uniform mat4 p3d_ModelMatrix;
-   uniform mat4 p3d_ViewMatrix;
-   uniform mat4 p3d_ViewProjectionMatrix;
 
    // It's possible to append Inverse, Transpose, or InverseTranspose to any of the
    // above matrix names to get an inverse and/or transpose version of that matrix:
@@ -125,10 +122,10 @@ any shader stage.
    // New in 1.10.0.  Contains the matrix generated from texture pos and scale.
    uniform mat4 p3d_TextureMatrix[];
 
-   // New in 1.9.0.  Access the color scale applied to the node.
+   // Access the color scale applied to the node.
    uniform vec4 p3d_ColorScale;
 
-   // New in 1.9.0.  Access the material attributes assigned via a Material object.
+   // Access the material attributes assigned via a Material object.
    // Unused struct parameters may be omitted without consequence.
    uniform struct {
      vec4 ambient;
@@ -144,24 +141,24 @@ any shader stage.
      float refractiveIndex;
    } p3d_Material;
 
-   // New in 1.9.0.  The sum of all active ambient light colors.
+   // The sum of all active ambient light colors.
    uniform struct {
      vec4 ambient;
    } p3d_LightModel;
 
-   // New in 1.9.0.  Active clip planes, in apiview space.  If there is no clip
-   // plane for a given index, it is guaranteed to contain vec4(0, 0, 0, 0).
+   // Active clip planes, in apiview space.  If there is no clip plane for a given
+   // index, it is guaranteed to contain vec4(0, 0, 0, 0).
    uniform vec4 p3d_ClipPlane[...];
 
-   // New in 1.9.0.  Reports the frame time of the current frame, for animations.
+   // Reports the frame time of the current frame, for animations.
    uniform float osg_FrameTime;
    // The time elapsed since the previous frame.
    uniform float osg_DeltaFrameTime;
    // New in 1.10.0. Contains the number of frames elapsed since program start.
    uniform int osg_FrameNumber;
 
-   // New in 1.9.1.  If hardware skinning is enabled, this contains the transform
-   // of each joint.  Superfluous array entries will contain the identity matrix.
+   // If hardware skinning is enabled, this contains the transform of each joint.
+   // Superfluous array entries will contain the identity matrix.
    uniform mat4 p3d_TransformTable[...];
 
    // New in 1.10.  Contains information for each non-ambient light.

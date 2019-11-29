@@ -358,9 +358,9 @@ the pandas.
 Shadow Mapping
 --------------
 
-As for version 1.7.0, Panda3D offers fully automatic shadow mapping support for
-spotlights and directional lights. You can enable shadows by calling
-``setShadowCaster()``. The nodes that receive shadows will need to have
+Panda3D offers fully automatic shadow mapping support for spotlights and
+directional lights. You can enable shadows by calling ``setShadowCaster()``.
+The nodes that receive shadows will need to have
 :ref:`the Shader Generator <the-shader-generator>` enabled, otherwise no shadows
 will appear.
 

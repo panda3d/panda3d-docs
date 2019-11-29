@@ -3,13 +3,11 @@
 Threading
 =========
 
-.. note::
-   In versions 1.6.0 and above, Panda3D provides a safe threading interface you
-   can use, which works very similar to Python's threading modules. Beginning in
-   version 1.8.0, Panda3D is compiled by default to use "true" threading, which
-   makes it safe to use Python threading interfaces (or any other threading
-   library) in conjunction with or in lieu of Panda's own built-in threading
-   interfaces described below.
+Panda3D provides a safe threading interface you can use, which works very
+similar to Python's threading modules. Panda3D is compiled by default to use
+"true" threading, which makes it safe to use Python threading interfaces (or any
+other threading library) in conjunction with or in lieu of Panda's own built-in
+threading interfaces described below.
 
 If you want to test whether threading is enabled in your build of panda, use the
 following program:
@@ -174,10 +172,10 @@ application.
 File I/O
 --------
 
-In versions 1.6.0 and above, Panda3D also offers a thread-safe replacement for
-the Python file module. You can find it in direct.stdpy.file. The interface is
-exactly the same as Python's, so it's safe to put this import above all the
-files where you want to use the "file" or "open" functions:
+Panda3D also offers a thread-safe replacement for the Python file module. You
+can find it in direct.stdpy.file. The interface is exactly the same as Python's,
+so it's safe to put this import above all the files where you want to use the
+"file" or "open" functions:
 
 .. code-block:: python
 
@@ -195,16 +193,14 @@ There are two different interfaces for threading which you can enable using the
 definitions HAVE_THREADS and SIMPLE_THREADS. The former is a full and heavy
 implementation of threading and compiling with that option will slow down the
 Panda3D build, unless you fully make use of the benefits that threading gives.
-The latter, however, is a more simple threading interface (introduced in Panda3D
-1.6.0) that doesn't give you the runtime overhead HAVE_THREADS gives you. In
-Panda3D 1.6.1 and higher, SIMPLE_THREADS is enabled in the default build.
+The latter, however, is a more simple threading interface that doesn't give you
+the runtime overhead HAVE_THREADS gives you.
 
 Note that you will have to define both HAVE_THREADS and SIMPLE_THREADS at the
 same time to enable the simple interface, or you will not have threading.
 
-The public Panda3D 1.8.0 builds enable true threading by default, so you will
-not need to build Panda3D yourself if you want to take advantage of true
-threading.
+The public builds enable true threading by default, so you will not need to
+build Panda3D yourself if you want to take advantage of true threading.
 
 If you wish to disable threading, you can pass the option
 ``--override HAVE_THREADS=UNDEF`` to makepanda.py. If you wish to use the simple

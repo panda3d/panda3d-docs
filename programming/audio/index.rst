@@ -46,13 +46,6 @@ the SDK, then you can remove the associated library files after installation
 or compile Panda3D from source with the appropriate settings to keep them out
 of the build.
 
-**Note for users of Panda3D 1.5.4 and under:** If you are using FMOD and a
-64-bit operating system, you might run into a strange assertion error or even
-a crash if the memory address of the sound exceeds 4 billion. This is because
-of an issue in FMOD. To avoid being affected by this issue, you must make sure
-your memory usage doesn't exceed 4 GiB (which is not likely, and even
-impossible on 32-bit systems).
-
 
 .. toctree::
    :maxdepth: 2

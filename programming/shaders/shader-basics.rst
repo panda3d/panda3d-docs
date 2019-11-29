@@ -6,10 +6,10 @@ Shader Basics
 Overview of Shaders
 -------------------
 
-As of version 1.7.0, Panda3D supports two shading languages: **Cg** and
-**GLSL**. Section assumes that you have a working knowledge of a shader
-language. If not, it would be wise to read about Cg or GLSL before trying to
-understand how they fit into Panda3D.
+Panda3D supports two shading languages: **Cg** and **GLSL**.
+This section assumes that you have a working knowledge of a shader language.
+If not, it would be wise to read about Cg or GLSL before trying to understand
+how they fit into Panda3D.
 
 Though Panda3D has used only Cg in the past, it is recommended that you create
 new shaders in GLSL unless you want to target DirectX as well, since the NVIDIA

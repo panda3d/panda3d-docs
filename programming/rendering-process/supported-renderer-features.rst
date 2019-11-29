@@ -22,10 +22,10 @@ Shader generation   Yes        Partial       No          No
 sRGB support        Yes        Yes           No          Yes
 Depth textures      Yes        No\ :sup:`1`  Yes         No
 3-D textures        Yes        Yes           Yes         No
-Buffer textures     Since 1.10 No            No          No
+Buffer textures     Yes        No            No          No
 Multisampling       Yes        Yes\ :sup:`2` Yes         No
 Thick wireframe     Yes        No            Yes         No
-Geometry instancing Yes        No            Since 1.9.1 No
+Geometry instancing Yes        No            Yes         No
 =================== ========== ============= =========== ===========
 
 :sup:`1` You can achieve shadow mapping by using shaders instead of the depth

@@ -176,12 +176,8 @@ The Do-Later Task
       task.delayTime += 1
       taskMgr.add(task)
 
-   Although there is a public member ``task.wakeTime`` which stores the time at
-   which the task should wake up, you should not attempt to modify this. Doing
-   so may appear to work in some simple cases, but will actually invalidate the
-   Task Manager's internal priority queue, potentially causing other tasks to
-   wake up later or sooner than they are supposed to. (In Panda3D version 1.6
-   and later, changing this value is specifically disallowed.)
+   There is a read-only public member ``task.wakeTime`` which stores the time at
+   which the task should wake up, should you desire to query this.
 
 The Task Object
 ---------------

@@ -13,10 +13,6 @@ If you're a Linux user, you'll find the sample programs in /usr/share/panda3d.
 
 .. rubric:: Explanation
 
-.. note::
-   This explanation corresponds to Panda3D version 1.5.0. It does not match the
-   older version of Panda3D, version 1.4.2.
-
 Normal Mapping is a technique to make textured surfaces appear more "lifelike"
 by having them respond to changing lights and viewing angles. As the light moves
 around, it reflects off of simulated "bumps" on the surface (the bumps are not

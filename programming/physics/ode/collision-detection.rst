@@ -151,8 +151,8 @@ which geometry. You can assign surfaces to your geometry using
 Collision Events
 ----------------
 
-In Panda3D 1.6 and above, it's possible to receive an event when a collision
-occurs. You need to set the name of the event by doing:
+It is also possible to receive an event when a collision occurs. You need to set
+the name of the event by doing:
 
 .. only:: python
 

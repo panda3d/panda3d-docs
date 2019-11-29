@@ -147,7 +147,7 @@ further explained in the section :ref:`multi-part-actors`.
 Panda3D supports both skeletal animation and morph animations.
 
 It is also possible to load animations asynchronously, if your build of Panda
-has :ref:`threading` enabled (which is the case in version 1.6.1 and above).
+has :ref:`threading` enabled.
 
 Panda Filename Syntax
 ---------------------

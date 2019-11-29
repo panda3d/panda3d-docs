@@ -4,8 +4,7 @@ DirectSlider
 ============
 
 Use a DirectSlider to make a slider, a widget that allows the user to select a
-value between a bounded interval. DirectSlider is available beginning in Panda3D
-1.1.
+value between a bounded interval.
 
 A DirectSlider consists of a long bar, by default horizontal, along with a
 "thumb", which is a special button that the user may move left or right along

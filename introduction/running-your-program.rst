@@ -23,13 +23,13 @@ Running your Program
 
    .. code-block:: bat
 
-      cd C:\Panda3D-1.9.4\mystuff\
+      cd C:\Panda3D-1.10.4.1-x64\mystuff\
 
-   Instead of version 1.9.4, you should type the version number of Panda that
-   you have downloaded and installed. Please note that this folder name is case-
-   sensitive and must match exactly (other than the version number, of course).
-   Then, press the ‘Enter’ key on your keyboard. You should now have the
-   following on the Command Prompt:
+   Instead of version 1.10.4.1-x64, you should type the version number of Panda
+   that you have downloaded and installed. Please note that this folder name is
+   case-sensitive and must match exactly (other than the version number, of
+   course). Then, press the ‘Enter’ key on your keyboard. You should now have
+   the following on the Command Prompt:
 
    .. image:: pic093tn.jpg
 
@@ -65,25 +65,6 @@ Running your Program
    The descriptions below assume Microsoft Visual Studio 2015, but they should
    also work for 2017.
 
-   Using Panda3D 1.9
-   ~~~~~~~~~~~~~~~~~
-
-   Panda3D 1.10 is compiled with the Visual C++ 2015 compiler, and will work
-   with 2017 as well. If you are using Panda3D 1.10, you can skip to the next
-   section.
-
-   If you are still using Panda3D 1.9, this version is compiled with the Visual
-   C++ 2010 compiler. This means that if you use Panda3D 1.9, your project needs
-   to be compiled with the Visual C++ 2010 compilers as well, or it will crash
-   in mysterious ways, so we highly recommend upgrading to 1.10. However, if you
-   prefer to use Panda3D 1.9, not all is lost—the necessary compilers are part
-   of the Windows 7.1 SDK, which is also accessible from Visual Studio 2015.
-
-   You can download and install the Windows 7 SDK from here:
-   https://www.microsoft.com/en-us/download/details.aspx?id=8279 Due to a bug in
-   the installer, you may have to first uninstall any instance of the "Visual
-   C++ 2010 Redistributable" in your Control Panel.
-
    Setting up the project
    ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -102,11 +83,9 @@ Running your Program
 
    .. image:: msvc-2015-release-x64.png
 
-   Now, open up the project configuration pages. If you are using the Panda3D
-   1.9 SDK, then you will have to change the "Platform Toolset" in the "General"
-   tab to "Windows7.1SDK", since that is the toolset that the 1.9 SDK was
-   compiled with. Otherwise, with 1.10, you may set it to "v140_xp" (if you wish
-   your project to be able to work on Windows XP) or "v140".
+   Now, open up the project configuration pages. Change the "Platform Toolset"
+   in the "General" tab to "v140_xp" (if you wish your project to be able to
+   work on Windows XP) or "v140".
 
    Furthermore, we need to go to C/C++ -> "Preprocessor Definitions" and remove
    the ``NDEBUG`` symbol from the preprocessor definitions. This was
@@ -122,13 +101,13 @@ Running your Program
 
    ::
 
-      C:\Panda3D-1.9.4\include;C:\Panda3D-1.9.4\python\include
+      C:\Panda3D-1.10.4.1-x64\include
 
    .. rubric:: Library Directories
 
    ::
 
-      C:\Panda3D-1.9.4\lib;C:\Panda3D-1.9.4\python\libs
+      C:\Panda3D-1.10.4.1-x64\lib
 
    Then, you need to add the appropriate Panda3D libraries to the list of
    "Additional Dependencies" your project should be linked with. The exact set
@@ -142,7 +121,6 @@ Running your Program
       libpandaexpress.lib
       libp3dtool.lib
       libp3dtoolconfig.lib
-      libp3pystub.lib
       libp3direct.lib
 
    .. image:: msvc-2015-additional-deps.png
@@ -160,7 +138,7 @@ Running your Program
 
    ::
 
-      PATH=C:\Panda3D-1.9.4\bin;%PATH%
+      PATH=C:\Panda3D-1.10.4.1-x64\bin;%PATH%
 
    Now, assuming that the project built successfully, you can press F5 to run
    the program. Of course, not much will happen yet, because we don't have any

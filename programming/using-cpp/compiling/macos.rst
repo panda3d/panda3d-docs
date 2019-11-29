@@ -23,13 +23,11 @@ How to compile a C++ Panda3D program on macOS
    Having these two components, we can proceed to compile:
 
    First we must create .o file from our cxx file. We need to link to the
-   Panda3D include files and to the Python include files. Note: only i386 arch
-   is supported for Panda3D versions before 1.9.0, so for those versions you
-   need to include the ``arch i386`` flag.
+   Panda3D include files.
 
    .. code-block:: bash
 
-      clang++ -c filename.cxx -o filename.o -std=gnu++11 -g -O2 -I{pythoninclude} -I{panda3dinclude}
+      clang++ -c filename.cxx -o filename.o -std=gnu++11 -g -O2 -I{panda3dinclude}
 
    Please change the paths in these commands to the appropriate locations. A
    list of locations is at the end of the page.
@@ -39,14 +37,10 @@ How to compile a C++ Panda3D program on macOS
 
    .. code-block:: bash
 
-      clang++ filename.o -o filename -L{panda3dlibs} -lp3framework -lpanda -lpandaexpress -lp3dtoolconfig -lp3dtool -lp3pystub -lp3direct
+      clang++ filename.o -o filename -L{panda3dlibs} -lp3framework -lpanda -lpandaexpress -lp3dtoolconfig -lp3dtool -lp3direct
 
    As mentioned above, we need to change the paths accordingly, the paths for
    macOS are listed below:
-
-   {pythoninclude}
-      The path to your Python include folder. For version 2.7, this is
-      ``/usr/include/python2.7`` by default.
 
    {panda3dinclude}
       Change this to the path to your Panda3D include directory. This would

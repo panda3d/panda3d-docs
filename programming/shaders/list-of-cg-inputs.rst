@@ -37,13 +37,12 @@ The following table describes the inputs that can be used in Cg shaders.
    Vertex shader only.
 
 ``float2 vtx_texcoord: TEXCOORD0``
-   From Panda3D 1.9 onward, this refers to the default (unnamed) set of UV(W)
-   coordinates, if present, rather than being an alias for vtx_texcoord0. Vertex
-   shader only.
+   This refers to the default (unnamed) set of UV(W) coordinates, if present,
+   rather than being an alias for vtx_texcoord0. Vertex shader only.
 
 ``float2 vtx_texcoord_x: TEXCOORD0``
-   From Panda3D 1.9 onward, this refers to a set of UV(W) coordinates with the
-   given name. Vertex shader only.
+   This refers to a set of UV(W) coordinates with the given name. Vertex shader
+   only.
 
 ``float3 vtx_tangent0``
    Tangent vector associated with the model's first texture. This can only be
@@ -197,17 +196,13 @@ The following table describes the inputs that can be used in Cg shaders.
    The contents of the color scale attribute. This is white unless the model has
    a color scale applied using nodePath.setColorScale.
 
-   This variable is only available in 1.6.2 and above.
-
 ``uniform float4 attr_fog``
    The fog parameters, where applicable. The values are in order: density,
    start, end, scale. The density is for exponential fog only, the start, end
    and scale are for linear fog only. The scale is equal to 1 / (end - start).
 
-   New in Panda3D 1.8.
-
 ``uniform float4 attr_fogcolor``
-   The fog color, if applicable. New in Panda3D 1.8.
+   The fog color, if applicable.
 
 ``uniform float4 alight_x``
    X must be an AmbientLight specified via a shaderInput. Contains the color of
@@ -222,18 +217,12 @@ The following table describes the inputs that can be used in Cg shaders.
    X must be an PlaneNode specified via a shaderInput. Contains the four terms
    of the plane equation.
 
-   This variable is only available in 1.6.2 and above.
-
 ``uniform float4 clipplane_0``
    Contains the parameters of the first clipplane (also: clipplane_1,
    clipplane_2, etc. for subsequent clip planes) in world-space coordinates.
 
-   This variable is only available in 1.6.2 and above.
-
 ``uniform float sys_time``
    Contains the frame time in seconds.
-
-   This variable is only available in 1.9.0 and above.
 
 ``floatX l_position: POSITION``
    Linearly interpolated Position, as supplied by the vertex shader to the
@@ -284,9 +273,6 @@ been greatly enhanced. The available input types are as follows::
    - PTALVecBase2f
    - PTAFloat
    - PTADouble
-
-(In Panda3D 1.9.0, the integer versions of these vectors and arrays are also
-supported.)
 
 For definition let us consider the shader parameter float3. It's type is float
 and format is Vec3 (meaning it can hold 3 elements) and a float3x3 input is of

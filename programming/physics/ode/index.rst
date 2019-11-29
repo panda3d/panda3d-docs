@@ -9,10 +9,6 @@ collision detection. Panda3D provides support for ODE because sometimes Panda's
 limited built-in physics system might not always be enough to suit more complex
 needs.
 
-From Panda3D version 1.5.3, ODE support is included in the downloadable
-binaries. Before that version, you would have to download the source packages
-and include ODE yourself.
-
 This section will explain how to use this ODE system with Panda3D.
 
 Table of Contents

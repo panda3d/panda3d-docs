@@ -6,7 +6,7 @@ Compute Shaders
 Introduction
 ------------
 
-Panda3D 1.9.0 introduces a new feature: a type of general-purpose shader program
+Compute shaders, introduced in 1.9, are a type of general-purpose shader program
 that can be used to perform a wide variety of functions on the video card.
 They are fundamentally different from other types of shaders in that they aren't
 assigned to a node and modify how the node is rendered, but are executed

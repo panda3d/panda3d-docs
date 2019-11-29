@@ -7,8 +7,6 @@ Any Panda texture, including a cube map or video texture, can also be loaded as
 a multiview texture. This means that there are multiple different images, or
 views, stored within the texture object.
 
-This feature is new as of Panda3D version 1.8.
-
 The most common use for a multiview texture is to implement a stereo texture, or
 a texture with two views: one for each of the left and the right eyes. For
 instance, you would do this to project a 3-D movie onto a screen in your virtual

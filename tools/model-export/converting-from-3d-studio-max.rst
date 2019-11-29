@@ -6,11 +6,6 @@ Converting from 3D Studio Max
 .. contents::
    :local:
 
-.. note::
-
-   In Panda3D version 1.5.3, the max exporter was overhauled. Versions prior to
-   that were unstable.
-
 Skinning
 --------
 
@@ -105,17 +100,17 @@ followingly:
 -  Specular Color Slot = Gloss
 -  Opacity Slot = Modulate
 
-Max egger changes and additions (as of Panda3D 1.7.1)
------------------------------------------------------
+Max egger changes and additions
+-------------------------------
 
-There have been some minor but very noticeable changes to the way the Max egger
-handles collisions. Although collision tagging was possible on a global level
-with the egger prior to now, it had some drawbacks, such as only one object
-would get tagged if the whole scene was exported. To remedy this problem, the
-Panda SE team has implemented a method similar to the way Maya tags collision
-objects. Every object in max has a User Defined properties box inside the per-
-object properties options. (to get it simply right click on any object and
-select Object Properties, User Defined is the far right tab).
+In Panda3D 1.7.0, there have been some minor but very noticeable changes to the
+way the Max egger handles collisions. Although collision tagging was possible on
+a global level with the egger prior to now, it had some drawbacks, such as only
+one object would get tagged if the whole scene was exported. To remedy this
+problem, the Panda SE team has implemented a method similar to the way Maya tags
+collision objects. Every object in max has a User Defined properties box inside
+the per- object properties options. (to get it simply right click on any object
+and select Object Properties, User Defined is the far right tab).
 
 |OBJ_PROPS.JPG| |OBJECT_PROPERTIES.JPG|
 
@@ -144,12 +139,6 @@ Known Issues
 
 Currently, you have to use the option 'Export Entire Scene' when having animated
 models, otherwise the character hierarchy might not be exported correctly.
-
-Also, in version 1.5.3, the 'both' option was broken. Instead, you had to export
-animations separately with the 'model' and 'anim' options. However, this has
-been fixed in 1.5.4.
-
-Versions prior to 1.5.3 were unstable and it's not recommended to use them.
 
 User interpretation regarding "Pose" versus the other export types ("Model",
 "Animation", "Both") was not always correct. Newer versions of the exporter will

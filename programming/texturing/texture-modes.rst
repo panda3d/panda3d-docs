@@ -248,13 +248,11 @@ Z-Brush, Crazy Bump, and the like which create normal maps.
 
 See also: :ref:`bump-mapping`
 
-Normal maps are new to Panda3D as of version 1.5.0. They only function when
-:ref:`shader generation <the-shader-generator>` is enabled.
+Normal only function when :ref:`shader generation <the-shader-generator>` is
+enabled.
 
 Height / Parallax Map Mode
 --------------------------
-
-This feature is new as of Panda3D 1.7.0.
 
 As an addition to normal mapping, you can specify a grayscale height map to
 enable parallax mapping. This technique offsets the UV coordinates based on the
@@ -378,8 +376,8 @@ that are modulated onto the model, and the A controls gloss:
 Currently, Panda3D only allows one gloss map per polygon, additional gloss maps
 will be ignored.
 
-Gloss maps are new to Panda3D as of version 1.5.0. They only function when
-:ref:`shader generation <the-shader-generator>` is enabled.
+Gloss maps only function when :ref:`shader generation <the-shader-generator>` is
+enabled.
 
 Glow Map Mode
 -------------
@@ -438,8 +436,8 @@ will be ignored.
 
 See also: :ref:`glow-filter`
 
-Glow maps are new to Panda3D as of version 1.5.0. They only function when
-:ref:`shader generation <the-shader-generator>` is enabled.
+Glow maps only function when :ref:`shader generation <the-shader-generator>` is
+enabled.
 
 .. |Sample multitexture image| image:: color-pattern.png
 .. |Smiley with no multitexture| image:: smiley-multitex-none.png

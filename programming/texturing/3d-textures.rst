@@ -3,9 +3,9 @@
 3-D Textures
 ============
 
-So far, we have only talked about ordinary 2-D texture maps. Beginning with
-version 1.1, Panda3D also supports the concept of a 3-D texture map. This is a
-volumetric texture: in addition to a height and a width, it also has a depth:
+So far, we have only talked about ordinary 2-D texture maps. Panda3D also
+supports the concept of a 3-D texture map. This is a volumetric texture: in
+addition to a height and a width, it also has a depth:
 
 |A sample 3-D texture.|
 

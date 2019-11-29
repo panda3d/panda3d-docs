@@ -35,20 +35,3 @@ by scanning the egg file for strings like
 ``<Joint> Femur``. You can also use the
 call ``actor.listJoints()`` to show the
 complete hierarchy of joints.
-
-Cautions and limitations
-------------------------
-
-Prior to Panda3D version 1.5, there were several important limitations to
-controlJoint(). These have been lifted as of Panda3D version 1.5.
-
--  In previous versions of Panda, controlJoint only worked when an animation
-   is playing on the joint. This is no longer true; controlJoint now takes
-   effect whether an animation is playing or not.
--  It used to be important to make all of your controlJoint() calls for a
-   particular model before you made the first call to play(), loop(), or
-   pose(). This is no longer necessary; you may call controlJoint() at any
-   time.
--  In previous versions of Panda, controlJoint could not be undone. Beginning
-   in Panda3D version 1.5, you may call releaseJoint("modelRoot", "Joint
-   Name") to undo a previous call to controlJoint().

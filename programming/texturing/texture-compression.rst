@@ -117,6 +117,3 @@ Where ``model-cache-dir`` specifies any folder on the disk (it will be created
 if it doesn't already exist). Note that the ``model-cache-dir`` may already be
 specified; the default distribution of Panda specifies a model-cache to speed
 up loading bam files.
-
-Like DDS file format, the ``model-cache-compressed-textures`` variable isn't
-available in Panda3D versions prior to 1.6.

@@ -30,10 +30,9 @@ setting its filter type.
       texture.set_magfilter(filterType)
       texture.set_minfilter(filterType)
 
-filterType is a value from the FilterType enum of SamplerState (Texture in
-Panda3D versions prior to 1.9). There is a separate filterType setting for
-magnification and for minification. For both magnification and minification,
-the filterType may be one of:
+filterType is a value from the FilterType enum of SamplerState. There is a
+separate filterType setting for magnification and for minification. For both
+magnification and minification, the filterType may be one of:
 
 FT_nearest
    Sample the nearest pixel

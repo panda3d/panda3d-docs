@@ -36,9 +36,9 @@ shader-based video card is its speed.
 Automatic use of Shaders
 ------------------------
 
-As of version 1.5.0, Panda has several advanced rendering techniques such as
-per-pixel lighting, normal mapping, gloss mapping, glow mapping, HDR, bloom,
-and cartoon inking. In order to make these work, Panda is quietly uploading
+Panda3D supports several advanced rendering techniques such as per-pixel
+lighting, normal mapping, gloss mapping, glow mapping, HDR, bloom, and cartoon
+inking out of the box. In order to make these work, Panda is quietly uploading
 shaders to your video card. You don't need to write shaders to use these
 features, or even know much about shaders. You just turn these features on. To
 learn how to turn these features on, read about these features in their own

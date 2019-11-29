@@ -82,8 +82,7 @@ conversion to Y-up space. This will define "apiview" space to be equivalent to
 unnecessary coordinate space conversion, especially as "apiclip" and "clip" are
 already equivalent in OpenGL as well.
 
-This is possible in Panda3D 1.9.1 and above, by putting
-``gl-coordinate-system default`` in your Config.prc file.
+To do this, place ``gl-coordinate-system default`` in your Config.prc file.
 
 Recommendation: Don't use API View Space or API Clip Space
 ----------------------------------------------------------

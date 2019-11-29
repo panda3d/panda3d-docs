@@ -63,7 +63,6 @@ position. A vertex shader can move vertices around. In this tutorial we only
 move around the vertices but in the next tutorial we will calculate more
 properties for the vertex. A vertex shader cannot create new vertices nor can
 it delete vertices. This is a limitation that geometry shaders try to solve.
-Geometry shaders are supported since Panda3D 1.7.0.
 
 If we take a closer look at the vertex shader, we can see a new line with the
 keyword "uniform" and a line with the "in" keyword. The "in" keyword means

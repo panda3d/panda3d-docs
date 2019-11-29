@@ -435,9 +435,9 @@ Panel is the same as the single egg one.
 Using the Graphical Front-End (old)
 -----------------------------------
 
-As of Panda3D 1.0.4, there is a graphical front-end to maya2egg. To run the
-graphical Maya exporter, drag MayaPandaTool.mel from the panda plugins directory
-into the Maya workspace.
+There is also a graphical front-end to maya2egg. To run the graphical Maya
+exporter, drag MayaPandaTool.mel from the panda plugins directory into the Maya
+workspace.
 
 |MayaPandaToolLoad.png|
 

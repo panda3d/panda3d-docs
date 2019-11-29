@@ -14,31 +14,27 @@ How to compile a C++ Panda3D program on Linux
    This short guide explains how to build a Panda3D game written in C++ game
    under Linux.
 
-   First of all, download the following files:
+   First of all, you should install a suitable compiler.  We recommend either
+   the LLVM Clang compiler or the GNU G++ compiler.  These are usually provided
+   by the Linux distribution (on Ubuntu, they can be installed via the
+   build-essential package).
 
-   #. `Python <https://www.python.org/>`__, the development package (not needed
-      as of Panda3D 1.10.0)
-   #. The GNU G++ compiler. On most Linux versions, this is already
-      pre-installed.
-
-   Now, first of all, we need to create a .o file from our cxx file. We need to
-   link to the Panda3D include files and to the Python include files. Please
-   change the paths in these commands to the appropiate locations.
+   Now, we need to create a .o file from our cxx file. We need to specify the
+   location of the Panda3D include files. Please change the paths in these
+   commands to the appropiate locations.
 
    .. code-block:: bash
 
-      g++ -c filename.cxx -o filename.o -std=gnu++11 -O2 -I{pythoninclude} -I{panda3dinclude}
+      g++ -c filename.cxx -o filename.o -std=gnu++11 -O2 -I{panda3dinclude}
 
    To generate an executable, you can use the following command:
 
    .. code-block:: bash
 
-      g++ filename.o -o filename -L{panda3dlibs} -lp3framework -lpanda -lpandafx -lpandaexpress -lp3dtoolconfig -lp3dtool -lp3pystub -lp3direct
+      g++ filename.o -o filename -L{panda3dlibs} -lp3framework -lpanda -lpandafx -lpandaexpress -lp3dtoolconfig -lp3dtool -lp3direct
 
    Note: In these two commands, you need to change a few paths:
 
-   -  {pythoninclude}: The path to your Python include folder. For version 2.7,
-      this is /usr/include/python2.7 by default.
    -  {panda3dinclude}: Change this to the path to your Panda3D include
       directory. This would probably look like /usr/include/panda3d/.
    -  {panda3dlibs}: Change this to the path to your Panda3D libraries. Usually
@@ -48,7 +44,7 @@ How to compile a C++ Panda3D program on Linux
 
    .. code-block:: python
 
-      pyInc = '/usr/include/python2.7'
+      pyInc = '/usr/include/python3.7m'
       pandaInc = '/usr/include/panda3d'
       pandaLib = '/usr/lib/panda3d'
 
@@ -63,7 +59,6 @@ How to compile a C++ Panda3D program on Linux
               'libpandaexpress',
               'libp3dtoolconfig',
               'libp3dtool',
-              'libp3pystub',
               'libp3direct'])
 
    To run your newly created executable, type:

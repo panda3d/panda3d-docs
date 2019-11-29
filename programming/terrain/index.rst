@@ -24,14 +24,12 @@ Panda3D provides two classes for terrain generation and LOD handling:
    because regenerating the entire terrain takes time, and the player might
    experience some lag when it is regenerated. That is why this class is not
    very suitable for extremely large terrains.
--  The :ref:`GeoMipTerrain <geometrical-mipmapping>`, formerly known as PGMM.
-   This is a community-contributed terrain system and has been included since
-   Panda3D 1.5.1. This algorithm takes a height field and also converts it
-   into geometry, but it splits the terrain up in smaller chunks, so when the
-   focal point changes, not all chunks have to be regenerated. This is to
-   prevent lagging when the focal point moves. For smaller terrains, however,
-   you might not need such extensive terrain calculations, and use the
-   HeightfieldTesselator instead.
+-  The :ref:`GeoMipTerrain <geometrical-mipmapping>`. This algorithm takes a
+   height field and also converts it into geometry, but it splits the terrain up
+   in smaller chunks, so when the focal point changes, not all chunks have to be
+   regenerated. This is to prevent lagging when the focal point moves. For
+   smaller terrains, however, you might not need such extensive terrain
+   calculations, and use the HeightfieldTesselator instead.
 
 The GeoMipTerrain also provides a way to generate terrain bruteforce, that
 means without LOD and at full quality.

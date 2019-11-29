@@ -108,8 +108,7 @@ files are "frozen" fonts: their characters have been permanently rendered into a
 texture and cannot be easily changed from inside your application.
 
 Panda3D defaults to 40 pixels per unit and this is sufficient for small to
-normal sized on screen text. Should you wish to use higher values and if you
-experience crashes (this issue should disappear with Panda3D 1.6.3), you might
+normal sized on screen text. Should you wish to use higher values, you might
 need to increase the page size, normally set to 256 pixels in height and width.
 To do so you can use the method ``setPageSize(width, height)``, i.e:
 

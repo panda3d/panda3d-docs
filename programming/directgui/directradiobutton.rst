@@ -3,10 +3,6 @@
 DirectRadioButton
 =================
 
-.. note::
-
-   This feature is only available in Panda3D versions 1.5.3 and higher.
-
 DirectRadioButtons are similar to check buttons, except only one button is
 selected when it is clicked. Their usage is almost identical to regular buttons,
 except that the text area and box area can be modified separately.
@@ -27,7 +23,7 @@ boxGeomColor   Color of the FG image                                            
 boxGeomScale   Scale of the FG image                                                                                                                                                       Number
 boxPlacement   Position of the box relative to the text area                                                                                                                               ‘left’,’right’, ‘above’, ‘below’, ‘center’
 boxBorder      Size of the border around the box                                                                                                                                           Number
-command        Command the button performs when clicked (In version 1.6 and higher, no parameter is passed unless extraArgs are defined. Before, a single argument was passed by default.) Function
+command        Command the button performs when clicked.    Function
 extraArgs      Extra arguments to the function specified in command                                                                                                                        [Extra Arguments]
 commandButtons Which mouse button must be clicked to do the command                                                                                                                        LMB, MMB, or RMB
 rolloverSound  The sound made when the cursor rolls over the button                                                                                                                        Sound File Path

@@ -37,34 +37,6 @@ Starting Panda3D
    in your script. In this particular example, there will be nothing to render,
    so you should expect a window containing an empty grey area.
 
-   DirectStart
-   ~~~~~~~~~~~
-
-   ``DirectStart`` is a shortcut that instantiates ShowBase automatically on
-   import. This may be useful for quick prototyping at the expense of clean code
-   layout. The following example demonstrates its use:
-
-   .. code-block:: python
-
-      import direct.directbase.DirectStart
-
-      base.run()
-
-   The import line automatically constructs an instance of ShowBase, which
-   starts the engine and creates an empty window. Because ShowBase uses Python's
-   ``__builtin__``, its functions are allowed to be called without storing the
-   instance in a variable. For the sake of cleanliness, the rest of this
-   tutorial shall use the ShowBase subclass.
-
-   DirectStart is deprecated starting with Panda3D 1.9.0. In order to upgrade
-   old code, you can simply replace the DirectStart import with the following:
-
-   .. code-block:: python
-
-      from direct.showbase.ShowBase import ShowBase
-      base = ShowBase()
-
-
    Running the Program
    -------------------
 

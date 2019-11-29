@@ -11,11 +11,6 @@ Common Image Filters
 Common Image Filters
 --------------------
 
-.. note::
-
-   The following information applies to Panda version 1.5.0 and beyond. It does
-   not apply to older versions of Panda3D.
-
 The purpose of class CommonFilters is to make it easy to set up a number of
 common image postprocessing operations.
 
@@ -30,13 +25,10 @@ is:
 
 #. Bloom Filter - creates a glowing halo around bright objects.
 #. Cartoon Inker - draws black lines around 3D objects.
-#. Volumetric Lighting - screen-space method for casting god-rays (new in
-   1.6.0)
-#. Inverted Filter - inverts all colors (new in 1.6.0)
-#. Blur/Sharpen Filter - applies a generic blur or sharpen filter (new in
-   1.7.0)
-#. Ambient Occlusion - applies a screen-space ambient occlusion filter (new in
-   1.7.0)
+#. Volumetric Lighting - screen-space method for casting god-rays.
+#. Inverted Filter - inverts all colors.
+#. Blur/Sharpen Filter - applies a generic blur or sharpen filter.
+#. Ambient Occlusion - applies a screen-space ambient occlusion filter.
 
 We expect this list to grow rather substantially over the next year or so.
 
@@ -142,7 +134,7 @@ The filter has the following keyword parameters:
 -  separation - Distance in pixels, controls the width of the ink line.
    Default: 1 pixel.
 
--  color - Color of the outline (new in 1.8.0). Default: (0, 0, 0, 1)
+-  color - Color of the outline. Default: (0, 0, 0, 1)
 
 The Volumetric Lighting Filter
 ------------------------------

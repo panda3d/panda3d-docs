@@ -67,9 +67,6 @@ will need to come up with a handful of default settings and allow the user to
 select between them, according to his own knowledge of his hardware
 capabilities.
 
-Note that graphics-memory-limit is a new feature of Panda, and is not available
-in versions before Panda3D 1.6.
-
 Monitoring memory usage
 -----------------------
 

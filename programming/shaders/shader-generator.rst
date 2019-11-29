@@ -114,7 +114,7 @@ what's supported:
 -  light ramps (for cartoon shading)
 -  some texgen modes
 -  texmatrix
--  fog (as of Panda3D 1.8.0)
+-  fog
 
 Here's what's known to be missing:
 

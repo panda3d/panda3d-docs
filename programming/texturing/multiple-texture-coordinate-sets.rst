@@ -15,9 +15,7 @@ string).
 
 Normally, you create multiple texture coordinate sets in the same modeling
 package that you use to create the model. Not all modeling packages, and not all
-Panda converters, support multiple texture coordinates. In fact, as of the time
-of this writing, only the Panda3D 1.1 version (or newer) of the maya2egg
-converter is known to convert multiple texture coordinates into Panda.
+Panda converters, support multiple texture coordinates.
 
 If you happen to have a model with multiple texture coordinate sets, you can
 specify which set a particular texture should use by calling

@@ -9,7 +9,7 @@ DirectScrolledFrame consists of a small onscreen frame which is actually a
 window onto a potentially much larger virtual canvas; the user can scroll
 through this canvas through the use of one or two
 :ref:`DirectScrollBars <directscrollbar>` on the right and bottom of the
-frame. DirectScrolledFrame is available beginning with Panda3D version 1.1.
+frame.
 
 The ``frameSize`` parameter controls the size and placement of the visible,
 onscreen frame; use the ``canvasSize`` parameter to control the size of the

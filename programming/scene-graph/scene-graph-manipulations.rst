@@ -33,7 +33,7 @@ ranges over [-ratio,ratio], and y ranges over [-1,1] where ratio is
 screen_size_x/screen_size_y (in the normal case of a window wider than it is
 tall).
 
-As of Panda3D version 1.7.0, there is another child of render2d, called pixel2d.
+There is one more child of render2d to take note of, called pixel2d.
 This is scaled in such a way that one Panda unit represents one pixel in the
 window. The origin, (0, 0, 0) is in the upperleft corner of the window. The
 lower right corner has x and z values equal to the width and -height of the

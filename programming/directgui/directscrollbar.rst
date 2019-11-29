@@ -6,11 +6,10 @@ DirectScrollBar
 .. only:: python
 
    A DirectScrollBar is similar to the "scroll bar" widget commonly used by the
-   user to page through a large document. DirectScrollBar is available beginning
-   in Panda3D 1.1. It consists of a long trough, a thumb that slides along the
-   trough, and a pair of buttons on either side of the trough to scroll one line
-   at a time. A DirectScrollBar can be oriented either vertically or
-   horizontally.
+   user to page through a large document.
+   It consists of a long trough, a thumb that slides along the trough, and a
+   pair of buttons on either side of the trough to scroll one line at a time.
+   A DirectScrollBar can be oriented either vertically or horizontally.
 
    The DirectScrollBar is similar in function to :ref:`directslider`, but it is
    specifically designed for scrolling through a large window. In fact, a pair

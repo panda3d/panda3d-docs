@@ -25,9 +25,8 @@ end of the line in a single call.
    Thread-safe file I/O
    --------------------
 
-   In versions 1.6.0 and above, Panda3D offers a :ref:`thread <threading>`-safe
-   replacement for the Python file module.
-   You can find it in :py:mod:`direct.stdpy.file`.
+   Panda3D offers a :ref:`thread <threading>`-safe replacement for the Python
+   file module.  You can find it in :py:mod:`direct.stdpy.file`.
    The interface is exactly the same as Python's, so it's safe to put this import
    above all the files where you want to use the "file" or "open" functions:
 
@@ -35,11 +34,10 @@ end of the line in a single call.
 
       from direct.stdpy.file import *
 
-   This module
-   reimplements Python's file I/O mechanisms using Panda constructs. This enables
-   Python to interface more easily with Panda's virtual file system, and it also
-   better-supports Panda's SIMPLE_THREADS model, by avoiding blocking all threads
-   while waiting for I/O to complete.
+   This module reimplements Python's file I/O mechanisms using Panda constructs.
+   This enables Python to interface more easily with Panda's virtual file
+   system, and it also better-supports Panda's SIMPLE_THREADS model, by avoiding
+   blocking all threads while waiting for I/O to complete.
 
 
 .. note:: This section is incomplete.
