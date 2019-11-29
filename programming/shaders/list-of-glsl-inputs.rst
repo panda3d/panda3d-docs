@@ -54,28 +54,6 @@ necessary to replace the "in" keyword with "attribute".
    in vec4 transform_weight;
    in uvec4 transform_index;
 
-A special note about vertex colors
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Before Panda3D 1.10, if p3d_Color was used but no vertex color information was
-present on the model, the values would be undefined (but usually (0, 0, 0, 0)).
-This means that you could not use the same shader on objects with and without
-vertex colors, since objects without vertex colors would appear black instead of
-white.
-
-In 1.10, p3d_Color respects the ColorAttrib rules that also applied to the
-fixed-function pipeline: p3d_Color will contain a white color if the vertex
-colors are absent or if colors are disabled using ``set_color_off()``, and a
-flat color if one is applied using ``set_color()``, even if vertex colors are
-present.
-
-If you are absolutely certain that the model does not have vertex colors, you
-may also declare p3d_Color as a uniform instead of a vertex attribute.
-
-If you would like to treat the color column as a generic vertex attribute with
-no special handling, you should use the name "color" instead of "p3d_Color",
-which will bind it without any special handling.
-
 Uniform shader inputs
 ---------------------
 
@@ -122,9 +100,6 @@ any shader stage.
    // As above, but "Shadow" should be appended if the texture has a shadow filter.
    uniform sampler2DShadow p3d_Texture0;
 
-   // New in 1.10.0.  Contains the matrix generated from texture pos and scale.
-   uniform mat4 p3d_TextureMatrix[];
-
    // New in 1.9.0.  Access the color scale applied to the node.
    uniform vec4 p3d_ColorScale;
 
@@ -136,12 +111,6 @@ any shader stage.
      vec4 emission;
      vec3 specular;
      float shininess;
-
-     // These properties are new in 1.10.
-     vec4 baseColor;
-     float roughness;
-     float metallic;
-     float refractiveIndex;
    } p3d_Material;
 
    // New in 1.9.0.  The sum of all active ambient light colors.
@@ -157,58 +126,10 @@ any shader stage.
    uniform float osg_FrameTime;
    // The time elapsed since the previous frame.
    uniform float osg_DeltaFrameTime;
-   // New in 1.10.0. Contains the number of frames elapsed since program start.
-   uniform int osg_FrameNumber;
 
    // New in 1.9.1.  If hardware skinning is enabled, this contains the transform
    // of each joint.  Superfluous array entries will contain the identity matrix.
    uniform mat4 p3d_TransformTable[...];
-
-   // New in 1.10.  Contains information for each non-ambient light.
-   // May also be used to access a light passed as a shader input.
-   uniform struct p3d_LightSourceParameters {
-     // Primary light color.
-     vec4 color;
-
-     // Light color broken up into components, for compatibility with legacy
-     // shaders.  These are now deprecated.
-     vec4 ambient;
-     vec4 diffuse;
-     vec4 specular;
-
-     // View-space position.  If w=0, this is a directional light, with the xyz
-     // being -direction.
-     vec4 position;
-
-     // Spotlight-only settings
-     vec3 spotDirection;
-     float spotExponent;
-     float spotCutoff;
-     float spotCosCutoff;
-
-     // Individual attenuation constants
-     float constantAttenuation;
-     float linearAttenuation;
-     float quadraticAttenuation;
-
-     // constant, linear, quadratic attenuation in one vector
-     vec3 attenuation;
-
-     // Shadow map for this light source
-     sampler2DShadow shadowMap;
-
-     // Transforms view-space coordinates to shadow map coordinates
-     mat4 shadowViewMatrix;
-   } p3d_LightSource[...];
-
-   // New in 1.10.  Contains fog state.
-   uniform struct p3d_FogParameters {
-     vec4 color;
-     float density;
-     float start;
-     float end;
-     float scale; // 1.0 / (end - start)
-   } p3d_Fog;
 
 Besides these predefined uniform inputs, it is possible to use most of the types
 available in GLSL in conjunction with ``set_shader_input()`` to pass custom

@@ -97,17 +97,6 @@ And the result is this:
 
 .. image:: car-with-blue.png
 
-As of Panda3D 1.10.4, there is an easier way to do this as well, by allowing you
-to tell Panda3D to replace the texture on all parts where a particular existing
-texture is applied:
-
-.. code-block:: python
-
-   car = loader.loadModel('bvw-f2004--carnsx/carnsx.egg')
-   red = loader.loadTexture('bvw-f2004--carnsx/carnsx.png')
-   blue = loader.loadTexture('bvw-f2004--carnsx/carnsx-blue.png')
-   car.replaceTexture(red, blue)
-
 If you are interested in changing the image of a texture during program
 execution, say to adjust some of its pixels, see
 :ref:`creating-new-textures-from-scratch`.

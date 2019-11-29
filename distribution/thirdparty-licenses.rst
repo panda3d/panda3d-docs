@@ -58,9 +58,7 @@ libjpeg
 
 https://www.ijg.org/
 
-JPEG library. Required to read and save JPEG files. As of Panda 1.10, Panda3D
-will fall back to stb_image for loading .jpg files when building without
-libjpeg, but this may not support all JPEG features.
+JPEG library. Required to read and save JPEG files.
 
 License: libjpeg license
 
@@ -69,9 +67,7 @@ libpng
 
 http://www.libpng.org
 
-Portable Network Graphics library. Required to read and save PNG files. As of
-Panda 1.10, Panda will fall back to stb_image for loading .png files when
-building without libpng, but this may not support all PNG features.
+Portable Network Graphics library. Required to read and save PNG files.
 
 License: `libpng
 license <http://www.libpng.org/pub/png/src/libpng-LICENSE.txt>`__
@@ -190,15 +186,6 @@ Tiff image format support.
 
 License: `libtiff license <https://spdx.org/licenses/libtiff.html>`__
 
-OpenEXR
-~~~~~~~
-
-https://www.openexr.com/
-
-OpenEXR image format support. New in 1.10.
-
-License: `Modified BSD license <https://www.openexr.com/license.html>`__
-
 DirectX (Windows only)
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -238,31 +225,6 @@ only necessary to compile the Panda3D browser plug-in.
 
 Optional
 --------
-
-Assimp
-~~~~~~
-
-http://www.assimp.org/
-
-As of Panda3D 1.10.0, Panda3D can make use of the Open Asset Import (Assimp)
-library to read in additional 3D file formats. File formats supported by
-Assimp can be found
-`here <https://github.com/assimp/assimp#supported-file-formats>`__.
-
-License: BSD license
-
-Opus
-~~~~
-
-https://opus-codec.org
-
-As of Panda3D 1.10.0, Panda3D can make use of the libopusfile library to read
-.opus audio files. This is a higher-quality alternative to lossy formats such
-as .ogg and .mp3 that is not restricted by patents.
-
-License: `3-clause BSD <https://github.com/xiph/opusfile/blob/master/COPYING>`__
-
-Patent note: Must agree not to litigate against other Opus users.
 
 FFMPEG
 ~~~~~~

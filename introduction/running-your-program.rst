@@ -65,19 +65,13 @@ Running your Program
    The descriptions below assume Microsoft Visual Studio 2015, but they should
    also work for 2017.
 
-   Using Panda3D 1.9
-   ~~~~~~~~~~~~~~~~~
-
-   Panda3D 1.10 is compiled with the Visual C++ 2015 compiler, and will work
-   with 2017 as well. If you are using Panda3D 1.10, you can skip to the next
-   section.
-
-   If you are still using Panda3D 1.9, this version is compiled with the Visual
-   C++ 2010 compiler. This means that if you use Panda3D 1.9, your project needs
-   to be compiled with the Visual C++ 2010 compilers as well, or it will crash
-   in mysterious ways, so we highly recommend upgrading to 1.10. However, if you
-   prefer to use Panda3D 1.9, not all is lost—the necessary compilers are part
-   of the Windows 7.1 SDK, which is also accessible from Visual Studio 2015.
+   The Panda3D 1.9 SDK is compiled with the Visual C++ 2010 compiler.
+   This means that if you use Panda3D 1.9, your project needs to be compiled
+   with the Visual C++ 2010 compilers as well, or it will crash in mysterious
+   ways, so we highly recommend upgrading to 1.10.
+   However, if you prefer to use Panda3D 1.9, not all is lost—the necessary
+   compilers are part of the Windows 7.1 SDK, which is also accessible from
+   Visual Studio 2015.
 
    You can download and install the Windows 7 SDK from here:
    https://www.microsoft.com/en-us/download/details.aspx?id=8279 Due to a bug in
@@ -102,11 +96,9 @@ Running your Program
 
    .. image:: msvc-2015-release-x64.png
 
-   Now, open up the project configuration pages. If you are using the Panda3D
-   1.9 SDK, then you will have to change the "Platform Toolset" in the "General"
-   tab to "Windows7.1SDK", since that is the toolset that the 1.9 SDK was
-   compiled with. Otherwise, with 1.10, you may set it to "v140_xp" (if you wish
-   your project to be able to work on Windows XP) or "v140".
+   Now, open up the project configuration pages. You will have to change the
+   "Platform Toolset" in the "General" tab to "Windows7.1SDK", since that is the
+   toolset that the 1.9 SDK was compiled with.
 
    Furthermore, we need to go to C/C++ -> "Preprocessor Definitions" and remove
    the ``NDEBUG`` symbol from the preprocessor definitions. This was

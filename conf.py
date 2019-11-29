@@ -16,7 +16,7 @@ import sys
 import os
 import types
 import re
-from sphinx_interrogatedb import idb
+#from sphinx_interrogatedb import idb
 from sphinx.ext import autodoc
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -33,15 +33,15 @@ needs_sphinx = '1.8'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.autosummary',
-    'sphinx_autopackagesummary',
+    #'sphinx.ext.autodoc',
+    #'sphinx.ext.autosummary',
+    #'sphinx_autopackagesummary',
     'variations',
     'sphinx.ext.graphviz',
-    'sphinxcontrib.napoleon',
-    'sphinx.ext.inheritance_diagram',
-    'sphinx.ext.viewcode',
-    'sphinx_interrogatedb',
+    #'sphinxcontrib.napoleon',
+    #'sphinx.ext.inheritance_diagram',
+    #'sphinx.ext.viewcode',
+    #'sphinx_interrogatedb',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -65,7 +65,7 @@ copyright = u'2019 Carnegie Mellon University'
 # built documents.
 #
 # The short X.Y version.
-version = '1.10'
+version = '1.9'
 
 # This is supposed to be the full version, but it doesn't appear to be used
 # anywhere important, and I'm not keen on having to update this continuously.
@@ -803,7 +803,7 @@ def setup(app):
     app.add_config_value('html_absolute_url_root', None, 'html')
     app.connect('config-inited', on_config_inited)
 
-    app.connect('autodoc-skip-member', on_autodoc_skip_member)
-    app.connect('autodoc-process-docstring', on_autodoc_process_docstring)
+    #app.connect('autodoc-skip-member', on_autodoc_skip_member)
+    #app.connect('autodoc-process-docstring', on_autodoc_process_docstring)
 
-    app.add_autodocumenter(ExcludeDocumenter)
+    #app.add_autodocumenter(ExcludeDocumenter)

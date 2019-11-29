@@ -59,34 +59,6 @@ always keeps its up vector towards the top of the screen, no matter which way
 the camera tilts, and is usually used for text labels that float over objects in
 the world.
 
-As of Panda3D 1.10, it is also possible to create a point-eye billboard that has
-a fixed size on screen, no matter the distance to the camera. This can be done
-by specifying a fixed distance to the camera. You may also wish to adjust depth
-testing and sorting options so that it appears on top of other objects in the
-scene. For example:
-
-.. only:: python
-
-   .. code-block:: python
-
-      # Make it appear as though it is 10 units in front of the camera
-      myNodePath.setBillboardPointEye(-10, fixed_depth=True)
-
-      myNodePath.setBin("fixed", 0)
-      myNodePath.setDepthWrite(False)
-      myNodePath.setDepthTest(False)
-
-.. only:: cpp
-
-   .. code-block:: cpp
-
-      // Make it appear as though it is 10 units in front of the camera
-      myNodePath.set_billboard_point_eye(-10, true);
-
-      myNodePath.set_bin("fixed", 0);
-      myNodePath.set_depth_write(false);
-      myNodePath.set_depth_test(false);
-
 There are several more options available on a BillboardEffect, but these are
 rarely used. If you need to take advantage of any of these more esoteric
 options, you must create a BillboardEffect and apply it to the node yourself:

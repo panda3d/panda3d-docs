@@ -59,10 +59,9 @@ base.cTrav as you see in the example. If you already have one assigned to do
 collision detection that will be sufficient. Read more about
 :ref:`collision-traversers`.
 
-The attenuation of moving sounds by distance and the doppler shift are based
-the way sound works in the real world. By default it assumes a scale of 1
-panda unit equal to 1 foot (or 1 meter in Panda3D 1.10 and above). If you use
-another scale you'll need to use
+The attenuation of moving sounds by distance and the doppler shift are based the
+way sound works in the real world. By default it assumes a scale of 1 panda unit
+equal to 1 foot. If you use another scale you'll need to use
 ``setDistanceFactor`` to adjust the scale.
 
 .. code-block:: python

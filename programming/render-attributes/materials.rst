@@ -191,18 +191,6 @@ meaning it takes precedence over a material applied to any node below it:
    #...set up red material
    car.setMaterial(red, 1)
 
-However, this will set the material on all parts of the model. In this case, it
-will also give the wheels the same red metal look! As of Panda3D 1.10, there is
-an easy way to replace all instances of a specific material only:
-
-.. code-block:: python
-
-   blue = car.findMaterial("blueMetal")
-   red = Material()
-   #...set up red material
-
-   car.replaceMaterial(blue, red)
-
 Related Classes
 ~~~~~~~~~~~~~~~
 

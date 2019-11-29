@@ -16,8 +16,7 @@ How to compile a C++ Panda3D program on Linux
 
    First of all, download the following files:
 
-   #. `Python <https://www.python.org/>`__, the development package (not needed
-      as of Panda3D 1.10.0)
+   #. `Python <https://www.python.org/>`__, the development package
    #. The GNU G++ compiler. On most Linux versions, this is already
       pre-installed.
 

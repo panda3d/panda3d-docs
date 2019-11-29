@@ -26,11 +26,12 @@ effect (though this is not recommended, for the reason stated above)::
 
    text-dynamic-merge 0
 
-This setting is no longer recommended for Panda3D 1.10.0, which actually
-performs significantly better with text-dynamic-merge set to 1.
-
 If you have a lot of different glyphs, Panda may spend more effort garbage
 collecting used glyphs in order to conserve texture memory. You can increase
 the default texture size to improve the performance of this, for example::
 
    text-page-size 512 512
+
+If you are experiencing issues with text performance in Panda3D 1.9, we highly
+recommend upgrading to 1.10, which contains considerable optimization to the
+text generation system.

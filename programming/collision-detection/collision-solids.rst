@@ -90,24 +90,23 @@ space, so that often the center is (0, 0, 0).
 
    sphere = CollisionSphere(cx, cy, cz, radius)
 
-CollisionCapsule
-----------------
+CollisionTube
+-------------
 
-A "capsule" is a cylinder with hemispherical endcaps, also known as a
-spherocylinder. Note that before Panda3D 1.10, this shape was called
-"CollisionTube", and this name remains as an alias for backward compatibility.
+A "tube" is a cylinder with hemispherical endcaps, also known as a capsule or a
+spherocylinder.
 
-The capsule is good as an "into" object, for objects that are largely
-cylindrical. It is not a very good choice for a "from" object, because not many
-intersection tests have been written from capsules into other shapes.
+The tube is good as an "into" object, for objects that are largely cylindrical.
+It is not a very good choice for a "from" object, because not many intersection
+tests have been written from tubes into other shapes.
 
 .. image:: tube.jpg
 
-A capsule is defined with its two endpoints, and the cylindrical radius.
+A tube is defined with its two endpoints, and the cylindrical radius.
 
 .. code-block:: python
 
-   capsule = CollisionCapsule(ax, ay, az, bx, by, bz, radius)
+   tube = CollisionTube(ax, ay, az, bx, by, bz, radius)
 
 CollisionInvSphere
 ------------------
@@ -164,7 +163,7 @@ However, it is also the most expensive solid, and the least robust--there may
 be numerical inaccuracies with polygons that allow collisions to slip through
 where they shouldn't.
 
-Like a plane and a capsule, a CollisionPolygon is only a good choice as an
+Like a plane and a tube, a CollisionPolygon is only a good choice as an
 "into" object. It doesn't support collision tests as a "from" object.
 
 In general, if you must use CollisionPolygons to model your shape, you should
@@ -291,13 +290,12 @@ rows in the table below.
 In the table below, the solid is listed without its "Collision" preface, e.g.,
 "Sphere" instead of "CollisionSphere", to save on space.
 
-================ ============= ============= ========= =========== ========== =========== ========
-**From \\ Into** **FloorMesh** **InvSphere** **Plane** **Polygon** **Sphere** **Capsule** **Box**
-Line                           **Yes**       **Yes**   **Yes**     **Yes**    **Yes**     **1.10**
+================ ============= ============= ========= =========== ========== ======== ========
+**From \\ Into** **FloorMesh** **InvSphere** **Plane** **Polygon** **Sphere** **Tube** **Box**
+Line                           **Yes**       **Yes**   **Yes**     **Yes**    **Yes**
 Parabola                                     **Yes**   **Yes**     **Yes**    **Yes**
-Ray              **Yes\***     **Yes**       **Yes**   **Yes**     **Yes**    **Yes**     **Yes**
-Segment                        **Yes**       **Yes**   **Yes**     **Yes**    **Yes**     **Yes**
-Sphere           **Yes**       **Yes**       **Yes**   **Yes**     **Yes**    **Yes**     **Yes**
-Box                                          **1.10**  **1.10**    **Yes**                **1.10**
-Capsule                                      **1.10**              **1.10**   **1.10**    **1.10**
-================ ============= ============= ========= =========== ========== =========== ========
+Ray              **Yes\***     **Yes**       **Yes**   **Yes**     **Yes**    **Yes**  **Yes**
+Segment                        **Yes**       **Yes**   **Yes**     **Yes**    **Yes**  **Yes**
+Sphere           **Yes**       **Yes**       **Yes**   **Yes**     **Yes**    **Yes**  **Yes**
+Box                                                                **Yes**
+================ ============= ============= ========= =========== ========== ======== ========

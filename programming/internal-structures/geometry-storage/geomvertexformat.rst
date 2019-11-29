@@ -131,11 +131,6 @@ getNumericType()
       DirectX's A, R, G, B order.) This should only be used with a C_color
       contents value.
 
-   Geom.NT_packed_ufloat
-      Each component is a 32-bit word, containing two packed unsigned 11-bit
-      floats and one 10-bit float. Only supported in newer OpenGL versions
-      from Panda3D 1.10 onward. Can only encode values between 0 and 64512.
-
 getContents()
    This defines, in a general way, the semantic meaning of the data in the
    column. It is used by Panda to decide how the data should be modified when
