@@ -5,7 +5,8 @@ Table of Contents
 
 .. toctree::
    :titlesonly:
-
+   
+   landing/index
    introduction/index
    programming/index
    debugging/index
