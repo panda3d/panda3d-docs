@@ -130,3 +130,15 @@ the index for the regular Panda3D wheel, then ``build_apps`` can pick an
 appropriate index URL for optimized wheels. Otherwise, set
 ``optimized_wheel_index`` to point to the index that contains the optimized
 wheels.
+
+Notes on Virtual Environments
+-----------------------------
+
+The build process is tested and known to work with the built-in ``venv``
+module, that has been part of Python since version 3.3 and with ``pipenv``,
+which are the recommended environments to build.
+
+There has been an `issue <https://github.com/panda3d/panda3d/issues/747>`__
+that when using `virtualenv <https://pypi.org/project/virtualenv/>`__ from
+PyPI, resulted in an ``ImportError``, that has since been addressed (as of
+version **1.10.5**).
