@@ -18,14 +18,18 @@ API Reference
 
    https://www.panda3d.org/reference/cxx/
 
+.. toctree::
+   :hidden:
+
+   panda3d
+   direct
+
 panda3d - Core library
 ----------------------
 
 .. py:module:: panda3d
 
 .. autopackagesummary:: panda3d
-   :toctree: .
-   :template: autosummary/panda3d-module.rst
 
 direct - Python support library
 -------------------------------
@@ -43,8 +47,6 @@ in the :py:mod:`panda3d.direct` module.
 .. only:: python
 
    .. autopackagesummary:: direct
-      :toctree: .
-      :template: autosummary/direct-package.rst
 
 .. only:: cpp
 
