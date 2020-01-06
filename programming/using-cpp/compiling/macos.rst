@@ -57,15 +57,3 @@ How to compile a C++ Panda3D program on macOS
    .. code-block:: bash
 
       ./filename
-
-   * If you get warnings like "missing required architecture x86_64 in file" or
-     "Undefined symbols: "_main", referenced from:" you need to use the
-     ``-arch i386`` flag.
-
-   * If you get errors like "Undefined symbols: "TypedObject::_type_handle",
-     referenced from: " you are not including some panda3d libraries needed or
-     missing the ``-arch i386`` flag.
-
-   * If you get an error running your executable like "dyld: Library not loaded:
-     @executable_path/../Library/Frameworks/Cg.framework/Cg" means you need to
-     install Cg library from https://developer.nvidia.com/cg-toolkit-download
