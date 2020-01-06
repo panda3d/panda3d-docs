@@ -8,10 +8,12 @@ a list of what's included, and which features of the engine each sample
 demonstrates. If you are just learning Panda3D, take a look at the ones marked
 as "Beginner" difficulty.
 
-To run a sample program, you need to install Panda3D.
+To run a sample program, you need to install the Panda3D SDK.
 If you're a Windows user, you'll find the sample programs in your start menu.
 If you're a Linux user, you'll find the sample programs in /usr/share/panda3d.
-On macOS, you'll find them in /Developer/Examples/Panda3D/.
+On macOS, you'll find them in /Developer/Examples/Panda3D/ (or
+/Library/Developer/Examples/Panda3D as of Panda3D 1.10.5).
+Alternatively, you can download the samples separately from the download page.
 
 .. rubric:: :ref:`asteroids`
 

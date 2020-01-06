@@ -44,11 +44,13 @@ How to compile a C++ Panda3D program on macOS
 
    {panda3dinclude}
       Change this to the path to your Panda3D include directory. This would
-      probably look like ``/Developer/Panda3D/include/``
+      probably look like ``/Library/Developer/Panda3D/include/`` (in Panda3D
+      1.10.5 and higher) or ``/Developer/Panda3D/include/`` in older versions.
 
    {panda3dlibs}
       Change this to the path to your Panda3D libraries. This is
-      ``/Developer/Panda3D/lib``.
+      ``/Library/Developer/Panda3D/lib`` or ``/Developer/Panda3D/lib``,
+      depending on your version of Panda3D.
 
    And lastly, to run the created executable, type:
 
