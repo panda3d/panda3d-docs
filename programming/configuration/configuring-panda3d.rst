@@ -9,7 +9,7 @@ DirectX, how much debugging output does it print, and so forth. The following
 table lists several of the most commonly-used variables.
 
 For a full documentation about Panda3D's configuration system, click
-`here <https://raw.githubusercontent.com/panda3d/panda3d/v1.10.4.1/panda/src/doc/howto.use_config.txt>`__
+`here <https://raw.githubusercontent.com/panda3d/panda3d/release/1.10.x/panda/src/doc/howto.use_config.txt>`__
 to view the original documentation file.
 
 To know about accessing config variables from within your code, please see
