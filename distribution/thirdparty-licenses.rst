@@ -293,7 +293,7 @@ PhysX
 
 https://developer.nvidia.com/gameworks-physx-overview
 
-NVIDIA physics library.
+NVIDIA physics library.  The Panda3D PhysX support is deprecated.
 
 License: Proprietary.
 
@@ -352,6 +352,7 @@ libRocket
 https://github.com/libRocket/libRocket
 
 C++ user interface middleware package based on the HTML and CSS standards.
+Panda3D's libRocket bindings are deprecated.
 
 License: `MIT License <https://opensource.org/licenses/mit-license.php>`__
 

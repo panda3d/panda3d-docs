@@ -45,7 +45,7 @@ However, the class and function descriptions are still missing.
    The Panda3D Bullet module makes great effort to integrate Bullet physics as
    tightly as reasonably possible with the core Panda3D classes. However, when
    implementing collision detection and physics, you can not mix Panda3D's
-   internal physics & collision system, ODE, PhysX and Bullet. More explicitly:
+   internal physics & collision system, ODE, and Bullet. More explicitly:
    Bullet bodies won't collide with ODE bodies and CollisionNodes.
 
 Samples on how to use the Panda3D Bullet module can be found in the following
