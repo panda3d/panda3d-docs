@@ -57,3 +57,11 @@ How to compile a C++ Panda3D program on macOS
    .. code-block:: bash
 
       ./filename
+
+   .. note::
+
+      Panda3D versions 1.10.4.1 and below were compiled with libstdc++, and so
+      require passing ``-stdlib=libstdc++`` to the compiler.  Panda3D 1.10.5
+      offers a choice: the download marked "MacOSX10.6" is compiled with
+      libstdc++, whereas the download marked "MacOSX10.9" is compiled with
+      libc++.  It is recommended to use the download marked "MacOSX10.9".
