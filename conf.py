@@ -631,14 +631,14 @@ def convert_doxygen_docstring(lines, name):
                     newlines.append('See also {}.'.format(', '.join(values)))
                 newlines.append('')
                 continue
-            elif special == 'note':
+            elif special in ('note', 'warning'):
                 if newlines and newlines[-1]:
                     newlines.append('')
 
-                newlines.append('.. note:: ')
+                newlines.append('.. %s:: ' % (special))
                 newlines.append('')
-                newlines.append('   ' + convert_doxygen_format(strline[6:], name))
-                while lines and lines[0].startswith('     '):
+                newlines.append('   ' + convert_doxygen_format(strline[2 + len(special):], name))
+                while lines and lines[0].strip(' *\t/'):
                     line = lines.pop(0).lstrip(' *\t')
                     newlines.append('   ' + convert_doxygen_format(line, name))
 
