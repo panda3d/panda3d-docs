@@ -1,23 +1,55 @@
-# Panda3D Engine Documentation
+# Panda3D Documentation
 
-This repository contains a work-in-progress conversion from the old Mediawiki format to a new Sphinx-based site. This should make it much easier for people to contribute to the documentation, and will also allow us to have the manual and API reference in one place.
+This repository contains the source code for the documentation of the
+[Panda3D](https://www.panda3d.org/) game engine.
 
-Since this new format is still quite rough around the edges, Panda3D's main website will still be linking to the old manual.
+The resulting documentation can be found at: https://docs.panda3d.org/
 
-The documentation can be found at: https://docs.panda3d.org/
+## Building the Documentation
 
-## To-do List
-- [x] Base conversion utilizing [the panda-sphinx repository](https://github.com/Moguri/panda-sphinx)
-- [x] Manual fixes for formatting issues
-- [ ] Welcome page (index.rst)
-- [x] Move API Reference from Doxygen to Sphinx
-- [ ] Spellcheck/proofread
-
-## Building The Documentation
+The documentation is built upon [Sphinx](https://www.sphinx-doc.org/en/master/),
+and several extensions are required.  The easiest way to install Sphinx and the
+extensions into an existing Python installation is using pip:
 ```
 pip install -r requirements.txt
+```
+
+You can then build the manual in the desired format.  For example, you can build
+it in the HTML format by executing this command in your command prompt:
+```
 make html
 ```
+
+If the command was successful, the resulting documentation can be found in the
+`_build/html` folder.  Other formats are also possible, such as `make latexpdf`
+for producing a .pdf file.  Consult the Sphinx manual for other options.
+
+On Windows, if you receive an error like the following:
+```
+The 'sphinx-build' command was not found. Make sure you have Sphinx
+installed, then set the SPHINXBUILD environment variable to point
+to the full path of the 'sphinx-build' executable. Alternatively you
+may add the Sphinx directory to PATH.
+```
+
+It may be the case that your Python Scripts folder is not on the PATH.  The
+easiest way to deal with this is by setting your SPHINXBUILD variable something
+like so (adjust for the location of your Python build):
+
+```
+set SPHINXBUILD=C:\Panda3D-1.10.5-x64\python\python.exe -m sphinx
+```
+
+## Editing the Documentation
+
+To make changes, simply edit the .rst files in a code editor and rerun the
+`make html` command to rebuild only the files that have changed.
+
+To propose changes, push the changes to a local branch on a fork of the GitHub
+repository and open a Pull Request.  For more information on how to do this,
+refer to this guide:
+
+https://opensource.guide/how-to-contribute/#opening-a-pull-request
 
 ## Coding Style
 
