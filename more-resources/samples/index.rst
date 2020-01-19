@@ -149,11 +149,6 @@ Alternatively, you can download the samples separately from the download page.
 * Render-to-texture
 * Places rendered texture on model in scene
 
-.. rubric:: :ref:`texture-swapping`
-
-* Difficulty: Intermediate
-* Swaps textures on models to create interesting effects
-
 .. toctree::
    :maxdepth: 1
    :hidden:
@@ -183,4 +178,3 @@ Alternatively, you can download the samples separately from the download page.
    roaming-ralph
    shadows
    solar-system
-   texture-swapping
