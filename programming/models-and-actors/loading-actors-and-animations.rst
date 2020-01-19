@@ -8,7 +8,7 @@ Actor Basics
 
 .. only:: python
 
-   The python class ``Actor`` is
+   The python class :py:class:`~direct.actor.Actor.Actor` is
    designed to hold an animatable model and a set of animations. Since the Actor
    class inherits from the NodePath class, all NodePath functions are applicable
    to actors.
@@ -28,8 +28,8 @@ Actor Basics
 
    The Actor interface provides a high-level interface on the low-level Panda
    constructs. In Panda, the low-level node that performs the animation is called
-   Character. You can see the Character node in the scene graph when you call
-   ``actor.ls()``.
+   :class:`~panda3d.core.Character`. You can see the Character node in the scene
+   graph when you call :py:meth:`actor.ls() <direct.actor.Actor.Actor.ls>`.
 
    Do not confuse the Actor class with the
    :ref:`ActorNode <enabling-physics-on-a-node>` class, which is used for
@@ -53,13 +53,20 @@ Actor Basics
 
    .. code-block:: python
 
-      nodePath = Actor('Model Path', {
-        'Animation Name 1':'Animation Path 1',
-        'Animation Name 2':'Animation Path 2',
+      actor = Actor('Model Path', {
+          'Animation Name 1': 'Animation Path 1',
+          'Animation Name 2': 'Animation Path 2',
       })
 
    Note that it is also possible to store the animations and model in the same
    file. In that case, just create the Actor with just the model as parameter.
+
+   When you wish to remove the actor from the scene, you need to call the
+   :py:meth:`~direct.actor.Actor.Actor.cleanup()` method.  Note that calling
+   :py:meth:`~direct.actor.Actor.Actor.removeNode()` is not sufficient.
+   This is due to the fact that Actor is a Python class containing additional
+   data that can not be destroyed by the C++
+   :meth:`~panda3d.core.NodePath.removeNode()` method.
 
 .. only:: cpp
 
