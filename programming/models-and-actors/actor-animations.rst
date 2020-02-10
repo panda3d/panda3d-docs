@@ -192,7 +192,7 @@ Half-body animation
 
 If you want different parts of your actor to play separate animations without
 blending them together you have to create subparts. Each of these can then play
-one animation without influencing the others. Call actor.makeSupart() with the
+one animation without influencing the others. Call actor.makeSubpart() with the
 desired name, a list of joints to be included and a list of joints to be
 excluded in the subpart. Inclusion / exclusion will descend attached joints.
 Exclude always overrides include.
