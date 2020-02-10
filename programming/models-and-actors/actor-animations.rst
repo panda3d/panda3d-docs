@@ -186,19 +186,20 @@ Half-body animation
 
 If you want different parts of your actor to play separate animations without
 blending them together you have to create subparts. Each of these can then play
-one animation without influencing the others. Call actor.makeSubpart() with the
-desired name, a list of joints to be included and a list of joints to be
+one animation without influencing the others.
+Call :py:meth:`actor.makeSubpart() <direct.actor.Actor.Actor.makeSubpart>` with
+the desired name, a list of joints to be included and a list of joints to be
 excluded in the subpart. Inclusion / exclusion will descend attached joints.
 Exclude always overrides include.
 
-::
+.. code-block:: python
 
    actor.makeSubpart("legs", ["Left Thigh", "Right Thigh"])
    actor.makeSubpart("torso", ["Head"], ["Left Thigh", "Right Thigh"])
 
 If you want to play an animation on a subpart make sure to pass the name.
 
-::
+.. code-block:: python
 
    actor.loop("walk", partName="legs")
    actor.loop("reload", partName="torso")
