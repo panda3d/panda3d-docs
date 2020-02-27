@@ -4,21 +4,21 @@ Converting from Blender
 =======================
 
 Currently, there are several ways to get data from Blender into Panda3D. The
-most popular has always been the YABEE exporter, but since blender 2.80 and 
+most popular has always been the YABEE exporter, but since blender 2.80 and
 the rise of the gltf format has fallen out of style in favor of blend2bam.
 
 Option 1: Blend2bam
 -------------------
 Blend2bam is a CLI command that converts blend files into bam files. By default
-it uses blender's built-in gltf exporter for version 2.80 and up, a custom gltf 
+it uses blender's built-in gltf exporter for version 2.80 and up, a custom gltf
 exporter for older blender versions and can even be set up per-file to use YABEE.
 
 https://github.com/moguri/blend2bam
 
 Blend2bam uses the panda3d-gltf package under the hood to convert to bam. If
 this is installed you could also simply load .gltf files directly into Panda3D
-as you would a bam or egg. It's still recommended to use blend2bam instead since 
-it uses default options that work well with panda3d. 
+as you would a bam or egg. It's still recommended to use blend2bam instead since
+it uses default options that work well with panda3d.
 
 https://github.com/moguri/panda3d-gltf
 
