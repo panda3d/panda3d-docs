@@ -3,9 +3,6 @@
 Alpha Testing
 =============
 
-Alpha Testing
--------------
-
 The alpha test attribute governs whether or not a part of a node will be
 rendered based on the alpha value of its texture. This is particularly useful
 for rendering complex geometry into the depth or stencil buffer with a textured
