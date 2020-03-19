@@ -37,7 +37,7 @@ easiest way to deal with this is by setting your SPHINXBUILD variable something
 like so (adjust for the location of your Python build):
 
 ```
-set SPHINXBUILD=C:\Panda3D-1.10.5-x64\python\python.exe -m sphinx
+set SPHINXBUILD=C:\Panda3D-1.10.6-x64\python\python.exe -m sphinx
 ```
 
 ## Editing the Documentation
