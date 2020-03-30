@@ -37,8 +37,7 @@ Loading a Sound
       PT(AudioManager) AM = AudioManager::create_AudioManager();
       PT(AudioSound) mySound = AM->get_sound("path/to/sound_file.ogg") ;
 
-These will return an object of the type
-``AudioSound``. It is necessary to put
+These will return an object of the type ``AudioSound``. It is necessary to put
 the extension in the sound filename.
 
 Playing/Stopping a Sound

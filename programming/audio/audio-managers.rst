@@ -3,27 +3,21 @@
 Audio Managers
 ==============
 
-Sound effects and music in code are implemented as
-``AudioManager`` objects. You can access
-these audio managers with the following code:
+Sound effects and music in code are implemented as ``AudioManager`` objects. You
+can access these audio managers with the following code:
 
 .. code-block:: python
 
    sfxMgr = base.sfxManagerList[0]
    musicMgr = base.musicManager
 
-In ``base``,
-``sfxManagerList`` is a list of
-``AudioManager`` objects intended to be
-used for sound effects, and
-``musicManager`` is an
-``AudioManager`` object intended to be
-used for music.
+In ``base``, ``sfxManagerList`` is a list of ``AudioManager`` objects intended
+to be used for sound effects, and ``musicManager`` is an ``AudioManager`` object
+intended to be used for music.
 
-Each ``AudioManager`` object can have 16
-different sounds cached at a given time. This value is actually set as the
-``audio-cache-limit`` in the panda config.prc
-(found in your install directory) and can be changed.
+Each ``AudioManager`` object can have 16 different sounds cached at a given
+time. This value is actually set as the ``audio-cache-limit`` in the panda
+config.prc (found in your install directory) and can be changed.
 
 There are times where either sound effects, music, or both should be disabled
 and later enabled. These commands affect entire categories of sounds. Passing
