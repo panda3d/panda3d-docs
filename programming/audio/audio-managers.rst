@@ -19,6 +19,14 @@ Each ``AudioManager`` object can have 16 different sounds cached at a given
 time. This value is actually set as the ``audio-cache-limit`` in the panda
 config.prc (found in your install directory) and can be changed.
 
+By default, ``base.musicManager`` has a limit of 1 concurrent sound, however.
+This limit can be explicitly increased using the following code:
+
+.. code-block:: python
+
+   # Allow playing two music files at the same time.
+   base.musicManager.setConcurrentSoundLimit(2)
+
 There are times where either sound effects, music, or both should be disabled
 and later enabled. These commands affect entire categories of sounds. Passing
 True or False in the last 2 functions will disable or enable the respective
