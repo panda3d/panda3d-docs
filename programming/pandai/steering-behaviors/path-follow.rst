@@ -33,24 +33,22 @@ your first position your AICharacter will go to.
 
 --------------
 
-The full working code in Pand3D is :
+The full working code in Panda3D is :
 
 
 .. code-block:: python
 
    import direct.directbase.DirectStart
    from panda3d.core import *
-   from direct.showbase.DirectObject import DirectObject
    from direct.task import Task
    from direct.actor.Actor import Actor
-   #for Pandai
    from panda3d.ai import *
 
-   class World(DirectObject):
+   class World(object):
 
        def __init__(self):
            base.disableMouse()
-           base.cam.setPosHpr(0,0,55,0,-90,0)
+           base.cam.setPosHpr(0, 0, 55, 0, -90, 0)
 
            self.loadModels()
            self.setAI()
@@ -59,7 +57,7 @@ The full working code in Pand3D is :
            # Seeker
            ralphStartPos = Vec3(-10, 0, 0)
            self.seeker = Actor("models/ralph",
-                                    {"run":"models/ralph-run"})
+                               {"run":"models/ralph-run"})
            self.seeker.reparentTo(render)
            self.seeker.setScale(0.5)
            self.seeker.setPos(ralphStartPos)
@@ -91,15 +89,15 @@ The full working code in Pand3D is :
            self.seeker.loop("run")
 
        def setAI(self):
-           #Creating AI World
+           # Creating AI World
            self.AIworld = AIWorld(render)
 
-           self.AIchar = AICharacter("seeker",self.seeker, 60, 0.05, 5)
+           self.AIchar = AICharacter("seeker", self.seeker, 60, 0.05, 5)
            self.AIworld.addAiChar(self.AIchar)
            self.AIbehaviors = self.AIchar.getAiBehaviors()
 
-           #Path follow (note the order is reveresed)
-           self.AIbehaviors.pathFollow()
+           # Path follow (note the order is reveresed)
+           self.AIbehaviors.pathFollow(1.0)
            self.AIbehaviors.addToPath(self.target4.getPos())
            self.AIbehaviors.addToPath(self.target3.getPos())
            self.AIbehaviors.addToPath(self.target2.getPos())
@@ -108,17 +106,15 @@ The full working code in Pand3D is :
            self.AIbehaviors.startFollow()
 
            #AI World update
-           taskMgr.add(self.AIUpdate,"AIUpdate")
+           taskMgr.add(self.AIUpdate, "AIUpdate")
 
-       #to update the AIWorld
        def AIUpdate(self,task):
            self.AIworld.update()
            return Task.cont
 
    w = World()
-   run()
+   base.run()
 
-To get the full working
-demo, please visit :
+To get the full working demo, please visit:
 
 https://sites.google.com/site/etcpandai/documentation/steering-behaviors/path-follow/PandAIPathFollowTutorial.zip?attredirects=0&d=1
