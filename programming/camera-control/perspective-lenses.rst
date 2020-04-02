@@ -12,7 +12,7 @@ to think about the lens.
 
 When you start Panda3D, a default camera and lens are created for you
 automatically. The default camera object is stored in
-``base.cam``(although by
+``base.cam`` (although by
 convention, if you want to move the default camera you should manipulate
 ``base.camera`` instead), and the
 default lens is ``base.camLens``.
