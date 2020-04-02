@@ -11,11 +11,9 @@ view, and there are several interfaces to do this, depending on how you want
 to think about the lens.
 
 When you start Panda3D, a default camera and lens are created for you
-automatically. The default camera object is stored in
-``base.cam``(although by
+automatically. The default camera object is stored in ``base.cam`` (although by
 convention, if you want to move the default camera you should manipulate
-``base.camera`` instead), and the
-default lens is ``base.camLens``.
+``base.camera`` instead), and the default lens is ``base.camLens``.
 
 This default lens will almost always be a perspective lens--that is, an
 instance of the class
