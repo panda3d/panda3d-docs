@@ -47,7 +47,7 @@ call. This method accepts several parameters:
 
 .. code-block:: python
 
-   base.graphicsEngine.makeOutput(pipe, name, sort, fbProps, winProps, flags, gsg, host)
+   base.graphicsEngine.makeOutput(pipe, name, sort, fb_prop, win_prop, flags, gsg, host)
 
 
 pipe
@@ -65,12 +65,12 @@ sort
    are used to render to textures, which are in turn used in other windows or
    buffers.
 
-fbProps
+fb_prop
    The FrameBufferProperties for this output. If you intend to be sharing GSG’s
    between multiple windows or buffers, it is usually important that they also
    share the same FrameBufferProperties.
 
-winProps
+win_prop
    The WindowProperties for this output.
 
 flags
