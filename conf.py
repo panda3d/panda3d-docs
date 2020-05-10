@@ -341,8 +341,7 @@ autosummary_mock_imports = [
     'direct.filter.filterBlurY',
     'direct.filter.filterCopy',
     'direct.filter.filterDown4',
-    'direct.leveleditor.LevelEditorStart',
-    'direct.leveleditor.testData',
+    'direct.leveleditor',
     'direct.p3d.packp3d',
     'direct.p3d.pdeploy',
     'direct.p3d.pmerge',
@@ -354,6 +353,7 @@ autosummary_mock_imports = [
     'direct.plugin_npapi.make_osx_bundle',
     'direct.plugin_standalone.make_osx_bundle',
     'direct.showbase.VerboseImport',
+    'direct.wxwidgets.WxAppShell',
     'direct.wxwidgets.WxPandaShell',
     'direct.wxwidgets.WxPandaStart',
 ]
