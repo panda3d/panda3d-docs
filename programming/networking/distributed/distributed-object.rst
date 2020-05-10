@@ -60,12 +60,12 @@ methods that follow the form of foo, d_foo and b_foo.
 
 The foo method is the one that will have an affect locally.
 
-The d_foo (d_ stands for distributed) method will send a message to the server
+The d_foo (d\_ stands for distributed) method will send a message to the server
 and hence to other clients as needed and will update them. As you see, you can
 simply send data to the server with a self.sendUpdate call.
 There is also another method called sendUpdateToAvatarId which accepts a doId
 of another client and will send the message directly to it.
 
-the b_foo (b_ stands for both) method will update both, the local object as well
+the b_foo (b\_ stands for both) method will update both, the local object as well
 as send the data to the server. This can usually easily be achived by simply
 calling both, the foo and d_foo method within the b_foo method.
