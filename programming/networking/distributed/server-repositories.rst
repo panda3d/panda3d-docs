@@ -22,7 +22,7 @@ in a basic form is very easy.
 
 As you see in the example above, we simply have to gather the port and a list of
 DC files, which we will take a closer look in a later section, and pass all of
-that to the ServerRepository constructor.
+that to the :class:`.ServerRepository` constructor.
 
 The threadedNet parameter if true, tells the underlying networking system to use
 threads to listen for incoming data. It has a subtle effect on performance, but

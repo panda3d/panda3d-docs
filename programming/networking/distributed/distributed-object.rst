@@ -1,11 +1,11 @@
-.. _distributed-boject:
+.. _distributed-object:
 
 Distributed Objects
 ===================
 
 Distributed Objects are the base for all things that should be managed over the
-distributed network. May it be players, level objects, the level itself, a
-message object for chat messages and really anything else in the application
+distributed network. This may include players, level objects, the level itself,
+a message object for chat messages and really anything else in the application
 world.
 
 As seen in earlier sections, they can be created on the client repositories and,
@@ -21,7 +21,8 @@ which can be called FooAI.
 The Foo class will be used on clients and the FooAI class will be generated on
 the AI servers.
 
-An example Distributed Object class may look like the following:
+An example of a distributed object class implementation may look like the
+following:
 
 Client side DGameObject.py:
 
@@ -54,18 +55,20 @@ AI Server side DGameObjectAI.py
            """ Method that can be called from the clients with an sendUpdate call """
            print(data)
 
-Here we see that a new object derives from DistributedObject and
-DistributedObjectAI respectively. Usually those classes will be filled with
-methods that follow the form of foo, d_foo and b_foo.
+Here we see that a new object derives from :class:`.DistributedObject` and
+:class:`.DistributedObjectAI` respectively. Usually those classes will be filled
+with methods that follow the form of foo, d_foo and b_foo.
 
-The foo method is the one that will have an affect locally.
+The foo method is the one that will have an effect locally.
 
 The d_foo (d\_ stands for distributed) method will send a message to the server
 and hence to other clients as needed and will update them. As you see, you can
 simply send data to the server with a self.sendUpdate call.
-There is also another method called sendUpdateToAvatarId which accepts a doId
-of another client and will send the message directly to it.
+There is also another method called
+:meth:`.DistributedObjectAI.sendUpdateToAvatarId` which accepts a doId of
+a client and will send the message directly to it. This method is only available
+on the AI and UD side.
 
-the b_foo (b\_ stands for both) method will update both, the local object as well
-as send the data to the server. This can usually easily be achived by simply
-calling both, the foo and d_foo method within the b_foo method.
+the b_foo (b\_ stands for both) method will update both, the local object as
+well as send the data to the server. This can usually easily be achived by
+simply calling both, the foo and d_foo method within the b_foo method.

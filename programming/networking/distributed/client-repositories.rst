@@ -4,11 +4,11 @@ Client Repositories
 ===================
 
 Similar to the server repositories, client repositories are there to handle the
-lower level connection code to the server. As seen earlier in the AI
-Repositories chapter, client repositories doesn’t necessarily have to be on end
-user machines but can also be used on servers. A basic client repository code
-may look as follow or should at least implement the following set of functions
-to work properly.
+lower level connection code to the server. As seen earlier in the
+:ref:`ai-repositories` chapter, client repositories doesn’t necessarily have to be on
+end user machines but can also be used on servers. A basic client repository
+implementation may look as follows or should at least implement the following
+set of functions to work properly.
 
 .. code-block:: python
 
@@ -106,8 +106,8 @@ to work properly.
            # Now the client is ready to create DOs and send and receive data
            # to and from the server
 
-First of all, we need to initialize the ClientRepository. This will handle the
-connection code to the server. We pass it our dc files as well as the
+First of all, we need to initialize the :class:`.ClientRepository`. This will
+handle the connection code to the server. We pass it our dc files as well as the
 threadedNet parameter which will have the same affect as described in the Server
 Repositories.
 
@@ -118,9 +118,9 @@ Repositories.
        dcFileNames = dcFileNames,
        threadedNet = True)
 
-Having the clientRepository ready, we can try to connect to the desired server
-with the connect call. Dependent on the outcome, one of the functions given to
-the call will be used.
+Having the client repository ready, we can try to connect to the desired server
+with the :meth:`.ConnectionRepository.connect` call available from the CR.
+Dependent on the outcome, one of the functions given to the call will be used.
 
 .. code-block:: python
 
@@ -133,17 +133,20 @@ in the correct zones in which a time manager has been instantiated. The Time
 Manager, how it will be set up and what it is used for will be shown in a later
 section. For now we just expect it to exist in zone 1 on the AI Server.
 
-As soon as the client is synced, the TimeManager will send a gotTimeSync event.
+As soon as the client is synced, the :class:`.TimeManager` will send a gotTimeSync event.
 It may be encouraged to show some kind of waiting screen to the user here until
 the client is fully connected to the server.
 
-In the syncReady and gotCreateReady methods you’ll see the haveCreateAuthority
-function called. This is a check to see if we are already able to create DOs and
-give them a correct doId. You can create DOs earlier already, but they may have
-invalid doIds then.
+In the syncReady and gotCreateReady methods you’ll see the
+:meth:`.ClientRepository.haveCreateAuthority` function called. This is a check
+to see if we are already able to create DOs and give them a correct doId. You
+can create DOs earlier already, but they may have invalid doIds then.
 
 At the end of the gotCreateReady method you can fully use the client and create
 whatever DOs you may need and add other client related logic.
 
 At this stage, you may also want to set interest in different Zones for the
-client to see server created objects placed in those specific zones.
+client to see objects created by the server and other clients which are placed
+in those specific zones. You can do this by calling the
+:meth:`.ClientRepository.setInterestZones()` method which you simply pass a
+number of zoneIds that this client should see.

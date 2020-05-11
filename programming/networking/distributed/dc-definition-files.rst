@@ -78,27 +78,38 @@ convention as in the python representation of that class the set gets taken away
 at generation time and will be replaced with a get to call the set value with
 the get functions return value.
 
-For example, taking the Avatar class as defined in above, we get this pyhton
-class:
+For example, taking the dc representation of an Avatar class as defined here:
+
+.. code-block:: cpp
+
+   import Avatar
+   dclass Avatar {
+     setName(string n) required;
+   }
+
+we get this Pyhton class:
 
 .. code-block:: python
 
    class Avatar:
        def getName(self):
            return self.name
+
        def setName(self, name):
            self.name = name
-       def dsetName(self, name):
-           self.sendUpdate(“setName”, [name])
-       def bsetName(self, name):
-           self.setName(name)
-           self.dsetName(name)
 
-Note if, for example, the name value gets changed after generation of the DO, it
-doesn't change the value automatically of the DO on the server. This has to be
-done manually. Tho, calling the distributed versions of the functions (as
-defined in the dc file) the corresponding functions of the representing python
-class will be called on the client.
+       def d_setName(self, name):
+           self.sendUpdate(“setName”, [name])
+
+       def b_setName(self, name):
+           self.setName(name)
+           self.d_setName(name)
+
+Note if, for example, the name value gets changed locally after generation of
+the DO, it doesn't automatically change the value of the DO on the server. This
+has to be done manually. Though, calling the distributed versions of these
+functions (as defined in the dc file) will automatically call the corresponding
+functions of the representing python class on the client.
 
 Python Imports
 --------------
@@ -110,7 +121,7 @@ Python Imports
    from direct.distributed import DistributedNode/AI
    from direct.distributed import DistributedSmoothNode/AI
 
-Any python objects to be mapped for distributed networking should be imported
+Any Python objects to be mapped for distributed networking should be imported
 here. A modified python syntax is used. In the first line DistributedObject.py
 and DistributedObjectAI.py will be mapped.
 
@@ -205,9 +216,9 @@ dclass
 
    dclass DistributedNode: DistributedObject {
 
-Here the methods to be mapped in DistributedNode and DistributedNodeAI are
-defined. Note that this inherits the definition of DistributedObject. Multiple
-inheritance is also allowed.
+Here the methods to be mapped in :class:`.DistributedNode` and
+:class:`.DistributedNodeAI` are defined. Note that this inherits the definition
+of DistributedObject. Multiple inheritance is also allowed.
 
 .. code-block:: cpp
 
@@ -216,8 +227,8 @@ inheritance is also allowed.
    setZ(int16 / 10) broadcast ram;
 
 Here are three function definitions. When a DistributedNode receives a message
-with the name "setX", DistributedNode.setX() will be called and the values
-passed to the function.
+with the name "setX", :meth:`.DistributedNode.setX()` will be called and the
+values passed to the function.
 
 Syntax:
 functionName(container variable1 <, container variable 2,...>) <parameters>;

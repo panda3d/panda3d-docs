@@ -8,11 +8,12 @@ step is to create some Objects that will get distributed on this existing
 network connection.
 
 Client side created DOs are DOs that the will be created using the
-ClientRepository on the end users client.
+:class:`.ClientRepository` on the end users client.
 
 To create a DO there are multiple ways to do so. You can either create an
-instance of a DO and pass it to the create createDistributedObject call of the
-CR instance or simply pass its name.
+instance of a DO and pass it to the create
+:meth:`.ClientRepository.createDistributedObject` call of the CR instance or
+simply pass its name.
 
 Example1, create a DGameObject which inherited from DistributedObject.
 
@@ -32,9 +33,10 @@ DC definition files.
        className = 'DGameObject',
        zoneId = 2)
 
-As you have seen we’ve set the zonId to 2. This tells the object to live in this
-specific zone and all clients that have defined an interest in this zone will
-automatically “see” this object.
+As you have seen we’ve set the zoneId to 2. This tells the object to live in
+this specific zone and all clients that have defined an interest in this zone
+with :meth:`.ClientRepository.setInterestZones()` will automatically “see” this
+object.
 
-Further details about Distributed Objects and their usage will be shown in a
-later section.
+Further details about distributed objects and their usage will be shown in
+later sections.
