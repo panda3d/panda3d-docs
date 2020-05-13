@@ -203,7 +203,7 @@ or set on a value, you can use it like this:
 .. code-block:: cpp
 
    dclass Foo{
-     setHam(int16(1-1000,2001-3000)
+     setHam(int16(1-1000,2001-3000))
    }
 
 This will only allow numbers from 1-1000 and 2001-3000. This can also be used in

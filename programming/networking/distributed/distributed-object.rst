@@ -72,3 +72,34 @@ on the AI and UD side.
 the b_foo (b\_ stands for both) method will update both, the local object as
 well as send the data to the server. This can usually easily be achived by
 simply calling both, the foo and d_foo method within the b_foo method.
+
+Special Methods
+---------------
+
+Aside of your own methods for sending and receiving messages between the
+client and server-side objects, there are some methods worth knowing which are
+implemented by the :class:`.DistributedObject` class. Those methods will usually
+be overwritten when creating a distributed object class and fitted to your own
+needs.
+
+:meth:`~.DistributedObject.announceGenerate`: This method will be called as soon as the object has
+been manifested. On the client side, you may want to use this for AI-created
+objects. For example:
+
+.. code-block:: python
+
+   def announceGenerate(self):
+
+       base.messenger.send(self.cr.uniqueName('myObject-generated'), [self.doId])
+
+       # call the base class method
+       DistributedObject.announceGenerate(self)
+
+:meth:`~.DistributedObject.disable`: This method will be called when the object gets disabled. This
+usually comes prior to a delete call.
+
+:meth:`~.DistributedObject.delete`: This method is called whenever a DO gets deleted. For example
+if the client who created it has left the zone or server. DOs should implement
+cleanup code here.
+
+:meth:`~.DistributedObject.generate`: This method is called at generation time of the DO.
