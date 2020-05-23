@@ -36,35 +36,45 @@ Example
 
 .. code-block:: python
 
-   import direct.directbase.DirectStart
-   from direct.gui.OnscreenText import OnscreenText
-   from direct.gui.DirectGui import *
-   from panda3d.core import *
+   from direct.showbase.ShowBase import ShowBase
+   from direct.gui.DirectGui import DirectOptionMenu, OnscreenText
+   from panda3d.core import TextNode
 
-   # Add some text
-   bk_text = "DirectOptionMenu Demo"
-   textObject = OnscreenText(text=bk_text, pos=(0.85, 0.85), scale=0.07,
-                             fg=(1, 0.5, 0.5, 1), align=TextNode.ACenter,
-                             mayChange=1)
 
-   # Add some text
-   output = ""
-   textObject = OnscreenText(text=output, pos=(0.95, -0.95), scale=0.07,
-                             fg=(1, 0.5, 0.5, 1), align=TextNode.ACenter,
-                             mayChange=1)
+   class MyApp(ShowBase):
 
-   # Callback function to set  text
-   def itemSel(arg):
-       output = "Item Selected is: " + arg
-       textObject.setText(output)
+       def __init__(self):
+           ShowBase.__init__(self)
 
-   # Create a frame
-   menu = DirectOptionMenu(text="options", scale=0.1, command=itemSel,
-                           items=["item1", "item2", "item3"], initialitem=2,
-                           highlightColor=(0.65, 0.65, 0.65, 1))
+           # Add some text
+           self.textObject = OnscreenText(
+               text="", pos=(0.95, -0.95),
+               scale=0.07, fg=(1, 0.5, 0.5, 1),
+               align=TextNode.ACenter, mayChange=1)
 
-   # Run the tutorial
-   base.run()
+           # Create a frame
+           menu = DirectOptionMenu(
+               text="options",
+               scale=0.1,
+               command=self.itemSel,
+               items=[
+                   "item1",
+                   "item2",
+                   "item3"],
+               initialitem=2,
+               highlightColor=(
+                   0.65,
+                   0.65,
+                   0.65,
+                   1))
+
+       # Callback function to set text
+       def itemSel(self, arg):
+           self.textObject.setText("Item Selected is: " + arg)
+
+
+   app = MyApp()
+   app.run()
 
 This is a simple demonstration of the DirectOptionMenu.
 
@@ -73,49 +83,50 @@ Dynamic Updating of a Menu
 
 .. code-block:: python
 
-   import direct.directbase.DirectStart
-   from direct.gui.OnscreenText import OnscreenText
-   from direct.gui.DirectGui import *
-   from panda3d.core import *
+   from direct.showbase.ShowBase import ShowBase
+   from direct.gui.DirectGui import DirectOptionMenu, OnscreenText
+   from panda3d.core import TextNode
 
-   # Add some text
-   bk_text = "DirectOptionMenu Demo"
-   textObject = OnscreenText(text=bk_text, pos=(0.85, 0.85), scale=0.07,
-                             fg=(1, 0.5, 0.5, 1), align=TextNode.ACenter,
-                             mayChange=1)
 
-   # Add some text
-   output = ""
-   textObject = OnscreenText(text=output, pos=(0.95, -0.95), scale=0.07,
-                             fg=(1, 0.5, 0.5, 1), align=TextNode.ACenter,
-                             mayChange=1)
+   class MyApp(ShowBase):
 
-   # Callback function to set text
-   def itemSel(arg):
-       if arg != "Add":
-           # No need to add an element
-           output = "Item Selected is: " + arg
-           textObject.setText(output)
-       else:
-           # Add an element
-           tmp_menu = menu['items']
-           new_item = "item" + str(len(tmp_menu))
-           tmp_menu.insert(-1, new_item) #add the element before add
-           menu['items'] = tmp_menu
-           # Set the status message
-           output = "Item Added is: " + new_item
-           textObject.setText(output)
+       def __init__(self):
+           ShowBase.__init__(self)
 
-   # Create a frame
-   menu = DirectOptionMenu(text="options", scale=0.1, initialitem=2,
-                           items=["item1", "item2", "item3", "Add"],
-                           highlightColor=(0.65, 0.65, 0.65, 1),
-                           command=itemSel, textMayChange=1)
+           # Add some text
+           self.textObject = OnscreenText(
+               text="", pos=(0.95, -0.95),
+               scale=0.07, fg=(1, 0.5, 0.5, 1),
+               align=TextNode.ACenter, mayChange=1)
 
-   # Procedurally select a item
-   menu.set(0)
+           # Create a frame
+           self.menu = DirectOptionMenu(
+               text="options", scale=0.1, initialitem=2,
+               items=["item1", "item2", "item3", "Add"],
+               highlightColor=(0.65, 0.65, 0.65, 1),
+               command=self.itemSel, textMayChange=1)
 
-   # Run the tutorial
-   base.run()
+           # Procedurally select a item
+           self.menu.set(0)
+
+       # Callback function to set text
+       def itemSel(self, arg):
+           if arg != "Add":
+               # No need to add an element
+               output = "Item Selected is: " + arg
+               self.textObject.setText(output)
+           else:
+               # Add an element
+               tmp_menu = self.menu['items']
+               new_item = "item" + str(len(tmp_menu))
+               tmp_menu.insert(-1, new_item)  # add the element before add
+               self.menu['items'] = tmp_menu
+               # Set the status message
+               output = "Item Added is: " + new_item
+               self.textObject.setText(output)
+
+
+   app = MyApp()
+   app.run()
 
 In this example we add an item to the menu whenever the Add item is selected.
