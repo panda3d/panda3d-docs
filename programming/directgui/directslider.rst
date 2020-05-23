@@ -32,15 +32,34 @@ Example
 
 .. code-block:: python
 
-   import direct.directbase.DirectStart
-   from direct.gui.DirectGui import *
+   from direct.showbase.ShowBase import ShowBase
+   from direct.gui.DirectGui import DirectSlider, OnscreenText
+   from panda3d.core import TextNode
 
-   def showValue():
-       print(slider['value'])
 
-   slider = DirectSlider(range=(0,100), value=50, pageSize=3, command=showValue)
+   class MyApp(ShowBase):
 
-   base.run()
+       def __init__(self):
+           ShowBase.__init__(self)
+
+           # Add some text
+           self.textObject = OnscreenText(
+               text="This is my Demo", pos=(0.95, -0.95),
+               scale=0.07, fg=(1, 0.5, 0.5, 1),
+               align=TextNode.ACenter, mayChange=1)
+
+           self.slider = DirectSlider(
+               range=(0, 100),
+               value=50,
+               pageSize=3,
+               command=self.showValue)
+
+       def showValue(self):
+           self.textObject.setText(str(self.slider['value']))
+
+
+   app = MyApp()
+   app.run()
 
 "range" sets values between 0 and 100 "value" sets initial value to 50
 "pageSize" sets the step between mouseclicks to 3 (approximately) "command"
