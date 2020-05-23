@@ -36,35 +36,46 @@ Example
 
 .. code-block:: python
 
-   import direct.directbase.DirectStart
-   from direct.gui.OnscreenText import OnscreenText
-   from direct.gui.DirectGui import *
-   from panda3d.core import *
+   from direct.showbase.ShowBase import ShowBase
+   from direct.gui.DirectGui import DirectRadioButton, OnscreenText
+   from panda3d.core import TextNode
 
-   v = [0]
-   # Add some text
-   bk_text = "This is my Demo"
-   textObject = OnscreenText(text=bk_text, pos=(0.95, -0.95), scale=0.07,
-                             fg=(1, 0.5, 0.5, 1), align=TextNode.ACenter,
-                             mayChange=1)
 
-   # Callback function to set  text
-   def setText(status=None):
-       bk_text = "CurrentValue : %s"%v
-       textObject.setText(bk_text)
+   class MyApp(ShowBase):
 
-   # Add button
-   buttons = [
-       DirectRadioButton(text='RadioButton0', variable=v, value=[0],
-                         scale=0.05, pos=(-0.4, 0, 0), command=setText),
-       DirectRadioButton(text='RadioButton1', variable=v, value=[1],
-                         scale=0.05, pos=(0, 0, 0), command=setText),
-       DirectRadioButton(text='RadioButton2', variable=v, value=[2],
-                         scale=0.05, pos=(0.4, 0, 0), command=setText)
-   ]
+       def __init__(self):
+           ShowBase.__init__(self)
 
-   for button in buttons:
-       button.setOthers(buttons)
+           self.v = [0]
 
-   # Run the tutorial
-   base.run()
+           # Add some text
+           self.textObject = OnscreenText(
+               text="This is my Demo", pos=(0.95, -0.95),
+               scale=0.07, fg=(1, 0.5, 0.5, 1),
+               align=TextNode.ACenter, mayChange=1)
+
+           # Add button
+           buttons = [
+               DirectRadioButton(
+                   text='RadioButton0', variable=self.v, value=[0],
+                   scale=0.1, pos=(-0.4, 0, 0.2),
+                   command=self.setText),
+               DirectRadioButton(
+                   text='RadioButton1', variable=self.v, value=[1],
+                   scale=0.1, pos=(0, 0, 0),
+                   command=self.setText),
+               DirectRadioButton(
+                   text='RadioButton2', variable=self.v, value=[2],
+                   scale=0.1, pos=(0.4, 0, -0.2),
+                   command=self.setText)]
+
+           for button in buttons:
+               button.setOthers(buttons)
+
+       # Callback function to set text
+       def setText(self, status=None):
+           self.textObject.setText("CurrentValue : %s" % self.v)
+
+
+   app = MyApp()
+   app.run()
