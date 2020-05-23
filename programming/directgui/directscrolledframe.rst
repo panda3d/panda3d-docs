@@ -47,10 +47,18 @@ scrolled frame on the middle of the screen:
 
 .. code-block:: python
 
-   from direct.gui.DirectGui import *
-   import direct.directbase.DirectStart
+   from direct.showbase.ShowBase import ShowBase
+   from direct.gui.DirectGui import DirectScrolledFrame
 
-   myframe = DirectScrolledFrame(canvasSize=(-2, 2, -2, 2), frameSize=(-.5, .5, -.5, .5))
-   myframe.setPos(0, 0, 0)
 
-   run()
+   class MyApp(ShowBase):
+
+       def __init__(self):
+           ShowBase.__init__(self)
+
+           myframe = DirectScrolledFrame(
+               canvasSize=(-2, 2, -2, 2), frameSize=(-.5, .5, -.5, .5))
+
+
+   app = MyApp()
+   app.run()
