@@ -99,29 +99,39 @@ Example
 
 .. code-block:: python
 
-   import direct.directbase.DirectStart
-   from direct.gui.OnscreenText import OnscreenText
-   from direct.gui.DirectGui import *
+from direct.showbase.ShowBase import ShowBase
+from direct.gui.DirectGui import DirectButton, OnscreenText
+from panda3d.core import TextNode
 
-   from panda3d.core import TextNode
 
-   # Add some text
-   bk_text = "This is my Demo"
-   textObject = OnscreenText(text=bk_text, pos=(0.95,-0.95), scale=0.07,
-                             fg=(1, 0.5, 0.5, 1), align=TextNode.ACenter,
-                             mayChange=1)
+class MyApp(ShowBase):
 
-   # Callback function to set  text
-   def setText():
-           bk_text = "Button Clicked"
-           textObject.setText(bk_text)
+    def __init__(self):
+        ShowBase.__init__(self)
 
-   # Add button
-   b = DirectButton(text=("OK", "click!", "rolling over", "disabled"),
-                    scale=.05, command=setText)
+        # Add some text
+        self.textObject = OnscreenText(
+            text="This is my Demo", pos=(0.95, -0.95),
+            scale=0.07, fg=(1, 0.5, 0.5, 1),
+            align=TextNode.ACenter, mayChange=1)
 
-   # Run the tutorial
-   base.run()
+        # Add button
+        b = DirectButton(
+            text=(
+                "OK",
+                "click!",
+                "rolling over",
+                "disabled"),
+            scale=0.1,
+            command=self.setText)
+
+    # Callback function to set text
+    def setText(self):
+        self.textObject.setText("Button Clicked")
+
+
+app = MyApp()
+app.run()
 
 Note that you will not be able to set the text unless the mayChange flag is 1.
 This is an optimization, which is easily missed by newcomers.
