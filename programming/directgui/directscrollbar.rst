@@ -49,10 +49,24 @@ DirectScrollBar
 
    .. code-block:: python
 
-      from direct.gui.DirectGui import DirectScrollBar
+      from direct.showbase.ShowBase import ShowBase
+      from direct.gui.DirectGui import DirectScrollBar, DGG
 
-      mybar = DirectScrollBar(range=(0, 100), value=50, pageSize=3, orientation= DGG.VERTICAL)
-      mybar.setPos(-1, 0, -0.5)
+
+      class MyApp(ShowBase):
+
+          def __init__(self):
+              ShowBase.__init__(self)
+
+              mybar = DirectScrollBar(
+                  range=(0, 100),
+                  value=50,
+                  pageSize=3,
+                  orientation=DGG.VERTICAL)
+
+
+      app = MyApp()
+      app.run()
 
    This will give you a scrollbar at the lower left side of the screen. If you
    want to parent the scrollbar to a determined frame, you add the keyword
@@ -60,5 +74,22 @@ DirectScrollBar
 
    .. code-block:: python
 
-      mybar = DirectScrollBar(parent=myframe, range=(0,100), value=50, pageSize=3, orientation= DGG.VERTICAL)
-      mybar.setPos(-1, 0, -0.5)
+      from direct.showbase.ShowBase import ShowBase
+      from direct.gui.DirectGui import DirectScrollBar, DGG
+
+
+      class MyApp(ShowBase):
+
+          def __init__(self):
+              ShowBase.__init__(self)
+
+              mybar = DirectScrollBar(
+                  parent=myframe,
+                  range=(0, 100),
+                  value=50,
+                  pageSize=3,
+                  orientation=DGG.VERTICAL)
+
+
+      app = MyApp()
+      app.run()
