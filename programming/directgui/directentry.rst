@@ -34,30 +34,41 @@ Example
 
 .. code-block:: python
 
-   import direct.directbase.DirectStart
-   from direct.gui.OnscreenText import OnscreenText
-   from direct.gui.DirectGui import *
-   from panda3d.core import *
+   from direct.showbase.ShowBase import ShowBase
+   from direct.gui.DirectGui import DirectEntry, OnscreenText
+   from panda3d.core import TextNode
 
-   #add some text
-   bk_text = "This is my Demo"
-   textObject = OnscreenText(text=bk_text, pos=(0.95, -0.95), scale=0.07,
-                             fg=(1, 0.5, 0.5, 1), align=TextNode.ACenter,
-                             mayChange=1)
 
-   #callback function to set  text
-   def setText(textEntered):
-       textObject.setText(textEntered)
+   class MyApp(ShowBase):
 
-   #clear the text
-   def clearText():
-       entry.enterText('')
+       def __init__(self):
+           ShowBase.__init__(self)
 
-   #add text entry
-   entry = DirectEntry(text = "", scale=.05, command=setText,
-   initialText="Type Something", numLines = 2, focus=1, focusInCommand=clearText)
+           # add some text
+           self.textObject = OnscreenText(
+               text="This is my Demo", pos=(0.95, -0.95),
+               scale=0.07, fg=(1, 0.5, 0.5, 1),
+               align=TextNode.ACenter, mayChange=1)
 
-   #run the tutorial
-   base.run()
+           # add text entry
+           self.entry = DirectEntry(
+               text="",
+               scale=.05,
+               command=self.setText,
+               initialText="Type Something",
+               focus=1,
+               focusInCommand=self.clearText)
+
+       # callback function to set  text
+       def setText(self, textEntered):
+           self.textObject.setText(textEntered)
+
+       # clear the text
+       def clearText(self):
+           self.entry.enterText('')
+
+
+   app = MyApp()
+   app.run()
 
 This example implements a text entry widget typically seen in web pages.
