@@ -67,11 +67,22 @@ DirectFrame
 
    .. code-block:: python
 
+      from direct.showbase.ShowBase import ShowBase
       from direct.gui.DirectGui import DirectFrame
 
-      myFrame = DirectFrame(frameColor=(0, 0, 0, 1),
-                            frameSize=(-1, 1, -1, 1))
-      myFrame.setPos(-0.5, 0, -0.5)
+
+      class MyApp(ShowBase):
+
+          def __init__(self):
+              ShowBase.__init__(self)
+
+              myFrame = DirectFrame(frameColor=(0, 0, 0, 1),
+                                    frameSize=(-1, 1, -1, 1))
+              myFrame.setPos(-0.5, 0, -0.5)
+
+
+      app = MyApp()
+      app.run()
 
    This will give us a black frame that is located at the lower left side of the
    screen.
