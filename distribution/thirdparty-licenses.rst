@@ -103,7 +103,7 @@ https://xiph.org/vorbis/
 
 Used to load .ogg files encoded with Vorbis encoding.
 
-License: `BSD <https://svn.xiph.org/trunk/vorbis/COPYING>`__
+License: `BSD <https://raw.githubusercontent.com/xiph/vorbis/master/COPYING>`__
 
 Freetype
 ~~~~~~~~
