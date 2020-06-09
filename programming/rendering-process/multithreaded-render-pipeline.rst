@@ -82,7 +82,7 @@ processing frame 1, it can start working on culling frame 2 (which App has also
 just finished with). Putting it all in graphical form, the frame time now looks
 like this:
 
-.. |full_pipeline.png| image:: full-pipeline.png
+.. image:: full-pipeline.png
 
 So, we see that we can now crank out frames up to three times faster than in the
 original, single-threaded case. Each frame now takes the same amount of time,
