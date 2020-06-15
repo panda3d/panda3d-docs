@@ -150,3 +150,13 @@ client to see objects created by the server and other clients which are placed
 in those specific zones. You can do this by calling the
 :meth:`.ClientRepository.setInterestZones()` method which you simply pass a
 number of zoneIds that this client should see.
+
+ShowBase Client Repository
+--------------------------
+
+After setting up your main client repository, you should add it to your ShowBase
+instance in a variable called cr. Just like in the following.
+
+.. code-block:: python
+
+   base.cr = MyMainClientRepository()
