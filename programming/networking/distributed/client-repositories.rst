@@ -155,7 +155,7 @@ ShowBase Client Repository
 --------------------------
 
 After setting up your main client repository, you should add it to your ShowBase
-instance in a variable called cr. Just like in the following.
+instance in a variable called ``cr``, as in the following example:
 
 .. code-block:: python
 

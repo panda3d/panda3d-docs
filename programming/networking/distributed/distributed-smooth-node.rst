@@ -11,7 +11,7 @@ the client.
 This DO can be used if the repository has been initialized with the direct.dc
 added to the dc files list.
 
-The make use of the smoothing functionality and automatically broadcasting of
+To make use of the smoothing functionality and automatic broadcasting of
 position and rotation changes to other players, a few functions have to be
 called.
 
@@ -20,16 +20,17 @@ called.
 The activateSmoothing method will tell the instance of the SmoothNode to
 enable or disable smoothing of the movement on other connected clients. They
 will see the player move rather seamlessly instead of a choppy placement every
-few frames dependent on how fast the network connection is. Though, even if they
-move smooth, they may lag behind by some amount. Therefor, the prediction flag
-can be set. If predictive smoothing is on, the nodes will be drawn as nearly as
-possible in their current position, by extrapolating from old position reports.
+few frames, dependent on how fast the network connection is. Though, even if
+they move smoothly, they may lag behind by some amount. Therefore, the
+prediction flag can be set. If predictive smoothing is on, the nodes will be
+drawn as nearly as possible in their current position, by extrapolating from old
+position reports.
 
 :meth:`.DistributedSmoothNode.startSmooth()`
 
 After activating the smoothing, it also has to be started. With this call the
 underlying task that will handle the logic is run. Note though, while the task
-is running, you won't be able to lerp the node or directly position it. As it
+is running, you won't be able to lerp the node or directly position it, as it
 would be overwritten by the update task.
 
 
