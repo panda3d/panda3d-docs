@@ -14,3 +14,18 @@ networked games.
 A very simple example of a server that would manage the basic state and AI
 server would instantiate the server repository and the AI repository parts as
 shown in the next sections.
+
+
+AI-Server ShowBase
+------------------
+
+A special global variable used on the AI server is called simbase. This variable
+won't be set automatically and has to be set somewhere at the beginning of your
+AI Server implementation. It has to be a ShowBase instance and also needs a
+variable named air to be set to an AI repository instance.
+
+.. code-block:: python
+
+   builtins.simbase = base
+   air = MyAIRepository()
+   simbase.air = air
