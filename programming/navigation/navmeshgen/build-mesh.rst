@@ -39,17 +39,25 @@ Create an object for the class NavMeshBuilder via:
 Step 4:
 
 Now, we shall build the navigation mesh for our model stored in NodePath 'scene'.
+
+.. code-block:: python
+
+   builder.fromNodePath(scene)
+
+Step 5:
+
+Finally, we build the navigation mesh using the build function. 
 The output mesh is stored as an object of class NavMesh.
 
 .. code-block:: python
 
-   navmesh = builder.fromNodePath(self.scene)
+   navmesh = builder.build()
 
-Step 5:
+Here, 'navmesh' is the object of class NavMesh and has the generated mesh.
 
 This is how easy it is to get a basic navigation mesh generated!
 
 Next Step:
 
 Now that you have a basic working program, you should proceed to the
-parameters page and gain more knowledge of the system from there.
+parameters page and see how navigation mesh varies with parameters.

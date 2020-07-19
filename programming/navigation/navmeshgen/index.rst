@@ -12,6 +12,4 @@ There exists a NavMeshBuilder Class which has the functions to generate navigati
    :maxdepth: 2
 
    build-mesh
-   visualize-mesh
    set-actor-parameters
-   store-BAM
