@@ -34,6 +34,11 @@
     <link rel="stylesheet" href="{{ pathto(cssfile, 1) }}" type="text/css" />
   {%- endfor %}
 
+  {%- if theme_display_header %}
+  <link rel="stylesheet" href="https://docs.panda3d.org/header.css" type="text/css" />
+  <link rel="stylesheet" id="google-fonts-css" href="https://fonts.googleapis.com/css?family=Roboto%3A400%2C400i%2C700&#038;ver=5.3.2" type="text/css" media="all" />
+  {%- endif %}
+
   {# FAVICON #}
   {% if favicon %}
     <link rel="shortcut icon" href="{{ pathto('_static/' + favicon, 1) }}"/>
@@ -99,6 +104,29 @@
 </head>
 
 <body class="wy-body-for-nav">
+  {%- if theme_display_header %}
+  <header id="header" class="site-header">
+    <div class="header-container">
+      <div class="site-branding">
+        <a href="{{ pathto(master_doc) }}" class="custom-logo-link" rel="home"><img src="https://www.panda3d.org/wp-content/uploads/2018/12/panda3d_logo_s_white.png" class="custom-logo" alt="Panda3D" width="680" height="146"></a>
+      </div>
+
+      <nav class="primary-navigation">
+        <div class="menu-primary-navigation-container">
+          <ul id="primary-menu" class="menu">
+            <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://www.panda3d.org/" aria-current="page">Home</a></li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.panda3d.org/features/">Features</a></li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.panda3d.org/blog/">Blog</a></li>
+            <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://discourse.panda3d.org/">Community</a></li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item current_page_item"><a href="{{ pathto(master_doc) }}">Manual</a></li>
+            <li class="cta cta--primary menu-item menu-item-type-post_type menu-item-object-download"><a title="Download Panda3D {{ release|e }}" href="https://www.panda3d.org/download/sdk-{{ release | replace('.', '-') | e }}/"><svg class="svg-inline--fa fa-cloud-download fa-w-20" aria-hidden="true" data-prefix="fas" data-icon="cloud-download" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M537.6 226.6c4.1-10.7 6.4-22.4 6.4-34.6 0-53-43-96-96-96-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32c-88.4 0-160 71.6-160 160 0 2.7.1 5.4.2 8.1C40.2 219.8 0 273.2 0 336c0 79.5 64.5 144 144 144h368c70.7 0 128-57.3 128-128 0-61.9-44-113.6-102.4-125.4zm-139.9 93L305 412.3c-9.4 9.4-24.6 9.4-33.9 0l-92.7-92.7c-9.4-9.4-9.4-24.6 0-33.9l10.8-10.8c9.6-9.6 25.2-9.3 34.5.5l32.4 34.5V184c0-13.3 10.7-24 24-24h16c13.3 0 24 10.7 24 24v125.9l32.4-34.5c9.3-9.9 24.9-10.1 34.5-.5l10.8 10.8c9.2 9.3 9.2 24.5-.1 33.9z"></path></svg><!-- <i class="fas fa-cloud-download"></i> --> Get the SDK</a></li>
+          </ul>
+        </div>
+        <button id="off-canvas-toggle" data-toggle="wy-nav-top"><svg title="Menu" class="svg-inline--fa fa-bars fa-w-14" aria-labelledby="svg-inline--fa-title-R0leb2NvU11b" data-prefix="fas" data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><title id="svg-inline--fa-title-R0leb2NvU11b">Menu</title><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg><!-- <i title="Menu" class="fas fa-bars"></i> --></button>
+      </nav>
+    </div>
+  </header>
+  {%- endif %}
 
   {% block extrabody %} {% endblock %}
   <div class="wy-grid-for-nav">
@@ -167,13 +195,14 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       {# MOBILE NAV, TRIGGLES SIDE NAV ON TOGGLE #}
+      {%- if not theme_display_header %}
       <nav class="wy-nav-top" aria-label="top navigation">
         {% block mobile_nav %}
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="{{ pathto(master_doc) }}">{{ project }}</a>
         {% endblock %}
       </nav>
-
+      {%- endif %}
 
       <div class="wy-nav-content">
       {%- block content %}

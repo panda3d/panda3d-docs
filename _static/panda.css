@@ -2,6 +2,20 @@ body, .wy-body-for-nav {
     background: url("https://www.panda3d.org/wp-content/themes/panda3d/assets/img/elements/background.jpg") #f9f9f9;
 }
 
+.wy-grid-for-nav {
+    position: inherit !important;
+    max-width: 1100px;
+    margin: 0 auto;
+    -webkit-box-shadow: 3px 3px 15px rgba(0,0,0,0.15);
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.15);
+}
+
+@media screen and (min-width: 767px) {
+    .wy-nav-side {
+        left: inherit;
+    }
+}
+
 /* top bar that appears in mobile version */
 .wy-nav-top {
     background: #404040;
@@ -30,8 +44,6 @@ body, .wy-body-for-nav {
 .wy-nav-content {
     background: #fff;
     border-radius: 4px;
-    -webkit-box-shadow: 3px 3px 15px rgba(0,0,0,0.15);
-    box-shadow: 3px 3px 15px rgba(0,0,0,0.15);
     padding-left: 2rem;
     padding-right: 2rem;
     padding-bottom: 2rem;
