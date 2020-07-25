@@ -109,7 +109,7 @@ For example, taking the dc representation of an Avatar class as defined here…
            self.name = name
 
        def d_setName(self, name):
-           self.sendUpdate(“setName”, [name])
+           self.sendUpdate("setName", [name])
 
        def b_setName(self, name):
            self.setName(name)
