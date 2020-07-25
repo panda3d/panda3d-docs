@@ -7,8 +7,9 @@ The global clock is an instance of the :class:`~panda3d.core.ClockObject` class.
 
 .. only:: python
 
-   It gets imported into the global namespace when you load the
-   DirectStart/Showbase modules.
+   It gets imported into the global namespace when you import the
+   :py:mod:`direct.directbase.DirectStart` module or create an instance of the
+   :py:class:`~direct.showbase.ShowBase.ShowBase` class.
 
 .. only:: cpp
 
