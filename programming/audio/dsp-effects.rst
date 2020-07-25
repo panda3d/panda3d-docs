@@ -71,8 +71,10 @@ Below is a sample program for adding a reverb effect:
    from panda3d.core import loadPrcFileData
    loadPrcFileData("", "audio-library-name p3fmod_audio")
 
-   import direct.directbase.DirectStart
+   from direct.showbase.ShowBase import ShowBase
    from panda3d.core import FilterProperties
+
+   base = ShowBase()
 
    mySound = loader.loadSfx("models/audio/sfx/GUI_rollover.wav")
    mySound.setLoop(True)
