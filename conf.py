@@ -67,9 +67,8 @@ copyright = u'2019 Carnegie Mellon University'
 # The short X.Y version.
 version = '1.10'
 
-# This is supposed to be the full version, but it doesn't appear to be used
-# anywhere important, and I'm not keen on having to update this continuously.
-release = version
+# The full X.Y.Z version.
+release = '1.10.6'
 
 # Whether to generate Python or C++ documentation.  TODO:
 tags.add('python')
