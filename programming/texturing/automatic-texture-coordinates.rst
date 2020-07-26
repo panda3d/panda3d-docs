@@ -63,15 +63,6 @@ TexGenAttrib.MPointSprite
    directly; let the :ref:`SpriteParticleRenderer <particle-renderers>` do it
    for you.
 
-TexGenAttrib.MLightVector
-   Generates special (u, v, w) texture coordinates that represent the vector
-   from each vertex to a particular Light in the scene graph, in each vertex’s
-   tangent space. This mode requires that each vertex have a *tangent* and a
-   *binormal* computed for it ahead of time; you also must specify the NodePath
-   that represents the direction of the light. Normally, you wouldn’t set this
-   mode directly either; use NodePath.setNormalMap(), or implement normal maps
-   using programmable shaders. This is now deprecated and may be removed soon.
-
 Note that several of the above options generate 3-D texture coordinates: (u, v,
 w) instead of just (u, v). The third coordinate may be important if you have a
 3-D texture or a cube map (described later), but if you just have an ordinary
