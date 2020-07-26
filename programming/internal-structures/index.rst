@@ -18,3 +18,4 @@ useful.
    geometry-storage/index
    procedural-generation/index
    other-manipulation/index
+   matrix-representation

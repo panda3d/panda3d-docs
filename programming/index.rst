@@ -48,7 +48,6 @@ manual by studying the :ref:`Reference Section <reference>`.
    collision-detection/index
    garbage-collection/index
    hardware-support/index
-   math-engine/index
    physics/index
    motion-paths
    networking/index
