@@ -51,7 +51,6 @@ manual by studying the :ref:`Reference Section <reference>`.
    math-engine/index
    physics/index
    motion-paths
-   timing/index
    networking/index
    multifiles/index
    showbase

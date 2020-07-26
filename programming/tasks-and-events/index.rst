@@ -17,3 +17,4 @@ rendering steps.
    task-chains
    event-handlers
    main-loop
+   global-clock
