@@ -79,6 +79,14 @@ body, .wy-body-for-nav {
     border-color: #624bcc;
 }
 
+.wy-menu-vertical li span.toctree-expand {
+    margin-left: -1.4em;
+}
+
+.wy-menu-vertical a {
+    padding: .4045em 1.918em;
+}
+
 /* make sidebar link click state match the background color */
 .wy-menu-vertical a:active {
     background-color: #735cdd;
