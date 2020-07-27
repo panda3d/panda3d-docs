@@ -1,7 +1,7 @@
-.. _file-reading:
+.. _virtual-file-system:
 
-File Reading
-============
+The Virtual File System
+=======================
 
 General file reading in Panda is handled by the Virtual File System.
 
@@ -14,21 +14,15 @@ This has the advantage of allowing one to access files and directories without
 worrying overmuch about where they actually reside, and even access Multifile
 archives as a directory hierarchy.
 
-NB: While present in C++, on the Python side Panda does not offer file writing
-functionality, with the exception of writing to certain specialized file
-types. For general file writing, however, Python itself offers file-handling
-functionality, including potentially-useful features such as reading to the
-end of the line in a single call.
-
 .. only:: python
 
-   Thread-safe file I/O
-   --------------------
+   Python Interface
+   ----------------
 
-   Panda3D offers a :ref:`thread <threading>`-safe replacement for the Python
-   file module.  You can find it in :py:mod:`direct.stdpy.file`.
-   The interface is exactly the same as Python's, so it's safe to put this import
-   above all the files where you want to use the "file" or "open" functions:
+   Panda3D offers a replacement for the Python file module that supports the
+   virtual file system.  You can find it in :py:mod:`direct.stdpy.file`.
+   The interface is exactly the same as Python's, so it's safe to put this
+   import above all the files where you want to use the `open` function:
 
    .. code-block:: python
 
@@ -38,6 +32,10 @@ end of the line in a single call.
    This enables Python to interface more easily with Panda's virtual file
    system, and it also better-supports Panda's SIMPLE_THREADS model, by avoiding
    blocking all threads while waiting for I/O to complete.
+
+   Besides the `open()` call, this module also contains replacements for various
+   other functions provided by the Python `os` and `os.path` modules.  See the
+   :py:mod:`API reference page <direct.stdpy.file>` for a full listing.
 
 
 .. note:: This section is incomplete.

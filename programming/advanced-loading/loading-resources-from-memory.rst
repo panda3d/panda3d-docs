@@ -1,7 +1,7 @@
-.. _loading-resources-from-nonstandard-sources:
+.. _loading-resources-from-memory:
 
-Loading resources from nonstandard sources
-==========================================
+Loading Resources from Memory
+=============================
 
 If you have want to load a resource from a different spot then a hard drive or
 inside a multifile, say for instance database or network packet you can using
@@ -12,7 +12,7 @@ to feed that data into the image.
 
 .. code-block:: python
 
-   data = open('my-image-file.png').read()
+   data = open('my-image-file.png', 'rb').read()
    # send data over network or any other place and pass it on
    p = PNMImage()
    p.read(StringStream(data))
@@ -26,7 +26,7 @@ textures, sounds and other data.
 
 .. code-block:: python
 
-   data = open('my-multifile.mf').read()
+   data = open('my-multifile.mf', 'rb').read()
    stream = StringStream(data)
    mf = Multifile()
    mf.openRead(stream)

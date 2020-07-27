@@ -1,11 +1,13 @@
-.. _creating-multifiles:
+.. _multifiles:
 
-Creating Multifiles
-===================
+Multifiles
+==========
 
-Multifiles archives are archive files that store game resources. Think of it as
-a giant zip file that stores, optionally zips and encrypts your data files, but
-does not need to be extracted.
+A *multifile* is a file that contains a set of files, similar to a .zip or .rar
+archive file.  They are meant for containing multiple resources such as models,
+textures, sounds, shaders, and so on, and Panda can load them directly from the
+multifiles without having to unpack them first. Many games employ a similar
+concept of "data" file such as .upk for Unreal Engine and .pak for Quake Engine.
 
 The multify program
 -------------------
@@ -122,9 +124,9 @@ in the right place within the multifile.
 Multifile objects
 -----------------
 
-The Multifile class is designed for opening, reading and writing multifiles. You
-can open a new multifile by creating an instance of the class and calling the
-``openRead`` method:
+The :class:`~panda3d.core.Multifile` class is designed for opening, reading and
+writing multifiles. You can open a new multifile by creating an instance of the
+class and calling the ``openRead`` method:
 
 .. code-block:: python
 

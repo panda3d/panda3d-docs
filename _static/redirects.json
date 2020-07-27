@@ -2,5 +2,10 @@
     "programming/timing/global-clock": "programming/tasks-and-events/global-clock",
     "programming/timing/index": "programming/tasks-and-events/global-clock",
     "programming/math-engine/matrix-representation": "programming/internal-structures/matrix-representation",
-    "programming/math-engine/index": "programming/internal-structures/matrix-representation"
+    "programming/math-engine/index": "programming/internal-structures/matrix-representation",
+    "programming/multifiles/index": "programming/advanced-loading/multifiles",
+    "programming/multifiles/creating-multifiles": "programming/advanced-loading/multifiles",
+    "programming/multifiles/loading-resources-from-nonstandard-sources": "programming/advanced-loading/loading-resources-from-memory",
+    "programming/multifiles/patching": "programming/advanced-loading/patching",
+    "programming/file-reading": "programming/advanced-loading/virtual-file-system"
 }

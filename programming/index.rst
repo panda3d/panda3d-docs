@@ -51,9 +51,8 @@ manual by studying the :ref:`Reference Section <reference>`.
    physics/index
    motion-paths
    networking/index
-   multifiles/index
+   advanced-loading/index
    showbase
-   file-reading
    threading
    subclassing
    pandai/index
