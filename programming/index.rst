@@ -51,7 +51,6 @@ manual by studying the :ref:`Reference Section <reference>`.
    motion-paths
    networking/index
    advanced-loading/index
-   showbase
    threading
    subclassing
    pandai/index
