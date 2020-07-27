@@ -7,5 +7,6 @@
     "programming/multifiles/creating-multifiles": "programming/advanced-loading/multifiles",
     "programming/multifiles/loading-resources-from-nonstandard-sources": "programming/advanced-loading/loading-resources-from-memory",
     "programming/multifiles/patching": "programming/advanced-loading/patching",
-    "programming/file-reading": "programming/advanced-loading/virtual-file-system"
+    "programming/file-reading": "programming/advanced-loading/virtual-file-system",
+    "programming/utility-functions": "debugging/inspection-utilities"
 }

@@ -43,7 +43,6 @@ manual by studying the :ref:`Reference Section <reference>`.
    internal-structures/index
    render-to-texture/index
    rendering-process/index
-   utility-functions
    particle-effects/index
    collision-detection/index
    garbage-collection/index

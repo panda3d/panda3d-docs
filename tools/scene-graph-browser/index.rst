@@ -13,18 +13,17 @@ tabs will bring up a dialog box with the various properties for these aspects.
 On the left side of the panel is a collapsible scene graph for the render parent
 node. Right click any of the objects to bring up a list of possible commands.
 
-|directtools3.jpg|
+.. image:: directtools3.jpg
 
 Of particular interest is the placer panel, selected by the place command for
 an object. This brings up a separate window that may alter the position,
 orientation, and scale for the selected object. A dialog box at the top of the
 window allows these movements to be relative to another object in the program.
 
-|directtools4.jpg|
+.. image:: directtools4.jpg
 
-.. |directtools3.jpg| image:: directtools3.jpg
-.. |directtools4.jpg| image:: directtools4.jpg
-
+Many of these panels can also be launched by calling specific
+:ref:`utility functions <inspection-utilities>`.
 
 .. toctree::
    :maxdepth: 2
