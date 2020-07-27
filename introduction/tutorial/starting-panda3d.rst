@@ -8,8 +8,8 @@ Starting Panda3D
    Creating a New Panda3D Application
    ----------------------------------
 
-   :ref:`showbase`
-   ~~~~~~~~~~~~~~~
+   ShowBase
+   ~~~~~~~~
 
    To start Panda3D, create a text file and save it with the .py extension.
    PYPE, SPE and IDLE are Python-specific text-editors, but any text editor will
@@ -29,13 +29,15 @@ Starting Panda3D
       app = MyApp()
       app.run()
 
-   Here we made our main class inherit from ``ShowBase``. The ShowBase class
-   loads most of the other Panda3D modules, and causes the 3D window to appear.
-   The ``run()`` procedure in ShowBase contains the Panda3D main loop. It
-   renders a frame, handles the background tasks, and then repeats. It does not
-   normally return, so it needs to be called only once and must be the last line
-   in your script. In this particular example, there will be nothing to render,
-   so you should expect a window containing an empty grey area.
+   Here we made our main class inherit from
+   :py:class:`~direct.showbase.ShowBase.ShowBase`. This class loads most of the
+   other Panda3D modules, and causes the 3D window to appear.
+   The :py:meth:`~direct.showbase.ShowBase.ShowBase.run()` method contains the
+   Panda3D main loop. It renders a frame, handles the background tasks, and then
+   repeats. It does not normally return, so it needs to be called only once and
+   must be the last line in your script.
+   In this particular example, there will be nothing to render, so you should
+   expect a window containing an empty grey area.
 
    Running the Program
    -------------------
