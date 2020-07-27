@@ -19,7 +19,8 @@ A typical form of a Panda program might look like:
    w = World()
    base.run() # main loop
 
-``run()`` is a function that never returns. It is the main loop.
+:py:meth:`~direct.showbase.ShowBase.ShowBase.run()` is a function that never
+returns. It is the main loop.
 
 For an alternative, ``run()`` could not be called at all. Panda doesn't really
 need to own the main loop.  Instead, ``taskMgr.step()`` can be called

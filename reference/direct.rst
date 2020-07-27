@@ -14,3 +14,8 @@ in the :py:mod:`panda3d.direct` module.
    .. autopackagesummary:: direct
       :toctree: .
       :template: autosummary/direct-package.rst
+
+.. toctree::
+   :hidden:
+
+   builtins

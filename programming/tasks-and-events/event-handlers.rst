@@ -9,17 +9,18 @@ Event Handlers
 
 Events occur either when the user does something (such as clicking a
 :ref:`mouse <mouse-support>` or pressing a :ref:`key <keyboard-support>`) or
-when sent by the script using ``messenger.send()``. When an event occurs,
-Panda's "messenger" will check to see if you have written an "event handler"
-routine. If so, your event handler will be called. The messenger system is
-object-oriented, to create an event handler, you have to first create a class
-that inherits from DirectObject. Your event handler will be a method of your
-class.
+when sent by the script using
+:py:func:`messenger.send() <direct.showbase.Messenger.Messenger.send>`.
+When an event occurs, Panda's "messenger" will check to see if you have written
+an "event handler" routine. If so, your event handler will be called. The
+messenger system is object-oriented, to create an event handler, you have to
+first create a class that inherits from DirectObject. Your event handler will be
+a method of your class.
 
 Defining a class that can Handle Events
 ---------------------------------------
 
-The first step is to import class DirectObject:
+The first step is to import the :py:mod:`~direct.showbase.DirectObject` module:
 
 .. code-block:: python
 
