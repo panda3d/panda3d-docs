@@ -23,5 +23,5 @@ jobs:
       run: |
         echo "${{ secrets.SSH_IDENTITY }}" > id_rsa
         chmod 600 id_rsa
-        rsync -vzr -e 'ssh -l ${{ secrets.SSH_USER }} -p ${{ secrets.SSH_PORT }} -i id_rsa -o StrictHostKeyChecking=no' _html/ "panda3d.org:$(basename ${{ github.ref }})/"
+        rsync -vzr --delete-after -e 'ssh -l ${{ secrets.SSH_USER }} -p ${{ secrets.SSH_PORT }} -i id_rsa -o StrictHostKeyChecking=no' _html/ "panda3d.org:$(basename ${{ github.ref }})/"
         rm -f id_rsa
