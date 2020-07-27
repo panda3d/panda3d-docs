@@ -166,13 +166,23 @@ Built-in Global Variables
 
       :type: ~panda3d.core.Ostream
 
+   .. _the-global-clock:
+
    .. py:data:: globalClock
 
       The clock object used by default for timing information, a short-hand for
       :py:meth:`ClockObject.getGlobalClock() <panda3d.core.ClockObject.getGlobalClock>`.
 
-      The most common use is to obtain the frame delta of the current frame in
-      movement code, using `globalClock.dt`.
+      The most common use is to obtain the time elapsed since the last frame
+      (for calculations in movement code), using :py:obj:`globalClock.dt
+      <panda3d.core.ClockObject.dt>`.  The value is given in seconds.
+
+      Another useful function is to get the frame time (in seconds, since the
+      program started):
+
+      .. code-block:: python
+
+         frameTime = globalClock.getFrameTime()
 
       :type: ~panda3d.core.ClockObject
 

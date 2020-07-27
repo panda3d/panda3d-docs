@@ -1,6 +1,7 @@
 {
-    "programming/timing/global-clock": "programming/tasks-and-events/global-clock",
-    "programming/timing/index": "programming/tasks-and-events/global-clock",
+    "programming/timing/global-clock": "reference/builtins#the-global-clock",
+    "programming/timing/index": "reference/builtins#the-global-clock",
+    "programming/tasks-and-events/global-clock": "reference/builtins#the-global-clock",
     "programming/math-engine/matrix-representation": "programming/internal-structures/matrix-representation",
     "programming/math-engine/index": "programming/internal-structures/matrix-representation",
     "programming/multifiles/index": "programming/advanced-loading/multifiles",
