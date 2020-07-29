@@ -5,7 +5,7 @@ Building Navigation Mesh
 
 Implementation:
 
-Following are the steps to get the build a basic navigation mesh. 
+Following are the steps to build a basic navigation mesh. 
 
 Step 1:
 

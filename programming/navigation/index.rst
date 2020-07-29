@@ -14,5 +14,8 @@ Navigation is an AI library for Panda3D which operates on an input navigation me
    :maxdepth: 2
 
    getting-started
-   navmeshgen/index
-   navigation/index
+   build-mesh
+   set-actor-parameters
+   visualize-mesh
+   path-query
+   bam-serialization

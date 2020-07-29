@@ -11,4 +11,4 @@ The generated mesh is stored as an object of class NavMesh, which can be accesse
 
 The navmeshgen library has the class NavMeshBuilder, the main operation of which is to build the navigation mesh.
 The navigation library has the class NavMesh, which stores the mesh build by NavMeshBuilder or some other library.
-It has also has class NavMeshQuery, which is responsible for handling the query operations like pathfinding over the mesh.
+It has also has class NavMeshQuery, which is responsible for handling the query operations like pathfinding over the mesh. 
