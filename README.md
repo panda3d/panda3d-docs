@@ -79,5 +79,10 @@ guidelines:
   the class prefix, or ``:meth:`~.NodePath.reparentTo()` `` if you just want to
   show the name of the method, like `reparentTo()`.  You can use custom text as
   well, like ``:meth:`myNodePath.reparentTo(render) <.NodePath.reparentTo>` ``.
+* When removing a page, please edit the `_static/redirects.json` file to create
+  a redirect to a page that contains similar content.  There is nothing more
+  frustrating to a user than having existing bookmarks, links from other sites,
+  and links from Google turn up 404 pages.  The redirect file is processed by a
+  custom 404 handler on the server, so redirects of existing pages do not work.
 * See the [Python guide](https://devguide.python.org/documenting/#style-guide)
   for more information.
