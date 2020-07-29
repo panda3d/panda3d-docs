@@ -1,4 +1,5 @@
 {
+    "more-resources/samples/texture-swapping": "more-resources/samples/index",
     "programming/timing/global-clock": "reference/builtins#the-global-clock",
     "programming/timing/index": "reference/builtins#the-global-clock",
     "programming/tasks-and-events/global-clock": "reference/builtins#the-global-clock",
