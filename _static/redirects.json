@@ -4,6 +4,7 @@
     "programming/advanced-loading/loading-resources-from-memory": "programming/multifiles/loading-resources-from-nonstandard-sources",
     "programming/advanced-loading/patching": "programming/multifiles/patching",
     "programming/advanced-loading/virtual-file-system": "programming/file-reading",
+    "programming/distributed/index": "programming/distributed",
 
     "programming/utility-functions": "debugging/inspection-utilities"
 }
