@@ -12,17 +12,17 @@ download key files into a particular directory on your hard disk. This
 directory's location depends on the operating system (and, to a certain
 extent, the browser) in use.
 
-On Windows, the Panda3D directory is %LocalAppData%\Panda3D. This usually
+On Windows, the Panda3D directory is %LocalAppData%\\Panda3D. This usually
 translates to:
 
--  C:\Documents and Settings\<your name>\Local Settings\Application
-   Data\Panda3D on Windows XP, or
--  C:\Users\<your name>\AppData\Local\Panda3D on Windows Vista or Windows 7.
+-  C:\\Documents and Settings\\<your name>\\Local Settings\\Application
+   Data\\Panda3D on Windows XP, or
+-  C:\\Users\\<your name>\\AppData\\Local\\Panda3D on newer versions.
 
 However, when you are running via IE on Windows Vista or Windows 7, the
 operating system remaps %LocalAppData% to a new location, which is:
 
--  C:\Users\<your name>\AppData\LocalLow\Panda3D
+-  C:\\Users\\<your name>\\AppData\\LocalLow\\Panda3D
 
 On Mac OSX, the Panda3D directory is ~/Library/Caches/Panda3D, which is:
 
