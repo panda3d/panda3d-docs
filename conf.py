@@ -487,11 +487,17 @@ def convert_doxygen_format(line, name):
     # But double backticks are literal backticks
     line = line.replace('````', '\\`')
 
+    parent = name.rsplit('.', 1)[-1]
+
     # Search for method and class references.  We pick them up either when they
-    # have a scoping operator, or when they end with (), or we would match all
-    # the words in the text!
+    # have a scoping operator, or when they end with (), or when they clearly
+    # look like a class/method, or we would match all the words in the text!
     origline = line
-    for m in re.finditer(r'\b([a-zA-Z_][a-zA-Z0-9_.:]*)\(\)|\b([a-zA-Z_][a-zA-Z0-9_]*::[a-zA-Z_][a-zA-Z0-9_.:]*)\b', origline):
+    for m in re.finditer(r'\b([a-zA-Z_][a-zA-Z0-9_.:]*)\(\)|\b([a-zA-Z_][a-zA-Z0-9_]*::[a-zA-Z_][a-zA-Z0-9_.:]*)\b|\b([a-zA-Z_]+[A-Z0-9_][a-zA-Z0-9_.:]*)\b', origline):
+        # Don't replace the class name on the page of the class itself.
+        if m.group(0) == parent:
+            continue
+
         result = resolve_reference(m.group(0).rstrip('()'), name)
         if not result:
             continue
