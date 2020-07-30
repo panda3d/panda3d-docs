@@ -454,6 +454,13 @@ def resolve_reference(ref, rel):
 
     for i in range(len(relpath), -1, -1):
         search = relpath[:i] + refpath
+
+        if len(refpath) == 1 and i > 0 and refpath[0] == relpath[i - 1]:
+            # If we are looking for a name equal to the parent scope, we are
+            # probably referencing a class name from within that very class.
+            # We don't want to find the constructor, so skip this.
+            continue
+
         ifunc = idb.lookup_function(modname, search)
         if ifunc:
             # Grab the mangled function name.
