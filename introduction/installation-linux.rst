@@ -85,8 +85,8 @@ you will have to edit the build scripts.
 
 This error means it couldn't find the Python modules -- please make sure you are
 running the correct version of Python (probably Python 3.7, that depends on the
-Panda3D version) and that the panda3d.pth is located inside the Python site-
-packages directory.
+Panda3D version) and that the panda3d.pth is located inside the Python
+site-packages directory.
 
 **What to do if you see the Error Message:**
 
