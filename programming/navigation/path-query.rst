@@ -152,3 +152,80 @@ by replacing the definition of 'path' before visualization using LineSegs:
 After running the program, you should see this:
 
 .. image:: path2.png
+
+
+.. only:: python
+
+   A sample program with all the functions explained in this section can be found below.
+
+   .. code-block:: python
+
+      from direct.showbase.ShowBase import ShowBase
+      from panda3d import navigation
+      from panda3d import navmeshgen
+      from panda3d.core import PointLight,DirectionalLight
+      from panda3d.core import LPoint3
+      from panda3d.core import LineSegs
+      from panda3d.core import NodePath
+
+      class MyApp(ShowBase):
+
+         def __init__(self):
+         ShowBase.__init__(self)
+
+         # Setting up light for better view.
+         plight = PointLight('plight')
+         plight.setColor((0.9, 0.9, 0.9, 0.5))
+         plnp = render.attachNewNode(plight)
+         plnp.setPos(10, 20, 0)
+         render.setLight(plnp)
+         dlight = DirectionalLight('dlight')
+         dlight.setColor((0.8, 0.5, 0.5, 1))
+         dlnp = render.attachNewNode(dlight)
+         dlnp.setHpr(0, -60, 0)
+         render.setLight(dlnp)
+
+         # Loading the model
+         self.scene = self.loader.loadModel("untitled.obj")
+         self.scene.reparentTo(self.render)
+         self.scene.setP(90)
+
+         self.scene.setScale(0.25, 0.25, 0.25)
+         self.scene.flatten_light()
+         self.scene.setPos(-8, 42, 0)
+
+         #NavMeshBuilder is a class that is responsible for building the polygon meshes and navigation meshes.
+         self.builder = navmeshgen.NavMeshBuilder()
+         # Take Nodepath as input. Nodepath should contain the required geometry.
+         self.builder.fromNodePath(self.scene)
+
+         self.builder.setActorRadius(1)
+         self.builder.set_actor_height(10)
+         #self.builder.set_partition_type(2)
+         self.navmesh = self.builder.build()
+
+         # Code to attach the polymesh generated to the scene graph
+         self.node1 = self.navmesh.drawNavMeshGeom()
+         self.node = self.scene.attachNewNode(self.node1)
+         self.node.setColor(0,0,1)
+         self.node.setPos(0,0,0.5)
+
+         self.navmeshnode = navigation.NavMeshNode("firstnavmeshnode",self.navmesh)
+         self.navmeshnodepath = self.scene.attachNewNode(self.navmeshnode)
+
+         self.query = navigation.NavMeshQuery(self.navmesh)
+         pos1 = LPoint3(0, 0, 0);
+         pos2 = LPoint3(-50, -60, 3);
+         self.path = self.query.find_straight_path(pos1, pos2)
+
+         self.pathLine = LineSegs()
+         self.pathLine.set_color(0, 1, 0)
+         self.pathLine.set_thickness(5)
+         for i in range(len(self.path)):
+            self.pathLine.draw_to(self.path[i])
+         self.lineNode = self.pathLine.create()
+         self.lineNodePath = self.scene.attach_new_node(self.lineNode)
+         self.lineNodePath.setPos(0,0,1)
+
+      app = MyApp()
+      app.run()
