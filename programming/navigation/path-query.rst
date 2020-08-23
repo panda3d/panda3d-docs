@@ -41,7 +41,7 @@ Now, you should define the two points between which path has to be found.
 
       from panda3d.core import LPoint3
       pos1 = LPoint3(0, 0, 0);
-      pos2 = LPoint3(50, 60, 3);
+      pos2 = LPoint3(-50, -60, 3);
 
 .. only:: cpp
 
@@ -49,7 +49,7 @@ Now, you should define the two points between which path has to be found.
 
       #include "lpoint3.h"
       LPoint3 pos1 = new Lpoint3(0,0,0);
-      LPoint3 pos2 = new Lpoint3(50,60,3);
+      LPoint3 pos2 = new Lpoint3(-50,-60,3);
 
 
 To find the path between the two positions, you can simple use the following:

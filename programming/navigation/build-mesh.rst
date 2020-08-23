@@ -32,13 +32,13 @@ Step 1:
 
 Step 2:
 
-Create a geom primitive or load an external model. Here we load the model called 'street.obj'
+Create a geom primitive or load an external model. Here we load the model called 'village.obj'
 
 .. only:: python
 
    .. code-block:: python
 
-      scene = loader.load_model("samples/street-navigation/models/street.obj")
+      scene = loader.load_model("samples/navigation/models/village.obj")
 
 .. only:: cpp
 
@@ -48,7 +48,7 @@ Create a geom primitive or load an external model. Here we load the model called
       framework.open_framework(argc, argv);
       framework.set_window_title("My Panda3D Window");
       WindowFramework *window = framework.open_window();
-      NodePath scene = window->load_model(framework.get_models(), "models/environment");
+      NodePath scene = window->load_model(framework.get_models(), "samples/navigation/models/village.obj");
 
 Now the model is loaded in the NodePath 'scene'
 

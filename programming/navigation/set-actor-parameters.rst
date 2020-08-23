@@ -93,19 +93,20 @@ You can also get the parameters value as:
       float climb = builder.get_actor_climb();
 
 Apart from setting actor's parameters, we can also decide on the partition type for navigation mesh.
-The default partition type is 'watershed' but can be set to 'monotone' or 'layer' as:
+The default partition type is 'watershed' but can be set to 'monotone' or 'layer'.
+The input arguments are of 'enum' type, so can be accessed by integers as well, 0 for watershed, 1 for monotone and 2 for layer.
 
 .. only:: python
 
    .. code-block:: python
 
-      builder.set_partition_type('monotone')
+      builder.set_partition_type(1)
 
 .. only:: cpp
 
    .. code-block:: cpp
 
-      builder.set_partition_type('monotone');
+      builder.set_partition_type(1);
 
 Reset Parameters:
 

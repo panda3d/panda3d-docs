@@ -55,7 +55,7 @@ directional and point light is used.
       from panda3d.core import PointLight,DirectionalLight
 
       plight = PointLight('plight')
-      plight.set_color((20, 0.9, 0.9, 1))
+      plight.set_color((0.9, 0.9, 0.9, 0.5))
       plnp = render.attach_new_node(plight)
       plnp.set_pos(10, 20, 0)
       render.set_light(plnp)
@@ -74,7 +74,7 @@ directional and point light is used.
       #include "directionalLight.h"
 
       PointLight plight = new PointLight('plight');
-      plight.setColor((20, 0.9, 0.9, 1));
+      plight.setColor((0.9, 0.9, 0.9, 0.5));
       NodePath plnp = render.attach_new_node(plight);
       plnp.set_pos(10, 20, 0);
       render.set_light(plnp);
