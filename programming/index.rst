@@ -23,6 +23,7 @@ manual by studying the :ref:`Reference Section <reference>`.
 
 
 .. toctree::
+   :titlesonly:
    :maxdepth: 2
 
    scene-graph/index
