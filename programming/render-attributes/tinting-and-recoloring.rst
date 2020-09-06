@@ -112,6 +112,41 @@ medium-blue color. As you can see, the ``setColor`` completely replaces the
 vertex colors. The one on the right bas been ``setColorScale`` ed to the same
 medium-blue color, but this only tints the model.
 
+A Note about Color Spaces
+-------------------------
+
+All colors that Panda3D expects are floating-point values between 0.0 and 1.0.
+Panda3D performs no correction or color space conversion before writing them
+into the framebuffer.  This means that if you are using a linear workflow (ie.
+you are have set ``framebuffer-srgb`` in Config.prc or are using a
+post-processing filter that converts the rendered image to sRGB), all colors
+are specified in "linearized sRGB" instead of gamma-encoded sRGB.  Applying a
+color obtained from a color picker is no longer as simple as dividing by 255!
+
+An easy way to correct existing colors when switching to a linear workflow is
+to apply a 2.2 gamma.  This is a good approximation for the sRGB transform
+function:
+
+.. code-block:: python
+
+   model1.setColor(LColor(0.6, 0.5, 0.3, 1) ** 2.2)
+
+A better method is to use the sRGB conversion functions that Panda3D provides.
+For example, to apply the ``#51C2C6`` color, you can do as follows:
+
+.. code-block:: python
+
+   from panda3d.core import decode_sRGB_float
+
+   model1.setColor(
+      decode_sRGB_float(0x51),
+      decode_sRGB_float(0xC2),
+      decode_sRGB_float(0xC6),
+   )
+
+If you are not using a linear workflow, or don't know what that is, you don't
+need to worry about this for now.
+
 Related Classes
 ---------------
 
