@@ -94,3 +94,29 @@ exporters may be required.
 Further, panda's native egg file format supports some esoteric things. For
 example, it supports blend targets (morph animations) and motion path curves,
 which are not supported by the X file format.
+
+Why do my colors look different in Panda3D?
+-------------------------------------------
+
+It is important to note that Blender uses a linear workflow, meaning all colors
+are converted from the sRGB color encoding to the "linearized sRGB" color space
+before being used for lighting and blending.  After the render process, the
+colors in the framebuffer are converted back to sRGB for display on the screen.
+
+Panda3D by default does not perform any color conversion, meaning that all the
+input colors are rendered as-is into the window.  However, this can mean that
+colors defined in Blender will not appear the same way in Panda3D, as they have
+not undergone the same color conversion as Blender performs.
+
+If you use blend2bam in conjunction with the panda3d-simplepbr package, this
+will be handled for you automatically.  Otherwise, you will need to configure
+Panda3D to also use the linear workflow.  This requires two steps:
+
+#. Set your textures to use the ``Texture.F_srgb`` or ``Texture.F_srgb_alpha``
+   texture format, which automatically linearizes the colors before they are
+   used in the rendering process.
+#. Tell Panda3D to ask the graphics driver for an "sRGB framebuffer", which
+   causes the GPU to automatically convert colors back to sRGB before they are
+   displayed on the monitor.  This is achieved by enabling ``framebuffer-srgb``
+   in Config.prc, or by adding a post-processing filter as described in
+   :ref:`common-image-filters`.
