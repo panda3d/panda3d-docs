@@ -152,8 +152,11 @@ light is automatically set from its regular color.
 
 .. note::
    The R, G, B values can be larger than 1, if you want brighter lights!
-   However, you can't use lighting to make a model brighter than its texture
-   color.
+   In fact, to achieve a realistic look, you may need to set your light colors
+   many orders of magnitude higher than "full white", and use HDR rendering
+   techniques (described in :ref:`common-image-filters`) to make sure that the
+   full dynamic range of your lights can be adequately represented and
+   compressed down to the range that the user's monitor can display.
 
 Point Lights
 ------------

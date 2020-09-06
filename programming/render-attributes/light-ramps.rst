@@ -3,9 +3,6 @@
 Light Ramps
 ===========
 
-Light Ramps
------------
-
 In standard OpenGL and DirectX lighting, the following calculations are
 performed:
 
@@ -25,6 +22,11 @@ is enabled via :ref:`the shader generator <the-shader-generator>`.
 
 HDR Tone Mapping
 ----------------
+
+.. note::
+
+   For a more advanced way to apply High Dynamic Range rendering, see the HDR
+   postprocessing filter described in :ref:`common-image-filters`.
 
 In HDR tone mapping, the first clamp is removed entirely, and the second one is
 replaced with the tone mapping operator. The tone mapping operator maps

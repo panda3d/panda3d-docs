@@ -8,11 +8,8 @@ Common Image Filters
    Note: Sorry, but the CommonFilters and FilterManager classes are implemented
    in Python and will not be of much use to C++ users.
 
-Common Image Filters
---------------------
-
-The purpose of class CommonFilters is to make it easy to set up a number of
-common image postprocessing operations.
+The purpose of the :py:class:`~direct.filter.CommonFilters.CommonFilters` class
+is to make it easy to set up a number of common image postprocessing operations.
 
 Import the class like this:
 
@@ -20,8 +17,7 @@ Import the class like this:
 
    from direct.filter.CommonFilters import CommonFilters
 
-Currently, the image postprocessing operations supported by class CommonFilters
-is:
+Currently, the image postprocessing operations supported by CommonFilters are:
 
 #. Bloom Filter - creates a glowing halo around bright objects.
 #. Cartoon Inker - draws black lines around 3D objects.
@@ -29,6 +25,10 @@ is:
 #. Inverted Filter - inverts all colors.
 #. Blur/Sharpen Filter - applies a generic blur or sharpen filter.
 #. Ambient Occlusion - applies a screen-space ambient occlusion filter.
+#. Gamma Adjust - applies a gamma adjustment.
+#. sRGB Encode - ensures the image is encoded using the sRGB inverse EOTF.
+#. High Dynamic Range Filter - enables HDR rendering and tone mapping.
+#. Exposure Adjust - applies exposure compensation before tone mapping.
 
 We expect this list to grow rather substantially over the next year or so.
 
@@ -226,3 +226,90 @@ The filter has the following keyword parameters:
 -  strength - Default: 0.01
 
 -  falloff - Default: 0.000002
+
+The Gamma Adjust Filter
+-----------------------
+
+This filter performs a simple gamma adjustment by raising the color values to
+the given power.
+
+Do not use this to adjust to the 2.2 gamma of a computer monitor.  For that,
+see the below filter.
+
+.. code-block:: python
+
+   filters.setGammaAdjust(1.5)
+   filters.delGammaAdjust()
+
+The sRGB Encode Filter
+----------------------
+
+This filter applies the inverse sRGB Electro-Optical Transfer Function (EOTF)
+to the final rendering result.  This allows the lighting and blending
+calculations to be performed in linear space, which results in more accurate
+colors and lighting.
+
+The effect of this is similar to applying a gamma adjustment of 1.0/2.2, but
+not quite.  The sRGB transfer function has a linear section in the beginning to
+better preserve the fidelity of dark values.
+
+When enabling this, it is important to make sure that all color input textures
+are properly configured to use the sRGB format, to prevent them from appearing
+too bright and washed-out.
+
+If the ``framebuffer-srgb`` setting is active, this filter is unnecessary.
+Panda will detect if this is the case and refuse to apply this filter, in order
+to prevent double-applying the sRGB transformation.
+
+.. code-block:: python
+
+   filters.setSrgbEncode()
+   filters.delSrgbEncode()
+
+This filter is available as of Panda3D 1.10.7.
+
+The High Dynamic Range Filter
+-----------------------------
+
+This filter enables High Dynamic Range rendering.  This will enable the use of
+a floating-point framebuffer format and disables clamping of the color values
+before they are written to the framebuffer.  This allows you to use far greater
+brightness values on your lights, which creates a greater dynamic range in your
+scene.  A tonemapping filter (ACES) is used to bring the values back into the
+appropriate range for display on a monitor.
+
+Depending on the brightness of your lights, it may be necessary to use the
+Exposure Adjust filter in order to prevent an oversaturated image.
+
+It is recommended to set your lights to use an inverse square falloff
+attenuation (using ``setAttenuation(0, 0, 1)``), enable the sRGB Encode filter,
+and use realistically bright values for your light colors to achieve the most
+realistic effect.
+
+.. code-block:: python
+
+   filters.setHighDynamicRange()
+   filters.delHighDynamicRange()
+
+This filter is available as of Panda3D 1.10.7.
+
+The Exposure Adjust Filter
+--------------------------
+
+This filter is meant to be used in conjunction with the HDR filter, above, in
+order to adjust the exposure level.  In a game where the player moves between
+different parts of the scene with different lighting levels, it will be
+necessary to adjust this on the fly depending on the player's location.
+This is similar to how our eyes adjust to different light levels as we move
+between areas of differing brightness.
+
+The value is in f-stops, meaning that a value of 0 resulting in no adjustment,
+and each value above 0 doubles the scene luminance, whereas each value below 0
+halves it.
+
+.. code-block:: python
+
+   filters.setExposureAdjust(0)
+   filters.delExposureAdjust()
+
+This filter is available as of Panda3D 1.10.7.
