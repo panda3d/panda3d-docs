@@ -18,6 +18,7 @@ import types
 import re
 from sphinx_interrogatedb import idb
 from sphinx.ext import autodoc
+from docutils import nodes
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -423,7 +424,7 @@ class ExcludeDocumenter(autodoc.Documenter):
         return
 
 
-def resolve_reference(ref, rel):
+def resolve_reference(ref, rel, mangle_function_names=True):
     """Looks up an interrogate symbol to its canonical name.  The second
     argument is the fully qualified name it should be seen relative to, which
     may be a module name, or a module name followed by an object name.
@@ -711,6 +712,69 @@ def on_autodoc_process_docstring(app, what, name, obj, options, lines):
             lines[:] = convert_doxygen_docstring(lines, name)
 
 
+def on_missing_reference(app, env, node, contnode):
+    # Resolver for interrogate classes that supports either snake case or camel
+    # case naming.  We'll be able to get rid of this when we switch to snake
+    # case across the board.
+
+    target = node['reftarget']
+
+    # Figure out which part is the module and which part is the class.
+    prefix = ''
+    module = 'panda3d.core'
+    if target.startswith('panda3d.'):
+        parts = target.split('.', 2)
+        if len(parts) == 2:
+            # It's trying to resolve a reference to a module; we can't help
+            # with that.
+            return
+
+        module = '.'.join(parts[:2])
+        prefix = module + '.'
+        target = '.'.join(parts[2:])
+    else:
+        # Something like .core.NodePath, perhaps?
+        modpart = target.split('.', 1)[0]
+        if idb.has_module('panda3d.' + modpart):
+            module = 'panda3d.' + modpart
+            prefix = modpart + '.'
+            target = target.split('.', 1)[1]
+
+    resolved = target and resolve_reference(target, module)
+
+    typ = node['reftype']
+    if resolved and (resolved[0] == typ or typ == 'obj'):
+        domain = env.domains['py']
+        refdoc = node.get('refdoc', env.docname)
+
+        # Try to match the original, but with the canonical mangling
+        # (depending on Python versus C++)
+        if len(contnode.children) and not node.get('refexplicit'):
+            oldtext = contnode.children[0].astext()
+
+            variation = getattr(env.app.builder, 'current_variation', None)
+            if variation and variation[0] == 'cpp':
+                # Re-resolve, but without mangling the names.
+                resolved_nomangle = resolve_reference(target, module, mangle_function_names=False)
+                if not resolved_nomangle:
+                    resolved_nomangle = resolved
+
+                text = resolved_nomangle[1]
+                text = '::'.join(text.split('.')[-oldtext.count('.')-1:])
+            else:
+                text = prefix + resolved[1]
+                text = '.'.join(text.split('.')[-oldtext.count('.')-1:])
+
+            if oldtext.endswith("()"):
+                text += "()"
+
+            contnode.children[0] = nodes.Text(text)
+
+        return domain.resolve_xref(env, refdoc, app.builder, typ, prefix + resolved[1], node, contnode)
+
+    #print("Could not resolve reference {}".format(node))
+
+
 def on_builder_inited(app):
     app.builder.get_relative_uri = \
         lambda from_, to, typ=None: \
@@ -828,5 +892,7 @@ def setup(app):
 
     app.connect('autodoc-skip-member', on_autodoc_skip_member)
     app.connect('autodoc-process-docstring', on_autodoc_process_docstring)
+
+    app.connect('missing-reference', on_missing_reference, priority=901)
 
     app.add_autodocumenter(ExcludeDocumenter)
