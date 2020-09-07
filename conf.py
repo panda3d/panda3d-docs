@@ -464,8 +464,11 @@ def resolve_reference(ref, rel):
         ifunc = idb.lookup_function(modname, search)
         if ifunc:
             # Grab the mangled function name.
-            func_name = idb.get_function_name(ifunc, mangle=True)
-            return ('meth', '.'.join(relpath[:i] + refpath[:-1] + [func_name]))
+            func_name = idb.get_function_name(ifunc, mangle=mangle_function_names)
+            if len(search) == 1:
+                return ('func', func_name)
+            else:
+                return ('meth', '.'.join(relpath[:i] + refpath[:-1] + [func_name]))
 
         itype = idb.lookup_type(modname, search)
         if itype:
