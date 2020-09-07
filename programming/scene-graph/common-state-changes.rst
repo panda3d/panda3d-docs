@@ -33,8 +33,8 @@ By default in Panda3D, the X axis points to the right, the Y axis is forward,
 and Z is up. An object's rotation is usually described using Euler angles called
 Heading, Pitch, and Roll (sometimes called Yaw, Pitch, and Roll in other
 packages)--these specify angle rotations in degrees. (If you are more
-comfortable using quaternions, the ``setQuat()`` method can be used to specify
-the rotation as a quaternion.)
+comfortable using quaternions, the :meth:`~.NodePath.set_quat()` method can be
+used to specify the rotation as a quaternion.)
 
 You can change an object's size, either uniformly, or with a different value of
 x, y, and z.
@@ -115,8 +115,9 @@ You can also query the current transform information for any of the above:
       myNodePath.get_y();
       myNodePath.get_z();
 
-Also, by using the functions ``setTag()`` and ``getTag()`` you can store your
-own information in key value pairs. For example:
+Also, by using the functions :meth:`~.NodePath.set_tag()` and
+:meth:`~.NodePath.get_tag()` you can store your own information in key-value
+pairs. For example:
 
 .. only:: python
 
@@ -132,8 +133,8 @@ own information in key value pairs. For example:
 
 .. only:: python
 
-   You can also store Python objects as tags by using the ``setPythonTag``
-   function with the same arguments.
+   You can also store Python objects as tags by using the
+   :meth:`~.NodePath.set_python_tag()` function with the same arguments.
 
 
 As a more advanced feature, you may also set or query the position (or any of
@@ -155,11 +156,11 @@ one. To do this, specify the relative NodePath as the first parameter:
       myNodePath.get_pos(otherNodePath);
 
 Putting a NodePath as the first parameter to any of the transform setters or
-getters makes it a relative operation. The above ``setPos()`` means to set
-myNodePath to the position (X, Y, Z), relative to otherNodePath--that is, the
-position myNodePath would be in if it were a child of otherNodePath and its
-position were set to (X, Y, Z). The ``getPos()`` call returns the position
-myNodePath would have if it were a child of otherNodePath.
+getters makes it a relative operation. The above :meth:`~.NodePath.set_pos()`
+means to set myNodePath to the position (X, Y, Z), relative to otherNodePath--
+that is, the position myNodePath would be in if it were a child of otherNodePath
+and its position were set to (X, Y, Z). The :meth:`~.NodePath.get_pos()` call
+returns the position myNodePath would have if it were a child of otherNodePath.
 
 It is also important to note that you can use the NodePath in its own relative
 sets and gets. This maybe helpful in situations where you are concerned with
@@ -182,11 +183,11 @@ distances. For example:
 These relative sets and gets are a very powerful feature of Panda's scene graph,
 but they can also be confusing; don't worry if it doesn't make sense right now.
 
-The ``lookAt()`` method rotates a model to face another object; that is, it
-rotates the first object so that its +Y axis points toward the second object.
-Note that a particular model might or might not have been generated with the +Y
-axis forward, so this doesn't necessarily make a model "look at" the given
-object.
+The :meth:`~.NodePath.look_at()` method rotates a model to face another object;
+that is, it rotates the first object so that its +Y axis points toward the
+second object. Note that a particular model might or might not have been
+generated with the +Y axis forward, so this doesn't necessarily make a model
+"look at" the given object.
 
 .. only:: python
 
@@ -249,7 +250,7 @@ enable transparency:
 
       myNodePath.set_transparency(TransparencyAttrib::M_alpha);
 
-The parameter to ``setTransparency()`` is usually
+The parameter to :meth:`~.NodePath.set_transparency()` is usually
 ``TransparencyAttrib.M_alpha``, which is ordinary transparency. You can also
 explicitly turn transparency off with ``TransparencyAttrib.M_none``. (Other
 transparency modes are possible, but that is a more advanced topic. Some older
@@ -261,8 +262,8 @@ it does enable a more expensive rendering mode.
 Setting an object's color completely replaces any color on the vertices.
 However, if you have created a model with per-vertex color, you might prefer to
 modulate the object's color without losing the per-vertex color. For this there
-is the ``setColorScale()`` variant, which multiples the indicated color values
-by the object's existing color:
+is the :meth:`~.NodePath.set_color_scale()` variant, which multiples the
+indicated color values by the object's existing color:
 
 .. only:: python
 
@@ -277,9 +278,9 @@ by the object's existing color:
       myNodePath.set_color_scale(R, G, B, A);
 
 
-One use of ``setColorScale()`` is to apply it at the top of the scene graph
-(e.g. render) to darken the entire scene uniformly, for instance to implement a
-fade-to-black effect.
+One use of :meth:`~.NodePath.set_color_scale()` is to apply it at the top of the
+scene graph (e.g. render) to darken the entire scene uniformly, for instance to
+implement a fade-to-black effect.
 
 Since alpha is so important, there is also a method for scaling it without
 affecting the other color components:
@@ -296,8 +297,8 @@ affecting the other color components:
 
       myNodePath.set_alpha_scale(SA);
 
-To temporarily prevent an object from being drawn on all cameras, use ``hide()``
-and ``show()``:
+To temporarily prevent an object from being drawn on all cameras, use
+:meth:`~.NodePath.hide()` and :meth:`~.NodePath.show()`:
 
 .. only:: python
 
@@ -314,8 +315,8 @@ and ``show()``:
       myNodePath.show();
 
 If you want to hide an object for one camera but not another, you can use the
-``hide()`` and ``show()`` commands in conjunction with the
-``camera.setCameraMask()`` function:
+:meth:`~.NodePath.hide()` and :meth:`~.NodePath.show()` commands in conjunction
+with the :meth:`.Camera.set_camera_mask()` function:
 
 .. only:: python
 
@@ -339,7 +340,7 @@ If you want to hide an object for one camera but not another, you can use the
 
 Please note that using hide/show without an argument will mess up any hide/shows
 with the argument (show(bit) will not undo a hide()...) To hide an object from
-all cameras instead use ``nodepath.hide(BitMask32.allOn())``.
+all cameras instead use ``nodepath.hide(BitMask32.all_on())``.
 
 .. only:: python
 

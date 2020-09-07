@@ -66,7 +66,7 @@ Actor Basics
    :py:meth:`~direct.actor.Actor.Actor.removeNode()` is not sufficient.
    This is due to the fact that Actor is a Python class containing additional
    data that can not be destroyed by the C++
-   :meth:`~panda3d.core.NodePath.removeNode()` method.
+   :meth:`~.NodePath.remove_node()` method.
 
 .. only:: cpp
 

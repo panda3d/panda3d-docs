@@ -32,10 +32,9 @@ variable is not recognized by Panda3D in any way. Therefore, this line has no
 effect on the engine whatsoever.
 
 To manipulate this variable procedurally, use code not unlike the following,
-which creates an object of class
-``ConfigVariableString`` and then manipulates it
-using the methods ``setValue()`` and
-``getValue()``.
+which creates an object of class :class:`.ConfigVariableString` and then
+manipulates it using the methods :meth:`~.ConfigVariableString.setValue()` and
+:meth:`~.ConfigVariableString.getValue()`.
 
 .. only:: python
 
@@ -73,13 +72,11 @@ ConfigVariableList
 ConfigVariableSearchPath
 
 Most of these follow the same form as ConfigVariableString, above, except that
-the default value (and the parameter from
-``setValue()`` and
-``getValue()``) is of the indicated
-type, rather than a string. The two exceptions are ConfigVariableList and
-ConfigVariableSearchPath. These types of variables do not accept a default
-value to the constructor since the default value in both cases is always the
-empty list or search path.
+the default value (and the parameter from ``setValue()`` and ``getValue()``) is
+of the indicated type, rather than a string. The two exceptions are
+ConfigVariableList and ConfigVariableSearchPath. These types of variables do not
+accept a default value to the constructor since the default value in both cases
+is always the empty list or search path.
 
 .. only:: python
 
@@ -106,10 +103,9 @@ directory at start-up.
    to do this to ensure that you are editing the correct Config.prc file.
 
 Sometimes, it is desirable to load an additional configuration file from disk,
-by giving an explicit filename. To do so, use
-``loadPrcFile()``. Note that
-:ref:`Panda Filename Syntax <loading-models>` uses a forward slash even under
-Windows.
+by giving an explicit filename. To do so, use :func:`.load_prc_file()`. Note
+that :ref:`Panda Filename Syntax <loading-models>` uses a forward slash even
+under Windows.
 
 .. only:: python
 
@@ -128,29 +124,27 @@ Windows.
       load_prc_file("config/Config.prc");
 
 The filename you specify is searched for along the model-path, in the same way
-that an Egg or Bam file is searched for when you use
-``loader.loadModel()``.
-
-You should load your own PRC file before
+that an Egg or Bam file is searched for when you use ``loader.loadModel()``.
 
 .. only:: python
 
-   instantiating ShowBase.
+   You should load your own PRC file before instantiating ShowBase.  Changing
+   certain configuration variables later on may not affect the
+   window/environment that has already been created.
 
 .. only:: cpp
 
-   opening the window.
+   You should load your own PRC file before opening the window.  Changing
+   certain configuration variables later on may not affect the
+   window/environment that has already been created.
 
-``Changing configuration data later on won't affect the window/environment that has already been created.``
-
-You can also use ``loadPrcFileData()`` to
-load a string that you define in your code, as if it were the contents read
-from a disk file. The ``loadPrcFileData()``
-call requires two parameters. The first parameter is an arbitrary string name
-to assign to this "file" (and it can be the empty string if you don't care),
-while the second parameter is the contents of the file itself. This second
-parameter should contain newlines between variable definitions if you want to
-set the value of more than one variable.
+You can also use :func:`.load_prc_file_data()` to load a string that you define
+in your code, as if it were the contents read from a disk file. The
+:func:`.load_prc_file_data()` call requires two parameters. The first parameter
+is an arbitrary string name to assign to this "file" (and it can be the empty
+string if you don't care), while the second parameter is the contents of the
+file itself. This second parameter should contain newlines between variable
+definitions if you want to set the value of more than one variable.
 
 For example, let's say that Panda3D's configuration file contains this line:
 
@@ -158,10 +152,9 @@ For example, let's say that Panda3D's configuration file contains this line:
 
    fullscreen #f
 
-By default, Panda3D
-programs will run in a window; not fullscreen. However, if you do this, then
-by the time you instantiate ShowBase, you will have changed the
-fullscreen-flag to true, and your program will run in fullscreen.
+By default, Panda3D programs will run in a window; not fullscreen. However, if
+you do this, then by the time you instantiate ShowBase, you will have changed
+the fullscreen-flag to true, and your program will run in fullscreen.
 
 .. only:: python
 
@@ -183,7 +176,7 @@ There are other ways to go to fullscreen. This is not necessarily the most
 straightforward approach, but it illustrates the point.
 
 You can get a more complete list of available config variables at runtime,
-with the ``listVariables()`` command:
+with the :meth:`~.ConfigVariableManager.list_variables()` command:
 
 .. only:: python
 

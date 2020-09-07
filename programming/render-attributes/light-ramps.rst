@@ -34,11 +34,21 @@ brightness values in the range 0-infinity to new brightness values in the range
 0-1, however, it does so without clamping. To turn on HDR tone mapping, use one
 of the following:
 
-.. code-block:: python
+.. only:: python
 
-   np.setAttrib(LightRampAttrib.makeHdr0())
-   np.setAttrib(LightRampAttrib.makeHdr1())
-   np.setAttrib(LightRampAttrib.makeHdr2())
+   .. code-block:: python
+
+      np.setAttrib(LightRampAttrib.makeHdr0())
+      np.setAttrib(LightRampAttrib.makeHdr1())
+      np.setAttrib(LightRampAttrib.makeHdr2())
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      np.set_attrib(LightRampAttrib::make_hdr0());
+      np.set_attrib(LightRampAttrib::make_hdr1());
+      np.set_attrib(LightRampAttrib::make_hdr2());
 
 The HDR2 tone mapping operator is a familiar operator that is used in many
 systems. It has the downside that it tends to reduce contrast a lot:

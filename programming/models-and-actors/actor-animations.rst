@@ -3,9 +3,10 @@
 Actor Animations
 ================
 
-Since the Actor class inherits from NodePath, everything that can be done to a
-NodePath, such as :meth:`~.NodePath.reparentTo` and :meth:`~.NodePath.setPos`,
-etc., may also be done to an Actor.
+Since the :class:`~direct.actor.Actor.Actor` class inherits from
+:class:`.NodePath`, everything that can be done to a NodePath, such as
+:meth:`~.NodePath.reparent_to()` and :meth:`~.NodePath.set_pos()`, etc., may
+also be done to an Actor.
 In addition to the basic NodePath functionality, Actors have several additional
 methods to control animation. In order for Actors to animate, their pointer
 (variable) must be retained in memory.

@@ -8,7 +8,8 @@ The Basics
 
 .. only:: python
 
-   Loading static geometry is done using ``loader.loadModel``:
+   Loading static geometry is done using
+   :py:meth:`loader.loadModel() <direct.showbase.Loader.loadModel>`:
 
    .. code-block:: python
 
@@ -82,12 +83,11 @@ library function, or one of the panda utility programs:
       # RIGHT:
       window->load_model(framework.get_models(), "/c/Program Files/My Game/Models/Model1.egg");
 
-Panda uses the ``Filename`` class to store Panda-style filenames; many Panda
-functions expect a Filename object as a parameter. The Filename class also
+Panda uses the :class:`.Filename` class to store Panda-style filenames; many
+Panda functions expect a Filename object as a parameter. The Filename class also
 contains several useful methods for path manipulation and file access, as well
-as for converting between Windows-style filenames and Panda-style filenames;
-see the :class:`~panda3d.core.Filename` page in the API Reference for a more
-complete list.
+as for converting between Windows-style filenames and Panda-style filenames; see
+the :class:`.Filename` page in the API Reference for a more complete list.
 
 To convert a Windows filename to a Panda pathname, use code similar to the
 following:
@@ -134,13 +134,8 @@ To convert a Panda filename into a Windows filename, use code like this:
 
 .. only:: python
 
-   The Filename class can also be used in combination with python's built-in
-   path manipulation mechanisms.
-
-.. only:: cpp
-
-   The Filename class can also be used in combination with python's built-in
-   path manipulation mechanisms.
+   The :class:`.Filename` class can also be used in combination with Python's
+   built-in path manipulation mechanisms.
 
 Let's say, for instance, that you want to load a model, and the model is in the
 "model" directory that is in the same directory as the program's main file.
@@ -182,5 +177,6 @@ You need to keep in mind that standard library functions provided by the system
 or the programming language runtime work with OS-specific paths. So do not
 forget to convert your Panda paths to OS-specific paths when using these built-
 in functions. In cases where Panda's API offers equivalent functions through the
-Filename or VirtualFileSystem class, however, it is recommended to use those
-instead, as they will natively understand Panda Filenames.
+:class:`.Filename` or :class:`.VirtualFileSystem` class, however, it is
+recommended to use those instead, as they will natively understand Panda
+Filenames.

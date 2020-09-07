@@ -32,17 +32,37 @@ Turning on the Color Mask
 
 To enable writes to all the channels of the framebuffer, use this:
 
-.. code-block:: python
+.. only:: python
 
-   bits = ColorWriteAttrib.CAlpha
-   bits |= ColorWriteAttrib.CRed
-   bits |= ColorWriteAttrib.CGreen
-   bits |= ColorWriteAttrib.CBlue
-   nodePath.setAttrib(ColorWriteAttrib.make(bits))
+   .. code-block:: python
+
+      bits = ColorWriteAttrib.CAlpha
+      bits |= ColorWriteAttrib.CRed
+      bits |= ColorWriteAttrib.CGreen
+      bits |= ColorWriteAttrib.CBlue
+      nodePath.setAttrib(ColorWriteAttrib.make(bits))
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      int bits = ColorWriteAttrib::C_alpha;
+      bits |= ColorWriteAttrib::C_red;
+      bits |= ColorWriteAttrib::C_green;
+      bits |= ColorWriteAttrib::C_blue;
+      nodePath.set_attrib(ColorWriteAttrib::make(bits));
 
 To disable writes to one or more channels, omit that bit. You can also use the
 following to enable all bits:
 
-.. code-block:: python
+.. only:: python
 
-   nodePath.setAttrib(ColorWriteAttrib.make(ColorWriteAttrib.CAll))
+   .. code-block:: python
+
+      nodePath.setAttrib(ColorWriteAttrib.make(ColorWriteAttrib.CAll))
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      nodePath.set_attrib(ColorWriteAttrib::make(ColorWriteAttrib::C_all));

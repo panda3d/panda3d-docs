@@ -99,7 +99,7 @@ Model_of_x, View_of_x, Clip_of_x
 
 When you use the word "model" in a trans directive, you implicitly mean "the
 model currently being rendered." But you can make any nodepath accessible to the
-shader subsystem using ``setShaderInput``:
+shader subsystem using :meth:`.NodePath.set_shader_input()`:
 
 .. only:: python
 

@@ -4,10 +4,10 @@ List of GLSL Shader Inputs
 ==========================
 
 In general, the majority of GLSL shader input types can be specified from a
-Panda3D application using a call to ``set_shader_input()``. However, it is often
-desirable to let Panda3D automatically fill in the values of shader inputs,
-especially for inputs that derive their values from the render state or 3-D
-transformation of the currently rendered model.
+Panda3D application using a call to :meth:`.NodePath.set_shader_input()`.
+However, it is often desirable to let Panda3D automatically fill in the values
+of shader inputs, especially for inputs that derive their values from the render
+state or 3-D transformation of the currently rendered model.
 
 This page demonstrates which shader input names have a special meaning and will
 be automatically filled in by Panda3D when the shader is used. Note that the
@@ -208,6 +208,7 @@ any shader stage.
    } p3d_Fog;
 
 Besides these predefined uniform inputs, it is possible to use most of the types
-available in GLSL in conjunction with ``set_shader_input()`` to pass custom
-data, including arrays and structs, to a certain named shader input. You may not
-use ``set_shader_input`` to override any of the inputs with the ``p3d_`` prefix.
+available in GLSL in conjunction with :meth:`~.NodePath.set_shader_input()` to
+pass custom data, including arrays and structs, to a certain named shader input.
+You may not use :meth:`~.NodePath.set_shader_input()` to override any of the
+inputs with the ``p3d_`` prefix.

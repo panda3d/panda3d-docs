@@ -56,7 +56,7 @@ sides are visible, without hassling with attribs:
 
    .. code-block:: cpp
 
-      nodePath.set_two_sided (true);
+      nodePath.set_two_sided(true);
 
 If you want more advanced control over the culling you might want to look at the
 CullFaceAttrib:

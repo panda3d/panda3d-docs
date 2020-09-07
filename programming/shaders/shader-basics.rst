@@ -151,17 +151,17 @@ This is the fragment shader, named myshader.frag:
 Using Shaders in Panda3D
 ------------------------
 
-Shaders in Panda3D use the ``Shader`` class. When a shader is loaded, an object
-of this class is returned. This is then applied to a node using the
-``set_shader`` method of the ``NodePath`` class.
+Shaders in Panda3D use the :class:`.Shader` class. When a shader is loaded, an
+object of this class is returned. This is then applied to a node using the
+:meth:`.NodePath.setShader` method.
 
 Loading a Cg Shader
 ~~~~~~~~~~~~~~~~~~~
 
-Loading a single-file Cg shader is done with the ``Shader.load()`` procedure.
-The first parameter is the path to the shader file, and the second is the shader
-language, which in this case is ``Shader.SL_Cg``. The following is an example of
-using this procedure:
+Loading a single-file Cg shader is done with the :meth:`.Shader.load()`
+procedure. The first parameter is the path to the shader file, and the second is
+the shader language, which in this case is :obj:`.Shader.SL_Cg`.
+The following is an example of using this procedure:
 
 .. only:: python
 
@@ -180,9 +180,9 @@ using this procedure:
       PT(Shader) myShader = Shader::load("myshader.sha", Shader.SL_Cg);
 
 Loading a multi-file Cg shader requires a different set of parameters for the
-``load()`` function; the first being the shader language, and the second, third
-and fourth being paths to the vertex, fragment and geometry shaders
-respectively. Here is an example:
+:meth:`~.Shader.load()` function; the first being the shader language, and the
+second, third and fourth being paths to the vertex, fragment and geometry
+shaders respectively. Here is an example:
 
 .. only:: python
 
@@ -222,14 +222,14 @@ In the following code sample, a GLSL shader is loaded:
 Applying a Shader
 ~~~~~~~~~~~~~~~~~
 
-Shaders can be applied to any ``NodePath`` with the ``set_shader()`` method.
-Here is an example that applies a loaded shader to a model:
+Shaders can be applied to any part of the scene graph.  Here is an example that
+applies a loaded shader to a model:
 
 .. only:: python
 
    .. code-block:: python
 
-      myModel.set_shader(myShader)
+      myModel.setShader(myShader)
 
 .. only:: cpp
 
@@ -237,9 +237,9 @@ Here is an example that applies a loaded shader to a model:
 
       myModel.set_shader(myShader);
 
-The call to ``set_shader()`` causes the ``NodePath`` to be rendered with the
-shader passed to it as a parameter. Shaders propagate down the scene graph, like
-any other render attribute; the node and everything beneath it will use the
+The call to :meth:`.NodePath.setShader()` causes the model to be rendered with
+the shader passed to it as a parameter. Shaders propagate down the scene graph,
+like any other render attribute; the node and everything beneath it will use the
 shader.
 
 Fetching Data from the Panda3D Runtime
@@ -269,7 +269,7 @@ Supplying data to the Shader Manually
 Most of the data that the shader could want can be fetched from Panda3D at
 runtime by using the appropriate parameter names. However, it is sometimes
 necessary to supply some user-provided data to the shader. For this, you need
-``set_shader_input()``. Here is an example:
+:meth:`.NodePath.set_shader_input()`. Here is an example:
 
 .. only:: python
 
@@ -283,20 +283,21 @@ necessary to supply some user-provided data to the shader. For this, you need
 
       myModel.set_shader_input("tint", LVector4(1.0, 0.5, 0.5, 1.0));
 
-The method ``set_shader_input()`` stores data that can be accessed by the
-shader. It is possible to store data of type ``Texture``, ``NodePath``, and any
-vector object.
+The method :meth:`.NodePath.set_shader_input()` stores data that can be accessed
+by the shader. It is possible to store data of type :class:`.Texture`,
+:class:`.NodePath`, and any vector object.
 
-The data that you store using ``set_shader_input()`` isn't necessarily used by
-the shader. Instead, the values are stored in the node, but unless the shader
-explicitly asks for them, they will sit unused. So the example above simply
-stores the vector, but it is up to the shader whether or not it is interested in
-a data item labeled "tint".
+The data that you store using :meth:`~.NodePath.set_shader_input()` isn't
+necessarily used by the shader. Instead, the values are stored in the node, but
+unless the shader explicitly asks for them, they will sit unused. So the example
+above simply stores the vector, but it is up to the shader whether or not it is
+interested in a data item labeled "tint".
 
-To fetch data that was supplied using ``set_shader_input()``, the shader must
-use the appropriate parameter name. See the
-:ref:`list of possible Cg shader inputs <list-of-possible-cg-shader-inputs>`,
-many of which refer to the data that was stored using ``set_shader_input()``.
+To fetch data that was supplied using :meth:`~.NodePath.set_shader_input()`, the
+shader must use the appropriate parameter name.
+See the :ref:`list of possible Cg shader inputs <list-of-possible-cg-shader-inputs>`,
+many of which refer to the data that was stored using
+:meth:`~.NodePath.set_shader_input()`.
 
 Shader Inputs propagate down the scene graph, and accumulate as they go. For
 example, if you store ``set_shader_input("x", 1)`` on a node, and
@@ -312,13 +313,14 @@ child will contain ("w"==1), because the priority 1000 overrides the priority
 Shader Render Attributes
 ------------------------
 
-The functions ``nodePath.set_shader()`` and ``nodePath.set_shader_input()`` are
-used to apply a shader to a node in the scene graph. Internally, these functions
-manipulate a render attribute of class ``ShaderAttrib`` on the node.
+The functions :meth:`.NodePath.set_shader()` and
+:meth:`~.NodePath.set_shader_input()` are used to apply a shader to a node in
+the scene graph. Internally, these functions manipulate a render attribute of
+class :class:`.ShaderAttrib` on the node.
 
-In rare occasions, it is necessary to manipulate ``ShaderAttrib`` objects
-explicitly. As an example, the code below shows how to create a ``ShaderAttrib``
-and apply it to a camera:
+In rare occasions, it is necessary to manipulate :class:`.ShaderAttrib` objects
+explicitly. As an example, the code below shows how to create a
+:class:`.ShaderAttrib` and apply it to a camera:
 
 .. only:: python
 
@@ -333,15 +335,15 @@ and apply it to a camera:
 
    .. code-block:: cpp
 
-      CPT(ShaderAttrib) attrib = ShaderAttrib::make();
-      attrib = attrib.set_shader(Shader::load("myshader.sha"));
-      attrib = attrib.set_shader_input("tint", LVector4(1.0, 0.5, 0.5, 1.0));
+      CPT(ShaderAttrib) attrib = DCAST(ShaderAttrib, ShaderAttrib::make());
+      attrib = attrib->set_shader(Shader::load("myshader.sha"));
+      attrib = attrib->set_shader_input("tint", LVector4(1.0, 0.5, 0.5, 1.0));
       camera.set_initial_state(attrib);
 
 Be careful: attribs are immutable objects. So when you apply a function like
-``set_shader()`` or ``set_shader_input()`` to a ``ShaderAttrib``, you aren't
-modifying the attrib. Instead, these functions work by returning a new attrib
-(which contains the modified data).
+:meth:`~.NodePath.set_shader()` or :meth:`~.NodePath.set_shader_input()` to a
+:class:`.ShaderAttrib`, you aren't modifying the attrib. Instead, these
+functions work by returning a new attrib (which contains the modified data).
 
 Deferred Shader Compilation
 ---------------------------

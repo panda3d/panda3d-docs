@@ -7,11 +7,10 @@ Panda3D's camera is considered a PandaNode. It can therefore be manipulated as
 any other node.
 
 The actual camera is defined in ShowBase as a NodePath named
-``base.cam``. There is also a plain
-node above the camera, which is a NodePath called
-``base.camera``. Generally you want to
-control the ``base.camera`` NodePath
-with your code.
+:py:obj:`base.cam <direct.showbase.ShowBase.ShowBase.cam>`.
+There is also a plain node above the camera, which is a NodePath called
+:py:obj:`base.camera <direct.showbase.ShowBase.ShowBase.camera>`.
+Generally you want to control the latter with your code.
 
 
 .. toctree::

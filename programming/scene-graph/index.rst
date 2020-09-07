@@ -15,13 +15,11 @@ Panda3D is slightly more sophisticated. Instead of maintaining a list of objects
 to render, it maintains a tree of objects to render. An object is not visible to
 the renderer until it is inserted into the tree.
 
-The tree consists of objects of class :class:`~panda3d.core.PandaNode`.
-This is actually a superclass for a number of other classes:
-:class:`~panda3d.core.ModelNode`, :class:`~panda3d.core.GeomNode`,
-:class:`~panda3d.core.LightNode`, and so forth.
-Throughout this manual, it is common for us to refer to objects of these classes
-as simply `nodes`, and the tree that is being made up by these nodes is known as
-the *scene graph*.
+The tree consists of objects of class :class:`~.PandaNode`. This is actually a
+superclass for a number of other classes: :class:`~.ModelNode`,
+:class:`~.GeomNode`, :class:`~.LightNode`, and so forth. Throughout this manual,
+it is common for us to refer to objects of these classes as simply `nodes`, and
+the tree that is being made up by these nodes is known as the *scene graph*.
 
 There may be many scene graphs in an application.  In fact, any tree of
 nodes in existence is technically a scene graph all on its own.
@@ -60,13 +58,13 @@ specific reason to do so.
 NodePaths
 ---------
 
-There is a helper class called :class:`~panda3d.core.NodePath` which is a very
-small object containing a pointer to a node, plus some administrative
-information. For now, you can ignore the administrative information; it will be
-explained in a :ref:`later section <instancing>` of the manual.
-It is the intent of the panda designers that you should think of a NodePath as a
-handle to a node.  Any function that creates a node returns a
-:class:`~panda3d.core.NodePath` that refers to the newly-created node.
+There is a helper class called :class:`~.NodePath` which is a very small object
+containing a pointer to a node, plus some administrative information. For now,
+you can ignore the administrative information; it will be explained in a
+:ref:`later section <instancing>` of the manual. It is the intent of the panda
+designers that you should think of a NodePath as a handle to a node.  Any
+function that creates a node returns a :class:`~.NodePath` that refers to the
+newly-created node.
 
 A NodePath isn't exactly a pointer to a node; it's a "handle" to a node.
 Conceptually, this is almost a distinction without a difference. However,
@@ -76,7 +74,7 @@ Because of this, although there is little conceptual difference between them,
 you still need to know that both exist.
 
 You can convert a NodePath into a "regular" pointer at any time by calling
-:meth:`nodePath.node() <panda3d.core.NodePath.node>`.
+:meth:`nodePath.node() <.NodePath.node>`.
 However, there is no unambiguous way to convert back.
 That's important: sometimes you need a NodePath, sometimes you need a node
 pointer. Because of this, it is recommended that you store NodePaths, not node
@@ -88,9 +86,10 @@ NodePath methods and Node methods
 ---------------------------------
 
 There are many methods that you can invoke on NodePaths, which are appropriate
-for nodes of any type. Specialized node types, like LODNodes and Cameras (for
-instance), provide additional methods that are available only for nodes of that
-type, which you must invoke on the node itself. Here are some assorted examples:
+for nodes of any type. Specialized node types, like :class:`.LODNode` and
+:class:`.Camera` (for instance), provide additional methods that are available
+only for nodes of that type, which you must invoke on the node itself. Here are
+some assorted examples:
 
 .. only:: python
 
@@ -124,8 +123,8 @@ type, which you must invoke on the node itself. Here are some assorted examples:
       myNodePath.node()->set_lens(new PerspectiveLens());
       myNodePath.node()->get_camera_mask();
 
-Always remember: when you invoke a method of :class:`~panda3d.core.NodePath`,
-you are actually performing an operation on the node to which it points.
+Always remember: when you invoke a method of :class:`~.NodePath`, you are
+actually performing an operation on the node to which it points.
 
 In the example above, we call node-methods by first converting the NodePath into
 a node, and then immediately calling the node-method. This is the recommended

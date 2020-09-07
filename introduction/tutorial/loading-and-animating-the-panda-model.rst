@@ -8,11 +8,12 @@ Loading and Animating the Panda Model
    :ref:`Actors <loading-actors-and-animations>`
    ---------------------------------------------
 
-   The ``Actor`` class is for animated models. Note that we use ``loadModel()``
-   for static models and ``Actor`` only when they are animated. The two
-   constructor arguments for the ``Actor`` class are the name of the file
-   containing the model and a Python dictionary containing the names of the
-   files containing the animations.
+   The :py:class:`~direct.actor.Actor.Actor` class is for animated models.
+   Note that we use :py:meth:`~direct.showbase.Loader.loadModel()` for static
+   models and :py:class:`~direct.actor.Actor.Actor` only when they are animated.
+   The two constructor arguments for the :py:class:`~direct.actor.Actor.Actor`
+   class are the name of the file containing the model and a Python dictionary
+   containing the names of the files containing the animations.
 
 Update the Code
 ---------------
@@ -23,13 +24,14 @@ Update the Code
       :language: python
       :linenos:
 
-   The command ``loop("walk")`` causes the walk animation to begin looping.
+   The command :py:meth:`loop("walk") <direct.actor.Actor.Actor.loop>` causes
+   the walk animation to begin looping.
 
 .. only:: cpp
 
-   The ``Actor`` class which is available to Python users is not available to
-   C++ users. you should create your own Actor class which at least should do
-   the following:
+   The :py:class:`~direct.actor.Actor.Actor` class which is available to Python
+   users is not available to C++ users. you should create your own Actor class
+   which at least should do the following:
 
    -  load the Actor Model
    -  load the animations

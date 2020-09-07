@@ -62,11 +62,12 @@ call it every frame.
 
 .. only:: cpp
 
-   The object passed to ``taskMgr->add`` is an ``AsyncTask`` object. We can use
-   ``GenericAsyncTask`` to wrap a global function or static method around a
-   task. We can also pass an additional ``void*`` parameter that we can cast
-   into a pointer of any data type we like, which is passed as argument to the
-   task function. A GenericAsyncTask function must look like the following:
+   The object passed to :meth:`taskMgr->add() <.AsyncTaskManager.add>` is an
+   :class:`.AsyncTask` object. We can use ``GenericAsyncTask`` to wrap a global
+   function or static method around a task. We can also pass an additional
+   ``void*`` parameter that we can cast into a pointer of any data type we like,
+   which is passed as argument to the task function. A GenericAsyncTask function
+   must look like the following:
 
    .. code-block:: cpp
 
@@ -84,10 +85,11 @@ call it every frame.
 In our code, the procedure ``spinCameraTask()`` calculates the desired position
 of the camera based on how much time has elapsed. The camera rotates 6 degrees
 every second. The first two lines compute the desired orientation of the camera;
-first in degrees, and then in radians. The ``setPos()`` call actually sets the
-position of the camera. (Remember that Y is horizontal and Z is vertical, so the
-position is changed by animating X and Y while Z is left fixed at 3 units above
-ground level.) The ``setHpr()`` call actually sets the orientation.
+first in degrees, and then in radians. The :meth:`~.NodePath.set_pos()` call
+actually sets the position of the camera. (Remember that Y is horizontal and Z
+is vertical, so the position is changed by animating X and Y while Z is left
+fixed at 3 units above ground level.) The :meth:`~.NodePath.set_hpr()` call
+actually sets the orientation.
 
 Run the Program
 ~~~~~~~~~~~~~~~

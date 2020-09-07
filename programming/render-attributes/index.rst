@@ -37,10 +37,9 @@ It is possible to create these attributes and assign them to a node directly:
 
 But in many cases, especially with the most commonly-modified attributes, you
 don't need to create the attributes directly as there is a convenience function
-on NodePath (e.g. :meth:`nodePath.setFog() <.NodePath.setFog>`) that manages the
-creation of the attributes for you; there will also be a corresponding clear
-function on NodePath to remove the attribute
-(:meth:`nodePath.clearFog() <.NodePath.clearFog>`).
+on NodePath (e.g. :meth:`.NodePath.set_fog()`) that manages the creation of the
+attributes for you; there will also be a corresponding clear function on
+NodePath to remove the attribute (:meth:`.NodePath.clear_fog()`).
 
 Render Attribute Priorities
 ---------------------------

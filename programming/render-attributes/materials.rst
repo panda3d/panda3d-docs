@@ -146,15 +146,15 @@ Other Material Methods
 ----------------------
 
 Besides the setter methods covered above, you can also get material properties
-using their get methods, such as ``material.getShininess()``,
-``material.getDiffuse()``, etc.
+using their get methods, such as :meth:`~.Material.get_shininess()`,
+:meth:`~.Material.get_diffuse()`, etc.
 
 Properties can also be reset by using the clear methods:
-``material.clearAmbient()``,``material.clearSpecular()``, etc. Shininess does
-not have a clear method.
+:meth:`~.Material.clear_ambient()`, :meth:`~.Material.clear_specular()`, etc.
+Shininess does not have a clear method.
 
 Additionally you can check if a material has a property with the has methods:
-``material.hasAmbient()``, ``material.hasEmission()``, etc.
+:meth:`~.Material.has_ambient()`, :meth:`~.Material.has_emission()`, etc.
 
 Materials have two other methods that have not been covered yet,
 ``setLocal(<bool>)`` and ``setTwoside(<bool>)``. setLocal controls whether to
@@ -170,38 +170,75 @@ When loading a model from a file, it may be useful to dynamically inspect which
 materials are present. This is possible using methods provided on the NodePath
 object that represents the model to which the materials are applied.
 
-.. code-block:: python
+.. only:: python
 
-   # Find all materials
-   mats = car.findAllMaterials()
+   .. code-block:: python
 
-   # Find a specific material by name (wildcards allowed)
-   blue = car.findMaterial("blueMetal")
+      # Find all materials
+      mats = car.findAllMaterials()
 
-   # Find all materials whose name end in Metal
-   coloredMetals = car.findAllMaterial("*Metal")
+      # Find a specific material by name (wildcards allowed)
+      blue = car.findMaterial("blueMetal")
+
+      # Find all materials whose name end in Metal
+      coloredMetals = car.findAllMaterials("*Metal")
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      // Find all materials
+      MaterialCollection mats = car.find_all_materials();
+
+      // Find a specific material by name (wildcards allowed)
+      PT(Material) blue = car.find_material("blueMetal");
+
+      // Find all materials whose name end in Metal
+      MaterialCollection colored_metals = car.find_all_materials("*Metal");
 
 In some cases, you may want to replace a material with a different one. An easy
 way to set the material for a node is just to apply it with an override value,
 meaning it takes precedence over a material applied to any node below it:
 
-.. code-block:: python
+.. only:: python
 
-   red = Material()
-   #...set up red material
-   car.setMaterial(red, 1)
+   .. code-block:: python
+
+      red = Material()
+      #...set up red material
+      car.setMaterial(red, 1)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      PT(Material) red = new Material;
+      //...set up red material
+      car.set_material(red, 1);
 
 However, this will set the material on all parts of the model. In this case, it
 will also give the wheels the same red metal look! As of Panda3D 1.10, there is
 an easy way to replace all instances of a specific material only:
 
-.. code-block:: python
+.. only:: python
 
-   blue = car.findMaterial("blueMetal")
-   red = Material()
-   #...set up red material
+   .. code-block:: python
 
-   car.replaceMaterial(blue, red)
+      blue = car.findMaterial("blueMetal")
+      red = Material()
+      #...set up red material
+
+      car.replaceMaterial(blue, red)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      PT(Material) blue = car.find_material("blueMetal");
+      PT(Material) red = new Material;
+      //...set up red material
+
+      car.replace_material(blue, red);
 
 Related Classes
 ~~~~~~~~~~~~~~~

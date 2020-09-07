@@ -21,9 +21,9 @@ loader:
 =================================== ========================================================================================================================================================
 Method                              Explanation
 =================================== ========================================================================================================================================================
-ColorAttrib.makeVertex()            Used by the model loader to indicate that the model has vertex colors stored in its vertex arrays.
-ColorAttrib.makeFlat((R,G,B,A))     Used by the model loader to indicate that the model has a single flat color.
-ColorAttrib.makeOff()               Used by the model loader to indicate that no particular color was specified. Essentially the same as flat white, but possibly a little faster to render.
+:meth:`.ColorAttrib.make_vertex()`  Used by the model loader to indicate that the model has vertex colors stored in its vertex arrays.
+:meth:`.ColorAttrib.make_flat()`    Used by the model loader to indicate that the model has a single flat color.
+:meth:`.ColorAttrib.make_off()`     Used by the model loader to indicate that no particular color was specified. Essentially the same as flat white, but possibly a little faster to render.
 =================================== ========================================================================================================================================================
 
 Panda combines these color attributes with the textures. If you are accustomed
@@ -37,20 +37,29 @@ Recoloring the Model
 If you wish, you can manually override the color attribute which has been
 specified by the model loader.
 
-.. code-block:: python
+.. only:: python
 
-   nodePath.setColor(r, g, b, a)
+   .. code-block:: python
+
+      nodePath.setColor(r, g, b, a)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      nodePath.set_color(r, g, b, a);
 
 Again, this is an override. If the model already had vertex colors, these will
-disappear: the ``setColor`` method is replacing those colors with a new one. If
-the model already had a flat color, that will be replaced with the new flat
-color.
+disappear: the :meth:`~.NodePath.set_color()` method is replacing those colors
+with a new one. If the model already had a flat color, that will be replaced
+with the new flat color.
 
 It should be mentioned that the color attribute created by the model loader has
-low priority. That means that even a default-priority ``setColor`` is enough to
-override it.
+low priority. That means that even a default-priority
+:meth:`~.NodePath.set_color()` is enough to override it.
 
-You can remove a previous ``setColor`` using ``clearColor``.
+You can remove a previous :meth:`~.NodePath.set_color()` using
+:meth:`~.NodePath.clear_color()`.
 
 Tinting the Model
 -----------------
@@ -58,20 +67,30 @@ Tinting the Model
 Sometimes, you don't want to replace the existing color, sometimes, you want to
 tint the existing colors. For this, you need setColorScale:
 
-.. code-block:: python
+.. only:: python
 
-   nodePath.setColorScale(r,g,b,a)
+   .. code-block:: python
+
+      nodePath.setColorScale(r, g, b, a)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      nodePath.set_color_scale(r, g, b, a);
 
 This color will be modulated (multiplied) with the existing color.
 
-You can remove a previous ``setColorScale`` using ``clearColorScale``.
+You can remove a previous :meth:`~.NodePath.set_color_scale()` using
+:meth:`~.NodePath.clear_color_scale()`.
 
 Demonstration
 -------------
 
-To see the difference between ``setColor`` and ``setColorScale``, try the code
-sample below. You will need the nik-dragon model from the Cartoon Shading sample
-program, which has vertex colors and no texture:
+To see the difference between :meth:`~.NodePath.set_color()` and
+:meth:`~.NodePath.set_color_scale()`, try the code sample below. You will need
+the nik-dragon model from the Cartoon Shading sample program, which has vertex
+colors and no texture:
 
 .. code-block:: python
 
@@ -127,22 +146,44 @@ An easy way to correct existing colors when switching to a linear workflow is
 to apply a 2.2 gamma.  This is a good approximation for the sRGB transform
 function:
 
-.. code-block:: python
+.. only:: python
 
-   model1.setColor(LColor(0.6, 0.5, 0.3, 1) ** 2.2)
+   .. code-block:: python
+
+      model1.setColor(LColor(0.6, 0.5, 0.3, 1) ** 2.2)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      model1.set_color(powf(0.6, 2.2), powf(0.5, 2.2), powf(0.3, 2.2));
 
 A better method is to use the sRGB conversion functions that Panda3D provides.
 For example, to apply the ``#51C2C6`` color, you can do as follows:
 
-.. code-block:: python
+.. only:: python
 
-   from panda3d.core import decode_sRGB_float
+   .. code-block:: python
 
-   model1.setColor(
-      decode_sRGB_float(0x51),
-      decode_sRGB_float(0xC2),
-      decode_sRGB_float(0xC6),
-   )
+      from panda3d.core import decode_sRGB_float
+
+      model1.setColor(
+         decode_sRGB_float(0x51),
+         decode_sRGB_float(0xC2),
+         decode_sRGB_float(0xC6),
+      )
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      #include "convert_srgb.h"
+
+      model1.set_color(
+         decode_sRGB_float(0x51),
+         decode_sRGB_float(0xC2),
+         decode_sRGB_float(0xC6),
+      );
 
 If you are not using a linear workflow, or don't know what that is, you don't
 need to worry about this for now.

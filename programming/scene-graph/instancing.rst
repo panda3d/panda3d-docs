@@ -149,8 +149,8 @@ the net transform of that particular instance of the node.
 Earlier, it was noted that a NodePath contains a pointer to a node, plus some
 administrative information. The purpose of that administrative information is
 to uniquely identify one of the instances. There is no method
-``PandaNode.getNetTransform``, but there is a method
-``NodePath.getNetTransform``. Now you know why.
+:meth:`.PandaNode.get_net_transform()`, but there is a method
+:meth:`.NodePath.get_net_transform()`. Now you know why.
 
 To understand how NodePath got its name, think about what is necessary to
 uniquely identify an instance. Each of the 150 dancers in the graph above

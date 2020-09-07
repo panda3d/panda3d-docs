@@ -42,12 +42,13 @@ coordinate in the window will actually be the inverted Z coordinate in Panda.
 This node is especially helpful when you want to do pixel-perfect positioning
 and scaling.
 
-Finally, you may see references to one other top-level node called hidden.
-This is simply an ordinary node that has no rendering properties set up for
-it, so that things parented to hidden will not be rendered. Older Panda3D code
-needed to use hidden to remove a node from the render scene graph. However,
-this is no longer necessary, and its use is not recommended for new programs;
-the best way to remove a node from render is to call ``nodePath.detach_node()``.
+Finally, you may see references to one other top-level node called
+:obj:`~builtins.hidden`. This is simply an ordinary node that has no rendering
+properties set up for it, so that things parented to hidden will not be
+rendered. Older Panda3D code needed to use hidden to remove a node from the
+render scene graph. However, this is no longer necessary, and its use is not
+recommended for new programs; the best way to remove a node from render is to
+call :meth:`.NodePath.detach_node()`.
 
 Loading models
 --------------
@@ -151,7 +152,7 @@ several models together:
 Since a node inherits its position information from its parent node, when you
 reparent a node in the scene graph you might inadvertently change its position
 in the world. If you need to avoid this, you can use a special variant on
-reparent_to():
+:meth:`~.NodePath.reparent_to()`:
 
 .. only:: python
 
@@ -166,16 +167,17 @@ reparent_to():
       myModel.wrt_reparent_to(newParent);
 
 The "wrt" prefix stands for "with respect to". This special method works like
-reparent_to(), except that it automatically recomputes the local transform on
-myModel to compensate for the change in transform under the new parent, so that
-the node ends up in the same position relative to the world.
+:meth:`~.NodePath.reparent_to()`, except that it automatically recomputes the
+local transform on myModel to compensate for the change in transform under the
+new parent, so that the node ends up in the same position relative to the world.
 
-Note that the computation required to perform wrtReparentTo() is a floating-
-point matrix computation and is therefore inherently imprecise. This means that
-if you use wrtReparentTo() repeatedly, thousands of times on the same node, it
-may eventually accumulate enough numerical inaccuracies to introduce a slight
-scale on the object (for instance, a scale of 1, 1, 0.99999); if left unchecked,
-this scale could eventually become noticeable.
+Note that the computation required to perform
+:meth:`~.NodePath.wrt_reparent_to()` is a floating-point matrix computation and
+is therefore inherently imprecise. This means that if you use
+:meth:`~.NodePath.wrt_reparent_to()` repeatedly, thousands of times on the same
+node, it may eventually accumulate enough numerical inaccuracies to introduce a
+slight scale on the object (for instance, a scale of 1, 1, 0.99999); if left
+unchecked, this scale could eventually become noticeable.
 
-Beginners tend to overuse this method; you should not use wrtReparentTo() unless
-there is a real reason to use it.
+Beginners tend to overuse this method; you should not use
+:meth:`~.NodePath.wrt_reparent_to()` unless there is a real reason to use it.

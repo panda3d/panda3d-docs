@@ -3,9 +3,6 @@
 Auxiliary Bitplane Control
 ==========================
 
-Auxiliary Bitplane Control
---------------------------
-
 The framebuffer always contains a color bitplane and a depth bitplane. It may
 also have a stencil bitplane or accumulation bitplane. In addition, if it is a
 render-to-texture framebuffer, it may have auxiliary bitplanes. These auxiliary
@@ -16,9 +13,17 @@ When per-pixel lighting is enabled via
 asked to produce extra data into the auxiliary bitplanes. This is done by
 setting an AuxBitplaneAttrib:
 
-.. code-block:: python
+.. only:: python
 
-   np.setAttrib(AuxBitplaneAttrib.make(bits))
+   .. code-block:: python
+
+      np.setAttrib(AuxBitplaneAttrib.make(bits))
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      np.set_attrib(AuxBitplaneAttrib::make(bits));
 
 Where ``bits`` is a set of bits indicating what should be written into the
 auxiliary bitplanes.

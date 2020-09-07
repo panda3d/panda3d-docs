@@ -87,13 +87,13 @@ Advanced version involves writing shaders explicitly.
 Per-Pixel Lighting
 ------------------
 
-Simply turning on ``setShaderAuto`` causes one immediate change: all lighting
-calculations are done per-pixel instead of per-vertex. This means that models do
-not have to be highly tesselated in order to get nice-looking spotlights or
-specular highlights.
+Simply turning on :meth:`~.NodePath.set_shader_auto()` causes one immediate
+change: all lighting calculations are done per-pixel instead of per-vertex. This
+means that models do not have to be highly tesselated in order to get
+nice-looking spotlights or specular highlights.
 
-Of course, the real magic of ``setShaderAuto`` is that it enables you to use
-powerful features like normal maps and the like.
+Of course, the real magic of :meth:`~.NodePath.set_shader_auto()` is that it
+enables you to use powerful features like normal maps and the like.
 
 Known Limitations
 -----------------
@@ -121,26 +121,27 @@ Here's what's known to be missing:
 -  some texgen modes
 
 Note that although vertex colors are supported by the ShaderGenerator, in order
-to render vertex colors you need to apply a ``ColorAttrib.makeVertex()`` attrib
-to the render state. One easy way to do this is to call
-``NodePath.setColorOff()`` (that is, turn off scene graph color, and let vertex
-color be visible). In the fixed-function renderer, vertex colors will render
-with or without this attrib, so you might not notice if you fail to apply it.
-Models that come in via the egg loader should have this attribute applied
+to render vertex colors you need to apply a :meth:`.ColorAttrib.make_vertex()`
+attrib to the render state. One easy way to do this is to call
+:meth:`.NodePath.set_color_off()` (that is, turn off scene graph color, and let
+vertex color be visible). In the fixed-function renderer, vertex colors will
+render with or without this attrib, so you might not notice if you fail to apply
+it. Models that come in via the egg loader should have this attribute applied
 already. However, if you are using your own model loader or generating models
 procedurally you will need to set it yourself.
 
 How the Shader Generator Works
 ------------------------------
 
-When panda goes to render something marked ``setShaderAuto``, it synthesizes a
-shader to render that object. In order to generate the shader, it examines all
-the attributes of the object: the lights, the material, the fog setting, the
-color, the vertex colors... almost everything. It takes into account all of
-these factors when generating the shader. For instance, if the object has a
-material attrib, then material color support is inserted into the shader. If the
-object has lights, then lighting calculations are inserted into the shader. If
-the object has vertex colors, then the shader is made to use those.
+When panda goes to render something marked :meth:`~.NodePath.set_shader_auto()`,
+it synthesizes a shader to render that object. In order to generate the shader,
+it examines all the attributes of the object: the lights, the material, the fog
+setting, the color, the vertex colors... almost everything. It takes into
+account all of these factors when generating the shader. For instance, if the
+object has a material attrib, then material color support is inserted into the
+shader. If the object has lights, then lighting calculations are inserted into
+the shader. If the object has vertex colors, then the shader is made to use
+those.
 
 Caching and the Shader Generator
 --------------------------------
@@ -178,12 +179,13 @@ probably do the houses and trees using panda's built-in abilities. However,
 Panda doesn't contain anything that particularly looks like pond-water: for
 that, you'll probably need to write your own shader.
 
-When you use ``render.setShaderAuto()``, that propagates down the scene graph
-just like any other render attribute. If you assign a specific shader to a node
-using ``nodepath.setShader(myshader)``, that overrides any shader assignment
-propagated down from above, including an Auto shader assignment from above. So
-that means it is easy, in the example above, to enable auto shader generation
-for the scene as a whole, and then override that at the pond-nodepath.
+When you use :meth:`render.set_shader_auto() <.NodePath.set_shader_auto()>`,
+that propagates down the scene graph just like any other render attribute. If
+you assign a specific shader to a node using :meth:`render.set_shader(myshader)
+<.NodePath.set_shader()>`, that overrides any shader assignment propagated down
+from above, including an Auto shader assignment from above. So that means it is
+easy, in the example above, to enable auto shader generation for the scene as a
+whole, and then override that at the pond-nodepath.
 
 Creating your own Shader Generator
 ----------------------------------

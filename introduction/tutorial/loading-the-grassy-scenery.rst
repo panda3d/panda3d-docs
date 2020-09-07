@@ -16,13 +16,14 @@ the Scene Graph.
    You can get the NodePath of render by calling ``window->get_render()``.
 
 To install the grassy scenery model into the Scene Graph, we use the method
-``reparentTo()``. This sets the parent of the model, thereby giving it a place
-in the Scene Graph. Doing so makes the model visible in the scene.
+:meth:`~.NodePath.reparent_to()`. This sets the parent of the model, thereby
+giving it a place in the Scene Graph. Doing so makes the model visible in the
+scene.
 
 Finally, we adjust the position and scale of the model. In this particular case,
 the environment model is a little too large and somewhat offset for our
-purposes. The ``setScale()`` and ``setPos()`` procedures rescale and center the
-model.
+purposes. The :meth:`~.NodePath.set_scale()` and :meth:`~.NodePath.set_pos()`
+procedures rescale and center the model.
 
 Panda3D uses the "geographical" coordinate system where position (-8, 42, 0)
 means map coordinates (8, 42) and height 0. If you are used to OpenGL/Direct3D
@@ -46,11 +47,12 @@ Update your code as follows:
       :language: python
       :linenos:
 
-   The ShowBase procedure ``loader.loadModel()`` loads the specified file, in
-   this case the environment.egg file in the models folder. The return value is
-   an object of the ``NodePath`` class, effectively a pointer to the model. Note
-   that :ref:`Panda Filename Syntax <loading-models>` uses the forward-slash,
-   even under Windows.
+   The ShowBase procedure
+   :py:meth:`loader.loadModel() <direct.showbase.Loader.loadModel>` loads the
+   specified file, in this case the environment.egg file in the models folder.
+   The return value is an object of the :class:`.NodePath` class, effectively a
+   pointer to the model. Note that :ref:`Panda Filename Syntax <loading-models>`
+   uses the forward-slash, even under Windows.
 
 .. only:: cpp
 
@@ -58,12 +60,11 @@ Update your code as follows:
       :language: cpp
       :linenos:
 
-   The ShowBase procedure ``window->load_model(framework.get_models(), "path")``
-   loads the specified file, in this case the environment.egg file in the models
-   folder. The return value is an object of the ``NodePath`` class, effectively
-   a pointer to the model. Note that
-   :ref:`Panda Filename Syntax <loading-models>` uses the forward-slash, even
-   under Windows.
+   The WindowFramework procedure ``window->load_model()`` loads the specified
+   file, in this case the environment.egg file in the models folder. The return
+   value is an object of the :class:`.NodePath` class, effectively a pointer to
+   the model. Note that :ref:`Panda Filename Syntax <loading-models>` uses the
+   forward-slash, even under Windows.
 
 Run the Program
 ~~~~~~~~~~~~~~~

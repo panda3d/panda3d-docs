@@ -16,8 +16,7 @@ convention, if you want to move the default camera you should manipulate
 ``base.camera`` instead), and the default lens is ``base.camLens``.
 
 This default lens will almost always be a perspective lens--that is, an
-instance of the class
-``PerspectiveLens``--unless you have done
+instance of the class :class:`.PerspectiveLens`--unless you have done
 something to change it to another kind of lens. A perspective lens is by far
 the most common kind of lens used, and it behaves the same way the physical
 lens in a camera works, or for that matter the same way the lenses in our eyes
@@ -52,7 +51,8 @@ A), is called the camera plane.
 Although it is possible to change the nodal point or view direction of a lens
 to some point other than (0, 0, 0) or some direction other than down the +Y
 axis, it is usually simplest and best just to move the entire camera using the
-basic NodePath operations like setPos() and setHpr().
+basic NodePath operations like :meth:`~.NodePath.set_pos()` and
+:meth:`~.NodePath.set_hpr()`.
 
 B. This angle is the field of view, or fov, of the lens. You can easily change
 this by setting a new value in degrees with
@@ -166,13 +166,11 @@ field of view and film size, Panda will calculate the focal length. If you set
 film size and focal length, Panda will calculate the field of view. If you set
 focal length and field of view, Panda will calculate the film size.
 
-Also, the aspect ratio can be set either implicitly, by using the
-two-parameter ``setFov()`` or
-``setFilmSize()`` methods, or explicitly,
-by directly specifying it with
-``setAspectRatio()``. If you set the aspect
-ratio explicitly, Panda will recompute your vertical field of view and
-vertical film size to match.
+Also, the aspect ratio can be set either implicitly, by using the two-parameter
+:meth:`~.Lens.set_fov()` or :meth:`~.Lens.set_film_size()` methods, or
+explicitly, by directly specifying it with :meth:`~.Lens.set_aspect_ratio()`.
+If you set the aspect ratio explicitly, Panda will recompute your vertical field
+of view and vertical film size to match.
 
 .. |Lens tutorial, perspective view| image:: lens-tutorial-perspective.jpg
 .. |Lens tutorial, top view| image:: lens-tutorial-top.jpg

@@ -22,9 +22,9 @@ Panda3D defines four different kinds of light objects: point, directional,
 ambient, and spotlight. Each of these is a node that should be attached
 somewhere within the scene graph. Like anything you put into the scene, lights
 have a position and orientation, which is determined by the basic scene graph
-operations like ``setPos()``, ``setHpr()``, etc. The ``lookAt()`` method is
-particularly useful for pointing spotlights and directional lights at a
-particular object.
+operations like :meth:`~.NodePath.set_pos()`, :meth:`~.NodePath.set_hpr()`, etc.
+The :meth:`~.NodePath.look_at()` method is particularly useful for pointing
+spotlights and directional lights at a particular object.
 
 .. only:: cpp
 
@@ -63,8 +63,9 @@ parent it directly to the light itself.
 
 Creating the light and putting it in the scene graph doesn't, by itself, have
 any visible effect. Your next step is to tell some object to be illuminated by
-the light. To do this, use the ``nodePath.setLight()`` method, which turns on
-the light for the indicated NodePath and everything below it in the scene graph.
+the light. To do this, use the :meth:`.NodePath.set_light()` method, which
+turns on the light for the indicated NodePath and everything below it in the
+scene graph.
 
 In the simplest case, you want all of your lights to illuminate everything they
 can, so you turn them on at render, the top of the scene graph:
@@ -95,8 +96,9 @@ You can remove the light setting from render:
 
       window->get_render().clear_light(pnlp);
 
-You could also apply the ``setLight()`` call to a sub-node in the scene graph,
-so that a given light only affects a particular object or group of objects:
+You could also apply the :meth:`~.NodePath.set_light()` call to a sub-node in
+the scene graph, so that a given light only affects a particular object or group
+of objects:
 
 .. only:: python
 
@@ -112,9 +114,9 @@ so that a given light only affects a particular object or group of objects:
 
 Note that there are two (or more) different NodePaths involved here: the
 NodePath of the light itself, which defines the position and/or orientation of
-the light, and the NodePath(s) on which you call ``setLight()``, which
-determines what subset of the scene graph the light illuminates. There's no
-requirement for these two NodePaths to be related in any way.
+the light, and the NodePath(s) on which you call :meth:`~.NodePath.set_light()`,
+which determines what subset of the scene graph the light illuminates. There's
+no requirement for these two NodePaths to be related in any way.
 
 Lots of Lights: Performance Implications
 ----------------------------------------
@@ -140,9 +142,9 @@ The default color is full white: ``setColor((1, 1, 1, 1))``. The alpha component
 is largely irrelevant.
 
 If you are trying to simulate a natural light, it may be easier to set the color
-temperature instead, by calling ``light.setColorTemperature()`` with a value in
-Kelvin. Use a value of 6500 for pure white, a lower value to get a warmer white
-color and a higher value to get a cooler white.
+temperature instead, by calling :meth:`.Light.set_color_temperature()` with a
+value in Kelvin. Use a value of 6500 for pure white, a lower value to get a
+warmer white color and a higher value to get a cooler white.
 
 The color of the specular highlight can be set individually using
 ``light.setSpecularColor((r, g, b, a))``, however, this should not be done as
@@ -193,9 +195,17 @@ You can set the attenuation coefficients, which causes the light to drop off
 gradually with distance. There are three attenuation coefficients: constant,
 linear, and quadratic.
 
-.. code-block:: python
+.. only:: python
 
-   plight.setAttenuation((c, l, q))
+   .. code-block:: python
+
+      plight.attenuation = (c, l, q)
+
+.. only:: cpp
+
+   .. code-block:: python
+
+      plight->set_attenuation(LVecBase3(c, l, q));
 
 The default values for these constants are (1, 0, 0), respectively. This means
 that the intensity of a light is by default not dependent on the distance to the
@@ -206,17 +216,33 @@ means that the light falls off proportional to the inverse of the square of the
 distance. To achieve this effect, you need to set the quadratic coefficient to
 1:
 
-.. code-block:: python
+.. only:: python
 
-   plight.setAttenuation((0, 0, 1))
+   .. code-block:: python
+
+      plight.attenuation = (0, 0, 1)
+
+.. only:: cpp
+
+   .. code-block:: python
+
+      plight->set_attenuation(LVecBase3(0, 0, 1));
 
 One disadvantage of this is that the light intensity will approach infinity as
 the distance approaches zero. A common way to avoid this in real-time rendering
 is to set the constant coefficient to 1.
 
-.. code-block:: python
+.. only:: python
 
-   plight.setAttenuation((1, 0, 1))
+   .. code-block:: python
+
+      plight.attenuation = (1, 0, 1)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      plight->set_attenuation(LVecBase3(1, 0, 1));
 
 This will make the light intensity smoothly reach 1 as the distance to the light
 source approaches zero.
@@ -227,8 +253,8 @@ Directional Lights
 A directional light is an infinite wave of light, always in the same direction,
 like sunlight. A directional light's position doesn't matter, but its
 orientation is important. The default directional light is shining down the
-forward (+Y) axis; you can use ``nodePath.setHpr()`` or ``nodePath.lookAt()`` to
-rotate it to face in a different direction.
+forward (+Y) axis; you can use :meth:`.NodePath.set_hpr()` or
+:meth:`~.NodePath.set_light()` to rotate it to face in a different direction.
 
 .. only:: python
 
@@ -362,10 +388,10 @@ Shadow Mapping
 --------------
 
 Panda3D offers fully automatic shadow mapping support for spotlights and
-directional lights. You can enable shadows by calling ``setShadowCaster()``.
-The nodes that receive shadows will need to have
-:ref:`the Shader Generator <the-shader-generator>` enabled, otherwise no shadows
-will appear.
+directional lights. You can enable shadows by calling
+:meth:`~.LightLensNode.set_shadow_caster()`. The nodes that receive shadows will
+need to have :ref:`the Shader Generator <the-shader-generator>` enabled,
+otherwise no shadows will appear.
 
 .. only:: python
 
@@ -387,10 +413,10 @@ will appear.
 
 Note that, even though in general shadowing is easy to set-up, you will want to
 tweak the light's lens settings to get the best depth buffer precision. Use the
-``setNearFar()`` method on the Lens to get a perfect fit of what is being
-rendered. Also, for directional lights, you will need to call ``setFilmSize()``
-on the Lens and position the light properly so that the light camera will get an
-optimal view of the scene.
+:meth:`~.Lens.set_near_far()` method on the Lens to get a perfect fit of what is
+being rendered. Also, for directional lights, you will need to call
+:meth:`~.Lens.set_film_size()` on the Lens and position the light properly so
+that the light camera will get an optimal view of the scene.
 
 Also note that every Light is in fact also a Camera, so you can easily exclude
 objects from being shadowed (e.g. for performance reasons) by use of camera
@@ -400,8 +426,8 @@ If you have very thin objects, you may run into self-shadowing issues if the
 backside of the object casts shadows on its frontside. You can easily fix this
 by applying a depth offset to the object in question. A depth offset of 1 means
 to use an offset as small as possible, but big enough to make a difference. This
-should generally be enough. You can call ``setDepthOffset()`` on the NodePath or
-use the ``depth-offset`` scalar in the .egg file.
+should generally be enough. You can call :meth:`~.NodePath.set_depth_offset()`
+on the NodePath or use the ``depth-offset`` scalar in the .egg file.
 
 .. only:: python
 

@@ -7,14 +7,25 @@ Basic Fog
 ---------
 
 To turn on fog, create an object of class :class:`.Fog`, and then apply it using
-the :meth:`.NodePath.setFog` method:
+the :meth:`.NodePath.set_fog` method:
 
-.. code-block:: python
+.. only:: python
 
-   myFog = Fog("Fog Name")
-   myFog.setColor(R,G,B)
-   myFog.setExpDensity(Float 0 to 1)
-   render.setFog(myFog)
+   .. code-block:: python
+
+      myFog = Fog("Fog Name")
+      myFog.setColor(R, G, B)
+      myFog.setExpDensity(Float 0 to 1)
+      render.setFog(myFog)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      PT(Fog) my_fog = new Fog("Fog Name");
+      my_fog->set_color(R, G, B);
+      my_fog->set_exp_density(Float 0 to 1);
+      render.set_fog(my_fog);
 
 However, there is more here than meets the eye. We have created a fog node,
 which goes into the scene graph. Therefore, the fog has a position, a place
@@ -25,32 +36,48 @@ for instance), then the fog's position is ignored, and the fog is
 camera-relative. Likewise, if the fog is exponential, the fog's position is
 ignored, and the fog is camera-relative.
 
-The :meth:`~.NodePath.setFog` method creates a fog attribute object.
+The :meth:`~.NodePath.set_fog` method creates a fog attribute object.
 Like any :ref:`Render Attribute <render-attributes>`, the fog attribute affects
 the node that it is attached to, and any nodes below it in the scene graph. So
 you can easily cause only a subset of the objects (or just a single model) to be
-affected by the fog, by calling :meth:`~.NodePath.setFog` on the root of
+affected by the fog, by calling :meth:`~.NodePath.set_fog` on the root of
 the subgraph you want to be affected.
-To remove the fog attribute later, use the :meth:`~.NodePath.clearFog` method:
+To remove the fog attribute later, use the :meth:`~.NodePath.clear_fog` method:
 
-.. code-block:: python
+.. only:: python
 
-   render.clearFog()
+   .. code-block:: python
+
+      render.clearFog()
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      render.clear_fog();
 
 While you have fog in effect, it is often desirable to set the background color
 to match the fog:
 
-.. code-block:: python
+.. only:: python
 
-   base.setBackgroundColor(myFogColor)
+   .. code-block:: python
+
+      base.setBackgroundColor(myFogColor)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      window->get_display_region_3d()->set_clear_color(myFogColor);
 
 Fog Modes
 ---------
 
 There are three fog modes in Panda: ``Fog.MExponential``,
 ``Fog.MExponentialSquared`` and ``Fog.MLinear``. You can switch the mode of a
-:class:`.Fog` object using :meth:`fog.getMode() <.Fog.getMode>` and
-:meth:`fog.setMode(Fog.Mode) <.Fog.setMode>`.
+:class:`.Fog` object using :meth:`fog.getMode() <.Fog.get_mode>` and
+:meth:`fog.setMode(Fog.Mode) <.Fog.set_mode>`.
 This explicit mode switching isn't normally necessary, as
 :class:`.Fog` methods implicitly switch the mode for you.
 
@@ -64,9 +91,9 @@ objects the fog affects, it determines the origin and direction of the fog when
 it is in linear mode. When a fog node is in exponential mode its position and
 orientation in the scene graph are irrelevant. Either way, a
 :class:`.Fog` node must be activated by calling
-:meth:`nodePath.setFog(fogNode) <.NodePath.setFog>` on some :class:`.NodePath`
+:meth:`nodePath.setFog(fogNode) <.NodePath.set_fog>` on some :class:`.NodePath`
 in the scene graph.
-Which :class:`.NodePath` you call the :meth:`~.NodePath.setFog` method on
+Which :class:`.NodePath` you call the :meth:`~.NodePath.set_fog` method on
 determines which parts of the scene will be fogged: that :class:`.NodePath` and
 all its children.
 
@@ -76,7 +103,7 @@ Linear Fog
 This is the default mode. In this mode the position and orientation of a
 :class:`.Fog` node are important.
 A linear-mode :class:`.Fog` node must first be parented into the scene graph,
-then activated by calling :meth:`setFog(fogNode) <.NodePath.setFog>` on some
+then activated by calling :meth:`setFog(fogNode) <.NodePath.set_fog>` on some
 :class:`.NodePath` in the scene graph.
 
 Setup a linear fog node at the origin:
@@ -101,10 +128,10 @@ continuing opaque fog up to the location of the fog node as you might expect):
 "the fog will be rendered as if it extended along the vector from the onset
 point to the opaque point."
 
-These settings can be modified using the methods ``getLinearOnsetPoint()``,
-``getLinearOpaquePoint()``, ``setLinearOnsetPoint(float x,y,z)``,
-``setLinearOpaquePoint(Point3D pos)`` and
-``setLinearRange(float onset, float opaque)`` of :class:`.Fog`.
+These settings can be modified using the methods
+:meth:`~.Fog.get_linear_onset_point()`, :meth:`~.Fog.get_linear_opaque_point()`,
+:meth:`~.Fog.set_linear_onset_point()`, :meth:`~.Fog.set_linear_opaque_point()`
+and :meth:`~.Fog.set_linear_range()` of :class:`.Fog`.
 
 There is a hardware issue with rendering fog which means that linear fog can
 breakdown and vanish depending on the angle from which it is viewed:
@@ -118,7 +145,7 @@ breakdown and vanish depending on the angle from which it is viewed:
    breakdown of the effect at a 90 degree angle."
 
 The :class:`.Fog` method
-:meth:`setLinearFallback(float angle, float onset, float opaque) <.Fog.setLinearFallback>`
+:meth:`setLinearFallback(float angle, float onset, float opaque) <.Fog.set_linear_fallback>`
 defines how the fog should be rendered when the fog effect is diminished in this
 way. ``angle`` is the minimum viewing angle (angle between the camera direction
 and fog direction) at which the fallback effect will be employed. ``onset`` and
@@ -142,36 +169,56 @@ the density factor. The fog moves with the camera as the camera’s position and
 orientation changes:
 
    "the onset point and opaque point are not used, and the fog effect is based
-   on the value specified to ``set_exp_density()``, and it doesn’t matter to
-   which node the fog object is parented, or if it is parented anywhere at all."
+   on the value specified to :meth:`~.Fog.set_exp_density()`, and it doesn’t
+   matter to which node the fog object is parented, or if it is parented
+   anywhere at all."
 
-The ``fog.setExpDensity(float)`` method determines the density value used for
-exponential fog calculations.
+The :meth:`.Fog.set_exp_density()` method determines the density value used for
+exponential fog calculations.  The below example uses it to set up some scene-
+wide exponential fog:
 
-You activate an exponential fog effect by calling the ``setFog(Fog)`` method of
-``NodePath``, for example: ``render.setFog(myFog)``:
+.. only:: python
 
-Setup some scene-wide exponential fog:
+   .. code-block:: python
 
-.. code-block:: python
+      color = (0.5, 0.8, 0.8)
+      expfog = Fog("Scene-wide exponential Fog object")
+      expfog.setColor(*color)
+      expfog.setExpDensity(0.005)
+      render.setFog(expfog)
+      base.setBackgroundColor(*color)
 
-   colour = (0.5,0.8,0.8)
-   expfog = Fog("Scene-wide exponential Fog object")
-   expfog.setColor(*colour)
-   expfog.setExpDensity(0.005)
-   render.setFog(expfog)
-   base.setBackgroundColor(*colour)
+.. only:: cpp
+
+   .. code-block: cpp
+
+      LColor color(0.5, 0.8, 0.8, 1);
+      PT(Fog) expfog = Fog("Scene-wide exponential Fog object");
+      expfog->set_color(color);
+      expfog->set_exp_density(0.005);
+      window->get_render().set_fog(expfog);
+      window->get_display_region_3d()->set_clear_color(color);
 
 The last line in the sample above doesn't actually affect the fog, however, it
 generally looks better if the scene background color matches the color of the
 fog.
 
-Since ``setFog`` is called on ``render`` it effects the entire scene. ``setFog``
-can just as easily be called on some other ``NodePath`` and will effect only
-that ``NodePath`` and its children.
+Since :meth:`~.NodePath.set_fog()` is called on ``render`` it effects the entire
+scene. :meth:`~.NodePath.set_fog()` can just as easily be called on some other
+:class:`.NodePath` and will effect only that :class:`.NodePath` and its
+children.
 
-The expontential fog effect can be turned off again using ``clearFog``:
+The expontential fog effect can be turned off again using
+:meth:`~.NodePath.clear_fog()`:
 
-.. code-block:: python
+.. only:: python
 
-   render.clearFog()
+   .. code-block:: python
+
+      render.clearFog()
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      render.clear_fog();
