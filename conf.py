@@ -493,7 +493,7 @@ def convert_doxygen_format(line, name):
     # have a scoping operator, or when they end with (), or when they clearly
     # look like a class/method, or we would match all the words in the text!
     origline = line
-    for m in re.finditer(r'\b([a-zA-Z_][a-zA-Z0-9_.:]*)\(\)|\b([a-zA-Z_][a-zA-Z0-9_]*::[a-zA-Z_][a-zA-Z0-9_.:]*)\b|\b([a-zA-Z_]+[A-Z0-9_][a-zA-Z0-9_.:]*)\b', origline):
+    for m in reversed(list(re.finditer(r'\b([a-zA-Z_][a-zA-Z0-9_.:]*)\(\)|\b([a-zA-Z_][a-zA-Z0-9_]*::[a-zA-Z_][a-zA-Z0-9_.:]*)\b|\b([a-zA-Z_]+[A-Z0-9_][a-zA-Z0-9_.:]*)\b', origline))):
         # Don't replace the class name on the page of the class itself.
         if m.group(0) == parent:
             continue
@@ -509,11 +509,19 @@ def convert_doxygen_format(line, name):
             ref = ':{0}:`~{1}`'.format(*result)
 
         # Are we inside double-backticks?
-        if origline[:m.start()].count('``') % 2 != 0:
-            # Only replace if it's entirely wrapped in backticks.
-            line = line.replace('``' + m.group() + '``', ref)
-        else:
-            line = line.replace(m.group(), ref)
+        start = m.start(0)
+        end = m.end(0)
+        if origline[:start].count('``') % 2 != 0:
+            # Only replace if it's entirely wrapped in backticks, not if it's
+            # part of some greater snippet.
+            start -= 2
+            end += 2
+            if origline[start:end] != '``' + m.group() + '``':
+                continue
+
+        # This may change the length, which is why we're doing this loop in
+        # reverse.
+        line = line[:start] + ref + line[end:]
 
     return line
 
