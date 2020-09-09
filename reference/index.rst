@@ -13,8 +13,8 @@ API Reference
 
 .. only:: cpp
 
-   The C++ part of the API reference is still under construction.  In the
-   meantime, please refer to the older Doxygen reference:
+   The C++ part of the API reference is incomplete.  Missing information can be
+   looked up in the older Doxygen reference:
 
    https://www.panda3d.org/reference/cxx/
 
