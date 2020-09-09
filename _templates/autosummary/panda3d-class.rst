@@ -1,4 +1,4 @@
-{{ fullname | escape | underline }}
+{{ objname | escape | underline }}
 
 .. currentmodule:: {{ module }}
 
@@ -8,11 +8,24 @@
 
       from {{ module }} import {{ name }}
 
-.. autoclass:: {{ objname }}
-   :members:
-   :undoc-members:
+   .. autoclass:: {{ objname }}
+      :members:
+      :undoc-members:
 
-   .. rubric:: Inheritance diagram
+      .. rubric:: Inheritance diagram
 
-   .. inheritance-diagram:: {{ objname }}
-      :parts: 1
+      .. inheritance-diagram:: {{ objname }}
+         :parts: 1
+
+.. only:: cpp
+
+   .. default-domain:: cpp
+
+   .. autoclass:: {{ objname }}
+      :members:
+      :undoc-members:
+
+      .. rubric:: Inheritance diagram
+
+      .. inheritance-diagram:: {{ objname }}
+         :parts: 1

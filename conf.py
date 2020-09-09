@@ -19,6 +19,7 @@ import re
 from sphinx_interrogatedb import idb
 from sphinx.ext import autodoc
 from docutils import nodes
+from panda3d.interrogatedb import *
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -424,7 +425,7 @@ class ExcludeDocumenter(autodoc.Documenter):
         return
 
 
-def resolve_reference(ref, rel, mangle_function_names=True):
+def resolve_reference(ref, rel, domain='py'):
     """Looks up an interrogate symbol to its canonical name.  The second
     argument is the fully qualified name it should be seen relative to, which
     may be a module name, or a module name followed by an object name.
@@ -434,7 +435,7 @@ def resolve_reference(ref, rel, mangle_function_names=True):
     # Find out which module we should be looking in.
     modname = None
     relpath = None
-    rel_parts = rel.split('.')
+    rel_parts = rel.replace('::', '.').split('.')
     for i in range(len(rel_parts), 0, -1):
         try_modname = '.'.join(rel_parts[:i])
         if idb.has_module(try_modname):
@@ -464,21 +465,47 @@ def resolve_reference(ref, rel, mangle_function_names=True):
 
         ifunc = idb.lookup_function(modname, search)
         if ifunc:
-            # Grab the mangled function name.
-            func_name = idb.get_function_name(ifunc, mangle=mangle_function_names)
-            if len(search) == 1:
+            if domain == 'cpp':
+                func_name = interrogate_function_scoped_name(ifunc)
                 return ('func', func_name)
-            else:
-                return ('meth', '.'.join(relpath[:i] + refpath[:-1] + [func_name]))
+            elif domain == 'py':
+                # Grab the mangled function name.
+                func_name = idb.get_function_name(ifunc, mangle=True)
+                if len(search) == 1:
+                    return ('func', func_name)
+                else:
+                    return ('meth', '.'.join(relpath[:i] + refpath[:-1] + [func_name]))
 
         itype = idb.lookup_type(modname, search)
         if itype:
             # Grab the original type name.
-            type_name = idb.get_type_name(itype, mangle=False, scoped=True)
-            return ('class', type_name)
+            if domain == 'cpp':
+                type_name = interrogate_type_scoped_name(itype)
+                if interrogate_type_is_typedef(itype):
+                    return ('type', type_name)
+                elif interrogate_type_is_enum(itype):
+                    return ('enum', type_name)
+                elif interrogate_type_is_struct(itype):
+                    return ('struct', type_name)
+                elif interrogate_type_is_class(itype):
+                    return ('class', type_name)
+                elif interrogate_type_is_union(itype):
+                    return ('union', type_name)
+            elif domain == 'py':
+                type_name = idb.get_type_name(itype, mangle=False, scoped=True)
+                return ('class', type_name)
+
+    if len(rel_parts) >= 2 and rel_parts[0] == 'panda3d' and rel_parts[1] != 'core':
+        # Look in panda3d.core instead, prefix the result with the module name.
+        rel_parts[1] = 'core'
+        resolved = resolve_reference(ref, '.'.join(rel_parts), domain=domain)
+        if resolved and domain == 'py':
+            return (resolved[0], 'panda3d.core.' + resolved[1])
+        else:
+            return resolved
 
 
-def convert_doxygen_format(line, name):
+def convert_doxygen_format(line, name, domain='py'):
     """Converts a single line of Doxygen formatting to Sphinx.
     The name argument is the fully qualified name of the current module, class
     or function, and is used to resolve references."""
@@ -496,41 +523,69 @@ def convert_doxygen_format(line, name):
     # Search for method and class references.  We pick them up either when they
     # have a scoping operator, or when they end with (), or when they clearly
     # look like a class/method, or we would match all the words in the text!
-    origline = line
-    for m in reversed(list(re.finditer(r'\b([a-zA-Z_][a-zA-Z0-9_.:]*)\(\)|\b([a-zA-Z_][a-zA-Z0-9_]*::[a-zA-Z_][a-zA-Z0-9_.:]*)\b|\b([a-zA-Z_]+[A-Z0-9_][a-zA-Z0-9_.:]*)\b', origline))):
-        # Don't replace the class name on the page of the class itself.
-        if m.group(0) == parent:
+    pattern = re.compile(r'([a-zA-Z_][a-zA-Z0-9_.:]*)\(\)|([a-zA-Z_][a-zA-Z0-9_]*::[a-zA-Z_][a-zA-Z0-9_.:]*)(\(\))?|([a-zA-Z_]+[A-Z0-9_][a-zA-Z0-9_.:]*)(\(\))?')
+    words = line.split(' ')
+    in_backticks = False
+    for i, word in enumerate(words):
+        if '``' in word:
+            if word.count('``') % 2 == 1:
+                # This opens/closes a backtick block spanning multiple words.
+                in_backticks = not in_backticks
+                continue
+
+        if in_backticks:
             continue
 
-        result = resolve_reference(m.group(0).rstrip('()'), name)
+        if word.endswith('.') or word.endswith(',') or word.endswith(';'):
+            # Punctuation.
+            suffix = word[-1]
+            word = word[:-1]
+        else:
+            suffix = ''
+
+        if word.endswith(')') and word.count(')') > word.count('('):
+            # It could be the last word in a parenthesized statement.
+            word = word[:-1]
+            suffix = ')' + suffix
+
+        # Don't replace the class name on the page of the class itself, unless
+        # it's already in backticks.
+        if word.rstrip('()') == parent:
+            continue
+
+        word = word.strip('`')
+
+        m = re.fullmatch(pattern, word)
+        if not m:
+            continue
+
+        plural = False
+
+        result = resolve_reference(word.rstrip('()'), name, domain=domain)
+        if not result and word.endswith('s') and '::' not in word and word[:-1] != parent:
+            # Detect use of plural in references to classes.
+            result = resolve_reference(word[:-1], name, domain=domain)
+            plural = True
+
         if not result:
             continue
 
-        if '::' in m.group():
-            # We want a scoped name, apparently.
-            ref = ':{0}:`{1}`'.format(*result)
+        typ, target = result
+
+        if plural:
+            words[i] = ':{0}:{1}:`{2} <{3}>`{4}'.format(domain, typ, word, target, suffix)
+        elif ('.' in target or '::' in target) and '::' not in word:
+            # The original wasn't scoped, so only use the last component.
+            words[i] = ':{0}:{1}:`~{2}`{3}'.format(domain, typ, target, suffix)
         else:
-            ref = ':{0}:`~{1}`'.format(*result)
+            words[i] = ':{0}:{1}:`{2}`{3}'.format(domain, typ, target, suffix)
 
-        # Are we inside double-backticks?
-        start = m.start(0)
-        end = m.end(0)
-        if origline[:start].count('``') % 2 != 0:
-            # Only replace if it's entirely wrapped in backticks, not if it's
-            # part of some greater snippet.
-            start -= 2
-            end += 2
-            if origline[start:end] != '``' + m.group() + '``':
-                continue
+        #print("replaced", word, "with", words[i])
 
-        # This may change the length, which is why we're doing this loop in
-        # reverse.
-        line = line[:start] + ref + line[end:]
-
-    return line
+    return ' '.join(words)
 
 
-def convert_doxygen_docstring(lines, name):
+def convert_doxygen_docstring(lines, name, domain='py'):
     """Converts a doxygen-style C++ block comment to a Sphinx-style one.
     The name argument is the fully qualified name of the current module, class
     or function, and is used to resolve references."""
@@ -624,7 +679,7 @@ def convert_doxygen_docstring(lines, name):
 
                 # I'd love to use the proper Sphinx deprecated tag, but it
                 # requires a version number, whereas Doxygen doesn't.
-                newlines.append('*Deprecated:* ' + convert_doxygen_format(value, name))
+                newlines.append('*Deprecated:* ' + convert_doxygen_format(value, name, domain))
                 newlines.append('')
                 continue
             elif special in ('brief', 'return', 'returns'):
@@ -643,11 +698,11 @@ def convert_doxygen_docstring(lines, name):
                 values = value.split(',')
 
                 for i, value in enumerate(values):
-                    result = resolve_reference(value.partition('(')[0], name)
+                    result = resolve_reference(value.partition('(')[0], name, domain=domain)
                     if result:
-                        values[i] = ':{0}:`{1}`'.format(*result)
+                        values[i] = ':{0}:{1}:`{2}`'.format(domain, *result)
                     else:
-                        values[i] = ':obj:`{0}`'.format(value)
+                        values[i] = ':{0}:obj:`{1}`'.format(domain, value)
 
                 if special == 'see':
                     newlines.append('See {}.'.format(', '.join(values)))
@@ -661,10 +716,10 @@ def convert_doxygen_docstring(lines, name):
 
                 newlines.append('.. %s:: ' % (special))
                 newlines.append('')
-                newlines.append('   ' + convert_doxygen_format(strline[2 + len(special):], name))
+                newlines.append('   ' + convert_doxygen_format(strline[2 + len(special):], name, domain))
                 while lines and lines[0].strip(' *\t/'):
                     line = lines.pop(0).lstrip(' *\t')
-                    newlines.append('   ' + convert_doxygen_format(line, name))
+                    newlines.append('   ' + convert_doxygen_format(line, name, domain))
 
                 newlines.append('')
                 continue
@@ -679,7 +734,7 @@ def convert_doxygen_docstring(lines, name):
                 print("Unhandled documentation tag: @" + special)
 
         if strline or len(newlines) > 0:
-            newlines.append('   '*indent + convert_doxygen_format(strline, name))
+            newlines.append('   '*indent + convert_doxygen_format(strline, name, domain))
 
     return newlines
 
@@ -709,13 +764,15 @@ def on_autodoc_process_docstring(app, what, name, obj, options, lines):
     if lines:
         line0 = lines[0].lstrip()
         if line0.startswith('/**') or line0.startswith('// '):
-            lines[:] = convert_doxygen_docstring(lines, name)
+            domain = app.env.temp_data.get('default_domain')
+            domain = domain.name if domain else 'py'
+            lines[:] = convert_doxygen_docstring(lines, name, domain)
 
 
 def on_missing_reference(app, env, node, contnode):
     # Resolver for interrogate classes that supports either snake case or camel
-    # case naming.  We'll be able to get rid of this when we switch to snake
-    # case across the board.
+    # case naming.  Depending on the variation that is active, it will link to
+    # either the Python or C++ reference as appropriate.
 
     target = node['reftarget']
 
@@ -740,11 +797,20 @@ def on_missing_reference(app, env, node, contnode):
             prefix = modpart + '.'
             target = target.split('.', 1)[1]
 
-    resolved = target and resolve_reference(target, module)
+    variation = getattr(env.app.builder, 'current_variation', None)
+    if variation and variation[0] == 'cpp':
+        domain = env.domains['cpp']
+    else:
+        domain = env.domains['py']
+
+    resolved = target and resolve_reference(target, module, domain=domain.name)
 
     typ = node['reftype']
+    if domain.name == 'cpp' and typ == 'meth':
+        # C++ domain doesn't have "meth", everything is "func" there.
+        typ = 'func'
+
     if resolved and (resolved[0] == typ or typ == 'obj'):
-        domain = env.domains['py']
         refdoc = node.get('refdoc', env.docname)
 
         # Try to match the original, but with the canonical mangling
@@ -752,15 +818,9 @@ def on_missing_reference(app, env, node, contnode):
         if len(contnode.children) and not node.get('refexplicit'):
             oldtext = contnode.children[0].astext()
 
-            variation = getattr(env.app.builder, 'current_variation', None)
-            if variation and variation[0] == 'cpp':
-                # Re-resolve, but without mangling the names.
-                resolved_nomangle = resolve_reference(target, module, mangle_function_names=False)
-                if not resolved_nomangle:
-                    resolved_nomangle = resolved
-
-                text = resolved_nomangle[1]
-                text = '::'.join(text.split('.')[-oldtext.count('.')-1:])
+            if domain.name == 'cpp':
+                text = resolved[1]
+                text = '::'.join(text.split('::')[-oldtext.replace('.', '::').count('.')-1:])
             else:
                 text = prefix + resolved[1]
                 text = '.'.join(text.split('.')[-oldtext.count('.')-1:])
@@ -769,10 +829,27 @@ def on_missing_reference(app, env, node, contnode):
                 text += "()"
 
             contnode.children[0] = nodes.Text(text)
+        elif domain.name == 'cpp':
+            # Work around a bug in the C++ resolver, which expects this
+            # text node to be the child of an Element.  I picked a
+            # decoration element since it happens not to translate to
+            # anything (not sure what its purpose is).
+            if isinstance(contnode, nodes.Text):
+                contnode = nodes.decoration('', contnode)
 
-        return domain.resolve_xref(env, refdoc, app.builder, typ, prefix + resolved[1], node, contnode)
+        # C++ references don't have a module prefix and use :: for scoping
+        if domain.name == 'cpp':
+            target = resolved[1]
+            if typ == 'obj':
+                # Another bug workaround
+                typ = resolved[0]
+            if typ in ('enum', 'class', 'struct', 'union') and resolved[0] == 'type':
+                # Squelch warning
+                typ = resolved[0]
+        else:
+            target = prefix + resolved[1]
 
-    #print("Could not resolve reference {}".format(node))
+        return domain.resolve_xref(env, refdoc, app.builder, typ, target, node, contnode)
 
 
 def on_builder_inited(app):
@@ -858,12 +935,14 @@ def generate_dot(self, name, urls={}, env=None,
         if fullname in urls:
             url = urls[fullname]
             # Fix the URL reference to contain the current variation.
+            # Also strip off the # reference at the end, since our classes
+            # are defined near the top of each file anyway.
             if env and env.config.graphviz_output_format.lower() == 'svg' and \
                getattr(env.app.builder, 'current_variation', None):
                 url = '../' \
                     + env.app.builder.current_variation[0] \
                     + '/reference/' \
-                    + os.path.basename(url)
+                    + os.path.basename(url).split('#', 1)[0]
 
             this_node_attrs['URL'] = '"%s"' % url
             this_node_attrs['target'] = '"_top"'
