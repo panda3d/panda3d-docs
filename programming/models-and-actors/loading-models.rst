@@ -9,7 +9,7 @@ The Basics
 .. only:: python
 
    Loading static geometry is done using
-   :py:meth:`loader.loadModel() <direct.showbase.Loader.loadModel>`:
+   :py:meth:`loader.loadModel() <direct.showbase.Loader.Loader.loadModel>`:
 
    .. code-block:: python
 

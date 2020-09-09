@@ -8,8 +8,8 @@ Loading and Animating the Panda Model
    :ref:`Actors <loading-actors-and-animations>`
    ---------------------------------------------
 
-   The :py:class:`~direct.actor.Actor.Actor` class is for animated models.
-   Note that we use :py:meth:`~direct.showbase.Loader.loadModel()` for static
+   The :py:class:`~direct.actor.Actor.Actor` class is for animated models. Note
+   that we use :py:meth:`~direct.showbase.Loader.Loader.loadModel()` for static
    models and :py:class:`~direct.actor.Actor.Actor` only when they are animated.
    The two constructor arguments for the :py:class:`~direct.actor.Actor.Actor`
    class are the name of the file containing the model and a Python dictionary
