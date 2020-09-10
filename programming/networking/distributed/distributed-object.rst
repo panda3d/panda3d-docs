@@ -14,6 +14,9 @@ when created, they will automatically be distributed to other clients.
 To define who will see DOs, they can be set in specific zones. Zones are just
 numbers that have to be set on a DO and a client needs to show interest in them
 to be able to see objects in them.
+In addition, Objects that a client doesn't own can't be updated by that client.
+Only the objects owner can change fields in it. Except if they are specially
+marked with the clsend keyword in the DC definition file.
 
 Most DOs will have a basic class definition for example Foo and an AI definition
 which can be called FooAI.
