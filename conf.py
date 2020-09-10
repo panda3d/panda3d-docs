@@ -44,6 +44,7 @@ extensions = [
     'sphinx.ext.inheritance_diagram',
     'sphinx.ext.viewcode',
     'sphinx_interrogatedb',
+    'sphinx.ext.intersphinx',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -316,6 +317,9 @@ texinfo_documents = [
 linkcheck_ignore = [r'https?://(.+\.)?example\.(com|net|org)(/.*)?',
                     'http://server:port/path']
 linkcheck_anchors = False
+
+# Intersphinx config.
+intersphinx_mapping = {'python': ('https://docs.python.org/3', None)}
 
 # Set a list of modules that do bad things when imported, and should not be
 # considered for API generation.
