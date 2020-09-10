@@ -17,19 +17,14 @@ you when using the system. To not repeat them every time or for you to look up
 whenever you stumble upon one, we'll list them here.
 
 | DO = Distributed Object
+| DOG = Distributed Object Global
 | doId = Distributed Object Identifier
 | AI = Artificial Intelligence
-| UD = Uber Dog
+| UD = Uber DOG
 | OV = Owner View
 | DC = Distributed Class
 | SR = Server Repository
 | CR = Client Repository
-
-.. note::
-   The following parts which are rarely used are not documented yet.
-
-   * Uber Dog servers and objects
-   * Owner View objects
 
 .. toctree::
    :maxdepth: 2
@@ -42,7 +37,10 @@ whenever you stumble upon one, we'll list them here.
    dc-definition-files
    client-created-objects
    ai-created-objects
+   uber-dogs
+   owner-view
    time-manager
+   related-object-manager
    distributed-object
    distributed-node
    distributed-smooth-node
