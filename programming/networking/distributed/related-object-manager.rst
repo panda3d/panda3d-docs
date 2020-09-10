@@ -12,6 +12,7 @@ Client Repository.
 
 
 .. code-block:: python
+
    # Use the client repositories manager
    cr.relatedObjectMgr.requestObjects(
        [
