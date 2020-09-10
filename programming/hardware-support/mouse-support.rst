@@ -68,8 +68,8 @@ wheel_up   Mouse Wheel rolled upwards
 wheel_down Mouse Wheel rolled downwards
 ========== ============================
 
-If you want to hide the mouse cursor, you want the line: `cursor-hidden true` in
-your :ref:`Config.prc <configuring-panda3d>` or this section of code:
+If you want to hide the mouse cursor, you want the line: ``cursor-hidden true``
+in your :ref:`Config.prc <configuring-panda3d>` or this section of code:
 
 .. only:: python
 

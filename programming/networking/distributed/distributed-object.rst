@@ -16,7 +16,7 @@ Zones are just numbers that have to be set on a :term:`DO` and a client needs to
 show interest in them to be able to see objects in them.
 In addition, objects that a client doesn't own can't be updated by that client.
 Only the object's owner can change fields in it, except if they are specially
-marked with the `clsend` keyword in the DC definition file.
+marked with the ``clsend`` keyword in the DC definition file.
 
 Most DOs will have a basic class definition (eg. "Foo") and an AI definition
 which would be called "FooAI".  The Foo class will be used on clients and the

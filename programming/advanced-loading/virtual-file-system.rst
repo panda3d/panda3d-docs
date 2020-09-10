@@ -22,7 +22,7 @@ archives as a directory hierarchy.
    Panda3D offers a replacement for the Python file module that supports the
    virtual file system.  You can find it in :py:mod:`direct.stdpy.file`.
    The interface is exactly the same as Python's, so it's safe to put this
-   import above all the files where you want to use the `open` function:
+   import above all the files where you want to use the :func:`open()` function:
 
    .. code-block:: python
 
@@ -33,9 +33,10 @@ archives as a directory hierarchy.
    system, and it also better-supports Panda's SIMPLE_THREADS model, by avoiding
    blocking all threads while waiting for I/O to complete.
 
-   Besides the `open()` call, this module also contains replacements for various
-   other functions provided by the Python `os` and `os.path` modules.  See the
-   :py:mod:`API reference page <direct.stdpy.file>` for a full listing.
+   Besides the :py:func:`~direct.stdpy.file.open()` call, this module also
+   contains replacements for various other functions provided by the Python
+   :py:mod:`os` and :py:mod:`os.path` modules.
+   See the :py:mod:`API reference page <direct.stdpy.file>` for a full listing.
 
 
 .. note:: This section is incomplete.

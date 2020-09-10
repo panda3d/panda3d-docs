@@ -30,7 +30,7 @@ Built-in Global Variables
    .. py:data:: base
 
       A global instance of the :py:class:`~direct.showbase.ShowBase.ShowBase`
-      class is available to any Python scope as `base`.  This allows access to
+      class is available to any Python scope as ``base``.  This allows access to
       the graphical display, the scene graph, the input devices, the task and
       event managers, and all the other things that ShowBase is responsible for
       setting up and managing.
@@ -104,9 +104,9 @@ Built-in Global Variables
    .. py:data:: camera
 
       A node that is set up with the camera used to render the default 3-D scene
-      graph (`render`) attached to it.  This is the node that should be used to
-      manipulate this camera, but please note that it is necessary to first call
-      :py:meth:`base.disableMouse()
+      graph (:py:data:`render`) attached to it.  This is the node that should be
+      used to manipulate this camera, but please note that it is necessary to
+      first call :py:meth:`base.disableMouse()
       <direct.showbase.ShowBase.ShowBase.disableMouse>` to ensure that the
       default mouse controller releases its control of the camera.
 

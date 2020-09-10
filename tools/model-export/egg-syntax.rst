@@ -499,7 +499,7 @@ Materials
 ~~~~~~~~~
 
 This defines a set of material attributes that may later be referenced with
-`<MRef> { name }`::
+``<MRef> { name }``::
 
    <Material> name {
      [scalars]

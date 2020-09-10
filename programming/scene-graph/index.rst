@@ -18,7 +18,7 @@ the renderer until it is inserted into the tree.
 The tree consists of objects of class :class:`~.PandaNode`. This is actually a
 superclass for a number of other classes: :class:`~.ModelNode`,
 :class:`~.GeomNode`, :class:`~.LightNode`, and so forth. Throughout this manual,
-it is common for us to refer to objects of these classes as simply `nodes`, and
+it is common for us to refer to objects of these classes as simply *nodes*, and
 the tree that is being made up by these nodes is known as the *scene graph*.
 
 There may be many scene graphs in an application.  In fact, any tree of
