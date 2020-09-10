@@ -16,7 +16,18 @@
    {% if functions %}
    .. rubric:: Global Functions
 
-   {% for item in functions %}
-   .. autofunction:: {{ item }}
-   {%- endfor %}
+   .. only:: python
+
+      {% for item in functions %}
+      .. autofunction:: {{ item }}
+      {%- endfor %}
+
+   .. only:: cpp
+
+      .. default-domain:: cpp
+
+      {% for item in functions %}
+      .. autofunction:: {{ item }}
+      {%- endfor %}
+
    {% endif %}
