@@ -139,8 +139,9 @@ user at this point until the client is fully connected to the server.
 
 In the syncReady and gotCreateReady methods you’ll see the
 :meth:`.ClientRepository.haveCreateAuthority` function called. This is a check
-to see if we are already able to create DOs and give them a correct doId. You
-can create DOs earlier already, but they may have invalid doIds then.
+to see if we are already able to create DOs and give them a correct
+:term:`doId`. You can create DOs earlier already, but they may have invalid
+:term:`doIds <doId>` then.
 
 At the end of the gotCreateReady method you can fully use the client and create
 whatever DOs you may need and add other client related logic.

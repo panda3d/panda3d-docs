@@ -12,19 +12,41 @@ defines the communication, ServerRepositories which handle communication
 between clients, ClientRepositories which interact and manage the distributed
 objects, and the distributed objects themselves.
 
-Several abbreviations will be used in the following pages and my come accross
-you when using the system. To not repeat them every time or for you to look up
-whenever you stumble upon one, we'll list them here.
+Several abbreviations will be used in the following pages that you may come
+across when using the system. To not repeat them every time or for you to look
+up whenever you stumble upon one, we'll list them here.
 
-| DO = Distributed Object
-| DOG = Distributed Object Global
-| doId = Distributed Object Identifier
-| AI = Artificial Intelligence
-| UD = Uber DOG
-| OV = Owner View
-| DC = Distributed Class
-| SR = Server Repository
-| CR = Client Repository
+.. glossary::
+
+   DO
+      Distributed Object, see :ref:`distributed-object`.
+
+   DOG
+      Distributed Object Global
+
+   doId
+      Distributed Object Identifier
+
+   AI
+      Artificial Intelligence
+
+   UD
+      Uber DOG, see :ref:`uber-dogs`.
+
+   OV
+      Owner View, see :ref:`owner-view`.
+
+   DC
+      Distributed Class, see :ref:`dc-definition-files`.
+
+   SR
+      Server Repository, see :ref:`server-repositories`.
+
+   CR
+      Client Repository, see :ref:`client-repositories`.
+
+Table of Contents
+-----------------
 
 .. toctree::
    :maxdepth: 2

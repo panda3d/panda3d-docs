@@ -21,8 +21,8 @@ An example for creating an AI object directly on the AI server follows.
 
 For a client to know when such an object has been manifested locally, the
 distributed object class (without the AI postfix) can overwrite the
-:meth:`~direct.distributed.DirectObject.DirectObject.announceGenerate()`
-method of :class:`.DirectObject`. This method is called whenever the object has
-been created and is ready for further processing on the client. In this method,
-you can for example send the doId with a custom event or simply store some
+:meth:`~direct.distributed.DirectObject.DirectObject.announceGenerate()` method
+of :class:`.DirectObject`. This method is called whenever the object has been
+created and is ready for further processing on the client. In this method, you
+can for example send the :term:`doId` with a custom event or simply store some
 information in the client repository to later ease the access to those objects.

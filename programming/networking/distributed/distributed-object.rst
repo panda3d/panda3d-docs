@@ -11,9 +11,9 @@ world.
 As seen in earlier sections, they can be created on the client repositories and,
 when created, they will automatically be distributed to other clients.
 
-To define who will see DOs, they can be set in specific zones. Zones are just
-numbers that have to be set on a DO and a client needs to show interest in them
-to be able to see objects in them.
+To define who will see :term:`DOs <DO>`, they can be set in specific zones.
+Zones are just numbers that have to be set on a :term:`DO` and a client needs to
+show interest in them to be able to see objects in them.
 In addition, objects that a client doesn't own can't be updated by that client.
 Only the object's owner can change fields in it, except if they are specially
 marked with the `clsend` keyword in the DC definition file.
@@ -66,9 +66,9 @@ The d_foo (d\_ stands for distributed) method will send a message to the server
 and hence to other clients as needed and will update them. As you see, you can
 simply send data to the server with a self.sendUpdate call.
 There is also another method called
-:meth:`.DistributedObjectAI.sendUpdateToAvatarId` which accepts a doId of
-a client and will send the message directly to it. This method is only available
-on the AI and UD side.
+:meth:`.DistributedObjectAI.sendUpdateToAvatarId` which accepts a :term:`doId`
+of a client and will send the message directly to it. This method is only
+available on the :term:`AI` and :term:`UD` side.
 
 the b_foo (b\_ stands for both) method will update both, the local object as
 well as send the data to the server. This can usually easily be achived by
