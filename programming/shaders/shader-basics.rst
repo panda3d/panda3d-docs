@@ -153,7 +153,7 @@ Using Shaders in Panda3D
 
 Shaders in Panda3D use the :class:`.Shader` class. When a shader is loaded, an
 object of this class is returned. This is then applied to a node using the
-:meth:`.NodePath.setShader` method.
+:meth:`.NodePath.set_shader()` method.
 
 Loading a Cg Shader
 ~~~~~~~~~~~~~~~~~~~
@@ -237,7 +237,7 @@ applies a loaded shader to a model:
 
       myModel.set_shader(myShader);
 
-The call to :meth:`.NodePath.setShader()` causes the model to be rendered with
+The call to :meth:`.NodePath.set_shader()` causes the model to be rendered with
 the shader passed to it as a parameter. Shaders propagate down the scene graph,
 like any other render attribute; the node and everything beneath it will use the
 shader.
