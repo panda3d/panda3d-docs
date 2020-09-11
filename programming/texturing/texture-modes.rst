@@ -4,12 +4,12 @@ Texture Modes
 =============
 
 There are several kinds of textures: color textures, normal maps, gloss maps,
-glow maps, and so forth. To distinguish these, use the ``TextureStage.setMode``
-function.
+glow maps, and so forth. To distinguish these, use the
+:meth:`.TextureStage.set_mode()` function.
 
 Futhermore, within the general category of color textures, there are several
 ways to combine the colors: Modulate, Decal, Blend, and so forth. These, too,
-are controlled using the ``TextureStage.setMode`` function.
+are controlled using the :meth:`~.TextureStage.set_mode()` function.
 
 The Basics
 ----------

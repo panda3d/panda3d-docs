@@ -24,8 +24,9 @@ To this::
 The FilterProperties Object
 ---------------------------
 
-Any DSP you add to your sound will require the use of "FilterProperties", which
-is a list of filters and their coefficients. Start with this import:
+Any DSP you add to your sound will require the use of
+:class:`.FilterProperties`, which is a list of filters and their coefficients.
+Start with this import:
 
 .. code-block:: python
 
@@ -51,8 +52,9 @@ not yet affected. To apply these filters to our audio output, use:
 
    audioMgr.configureFilters(fp)
 
-where ``audioMgr`` is an ``AudioManager`` object, most likely
-``base.sfxManagerList[0]`` or ``base.musicManager``.
+where ``audioMgr`` is an :class:`.AudioManager` object, most likely
+:py:obj:`base.sfxManagerList <direct.showbase.ShowBase.ShowBase.sfxManagerList>`
+or :py:obj:`base.musicManager <direct.showbase.ShowBase.ShowBase.musicManager>`.
 
 Depending on the sound you use, reverb may be very or only slightly noticeable;
 try using a quick sound at first, like a clap.

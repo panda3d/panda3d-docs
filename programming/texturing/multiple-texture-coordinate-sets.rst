@@ -19,7 +19,7 @@ Panda converters, support multiple texture coordinates.
 
 If you happen to have a model with multiple texture coordinate sets, you can
 specify which set a particular texture should use by calling
-``TextureStage.setTexcoordName("name")``.
+:meth:`TextureStage.set_texcoord_name("name") <.TextureStage.set_texcoord_name>`.
 
 .. warning::
 
@@ -28,9 +28,9 @@ specify which set a particular texture should use by calling
 
    ``TextureStage.setTexcoordName("name")`` is correct.
 
-Remember, a TextureStage is used to apply a texture to a model, and so every
-texture will have an associated TextureStage (though most textures just use the
-default TextureStage). If you do not call this method for a particular
+Remember, a :class:`.TextureStage` is used to apply a texture to a model, and so
+every texture will have an associated TextureStage (though most textures just
+use the default TextureStage). If you do not call this method for a particular
 TextureStage, the default behavior is to use the default, unnamed texture
 coordinate set.
 

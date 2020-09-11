@@ -48,30 +48,36 @@ notice chugs in the frame rate.
 Model loading
 ~~~~~~~~~~~~~
 
-For example, ``loader.loadModel`` call also accepts an optional 'callback'
-argument. If callback is not None, then the model load will be performed
-asynchronously. In this case, ``loadModel()`` will initiate a background load
-and return immediately. The return value will be an object that may later be
-passed to ``loader.cancelRequest()`` to cancel the asynchronous request. At some
-later point, when the requested model(s) have finished loading, the callback
-function will be invoked with the n loaded models passed as its parameter list.
+For example, the
+:py:meth:`loader.loadModel() <direct.showbase.Loader.Loader.loadModel>` call
+also accepts an optional 'callback' argument. If callback is not None, then the
+model load will be performed asynchronously. In this case,
+:py:meth:`~direct.showbase.Loader.Loader.loadModel()` will initiate a background
+load and return immediately. The return value will be an object that you may
+``.cancel()`` on to cancel the asynchronous request.
+At some later point, when the requested model(s) have finished loading, the
+callback function will be invoked with the n loaded models passed as its
+parameter list.
 It is possible that the callback will be invoked immediately, even before
-``loadModel()`` returns. If you use callback, you may also specify a priority,
-which specifies the relative importance over this model over all of the other
-asynchronous load requests (higher numbers are loaded first).
+:py:meth:`~direct.showbase.Loader.Loader.loadModel()` returns. If you use
+callback, you may also specify a priority, which specifies the relative
+importance over this model over all of the other asynchronous load requests
+(higher numbers are loaded first).
 
 True asynchronous model loading requires Panda to have been compiled with
 threading support enabled. In the absence of threading support, the asynchronous
 interface still exists and still behaves exactly as described, except that
-``loadModel()`` might not return immediately.
+:py:meth:`~direct.showbase.Loader.Loader.loadModel()` might not return
+immediately.
 
 Model flattening
 ~~~~~~~~~~~~~~~~
 
-Similarly, there is ``loader.asyncFlattenStrong``. This performs a
-``model.flattenStrong()`` operation in a sub-thread (if threading is compiled
-into Panda). The model may be a single NodePath, or it may be a list of
-NodePaths.
+Similarly, there is :py:meth:`loader.asyncFlattenStrong()
+<direct.showbase.Loader.Loader.asyncFlattenStrong>`. This performs a
+:meth:`model.flattenStrong() <.NodePath.flatten_strong()>` operation in a
+sub-thread (if threading is compiled into Panda). The model may be a single
+:class:`.NodePath`, or it may be a list of NodePaths.
 
 Each model is duplicated and flattened in the sub-thread. If the optional
 ``inPlace`` parameter is True, then when the flatten operation completes, the
@@ -81,7 +87,7 @@ the original models.
 If a callback is specified, then it is called after the operation is finished,
 receiving the flattened model (or a list of flattened models).
 
-The ``loader.cancelRequest()`` method works for asyncFlattenStrong as well.
+The ``.cancel()`` method works for asyncFlattenStrong as well.
 
 Texture uploading
 ~~~~~~~~~~~~~~~~~
@@ -128,8 +134,9 @@ However, Panda3D offers a threading implementation that is safe to use, by
 reimplementing Python's "thread" and "threading" modules, these work the same as
 the Python built-in threading modules but are actually safe to use with Panda3D.
 
-You can get access to Panda3D's implementation of Python's "thread" module by
-importing the "thread" module from :py:mod:`direct.stdpy`:
+You can get access to Panda3D's implementation of Python's :py:mod:`thread`
+module by importing the :py:mod:`~direct.stdpy.thread` module from
+:py:mod:`direct.stdpy`:
 
 .. code-block:: python
 
@@ -138,18 +145,19 @@ importing the "thread" module from :py:mod:`direct.stdpy`:
    # RIGHT:
    from direct.stdpy import thread
 
-For the Python module "threading", Panda3D offers two equivalents, "threading"
-and "threading2", which you can find both in direct.stdpy also. The "threading"
-module implements the threading module with a thin layer over Panda's threading
-constructs. As such, the semantics are close to, but not precisely, the
-semantics documented for Python's standard threading module. If you really do
-require strict adherence to Python's semantics, see the threading2 module
-instead.
+For the Python module :py:mod:`threading`, Panda3D offers two equivalents,
+:py:mod:`~direct.stdpy.threading` and :py:mod:`~direct.stdpy.threading2`, which
+you can find both in :py:mod:`direct.stdpy` also.
+The :py:mod:`~direct.stdpy.threading` module implements the threading module
+with a thin layer over Panda's threading constructs. As such, the semantics are
+close to, but not precisely, the semantics documented for Python's standard
+threading module. If you really do require strict adherence to Python's
+semantics, see the :py:mod:`~direct.stdpy.threading2` module instead.
 
-In fact, the threading2 module is a bald-face copy of Python's threading module
-from Python 2.5, with a few lines at the top to import Panda's thread
-reimplementation instead of the system thread module, and so it is therefore
-layered on top of Panda's thread implementation.
+In fact, the :py:mod:`~direct.stdpy.threading2` module is a bald-face copy of
+Python's :py:mod:`threading` module from Python 2.5, with a few lines at the top
+to import Panda's thread reimplementation instead of the system thread module,
+and so it is therefore layered on top of Panda's thread implementation.
 
 However, if you don't need such strict adherence to Python's original semantics,
 the "threading" module is probably a better choice. It is likely to be slightly
@@ -173,9 +181,9 @@ File I/O
 --------
 
 Panda3D also offers a thread-safe replacement for the Python file module. You
-can find it in direct.stdpy.file. The interface is exactly the same as Python's,
-so it's safe to put this import above all the files where you want to use the
-"file" or "open" functions:
+can find it in :py:mod:`direct.stdpy.file`. The interface is exactly the same as
+Python's, so it's safe to put this import above all the files where you want to
+use the :py:func:`open()` function:
 
 .. code-block:: python
 

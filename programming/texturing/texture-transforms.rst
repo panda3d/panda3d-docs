@@ -7,7 +7,7 @@ It is possible to apply a matrix to transform the (u, v) texture coordinates of
 a model before rendering. In this way, you can adjust the position, rotation, or
 scale of a texture, sliding the texture around to suit your particular needs.
 
-Use the following NodePath methods to do this:
+Use the following :class:`.NodePath` methods to do this:
 
 .. code-block:: python
 
@@ -15,15 +15,15 @@ Use the following NodePath methods to do this:
    nodePath.setTexScale(TextureStage, uScale, vScale)
    nodePath.setTexRotate(TextureStage, degrees)
 
-If you don't have a particular TextureStage, use ``TextureStage.getDefault()``
-as the first parameter.
+If you don't have a particular TextureStage, use
+:meth:`.TextureStage.get_default()` as the first parameter.
 
 Note that the operation in each case is applied to the (u, v) texture
 coordinates, not to the texture; so it will have the opposite effect on the
-texture. For instance, the call ``nodePath.setTexScale(ts, 2, 2)`` will
-effectively double the values of the texture coordinates on the model, which
-doubles the space over which the texture is applied, and thus makes the texture
-appear half as large.
+texture. For instance, the call :meth:`nodePath.set_tex_scale(ts, 2, 2)
+<.NodePath.set_tex_scale>` will effectively double the values of the texture
+coordinates on the model, which doubles the space over which the texture is
+applied, and thus makes the texture appear half as large.
 
 The above methods apply a 2-d transform to your texture coordinates, which is
 appropriate, since texture coordinates are usually two-dimensional. However,
@@ -45,11 +45,13 @@ And there is also one generic form:
 
 This last method sets a generic TransformState object. This is the same kind of
 4x4 transform matrix object that you can get from a NodePath via e.g.,
-``NodePath.getTransform()``. You can also construct a new TransformState via a
-number of methods like ``TransformState.makePos(VBase3(0, 1, 0))``. If you
-intend to apply a 2-d transform only, you should restrict yourself to methods
-like ``TransformState.makePos2d(VBase2(0, 1))``; using only 2-d operations may
-allow the graphics backend to use a slightly simpler calculation.
+:meth:`.NodePath.get_transform()`. You can also construct a new TransformState
+via a number of methods like :meth:`TransformState::make_pos(VBase3(0, 1, 0))
+<.TransformState.make_pos>`. If you intend to apply a 2-d transform only, you
+should restrict yourself to methods like
+:meth:`TransformState::make_pos2d(VBase2(0, 1)) <.TransformState.make_pos2d>`;
+using only 2-d operations may allow the graphics backend to use a slightly
+simpler calculation.
 
 Note that the texture transform is associated with a particular TextureStage; it
 is not a fixed property of the model or its texture coordinates. You can

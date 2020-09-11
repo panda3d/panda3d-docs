@@ -74,11 +74,12 @@ followed this convention, then you can load a 3-D texture with a call like this:
 
    tex = loader.load3DTexture("grid_#.png")
 
-The hash sign ("#") in the filename passed to ``loader.load3DTexture()`` will be
-filled in with the sequence number of each slice, so the above loads files named
-"grid_0.png", "grid_1.png", "grid_2.png", and so on. If you prefer to pad the
-slice number with zeros to a certain number of digits, repeat the hash sign; for
-instance, loading "grid_###.png" would look for files named "grid_000.png",
+The hash sign ("#") in the filename passed to :meth:`loader.load3DTexture()
+<direct.showbase.Loader.Loader.load3DTexture>` will be filled in with the
+sequence number of each slice, so the above loads files named "grid_0.png",
+"grid_1.png", "grid_2.png", and so on. If you prefer to pad the slice number
+with zeros to a certain number of digits, repeat the hash sign; for instance,
+loading "grid_###.png" would look for files named "grid_000.png",
 "grid_001.png", and so on. Note that you don't have to use multiple hash marks
 to count higher than 9. You can count as high as you like even with only one
 hash mark; it just won't pad the numbers with zeros.

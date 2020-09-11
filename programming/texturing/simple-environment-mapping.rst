@@ -42,8 +42,8 @@ with the following code:
 
 The idea is simply to put the camera in the middle of your environment,
 approximately where your shiny object would be. Then just call
-``base.saveSphereMap()``, and a suitable sphere map image will be generated and
-written to disk for you.
+:meth:`base.saveSphereMap() <direct.showbase.ShowBase.ShowBase.saveSphereMap>`,
+and a suitable sphere map image will be generated and written to disk for you.
 
 Now you can apply the environment map to just about any object you like. For
 instance, the teapot:

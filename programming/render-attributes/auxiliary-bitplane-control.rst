@@ -11,7 +11,7 @@ bitplanes can be used to store more or less arbitrary user-defined data.
 When per-pixel lighting is enabled via
 :ref:`the shader generator <the-shader-generator>`, the shader generator can be
 asked to produce extra data into the auxiliary bitplanes. This is done by
-setting an AuxBitplaneAttrib:
+setting an :class:`.AuxBitplaneAttrib`:
 
 .. only:: python
 

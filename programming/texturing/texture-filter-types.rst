@@ -20,19 +20,19 @@ setting its filter type.
 
    .. code-block:: python
 
-      texture.setMagfilter(filterType)
-      texture.setMinfilter(filterType)
+      texture.setMagfilter(type)
+      texture.setMinfilter(type)
 
 .. only:: cpp
 
    .. code-block:: cpp
 
-      texture.set_magfilter(filterType)
-      texture.set_minfilter(filterType)
+      texture->set_magfilter(type);
+      texture->set_minfilter(type);
 
-filterType is a value from the FilterType enum of SamplerState. There is a
-separate filterType setting for magnification and for minification. For both
-magnification and minification, the filterType may be one of:
+The type value is a value from the FilterType enum of :class:`.SamplerState`.
+There is a separate filter type setting for magnification and for minification.
+For both magnification and minification, the filter type may be one of:
 
 FT_nearest
    Sample the nearest pixel
@@ -74,8 +74,8 @@ FT_nearest
 
    .. code-block:: cpp
 
-      texture.set_magfilter(SamplerState::FT_nearest)
-      texture.set_minfilter(SamplerState::FT_nearest)
+      texture->set_magfilter(SamplerState::FT_nearest);
+      texture->set_minfilter(SamplerState::FT_nearest);
 
 |Magnification w/FTNearest| |Minification w/FTNearest|
 
@@ -95,8 +95,8 @@ FT_linear
 
    .. code-block:: cpp
 
-      texture.set_magfilter(SamplerState::FT_linear)
-      texture.set_minfilter(SamplerState::FT_linear)
+      texture->set_magfilter(SamplerState::FT_linear);
+      texture->set_minfilter(SamplerState::FT_linear);
 
 |Magnification w/FTLinear| |Minification w/FTLinear|
 
@@ -137,7 +137,7 @@ the description in the table above, it's not worth worrying about.
 
    .. code-block:: cpp
 
-      texture.set_minfilter(SamplerState::FT_linear_mipmap_linear)
+      texture->set_minfilter(SamplerState::FT_linear_mipmap_linear);
 
 |Minification w/FTLinearMipmapLinear|
 
@@ -163,7 +163,7 @@ To enable anisotropic filtering, you specify the degree:
 
    .. code-block:: cpp
 
-      texture.set_anisotropic_degree(degree)
+      texture->set_anisotropic_degree(degree);
 
 The degree should be a power-of-two integer number. The default value is 1,
 which indicates no anisotropic filtering; set it to a higher number to indicate
@@ -181,7 +181,7 @@ graphics cards support up to 16x anisotropic filtering.
 
    .. code-block:: cpp
 
-      texture.set_anisotropic_degree(2)
+      texture->set_anisotropic_degree(2);
 
 |Magnification w/anisotropic filtering| |Minification w/anisotropic filtering|
 

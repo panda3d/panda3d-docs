@@ -125,15 +125,15 @@ GLSL compute shaders may be loaded.
       PT(Shader) shader;
       shader = Shader::load_compute(Shader::SL_GLSL, "compute_shader.glsl");
 
-The call ``make_compute`` can be used instead to load the shader from a string
-instead of a filename.
+The :meth:`.Shader.make_compute()` call can be used to load the shader from a
+string instead of a filename.
 
 Dispatching a compute shader
 ----------------------------
 
 Since a compute shader is not applied to a model but may be invoked arbitrarily,
 there has to be a different interface for dispatching a compute shader.
-Usually, you would do this by creating a ``ComputeNode`` object, which is
+Usually, you would do this by creating a :class:`.ComputeNode` object, which is
 inserted into the scene graph. When Panda3D encounters one of these nodes during
 the draw process, it will ask OpenGL to dispatch the compute shader assigned to
 that node for the given amount of work groups.
@@ -180,15 +180,15 @@ that node for the given amount of work groups.
 The ordering of nodes becomes especially important; you may not want a
 procedural texture to be rendered on another node before it is first generated
 using a compute shader, for example. You may have to use cull bins or display
-regions in order to explicitly control when the ``ComputeNode`` is encountered
-during the draw process.
+regions in order to explicitly control when the :class:`.ComputeNode` is
+encountered during the draw process.
 
-Keep in mind that a ComputeNode is never culled away by default, since it is not
-associated with any geometry. You may override this behaviour by assigning a
-custom BoundingVolume.
+Keep in mind that a :class:`.ComputeNode` is never culled away by default, since
+it is not associated with any geometry. You may override this behaviour by
+assigning a custom :class:`.BoundingVolume`.
 
-However, whereas the ComputeNode interface is useful for operations that are
-done every frame, it is not very useful for one-off calls, since it is
+However, whereas the :class:`.ComputeNode` interface is useful for operations
+that are done every frame, it is not very useful for one-off calls, since it is
 cumbersome to add a node to the scene graph only to remove it again in the next
 frame. For these use cases, there is a more lower-level operation to dispatch a
 compute shader:
@@ -232,10 +232,10 @@ compute shader:
       GraphicsEngine *engine = GraphicsEngine::get_global_ptr();
       engine->dispatch_compute(work_groups, sattr, win->get_gsg());
 
-Keep in mind that each call to ``dispatch_compute`` causes Panda3D to wait for
-the current frame to finish rendering. This can be a very inefficient process,
-and you are not advised to use this method for operations that happen on a
-regular basis.
+Keep in mind that each call to :meth:`~.GraphicsEngine.dispatch_compute()`
+causes Panda3D to wait for the current frame to finish rendering. This can be a
+very inefficient process, and you are not advised to use this method for
+operations that happen on a regular basis.
 
 Image access
 ------------
@@ -252,9 +252,9 @@ As you have already seen in the example above, this can be done by using an
 ``imageStore``, which now take integer texel coordinates.
 
 On the application side, however, telling the shader which image to use still
-happens in the same way as usual, using the ``set_shader_input`` function.
-However, it is very important that the texture has a *sized* format, rather than
-a regular format:
+happens in the same way as usual, using the
+:meth:`~.NodePath.set_shader_input()` function. However, it is very important
+that the texture has a *sized* format, rather than a regular format:
 
 .. only:: python
 
@@ -303,9 +303,10 @@ Texture Clear
 
 When using a compute shader to operate on a texture image, such as in procedural
 texture generation, you may require the texture data to be cleared to an initial
-value before it is used. This is now possible using the ``set_clear_color``
-function, which specifies the color that Panda3D will clear the texture to. This
-color is used in absence of actual image data.
+value before it is used. This is now possible using the
+:meth:`~.Texture.set_clear_color()` function, which specifies the color that
+Panda3D will clear the texture to. This color is used in absence of actual image
+data.
 
 .. only:: python
 
@@ -331,9 +332,10 @@ color is used in absence of actual image data.
       tex->set_clear_color(clear_color);
 
 The initial clear is implicit, but clearing a texture in a later frame requires
-explicit use of the ``clear_image()`` function, which instructs Panda3D to clear
-the texture the next time it is used. It also clears any RAM images that may
-have been associated with the texture (similar to ``clear_ram_image()``).
+explicit use of the :meth:`~.Texture.clear_image()` function, which instructs
+Panda3D to clear the texture the next time it is used. It also clears any RAM
+images that may have been associated with the texture (similar to
+:meth:`~.Texture.clear_ram_image()`).
 
 .. only:: python
 

@@ -111,7 +111,7 @@ automatically, using this command:
 
 If this variable is true, then panda will wait until you open a window, and then
 ask the window's driver if the driver supports non-power-of-two textures. If so,
-then the config variable ``textures_power_2`` will automatically be adjusted. In
+then the config variable ``textures-power-2`` will automatically be adjusted. In
 this way, you can configure Panda3D to use non-power-of-two textures if they are
 available.
 

@@ -29,8 +29,9 @@ wrap mode**.
       texture->set_wrap_w(wrap_mode);
 
 The wrap_mode parameter is specified separately for the *u* and *v* directions
-(there is also a ``setWrapW()`` for :ref:`3-D textures <3d-textures>`, but
-that's an advanced topic). The wrapMode may be any of the following values:
+(there is also a :meth:`.Texture.set_wrap_w()` for
+:ref:`3-D textures <3d-textures>`, but that's an advanced topic).
+The wrap mode may be any of the following values:
 
 Texture.WM_repeat
    The texture image repeats to infinity.
@@ -39,8 +40,8 @@ Texture.WM_clamp
    The last pixel of the texture image stretches out to infinity.
 
 Texture.WM_border_color
-   The color specified by ``texture.setBorderColor()`` is used to fill the
-   space.
+   The color specified by :meth:`.Texture.set_border_color()` is used to fill
+   the space.
 
 Texture.WM_mirror
    The texture image flips back-and-forth to infinity.
@@ -76,8 +77,8 @@ WM_repeat
 
 |WM_repeat|
 
-``WM_repeat`` mode is often used to
-tile a relatively small texture over a large surface.
+``WM_repeat`` mode is often used to tile a relatively small texture over a large
+surface.
 
 WM_clamp
 --------
@@ -143,7 +144,7 @@ texture as the border color, like this:
 
       texture->set_wrap_u(Texture::WM_border_color);
       texture->set_wrap_v(Texture::WM_border_color);
-      texture->set_border_color((1, 1, 1, 1));
+      texture->set_border_color(LColor(1, 1, 1, 1));
 
 |WMBorderColor|
 

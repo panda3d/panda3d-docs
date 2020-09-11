@@ -12,10 +12,10 @@ performed:
 -  it is clamped to the range 0-1 again
 -  it is written to the frame buffer
 
-This process contains two clamps. The LightRampAttrib is a means to specify
-that you wish to replace these two clamping operators with something a little
-smarter. This is particularly relevant for two major graphics algorithms: HDR
-tone mapping, and cartoon shading.
+This process contains two clamps. The :class:`.LightRampAttrib` is a means to
+specify that you wish to replace these two clamping operators with something a
+little smarter. This is particularly relevant for two major graphics algorithms:
+HDR tone mapping, and cartoon shading.
 
 It must be emphasized that light ramps have no effect unless per-pixel lighting
 is enabled via :ref:`the shader generator <the-shader-generator>`.

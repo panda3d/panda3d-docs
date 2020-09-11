@@ -17,7 +17,7 @@ cheaper shader. LOD can also be used to hide objects when they are far away.
 
       #include "lodNode.h"
 
-To create an LODNode and NodePath:
+To create an :class:`.LODNode` and :class:`.NodePath`:
 
 .. only:: python
 

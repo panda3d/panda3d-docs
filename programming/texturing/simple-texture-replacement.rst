@@ -15,9 +15,9 @@ The above loadTexture() call will search along the current model-path for the
 named image file (in this example, a file named "myTexture.png"). If the texture
 is not found or cannot be read for some reason, None is returned.
 
-Once you have a texture, you can apply it to a model with the ``setTexture()``
-call. For instance, suppose you used the CardMaker class to generate a plain
-white card:
+Once you have a texture, you can apply it to a model with the
+:meth:`~.NodePath.set_texture()` call. For instance, suppose you used the
+:class:`.CardMaker` class to generate a plain white card:
 
 .. code-block:: python
 
@@ -31,23 +31,25 @@ Then you can load up a texture and apply it to the card like this:
    tex = loader.loadTexture('maps/noise.rgb')
    card.setTexture(tex)
 
-(Note that it is not necessary to use the override parameter to the setTexture()
-call--that is, you do not need to do card.setTexture(tex, 1)--because in this
-case, the card does not already have any other texture applied to it, so your
-texture will be visible even without the override.)
+(Note that it is not necessary to use the override parameter to the
+:meth:`~.NodePath.set_texture()` call--that is, you do not need to do
+``card.setTexture(tex, 1)``--because in this case, the card does not already have
+any other texture applied to it, so your texture will be visible even without
+the override.)
 
 In order for this to work, the model you apply it to must already have texture
 coordinates defined (see :ref:`simple-texturing`). As it happens, the CardMaker
 generates texture coordinates by default when it generates a card, so no problem
 there.
 
-You can also use ``setTexture()`` to replace the texture on an already-textured
-model. In this case, you must specify a second parameter to setTexture, which is
-the same optional Panda override parameter you can specify on any kind of Panda
-state change. Normally, you simply pass 1 as the second parameter to
-setTexture(). Without this override, the texture that is assigned directly at
-the Geom level will have precedence over the state change you make at the model
-node, and the texture change won't be made.
+You can also use :meth:`~.NodePath.set_texture()` to replace the texture on an
+already-textured model. In this case, you must specify a second parameter to
+setTexture, which is the same optional Panda override parameter you can specify
+on any kind of Panda state change. Normally, you simply pass 1 as the second
+parameter to :meth:`~.NodePath.set_texture()`. Without this override, the
+texture that is assigned directly at the Geom level will have precedence over
+the state change you make at the model node, and the texture change won't be
+made.
 
 For instance, to change the appearance of smiley:
 
@@ -61,10 +63,10 @@ For instance, to change the appearance of smiley:
 .. image:: texture-smiley-noise.png
 
 Often, you want to replace the texture on just one piece of a model, rather than
-setting the texture on every element. To do this, you simply get a NodePath
-handle to the piece or pieces of the model that you want to change, as described
-in the section :ref:`manipulating-a-piece-of-a-model`, and make the
-``setTexture()`` call on those NodePaths.
+setting the texture on every element. To do this, you simply get a
+:class:`.NodePath` handle to the piece or pieces of the model that you want to
+change, as described in the section :ref:`manipulating-a-piece-of-a-model`, and
+make the :meth:`.NodePath.set_texture()` call on those NodePaths.
 
 For instance, this car model has multiple textures available in different
 colors:
@@ -80,10 +82,10 @@ But we also have a blue version of the same texture image:
 
 .. image:: carnsx-blue.png
 
-Although it is tempting to use setTexture() to assign the blue texture to the
-whole car, that would also assign the blue texture to the car's tires, which
-need to use a different texture map. So instead, we apply the blue texture just
-to the pieces that we want to change:
+Although it is tempting to use :meth:`.NodePath.set_texture()` to assign the
+blue texture to the whole car, that would also assign the blue texture to the
+car's tires, which need to use a different texture map. So instead, we apply the
+blue texture just to the pieces that we want to change:
 
 .. code-block:: python
 

@@ -18,7 +18,7 @@ disable the camera control task and then the camera will move as expected.
    base.disableMouse()
 
 The ShowBase class contains some handy methods to allow the user control over
-the camera. The ``useDrive()`` command
+the camera. The :py:meth:`~direct.showbase.ShowBase.ShowBase.useDrive()` command
 enables keyboard and mouse control. Both control systems move only on the x
 and y axes, so moving up and down along the z axis is impossible with these
 systems.
@@ -39,7 +39,7 @@ that allows control based on trackball mice.
    base.useTrackball()
 
 ShowBase also provides the method
-``oobe()`` to give you to control
+:py:meth:`~direct.showbase.ShowBase.ShowBase.oobe()` to give you to control
 of the basic camera node (base.cam) with the mouse/trackball while the code
 continues to move the camera node (base.camera). This can be useful for
 debugging purposes. The word stands for "out-of-body experience" and is handy
@@ -51,8 +51,8 @@ then again to disable it.
 
    base.oobe()
 
-``oobeCull()`` is a variant on
-``oobe()``, and it works
+:py:meth:`~direct.showbase.ShowBase.ShowBase.oobeCull()` is a variant on
+:py:meth:`~direct.showbase.ShowBase.ShowBase.oobe()`, and it works
 similarly, except that it still culls the scene as if the camera were still in
 its original position, while drawing the scene from the point of view of your
 camera's new position. So now you can view the scene from your "out of body"

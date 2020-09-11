@@ -5,9 +5,10 @@ Projected Textures
 
 In a :ref:`previous section <texture-transforms>`, we introduced ways to apply
 an explicit transformation to a model's texture coordinates, with methods like
-``setTexOffset()`` and ``setTexScale()``. In addition to this explicit control,
-Panda3D offers a simple mechanism to apply an automatic texture transform each
-frame, as computed from the relative transform between any two nodes.
+:meth:`~.NodePath.set_tex_offset()` and :meth:`~.NodePath.set_tex_scale()`.
+In addition to this explicit control, Panda3D offers a simple mechanism to apply
+an automatic texture transform each frame, as computed from the relative
+transform between any two nodes.
 
 .. code-block:: python
 
@@ -24,9 +25,10 @@ more-or-less as if you executed the following command every frame:
    nodePath.setTexTransform(textureStage, fromNodePath.getTransform(toNodePath))
 
 There is no need for either ``fromNodePath`` or ``toNodePath`` to have any
-relation to the nodePath that is receiving the ``setTexProjector()`` call; they
-can be any two arbitrary NodePaths. If either of them is just ``NodePath()``, it
-stands for the top of the graph.
+relation to the nodePath that is receiving the
+:meth:`~.NodePath.set_tex_projector()` call; they can be any two arbitrary
+NodePaths. If either of them is just ``NodePath()``, it stands for the top of
+the graph.
 
 This has several useful applications. We have already introduced
 :ref:`one application <automatic-texture-coordinates>`, in conjunction with
@@ -69,10 +71,10 @@ use this to implement a flashlight effect, for instance, or simple projected
 shadows.
 
 This works because the TexProjector effect does one additional trick: if the
-second NodePath in the ``setTexProjector()`` call happens to be a LensNode, then
-the TexProjector automatically applies the lens's projection matrix to the
-texture coordinates (in addition to applying the relative transform between the
-nodes).
+second NodePath in the :meth:`~.NodePath.set_tex_projector()` call happens to be
+a :class:`.LensNode`, then the TexProjector automatically applies the lens's
+projection matrix to the texture coordinates (in addition to applying the
+relative transform between the nodes).
 
 To implement projected textures, you need to do three steps:
 
@@ -82,15 +84,24 @@ To implement projected textures, you need to do three steps:
 2. Put the ``MWorldPosition`` TexGen mode on the model. This copies the model's
    vertex positions into its texture coordinates, for your texture's TextureStage.
 
-3. Call ``model.setTexProjector(textureStage, NodePath(), projector)``, where
-   ``projector`` is the NodePath to the LensNode you want to project from.
+3. Call :meth:`model.set_tex_projector(textureStage, NodePath(), projector)
+   <.NodePath.set_tex_projector>`, where ``projector`` is the NodePath to the
+   LensNode you want to project from.
 
 For your convenience, the NodePath class defines the following method that
 performs these three steps at once:
 
-.. code-block:: python
+.. only:: python
 
-   nodePath.projectTexture(textureStage, texture, lensNodePath)
+   .. code-block:: python
+
+      nodePath.projectTexture(textureStage, texture, lensNodePath)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      nodePath.project_texture(textureStage, texture, lensNodePath);
 
 For instance, we could use it to project the bamboo texture ("envir-reeds.png")
 onto the ripple.egg model, like this:

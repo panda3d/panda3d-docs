@@ -3,9 +3,9 @@
 Stencil Attribute
 =================
 
-The StencilAttrib is used for testing and writing to the stencil buffer. Note
-that both of these actions can be performed simultaneously with a single
-StencilAttrib.
+The :class:`.StencilAttrib` is used for testing and writing to the stencil
+buffer. Note that both of these actions can be performed simultaneously with a
+single StencilAttrib.
 
 The stencil buffer is an ancillary graphics buffer, in addition to the more
 well-known color and depth buffers. It provides a per-pixel mask for the

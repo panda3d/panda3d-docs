@@ -233,8 +233,8 @@ model-cache folder.
 
 Actually, it is not recommended to use interpolate-frames; it is a global
 setting. It's better to achieve the same effect via
-``actor.setBlend(frameBlend=True)``, which is a per-actor setting (and doesn't
-get baked into the model-cache)."
+:py:meth:`actor.setBlend(frameBlend=True) <direct.actor.Actor.Actor.setBlend>`,
+which is a per-actor setting (and doesn't get baked into the model-cache)."
 
 Actor Intervals
 ---------------
@@ -247,15 +247,17 @@ is a little bit slower than the above interfaces at runtime, so you should
 prefer the more fundamental interfaces unless there is a good reason to use
 ActorInterval.
 
-The Task manager
+The Task Manager
 ----------------
 
-On a more complex program, you may find that Animations can not be loaded from
+On a more complex program, you may find that animations can not be loaded from
 any point in your program. In any application there needs to be exactly one call
-to run(), and it should be the last thing you do after starting up. This starts
-the task manager. Think of this as the main loop of the application: your
-startup procedure is to set up your loading screen, start any initial tasks or
-intervals, hang any initial messenger hooks, and then go get lost in run().
+to :py:meth:`base.run() <direct.showbase.ShowBase.ShowBase.run>`, and it should
+be the last thing you do after starting up. This starts the task manager.
+Think of this as the main loop of the application: your startup procedure is to
+set up your loading screen, start any initial tasks or intervals, hang any
+initial messenger hooks, and then go get lost in :py:meth:`base.run()
+<direct.showbase.ShowBase.ShowBase.run>`.
 Thereafter everything must run in a :ref:`task <tasks-and-event-handling>`, in
 an interval, or is a response to a message. This is true for both animations and
 :ref:`sound <loading-and-playing-sounds-and-music>`.

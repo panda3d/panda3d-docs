@@ -94,9 +94,9 @@ is barely visible, like glass or a soap bubble. Doing this doesn't improve the
 likelihood of correct sorting, but it will tend to make the artifacts of an
 incorrect sorting less obvious. You can achieve this by using the transparency
 option "blend_no_occlude" in an egg file, or by explicitly disabling the depth
-write on a loaded model with node_path.set_depth_write(false). You should be
-careful only to disable depth write on the transparent pieces, and not on the
-opaque parts.
+write on a loaded model with :meth:`node_path.set_depth_write(false)
+<.NodePath.set_depth_write>`. You should be careful only to disable depth write
+on the transparent pieces, and not on the opaque parts.
 
 A final option is to make explicit sorting requests to Panda. This is often the
 last resort because it is more difficult, and doesn't generalize well, but it

@@ -158,11 +158,11 @@ three) textures are used as inputs to the above combine modes.
       The current, or “top” texture image.
 
    TextureStage.CSConstant
-      A constant color, specified via ``TextureStage.setColor()``.
+      A constant color, specified via :meth:`.TextureStage.set_color()`.
 
    TextureStage.CSConstantColorScale
       The same as CSConstant, but the color will be modified by
-      ``NodePath.setColorScale()``.
+      :meth:`.NodePath.set_color_scale()`.
 
    TextureStage.CSPrimaryColor
       The “primary” color of the object, before the first texture stage was
@@ -173,7 +173,8 @@ three) textures are used as inputs to the above combine modes.
 
    TextureStage.CSLastSavedResult
       The result of any of the previous texture stages; specifically, the last
-      stage for which ``TextureStage.setSavedResult(True)`` was called.
+      stage for which :meth:`TextureStage.set_saved_result(True)
+      <.TextureStage.set_saved_result>` was called.
 
 .. only:: cpp
 
@@ -181,11 +182,11 @@ three) textures are used as inputs to the above combine modes.
       The current, or “top” texture image.
 
    TextureStage::CS_constant
-      A constant color, specified via ``TextureStage::set_color()``.
+      A constant color, specified via :cpp:func:`TextureStage::set_color()`.
 
    TextureStage::CS_constant_color_scale
       The same as CS_constant, but the color will be modified by
-      ``NodePath::set_color_scale()``.
+      :cpp:func:`NodePath::set_color_scale()`.
 
    TextureStage::CS_primary_color
       The “primary” color of the object, before the first texture stage was
@@ -196,7 +197,8 @@ three) textures are used as inputs to the above combine modes.
 
    TextureStage::CS_last_saved_result
       The result of any of the previous texture stages; specifically, the last
-      stage for which ``TextureStage::set_saved_result(true)`` was called.
+      stage for which :cpp:func:`TextureStage::set_saved_result(true)
+      <TextureStage::set_saved_result>` was called.
 
 Operands
 --------
@@ -208,15 +210,17 @@ each texture input.
 .. only:: python
 
    TextureStage.COSrcColor
-      Use the RGB color. When used in a ``setCombineAlpha()`` call, RGB is
-      automatically aggregated into grayscale.
+      Use the RGB color. When used in a
+      :meth:`~.TextureStage.set_combine_alpha()` call, RGB is automatically
+      aggregated into grayscale.
 
    TextureStage.COOneMinusSrcColor
       The complement of the RGB color.
 
    TextureStage.COSrcAlpha
-      Use the alpha value. When used in a ``setCombineRgb()`` call, alpha is
-      automatically expanded into uniform RGB.
+      Use the alpha value. When used in a
+      :meth:`~.TextureStage.set_combine_rgb()` call, alpha is automatically
+      expanded into uniform RGB.
 
    TextureStage.COOneMinusSrcAlpha
       The complement of the alpha value.
@@ -224,15 +228,17 @@ each texture input.
 .. only:: cpp
 
    TextureStage::CO_src_color
-      Use the RGB color. When used in a ``set_combine_alpha()`` call, RGB is
-      automatically aggregated into grayscale.
+      Use the RGB color. When used in a
+      :meth:`~.TextureStage.set_combine_alpha()` call, RGB is automatically
+      aggregated into grayscale.
 
    TextureStage::CO_one_minus_src_color
       The complement of the RGB color.
 
    TextureStage::CO_src_alpha
-      Use the alpha value. When used in a ``set_combine_rgb()`` call, alpha is
-      automatically expanded into uniform RGB.
+      Use the alpha value. When used in a
+      :meth:`~.TextureStage.set_combine_rgb()` call, alpha is automatically
+      expanded into uniform RGB.
 
    TextureStage::CO_one_minus_src_alpha
       The complement of the alpha value.

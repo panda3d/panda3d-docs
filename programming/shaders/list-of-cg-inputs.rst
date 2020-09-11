@@ -345,5 +345,5 @@ Below is a sample code snippet that shows how you can use the new shader inputs.
    myModel.setShaderInput("Inputs.vec4",vec4)
 
 First import the necessary header to use the type of input. In our case it's
-Vec4. The next statement shows a Vec4 input type. Then set the Vec4 as a shader
-input to your model.
+:class:`.Vec4`. The next statement shows a Vec4 input type. Then set the Vec4 as
+a shader input to your model.

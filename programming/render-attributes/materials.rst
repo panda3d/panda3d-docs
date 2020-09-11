@@ -135,11 +135,11 @@ get and clear methods as well.
 ========= =================================================================================================================================================================================================================================================================== ================================
 Property  Effects                                                                                                                                                                                                                                                             Setter Method
 ========= =================================================================================================================================================================================================================================================================== ================================
-Ambient   This is the color of the object as it appears in the absence of direct light. This will be the multiplied by any ambient lights in effect on the material to set its base color.                                                                                    material.setAmbient((R,G,B,A))
-Diffuse   This is the primary color of an object; the color of the object as it appears in direct light, in the absence of highlights. This will be multiplied by any lights in effect on the material to get the color in the parts of the object illuminated by the lights. material.setDiffuse((R,G,B,A))
-Emission  This is the color of the object as it appears in the absence of any light whatsover, including ambient light. It is as if the object is glowing by this color (although of course it will not illuminate neighboring objects)                                       material.setEmission((R,G,B,A))
-Shininess This controls the size of the specular highlight spot. In general, larger number produce a smaller specular highlight, which makes the object appear shinier. Smaller numbers produce a larger highlight, which makes the object appear less shiny.                 material.setShininess(\ *float*)
-Specular  This is the highlight color of an object: the color of small highlight reflections.                                                                                                                                                                                 material.setSpecular((R,G,B,A))
+Ambient   This is the color of the object as it appears in the absence of direct light. This will be the multiplied by any ambient lights in effect on the material to set its base color.                                                                                    :meth:`material.set_ambient((R,G,B,A)) <.Material.set_ambient>`
+Diffuse   This is the primary color of an object; the color of the object as it appears in direct light, in the absence of highlights. This will be multiplied by any lights in effect on the material to get the color in the parts of the object illuminated by the lights. :meth:`material.set_diffuse((R,G,B,A)) <.Material.set_diffuse>`
+Emission  This is the color of the object as it appears in the absence of any light whatsover, including ambient light. It is as if the object is glowing by this color (although of course it will not illuminate neighboring objects)                                       :meth:`material.set_emission((R,G,B,A)) <.Material.set_emission>`
+Shininess This controls the size of the specular highlight spot. In general, larger number produce a smaller specular highlight, which makes the object appear shinier. Smaller numbers produce a larger highlight, which makes the object appear less shiny.                 :meth:`material.set_shininess(0..128) <.Material.set_shininess>`
+Specular  This is the highlight color of an object: the color of small highlight reflections.                                                                                                                                                                                 :meth:`material.set_specular((R,G,B,A)) <.Material.set_specular>`
 ========= =================================================================================================================================================================================================================================================================== ================================
 
 Other Material Methods
@@ -157,11 +157,12 @@ Additionally you can check if a material has a property with the has methods:
 :meth:`~.Material.has_ambient()`, :meth:`~.Material.has_emission()`, etc.
 
 Materials have two other methods that have not been covered yet,
-``setLocal(<bool>)`` and ``setTwoside(<bool>)``. setLocal controls whether to
-use camera-relative specular highlights or orthogonal specular highlights. This
-should be set to True unless an orthogonal projection camera is in use.
-setTwoside controls if lighting should appear on both sides of a polygon. Both
-these methods have equivalent get methods.
+:meth:`set_local(bool) <.Material.set_local>` and
+:meth:`set_twoside(bool) <.Material.set_twoside>`. The former controls whether
+to use camera-relative specular highlights or orthogonal specular highlights.
+This should be set to True unless an orthogonal projection camera is in use.
+The latter controls if lighting should appear on both sides of a polygon.
+Both these methods have equivalent get methods.
 
 Inspecting and Replacing Materials
 ----------------------------------

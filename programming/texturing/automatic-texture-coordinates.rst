@@ -17,9 +17,17 @@ texture coordinates cease to exist.
 Use the following NodePath method to enable automatic generation of texture
 coordinates:
 
-.. code-block:: python
+.. only:: python
 
-   nodePath.setTexGen(TextureStage, texGenMode)
+   .. code-block:: python
+
+      nodePath.setTexGen(TextureStage, texGenMode)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      nodePath.set_tex_gen(TextureStage, texGenMode);
 
 The texGenMode parameter specifies how the texture coordinates are to be
 computed, and may be any of the following options. In the list below, "eye"
@@ -152,10 +160,10 @@ Rather than provide this feature of questionable value, Panda3D prefers to give
 you the ability to specify the particular coordinate space you had in mind,
 unambiguously.
 
-Note that you only want to call ``setTexProjector()`` when you are using mode
-``MWorldPosition``. The other modes are generally computed from vectors (for
-instance, normals), not positions, and it usually doesn't makes sense to apply a
-relative transform to a vector.
+Note that you only want to call :meth:`.NodePath.set_tex_projector()` when you
+are using mode ``MWorldPosition``. The other modes are generally computed from
+vectors (for instance, normals), not positions, and it usually doesn't makes
+sense to apply a relative transform to a vector.
 
 .. |Teapot with a grid applied| image:: tex-gen-teapot-xy.png
 .. |Teapot with a grid applied, rotated| image:: tex-gen-teapot-xz.png

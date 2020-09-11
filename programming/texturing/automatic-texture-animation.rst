@@ -15,13 +15,13 @@ file that rotates through each texture at the specified frame rate::
 
 This actually creates a model with a different polygon for each frame of the
 texture animation. Each polygon is put in a separate node, and all the nodes are
-made a child of a special node called a ``SequenceNode``.
+made a child of a special node called a :class:`.SequenceNode`.
 
-The SequenceNode is a special node that only draws one of its children at a
-time, and it rotates through the list of children at a particular frame rate.
-You can parent the model under render and it will automatically start animating
-through its textures. If you need it to start at a particular frame, use
-something like this:
+The :class:`.SequenceNode` is a special node that only draws one of its children
+at a time, and it rotates through the list of children at a particular frame
+rate. You can parent the model under render and it will automatically start
+animating through its textures. If you need it to start at a particular frame,
+use something like this:
 
 .. code-block:: python
 

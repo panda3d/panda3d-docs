@@ -59,7 +59,7 @@ sides are visible, without hassling with attribs:
       nodePath.set_two_sided(true);
 
 If you want more advanced control over the culling you might want to look at the
-CullFaceAttrib:
+:class:`.CullFaceAttrib`:
 
 Controlling Backface and Frontface Culling
 ------------------------------------------

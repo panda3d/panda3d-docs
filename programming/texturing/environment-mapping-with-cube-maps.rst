@@ -52,8 +52,8 @@ reflected environment will vary according to the direction we are looking at it,
 so that it shows what is behind the camera at runtime, instead of always showing
 the area behind the camera when the cube map was generated, as a sphere map must
 do. In order for this to work properly, you should ensure that your camera is
-unrotated (that is, ``setHpr(0, 0, 0)``) when you generate the cube map
-initially.
+unrotated (that is, :meth:`set_hpr(0, 0, 0) <.NodePath.set_hpr>`) when you
+generate the cube map initially.
 
 Even with MWorldCubeMap, though, the image is still generated ahead of time, so
 the reflection doesn't actually show what is behind the camera at runtime. It

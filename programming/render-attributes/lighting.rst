@@ -137,20 +137,44 @@ When per-pixel lighting is enabled, lights are considerably more costly.
 Colored Lights
 --------------
 
-All lights have a color, which is specified by ``light.setColor((r, g, b, a))``.
-The default color is full white: ``setColor((1, 1, 1, 1))``. The alpha component
-is largely irrelevant.
+.. only:: python
+
+   All lights have a color, which is specified by
+   :meth:`light.color = (r, g, b, a) <.Light.color>`.
+   The default color is full white:
+   :meth:`light.color = (1, 1, 1, 1) <.Light.color>`.
+   The alpha component is largely irrelevant.
+
+.. only:: cpp
+
+   All lights have a color, which is specified by
+   :meth:`light.set_color(LColor(r, g, b, a)) <.Light.set_color>`.
+   The default color is full white:
+   :meth:`light.set_color(LColor(1, 1, 1, 1)) <.Light.set_color>`.
+   The alpha component is largely irrelevant.
 
 If you are trying to simulate a natural light, it may be easier to set the color
 temperature instead, by calling :meth:`.Light.set_color_temperature()` with a
 value in Kelvin. Use a value of 6500 for pure white, a lower value to get a
 warmer white color and a higher value to get a cooler white.
 
-The color of the specular highlight can be set individually using
-``light.setSpecularColor((r, g, b, a))``, however, this should not be done as
-this will produce an unnatural effect. This method is deprecated and may be
-removed in a future version of Panda3D. By default, the specular color of a
-light is automatically set from its regular color.
+.. only:: python
+
+   The color of the specular highlight can be set individually using
+   :meth:`light.setSpecularColor((r, g, b, a)) <.Light.set_specular_color>`,
+   however, this should not be done as this will produce an unnatural effect.
+   This method is deprecated and may be removed in a future version of Panda3D.
+   By default, the specular color of a light is automatically set from its
+   regular color.
+
+.. only:: cpp
+
+   The color of the specular highlight can be set individually using
+   :meth:`light.set_specular_color(LColor(r, g, b, a)) <.Light.set_specular_color>`,
+   however, this should not be done as this will produce an unnatural effect.
+   This method is deprecated and may be removed in a future version of Panda3D.
+   By default, the specular color of a light is automatically set from its
+   regular color.
 
 .. note::
    The R, G, B values can be larger than 1, if you want brighter lights!

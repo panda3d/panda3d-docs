@@ -3,10 +3,9 @@
 Collision Traversers
 ====================
 
-A CollisionTraverser object performs the actual work of checking all solid
-objects for collisions. Normally, you will create a single CollisionTraverser
-object and assign it to
-``base.cTrav``; this traverser will
+A :class:`.CollisionTraverser` object performs the actual work of checking all
+solid objects for collisions. Normally, you will create a single
+CollisionTraverser object and assign it to ``base.cTrav``; this traverser will
 automatically be run every frame. It is also possible to create additional
 CollisionTraversers if you have unusual needs; for instance, to run a second
 pass over a subset of the geometry. If you create additional
@@ -37,7 +36,7 @@ the bullets or the other avatars be from objects, but probably not both.
 In order to add a from object to the CollisionTraverser, you must first create
 a CollisionHandler that defines the action to take when the collision is
 detected; then you pass the NodePath for your from object, and its
-CollisionHandler, to ``addCollider``.
+CollisionHandler, to :meth:`~.CollisionTraverser.add_collider()`.
 
 .. only:: python
 
@@ -46,12 +45,6 @@ CollisionHandler, to ``addCollider``.
       traverser = CollisionTraverser('traverser name')
       base.cTrav = traverser
       traverser.addCollider(fromObject, handler)
-
-.. only:: cpp
-
-   .. code-block:: cpp
-
-      CollisionTraverser c_trav.add_collider(fromObject, handler);
 
 You only need to add the "from" objects to your traverser! Don't try to add
 the "into" objects to the CollisionTraverser. Adding an object to a
@@ -71,4 +64,10 @@ using the following line of code:
 
    .. code-block:: python
 
-      collisionTraverser.showCollisions(render)
+      trav.showCollisions(render)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      trav->show_collisions(window->get_render());

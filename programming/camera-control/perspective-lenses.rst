@@ -10,10 +10,15 @@ occasionally want to adjust some properties of the lens, such as its field of
 view, and there are several interfaces to do this, depending on how you want
 to think about the lens.
 
-When you start Panda3D, a default camera and lens are created for you
-automatically. The default camera object is stored in ``base.cam`` (although by
-convention, if you want to move the default camera you should manipulate
-``base.camera`` instead), and the default lens is ``base.camLens``.
+.. only:: python
+
+   When you start ShowBase, a default camera and lens are created for you
+   automatically. The default camera object is stored in
+   :py:obj:`base.cam <direct.showbase.ShowBase.ShowBase.cam>` (although by
+   convention, if you want to move the default camera you should manipulate
+   :py:obj:`base.camera <direct.showbase.ShowBase.ShowBase.camera>` instead),
+   and the default lens is
+   :py:obj:`base.camLens <direct.showbase.ShowBase.ShowBase.camLens>`.
 
 This default lens will almost always be a perspective lens--that is, an
 instance of the class :class:`.PerspectiveLens`--unless you have done
@@ -56,7 +61,7 @@ basic NodePath operations like :meth:`~.NodePath.set_pos()` and
 
 B. This angle is the field of view, or fov, of the lens. You can easily change
 this by setting a new value in degrees with
-``lens.setFov(angle)``. Making the field of
+:meth:`lens.set_fov(angle) <.Lens.set_fov>`. Making the field of
 view smaller will bring things in closer, like a telephoto lens; it will also
 diminish the visible effects of perspective. Making the field of view larger
 will open up the view to more objects, like a wide-angle lens; it will also
@@ -67,12 +72,13 @@ than 80 degrees, and that's pretty wide.) The default field of view is 40
 degrees, which is usually a pretty comfortable viewing angle.
 
 There is actually a separate horizontal field of view and vertical field of
-view, both of which may be independently controlled with the two-parameter
-form of setFov: ``lens.setFov(horizontalAngle, verticalAngle)``. Using
-the two-parameter form will change the aspect ratio of the lens (see below).
-Normally, you would set the field of view using only the one-parameter form,
-which sets the horizontal field of view directly, and automatically recomputes
-the vertical field of view to preserve the same aspect ratio.
+view, both of which may be independently controlled with the two-parameter form
+of :meth:`~.Lens.set_fov`: :meth:`lens.set_fov(horizontalAngle, verticalAngle)
+<.Lens.set_fov>`. Using the two-parameter form will change the aspect ratio of
+the lens (see below). Normally, you would set the field of view using only the
+one-parameter form, which sets the horizontal field of view directly, and
+automatically recomputes the vertical field of view to preserve the same aspect
+ratio.
 
 C. This distance is called the near distance or near plane of the lens.
 Objects that are closer than this to the camera plane will not be rendered.
@@ -85,7 +91,7 @@ depends on the nature of the scene (as well as the measurement units in which
 your scene is modeled).
 
 You may change the near distance at any time with the call
-``lens.setNear(distance)``.
+:meth:`lens.set_near(distance) <.Lens.set_near>`.
 
 D. This is the far distance or far plane of the lens. Similar to the near
 distance, objects that are farther than this from the camera plane will not be
@@ -97,10 +103,10 @@ because of the nature of the math involved.) The default far distance is
 if you have a large scene.
 
 You may change the far distance with the call
-``lens.setFar(distance)``. Since the near
+:meth:`lens.set_far(distance) <.Lens.set_far>`. Since the near
 distance and far distance are often changed at the same time, there is a
 convenience function to set then both:
-``lens.setNearFar(nearDistance, farDistance)``.
+:meth:`lens.set_near_far(near_dist, far_dist) <.Lens.set_near_far>`
 
 E. This size is the film size of the lens. This is only an abstract concept in
 Panda3D; it is designed to simulate the actual film size of a physical lens.
@@ -111,24 +117,23 @@ won't repeat here). In Panda3D, you will probably ignore the film size, unless
 you are a photographer, or you want to set up a virtual lens that exactly
 matches the properties of some real, physical lens.
 
-You can specify the film size with
-``lens.setFilmSize(width)`` or
-``lens.setFilmSize(width, height)``. Like field of view,
-the film size has two components, a horizontal film size and a vertical film
-size. Also like field of view, if you specify both components at once it will
-change the aspect ratio of the lens, but if you set only the width, Panda will
-automatically compute the height to keep the aspect ratio the same.
+You can specify the film size with :meth:`lens.set_film_size(width)
+<.Lens.set_film_size>` or :meth:`lens.set_film_size(width, height)
+<.Lens.set_film_size>`. Like field of view, the film size has two components, a
+horizontal film size and a vertical film size. Also like field of view, if you
+specify both components at once it will change the aspect ratio of the lens, but
+if you set only the width, Panda will automatically compute the height to keep
+the aspect ratio the same.
 
 Setting the film size defines the units to be used for some of the other
-advanced lens properties, such as the focal length (below) and the lens
-offset. For instance, a 35mm camera exposes a rectangle on the film about 24mm
-x 36mm, so if you wanted to simulate a 35mm camera, you would use
-``lens.setFilmSize(24, 36)``. This establishes that
+advanced lens properties, such as the focal length (below) and the lens offset.
+For instance, a 35mm camera exposes a rectangle on the film about 24mm x 36mm,
+so if you wanted to simulate a 35mm camera, you would use
+:meth:`lens.set_film_size(24, 36) <.Lens.set_film_size>`. This establishes that
 your film units are in millimeters, so you could then specify a lens with a
-focal length of 50mm using
-``lens.setFocalLength(50)``. (Setting both the film
-size and the focal length like this would automatically calculate the field of
-view; see below.)
+focal length of 50mm using :meth:`lens.set_focal_length(50)
+<.Lens.set_focal_length>`. (Setting both the film size and the focal length like
+this would automatically calculate the field of view; see below.)
 
 F. This distance is the focal length of the lens. Like film size, this is only
 an abstract concept in Panda3D, but it is a very important concept in a real,
@@ -136,7 +141,7 @@ physical camera. Technically, it is the distance between a lens's nodal point
 or camera plane and its focal plane or film plane, and it affects the field of
 view of the lens. In real photography, lenses are typically described by their
 focal length, rather than by their field of view. You can set the focal length
-via ``lens.setFocalLength(distance)``.
+via :meth:`lens.set_focal_length(distance) <.Lens.set_focal_length>`.
 
 G (not pictured). The final important property of a lens is its aspect ratio.
 This is the ratio of the width to the height of the image produced by the
@@ -146,10 +151,10 @@ perspective lens is not linear in proportion to the angle.) Normally, you will
 want the aspect ratio of the lens to match the aspect ratio of your window; if
 it is something different, the image may seem stretched or squashed.
 
-You can set the aspect ratio explicitly via
-``lens.setAspectRatio(ratio)``. For instance, if you
-open a window that is 800 pixels wide and 300 pixels tall, you might want to
-call ``lens.setAspectRatio(800.0 / 300.0)``.
+You can set the aspect ratio explicitly via :meth:`lens.set_aspect_ratio(ratio)
+<.Lens.set_aspect_ratio>`. For instance, if you open a window that is 800 pixels
+wide and 300 pixels tall, you might want to call
+:meth:`lens.set_aspect_ratio(800.0 / 300.0) <.Lens.set_aspect_ratio>`.
 
 Interplay of lens properties
 ----------------------------
