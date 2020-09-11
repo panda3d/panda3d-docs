@@ -33,3 +33,6 @@ bztar
    A bzip2-compressed tar archive
 xztar
    An xz-compressed tar archive
+nsis
+   An `NSIS-based <https://nsis.sourceforge.io/Main_Page>`_ Windows installer (valid only for Windows targets).
+   Requires that ``makensis`` is available on the host.
