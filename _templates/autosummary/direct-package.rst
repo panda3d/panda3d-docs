@@ -16,6 +16,17 @@
       :undoc-members:
       :ignore-module-all:
 
+      {% if fullname == "direct.directbase" %}
+
+      .. toctree::
+         :hidden:
+
+         direct.directbase.DirectStart
+
+      {% else %}
+
       .. autopackagesummary:: {{ fullname }}
          :toctree: .
          :template: autosummary/direct-module.rst
+
+      {% endif %}
