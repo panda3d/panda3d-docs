@@ -833,6 +833,7 @@ def on_missing_reference(app, env, node, contnode):
                 text += "()"
 
             contnode.children[0] = nodes.Text(text)
+
         elif domain.name == 'cpp':
             # Work around a bug in the C++ resolver, which expects this
             # text node to be the child of an Element.  I picked a
@@ -840,6 +841,21 @@ def on_missing_reference(app, env, node, contnode):
             # anything (not sure what its purpose is).
             if isinstance(contnode, nodes.Text):
                 contnode = nodes.decoration('', contnode)
+
+        elif domain.name == 'py' and len(contnode.children) and node.get('refexplicit'):
+            # Custom text was used.  Replace snake_case with camelCase in it.
+            # This allows doing something like:
+            # :meth:`model.set_color() <.NodePath.set_color>`
+            # ..and still have it translate to the correct casing.
+            oldpart = target.rsplit('.', 1)[-1]
+            newpart = resolved[1].rsplit('.', 1)[-1]
+            if oldpart != newpart:
+                text = contnode.children[0].astext()
+                text = text.replace('::', '.')
+                text = text.replace('.' + oldpart + '(', '.' + newpart + '(')
+                if text.startswith(oldpart + '('):
+                    text = newpart + text[len(oldpart):]
+                contnode.children[0] = nodes.Text(text)
 
         # C++ references don't have a module prefix and use :: for scoping
         if domain.name == 'cpp':
