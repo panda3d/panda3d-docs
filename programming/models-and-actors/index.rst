@@ -70,10 +70,13 @@ EGG files into BAM files manually.
 
 .. caution::
 
-   A BAM file only functions with the one version of Panda3D that created it! By
-   contrast, EGG files will work with any version of Panda3D. Because of this,
-   is is NOT recommended that you use BAM files for your day-to-day development.
-   They should only be used when shipping to customers.
+   Whereas .egg files are considered to be stable across many versions of
+   Panda3D, .bam files are a reflection of the internal memory structure of
+   Panda3D.  Therefore, it's theoretically possible for a .bam file created
+   using one version of Panda3D to no longer work in a different version of
+   Panda3D in the future.  Therefore, if you choose to work directly with .bam
+   files, you should make sure to always preserve the source assets and
+   information about the pipeline so that you can reconvert them as needed.
 
 
 .. toctree::
