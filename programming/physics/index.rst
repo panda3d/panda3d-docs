@@ -3,7 +3,7 @@
 Physics
 =======
 
-Panda3D offers four built-in choices to use for Physics:
+Panda3D offers four built-in choices to use for :term:`physics`:
 
 -  :ref:`Panda's Built-in Physics Engine <panda3d-physics-engine>`: Panda3D
    has a very basic physics engine built-in that may apply forces to classes.
