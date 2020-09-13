@@ -54,7 +54,7 @@ also accepts an optional 'callback' argument. If callback is not None, then the
 model load will be performed asynchronously. In this case,
 :py:meth:`~direct.showbase.Loader.Loader.loadModel()` will initiate a background
 load and return immediately. The return value will be an object that you may
-``.cancel()`` on to cancel the asynchronous request.
+call ``.cancel()`` on to cancel the asynchronous request.
 At some later point, when the requested model(s) have finished loading, the
 callback function will be invoked with the n loaded models passed as its
 parameter list.

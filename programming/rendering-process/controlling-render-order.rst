@@ -48,9 +48,9 @@ of bins.
 Cull Bins
 ---------
 
-The CullBinManager is a global object that maintains a list of all of the cull
-bins in the world, and their properties. Initially, there are five default bins,
-and they will be rendered in the following order:
+The :class:`.CullBinManager` is a global object that maintains a list of all of
+the cull bins in the world, and their properties. Initially, there are five
+default bins, and they will be rendered in the following order:
 
 =========== ==== ================
 Bin Name    Sort Type
@@ -65,13 +65,13 @@ unsorted    50   BT_unsorted
 When Panda traverses the scene graph each frame for rendering, it assigns each
 Geom it encounters into one of the bins defined in the CullBinManager. (The
 above lists only the default bins. Additional bins may be created as needed,
-using either the ``CullBinManager::add_bin()`` method, or the Config.prc
+using either the :meth:`.CullBinManager.add_bin()` method, or the Config.prc
 ``cull-bin`` variable.)
 
 You may assign a node or nodes to an explicit bin using the
-``NodePath::set_bin()`` interface. set_bin() requires two parameters, the bin
-name and an integer sort parameter; the sort parameter is only meaningful if the
-bin type is BT_fixed (more on this below), but it must always be specified
+:meth:`.NodePath::set_bin()` interface. It requires two parameters, the bin name
+and an integer sort parameter; the sort parameter is only meaningful if the bin
+type is BT_fixed (more on this below), but it must always be specified
 regardless.
 
 If a node is not explicitly assigned to a particular bin, then Panda will assign
@@ -98,7 +98,7 @@ The above code will only work for simple models. If your model self-occludes
 (parts of the model covers other parts of the model), the code will not work as
 expected. An alternative method is to use a
 :ref:`display region <display-regions>` with
-``displayRegion.clearDepthActive(True)``.
+:meth:`dr.set_clear_depth_active(True) <.DrawableRegion.set_clear_depth_active>`.
 
 The following bin types may be specified:
 

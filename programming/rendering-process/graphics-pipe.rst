@@ -3,13 +3,14 @@
 The Graphics Pipe
 =================
 
-The ``GraphicsPipe`` class is Panda3D's interface to the available 3-D API's,
-for instance OpenGL or DirectX. In order to create a window that renders using a
-particular API, you must have a GraphicsPipe for that API.
+The :class:`.GraphicsPipe` class is Panda3D's interface to the available 3-D
+API's, for instance OpenGL or DirectX. In order to create a window that renders
+using a particular API, you must have a GraphicsPipe for that API.
 
 Normally, there is one default graphics pipe created for you automatically when
-you import DirectStart, accessible as ``base.pipe``. For most applications,
-there is no need to create any additional graphics pipes.
+you import :py:mod:`~direct.directbase.DirectStart`, accessible as
+``base.pipe``. For most applications, there is no need to create any additional
+graphics pipes.
 
 There are two Config.prc variables that determine the graphics pipe or pipes
 that will be available to an application:

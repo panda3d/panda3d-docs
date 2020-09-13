@@ -3,16 +3,13 @@
 Multi-Pass Rendering
 ====================
 
-Multi-Pass Rendering
---------------------
-
 Sometimes you may need to draw the same scene more than once per frame, each
 view looking different. This is where multi-pass rendering comes into play.
 
 The easiest way to do implement multi-pass rendering is to render offscreen to
 a separate buffer. You:
 
-#. setup a GraphicsBuffer object
+#. set up a GraphicsBuffer object
 #. create a camera for it and
 #. place the camera in the scene.
 
@@ -22,11 +19,11 @@ scene from a different camera view. To actually make the scenes have different
 :ref:`RenderStates <render-attributes>` (i.e. one without lighting, one with
 lighting) you must also change how each Camera renders the scene.
 
-Each Camera node has a function called ``setInitialState(state)``. It makes
-every object in the scene get drawn as if the top node in its scene graph has
-``state`` as its :ref:`RenderState <render-attributes>`. This still means that
-:ref:`attributes <render-attributes>` can be changed/overridden after the Camera
-has been put on a scene.
+Each :class:`.Camera` node has a function called :meth:`set_initial_state(state)
+<.Camera.set_initial_state>`. It makes every object in the scene get drawn as if
+the top node in its scene graph has ``state`` as its :class:`.RenderState`.
+This still means that :ref:`attributes <render-attributes>` can be
+changed/overridden after the :class:`.Camera` has been put on a scene.
 
 .. code-block:: python
 
@@ -35,13 +32,14 @@ has been put on a scene.
    # reference to base.camera, use base.camera.node().
    base.cam.setInitialState(myNodePath.getState())
 
-You may, however, want more control over what RenderState gets assigned to each
-node in the scene. You can do this using the Camera class methods
-``setTagStateKey(key)`` and ``setTagState(value, state)``. For any NodePaths
-that you want to recieve special treatment you call ``setTag(key, value)`` (See
-:ref:`common-state-changes`). Now, anytime the Camera sees a NodePath with a tag
-named ``key`` the Camera assigns it whatever RenderState is associated with
-``value``.
+You may, however, want more control over what :class:`.RenderState` gets
+assigned to each node in the scene. You can do this using the :class:`.Camera`
+methods :meth:`set_tag_state_key(key) <.Camera.set_tag_state_key>` and
+:meth:`set_tag_state(value, state) <.Camera.set_tag_state>`. For any
+:class:`.NodePath`\ s that you want to recieve special treatment you call
+:meth:`set_tag(key, value) <.NodePath.set_tag>` (see
+:ref:`common-state-changes`). Now, any time the camera sees an object with a tag
+named ``key``, it is assigned whatever state is associated with ``value``.
 
 .. code-block:: python
 

@@ -91,8 +91,8 @@ maximum speedup of 3x can only be achieved in practice if all three phases are
 exactly equal in length.)
 
 It's worth pointing out that the only thing we have improved here is frame
-\*throughput*--the total number of frames per second that the system can render.
-This approach does nothing to improve frame \*latency*, or the total time that
+*throughput*--the total number of frames per second that the system can render.
+This approach does nothing to improve frame *latency*, or the total time that
 elapses between the time some change happens in the game, and the time it
 appears onscreen. This might be one reason to avoid this approach, if latency is
 more important than throughput. However, we're still talking about a total
@@ -104,7 +104,7 @@ In order for all of this to work, Panda has to do some clever tricks behind the
 scenes. The most important trick is that there need to be three different copies
 of the scene graph in different states of modification. As your App process is
 moving nodes around for frame 3, for instance, Cull is still analyzing frame 2,
-and must be able to analyze the scene graph \*before\* anything in App started
+and must be able to analyze the scene graph *before* anything in App started
 mucking around to make frame 3. So there needs to be a complete copy of the
 scene graph saved as of the end of App's frame 2. Panda does a pretty good job
 of doing this efficiently, relying on the fact that most things are the same

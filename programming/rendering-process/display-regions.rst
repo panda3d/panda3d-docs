@@ -3,11 +3,12 @@
 Display Regions
 ===============
 
-A new window can't render anything until it has at least one DisplayRegion. A
-DisplayRegion is necessary to associate a camera with the window.
+A new window can't render anything until it has at least one
+:class:`.DisplayRegion`. A DisplayRegion is necessary to associate a camera with
+the window.
 
-A DisplayRegion is a rectangular area of the window that contains the rendered
-scene, as viewed by one particular camera. Usually, you create just one
+A :class:`.DisplayRegion` is a rectangular area of the window that contains the
+rendered scene, as viewed by one particular camera. Usually, you create just one
 DisplayRegion that covers the entire window, although you can create as many
 different smaller regions as you like, each one displaying the output from a
 different camera.
@@ -24,21 +25,22 @@ different camera.
 
    Another arrangement of two regions
 
-You can create a DisplayRegion with the makeDisplayRegion() call on a window:
+You can create a DisplayRegion with the
+:meth:`~.GraphicsOutput.make_display_region()` call on a window:
 
 .. only:: python
 
    .. code-block:: python
 
-      displayRegion = win.makeDisplayRegion()
-      displayRegion = win.makeDisplayRegion(left, right, bottom, top)
+      region = win.makeDisplayRegion()
+      region = win.makeDisplayRegion(left, right, bottom, top)
 
 .. only:: cpp
 
    .. code-block:: cpp
 
-      PT(DisplayRegion) displayRegion = win.make_display_region();
-      PT(DisplayRegion) displayRegion = win.make_display_region(left, right, bottom, top);
+      PT(DisplayRegion) region = win.make_display_region();
+      PT(DisplayRegion) region = win.make_display_region(left, right, bottom, top);
 
 The first example creates a DisplayRegion that fills the entire window, while
 the second example specifies the size and placement of the DisplayRegion within
@@ -53,8 +55,8 @@ A new DisplayRegion won't render anything until it has been associated with a
 camera. Each DisplayRegion may have just one camera associated with it (although
 a particular camera may be associated with more than one DisplayRegion).
 
-A Camera is a kind of PandaNode, so you can simply create one and wrap a
-NodePath around it:
+A :class:`.Camera` is a kind of :class:`.PandaNode`, so you can simply create
+one and wrap a :class:`.NodePath` around it:
 
 .. only:: python
 
@@ -62,7 +64,7 @@ NodePath around it:
 
       camNode = Camera('cam')
       camNP = NodePath(camNode)
-      displayRegion.setCamera(camNP)
+      region.setCamera(camNP)
 
 .. only:: cpp
 
@@ -70,7 +72,7 @@ NodePath around it:
 
       PT(Camera) camNode = new Camera("cam");
       NodePath camNP(camNode);
-      displayRegion->set_camera(camNP);
+      region->set_camera(camNP);
 
 Once you have a Camera, you need to decide where to attach it to the scene
 graph. If you parent it to base.camera, it will inherit the transform of that

@@ -9,35 +9,36 @@ and therefore takes away a lot of control. The following discussion will focus
 instead on creating a window using the low-level interface, in order provide a
 clearer understanding of the actual class relationships.
 
-In order to create a window, you will first need a GraphicsEngine and a
-GraphicsPipe object. Both of these were discussed in more detail in previous
-pages. Panda will typically create both of these for you at startup, and store
-them in ``base.graphicsEngine`` and ``base.pipe``, respectively.
+In order to create a window, you will first need a :class:`.GraphicsEngine` and
+a :class:`.GraphicsPipe` object. Both of these were discussed in more detail in
+previous pages. Panda will typically create both of these for you at startup,
+and store them in ``base.graphicsEngine`` and ``base.pipe``, respectively.
 
-You will also need to create a FrameBufferProperties object. This defines
-important properties such as the number of bits you wish to allocate for red,
-green, and blue channels; as well as the number of bits for depth buffer; and
-whether you require a stencil buffer or special multisampling bits for
+You will also need to create a :class:`.FrameBufferProperties` object. This
+defines important properties such as the number of bits you wish to allocate for
+red, green, and blue channels; as well as the number of bits for depth buffer;
+and whether you require a stencil buffer or special multisampling bits for
 antialiasing. Your graphics card may be able to switch itself into one of
 several different configurations, and you can use the FrameBufferProperties to
 request certain properties that are more important to you. Note, however, that
 there is no guarantee that the graphics card you are running on will be able to
 provide everything you ask for (but you can later ask what properties you
 actually got). You can get a default FrameBufferProperties object using
-``FrameBufferProperties.getDefault()``. The default FrameBufferProperties has
-its settings already filled according to the Config.prc file variables; it is
-usually a good choice to use.
+:meth:`.FrameBufferProperties.get_default()`. The default FrameBufferProperties
+has its settings already filled according to the Config.prc file variables; it
+is usually a good choice to use.
 
-You will need to create a WindowProperties object as well. At a minimum, this
-defines the X, Y size of the window or buffer you want to create. For an
-offscreen buffer, this is all it defines; but if you are creating a window, it
-also allows you to specify things like the window title, the placement onscreen,
-whether it should be user-resizable, and so on. You can get a default
-WindowProperties object using ``WindowProperties.getDefault()``. The default
-WindowProperties object has its settings filled in according to Config.prc file
-variables. If you are creating an offscreen buffer, you may wish to use
-``WindowProperties.size(x, y)`` which creates a simple WindowProperties object
-that simply requests a buffer of size x y.
+You will need to create a :class:`.WindowProperties` object as well. At a
+minimum, this defines the X, Y size of the window or buffer you want to create.
+For an offscreen buffer, this is all it defines; but if you are creating a
+window, it also allows you to specify things like the window title, the
+placement onscreen, whether it should be user-resizable, and so on. You can get
+a default WindowProperties object using :meth:`.WindowProperties.get_default()`.
+The default WindowProperties object has its settings filled in according to
+Config.prc file variables. If you are creating an offscreen buffer, you may wish
+to use :meth:`WindowProperties.size(W, H) <.WindowProperties.size>` which
+creates a simple WindowProperties object that simply requests a buffer of size
+W×H.
 
 Once you have all of these objects, you can create a new window or buffer using
 the call graphicsEngine.makeOutput(). This is the fundamental method for
@@ -94,5 +95,6 @@ host
    return either a ParasiteBuffer or a GraphicsBuffer, according to what the
    graphics driver is best able to provide.
 
-The return value of ``makeOutput()`` is either the new GraphicsWindow or
-GraphicsBuffer object, or None if it failed for some reason.
+The return value of :meth:`~.GraphicsEngine.make_output()` is either the new
+:class:`.GraphicsWindow` or :class:`.GraphicsBuffer` object, or None if it
+failed for some reason.

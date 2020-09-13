@@ -20,16 +20,13 @@ GLSL shaders        Yes        No            Yes         No
 Geometry shaders    Yes        No            No          No
 Shader generation   Yes        Partial       No          No
 sRGB support        Yes        Yes           No          Yes
-Depth textures      Yes        No\ :sup:`1`  Yes         No
+Depth textures      Yes        Yes           Yes         No
 3-D textures        Yes        Yes           Yes         No
 Buffer textures     Yes        No            No          No
-Multisampling       Yes        Yes\ :sup:`2` Yes         No
+Multisampling       Yes        Yes\ :sup:`1` Yes         No
 Thick wireframe     Yes        No            Yes         No
 Geometry instancing Yes        No            Yes         No
 =================== ========== ============= =========== ===========
 
-:sup:`1` You can achieve shadow mapping by using shaders instead of the depth
-buffer at a minimal performance cost.
-
-:sup:`2` Supported through the configuration setting
+:sup:`1` Supported through the configuration setting
 ``dx-multisample-antialiasing-level``.

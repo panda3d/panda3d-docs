@@ -78,15 +78,15 @@ Particle Effects
    Available Emitters
    ^^^^^^^^^^^^^^^^^^
 
-   -  ArcEmitter
-   -  BoxEmitter
-   -  DiscEmitter
-   -  LineEmitter
-   -  RectangleEmitter
-   -  RingEmitter
-   -  SphereSurfaceEmitter
-   -  SphereVolumeEmitter
-   -  TangentRingEmitter
+   -  :class:`.ArcEmitter`
+   -  :class:`.BoxEmitter`
+   -  :class:`.DiscEmitter`
+   -  :class:`.LineEmitter`
+   -  :class:`.RectangleEmitter`
+   -  :class:`.RingEmitter`
+   -  :class:`.SphereSurfaceEmitter`
+   -  :class:`.SphereVolumeEmitter`
+   -  :class:`.TangentRingEmitter`
 
    Each emitter is declared in a separate .h file with the same name as the
    emitter. For example: ArcEmitter is declared in arcEmitter.h
@@ -115,7 +115,7 @@ Particle Effects
       PandaNode
    -  LineParticleRenderer: displays each particle as a line
    -  PointParticleRenderer: displays each particle as a point
-   -  SparkleParticleRenderer displayes each particle as a plus (+)
+   -  SparkleParticleRenderer displays each particle as a plus (+)
    -  SpriteParticleRenderer:  displays each particle as a sprite
 
    Each renderer is declared in a separate .h file with the same name as the
