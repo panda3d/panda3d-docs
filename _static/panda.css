@@ -97,3 +97,10 @@ body, .wy-body-for-nav {
     margin: 15px auto;
     display: block;
 }
+
+.rst-content dl.glossary dt {
+    background: inherit;
+    color: inherit;
+    border-top: inherit;
+    padding: inherit;
+}
