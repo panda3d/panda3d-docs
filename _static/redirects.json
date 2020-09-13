@@ -11,5 +11,6 @@
     "programming/multifiles/patching": "programming/advanced-loading/patching",
     "programming/file-reading": "programming/advanced-loading/virtual-file-system",
     "programming/utility-functions": "debugging/inspection-utilities",
-    "programming/showbase": "reference/builtins"
+    "programming/showbase": "reference/builtins",
+    "programming/motion-paths": "programming/intervals/motion-paths"
 }

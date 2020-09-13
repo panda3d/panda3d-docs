@@ -49,7 +49,6 @@ manual by studying the :ref:`Reference Section <reference>`.
    garbage-collection/index
    hardware-support/index
    physics/index
-   motion-paths
    networking/index
    advanced-loading/index
    threading

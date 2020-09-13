@@ -120,6 +120,9 @@ completion, or has been explicitly stopped via finish(). This is not quite the
 same this as ``(not interval.isPlaying())``, since it does not return true for a
 paused interval.
 
+Table of Contents
+-----------------
+
 .. toctree::
    :maxdepth: 2
 
@@ -127,7 +130,8 @@ paused interval.
    function-intervals
    actor-intervals
    sound-intervals
-   motion-path-and-particle-intervals
    sequences-and-parallels
    position-rotation-and-scale-intervals
+   motion-paths
+   particle-intervals
    projectile-intervals
