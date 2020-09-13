@@ -14,3 +14,4 @@ Table of Contents
    tools/index
    more-resources/index
    reference/index
+   glossary
