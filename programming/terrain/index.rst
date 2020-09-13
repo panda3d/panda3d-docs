@@ -14,7 +14,7 @@ quality near the focal point (which is usually the camera), but will provide
 lower quality terrain - that is, less triangles - because those far away parts
 are not as much visible as the closer parts.
 
-Panda3D provides two classes for terrain generation and LOD handling:
+Panda3D provides three classes for terrain generation and LOD handling:
 
 -  The :ref:`HeightfieldTesselator <heightfield-tesselator>`. This class
    can take a grayscale height field image and generate a terrain. It uses a
@@ -30,6 +30,10 @@ Panda3D provides two classes for terrain generation and LOD handling:
    regenerated. This is to prevent lagging when the focal point moves. For
    smaller terrains, however, you might not need such extensive terrain
    calculations, and use the HeightfieldTesselator instead.
+-  The :class:`.ShaderTerrainMesh`. This algorithm relies on a shader to deform
+   the terrain on the GPU, making it more efficient at the expense of requiring
+   newer hardware. A usage example for this class is included in the sample
+   programs.
 
 The GeoMipTerrain also provides a way to generate terrain bruteforce, that
 means without LOD and at full quality.
