@@ -57,7 +57,7 @@ between C++ information and Python information.
    one provided with Panda3D, it is easy to do so. Simply create a "panda.pth"
    file inside your copy of Python, containing the path of the panda directory
    and the bin directory within it on separate lines (for example
-   C:\\Panda3D-1.10.6-x64 and C:\\Panda3D-1.10.6-x64\\bin).
+   C:\\Panda3D-1.10.7-x64 and C:\\Panda3D-1.10.7-x64\\bin).
    This will enable your copy of Python to find the Panda3D libraries.
 
    For this to work, the version of Python that you use must match the version
