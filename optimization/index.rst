@@ -77,11 +77,11 @@ Video Synchronisation
 
 Panda3D sometimes caps the framerate to not exceed the monitor's refresh rate:
 this is called video synchronization. Panda3D knows that since the monitor can't
-refresh faster (the monitor refresh rate is usually between 60 and 85 Hz),
-everything above that rate is wasted, so Panda3D will not refresh faster than
-the monitor's refresh rate. To disable this and be able to see the 'true'
-framerate, set the config variable ``sync-video`` to ``#f`` in your
-:ref:`Config.prc <configuring-panda3d>`.
+refresh faster (the monitor refresh rate is most commonly 60 Hz, but higher end
+monitors often range between 120 and 240 Hz), everything above that rate is wasted,
+so Panda3D will not refresh faster than the monitor's refresh rate. To disable this
+and be able to see the 'true' framerate, set the config variable ``sync-video``
+to ``#f`` in your :ref:`Config.prc <configuring-panda3d>`.
 
 List of Common Performance Issues
 ---------------------------------
