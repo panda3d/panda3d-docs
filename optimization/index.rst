@@ -145,7 +145,7 @@ to least likely. Each of these has a section to explain it in greater detail.
 
    :ref:`motherboard-integrated-video`. Motherboard video is very misleading.
    The chips have names like "Radeon" and "GeForce" that we have come to
-   :ssociate with speed, but these chips are an order of magnitude slower than
+   associate with speed, but these chips are an order of magnitude slower than
    real video cards. Programming for these chips requires special consideration.
 
    :ref:`too-many-polygons`. This is at the bottom of the likelihood list, but
