@@ -36,20 +36,21 @@ The following methods are available to read and write data in a column:
 
 ==================== ====================================================================
 **GeomVertexReader** **GeomVertexWriter**
-x = getData1f()      setData1f(x)addData1f(x)
-v2 = getData2f()     setData2f(x, y)setData2f(v2)addData2f(x, y)addData2f(v2)
-v3 = getData3f()     setData3f(x, y, z)setData3f(v3)addData3f(x, y, z)addData3f(v3)
-v4 = getData4f()     setData4f(x, y, z, w)setData4f(v4)addData4f(x, y, z, w)addData4f(v4)
-x = getData1i()      setData1i(x)addData1i(x)
-\                    setData2i(x, y)addData2i(x, y)
-\                    setData3i(x, y, z)addData3i(x, y, z)
-\                    setData4i(x, y, z, w)addData4i(x, y, z, w)
+x = getData1()      setData1(x) addData1(x)
+v2 = getData2()     setData2(x, y) setData2 (v2) addData2(x, y) addData2(v2)
+v3 = getData3()     setData3(x, y, z) setData3(v3) addData3(x, y, z) addData3(v3)
+v4 = getData4()     setData4(x, y, z, w) setData4(v4) addData4(x, y, z, w) addData4(v4)
+x = getData1i()      setData1i(x) addData1i(x)
+\                    setData2i(x, y) addData2i(x, y)
+\                    setData3i(x, y, z) addData3i(x, y, z)
+\                    setData4i(x, y, z, w) addData4i(x, y, z, w)
 ==================== ====================================================================
 
 Each of the getData family of functions supported by GeomVertexReader returns
 the value of the data in the current column, converted to the requested type.
-The 'f' suffix indicates a floating-point value, while 'i' indicates an integer
-value; the digit indicates the number of components you expect to receive.
+The 'i' suffix indicates an integer value, while the lack of this suffix
+indicates a floating-point value; the digit indicates the number of components
+you expect to receive.
 
 For instance, getData2() always returns a VBase2, regardless of the type of data
 actually stored in the column. If the column contains a 2-component value such
