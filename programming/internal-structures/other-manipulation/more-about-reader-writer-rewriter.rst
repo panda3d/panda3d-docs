@@ -34,17 +34,22 @@ each time you need to access it.
 
 The following methods are available to read and write data in a column:
 
-==================== ====================================================================
+==================== ===================== ============= ===================== ============
 **GeomVertexReader** **GeomVertexWriter**
-x = getData1()       setData1(x) addData1(x)
-v2 = getData2()      setData2(x, y) setData2 (v2) addData2(x, y) addData2(v2)
-v3 = getData3()      setData3(x, y, z) setData3(v3) addData3(x, y, z) addData3(v3)
-v4 = getData4()      setData4(x, y, z, w) setData4(v4) addData4(x, y, z, w) addData4(v4)
-x = getData1i()      setData1i(x) addData1i(x)
-\                    setData2i(x, y) addData2i(x, y)
-\                    setData3i(x, y, z) addData3i(x, y, z)
-\                    setData4i(x, y, z, w) addData4i(x, y, z, w)
-==================== ====================================================================
+-------------------- ----------------------------------------------------------------------
+x = getData1()       setData1(x)                         addData1(x)
+-------------------- ----------------------------------- ----------------------------------
+v2 = getData2()      setData2(x, y)        setData2(v2)  addData2(x, y)        addData2(v2)
+v3 = getData3()      setData3(x, y, z)     setData3(v3)  addData3(x, y, z)     addData3(v3)
+v4 = getData4()      setData4(x, y, z, w)  setData4(v4)  addData4(x, y, z, w)  addData4(v4)
+x = getData1i()      setData1i(x)                        addData1i(x)
+-------------------- ----------------------------------- ----------------------------------
+\                    setData2i(x, y)                     addData2i(x, y)
+-------------------- ----------------------------------- ----------------------------------
+\                    setData3i(x, y, z)                  addData3i(x, y, z)
+-------------------- ----------------------------------- ----------------------------------
+\                    setData4i(x, y, z, w)               addData4i(x, y, z, w)
+==================== =================================== ==================================
 
 Each of the getData family of functions supported by GeomVertexReader returns
 the value of the data in the current column, converted to the requested type.
