@@ -41,10 +41,10 @@ then up to you to write a :ref:`vertex shader <shader-basics>` that
 understands what to do with the data in the column.
 
 It is possible to break up a GeomVertexData into more than one array. A
-GeomVertexArray is table of vertex data that is stored in one contiguous block
-of memory. Typically, each GeomVertexData consists of just one array; but it
-is also possible to distribute the data so that some columns are stored in one
-array, while other columns are stored in another array:
+GeomVertexArrayData is a table of vertex data that is stored in one contiguous
+block of memory. Typically, each GeomVertexData consists of just one array; but
+it is also possible to distribute the data so that some columns are stored in
+one array, while other columns are stored in another array:
 
 == ========= ========
 \  vertex    texcoord
