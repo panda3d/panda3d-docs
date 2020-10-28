@@ -97,6 +97,3 @@ https://discourse.panda3d.org/t/another-camera-controller-orbit-style/11545
 
 edge screen tracking:
 https://discourse.panda3d.org/t/rotate-camera-based-on-mouse-position/1237
-
-Developing a First Person Camera with Panda3D and C++ (pdf download):
-http://www.imagenetz.de/f7bdc2255/FPC_tutorial.pdf.html
