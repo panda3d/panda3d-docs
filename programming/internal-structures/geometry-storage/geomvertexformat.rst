@@ -3,10 +3,10 @@
 GeomVertexFormat
 ================
 
-The GeomVertexFormat object describes how the columns of a GeomVertexData are
-ordered and named, and exactly what kind of numeric data is stored in each
-column. Every GeomVertexData has an associated GeomVertexFormat, which
-describes how the data in that object is stored.
+The :class:`.GeomVertexFormat` object describes how the columns of a
+GeomVertexData are ordered and named, and exactly what kind of numeric data is
+stored in each column. Every GeomVertexData has an associated GeomVertexFormat,
+which describes how the data in that object is stored.
 
 Just as a GeomVertexData object is really a list of one or more
 GeomVertexArrayData objects, a GeomVertexFormat object is a list of one or

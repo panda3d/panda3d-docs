@@ -4,8 +4,8 @@ GeomVertexData
 ==============
 
 The fundamental object used to store vertex information in Panda is the
-GeomVertexData. This stores a list of vertices, organized conceptually as a
-table, where each row of the table represents a different vertex, and the
+:class:`.GeomVertexData`. This stores a list of vertices, organized conceptually
+as a table, where each row of the table represents a different vertex, and the
 columns of the table represent the different kinds of per-vertex data that may
 be associated with each vertex. For instance, the following table defines four
 vertices, each with its own vertex position, normal vector, color, and texture

@@ -3,15 +3,16 @@
 Geom
 ====
 
-The Geom object collects together a :ref:`geomvertexdata` and one or more
-:ref:`geomprimitive` objects, to make a single renderable piece of geometry.
-In fact, an individual Geom is the smallest piece into which Panda will
-subdivide the scene for rendering; in any given frame, either an entire Geom
-is rendered, or none of it is.
+The :class:`.Geom` object collects together a :ref:`geomvertexdata` and one or
+more :ref:`geomprimitive` objects, to make a single renderable piece of
+geometry. In fact, an individual Geom is the smallest piece into which Panda
+will subdivide the scene for rendering; in any given frame, either an entire
+Geom is rendered, or none of it is.
 
-Fundamentally, a Geom is very simple; it contains a pointer to a single
-GeomVertexData, and a list of one or more GeomPrimitives, of various types, as
-needed. All the associated GeomPrimitives index into the same GeomVertexData.
+Fundamentally, a :class:`.Geom` is very simple; it contains a pointer to a
+single GeomVertexData, and a list of one or more GeomPrimitives, of various
+types, as needed. All the associated GeomPrimitives index into the same
+GeomVertexData.
 
 .. raw:: html
 

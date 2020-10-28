@@ -3,8 +3,8 @@
 GeomNode
 ========
 
-Finally, GeomNode is the glue that connects :ref:`Geoms <geom>` into the scene
-graph. A GeomNode contains a list of one or more Geoms.
+Finally, :class:`.GeomNode` is the glue that connects :ref:`Geoms <geom>` into
+the scene graph. A :class:`.GeomNode` contains a list of one or more Geoms.
 
 .. raw:: html
 
@@ -37,10 +37,10 @@ graph. A GeomNode contains a list of one or more Geoms.
    </td></tr>
    </table></center>
 
-The GeomNode class inherits from :ref:`PandaNode <the-scene-graph>`, so a
-GeomNode can be attached directly to the scene graph like any other node; and
-like any node, it inherits a transform and a render state from its parents in
-the scene graph. This transform and state is then applied to each of the
+The :class:`.GeomNode` class inherits from :ref:`PandaNode <the-scene-graph>`,
+so a GeomNode can be attached directly to the scene graph like any other node;
+and like any node, it inherits a transform and a render state from its parents
+in the scene graph. This transform and state is then applied to each of the
 node's Geoms.
 
 Furthermore, the GeomNode stores an additional render state definition for

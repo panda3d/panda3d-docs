@@ -11,7 +11,8 @@ be able to avoid this effort by taking advantage of one of the
 page.)
 
 To build up your custom format, you need to first create an empty
-GeomVertexArrayFormat, and add columns one at a time by calling addColumn():
+:class:`.GeomVertexArrayFormat`, and add columns one at a time by calling
+:meth:`~.GeomVertexArrayFormat.add_column()`:
 
 .. only:: python
 
@@ -29,24 +30,27 @@ GeomVertexArrayFormat, and add columns one at a time by calling addColumn():
       array->add_column(InternalName::make("vertex"), 3,
                         Geom::NT_float32, Geom::C_point);
 
-The parameters to addColumn() are, in order, the column name, the number of
-components, the numeric type, and the contents specification. See
-:ref:`geomvertexformat` for a detailed description of each of these parameters
-and their appropriate values. You may also supply an optional fifth parameter,
-which specifies the byte offset within the row at which the column's data
-begins; but normally you should omit this to indicate that the column's data
-immediately follows the previous column's data.
+The parameters to :meth:`~.GeomVertexArrayFormat.add_column()` are, in order,
+the column name, the number of components, the numeric type, and the contents
+specification. See :ref:`geomvertexformat` for a detailed description of each of
+these parameters and their appropriate values. You may also supply an optional
+fifth parameter, which specifies the byte offset within the row at which the
+column's data begins; but normally you should omit this to indicate that the
+column's data immediately follows the previous column's data.
 
-Note that the column name should be an InternalName object, as returned by a
-call to InternalName.make(). This is Panda's mechanism for tokenizing a string
-name, to allow for fast name lookups during rendering. Other than this detail,
-the column name is really just an arbitrary string.
+.. only:: cpp
+
+   Note that the column name should be an :class:`.InternalName` object, as
+   returned by a call to :meth:`.InternalName.make()`. This is Panda's mechanism
+   for tokenizing a string name, to allow for fast name lookups during
+   rendering. Other than this detail, the column name is really just an
+   arbitrary string.
 
 It is your responsibility to ensure that all of the parameters passed to
-addColumn() are appropriate for the column you are defining. The column data
-will be stored exactly as you specify. When rendering, Panda will attempt to
-convert the column data as it is stored to whatever format your graphics API
-(e.g. OpenGL or DirectX) expects to receive.
+:meth:`~.GeomVertexArrayFormat.add_column()` are appropriate for the column you
+are defining. The column data will be stored exactly as you specify. When
+rendering, Panda will attempt to convert the column data as it is stored to
+whatever format your graphics API (e.g. OpenGL or DirectX) expects to receive.
 
 For instance, to define a vertex format that includes a vertex position and a
 (U, V) texture coordinate:
@@ -71,7 +75,7 @@ For instance, to define a vertex format that includes a vertex position and a
                         Geom::NT_float32, Geom::C_texcoord);
 
 Once you have defined the columns of your array, you should create a
-GeomVertexFormat to hold the array:
+:class:`.GeomVertexFormat` to hold the array:
 
 .. only:: python
 
@@ -95,8 +99,8 @@ Finally, before you can use your new format, you must register it. Registering
 a format builds up the internal tables necessary to use the vertex format for
 rendering. However, once you have registered a format, you can no longer add
 or remove columns, or modify it in any way; if you want to make changes to the
-format after this point, you'll have to start over with a new GeomVertexFormat
-object.
+format after this point, you'll have to start over with a new
+:class:`.GeomVertexFormat` object.
 
 .. only:: python
 

@@ -4,21 +4,21 @@ GeomPrimitive
 =============
 
 In order to use the vertices in a :ref:`geomvertexdata` to render anything,
-Panda needs to have a GeomPrimitive of some kind, which indexes into the
-vertex table and tells Panda how to tie together the vertices to make lines,
+Panda needs to have a :class:`.GeomPrimitive` of some kind, which indexes into
+the vertex table and tells Panda how to tie together the vertices to make lines,
 triangles, or individual points.
 
-There are several different kinds of GeomPrimitive objects, one for each
-different kind of primitive. Each GeomPrimitive object actually stores several
-different individual primitives, each of which is represented simply as a list
-of vertex numbers, indexing into the vertices stored in the associated
+There are several different kinds of :class:`.GeomPrimitive` objects, one for
+each different kind of primitive. Each GeomPrimitive object actually stores
+several different individual primitives, each of which is represented simply as
+a list of vertex numbers, indexing into the vertices stored in the associated
 GeomVertexData. For some GeomPrimitive types, like GeomTriangles, all the
 primitives must have a fixed number of vertex numbers (3, in the case of
 GeomTriangles); for others, like GeomTristrips, each primitive can have a
 different number of vertex numbers.
 
-For instance, a GeomTriangles object containing three triangles, and a
-GeomTristrips containing two triangle strips, might look like this:
+For instance, a :class:`.GeomTriangles` object containing three triangles, and a
+:class:`.GeomTristrips` containing two triangle strips, might look like this:
 
 .. raw:: html
 
