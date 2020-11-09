@@ -18,7 +18,7 @@ AsyncTask::DoneStatus SpinCameraTask(GenericAsyncTask *task, void *data) {
   double time = globalClock->get_real_time();
   double angledegrees = time * 6.0;
   double angleradians = angledegrees * (3.14 / 180.0);
-  camera.set_pos(20 * sin(angleradians),-20. 0 *cos(angleradians), 3);
+  camera.set_pos(20 * sin(angleradians), -20.0 * cos(angleradians), 3);
   camera.set_hpr(angledegrees, 0, 0);
 
   return AsyncTask::DS_cont;
@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
   NodePath scene = window->load_model(framework.get_models(),
     "models/environment");
   scene.reparent_to(window->get_render());
-  scene.set_scale(0.25 , 0.25, 0.25);
+  scene.set_scale(0.25, 0.25, 0.25);
   scene.set_pos(-8, 42, 0);
 
   // Load our panda
