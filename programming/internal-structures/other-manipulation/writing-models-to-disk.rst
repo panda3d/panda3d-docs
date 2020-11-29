@@ -84,7 +84,7 @@ separate the polygons into different groups. Here is an example:
 .. code-block:: python
 
    from direct.showbase.ShowBase import ShowBase
-   from panda3d.core import Point3D, deg2Rad, NodePath
+   from panda3d.core import Point3D, deg2Rad, NodePath, Filename
    from panda3d.egg import EggPolygon, EggVertexPool, EggData, EggVertex, loadEggData
    import math
 
