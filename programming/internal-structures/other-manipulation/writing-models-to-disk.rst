@@ -83,36 +83,52 @@ separate the polygons into different groups. Here is an example:
 
 .. code-block:: python
 
-   def makeWedge(angleDegrees = 360, numSteps = 16):
-       data = EggData()
+   from direct.showbase.ShowBase import ShowBase
+   from panda3d.core import Point3D, deg2Rad, NodePath
+   from panda3d.egg import EggPolygon, EggVertexPool, EggData, EggVertex, loadEggData
+   import math
 
-       vp = EggVertexPool('fan')
-       data.addChild(vp)
+   class MyApp(ShowBase):
 
-       poly = EggPolygon()
-       data.addChild(poly)
+       def __init__(self):
+           ShowBase.__init__(self)
 
-       v = EggVertex()
-       v.setPos(Point3D(0, 0, 0))
-       poly.addVertex(vp.addVertex(v))
+           model = self.makeWedge()
+           model.reparentTo(render)
 
-       angleRadians = deg2Rad(angleDegrees)
+       def makeWedge(self, angleDegrees = 360, numSteps = 6):
+           data = EggData()
 
-       for i in range(numSteps + 1):
-           a = angleRadians * i / numSteps
-           y = math.sin(a)
-           x = math.cos(a)
+           vp = EggVertexPool('fan')
+           data.addChild(vp)
+
+           poly = EggPolygon()
+           data.addChild(poly)
 
            v = EggVertex()
-           v.setPos(Point3D(x, 0, y))
+           v.setPos(Point3D(0, 0, 0))
            poly.addVertex(vp.addVertex(v))
 
-       # To write the egg file to disk, use this:
-       data.writeEgg(Filename("wedge.egg"))
+           angleRadians = deg2Rad(angleDegrees)
 
-       # To load the egg file and render it immediately, use this:
-       node = loadEggData(data)
-       return NodePath(node)
+           for i in range(numSteps + 1):
+               a = angleRadians * i / numSteps
+               y = math.sin(a)
+               x = math.cos(a)
+
+               v = EggVertex()
+               v.setPos(Point3D(x, 0, y))
+               poly.addVertex(vp.addVertex(v))
+
+           # To write the egg file to disk, use this:
+           #data.writeEgg(Filename("wedge.egg"))
+
+           # To load the egg file and render it immediately, use this:
+           node = loadEggData(data)
+           return NodePath(node)
+
+   app = MyApp()
+   app.run()
 
 See the generated API documentation for more complete information about the
 egg library.
