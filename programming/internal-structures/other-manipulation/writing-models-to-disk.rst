@@ -83,8 +83,19 @@ separate the polygons into different groups. Here is an example:
 
 .. code-block:: python
 
+   from panda3d.core import Point3D, deg2Rad, NodePath, Filename, CSZupRight
+   from panda3d.egg import EggPolygon, EggVertexPool, EggData, EggVertex, loadEggData, EggCoordinateSystem
+   import math
+
+   ...
+
    def makeWedge(angleDegrees = 360, numSteps = 16):
+
+       z_up = EggCoordinateSystem()
+       z_up.setValue(CSZupRight)
+
        data = EggData()
+       data.addChild(z_up)
 
        vp = EggVertexPool('fan')
        data.addChild(vp)
@@ -107,12 +118,19 @@ separate the polygons into different groups. Here is an example:
            v.setPos(Point3D(x, 0, y))
            poly.addVertex(vp.addVertex(v))
 
-       # To write the egg file to disk, use this:
-       data.writeEgg(Filename("wedge.egg"))
+       return data
+   ...
 
-       # To load the egg file and render it immediately, use this:
-       node = loadEggData(data)
-       return NodePath(node)
+   # Creating egg data
+   data = makeWedge()
+
+   # To write the egg file to disk, use this:
+   data.writeEgg(Filename("wedge.egg"))
+
+   # To load the egg file and render it immediately, use this:
+   model = NodePath(loadEggData(data))
+   model.reparentTo(render)
+
 
 See the generated API documentation for more complete information about the
 egg library.
