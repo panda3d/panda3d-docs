@@ -83,52 +83,54 @@ separate the polygons into different groups. Here is an example:
 
 .. code-block:: python
 
-   from direct.showbase.ShowBase import ShowBase
    from panda3d.core import Point3D, deg2Rad, NodePath, Filename
-   from panda3d.egg import EggPolygon, EggVertexPool, EggData, EggVertex, loadEggData
+   from panda3d.egg import EggPolygon, EggVertexPool, EggData, EggVertex, loadEggData, EggCoordinateSystem
    import math
 
-   class MyApp(ShowBase):
+   ...
 
-       def __init__(self):
-           ShowBase.__init__(self)
+   def makeWedge(angleDegrees = 360, numSteps = 16):
 
-           model = self.makeWedge()
-           model.reparentTo(render)
+       z_up = EggCoordinateSystem()
+       z_up.setValue(1)
 
-       def makeWedge(self, angleDegrees = 360, numSteps = 6):
-           data = EggData()
+       data = EggData()
+       data.addChild(z_up)
 
-           vp = EggVertexPool('fan')
-           data.addChild(vp)
+       vp = EggVertexPool('fan')
+       data.addChild(vp)
 
-           poly = EggPolygon()
-           data.addChild(poly)
+       poly = EggPolygon()
+       data.addChild(poly)
+
+       v = EggVertex()
+       v.setPos(Point3D(0, 0, 0))
+       poly.addVertex(vp.addVertex(v))
+
+       angleRadians = deg2Rad(angleDegrees)
+
+       for i in range(numSteps + 1):
+           a = angleRadians * i / numSteps
+           y = math.sin(a)
+           x = math.cos(a)
 
            v = EggVertex()
-           v.setPos(Point3D(0, 0, 0))
+           v.setPos(Point3D(x, 0, y))
            poly.addVertex(vp.addVertex(v))
 
-           angleRadians = deg2Rad(angleDegrees)
+       return data
+   ...
 
-           for i in range(numSteps + 1):
-               a = angleRadians * i / numSteps
-               y = math.sin(a)
-               x = math.cos(a)
+   # Creating egg data
+   data = makeWedge()
 
-               v = EggVertex()
-               v.setPos(Point3D(x, 0, y))
-               poly.addVertex(vp.addVertex(v))
+   # To write the egg file to disk, use this:
+   data.writeEgg(Filename("wedge.egg"))
 
-           # To write the egg file to disk, use this:
-           #data.writeEgg(Filename("wedge.egg"))
+   # To load the egg file and render it immediately, use this:
+   model = NodePath(loadEggData(data))
+   model.reparentTo(render)
 
-           # To load the egg file and render it immediately, use this:
-           node = loadEggData(data)
-           return NodePath(node)
-
-   app = MyApp()
-   app.run()
 
 See the generated API documentation for more complete information about the
 egg library.
