@@ -83,7 +83,7 @@ separate the polygons into different groups. Here is an example:
 
 .. code-block:: python
 
-   from panda3d.core import Point3D, deg2Rad, NodePath, Filename
+   from panda3d.core import Point3D, deg2Rad, NodePath, Filename, CSZupRight
    from panda3d.egg import EggPolygon, EggVertexPool, EggData, EggVertex, loadEggData, EggCoordinateSystem
    import math
 
@@ -92,7 +92,7 @@ separate the polygons into different groups. Here is an example:
    def makeWedge(angleDegrees = 360, numSteps = 16):
 
        z_up = EggCoordinateSystem()
-       z_up.setValue(1)
+       z_up.setValue(CSZupRight)
 
        data = EggData()
        data.addChild(z_up)
