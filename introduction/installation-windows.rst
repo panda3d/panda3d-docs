@@ -9,7 +9,7 @@ Panda3D, you should download the windows installer from the
 `download page <https://www.panda3d.org/download/>`__. Run the installer, and
 follow the prompts:
 
-|Install-1.PNG|
+|Install-1.jpg|
 
 After installing Panda, you should run the sample programs to verify that the
 installation is good. Under Windows, the easiest way to run a sample program is
@@ -83,8 +83,8 @@ It may be necessary to log off and log back in to obtain the updated settings.
 
 .. |Install-1.jpg| image:: install-1.PNG
 .. |Install-2.jpg| image:: install-2.PNG
-.. |Install-3.jpg| image:: install-3.jpg
-.. |Install-4.jpg| image:: install-4.jpg
-.. |Environvariables.png| image:: environvariables.png
-.. |Environvariables2.png| image:: environvariables2.png
-.. |Environvariables3.png| image:: environvariables3.png
+.. |Install-3.jpg| image:: install-3.PNG
+.. |Install-4.jpg| image:: install-4.PNG
+.. |Environvariables.png| image:: environvariables-1.PNG
+.. |Environvariables2.png| image:: environvariables-2.PNG
+.. |Environvariables3.png| image:: environvariables-3.PNG
