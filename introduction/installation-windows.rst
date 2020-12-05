@@ -9,7 +9,7 @@ Panda3D, you should download the windows installer from the
 `download page <https://www.panda3d.org/download/>`__. Run the installer, and
 follow the prompts:
 
-|install-1.PNG|
+install-1.PNG
 
 After installing Panda, you should run the sample programs to verify that the
 installation is good. Under Windows, the easiest way to run a sample program is
