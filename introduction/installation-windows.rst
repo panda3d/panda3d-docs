@@ -85,6 +85,6 @@ It may be necessary to log off and log back in to obtain the updated settings.
 .. |Install-2.jpg| image:: install-2.jpg
 .. |Install-3.jpg| image:: install-3.jpg
 .. |Install-4.jpg| image:: install-4.jpg
-.. |Environvariables.png| image:: environvariables.png
+.. |Environvariables.png| image:: environvariables.PNG
 .. |Environvariables2.png| image:: environvariables2.png
 .. |Environvariables3.png| image:: environvariables3.png
