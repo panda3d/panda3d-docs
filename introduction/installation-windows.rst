@@ -81,8 +81,8 @@ directories to the end of the PATH.
 
 It may be necessary to log off and log back in to obtain the updated settings.
 
-.. |Install-1.jpg| image:: install-1.jpg
-.. |Install-2.jpg| image:: install-2.jpg
+.. |Install-1.jpg| image:: install-1.PNG
+.. |Install-2.jpg| image:: install-2.PNG
 .. |Install-3.jpg| image:: install-3.jpg
 .. |Install-4.jpg| image:: install-4.jpg
 .. |Environvariables.png| image:: environvariables.png
