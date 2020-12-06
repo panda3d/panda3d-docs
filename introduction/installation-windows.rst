@@ -81,10 +81,10 @@ directories to the end of the PATH.
 
 It may be necessary to log off and log back in to obtain the updated settings.
 
-.. |Install-1.jpg| image:: install-1.jpg
-.. |Install-2.jpg| image:: install-2.jpg
-.. |Install-3.jpg| image:: install-3.jpg
-.. |Install-4.jpg| image:: install-4.jpg
-.. |Environvariables.png| image:: environvariables.PNG
-.. |Environvariables2.png| image:: environvariables2.png
-.. |Environvariables3.png| image:: environvariables3.png
+.. |Install-1.jpg| image:: install-1.PNG
+.. |Install-2.jpg| image:: install-2.png
+.. |Install-3.jpg| image:: install-3.PNG
+.. |Install-4.jpg| image:: install-4.PNG
+.. |Environvariables.png| image:: environvariables-1.PNG
+.. |Environvariables2.png| image:: environvariables-2.PNG
+.. |Environvariables3.png| image:: environvariables-3.PNG
