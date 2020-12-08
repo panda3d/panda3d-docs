@@ -13,7 +13,7 @@ Running your Program
    Prompt’, or by going to 'Start > Run' and typing 'cmd'. When it opens, it
    should look something like this:
 
-   .. image:: pic086uq.jpg
+   .. image:: running-your-program-1.PNG
 
    At the moment it’s pointing to its default directory, which in my case is
    ‘Documents and Settings’ (it doesn’t matter if yours is different). We need
@@ -31,7 +31,7 @@ Running your Program
    course). Then, press the ‘Enter’ key on your keyboard. You should now have
    the following on the Command Prompt:
 
-   .. image:: pic093tn.jpg
+   .. image:: running-your-program-2.PNG
 
    This means that it’s now pointing to the right directory. To run your script
    and start Panda3D, type the following text behind the > symbol:
@@ -40,13 +40,13 @@ Running your Program
 
       ppython myscript.py
 
-   .. image:: pic108ge.jpg
+   .. image:: running-your-program-3.PNG
 
    Press the ‘Enter’ key on your keyboard. This will run the version of Python
    that is distributed with Panda3D. If all is well, Panda3D will start and you
    should see the main rendering window appear.
 
-   .. image:: emptypandawindow.jpg
+   .. image:: running-your-program-4.PNG
 
    This is a empty program, it won't do anything. The next step is to add
    additional commands to the program, as described in one of the following
