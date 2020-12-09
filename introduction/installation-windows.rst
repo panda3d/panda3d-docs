@@ -9,7 +9,7 @@ Panda3D, you should download the windows installer from the
 `download page <https://www.panda3d.org/download/>`__. Run the installer, and
 follow the prompts:
 
-.. image:: install-1.jpg
+.. image:: install-1.png
 
 After installing Panda, you should run the sample programs to verify that the
 installation is good. The best way to run a sample program is by using the
@@ -19,12 +19,12 @@ Open a command prompt, then change directory to the location where you installed
 Panda. Then, change to the samples subdirectory. There, you will find a large
 number of samples:
 
-.. image:: install-3.jpg
+.. image:: install-2.png
 
 Change directory into one of the sample program directories, then use Python to
 run the sample program in question:
 
-.. image:: install-4.jpg
+.. image:: install-3.png
 
 If the test programs don't run, then usually, you need to update your video
 drivers. If you want to know exactly why a program didn't run, you may need to
