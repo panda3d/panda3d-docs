@@ -84,9 +84,8 @@ between C++ information and Python information.
    Here are some other good links for learning Python:
 
    -  `Byte of Python <https://python.swaroopch.com>`__
-   -  `Dive Into Python <http://diveintopython.net/>`__
+   -  `Dive Into Python <https://diveinto.org/python3/table-of-contents.html>`__
    -  `Beginner's Guide from Python's wiki <https://wiki.python.org/moin/BeginnersGuide>`__
-   -  `The Standard Python Library <http://www.effbot.org/zone/librarybook-index.htm>`__
    -  `Introduction to OOP with Python <http://www.voidspace.org.uk/python/articles/OOP.shtml>`__
 
 .. only:: cpp

@@ -11,9 +11,9 @@ fetch any binary packages (including Panda3D) as wheels that are necessary to
 build the applications for other platforms. In order for pip to know which
 wheels to fetch(including the correct panda3d wheel), a `requirements file
 <https://pip.pypa.io/en/stable/user_guide/#requirements-files>`__ (or a Pipfile
-if `pipenv <https://pipenv.readthedocs.io/en/latest/>`__ is being used) is
-required. After collecting dependencies, platform-specific binaries (e.g., exe
-on Windows) are built for each listed application for each listed platform.
+if `pipenv <https://pipenv.pypa.io/en/latest/>`__ is being used) is required.
+After collecting dependencies, platform-specific binaries (e.g., exe on
+Windows) are built for each listed application for each listed platform.
 
 Options
 -------

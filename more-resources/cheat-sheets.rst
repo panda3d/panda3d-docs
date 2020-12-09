@@ -68,6 +68,6 @@ BVW Material
 These quick reference sheets are from the Building Virtual Worlds project course
 at CMU's ETC and explain some basic concepts. Note that they may be outdated.
 
-`Part 1 <https://www.panda3d.org/manual/pdfs/BVWQuickReference.pdf>`__
+`Part 1 <https://www.panda3d.org/download/noversion/BVWQuickReference.pdf>`__
 
-`Part 2 <https://www.panda3d.org/manual/pdfs/QuickReference.pdf>`__
+`Part 2 <https://www.panda3d.org/download/noversion/QuickReference.pdf>`__
