@@ -9,26 +9,22 @@ Panda3D, you should download the windows installer from the
 `download page <https://www.panda3d.org/download/>`__. Run the installer, and
 follow the prompts:
 
-|Install-1.jpg|
+.. image:: install-1.jpg
 
 After installing Panda, you should run the sample programs to verify that the
-installation is good. Under Windows, the easiest way to run a sample program is
-to find it in the Start Menu:
-
-|Install-2.jpg|
-
-But you can also run a sample program manually, using a command prompt.
+installation is good. The best way to run a sample program is by using the
+command prompt.
 
 Open a command prompt, then change directory to the location where you installed
 Panda. Then, change to the samples subdirectory. There, you will find a large
 number of samples:
 
-|Install-3.jpg|
+.. image:: install-3.jpg
 
 Change directory into one of the sample program directories, then use Python to
 run the sample program in question:
 
-|Install-4.jpg|
+.. image:: install-4.jpg
 
 If the test programs don't run, then usually, you need to update your video
 drivers. If you want to know exactly why a program didn't run, you may need to
@@ -65,26 +61,18 @@ To solve this problem, it may be necessary to modify the PATH manually. Click on
 the "My Computer" icon on your desktop and select Properties. Choose the tab
 "Advanced". Click the Button "Environment Variables":
 
-|Environvariables.png|
+.. image:: environvariables.png
 
 If you have administrator access to the PC, select the PATH line in the list
 under System Variables, otherwise, select the PATH line in the list of personal
 environment Variables.
 
-|Environvariables2.png|
+.. image:: environvariables2.png
 
 Now double click the PATH (or Path) line. a small window opens containing a
 series of directories separated by semicolons. Add Panda3D's bin and python
 directories to the end of the PATH.
 
-|Environvariables3.png|
+.. image:: environvariables3.png
 
 It may be necessary to log off and log back in to obtain the updated settings.
-
-.. |Install-1.jpg| image:: install-1.jpg
-.. |Install-2.jpg| image:: install-2.jpg
-.. |Install-3.jpg| image:: install-3.jpg
-.. |Install-4.jpg| image:: install-4.jpg
-.. |Environvariables.png| image:: environvariables.png
-.. |Environvariables2.png| image:: environvariables2.png
-.. |Environvariables3.png| image:: environvariables3.png
