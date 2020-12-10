@@ -67,4 +67,3 @@ value affects the inheritance of attributes.
    stencil-attribute
 
 
-.. note:: This section is incomplete. It will be updated soon.
