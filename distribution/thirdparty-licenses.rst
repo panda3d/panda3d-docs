@@ -288,15 +288,6 @@ Physics Library.
 
 License: `zlib license <http://www.zlib.net/zlib_license.html>`__
 
-PhysX
-~~~~~
-
-https://developer.nvidia.com/gameworks-physx-overview
-
-NVIDIA physics library.  The Panda3D PhysX support is deprecated.
-
-License: Proprietary.
-
 Open Dynamics Engine (ODE)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
