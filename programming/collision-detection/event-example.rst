@@ -10,7 +10,3 @@ Event Example
    .. literalinclude:: event-example.py
       :language: python
       :linenos:
-
-.. only:: cpp
-
-   .. note:: This section is incomplete. It will be updated soon.

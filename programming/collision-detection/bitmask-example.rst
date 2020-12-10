@@ -14,6 +14,3 @@ Bitmask Example
 
    .. image:: collisionbitmasks.png
 
-.. only:: cpp
-
-   .. note:: This section is incomplete. It will be updated soon.

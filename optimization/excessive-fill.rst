@@ -25,4 +25,3 @@ For a more in-depth explanation on the various transparency modes, see
 :ref:`transparency-and-blending`.
 
 
-.. note:: This section is incomplete. It will be updated soon.
