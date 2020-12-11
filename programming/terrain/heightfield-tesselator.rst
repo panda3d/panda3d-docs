@@ -26,4 +26,3 @@ affect subsequently-generated GeomNodes. It is possible to cache many different
 tesselations of the same terrain.
 
 
-.. note:: This section is incomplete. It will be updated soon.
