@@ -47,7 +47,7 @@ Starting Panda3D
 
    .. code-block:: bash
 
-      ppython filename.py
+      python filename.py
 
    To run it on GNU/Linux or macOS, enter the following in a terminal:
 
