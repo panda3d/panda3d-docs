@@ -23,9 +23,9 @@ Running your Program
 
    .. code-block:: bat
 
-      cd C:\Panda3D-1.10.7-x64\mystuff\
+      cd C:\Panda3D-1.10.8-x64\mystuff\
 
-   Instead of version 1.10.7-x64, you should type the version number of Panda3D
+   Instead of version 1.10.8-x64, you should type the version number of Panda3D
    that you have downloaded and installed. Please note that this folder name is
    case-sensitive and must match exactly (other than the version number, of
    course). Then, press the ‘Enter’ key on your keyboard. You should now have
@@ -101,13 +101,13 @@ Running your Program
 
    ::
 
-      C:\Panda3D-1.10.7-x64\include
+      C:\Panda3D-1.10.8-x64\include
 
    .. rubric:: Library Directories
 
    ::
 
-      C:\Panda3D-1.10.7-x64\lib
+      C:\Panda3D-1.10.8-x64\lib
 
    Then, you need to add the appropriate Panda3D libraries to the list of
    "Additional Dependencies" your project should be linked with. The exact set
@@ -138,7 +138,7 @@ Running your Program
 
    ::
 
-      PATH=C:\Panda3D-1.10.7-x64\bin;%PATH%
+      PATH=C:\Panda3D-1.10.8-x64\bin;%PATH%
 
    Now, assuming that the project built successfully, you can press F5 to run
    the program. Of course, not much will happen yet, because we don't have any
