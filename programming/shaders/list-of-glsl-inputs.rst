@@ -119,6 +119,15 @@ any shader stage.
    // As above, but "Shadow" should be appended if the texture has a shadow filter.
    uniform sampler2DShadow p3d_Texture0;
 
+   // Experimental inputs, new in 1.10.8, containing textures assigned using a
+   // particular TextureStage mode.  If no such texture has been assigned, a dummy
+   // texture is instead provided containing an appropriate default color.
+   uniform sampler2D p3d_TextureModulate[]; // default color: (1, 1, 1, 1)
+   uniform sampler2D p3d_TextureAdd[];      // default color: (0, 0, 0, 1)
+   uniform sampler2D p3d_TextureNormal[];   // default color: (0.5, 0.5, 1, 0)
+   uniform sampler2D p3d_TextureHeight[];   // default color: (0.5, 0.5, 1, 0)
+   uniform sampler2D p3d_TextureGloss[];    // default color: (1, 1, 1, 1)
+
    // New in 1.10.0.  Contains the matrix generated from texture pos and scale.
    uniform mat4 p3d_TextureMatrix[];
 
