@@ -22,79 +22,91 @@ There are a few things you need to do to activate this mode.
 mode; by default, it ignores the previous position information. To activate
 this mode, call:
 
-.. code-block:: python
+.. only:: python
 
-   base.cTrav.setRespectPrevTransform(True)
+   .. code-block:: python
+
+      base.cTrav.setRespectPrevTransform(True)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      traverser->set_respect_prev_transform(true);
 
 You only need to make this call once, at the beginning of your application (or
 whenever you create the CollisionTraverser). That switches the
 CollisionTraverser into the new mode. If you create any additional
 CollisionTraversers, you should make the call for them as well.
 
-2. Ensure that ``base.resetPrevTransform(render)`` is
-called every frame. Actually, this is already done for you automatically by
-ShowBase.py, so normally you don't need to do anything for this step.
+2. Ensure that :meth:`PandaNode.reset_all_prev_transform()` is called every
+frame. Actually, this is already done for you automatically by ShowBase.py, so
+normally you don't need to do anything for this step.
 
-The ``resetPrevTransform()`` call should be made
-once per frame (at the very beginning of the frame) for every different scene
-graph in your application that involves collisions. It ensures that the
-current frame's position is copied to the previous frame's position, before
-beginning the processing for that frame. Note that if you have multiple
-CollisionTraversers handling the same scene graph, you only need to (and only
-should) call this function once, but if you have two or more disconnected
-scene graphs, you will need to call it for each scene graph.
-
-If you don't understand the above paragraph, then you aren't using
-disconnected scene graphs, and you shouldn't worry about it.
+The :meth:`~.PandaNode.reset_prev_transform()` call should be made once per
+frame, at the very beginning of the frame. It ensures that the current frame's
+position is copied to the previous frame's position, before beginning the
+processing for that frame. Note that if you have multiple CollisionTraversers
+handling the same scene graph, you still only need to (and only should) call
+this function once.
 
 3. Whenever you move an object from one point to another in your scene (except
 when you put it into your scene the first time), instead of using:
 
-.. code-block:: python
+.. only:: python
 
-   object.setPos(newPos)
+   .. code-block:: python
+
+      object.setPos(newPos)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      object.set_pos(new_pos);
 
 You should use:
 
-.. code-block:: python
+.. only:: python
 
-   object.setFluidPos(newPos)
+   .. code-block:: python
 
-In general, ``setPos()`` means "put
-the object here, directly" and
-``setFluidPos()`` means "slide the object
-here, testing for collisions along the way". It is important to make a clear
-distinction between these two calls, and make the appropriate call for each
-situation.
+      object.setFluidPos(newPos)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      object.set_fluid_pos(new_pos);
+
+In general, :meth:`~.NodePath.set_pos()` means "teleport the object here" and
+:meth:`~.NodePath.set_fluid_pos()` means "slide the object here, testing for
+collisions along the way". It is important to make a clear distinction between
+these two calls, and make the appropriate call for each situation.
 
 If you are moving an object with a :ref:`LerpInterval <lerp-intervals>`, and
 you want collisions to be active (and fluid) during the lerp, you should pass
-the keyword parameter ``fluid = 1``
-to the LerpInterval constructor. It is rare to expect collisions to be active
-while an object is moving under direct control of the application, however.
+the keyword parameter ``fluid = 1`` to the LerpInterval constructor.
+It is rare to expect collisions to be active while an object is moving under
+direct control of the application, however.
 
 Visualizing the previous transform
 ----------------------------------
 
-When you are using the setFluidPos() call, and you have called
-``show()`` on your CollisionNode
-to make it visible, you will see the CollisionNode itself each frame, plus a
-ghosted representation of where it was the previous frame. This can help you
-visually see that the previous-transform mechanism is working. (It does not
-guarantee that the ``setRespectPrevTransform()`` call
-has been made on your CollisionTraverser, however.)
+When you are using the :meth:`~.NodePath.set_fluid_pos()` call, and you have
+called :meth:`~.NodePath.show()` on your CollisionNode to make it visible, you
+will see the CollisionNode itself each frame, plus a ghosted representation of
+where it was the previous frame. This can help you visually see that the
+previous-transform mechanism is working. (It does not guarantee that the
+:meth:`~.CollisionTraverser.set_respect_prev_transform()` call has been made on
+your CollisionTraverser, however.)
 
 Caveats
 -------
 
 At the present, the CollisionTraverser only uses the previous transform
-information when it is testing a CollisionSphere into a CollisionPolygon--that
-is, when the "from" object is a CollisionSphere, and the "into" object is a
-CollisionPolygon (or a wall of CollisionPolygons). Other kinds of collision
-solids currently do not consider the previous transform. (However, the other
-collision solids are generally thicker than a CollisionPolygon, so it is less
-likely that a moving object will pass all the way through them in one
-frame--so it is not quite as bad as it seems.)
+information when the "from" object is a CollisionSphere. Other kinds of
+collision solids currently do not consider the previous transform.
 
 Enabling the previous transform mode helps reduce slipping through walls
 considerably. However, it's not perfect; no collision system is. If your
