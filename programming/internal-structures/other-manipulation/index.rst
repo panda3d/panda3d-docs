@@ -13,6 +13,7 @@ like Textures.
 
    reading-existing-geometry
    modifying-existing-geometry
+   using-memoryviews
    meshdrawer
    more-about-reader-writer-rewriter
    creating-textures
