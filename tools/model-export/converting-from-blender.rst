@@ -95,6 +95,14 @@ Further, panda's native egg file format supports some esoteric things. For
 example, it supports blend targets (morph animations) and motion path curves,
 which are not supported by the X file format.
 
+Option 4: The "glTF" File Format
+-------------------------------
+
+Blender can export to glTF files without plugins, and a Python module called
+panda3d-gltf can be used to load glTF files in Panda3D.
+
+https://github.com/Moguri/panda3d-gltf
+
 Why do my colors look different in Panda3D?
 -------------------------------------------
 
