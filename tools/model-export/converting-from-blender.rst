@@ -20,11 +20,11 @@ https://github.com/Moguri/blend2bam
 Option 2: The Export Plugins for Blender
 ----------------------------------------
 
-Blender (2.80 and above) can export to glTF files without plugins, and a 
+Blender (2.80 and above) can export to glTF files without plugins, and a
 Python module called panda3d-gltf can be used to load glTF files in Panda3D.
 
-Blend2bam uses the panda3d-gltf package under the hood to convert to bam. It's 
-still recommended to use blend2bam instead since it uses default options that 
+Blend2bam uses the panda3d-gltf package under the hood to convert to bam. It's
+still recommended to use blend2bam instead since it uses default options that
 work well with Panda3D.
 
 https://github.com/Moguri/panda3d-gltf
