@@ -23,10 +23,14 @@ it uses default options that work well with Panda3D.
 
 https://github.com/Moguri/panda3d-gltf
 
-Option 2: The Egg export Plugins for Blender
---------------------------------------------
+Option 2: The Export Plugins for Blender
+----------------------------------------
 
-There are several Blender plugins contributed by Panda3D users.
+Blender can export to glTF files without plugins, and a Python module called
+panda3d-gltf can be used to load glTF files in Panda3D.
+https://github.com/Moguri/panda3d-gltf
+
+Also, there are several Blender plugins contributed by Panda3D users.
 
 YABEE is an exporter for Blender 2.5, 2.6 and 2.7, but does not work with
 Blender 2.80 at the moment of writing. It is documented and feature complete.
@@ -94,14 +98,6 @@ exporters may be required.
 Further, panda's native egg file format supports some esoteric things. For
 example, it supports blend targets (morph animations) and motion path curves,
 which are not supported by the X file format.
-
-Option 4: The "glTF" File Format
--------------------------------
-
-Blender can export to glTF files without plugins, and a Python module called
-panda3d-gltf can be used to load glTF files in Panda3D.
-
-https://github.com/Moguri/panda3d-gltf
 
 Why do my colors look different in Panda3D?
 -------------------------------------------
