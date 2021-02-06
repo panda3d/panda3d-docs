@@ -10,26 +10,29 @@ recommend the use of blend2bam, or to export to the glTF 2.0 format.
 
 Option 1: Blend2bam
 -------------------
+
 Blend2bam is a CLI command that converts blend files into bam files. By default
 it uses Blender's built-in glTF exporter for version 2.80 and up, a custom glTF
 exporter for older versions of Blender and can even be set up to use YABEE.
 
 https://github.com/Moguri/blend2bam
 
-Blend2bam uses the panda3d-gltf package under the hood to convert to bam. If
-this is installed you could also simply load .gltf files directly into Panda3D
-as you would a bam or egg. It's still recommended to use blend2bam instead since
-it uses default options that work well with Panda3D.
+Option 2: The Export Plugins for Blender
+----------------------------------------
+
+Blender (2.80 and above) can export to glTF files without plugins, and a
+Python module called panda3d-gltf can be used to load glTF files in Panda3D.
+
+Blend2bam uses the panda3d-gltf package under the hood to convert to bam. It's
+still recommended to use blend2bam instead since it uses default options that
+work well with Panda3D.
 
 https://github.com/Moguri/panda3d-gltf
 
-Option 2: The Egg export Plugins for Blender
---------------------------------------------
+Also, there are several Blender plugins contributed by Panda3D users.
 
-There are several Blender plugins contributed by Panda3D users.
-
-YABEE is an exporter for Blender 2.5, 2.6 and 2.7, but does not work with
-Blender 2.80 at the moment of writing. It is documented and feature complete.
+YABEE is an exporter for Blender 2.5x, 2.6x and 2.7x, but does not work with
+Blender 2.8x at the moment of writing. It is documented and feature complete.
 YABEE can export:
 
 -  Meshes
