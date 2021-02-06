@@ -10,6 +10,7 @@ recommend the use of blend2bam, or to export to the glTF 2.0 format.
 
 Option 1: Blend2bam
 -------------------
+
 Blend2bam is a CLI command that converts blend files into bam files. By default
 it uses Blender's built-in glTF exporter for version 2.80 and up, a custom glTF
 exporter for older versions of Blender and can even be set up to use YABEE.
