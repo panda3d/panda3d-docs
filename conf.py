@@ -474,11 +474,23 @@ def resolve_reference(ref, rel, domain='py'):
                 return ('func', func_name)
             elif domain == 'py':
                 # Grab the mangled function name.
-                func_name = idb.get_function_name(ifunc, mangle=True)
-                if len(search) == 1:
-                    return ('func', func_name)
+                func_name = idb.get_function_name(ifunc, scoped=False, mangle=True)
+                if interrogate_function_is_method(ifunc):
+                    outer = interrogate_function_class(ifunc)
+                    prefix = interrogate_type_module_name(outer)
+                    if prefix:
+                        prefix += '.'
+                    type_name = idb.get_type_name(outer, mangle=False, scoped=True)
+                    if len(refpath) == 1 and interrogate_function_name(ifunc).lstrip('~') == interrogate_type_name(outer):
+                        # This matches a constructor, but we want the class.
+                        return ('class', prefix + type_name)
+                    else:
+                        return ('meth', prefix + type_name + '.' + func_name)
                 else:
-                    return ('meth', '.'.join(relpath[:i] + refpath[:-1] + [func_name]))
+                    prefix = interrogate_function_module_name(ifunc)
+                    if prefix:
+                        prefix += '.'
+                    return ('func', prefix + func_name)
 
         itype = idb.lookup_type(modname, search)
         if itype:
@@ -497,16 +509,15 @@ def resolve_reference(ref, rel, domain='py'):
                     return ('union', type_name)
             elif domain == 'py':
                 type_name = idb.get_type_name(itype, mangle=False, scoped=True)
-                return ('class', type_name)
+                prefix = interrogate_type_module_name(itype)
+                if prefix:
+                    prefix += '.'
+                return ('class', prefix + type_name)
 
     if len(rel_parts) >= 2 and rel_parts[0] == 'panda3d' and rel_parts[1] != 'core':
         # Look in panda3d.core instead, prefix the result with the module name.
         rel_parts[1] = 'core'
-        resolved = resolve_reference(ref, '.'.join(rel_parts), domain=domain)
-        if resolved and domain == 'py':
-            return (resolved[0], 'panda3d.core.' + resolved[1])
-        else:
-            return resolved
+        return resolve_reference(ref, '.'.join(rel_parts), domain=domain)
 
 
 def convert_doxygen_format(line, name, domain='py'):
@@ -576,13 +587,24 @@ def convert_doxygen_format(line, name, domain='py'):
 
         typ, target = result
 
-        if plural:
-            words[i] = ':{0}:{1}:`{2} <{3}>`{4}'.format(domain, typ, word, target, suffix)
-        elif ('.' in target or '::' in target) and '::' not in word:
-            # The original wasn't scoped, so only use the last component.
-            words[i] = ':{0}:{1}:`~{2}`{3}'.format(domain, typ, target, suffix)
-        else:
+        if word == target:
             words[i] = ':{0}:{1}:`{2}`{3}'.format(domain, typ, target, suffix)
+        else:
+            if domain == 'py' and typ in ('meth', 'func'):
+                # Replace last part with mangled name if appropriate.
+                word = word.replace('::', '.')
+                oldpart = word.rsplit('.', 1)[-1]
+                newpart = target.rsplit('.', 1)[-1]
+                if oldpart != newpart:
+                    if word == oldpart:
+                        word = newpart
+                    else:
+                        word = word.rsplit('.', 1)[0] + newpart
+
+            if '.' not in word and '::' not in word and target.endswith('.' + word):
+                words[i] = ':{0}:{1}:`~{2}`{3}'.format(domain, typ, target, suffix)
+            else:
+                words[i] = ':{0}:{1}:`{2} <{3}>`{4}'.format(domain, typ, word, target, suffix)
 
         #print("replaced", word, "with", words[i])
 
@@ -822,11 +844,10 @@ def on_missing_reference(app, env, node, contnode):
         if len(contnode.children) and not node.get('refexplicit'):
             oldtext = contnode.children[0].astext()
 
+            text = resolved[1]
             if domain.name == 'cpp':
-                text = resolved[1]
                 text = '::'.join(text.split('::')[-oldtext.replace('.', '::').count('.')-1:])
             else:
-                text = prefix + resolved[1]
                 text = '.'.join(text.split('.')[-oldtext.count('.')-1:])
 
             if oldtext.endswith("()"):
@@ -867,7 +888,7 @@ def on_missing_reference(app, env, node, contnode):
                 # Squelch warning
                 typ = resolved[0]
         else:
-            target = prefix + resolved[1]
+            target = resolved[1]
 
         return domain.resolve_xref(env, refdoc, app.builder, typ, target, node, contnode)
 
