@@ -15,7 +15,23 @@ Blend2bam is a CLI command that converts blend files into bam files. By default
 it uses Blender's built-in glTF exporter for version 2.80 and up, a custom glTF
 exporter for older versions of Blender and can even be set up to use YABEE.
 
+You can simply add this to your Panda3D installation using pip::
+
+   python -m pip install panda3d-blend2bam
+
+To convert a model, enter the blend2bam command on the command-line::
+
+   blend2bam myfile.blend myfile.bam
+
+For more information, and issue reports, visit the GitHub page for blend2bam:
+
 https://github.com/Moguri/blend2bam
+
+For best reproduction of the Blender materials, you can use the simplepbr
+package, which provides a set of shaders that are designed to approximate the
+Principled BSDF shading model used in Blender:
+
+https://github.com/Moguri/panda3d-simplepbr
 
 Option 2: The Export Plugins for Blender
 ----------------------------------------
