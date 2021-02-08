@@ -13,8 +13,7 @@ CollisionHandlerQueue
 
 The simplest kind of CollisionHandler, this object simply records the collisions
 that were detected during the most recent traversal. You can then iterate
-through the list using ``queue.getNumEntries()`` and ``queue.getEntry()``, or
-in Python using the shorthand ``queue.getEntries()``:
+through the list using :meth:`queue.entries <.CollisionHandlerQueue.entries>`:
 
 .. only:: python
 
@@ -24,16 +23,16 @@ in Python using the shorthand ``queue.getEntries()``:
       traverser.addCollider(fromObject, queue)
       traverser.traverse(render)
 
-      for entry in queue.getEntries():
+      for entry in queue.entries:
           print(entry)
 
 .. only:: cpp
 
    .. code-block:: cpp
 
-      CollisionHandlerQueue *queue = new CollisionHandlerQueue();
+      PT(CollisionHandlerQueue) queue = new CollisionHandlerQueue;
       CollisionTraverser traverser;
-      traverser.add_collider(fromObject,queue);
+      traverser.add_collider(fromObject, queue);
       traverser.traverse(get_render());
 
       for (int i = 0; i < queue->get_num_entries(); ++i) {
@@ -43,7 +42,8 @@ in Python using the shorthand ``queue.getEntries()``:
 
 By default, the :ref:`collision-entries` appear in the queue in no particular
 order. You can arrange them in order from nearest to furthest by calling
-``queue.sortEntries()`` after the traversal.
+:meth:`queue.sort_entries() <.CollisionHandlerQueue.sort_entries>` after the
+traversal.
 
 CollisionHandlerEvent
 ---------------------
@@ -75,30 +75,31 @@ specify. For instance:
 
    .. code-block:: cpp
 
-      C_handler.add_in_pattern("%fn-into-%in");
-      C_handler.add_again_pattern("%fn-into-%in");
-      C_handler.add_out_pattern("%fn-into-%in");
+      handler->add_in_pattern("%fn-into-%in");
+      handler->add_again_pattern("%fn-into-%in");
+      handler->add_out_pattern("%fn-into-%in");
 
 In the pattern string, the following sequences have special meaning:
 
-======== =======================================================================================
+======== ===================================================================
 %fn      the name of the "from" object's node
 %in      the name of the "into" object's node
 %fs      't' if "from" is declared to be tangible, 'i' if intangible
 %is      't' if "into" is declared to be tangible, 'i' if intangible
-%ig      'c' if the collision is into a CollisionNode, 'g' if it is an ordinary visible GeomNode
+%ig      'c' if "into" is a CollisionNode, 'g' if it is an ordinary GeomNode
 %(tag)fh generate event only if "from" node has the indicated tag
 %(tag)fx generate event only if "from" node does not have the indicated tag
 %(tag)ih generate event only if "into" node has the indicated tag
 %(tag)ix generate event only if "into" node does not have the indicated tag
 %(tag)ft the indicated tag value of the "from" node.
 %(tag)it the indicated tag value of the "into" node.
-======== =======================================================================================
+======== ===================================================================
 
 You may use as many of the above sequences as you like, or none, in the pattern
 string. In the tag-based sequences, the parentheses around (tag) are literal;
 the idea is to write the name of the tag you want to look up, surrounded by
-parentheses. The tag is consulted using the ``nodePath.getNetTag()`` interface.
+parentheses. The tag is consulted using the
+:meth:`nodePath.get_net_tag() <.NodePath.get_net_tag>` interface.
 
 In any case, the event handler function that you write to service the event
 should receive one parameter (in addition to self, if it is a method): the
@@ -131,10 +132,10 @@ wall smoothly if it strikes the wall at an angle.
 
 The CollisionHandlerPusher needs to have a handle to the NodePath that it will
 push back on, for each from object; you pass this information to
-``pusher.addCollider``. This should be the node that is actually moving. This is
-often, but not always, the same NodePath as the CollisionNode itself, but it
-might be different if the CollisionNode is set up as a child of the node that is
-actually moving.
+:meth:`pusher.add_collider() <.CollisionHandlerPusher.add_collider>`.
+This should be the node that is actually moving. This is often, but not always,
+the same NodePath as the CollisionNode itself, but it might be different if the
+CollisionNode is set up as a child of the node that is actually moving.
 
 .. only:: python
 
@@ -152,15 +153,18 @@ actually moving.
    .. code-block:: cpp
 
       smiley = window->load_model(framework.get_models(), "smiley.egg");
-      fromObject = smiley.attach_new_node(CollisionNode("colNode"));
-      fromObject->add_solid(CollisionSphere(0, 0, 0, 1));
+      fromObject = smiley.attach_new_node(new CollisionNode("colNode"));
+      fromObject->add_solid(new CollisionSphere(0, 0, 0, 1));
 
-      pusher = new CollisionHandlerPusher();
-      pusher.add_collider(fromObject, smiley);
+      PT(CollisionHandlerPusher) pusher = new CollisionHandlerPusher;
+      pusher->add_collider(fromObject, smiley);
 
-Don't be confused by the call to ``pusher.addCollider``; it looks a lot like the
-call to ``traverser.addCollider``, but it's not the same thing, and you still
-need to add the collider and its handler to the traverser:
+Don't be confused by the call to
+:meth:`pusher.add_collider() <.CollisionHandlerPusher.add_collider>`; it looks a
+lot like the call to
+:meth:`traverser.add_collider() <.CollisionTraverser.add_collider>`, but it's
+not the same thing, and you still need to add the collider and its handler to
+the traverser:
 
 .. only:: python
 
@@ -173,12 +177,13 @@ need to add the collider and its handler to the traverser:
 
    .. code-block:: cpp
 
-      CollisionTraverser traverser.add_collider(fromObject,pusher);
-      smiley->set_pos(x,y,0);
+      traverser.add_collider(fromObject, pusher);
+      smiley.set_pos(x, y, 0);
 
 If you are using Panda's drive mode to move the camera around (or some other
 node), then you also need to tell the pusher about the drive node, by adding
-it into the ``pusher.addCollider`` call:
+it into the :meth:`pusher.add_collider() <.CollisionHandlerPusher.add_collider>`
+call:
 
 .. only:: python
 
@@ -186,6 +191,7 @@ it into the ``pusher.addCollider`` call:
 
       fromObject = base.camera.attachNewNode(CollisionNode('colNode'))
       fromObject.node().addSolid(CollisionSphere(0, 0, 0, 1))
+
       pusher = CollisionHandlerPusher()
       pusher.addCollider(fromObject, base.camera, base.drive.node())
 
@@ -193,9 +199,10 @@ it into the ``pusher.addCollider`` call:
 
    .. code-block:: cpp
 
-      fromObject = cam.attach_new_node(CollisionNode("colNode"))
-      fromObject->node().add_solid(CollisionSphere(0, 0, 0, 1);
-      pusher = new CollisionHandlerPusher();
+      fromObject = cam.attach_new_node(new CollisionNode("colNode"))
+      fromObject.node()->add_solid(new CollisionSphere(0, 0, 0, 1));
+
+      PT(CollisionHandlerPusher) pusher = new CollisionHandlerPusher;
       pusher.add_collider(fromObject, cam);
 
 PhysicsCollisionHandler
@@ -203,9 +210,10 @@ PhysicsCollisionHandler
 
 This kind of handler further specializes CollisionHandlerPusher to integrate
 with Panda's :ref:`Physics Engine <panda3d-physics-engine>`. It requires that
-the NodePath you pass as the second parameter to ``pusher.addCollider`` actually
-contains an ActorNode, the type of node that is moved by forces in the physics
-system.
+the NodePath you pass as the second parameter to
+:meth:`pusher.add_collider() <panda3d.physics.PhysicsCollisionHandler.add_collider>`
+actually contains an ActorNode, the type of node that is moved by forces in the
+physics system.
 
 .. only:: python
 
@@ -222,12 +230,12 @@ system.
 
    .. code-block:: cpp
 
-      anp = window->get_render().attach_new_node(ActorNode("actor"));
-      fromObject = anp.attach_new_node(CollisionNode("codeNode");
-      fromObject->node().add_solid(CollisionSphere(0, 0, 0, 1))
+      anp = window->get_render().attach_new_node(new ActorNode("actor"));
+      fromObject = anp.attach_new_node(new CollisionNode("colNode"));
+      fromObject.node()->add_solid(new CollisionSphere(0, 0, 0, 1))
 
-      pusher = new PhysicsCollisionHandler();
-      pusher.add_collider(fromObject, anp);
+      PT(PhysicsCollisionHandler) pusher = new PhysicsCollisionHandler;
+      pusher->add_collider(fromObject, anp);
 
 Whenever you have an ActorNode that you want to respond to collisions, we
 recommend that you use a PhysicsCollisionHandler rather than an ordinary
@@ -270,8 +278,22 @@ over uneven terrain, without having to set up a complicated physics simulation
    .. code-block:: cpp
 
       smiley = window->load_model(framework.get_models(), "smiley.egg");
-      fromObject = smiley.attach_new_node(CollisionNode("colNode"));
-      fromObject->node().add_solid(CollisionRay(0, 0, 0, 0, 0, -1));
+      fromObject = smiley.attach_new_node(new CollisionNode("colNode"));
+      fromObject.node()->add_solid(new CollisionRay(0, 0, 0, 0, 0, -1));
 
-      lifter = new CollisionHandlerFloor();
-      lifter.add_collider(fromObject, smiley);
+      PT(CollisionHandlerFloor) lifter = new CollisionHandlerFloor;
+      lifter->add_collider(fromObject, smiley);
+
+CollisionHandlerGravity
+-----------------------
+
+This handler is very similar to CollisionHandlerFloor, but rather than
+positioning objects directly at the floor, it can apply an acceleration to make
+them fall gradually to the ground.
+
+The main parameter to adjust is the ``gravity`` property, which sets the
+acceleration.  If your scene unit is metres, and your simulation takes place on
+earth, then you will want to set this to a value of around 9.81.
+
+For the full list of parameters, see :class:`.CollisionHandlerGravity` in the
+API reference.
