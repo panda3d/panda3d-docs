@@ -705,7 +705,7 @@ def convert_doxygen_docstring(lines, name, domain='py'):
 
                 # I'd love to use the proper Sphinx deprecated tag, but it
                 # requires a version number, whereas Doxygen doesn't.
-                newlines.append('*Deprecated:* ' + convert_doxygen_format(value, name, domain))
+                newlines.append('**Deprecated**: ' + convert_doxygen_format(value, name, domain))
                 newlines.append('')
                 continue
             elif special in ('brief', 'return', 'returns'):
