@@ -400,6 +400,10 @@ inheritance_edge_attrs = {
     "style": '""',
 }
 
+# Regex patterns.
+at_c_at_p_pattern = re.compile(r'@[cp]\s+([^\s]+)')
+method_class_ref_pattern = re.compile(r'([a-zA-Z_][a-zA-Z0-9_.:]*)\(\)|([a-zA-Z_][a-zA-Z0-9_]*::[a-zA-Z_][a-zA-Z0-9_.:]*)(\(\))?|([a-zA-Z_]+[A-Z0-9_][a-zA-Z0-9_.:]*)(\(\))?')
+
 
 class ExcludeDocumenter(autodoc.Documenter):
     """Special documenter that excludes certain types from autosummary.
@@ -533,12 +537,14 @@ def convert_doxygen_format(line, name, domain='py'):
     # But double backticks are literal backticks
     line = line.replace('````', '\\`')
 
+    # @c and @p result in double backticks for the subsequent word
+    line = re.sub(at_c_at_p_pattern, r'``\1``', line)
+
     parent = name.rsplit('.', 1)[-1]
 
     # Search for method and class references.  We pick them up either when they
     # have a scoping operator, or when they end with (), or when they clearly
     # look like a class/method, or we would match all the words in the text!
-    pattern = re.compile(r'([a-zA-Z_][a-zA-Z0-9_.:]*)\(\)|([a-zA-Z_][a-zA-Z0-9_]*::[a-zA-Z_][a-zA-Z0-9_.:]*)(\(\))?|([a-zA-Z_]+[A-Z0-9_][a-zA-Z0-9_.:]*)(\(\))?')
     words = line.split(' ')
     in_backticks = False
     for i, word in enumerate(words):
@@ -570,7 +576,7 @@ def convert_doxygen_format(line, name, domain='py'):
 
         word = word.strip('`')
 
-        m = re.fullmatch(pattern, word)
+        m = re.fullmatch(method_class_ref_pattern, word)
         if not m:
             continue
 
@@ -754,6 +760,13 @@ def convert_doxygen_docstring(lines, name, domain='py'):
                     newlines.append('')
 
                 newlines.append('.. versionadded:: ' + strline[7:])
+                newlines.append('')
+                continue
+            elif special == 'li':
+                if newlines and newlines[-1]:
+                    newlines.append('')
+
+                newlines.append('* ' + convert_doxygen_format(strline[4:], name, domain))
                 newlines.append('')
                 continue
             else:
