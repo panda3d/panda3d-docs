@@ -601,11 +601,14 @@ def convert_doxygen_format(line, name, domain='py'):
                 word = word.replace('::', '.')
                 oldpart = word.rsplit('.', 1)[-1]
                 newpart = target.rsplit('.', 1)[-1]
+                if oldpart.endswith('()'):
+                    newpart += '()'
+
                 if oldpart != newpart:
                     if word == oldpart:
                         word = newpart
                     else:
-                        word = word.rsplit('.', 1)[0] + newpart
+                        word = word.rsplit('.', 1)[0] + '.' + newpart
 
             if '.' not in word and '::' not in word and target.endswith('.' + word):
                 words[i] = ':{0}:{1}:`~{2}`{3}'.format(domain, typ, target, suffix)
