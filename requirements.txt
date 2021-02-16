@@ -1,5 +1,5 @@
 --extra-index-url https://archive.panda3d.org/branches/release/1.10.x
-sphinx>=1.8
+sphinx>=1.8,!=3.5.0
 sphinx-variations>=1.0.5
 sphinx-rtd-theme~=0.5.1
 sphinx-autopackagesummary>=1.0
