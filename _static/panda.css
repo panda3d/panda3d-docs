@@ -3,11 +3,18 @@ body, .wy-body-for-nav {
 }
 
 .wy-grid-for-nav {
-    position: inherit !important;
+    position: fixed !important;
     max-width: 1100px;
     margin: 0 auto;
     -webkit-box-shadow: 3px 3px 15px rgba(0,0,0,0.15);
     box-shadow: 3px 3px 15px rgba(0,0,0,0.15);
+    overflow-y: auto;
+}
+
+@media screen and (min-width: 1100px) {
+    .wy-grid-for-nav {
+        left: calc(50% - 550px);
+    }
 }
 
 @media screen and (min-width: 767px) {
