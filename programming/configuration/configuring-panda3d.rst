@@ -27,14 +27,14 @@ load-display           pandagl          pandagl            Specifies which graph
 
                        pandadx8
 
-                       tinydisplay
+                       p3tinydisplay
 aux-display            pandagl          pandagl            Specifies which graphics GSG to use if the GSG specified in load-display fails; May be specified multiple times to create multiple fallbacks.
 
                        pandadx9
 
                        pandadx8
 
-                       tinydisplay
+                       p3tinydisplay
 win-size               Number of pixels 640 480            Specifies the size of the Panda3D window
 win-origin             Pixel offsets    50 50              Specifies the offset of the Panda3D window
 window-title           Window title     Panda              Specifies the title of the Panda3D window
