@@ -107,9 +107,9 @@ In this mode, source1/operand1 is subtracted from source0/operand0.
       ts->set_combine_rgb(TextureStage::CM_interpolate,
                           source0, operand0, source1, operand1, source2, operand2);
 
-This is the only mode that uses three sources. The value of source2/operand2
+This is the only mode that uses three sources. The color value of source2/operand2
 is used to select between source0/operand0 and source1/operand1. When source2
-is 0, source0 is selected, and when source2 is 1, source1 is selected. When
+is 0, source1 is selected, and when source2 is 1, source0 is selected. When
 source2 is between 0 and 1, the color is smoothly blended between source0 and
 source1.
 
