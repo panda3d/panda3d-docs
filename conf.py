@@ -71,7 +71,7 @@ copyright = u'2019 Carnegie Mellon University'
 version = '1.10'
 
 # The full X.Y.Z version.
-release = '1.10.8'
+release = '1.10.9'
 
 # Whether to generate Python or C++ documentation.  TODO:
 tags.add('python')
