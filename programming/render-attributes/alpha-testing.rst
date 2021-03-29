@@ -45,4 +45,3 @@ And now, this attribute can be added to a node to enable the action.
       nodePath.set_attrib(lowPassFilter);
 
 
-.. note:: This section is incomplete. It will be updated soon.

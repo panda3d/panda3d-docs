@@ -100,4 +100,3 @@ However, although the manual does not document these classes, the
 :ref:`reference` documentation does.
 
 
-.. note:: This section is incomplete. It will be updated soon.

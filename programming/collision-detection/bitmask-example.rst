@@ -16,4 +16,3 @@ Bitmask Example
 
 .. only:: cpp
 
-   .. note:: This section is incomplete. It will be updated soon.

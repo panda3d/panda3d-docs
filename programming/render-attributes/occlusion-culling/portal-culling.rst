@@ -49,4 +49,3 @@ play, hide the cells using the same mask set on the camera using
 camera.setCameraMask(mask).
 
 
-.. note:: This section is incomplete. It will be updated soon.

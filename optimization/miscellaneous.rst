@@ -18,4 +18,3 @@ of bad performance in your game.
    if you are experiencing this issue.
 
 
-.. note:: This section is incomplete. It will be updated soon.

@@ -12,4 +12,3 @@ the config.prc file::
    fmod-use-surround-sound true
 
 
-.. note:: This section is incomplete. It will be updated soon.
