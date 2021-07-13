@@ -7,14 +7,14 @@ The IRC channel is a great place to talk to other developers that use Panda3D,
 and to ask questions about anything related to Panda3D.
 
 ======= =============================================
-Network `FreeNode <http://freenode.net>`__
+Network `Libera Chat <https://libera.chat>`__
 ======= =============================================
-Server  chat.freenode.net
-Channel `#panda3d <irc://irc.freenode.net/panda3d>`__
+Server  irc.libera.chat
+Channel `#panda3d-general <irc://irc.libera.chat/panda3d-general>`__
 ======= =============================================
 
 You need an IRC client to connect to the channel. If you do not have an IRC
-client, you can use the web client: https://webchat.freenode.net/#panda3d
+client, you can use the web client: https://web.libera.chat/#panda3d-general
 
 Although you will often get a response fairly quickly, depending on the time of
 day and timezone of our users, it may take longer for people to notice your
