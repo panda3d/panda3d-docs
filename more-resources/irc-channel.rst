@@ -10,11 +10,11 @@ and to ask questions about anything related to Panda3D.
 Network `Libera Chat <https://libera.chat>`__
 ======= =============================================
 Server  irc.libera.chat
-Channel `#panda3d-general <irc://irc.libera.chat/panda3d-general>`__
+Channel `#panda3d <irc://irc.libera.chat/panda3d>`__
 ======= =============================================
 
 You need an IRC client to connect to the channel. If you do not have an IRC
-client, you can use the web client: https://web.libera.chat/#panda3d-general
+client, you can use the web client: https://web.libera.chat/#panda3d
 
 Although you will often get a response fairly quickly, depending on the time of
 day and timezone of our users, it may take longer for people to notice your
