@@ -399,6 +399,10 @@ while the GeoMipTerrain uses the lower left corner as its origin. However,
 this can be easily corrected by positioning the GeoMipTerrain with an offset
 relative to the static rigid body node.
 
+If you are using ShaderTerrainMesh, then you need to use a Texture object as a
+height map. This will ensure that the shape of the physical body corresponds to
+the visible geometry.
+
 .. only:: python
 
    .. code-block:: python
