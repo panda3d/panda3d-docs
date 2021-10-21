@@ -86,7 +86,6 @@ between C++ information and Python information.
    -  `Byte of Python <https://python.swaroopch.com>`__
    -  `Dive Into Python <https://diveinto.org/python3/table-of-contents.html>`__
    -  `Beginner's Guide from Python's wiki <https://wiki.python.org/moin/BeginnersGuide>`__
-   -  `Introduction to OOP with Python <http://www.voidspace.org.uk/python/articles/OOP.shtml>`__
 
 .. only:: cpp
 
