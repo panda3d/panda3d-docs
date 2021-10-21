@@ -11,7 +11,7 @@ List of All Render Effects:
 ---------------------------
 
 :ref:`BillboardEffect <billboard-effects>`
-   Dicates that geometry at this node should automatically rotate to face the
+   Dictates that geometry at this node should automatically rotate to face the
    camera, or any other arbitrary node.
 CharacterJointEffect
    The effect binds the node back to the character, so that querying the
@@ -50,7 +50,7 @@ allocate and return a new RenderEffect of the appropriate type, and it may
 share pointers if possible. Do not modify the new RenderEffect if you wish to
 change its properties; instead, create a new one.
 
-Once you have created a render Effect, you need to decide what it should affect.
+Once you have created a RenderEffect, you need to decide what it should affect.
 If you have an effect that should affect everything in the scene the NodePath in
 the next line of code is "render". If you only want it to affect specific
 objects, choose the appropriate place in the scene graph.

@@ -4,7 +4,7 @@ DSP Effects
 ===========
 
 DSP, or Digital Signal Processing, allows you to apply effect filters to your
-ingame audio. As of now, DSP effects are only available in Panda if you use the
+in-game audio. As of now, DSP effects are only available in Panda if you use the
 FMOD audio library. By default, Panda ships using the OpenAL audio library but
 FMOD can be enabled simply by editing :ref:`Config.prc <configuring-panda3d>`.
 Please keep in mind that using FMOD in a commercial application will require

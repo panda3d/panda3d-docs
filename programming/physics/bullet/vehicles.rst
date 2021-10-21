@@ -90,7 +90,7 @@ Finally we need to control steering and engine/brakes. This is best done using a
 task, and keeping the current steering angle around somewhere in a variable.
 
 Here we use a very simple model of controlling the steering angle. If 'turnLeft'
-or 'turnRight' keys are pressed the sterring angle will increase/decrease at a
+or 'turnRight' keys are pressed the steering angle will increase/decrease at a
 constant rate, until a maximum steering angle is achieved. No relaxation is
 applied. Therefor we also define constants for the maximum steering angle (here:
 steeringClamp) and the rate at which the steering angle increases/decreases

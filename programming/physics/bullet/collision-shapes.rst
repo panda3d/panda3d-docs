@@ -5,7 +5,7 @@ Bullet Collision Shapes
 
 On the previous page we have been introduced to Bullet basics. Two simple
 collision shapes - a box and a plane - have been used in this simple script.
-This page will now introduce more collison shapes provided by Bullet, starting
+This page will now introduce more collision shapes provided by Bullet, starting
 with primitive shapes and then moving on to more complex ones.
 
 Primitive shapes:

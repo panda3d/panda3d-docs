@@ -5,7 +5,7 @@ Uber DOGs
 
 The Uber Distributed Object Globals are special objects which are used for game
 global objects. These are similar to AI ones but are not dedicated to specific
-zones, have a hardcoded doID and with that are directly acessible in the client
+zones, have a hardcoded doID and with that are directly accessible in the client
 without the need for discovering them first like you'd have to do for other DOs.
 
 Compared to other DOs, the DOGs do not store persistent data. Instead, they are

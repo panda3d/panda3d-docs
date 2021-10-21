@@ -56,7 +56,7 @@ To apply a gravitational pull to the "jetpack guy" from the previous example:
 Since the gravitational force is relative to the entire world (and shouldn't
 change if, for example, the jetpack guy tumbles head-over-heels), the
 gravityForce vector was added to a ForceNode attached to render. So regardless
-of the orienation of the NodePath controlled by an, the force will always pull
+of the orientation of the NodePath controlled by an, the force will always pull
 towards the bottom of the scene.
 
 Since all objects in the scene should be affected by gravity, the force was

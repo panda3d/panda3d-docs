@@ -12,7 +12,7 @@ collision shapes (``BulletPlaneShape``,
 These objects are part of the Panda3D scene graph. But they are not visible.
 In order to be able to actually see a rigid body we had to reparent a visible
 geometry below the rigid body node. This is fine, since we (1) can control the
-way an object looks like, by choosing whatever visible geoemtry we want, and
+way an object looks like, by choosing whatever visible geometry we want, and
 (2) we can create invisible objects too, by not reparenting any geometry below
 a rigid body.
 

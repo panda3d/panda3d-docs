@@ -111,7 +111,7 @@ By default, the mouse is in "absolute" mode, meaning the cursor can freely
 move outside the window. This mode is typical for desktop applications.
 
 In a first person game where the mouse controls the camera ("mouselook"),
-thouh, you usually want the mouse cursor to stay inside the window, so you can
+however, you usually want the mouse cursor to stay inside the window, so you can
 get movement events no matter how far the user moves the mouse.
 
 Two other mouse modes can help with this.

@@ -165,7 +165,7 @@ change the scale freely by clicking within the graph itself and dragging the
 mouse up or down as necessary. One of the horizontal guide bars is drawn in a
 lighter shade of gray; this one represents the actual target frame rate
 suggested by the client. The other, darker, guide bars are drawn automatically
-at harmonic subdvisions of the target frame rate. You can change the target
+at harmonic subdivisions of the target frame rate. You can change the target
 frame rate with the Config.prc variable pstats-target-frame-rate on the client.
 
 You can also create any number of user-defined guide bars by dragging them into

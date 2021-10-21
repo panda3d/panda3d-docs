@@ -16,7 +16,7 @@ into account far more parameters than a simple collision response system can.
 Panda3D offers several choices to use for :term:`physics`. Before you choose
 one, however, think carefully whether you need the additional complexity,
 performance and authoring cost of a physics simulation, and whether perhaps
-:ref:`collision-detection` on its own might be adeqate for your use-cases.
+:ref:`collision-detection` on its own might be adequate for your use-cases.
 
 -  :ref:`Panda's Built-in Physics Engine <panda3d-physics-engine>`: Panda3D
    has a very basic physics engine built-in that may apply forces to classes.

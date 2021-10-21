@@ -35,7 +35,7 @@ tall).
 
 There is one more child of render2d to take note of, called pixel2d.
 This is scaled in such a way that one Panda unit represents one pixel in the
-window. The origin, (0, 0, 0) is in the upperleft corner of the window. The
+window. The origin, (0, 0, 0) is in the upper left corner of the window. The
 lower right corner has x and z values equal to the width and -height of the
 window respectively. As Panda3D uses a Z-Up Right coordinate system, the Y
 coordinate in the window will actually be the inverted Z coordinate in Panda.

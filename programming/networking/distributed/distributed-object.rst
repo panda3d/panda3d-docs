@@ -71,7 +71,7 @@ of a client and will send the message directly to it. This method is only
 available on the :term:`AI` and :term:`UD` side.
 
 the b_foo (b\_ stands for both) method will update both, the local object as
-well as send the data to the server. This can usually easily be achived by
+well as send the data to the server. This can usually easily be achieved by
 simply calling both, the foo and d_foo method within the b_foo method.
 
 Special Methods

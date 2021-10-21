@@ -124,7 +124,7 @@ manual pages. The following code shows how to do this:
       TODO
 
 The second way is to use an already existing model - maybe the model which has
-been used to calculate the tetrahedronal mesh - and link it to the soft body,
+been used to calculate the tetrahedron mesh - and link it to the soft body,
 like the following code snippet shows. Panda3D will compare the vertices of the
 model with the nodes of the soft body, and link each vertex to the closest soft
 body node.

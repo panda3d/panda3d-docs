@@ -27,7 +27,7 @@ clickSound         The sound made when the cursor clicks on the button          
 popupMarkerBorder  Use width to change the size of the border around the popup marker              (Width,Height)
 popupMarker_image  Set the state images of the popupMarker                                         (see directButton: image)
 popupMarker_scale  Set the scale of the popupMarker                                                scale=x or scale=(x,y,z)
-popupMarker_pos    Set the poition of the popupMarker relative to the parent optionMenu            pos=(x,y,z)
+popupMarker_pos    Set the position of the popupMarker relative to the parent optionMenu           pos=(x,y,z)
 popupMarker_relief Set the relief value of the popupMarker, the depth of the beveled edge          relief=x (for int value) or relief=None (for no relief)
 ================== =============================================================================== =======================================================
 

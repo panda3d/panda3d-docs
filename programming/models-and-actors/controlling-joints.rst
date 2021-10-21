@@ -21,7 +21,7 @@ the joint is in its default location, the one specified in the model's egg file.
 You must store a local (not global) transform in the dummy node. In other
 words, the transform is relative to the joint's parent bone. If you are
 controlling the forearm of a model, for instance, the transform will be
-relative to the upperarm.
+relative to the upper arm.
 
 The string "modelRoot" represents the name of the model node - the string
 "modelRoot" is usually the correct value.

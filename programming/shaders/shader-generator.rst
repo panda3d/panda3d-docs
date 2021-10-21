@@ -89,7 +89,7 @@ Per-Pixel Lighting
 
 Simply turning on :meth:`~.NodePath.set_shader_auto()` causes one immediate
 change: all lighting calculations are done per-pixel instead of per-vertex. This
-means that models do not have to be highly tesselated in order to get
+means that models do not have to be highly tessellated in order to get
 nice-looking spotlights or specular highlights.
 
 Of course, the real magic of :meth:`~.NodePath.set_shader_auto()` is that it
@@ -173,7 +173,7 @@ Combining Automatic Shaders with Manual Shaders
 -----------------------------------------------
 
 Sometimes, you will want to write most of a game using panda's automatic shader
-generation abilitites, but you'll want to use a few of your own shaders. A
+generation abilities, but you'll want to use a few of your own shaders. A
 typical example would be a scene with some houses, trees, and a pond. You can
 probably do the houses and trees using panda's built-in abilities. However,
 Panda doesn't contain anything that particularly looks like pond-water: for

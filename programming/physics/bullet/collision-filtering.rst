@@ -4,7 +4,7 @@ Bullet Collision Filtering
 ==========================
 
 By default all Bullet collision objects collide with all other Bullet
-collision objects. Here the term "collision objects" referns to objects which
+collision objects. Here the term "collision objects" refers to objects which
 are derived from ``BulletBodyNode``,
 namely ``BulletRigidBodyNode``,
 ``BulletGhostNode``,

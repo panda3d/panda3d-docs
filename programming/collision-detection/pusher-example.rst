@@ -47,7 +47,7 @@ Pusher Example
       # Set the position of the model in the scene.
       frowney.setPos(5, 25, 0)
 
-      # Create a collsion node for this object.
+      # Create a collision node for this object.
       cNode = CollisionNode('frowney')
       # Attach a collision sphere solid to the collision node.
       cNode.addSolid(CollisionSphere(0, 0, 0, 1.1))

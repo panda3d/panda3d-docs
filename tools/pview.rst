@@ -46,7 +46,7 @@ shift-c                     Toggle collision surfaces
 shift-b                     Report bounding volume
 shift-l                     List hierarchy
 shift-a                     Analyze hierarchy
-h                           Highight node
+h                           Highlight node
 arrow-up                    Move highlight to parent
 arrown-down                 Move highlight to child
 arrow-left                  Move highlight to sibling

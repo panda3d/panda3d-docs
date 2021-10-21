@@ -89,7 +89,7 @@ partname, like this:
    myactor.play('Animation Name', 'Part Name')
 
 If you want to use AnimControl, as explained in
-:ref:`this section <actor-animations>`, you must supply the partname as second
+:ref:`this section <actor-animations>`, you must supply the part name as second
 parameter in getAnimControl():
 
 .. code-block:: python

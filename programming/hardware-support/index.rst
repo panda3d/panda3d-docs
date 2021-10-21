@@ -10,7 +10,7 @@ and steering wheels using Panda3D's built-in device support.
 
 As of now, Panda3D will have access to any device that is recognized by Evdev
 or the older Linux Joystick API on Linux based systems and XInput on Windows
-based systems. There also is a section for VR devices which is geard towards
+based systems. There also is a section for VR devices which is geared towards
 Carnegie Mellon University's virtual reality equipment.
 
 

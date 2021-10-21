@@ -68,6 +68,6 @@ Tutorials
 
 .. note:: This section is incomplete. It will be updated soon.
 
-   Although some pages aren't written yet, the sourcecode for all the tutorials
+   Although some pages aren't written yet, the source code for all the tutorials
    is complete. Read this forum topic for more info and links to codes:
    https://discourse.panda3d.org/t/improving-the-manual/11599

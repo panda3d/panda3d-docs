@@ -11,9 +11,9 @@ gamepad support. There are various resources found in the forum that address
 this topic.
 
 We'll be starting with a little bit of theory to get you some knowledge of the
-underlaying system to be able to understand how gamepad support works. The
+underlying system to be able to understand how gamepad support works. The
 support for devices is given through evdev, the joystick api or xinput
-dependent on the OS you are using. Hence all devices that are reccognized by
+dependent on the OS you are using. Hence all devices that are recognized by
 your system will be available by the engine. Each connected device will be
 classified by one of the following device classes (DC)
 
@@ -65,7 +65,7 @@ you all devices of a given device class. After the device has been attached,
 you can catch events like for example,
 ``"[prefix]_face_a"`` which will be thrown
 whenever the 'A' button on the device with the specified prefix is hit. As
-with keyboard support, there also is the '-up' postfix wich can be added to
+with keyboard support, there also is the '-up' postfix which can be added to
 catch the event which will be thrown when a previously pressed button is
 released again. Note, if a button with an to the engine unknown code was
 pressed, an event like the following will be thrown.

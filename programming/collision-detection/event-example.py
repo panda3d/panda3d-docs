@@ -89,7 +89,7 @@ class World(DirectObject):
         if show:
             cNodepath.show()
 
-        # Return a tuple with the collision node and its corrsponding string so
+        # Return a tuple with the collision node and its corresponding string so
         # that the bitmask can be set.
         return (cNodepath, collSphereStr)
 
