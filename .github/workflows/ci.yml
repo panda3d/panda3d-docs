@@ -49,7 +49,7 @@ jobs:
         python-version: '3.7'
     - name: Install requirements
       run: |
-        sudo apt-get install --no-install-recommends graphviz latexmk texlive-fonts-recommended texlive-latex-extra
+        sudo apt-get install --no-install-recommends graphviz latexmk texlive-fonts-recommended texlive-latex-extra tex-gyre
         pip install -r requirements.txt
     - name: Build PDF manual
       run: |
