@@ -57,7 +57,7 @@ You can get individual RGB values using the
 ``getRedVal(x,y), getGreenVal(x,y), getBlueVal(x,y)`` where x and y tell what
 pixel to look at (lower-left is 0,0 upper right is
 ``getXSize()-1, getYSize()-1`` The difference between these functions is that
-the ``get*Val`` functions return a number between 0 and 1 while the ``get*``
+the ``get*`` functions return a number between 0 and 1 while the ``get*Val``
 functions return their value as an integer. For example, if your image uses
 8-bit color calling ``getGreenVal`` on a green pixel will return 255 and calling
 ``getGreen`` will return 1. You can also get all the RGB information at the same
