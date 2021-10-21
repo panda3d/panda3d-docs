@@ -73,7 +73,7 @@ following set of functions to work properly.
            # synced before we can enter another zone and wait for the
            # game object.  The uniqueName is important that we get the
            # correct, our sync message from the TimeManager and not
-           # accidentaly a message from another client
+           # accidentally a message from another client
            self.acceptOnce(self.uniqueName('gotTimeSync'), self.syncReady)
 
        def syncReady(self):

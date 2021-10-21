@@ -381,7 +381,7 @@ the GUI, choose the egg-palettize panel. This is the egg-palettize Tool.
 
 |Pallettize_1.jpg|
 
-For using Egg pallettize for a single egg file select that option in the drop
+For using egg-palettize on a single egg file select that option in the drop
 down list:
 
 |Pallettize_2.jpg|

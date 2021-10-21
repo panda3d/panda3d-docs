@@ -12,9 +12,9 @@ Keyword        Definition                                                       
 ============== =========================================================================================================================================================================== ==========================================
 text_scale     Scale of the displayed text                                                                                                                                                 (sx,sz)
 indicatorValue The initial boolean state of the radiobutton                                                                                                                                0 or 1
-variable       The variable whose value will be set by radiobutton. Since we can not use call by reference for int or string variables in python, I used a list insteads.                  define a list and pass it
+variable       The variable whose value will be set by radiobutton. Since we can not use call by reference for int or string variables in python, I used a list instead.                   define a list and pass it
 value          The value to be set to the variable. Since we are using a list, we can define multiple values. But the length of value list must be same as length of variable list.        a list of values
-others         The list of radio button instances sharing same variable. This must be set by using setOthers() after all radiobutton is created.                                           a list of radioButton instances
+others         The list of radio button instances sharing same variable. This must be set by using setOthers() after all radiobuttons are created.                                         a list of radioButton instances
 boxImage       BG Image of the radio button                                                                                                                                                Image Path
 boxImageColor  Color of the BG image                                                                                                                                                       (R,G,B,A)
 boxImageScale  Scale of the BG image                                                                                                                                                       Number

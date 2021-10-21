@@ -59,7 +59,7 @@ Example
 Programmatically changing the indicatorValue
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you programatically want to change the checkbutton's indicatorValue, you need
+If you programmatically want to change the checkbutton's indicatorValue, you need
 to call ``setIndicatorValue`` afterwards to update the checkbutton, like:
 
 .. code-block:: python

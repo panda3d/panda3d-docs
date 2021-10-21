@@ -140,7 +140,7 @@ The following attributes are presently implemented for textures:
    Although less often used, for 3-d textures wrapw may also be specified, and
    it behaves similarly to wrapu and wrapv.
 
-   There are other legal values in addtional to REPEAT and CLAMP. The full list
+   There are other legal values in addition to REPEAT and CLAMP. The full list
    is:
 
      CLAMP
