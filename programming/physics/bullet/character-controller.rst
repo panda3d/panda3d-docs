@@ -101,7 +101,7 @@ some kind of AI algorithm.
               LVecBase3 speed = LVecBase3(0, 0, 0);
               float omega = 0.0;
 
-              if (KeyMap->at(MOVE_FORARD)) { speed.set_y (3.0); }
+              if (KeyMap->at(MOVE_FORWARD)) { speed.set_y (3.0); }
               if (KeyMap->at(MOVE_REVERSE)) { speed.set_y (-3.0); }
               if (KeyMap->at(MOVE_LEFT)) { speed.set_x (-3.0); }
               if (KeyMap->at(MOVE_RIGHT)) { speed.set_x (3.0); }
@@ -109,7 +109,7 @@ some kind of AI algorithm.
               if (keyMap->at(TURN_RIGHT)) { omega = -120.0 }
 
               controller->set_linear_movement(speed, true);
-              controller->set_angular_movemen(omega);
+              controller->set_angular_movement(omega);
       }
 
 Jumping

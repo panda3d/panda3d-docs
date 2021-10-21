@@ -86,7 +86,7 @@ geometry two-sided, since the inside of the closed mesh is usually not visible.
    .. code-block:: python
 
       from panda3d.core import GeomVertexFormat
-      from panda3d.bulletimport BulletHelper
+      from panda3d.bullet import BulletHelper
 
       fmt = GeomVertexFormat.getV3n3t2()
       geom = BulletHelper.makeGeomFromFaces(bodyNode, fmt)
