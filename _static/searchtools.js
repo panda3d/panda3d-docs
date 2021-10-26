@@ -58,6 +58,12 @@ var Search = {
   _queued_query : null,
   _pulse_status : -1,
 
+  partialMatches : true,
+  apiMatches : true,
+  bodyMatches: true,
+
+  _counter : 0,
+
   htmlToText : function(htmlString) {
       var htmlElement = document.createElement('span');
       htmlElement.innerHTML = htmlString;
@@ -133,9 +139,11 @@ var Search = {
   performSearch : function(query) {
     // create the required interface elements
     this.out = $('#search-results');
+    this.out.empty();
     this.title = $('<h2>' + _('Searching') + '</h2>').appendTo(this.out);
     this.dots = $('<span></span>').appendTo(this.title);
-    this.status = $('<p class="search-summary">&nbsp;</p>').appendTo(this.out);
+    $('<p><label><input type="checkbox" onChange="Search.partialMatches=this.checked; Search.init();" ' + (Search.partialMatches ? 'checked ' : '') + '/>Include partial matches</label><label><input type="checkbox" onChange="Search.apiMatches=this.checked; Search.init();" ' + (Search.apiMatches ? 'checked ' : '') + '/>Include API reference results</label><label><input type="checkbox" onChange="Search.bodyMatches=this.checked; Search.init();" ' + (Search.bodyMatches ? 'checked ' : '') + '/>Search contents of pages</label></p>').appendTo(this.out);
+    this.status = $('<p class="search-summary"></p>').appendTo(this.out);
     this.output = $('<ul class="search"/>').appendTo(this.out);
 
     $('#search-progress').text(_('Preparing search...'));
@@ -243,9 +251,15 @@ var Search = {
     //Search.lastresults = results.slice();  // a copy
     //console.info('search results:', Search.lastresults);
 
+    var counter = ++this._counter;
+
     // print the results
     var resultCount = results.length;
     function displayNextItem() {
+      if (Search._counter > counter) {
+        return;
+      }
+
       // results left, load the summary and display it
       if (results.length) {
         var item = results.pop();
@@ -325,6 +339,10 @@ var Search = {
     var i;
     var results = [];
 
+    if (!this.apiMatches) {
+      return results;
+    }
+
     for (var prefix in objects) {
       for (var name in objects[prefix]) {
         var fullname = (prefix ? prefix + '.' : '') + name;
@@ -337,8 +355,10 @@ var Search = {
           if (fullnameLower == object || parts[parts.length - 1] == object) {
             score += Scorer.objNameMatch;
           // matches in last name
-          } else if (parts[parts.length - 1].indexOf(object) > -1) {
+          } else if (this.partialMatches && parts[parts.length - 1].indexOf(object) > -1) {
             score += Scorer.objPartialMatch;
+          } else if (!this.partialMatches) {
+            continue;
           }
           var match = objects[prefix][name];
           var objname = objnames[match[1]][2];
@@ -402,7 +422,7 @@ var Search = {
         {files: titleterms[word], score: Scorer.title}
       ];
       // add support for partial matches
-      if (word.length > 2) {
+      if (word.length > 2 && this.partialMatches) {
         for (var w in terms) {
           if (w.match(word) && !terms[word]) {
             _o.push({files: terms[w], score: Scorer.partialTerm})
@@ -460,6 +480,10 @@ var Search = {
         fileMap[file].length != filteredTermCount
       ) continue;
 
+      if (!this.apiMatches && docnames[file].slice(0, 10) == 'reference/') {
+        continue;
+      }
+
       // ensure that none of the excluded terms is in the search result
       for (i = 0; i < excluded.length; i++) {
         if (terms[excluded[i]] == file ||
@@ -476,6 +500,23 @@ var Search = {
         // select one (max) score for the file.
         // for better ranking, we should calculate ranking by using words statistics like basic tf-idf...
         var score = $u.max($u.map(fileMap[file], function(w){return scoreMap[file][w]}));
+
+        var docnamematch = true;
+        for (var w in searchterms) {
+          var word = searchterms[w];
+          i = docnames[file].toLowerCase().indexOf(word);
+          if (i !== -1 && (i === 0 || docnames[file][i - 1] === '.' || docnames[file][i - 1] === '/') && docnames[file].toLowerCase().endsWith(word)) {
+            score += 1000;
+          } else if (i !== -1 && titles[file].toLowerCase().indexOf(word) !== -1) {
+            score += 100;
+          } else {
+            docnamematch = false;
+          }
+        }
+        if (!docnamematch && !this.bodyMatches) {
+          continue;
+        }
+
         results.push([docnames[file], titles[file], '', null, score, filenames[file]]);
       }
     }
