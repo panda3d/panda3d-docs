@@ -69,7 +69,7 @@ environment Variables.
 
 .. image:: environvariables2.png
 
-Now double click the PATH (or Path) line. a small window opens containing a
+Now double-click the PATH (or Path) line. A small window opens containing a
 series of directories separated by semicolons. Add Panda3D's bin and python
 directories to the end of the PATH.
 
