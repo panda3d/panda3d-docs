@@ -44,19 +44,7 @@ Tutorials
 #. :ref:`Baseline Panda application <cg-tutorial-part-1>`
 #. :ref:`The Simplest Possible Shader <cg-tutorial-part-2>`. So simple that it's
    useless.
-#. The simplest possible useful shader.
-#. Applying colors to the model as defined in the model file.
-#. Applying colors with the vertex and fragment shaders. Pass information
-   between the vertex and fragment shader.
-#. Passing inputs to the shader and controlling it from Panda
-#. Applying one texture to your models, disregarding colors.
-#. Applying two textures to your models.
-#. Explaining details about diffuse lighting.
-#. Per vertex diffuse lighting with shaders. The concept of spaces is introduced
-   here.
-#. Per pixel lighting with one point light. Normalization problems that may
-   arise are explained here.
-#. Per pixel lighting with multiple point lights and attenuation.
+#. :ref:`The simplest possible useful shader <cg-tutorial-part-3>`.
 
 .. toctree::
    :titlesonly:
@@ -66,7 +54,4 @@ Tutorials
    part-2
    part-3
 
-
-   Although some pages aren't written yet, the source code for all the tutorials
-   is complete. Read this forum topic for more info and links to codes:
-   https://discourse.panda3d.org/t/improving-the-manual/11599
+.. note:: The use of Cg will be deprecated in a future version of Panda3D.
