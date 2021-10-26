@@ -31,7 +31,7 @@ it's a good way to check that the scene graph is what you think it should be.
 The two methods :meth:`~.NodePath.find` and :meth:`~.NodePath.find_all_matches`
 will return a :class:`~.NodePath` and a :class:`~.NodePathCollection`
 respectively. These methods require a path string as an argument. Searches can
-based on name or type. In its simplest form this path consists of a series of
+be based on name or type. In its simplest form this path consists of a series of
 node names separated by slashes, like a directory pathname. When creating the
 string each component may optionally consist of one of the following special
 names, instead of a node name.
@@ -150,7 +150,7 @@ a name that begins with "red".
 
       shipNP.findAllMatches("**/=type=weaponMount");
 
-This will search myNodePath recursively using tag/value. Tag name is "type" and
+This will search shipNP recursively using tag/value. Tag name is "type" and
 tag value is "weaponMount". All matches found will be returned.
 
 In addition there are also the methods :meth:`~.NodePath.get_parent()` and

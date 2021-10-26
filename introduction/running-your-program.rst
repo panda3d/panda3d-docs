@@ -19,7 +19,7 @@ Running your Program
    ‘Documents and Settings’ (it doesn’t matter if yours is different). We need
    to change the directory to the one where we saved our script. To do this, we
    use the ``cd`` command. This stands for ‘change directory’. Type the
-   following text behind the > symbol:
+   following text after the > symbol:
 
    .. code-block:: bat
 
@@ -34,7 +34,7 @@ Running your Program
    .. image:: running-your-program-2.png
 
    This means that it’s now pointing to the right directory. To run your script
-   and start Panda3D, type the following text behind the > symbol:
+   and start Panda3D, type the following text after the > symbol:
 
    .. code-block:: bash
 
@@ -48,7 +48,7 @@ Running your Program
 
    .. image:: running-your-program-4.png
 
-   This is a empty program, it won't do anything. The next step is to add
+   This is an empty program, it won't do anything. The next step is to add
    additional commands to the program, as described in one of the following
    tutorials.
 
@@ -127,7 +127,7 @@ Running your Program
 
    This should be enough to at least build the project. Press F7 to build your
    project and start the compilation process. You may see several C4267
-   warnings; these are harmless, and you can may suppress them in your project
+   warnings; these are harmless, and you may suppress them in your project
    settings.
 
    There is one more step that needs to be done in order to run the project,
