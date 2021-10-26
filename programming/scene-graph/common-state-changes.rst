@@ -163,7 +163,7 @@ and its position were set to (X, Y, Z). The :meth:`~.NodePath.get_pos()` call
 returns the position myNodePath would have if it were a child of otherNodePath.
 
 It is also important to note that you can use the NodePath in its own relative
-sets and gets. This maybe helpful in situations where you are concerned with
+sets and gets. This may be helpful in situations where you are concerned with
 distances. For example:
 
 .. only:: python
@@ -262,7 +262,7 @@ it does enable a more expensive rendering mode.
 Setting an object's color completely replaces any color on the vertices.
 However, if you have created a model with per-vertex color, you might prefer to
 modulate the object's color without losing the per-vertex color. For this there
-is the :meth:`~.NodePath.set_color_scale()` variant, which multiples the
+is the :meth:`~.NodePath.set_color_scale()` variant, which multiplies the
 indicated color values by the object's existing color:
 
 .. only:: python
