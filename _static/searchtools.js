@@ -551,6 +551,67 @@ var Search = {
   }
 };
 
+function debounce(func, wait, immediate) {
+  var timeout;
+  return function() {
+    var context = this, args = arguments;
+    var later = function() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
+};
+
+function replaceSearchTerm(q) {
+  var s = document.location.search;
+  var snew = '';
+  var parts = s.substr(s.indexOf('?') + 1).split('&');
+  var hadq = false;
+  for (var i = 0; i < parts.length; i++) {
+    if (parts[i].length === 0) {
+      continue;
+    }
+    var tmp = parts[i].split('=', 2);
+    if (snew === '') {
+      snew += '?';
+    } else {
+      snew += '&';
+    }
+    var key = tmp[0];
+    if (key === 'q') {
+      if (!hadq) {
+        snew += 'q=' + jQuery.urlencode(q);
+        hadq = true;
+      }
+    } else {
+      snew += parts[i];
+    }
+  }
+  if (!hadq) {
+    if (snew === '') {
+      snew += '?';
+    } else {
+      snew += '&';
+    }
+    snew += 'q=' + jQuery.urlencode(q);
+  }
+  history.replaceState(null, document.title, document.location.pathname + snew);
+  Search.init();
+};
+
 $(document).ready(function() {
   Search.init();
+
+  $('input[name="q"]').on("input", debounce(function(e) {
+    replaceSearchTerm($(this).val());
+  }, 250));
+
+  $('#rtd-search-form').on("submit", function(e) {
+    e.preventDefault();
+    replaceSearchTerm($('input[name="q"]').val());
+  });
 });
