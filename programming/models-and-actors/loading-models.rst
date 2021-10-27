@@ -23,7 +23,7 @@ The Basics
 
       NodePath m = window->load_model(framework.get_models(), "mymodel.egg");
 
-The path name specified in the loadModel can be an absolute path, or a relative
+The path name specified in loadModel can be an absolute path, or a relative
 path. Relative is recommended. If a relative path is used, then Panda3D will
 search its model path to find the egg file. The model path is controlled by
 panda's :ref:`configuration file <the-configuration-file>`.
