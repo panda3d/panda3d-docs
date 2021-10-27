@@ -17,7 +17,7 @@ Actor Basics
    class. For the most part, you don't have to think about this: Actor inherits
    sensibly from NodePath and generally does what you expect. There are a few
    subtle oddities, though. When you attach an Actor into a scene graph, the
-   low-level C++ Panda constructs only records the NodePath part of the Actor in
+   low-level C++ Panda constructs only record the NodePath part of the Actor in
    the scene graph, which is fine as long as you also keep a pointer to the Actor
    instance in your Python objects. If you let the Actor destruct, however, its
    visible geometry will remain, but it will cease animating (because it is no
