@@ -83,6 +83,9 @@ guidelines:
   a redirect to a page that contains similar content.  There is nothing more
   frustrating to a user than having existing bookmarks, links from other sites,
   and links from Google turn up 404 pages.  The redirect file is processed by a
-  custom 404 handler on the server, so redirects of existing pages do not work.
+  custom 404 handler on the server, so you need to really delete the page for
+  the redirect to work.  If there is no obvious redirect target (eg. if the page
+  was split up into multiple pages), you can leave a disambiguation page marked
+  with `:orphan:` on the first line.
 * See the [Python guide](https://devguide.python.org/documenting/#style-guide)
   for more information.
