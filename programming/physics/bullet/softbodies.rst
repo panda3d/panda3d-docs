@@ -33,8 +33,8 @@ three different kinds of soft bodies:
 
 
 All three kinds of soft bodies are simulated using the same class,
-``BulletSoftBodyNode``. It's just a matter of
-how the links between the nodes are created.
+:class:`.BulletSoftBodyNode`. It's just a matter of how the links between the
+nodes are created.
 
 Panda3D currently provides no low-level interface for creating and modifying
 the soft body nodes and links directly. Soft bodies are created using factory

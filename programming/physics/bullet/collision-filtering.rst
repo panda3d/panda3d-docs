@@ -5,13 +5,12 @@ Bullet Collision Filtering
 
 By default all Bullet collision objects collide with all other Bullet
 collision objects. Here the term "collision objects" refers to objects which
-are derived from ``BulletBodyNode``,
-namely ``BulletRigidBodyNode``,
-``BulletGhostNode``,
-``BulletSoftBodyNode``.
+are derived from :class:`.BulletBodyNode`, namely
+:class:`.BulletRigidBodyNode`, :class:`.BulletGhostNode`, and
+:class:`.BulletSoftBodyNode`.
 
 Bullet collision objects won't collide with visible geometry, that is objects
-of type GeomNode!
+of type :class:`.GeomNode`!
 
 Sometime we need more control over who collides with whom. This can be
 achieved by setting up collision filtering properly. Collision filtering is
@@ -21,7 +20,7 @@ Bit Masks
 ---------
 
 Bullet makes use of the regular Panda3D collide masks, which are instances of
-``BitMask32``. Two objects collide if
+:class:`.BitMask32`. Two objects collide if
 the two masks have at least one bit in common. The following example shows a
 selection of common ways to set up a bit mask. For more information please
 refer to the manual page on :ref:`collision-bitmasks`.
@@ -69,11 +68,10 @@ similar to bit masks in that each object belongs to a group, but instead of
 collisions only occurring between objects that belong to the same group,
 collision relationships are instead represented by a collision matrix. This
 means that a larger number of groups can be represented in the same 32 bits of
-a ``BitMask32``.
+a :class:`.BitMask32`.
 
 To use group mask filtering instead of the default bit mask filtering
-mentioned above, set the
-``bullet-filter-algorithm`` configuration variable
+mentioned above, set the ``bullet-filter-algorithm`` configuration variable
 to ``groups-mask``. The default
 collision matrix is set to only collide objects that are in the same group. As
 you make changes, the collision matrix is kept symmetrical along the line of

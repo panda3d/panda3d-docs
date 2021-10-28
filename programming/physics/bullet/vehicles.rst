@@ -16,8 +16,9 @@ Setup
 
 In order to create a vehicle we first have to create an ordinary dynamic rigid
 body. This rigid body will serve as the vehicle chassis. Then we can create a
-new instance of ``BulletVehicle``. We have to pass the ``BulletWorld`` and the
-``BulletRigidBodyNode`` as arguments to the vehicle constructor.
+new instance of :class:`.BulletVehicle`. We have to pass the
+:class:`.BulletWorld` and the :class:`.BulletRigidBodyNode` as arguments to the
+vehicle constructor.
 
 .. only:: python
 

@@ -70,10 +70,8 @@ Now that we have a character controller within our scene we need to control
 it's movement. The following code snippet shows one way of moving the
 character controller by keyboard input. Of course a character controller
 representing a NPC (non-player character) would not read the keyboard state
-but have the linear velocity
-(``speed``) and the angular
-velocity (``omega``) computed by
-some kind of AI algorithm.
+but have the linear velocity (``speed``) and the angular velocity (``omega``)
+computed by some kind of AI algorithm.
 
 .. only:: python
 
@@ -121,20 +119,7 @@ call this method when the player presses a specific key.
 
 After setting the maximum jump height and the initial upward speed we need to
 trigger the jump using the
-
-.. only:: python
-
-   .. code-block:: python
-
-      doJump()
-
-.. only:: cpp
-
-   .. code-block:: cpp
-
-      do_jump()
-
-``method.``
+:meth:`~panda3d.bullet.BulletCharacterControllerNode.do_jump()` method.
 
 .. only:: python
 
@@ -155,20 +140,8 @@ trigger the jump using the
           controller->do_jump()
       }
 
-By the way: we can check if the character controller is airborne using the
-method
-
-.. only:: python
-
-   .. code-block:: python
-
-      self.player.isOnGround()
-
-.. only:: cpp
-
-   .. code-block:: cpp
-
-      controller->is_on_ground()
+It is possible to check whether the character controller is airborne using the
+:meth:`~panda3d.bullet.BulletCharacterControllerNode.is_on_ground()` method.
 
 Crouching
 ---------
@@ -176,10 +149,11 @@ Crouching
 Finally we want the character to crouch or duck. To achieve this we simply
 change the scale of the character's collision shape. Here in this example we
 reduce the vertical dimension to 60 percent (0.6) when crouching, while the
-normal vertical scale is 1.0. We don't change the horizontal scales.
+normal vertical scale is 1.0. We don't change the horizontal scales. In a more
+realistic example, one would have the player enter a crouching animation.
 
 Since we have the visual node of the player reparented to the character
-controller node it will change it's scale too automatically.
+controller node it will automatically change its scale to match the player.
 
 .. only:: python
 
@@ -187,7 +161,7 @@ controller node it will change it's scale too automatically.
 
       self.crouching = False
 
-        def doCrouch(self):
+      def doCrouch(self):
           self.crouching = not self.crouching
           sz = self.crouching and 0.6 or 1.0
 
@@ -195,9 +169,3 @@ controller node it will change it's scale too automatically.
 
           self.playerNP.setScale(Vec3(1, 1, sz) * 0.3048)
           self.playerNP.setPos(0, 0, -1 * sz)
-
-.. only:: cpp
-
-   .. code-block:: cpp
-
-      TODO
