@@ -3,10 +3,10 @@
 MeshDrawer
 ==========
 
-MeshDrawer is a class with which you can draw geometry every frame as fast as
-possible.  Common cases where you might want to use it include: projectiles such
-as bullets, trails, and laser beams; and UI elements such as health bars,
-labels, icons, and motion lines.
+:class:`.MeshDrawer` is a class with which you can draw geometry every frame as
+fast as possible.  Common cases where you might want to use it include:
+projectiles such as bullets, trails, and laser beams; and UI elements such as
+health bars, labels, icons, and motion lines.
 
 You create a MeshDrawer like this:
 

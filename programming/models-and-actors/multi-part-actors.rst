@@ -68,15 +68,18 @@ fashion:
    myactor.attach("head", "torso", "joint-head")
    myactor.attach("torso", "legs", "joint-hips")
 
-The attach() call names two parts, and reparents the part named by the first
-parameter onto the part named by the second parameter, at the node named by the
-third parameter, which should be an exposed joint (that is, a joint in the part
-named by the second parameter). You must have already exposed the joint before
-this call, either with the egg-optchar command line tool, or by calling
-actor.exposeJoint() at runtime.
+The :py:meth:`~direct.actor.Actor.Actor.attach()` call names two parts, and
+reparents the part named by the first parameter onto the part named by the
+second parameter, at the node named by the third parameter, which should be an
+exposed joint (that is, a joint in the part named by the second parameter).
+You must have already exposed the joint before this call, either with the
+egg- optchar command line tool, or by calling
+:py:meth:`actor.exposeJoint() <direct.actor.Actor.Actor.exposeJoint>` at
+runtime.
 
-After calling attach(), the stacked part will inherit the animation from the
-attachment joint, by virtue of the scene graph relationship.
+After calling :py:meth:`~direct.actor.Actor.Actor.attach()`, the stacked part
+will inherit the animation from the attachment joint, by virtue of the scene
+graph relationship.
 
 Animation
 ---------
@@ -90,7 +93,7 @@ partname, like this:
 
 If you want to use AnimControl, as explained in
 :ref:`this section <actor-animations>`, you must supply the part name as second
-parameter in getAnimControl():
+parameter in :py:meth:`~direct.actor.Actor.Actor.getAnimControl()`:
 
 .. code-block:: python
 

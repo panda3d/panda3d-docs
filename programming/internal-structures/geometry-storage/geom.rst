@@ -48,5 +48,6 @@ of the GeomPrimitives must be of the same fundamental primitive type:
 triangles, lines, or points. A particular Geom might have GeomTriangles,
 GeomTristrips, and GeomTrifans; or it might have GeomLines and GeomLinestrips;
 or it might have GeomPoints. But no one Geom can have primitives from two
-different fundamental types. You can call geom.getPrimitiveType() to determine
-the fundamental primitive type stored within a particular Geom.
+different fundamental types. You can call
+:meth:`geom.get_primitive_type() <.Geom.get_primitive_type>` to determine the
+fundamental primitive type stored within a particular Geom.

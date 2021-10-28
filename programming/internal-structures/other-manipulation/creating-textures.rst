@@ -8,10 +8,9 @@ The PNMImage Class
 
 This class is how Panda3D handles regular images (.gif, .jpg, and the like).
 This class allows you to manipulate individual pixels of the image. You can load
-existing images using the function ``read(fileName)`` where ``filename`` is the
-path to the image file (in :ref:`Panda Filename Syntax <loading-models>`)
-wrapped in a ``Filename`` object. Or, you can create a brand new image from
-scratch, by passing the x, y size to the constructor.
+existing images using the function :meth:`read(filename) <.PNMImage.read>` where
+``filename`` is the path to the image file. Or, you can create a brand new image
+from scratch, by passing the x, y size to the constructor.
 
 .. only:: python
 
@@ -31,10 +30,10 @@ scratch, by passing the x, y size to the constructor.
 
       PNMImage my_empty_image(256, 256);
 
-You can get the size of the image you have read using the ``getXSize()`` and
-``getYSize()`` functions. Although you cannot change the size of an image
-directly, you can rescale an image by filtering it into a larger or smaller
-PNMImage:
+You can get the size of the image you have read using the
+:meth:`~.PNMImage.get_x_size()` and :meth:`~.PNMImage.get_y_size()` methods.
+Although you cannot change the size of an image directly, you can rescale an
+image by filtering it into a larger or smaller PNMImage:
 
 .. only:: python
 
@@ -100,17 +99,18 @@ using setvals. You can also use ``setXel(x,y,colorVec)`` and
 There are also gets and sets for the alpha channel using the same interface as
 above. However, if you use them on an image that doesn't have an alpha channel
 you will cause a crash. To see if an image has an alpha channel use
-``hasAlpha()`` which returns True if there is an alpha channel and False
-otherwise. You can add an alpha channel using ``addAlpha()``. You can also
-remove it using ``removeAlpha()``.
+:meth:`~.PNMImage.has_alpha()` which returns True if there is an alpha channel
+and False otherwise. You can add an alpha channel using
+:meth:`~.PNMImage.add_alpha()`. You can also remove it using
+:meth:`~.PNMImage.remove_alpha()`.
 
-You can also make an image grayscale by using ``makeGrayscale()``. You can now
-use sets and gets for Gray too. Using ``getGray*`` on a color image just returns
-the value in the blue channel. If you want to get the grayscale value of a pixel
-regardless of whether the image is a grayscale or a color image, you can use
-``getBright(x,y)``, which works equally well on color or on grayscale images. If
-you want to weight the colors use ``getBright(x,y, r,g,b)`` where r,g,b are the
-weights for their respective channels.
+You can also make an image grayscale using :meth:`~.PNMImage.make_grayscale()`.
+You can now use sets and gets for Gray too. Using ``getGray*`` on a color image
+just returns the value in the blue channel. If you want to get the grayscale
+value of a pixel regardless of whether the image is a grayscale or a color
+image, you can use ``getBright(x,y)``, which works equally well on color or on
+grayscale images. If you want to weight the colors use ``getBright(x,y, r,g,b)``
+where r,g,b are the weights for their respective channels.
 
 There are several other useful functions in the class, which are described on
 the :class:`~panda3d.core.PNMImage` page in the API Reference.
@@ -135,7 +135,7 @@ Loading a PNMImage Into a Texture
 ---------------------------------
 
 Once you have changed all the data in the image you can now load it into a
-texture using the ``Texture`` objects ``load(myImage)`` function, where
+texture using the texture's :meth:`load(myImage) <.Texture.load>` method, where
 ``myImage`` is the PNMImage to make the texture from.
 
 .. only:: python

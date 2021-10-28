@@ -6,16 +6,12 @@ Joystick Support
 As of version 1.10, Panda3D gained built-in support for various input devices
 including but not limited to joysticks, gamepads and steering wheels.
 
-**Note:** For earlier versions of Panda, you can use pygame or pyglet to get
-gamepad support. There are various resources found in the forum that address
-this topic.
-
 We'll be starting with a little bit of theory to get you some knowledge of the
 underlying system to be able to understand how gamepad support works. The
 support for devices is given through evdev, the joystick api or xinput
 dependent on the OS you are using. Hence all devices that are recognized by
 your system will be available by the engine. Each connected device will be
-classified by one of the following device classes (DC)
+classified by one of the following device classes:
 
 .. code-block:: python
 
@@ -44,12 +40,13 @@ classified by one of the following device classes (DC)
    # 3D mouse, such as produced by 3Dconnexion.
    spatial_mouse
 
-These DC's are stored within the
-``InputDevice.DeviceClass`` enum which can be
-imported from ``panda3d.core``.
+These DC's are stored within the ``InputDevice.DeviceClass`` enum which can be
+imported from :mod:`panda3d.core`.
 
-**Note:** Linux users may need to be in the "input" user group to get access
-to the full range of available device functionality.
+.. note::
+
+   Linux users may need to be in the "input" user group to get access to the
+   full range of available device functionality.
 
 Buttons
 -------
@@ -59,10 +56,10 @@ of each device connected to your system. Unlike keyboard button events, each
 device will send its button events with a specific prefix. These prefixes need
 to be set by the developer when a device is attached for usage, which can be
 done with a call to ``self.attachInputDevice(device, prefix="[your-prefix]")``.
-The device that needs to be passed to this function can be get via functions
-like ``self.devices.getDevices``, which will give
-you all devices of a given device class. After the device has been attached,
-you can catch events like for example,
+The device that needs to be passed to this function can be obtained using
+:meth:`self.devices.get_devices() <.InputDeviceManager.get_devices>`, which will
+give you all devices of a given device class.
+After the device has been attached, you can catch events like for example,
 ``"[prefix]_face_a"`` which will be thrown
 whenever the 'A' button on the device with the specified prefix is hit. As
 with keyboard support, there also is the '-up' postfix which can be added to
@@ -72,8 +69,7 @@ pressed, an event like the following will be thrown.
 ``"[prefix]-none"``
 
 In addition to events, you can also check for specific buttons to be pressed
-with the ``findButton`` command of a
-device.
+with the :meth:`~.InputDevice.find_button()` method of a device object.
 
 Here we'll check for the right thumbstick to be pressed
 
@@ -115,19 +111,18 @@ device
    # Access and use the value for whatever you need it
    left_x.value
 
-With the ``findAxis`` command we
-tell the device which axis we are interested in and finally get the axis value
-using the ``value`` member. The
-state member will give you a double precision representation of the controls
-current position and should be called within a task method to get a constant
-update of the controls position changes if desired. It sometimes is also
-prudent to store the centered position of each control early in an application
-to simplify the calculation of the distance the control has been moved in any
-direction. Some applications and devices also do this automatically in a given
-idle time or provide the user a dedicated re-calibrate action.
+With the :meth:`~.InputDevice.find_axis()` method we tell the device which axis
+we are interested in and finally get the axis value using the ``value`` member.
+The ``state`` member will give you a double precision representation of the
+control's current position and should be called within a task method to get a
+constant update of the controls position changes if desired. It sometimes is
+also prudent to store the centered position of each control early in an
+application to simplify the calculation of the distance the control has been
+moved in any direction. Some applications and devices also do this automatically
+in a given idle time or provide the user a dedicated re-calibrate action.
 
-**Note:** ``findAxis`` will return a
-dummy object if the axis doesn't exist. You can check for the boolean value of
-the returned object (ie.
-``if left_x:``) to see if the returned
-axis has a known value.
+.. note::
+
+   :meth:`~.InputDevice.find_axis()` will return a dummy object if the axis
+   doesn't exist. You can check for the boolean value of the returned object
+   (ie. ``if left_x:``) to see if the returned axis has a known value.

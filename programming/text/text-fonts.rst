@@ -78,8 +78,8 @@ Occasionally, i.e. when displaying large characters and irrespective of the font
 used, the default font quality won't be enough and the characters will show
 noticeable blurring, especially along curving edges. The way to overcome this is
 to set appropriately the *pixels per unit* value of the font object. This is
-done through the method ``setPixelPerUnit()`` of the class
-:class:`~panda3d.core.DynamicTextFont`, i.e.:
+done through the method :meth:`~.DynamicTextFont.set_pixels_per_unit()` of the
+class :class:`~panda3d.core.DynamicTextFont`, e.g.:
 
 .. only:: python
 
@@ -92,7 +92,7 @@ done through the method ``setPixelPerUnit()`` of the class
    .. code-block:: cpp
 
       PT(TextFont) font=FontPool::load_font("arial.ttf");
-      PT(DynamicTextFont) dfont=DCAST(DynamicTextFont, font);
+      PT(DynamicTextFont) dfont = DCAST(DynamicTextFont, font);
       dfont->set_pixels_per_unit(60);
 
 Notice that this method is only available with DynamicTextFont objects. These
@@ -110,7 +110,8 @@ texture and cannot be easily changed from inside your application.
 Panda3D defaults to 40 pixels per unit and this is sufficient for small to
 normal sized on screen text. Should you wish to use higher values, you might
 need to increase the page size, normally set to 256 pixels in height and width.
-To do so you can use the method ``setPageSize(width, height)``, i.e:
+To do so you can use the method
+:meth:`set_page_size(width, height) <.DynamicTextFont.set_page_size>`, e.g.:
 
 .. only:: python
 
@@ -135,10 +136,10 @@ Alternative Render Modes
 Fonts loaded through the FreeType library (resulting in a DynamicTextFont
 object) are normally rasterized into textures and mapped onto polygons, due to
 the default Render Mode being set to ``RM_texture``. The render mode however can
-be changed using the method ``setRenderMode()``, to allow for radically
-different generated characters. For example, the following statement ensures
-that generated characters will be fully three-dimensional, thick, polygonal
-characters.
+be changed using the method :meth:`~.DynamicTextFont.set_render_mode()`, to
+allow for radically different generated characters. For example, the following
+statement ensures that generated characters will be fully three-dimensional,
+thick, polygonal characters.
 
 .. only:: python
 

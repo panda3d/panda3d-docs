@@ -91,9 +91,9 @@ So here, again, are the two ways of storing a matrix. But using this newfound
 realization that the coefficients are derivatives, I have a meaningful way to
 name the two different ways of storing a matrix:
 
-|deriv-xo.png|
+.. image:: deriv-xo.png
 
-|deriv-xi.png|
+.. image:: deriv-xi.png
 
 In the first storage scheme, the derivatives of :math:`x_o` are stored first.
 In the second storage scheme, the derivatives with respect to :math:`x_i` are
@@ -105,9 +105,9 @@ What to Call the Two Ways of Printing a Matrix
 One way to write the four equations above is to write them out using proper
 mathematical notation. There are two ways to do this, shown below:
 
-|matrix-c.png|
+.. image:: matrix-c.png
 
-|matrix-r.png|
+.. image:: matrix-r.png
 
 Notice that the two matrices shown above are laid out differently. The first
 layout is the appropriate layout for use with column vectors. The second
@@ -201,8 +201,3 @@ notation. The Panda manuals use a row-vector-compatible notation.
 DirectX uses the same conventions as Panda for both typesetting and memory
 storage: row vectors on the left, row major storage with the translation in
 the bottom row.
-
-.. |deriv-xo.png| image:: deriv-xo.png
-.. |deriv-xi.png| image:: deriv-xi.png
-.. |matrix-c.png| image:: matrix-c.png
-.. |matrix-r.png| image:: matrix-r.png

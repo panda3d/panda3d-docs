@@ -6,8 +6,10 @@ Modifying existing geometry data
 If you want to load a model and operate on its vertices, you can walk through
 the vertices as shown in
 :ref:`the previous section <reading-existing-geometry-data>`, but you should
-substitute modifyGeom(), modifyVertexData(), and modifyPrimitive() for
-getGeom(), getVertexData(), and getPrimitive(), respectively. These calls
+substitute :meth:`~.GeomNode.modify_geom()`,
+:meth:`~.Geom.modify_vertex_data()`, and :meth:`~.Geom.modify_primitive()` for
+:meth:`~.GeomNode.get_geom()`, :meth:`~.Geom.get_vertex_data()`, and
+:meth:`~.Geom.get_primitive()`, respectively. These calls
 ensure that, in case the data happens to be shared between multiple different
 GeomNodes, you will get your own unique copy to modify, without inadvertently
 affecting other nodes.
@@ -15,7 +17,8 @@ affecting other nodes.
 If you want to modify the vertex data, you have two choices. The simplest
 option is to create a new :ref:`geomvertexdata` and fill it up with your new
 vertex data (as described in :ref:`creating-and-filling-a-geomvertexdata`),
-and then assigning this data to the geom with the call geom.setVertexData().
+and then assigning this data to the geom with the call
+:meth:`geom.set_vertex_data() <.Geom.set_vertex_data>`.
 You must ensure that you add enough vertices to the new GeomVertexData to
 satisfy the GeomPrimitives that reference it.
 
@@ -64,14 +67,16 @@ you are writing (in the above example, for instance, the format must already
 have a 'texcoord' column, or the above code will fail). Furthermore, the columns
 must have the appropriate format. For instance, if you wanted to upgrade a
 model's texture coordinates from 2-D texture coordinates to 3-D texture
-coordinates, simply calling ``texcoord.setData3(u, v, w)`` wouldn't change the
-fact that the existing texcoord column is a 2-component format; you would just
-be trying to stuff a 3-component value into a 2-component column.
+coordinates, simply calling
+:meth:`texcoord.set_data3(u, v, w) <.GeomVertexWriter.set_data3>` wouldn't
+change the fact that the existing texcoord column is a 2-component format; you
+would just be trying to stuff a 3-component value into a 2-component column.
 
 If you want to add a new column to a GeomVertexData, or modify the format of an
 existing column, you will have to create a new :ref:`geomvertexformat` that
 includes the new column (see :ref:`defining-your-own-geomvertexformat`), and
-then change the format on the GeomVertexData via vdata.setFormat(format). This
+then change the format on the GeomVertexData via
+:meth:`vdata.set_format(format) <.GeomVertexData.set_format>`. This
 call will internally adjust all of the data to match the new format. (Because of
 this internal adjustment, it is important to do this before you create the first
 GeomVertexWriter or GeomVertexReader.)
