@@ -1,3 +1,5 @@
+:orphan:
+
 .. _the-window-framework:
 
 The Window Framework
@@ -65,8 +67,8 @@ The Window Framework
       return (0);
 
 
-   Now, :ref:`compile and run <how-to-compile-a-c++-panda3d-program>` your file
-   and you have your own window opened!
+   Now, :ref:`compile and run <running-your-program>` your file and you have
+   your own window opened!
 
    This is the completed application:
 

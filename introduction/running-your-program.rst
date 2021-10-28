@@ -152,9 +152,69 @@ Running your Program
    On platforms other than Windows, we use the GNU compiler or a compatible
    alternative like Clang. Most Linux distributions ship with GCC out of the
    box; some provide an easily installable package such as ``build-essential``
-   on Ubuntu or the XCode Command-Line Tools on Mac OS X.
+   on Ubuntu or the XCode Command-Line Tools on macOS. To obtain the latter, you
+   may need to register for an account on the
+   `Apple developer site <https://developer.apple.com/>`__.
 
-   The following pages describe how this is accomplished:
+   Having these two components, we can proceed to compile. The first step is to
+   create an .o file from our .cxx file. We need to specify the location of the
+   Panda3D include files. Please change the paths in these commands to the
+   appropiate locations. If using clang, use ``clang++`` instead of ``g++``.
 
-   -  :ref:`Linux version <how-to-compile-a-c++-panda3d-program-on-linux>`
-   -  :ref:`macOS version <how-to-compile-a-c++-panda3d-program-on-macos>`
+   .. code-block:: bash
+
+      g++ -c filename.cxx -o filename.o -std=gnu++11 -O2 -I{panda3dinclude}
+
+   You will need to replace ``{panda3dinclude}`` with the location of the
+   Panda3D header files. On Linux, this is likely ``/usr/include/panda3d/``.
+   On macOS, this will be in ``/Library/Developer/Panda3D/include/`` in Panda3D
+   1.10.5 and higher or ``/Developer/Panda3D/include/`` in older versions.
+
+   To generate an executable, you can use the following command:
+
+   .. code-block:: bash
+
+      g++ filename.o -o filename -L{panda3dlibs} -lp3framework -lpanda -lpandafx -lpandaexpress -lp3dtoolconfig -lp3dtool -lp3direct
+
+   As above, change `{panda3dlibs}` to point to the Panda3D libraries. On Linux
+   this will be ``/usr/lib/panda3d`` or ``/usr/lib/x86_64-gnu-linux/panda3d``,
+   whereas on macOS it will be ``/Library/Developer/Panda3D/lib`` or
+   ``/Developer/Panda3D/lib``, depending on your exact version of Panda3D.
+
+   Here is an equivalent SConstruct file, organized for clarity:
+
+   .. code-block:: python
+
+      pandaInc = '/usr/include/panda3d'
+      pandaLib = '/usr/lib/panda3d'
+
+      Program('filename.cpp',
+          CCFLAGS=['-fPIC', '-O2', '-std=gnu++11'],
+          CPPPATH=[pandaInc],
+          LIBPATH=pandaLib,
+          LIBS=[
+              'libp3framework',
+              'libpanda',
+              'libpandafx',
+              'libpandaexpress',
+              'libp3dtoolconfig',
+              'libp3dtool',
+              'libp3direct'])
+
+   To run your newly created executable, type:
+
+   .. code-block:: bash
+
+      ./filename
+
+   If it runs, congratulations! You have successfully compiled your own Panda3D
+   program!
+
+   .. note::
+
+      On macOS, Panda3D versions 1.10.4.1 and below were compiled with
+      libstdc++, and so require passing ``-stdlib=libstdc++`` to the compiler.
+      Panda3D 1.10.5 offers a choice: the download marked "MacOSX10.6" is
+      compiled with libstdc++, whereas the download marked "MacOSX10.9" is
+      compiled with libc++.
+      It is recommended to use the download marked "MacOSX10.9".

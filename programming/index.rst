@@ -54,4 +54,3 @@ manual by studying the :ref:`Reference Section <reference>`.
    threading
    subclassing
    pandai/index
-   using-cpp/index
