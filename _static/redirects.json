@@ -4,7 +4,9 @@
     "programming/advanced-loading/loading-resources-from-memory": "programming/multifiles/loading-resources-from-nonstandard-sources",
     "programming/advanced-loading/patching": "programming/multifiles/patching",
     "programming/advanced-loading/virtual-file-system": "programming/file-reading",
-    "programming/distributed/index": "programming/distributed",
-
+    "programming/networking/distributed/index": "programming/networking/distributed",
+    "programming/intervals/motion-paths": "programming/motion-paths",
+    "programming/intervals/particle-intervals": "programming/intervals/motion-path-and-particle-intervals",
+    "programming/garbage-collection/reference-counting": "programming/using-cpp/reference-counting",
     "programming/utility-functions": "debugging/inspection-utilities"
 }
