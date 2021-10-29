@@ -3,9 +3,6 @@
 Installing Panda3D in Linux
 ===========================
 
-The Installation Process - Linux
---------------------------------
-
 The easiest way to install panda is to use the RPM or DEB packages. This is only
 possible if your version of Linux is one of the provided versions of Linux. If
 not, you will need to :ref:`compile from source <building-from-source>`. If

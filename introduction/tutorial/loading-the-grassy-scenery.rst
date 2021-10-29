@@ -8,12 +8,13 @@ Loading the Grassy Scenery
 
 Panda3D contains a data structure called the *Scene Graph*. The Scene Graph is a
 tree containing all objects that need to be rendered. At the root of the tree is
-an object named ``render``. Nothing is rendered until it is first inserted into
+an object named `render`. Nothing is rendered until it is first inserted into
 the Scene Graph.
 
 .. only:: cpp
 
-   You can get the NodePath of render by calling ``window->get_render()``.
+   You can get the NodePath of `render` by calling
+   :cpp:func:`window->get_render() <WindowFramework::get_render>`.
 
 To install the grassy scenery model into the Scene Graph, we use the method
 :meth:`~.NodePath.reparent_to()`. This sets the parent of the model, thereby
@@ -60,11 +61,12 @@ Update your code as follows:
       :language: cpp
       :linenos:
 
-   The WindowFramework procedure ``window->load_model()`` loads the specified
-   file, in this case the environment.egg file in the models folder. The return
-   value is an object of the :class:`.NodePath` class, effectively a pointer to
-   the model. Note that :ref:`Panda Filename Syntax <loading-models>` uses the
-   forward-slash, even under Windows.
+   The WindowFramework procedure
+   :cpp:func:`window->load_model() <WindowFramework::load_model>` loads the
+   specified file, in this case the environment.egg file in the models folder.
+   The return value is an object of the :class:`.NodePath` class, effectively a
+   pointer to the model. Note that :ref:`Panda Filename Syntax <loading-models>`
+   uses the forward-slash, even under Windows.
 
 Run the Program
 ~~~~~~~~~~~~~~~

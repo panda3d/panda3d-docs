@@ -36,5 +36,6 @@ infinite) bounding volume on the effect node.
 
       nodePath.set_compass();
 
-If a NodePath is supplied to the ``setCompass`` call, it indicates the node to
-which the rotation will be kept relative (which is ``render`` by default).
+If a :class:`.NodePath` is supplied to the :meth:`~.NodePath.set_compass()`
+call, it indicates the node to which the rotation will be kept relative (which
+is ``render`` by default).
