@@ -46,9 +46,9 @@ billboard effect on a node at any given time. To undo a billboard effect, use:
       myNodePath.clear_billboard();
 
 The most common billboard type is an axial billboard, created by the
-``setBillboardAxis()`` method. This kind of billboard is constrained to rotate
-around its vertical axis, so is usually used to represent objects that are
-radially symmetric about the vertical axis (like trees).
+:meth:`~.NodePath.set_billboard_axis()` method. This kind of billboard is
+constrained to rotate around its vertical axis, so is usually used to represent
+objects that are radially symmetric about the vertical axis (like trees).
 
 Less often, you may need to use a point billboard, which is free to rotate about
 any axis. There are two varieties of point billboard. The world-relative point
@@ -61,7 +61,8 @@ the world.
 
 There are several more options available on a BillboardEffect, but these are
 rarely used. If you need to take advantage of any of these more esoteric
-options, you must create a BillboardEffect and apply it to the node yourself:
+options, you must create a :class:`.BillboardEffect` and apply it to the node
+yourself:
 
 .. code-block:: python
 

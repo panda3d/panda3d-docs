@@ -69,6 +69,6 @@ You may also be able to request more multisamples, such as 4 or 8, depending on
 your graphics card. If your card can provide additional samples, it produces a
 higher-quality antialiasing, at a small cost to render time.
 
-The function ``clearAntialias`` can be used to remove the antialias setting. The
-function ``setAntialias`` takes an optional priority parameter, to control
-attribute overrides.
+The function :meth:`~.NodePath.clear_antialias()` can be used to remove the
+antialias setting. The function :meth:`~.NodePath.set_antialias()` takes an
+optional priority parameter, to control attribute overrides.
