@@ -32,7 +32,7 @@ window.addEventListener("DOMContentLoaded", function() {
             if (version.tag) {
                 opt.innerHTML += ' (' + version.tag + ')';
             }
-            if (version.version == opts.VERSION) {
+            if (version.version == opts.VERSION || opts.VERSION.indexOf(version.version + '.') === 0) {
                 window.versionIndex = i;
                 if (version.outdated) {
                     isOutdated = true;
