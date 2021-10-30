@@ -8,18 +8,21 @@ create one or more :ref:`geomprimitive` objects that use the vertices in your
 GeomVertexData.
 
 In general, you do this by first creating a GeomPrimitive of the appropriate
-type, and then calling addVertex() for each vertex in your primitive, followed
-by closePrimitive() after each primitive is complete.
+type, and then calling :meth:`~.GeomPrimitive.add_vertex()` for each vertex in
+your primitive, followed by :meth:`~.GeomPrimitive.close_primitive()` after each
+primitive is complete. You can contain as many primitives as you like to the
+same GeomPrimitive object; this is more efficient than creating many separate
+GeomPrimitive objects.
 
 Different GeomPrimitive types have different requirements for the number of
 vertices per primitive. Some always have a fixed amount of vertices, like
 GeomTriangles, GeomLines and GeomPoints. You should simply add all of the
-vertices for these primitives. Some people call close_primitive after adding
-every primitive, but this is not strictly necessary. Other GeomPrimitive types
-have a variable number of vertices, like GeomTristrips, GeomTrifans and
-GeomLinestrips. Because you need to tell Panda3D how many vertices are in
-every primitive, you should call close_primitive() after adding every
-primitive.
+vertices for these primitives. Some people call
+:meth:`~.GeomPrimitive.close_primitive()` after adding every primitive, but this
+is not strictly necessary. Other GeomPrimitive types have a variable number of
+vertices, like GeomTristrips, GeomTrifans and GeomLinestrips. Because you need
+to tell Panda3D how many vertices are in every primitive, you should call
+:meth:`~.GeomPrimitive.close_primitive()` after adding every primitive.
 
 For example:
 
@@ -73,8 +76,7 @@ in-place every few frames, in which case you should use Geom.UHDynamic. As
 with the GeomVertexData, this is only a performance hint; you're not required
 to adhere to the usage you specify.
 
-If you are unsure about this parameter, you should use
-``Geom.UH_static``.
+If you are unsure about this parameter, you should use ``Geom.UH_static``.
 
 The above sample code defines a GeomTriangles object that looks like this:
 
@@ -143,6 +145,7 @@ Finally, there are a few handy shortcuts for adding multiple vertices at once:
    # the first vertices.
    add_next_vertices(numVertices)
 
-None of the above shortcut methods calls ``close_primitive()`` for you; it is
-still your responsibility to call ``close_primitive()`` each time you add the
-appropriate number of vertices to a primitive that requires it.
+None of the above shortcut methods calls
+:meth:`~.GeomPrimitive.close_primitive()` for you; it is still your
+responsibility to call :meth:`~.GeomPrimitive.close_primitive()` each time you
+add the appropriate number of vertices to a primitive that requires it.

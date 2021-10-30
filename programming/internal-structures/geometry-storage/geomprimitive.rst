@@ -98,7 +98,7 @@ any number of connected or unconnected triangles. Each triangle must have
 exactly three vertices, of course. In each triangle, the vertices should be
 listed in counterclockwise order, as seen from the front of the triangle.
 
-|GeomTriangles.png|
+.. image:: geomtriangles.png
 
 GeomTristrips
 ~~~~~~~~~~~~~
@@ -114,7 +114,7 @@ defines an additional triangle, based on the new vertex and the preceding two
 vertices. The vertices go back and forth, defining triangles in a zigzag
 fashion.
 
-|GeomTristrips.png|
+.. image:: geomtristrips.png
 
 Note that the second triangle in a triangle strip is defined in clockwise
 order, the third triangle is in counterclockwise order, the fourth triangle is
@@ -153,7 +153,7 @@ instead of using the preceding two vertices to define each new triangle, a
 triangle fan uses the previous vertex and the first vertex, which means that
 all of the resulting triangles fan out from a single point, like this:
 
-|GeomTrifans.png|
+.. image:: geomtrifans.png
 
 Like the triangle strip, a triangle fan can be an important optimization on
 certain hardware. However, its use can actually incur a performance penalty on
@@ -168,7 +168,7 @@ This kind of GeomPrimitive stores any number of connected or unconnected line
 segments. It is similar to a GeomTriangles, but it draws lines instead of
 triangles. Each line has exactly two vertices.
 
-|GeomLines.png|
+.. image:: geomlines.png
 
 By default, line segments are one pixel wide, no matter how far away they are
 from the camera. You can use nodePath.setRenderModeThickness() to change this;
@@ -191,7 +191,7 @@ line segment, connected end-to-end with the previous line segment. This
 primitive type can be used to draw a curve approximation with many bends
 fairly easily.
 
-|GeomLinestrips.png|
+.. image:: geomlinestrips.png
 
 GeomPoints
 ~~~~~~~~~~
@@ -199,42 +199,37 @@ GeomPoints
 This is the simplest kind of GeomPrimitive; it stores a number of individual
 points. Each point has exactly one vertex.
 
-|GeomPoints.png|
+.. image:: geompoints.png
 
 By default, each point is rendered as one pixel. You can use
-nodePath.setRenderModeThickness() to change this; if you specify a thickness
-greater than 1, this will make the points render as squares (which always face
-the camera), where the vertex coordinate is the center point of the square,
-and the square has the specified number of pixels along each side. Each point
-will always be the same width in pixels, no matter how far it is from the
-camera. Unlike line segments, thick points are supported by DirectX.
+:meth:`nodePath.set_render_mode_thickness() <.NodePath.set_render_mode_thickness>`
+to change this; if you specify a thickness greater than 1, this will make the
+points render as squares (which always face the camera), where the vertex
+coordinate is the center point of the square, and the square has the specified
+number of pixels along each side. Each point will always be the same width in
+pixels, no matter how far it is from the camera. Unlike line segments, thick
+points are supported by DirectX.
 
-|GeomPointsThick.png|
+.. image:: geompointsthick.png
 
 In addition to ordinary thick points, which are always the same size no matter
 how far they are from the camera, you can also use
-nodePath.setRenderModePerspective() to enable a mode in which the points scale
-according to their distance from the camera. This makes the points appear more
-like real objects in the 3-D scene, and is particularly useful for rendering
-sprite polygons, for instance for particle effects. In fact, Panda's
-:ref:`SpriteParticleRenderer <particle-renderers>` takes advantage of this
-render mode. (This perspective mode works only for points; it does not affect
-line segments.)
+:meth:`nodePath.set_render_mode_perspective() <.NodePath.set_render_mode_perspective>`
+to enable a mode in which the points scale according to their distance from the
+camera. This makes the points appear more like real objects in the 3-D scene,
+and is particularly useful for rendering sprite polygons, for instance for
+particle effects.
+In fact, Panda's :ref:`SpriteParticleRenderer <particle-renderers>` takes
+advantage of this render mode. (This perspective mode works only for points; it
+does not affect line segments.)
 
 Even though the sprite polygons are rendered as squares, remember they are
 really defined with one vertex, and each vertex can only supply one UV
 coordinate. This means each sprite normally has only one UV coordinate pair
 across the whole polygon. If you want to apply a texture to the face of each
-sprite, use :ref:`nodePath.setTexGen() <automatic-texture-coordinates>` with
-the mode TexGenAttrib.MPointSprite; this will generate texture coordinates on
-each polygon in the range (0, 0) to (1, 1). You can then transform the texture
-coordinates, if you wish, using one of the methods like
-nodePath.setTexOffset(), setTexScale(), etc.
-
-.. |GeomTriangles.png| image:: geomtriangles.png
-.. |GeomTristrips.png| image:: geomtristrips.png
-.. |GeomTrifans.png| image:: geomtrifans.png
-.. |GeomLines.png| image:: geomlines.png
-.. |GeomLinestrips.png| image:: geomlinestrips.png
-.. |GeomPoints.png| image:: geompoints.png
-.. |GeomPointsThick.png| image:: geompointsthick.png
+sprite, apply :ref:`automatic-texture-coordinates` using
+:meth:`nodePath.set_tex_gen(stage, TexGenAttrib.M_point_sprite)`; this will
+generate texture coordinates on each polygon in the range (0, 0) to (1, 1). You
+can then transform the texture coordinates, if you wish, using one of the
+methods like :meth:`nodePath.set_tex_offset() <.NodePath.set_tex_offset>`,
+:meth:`set_tex_scale() <.NodePath.set_tex_scale>`, etc.

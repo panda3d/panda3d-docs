@@ -3,18 +3,18 @@
 Text Node
 =========
 
-The most fundamental way to render text in Panda3D is via the ``TextNode``
+The most fundamental way to render text in Panda3D is via the :class:`.TextNode`
 interface. This may be a little more work than the :ref:`onscreentext` or
 :ref:`directlabel` objects, but it gives you a lot more control over the
 appearance of the text.
 
-To use a TextNode, simply create one and call ``setText()`` to set the actual
-text to display, and then parent the TextNode wherever you like (you can put it
-under :ref:`aspect2d <scene-graph-manipulations>` to make a 2-d onscreen text,
-or you can put it in the 3-d world for in-the-world text). Note that if you
-parent the text to render2d or aspect2d, you will probably need to give it a
-fairly small scale, since the coordinate space of the whole screen in render2d
-is in the range (-1, 1).
+To use a TextNode, simply create one and call :meth:`~.TextNode.set_text()` to
+set the actual text to display, and then parent the TextNode wherever you like
+(you can put it under :ref:`aspect2d <scene-graph-manipulations>` to make a 2-d
+onscreen text, or you can put it in the 3-d world for in-the-world text).
+Note that if you parent the text to render2d or aspect2d, you will probably need
+to give it a fairly small scale, since the coordinate space of the whole screen
+in render2d is in the range (-1, 1).
 
 .. only:: python
 

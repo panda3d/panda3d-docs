@@ -43,7 +43,7 @@ Problem: Invalid output when using ATI/AMD cards
 supports two sets of profiles on most non-nVidia cards; the basic ARB profiles,
 and the GLSL profiles. The ARB profiles are limited in functionality, which
 prompts people to use the GLSL profiles. However, these often produce incorrect
-results (read: are completely broken) on ATI/AMD cards.
+results on ATI/AMD cards.
 
 *Workaround:* Enable "basic-shaders-only true" as described above. For advanced
 shader effects, write your shaders in GLSL instead of Cg if you intend to

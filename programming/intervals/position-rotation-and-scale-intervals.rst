@@ -5,8 +5,7 @@ Position, Rotation and Scale Intervals
 
 Panda3D can automatically generate intervals for position to a certain point
 or a rotation to a certain HPR value. You can do this by calling
-``posInterval()`` and
-``hprInterval()`` on the object.
+``posInterval()`` and ``hprInterval()`` on the object.
 
 .. code-block:: python
 
@@ -31,10 +30,8 @@ You can easily create :ref:`sequences-and-parallels` from these intervals:
    myParallel = Parallel(myInterval3, myInterval1)
    myParallel.loop()
 
-``scaleInterval()``,
-``posHprInterval()``,
-``hprScaleInterval()``, and
+``scaleInterval()``, ``posHprInterval()``, ``hprScaleInterval()``, and
 ``posHprScaleInterval()`` work similarly.
 
-Note: The physics engine won't affect a Node that is moved using
+Note: The physics engine won't affect a node that is moved using
 ``posInterval()``!

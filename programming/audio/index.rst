@@ -32,10 +32,8 @@ Setting the Sound System
 
 To configure Panda3D to use a specific sound system, you will need to change
 your :ref:`Config.prc <configuring-panda3d>` configuration. You should look up
-the variable ``audio-library-name`` and change
-the value to one of ``p3openal_audio``,
-``p3fmod_audio``, or
-``miles_audio``. (The names of the
+the variable ``audio-library-name`` and change the value to one of
+``p3openal_audio``, ``p3fmod_audio``, or ``miles_audio``. (The names of the
 libraries may differ with the way Panda3D was built.)
 
 Extra Notes

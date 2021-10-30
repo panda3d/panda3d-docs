@@ -181,8 +181,9 @@ The above interfaces make use of events to cause a method to be called when the
 key pressed or released. However, in some situations, it may be more desirable
 to instead ask Panda every frame whether or not a certain key is pressed. In
 this situation, you can use the polling interface instead, via the
-``is_button_down`` method on the MouseWatcher node. (The name of this class is a
-bit misleading - it listens for keyboard events as well.)
+:meth:`~.MouseWatcher.is_button_down()` method on the MouseWatcher node. (The
+name of this class is a bit misleading - it listens for keyboard events as
+well.)
 
 .. code-block:: python
 
@@ -242,7 +243,7 @@ popular WASD control scheme for navigating the player, someone who's using an
 AZERTY or dvorak keyboard layout may have to bend their fingers in an unnatural
 way in order to use this scheme!
 
-In light of this, Panda3D 1.9.0 introduces some features that will help to solve
+In light of this, Panda3D 1.9.0 introduced some features that will help to solve
 this problem. The easiest way to fix this problem is to instead refer to the
 keys by how they would appear on an ANSI US (QWERTY) keyboard layout. To do
 this, you can prepend the ``raw-`` prefix to any key event. This will cause
@@ -259,9 +260,10 @@ layout, in which case it is more appropriate to say "press Z to move forward".
 When the application has a configuration screen for the keyboard control scheme,
 acquiring more information about the mapping may also be necessary.
 
-This can be done using the ``get_keyboard_map()`` on the GraphicsWindow object,
-returning a ButtonMap object, which can be used to find out which virtual key
-event will be fired for a certain raw keyboard button:
+This can be done using the :meth:`~.GraphicsWindow.get_keyboard_map()` method on
+the GraphicsWindow object, returning a :class:`.ButtonMap` object, which can be
+used to find out which virtual key event will be fired for a certain raw
+keyboard button:
 
 .. code-block:: python
 
@@ -295,12 +297,12 @@ event will be fired for a certain raw keyboard button:
    self.accept("%s-up" % (w_button), self.stop_moving_forward)
 
 The above code example also illustrates the use of the
-``get_mapped_button_label`` function to get a textual representation for the
-button, if the operating system provides it. This is most useful for keys like
-"shift" or "enter", which may be called differently on different keyboards or in
-different languages. However, this is both system-dependent and
-locale-dependent. You should not rely on it being present, and if it is, you
-should not rely on consistent formatting or capitalization.
+:meth:`~.ButtonMap.get_mapped_button_label()` function to get a textual
+representation for the button, if the operating system provides it. This is most
+useful for keys like "shift" or "enter", which may be called differently on
+different keyboards or in different languages. However, this is both system-
+dependent and locale-dependent. You should not rely on it being present, and if
+it is, you should not rely on consistent formatting or capitalization.
 
 Of course, it is always advisable to still add in a configuration screen so that
 users can customize key bindings in case they find a particular control scheme

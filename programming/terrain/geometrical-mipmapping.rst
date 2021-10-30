@@ -33,32 +33,33 @@ complicated calculations:
 
    .. code-block:: cpp
 
-      GeoMipTerrain *terrain;
-      terrain =  new GeoMipTerrain("mySimpleTerrain");
-      terrain->set_heightfield(Filename("maps/yourHeightField.png"));
-      terrain->set_bruteforce(true);
-      terrain->get_root().reparent_to(window->get_render());
-      terrain->generate();
+      GeoMipTerrain terrain("mySimpleTerrain");
+      terrain.set_heightfield(Filename("maps/yourHeightField.png"));
+      terrain.set_bruteforce(true);
+      terrain.get_root().reparent_to(window->get_render());
+      terrain.generate();
 
-First, the code creates a GeoMipTerrain instance. The ``setHeightfield()`` call
-loads in a heightfield image. Preferably this is a size of a power of two plus
-one (like 129, 257, 513, 1025, etc.), but if it is not, the GeoMipTerrain will
-automatically scale it up to the nearest correct size (which is quite slow).
-``setHeightfield()`` can take a
+First, the code creates a GeoMipTerrain instance. The
+:meth:`~.GeoMipTerrain.set_heightfield()` call loads in a heightfield image.
+Preferably this is a size of a power of two plus one (like 129, 257, 513, 1025,
+etc.), but if it is not, the GeoMipTerrain will automatically scale it up to the
+nearest correct size (which is quite slow).
+:meth:`~.GeoMipTerrain.set_heightfield()` can take a
 :ref:`PNMImage <creating-new-textures-from-scratch>`, Texture or
 :ref:`Filename <loading-models>` instance.
 
-The ``setBruteforce(True)`` call sets the terrain to bruteforce rendering --
-this means that the terrain is created at the highest quality (the lowest detail
-level), and LOD is not applied. In the next section we will explain how to set a
-LOD level and a Focal Point. The ``getRoot()`` call returns the NodePath of the
-terrain. It is then reparented to ``render`` to be a part of the scene graph.
-You can apply :ref:`common-state-changes` to this NodePath. Finally, the
-``generate()`` call generates the terrain geometry. Note that if the terrain is
-still quite flat, you will have to scale the terrain NodePath in the Z
-direction, because by default, the Z positions are between 0 and 1. To fix this,
-scale the terrain up in the Z direction (before generating it, otherwise it
-might require you to regenerate it):
+The :meth:`set_bruteforce(True) <.GeoMipTerrain.set_bruteforce>` call sets the
+terrain to bruteforce rendering -- this means that the terrain is created at the
+highest quality (the lowest detail level), and LOD is not applied.
+In the next section we will explain how to set a LOD level and a Focal Point.
+The :meth:`~.GeoMipTerrain.get_root()` call returns the NodePath of the terrain.
+It is then reparented to ``render`` to be a part of the scene graph. You can
+apply :ref:`common-state-changes` to this NodePath.
+Finally, the :meth:`~.GeoMipTerrain.generate()` call generates the terrain
+geometry. Note that if the terrain is still quite flat, you will have to scale
+the terrain NodePath in the Z direction, because by default, the Z positions are
+between 0 and 1. To fix this, scale the terrain up in the Z direction (before
+generating it, otherwise it might require you to regenerate it):
 
 .. only:: python
 
@@ -70,7 +71,7 @@ might require you to regenerate it):
 
    .. code-block:: cpp
 
-      terrain->get_root().set_sz(100);
+      terrain.get_root().set_sz(100);
 
 Dynamic Terrains
 ~~~~~~~~~~~~~~~~
@@ -111,30 +112,29 @@ This code shows a dynamically updated terrain with LOD:
    .. code-block:: cpp
 
       // Set up the GeoMipTerrain
-      GeoMipTerrain *terrain;
-      terrain =  new GeoMipTerrain("myDynamicTerrain");
-      terrain->set_heightfield(Filename("maps/yourHeightField.png"));
+      GeoMipTerrain terrain("myDynamicTerrain");
+      terrain.set_heightfield(Filename("maps/yourHeightField.png"));
 
       // Set terrain properties
-      terrain->set_block_size(32);
-      terrain->set_near(40);
-      terrain->set_far(100);
-      terrain->set_focal_point(camera);
+      terrain.set_block_size(32);
+      terrain.set_near(40);
+      terrain.set_far(100);
+      terrain.set_focal_point(camera);
 
       // Store the root NodePath for convenience
-      NodePath root = terrain->get_root();
+      NodePath root = terrain.get_root();
       root.reparent_to(window->get_render());
       root.set_sz(100);
 
       // Generate it.
-      terrain->generate();
+      terrain.generate();
 
       // Add a task to keep updating the terrain
       taskMgr->add(new GenericAsyncTask("Updates terrain", &UpdateTerrain, nullptr));
 
       // And the task, outside main:
       AsyncTask::DoneStatus UpdateTerrain(GenericAsyncTask *task, void *data) {
-        terrain->update();
+        terrain.update();
         return AsyncTask::DS_cont;
       }
 
@@ -152,9 +152,10 @@ values to get a good quality terrain while still maintaining a good performance.
 
 Next, for convenience, the terrain root is stored in a separate variable, which
 is scaled and placed in the scene graph. The terrain is then initially
-generated, and a task is created which calls ``terrain.update()`` every frame.
-This function calculates the new LOD levels based on the movement of the focal
-point and updates the chunks which have got a new LOD level.
+generated, and a task is created which calls
+:meth:`terrain.update() <.GeoMipTerrain.update>` every frame. This function
+calculates the new LOD levels based on the movement of the focal point and
+updates the chunks which have got a new LOD level.
 
 Advanced Control
 ~~~~~~~~~~~~~~~~
@@ -180,7 +181,7 @@ force the chunks to have a minimum level of detail:
 
    .. code-block:: cpp
 
-      terrain->set_min_level(2);
+      terrain.set_min_level(2);
 
 If you make the value higher, it will decrease the quality level near the focal
 point.
@@ -205,12 +206,13 @@ restored from a backup node:
 
    .. code-block:: cpp
 
-      terrain->set_auto_flatten(GeoMipTerrain::AFM_strong);
+      terrain.set_auto_flatten(GeoMipTerrain::AFM_strong);
 
-There are multiple options: AFM_strong for ``flattenStrong()``, AFM_medium for
-``flattenMedium()``, AFM_light for ``flattenLight()``, and AFM_off for no
-flattening at all. After setting the AutoFlattenMode, GeoMipTerrain will
-automatically take care of it at the next ``update()`` call.
+There are multiple options: AFM_strong for :meth:`~.NodePath.flatten_strong()`,
+AFM_medium for :meth:`~.NodePath.flatten_medium()`, AFM_light for
+:meth:`~.NodePath.flatten_light()`, and AFM_off for no flattening at all.
+After setting the AutoFlattenMode, GeoMipTerrain will automatically take care of
+it at the next :meth:`~.GeoMipTerrain.update()` call.
 
 Notes
 ~~~~~

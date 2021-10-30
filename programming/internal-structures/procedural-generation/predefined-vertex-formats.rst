@@ -31,12 +31,5 @@ v3cpt2     ✓                                                                  
 v3n3cpt2   ✓                    ✓                                                               ✓                                      ✓
 ========== ==================== ==================== ========================================== ====================================== ===================
 
-.. only:: python
-
-   The predefined formats are accessable through the API using, for example,
-   ``GeomVertexFormat.get_v3n3()``.
-
-.. only:: cpp
-
-   The predefined formats are accessable through the API using, for example,
-   ``GeomVertexFormat::get_v3n3()``.
+The predefined formats are accessable through the API using, for example,
+:meth:`.GeomVertexFormat.get_v3n3()`.

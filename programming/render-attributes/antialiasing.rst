@@ -3,9 +3,6 @@
 Antialiasing
 ============
 
-Antialiasing
-------------
-
 .. only:: cpp
 
    It is recommended to include:
@@ -58,6 +55,16 @@ question. Thus, if you want to enable antialiasing on the whole scene, just use:
 
       window->get_render().set_antialias(AntialiasAttrib::M_auto);
 
+.. note::
+
+   On some drivers, using the polygon smoothing mode (``MPolygon``, or ``MAuto``
+   with multisampling disabled) does not produce reliable results, or may have
+   additional requirements to work properly, such as front-to-back sorting or a
+   special alpha blend function. For optimal compatibility, it is recommended to
+   either explicitly specify multisample antialiasing or leave antialiasing off.
+
+   Also see `issue #993 <https://github.com/panda3d/panda3d/issues/993>`__.
+
 In order for multisample antialiasing to work, you have to have multisample bits
 available in your framebuffer. To request this, add::
 
@@ -69,6 +76,6 @@ You may also be able to request more multisamples, such as 4 or 8, depending on
 your graphics card. If your card can provide additional samples, it produces a
 higher-quality antialiasing, at a small cost to render time.
 
-The function ``clearAntialias`` can be used to remove the antialias setting. The
-function ``setAntialias`` takes an optional priority parameter, to control
-attribute overrides.
+The function :meth:`~.NodePath.clear_antialias()` can be used to remove the
+antialias setting. The function :meth:`~.NodePath.set_antialias()` takes an
+optional priority parameter, to control attribute overrides.

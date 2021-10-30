@@ -17,7 +17,7 @@ If you know the dimensions of a Bullet collision shape at the time of creation
 then create it with those dimensions, and don't use scale to adjust the
 dimensions afterwards. For example, if you need a box with extents 5x3x1 then
 create it with these extents, and not with extents 1x1x1 and then scale it
-with Vec3(5,3,1).
+with ``Vec3(5, 3, 1)``.
 
 If you have convex meshes or triangle meshes then it is better to "bake" the
 scale before creating the collision shape. Baking means to apply the scale to

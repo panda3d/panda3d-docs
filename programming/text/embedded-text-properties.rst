@@ -12,11 +12,11 @@ and out.
 Defining your text properties
 -----------------------------
 
-You can create any number of ``TextProperties`` objects. Each of these can store
-a different set of text properties, any of the text properties that you can set
-directly on a TextNode. These include the per-character attributes such as font,
-color, shadow, and slant, as well as per-line formatting properties such as
-alignment and wordwrap.
+You can create any number of :class:`.TextProperties` objects. Each of these can
+store a different set of text properties, any of the text properties that you
+can set directly on a :class:`.TextNode`. These include the per-character
+attributes such as font, color, shadow, and slant, as well as per-line
+formatting properties such as alignment and wordwrap.
 
 .. code-block:: python
 
@@ -39,7 +39,7 @@ changes the font.
 Registering the new TextProperties objects
 ------------------------------------------
 
-You will need a pointer to the global ``TextPropertiesManager`` object:
+You will need a pointer to the global :class:`.TextPropertiesManager` object:
 
 .. code-block:: python
 

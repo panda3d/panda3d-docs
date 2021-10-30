@@ -10,9 +10,10 @@ serve as a solid foundation for developing higher-level networking
 abstractions.
 
 This section describes the classes used to establish a connection
-(QueuedConnectionManager,QueuedConnectionListener, QueuedConnectionReader, and
-ConnectionWriter), as well as the classes that transmit information
-(NetDatagram, PyDatagram, and PyDatagramIterator).
+(:class:`.QueuedConnectionManager`, :class:`.QueuedConnectionListener`,
+:class:`.QueuedConnectionReader`, and :class:`.ConnectionWriter`), as well as
+the classes that transmit information (:class:`.NetDatagram`, :class:`.PyDatagram`,
+and :class:`.PyDatagramIterator`).
 
 
 .. toctree::

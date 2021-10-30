@@ -4,8 +4,8 @@ Downloading a File
 ==================
 
 To download a file while the game is running without blocking the connections
-one has to use HTTPClient and HTTPChannel objects. This will allow the file to
-be downloaded in the background using the downloadTask task.
+one has to use :class:`.HTTPClient` and :class:`.HTTPChannel` objects. This will
+allow the file to be downloaded in the background using the downloadTask task.
 
 .. code-block:: python
 
@@ -34,7 +34,7 @@ You can also download to file
 
    channel.downloadToFile(Filename(fileName))
 
-The file channel can be quarried for further information while the game is
+The file channel can be queried for further information while the game is
 running to get the current download state.
 
 .. code-block:: python

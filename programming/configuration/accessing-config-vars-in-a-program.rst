@@ -33,8 +33,8 @@ effect on the engine whatsoever.
 
 To manipulate this variable procedurally, use code not unlike the following,
 which creates an object of class :class:`.ConfigVariableString` and then
-manipulates it using the methods :meth:`~.ConfigVariableString.setValue()` and
-:meth:`~.ConfigVariableString.getValue()`.
+manipulates it using the methods :meth:`~.ConfigVariableString.set_value()` and
+:meth:`~.ConfigVariableString.get_value()`.
 
 .. only:: python
 
@@ -72,8 +72,7 @@ ConfigVariableList
 ConfigVariableSearchPath
 
 Most of these follow the same form as ConfigVariableString, above, except that
-the default value (and the parameter from ``setValue()`` and ``getValue()``) is
-of the indicated type, rather than a string. The two exceptions are
+the value is of the indicated type, rather than a string. The two exceptions are
 ConfigVariableList and ConfigVariableSearchPath. These types of variables do not
 accept a default value to the constructor since the default value in both cases
 is always the empty list or search path.
@@ -124,7 +123,8 @@ under Windows.
       load_prc_file("config/Config.prc");
 
 The filename you specify is searched for along the model-path, in the same way
-that an Egg or Bam file is searched for when you use ``loader.loadModel()``.
+that an Egg or Bam file is searched for when you use
+:py:meth:`loader.loadModel() <direct.showbase.Loader.Loader.loadModel>`.
 
 .. only:: python
 
@@ -176,7 +176,7 @@ There are other ways to go to fullscreen. This is not necessarily the most
 straightforward approach, but it illustrates the point.
 
 You can get a more complete list of available config variables at runtime,
-with the :meth:`~.ConfigVariableManager.list_variables()` command:
+with the :meth:`~.ConfigVariableManager.list_variables()` method:
 
 .. only:: python
 

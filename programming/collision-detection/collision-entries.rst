@@ -3,14 +3,15 @@
 Collision Entries
 =================
 
-For each collision detected, a new ``CollisionEntry`` object is created. This
-CollisionEntry stores all the information about the collision, including the two
-objects (nodes) involved in the collision, and the point of impact and the
-surface normal of the into object at that point.
+For each collision detected, a new :class:`.CollisionEntry` object is created.
+This CollisionEntry stores all the information about the collision, including
+the two objects (nodes) involved in the collision, and the point of impact and
+the surface normal of the into object at that point.
 
 The CollisionEntry object is passed to the event handler method by the
-``CollisionHandlerEvent`` and its derivatives; it is also the object stored in
-the queue of collisions maintained by the ``CollisionHandlerQueue``.
+:class:`.CollisionHandlerEvent` and its derivatives; it is also the object
+stored in the queue of collisions maintained by the
+:class:`.CollisionHandlerQueue`.
 
 However you get a handle to CollisionEntry object, you can query it for
 information using the following methods:

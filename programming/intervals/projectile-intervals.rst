@@ -9,9 +9,9 @@ projectile under the influence of gravity.
 .. code-block:: python
 
    myInterval = ProjectileInterval(<Node Path>,
-       startPos=Point3(X,Y,Z), endPos=Point3(X,Y,Z),
-       duration=<Time in seconds>, startVel=Point3(X,Y,Z),
-       endZ=Point3(X,Y,Z), gravityMult=<multiplier>, name=<Name>)
+       startPos=Point3(X, Y, Z), endPos=Point3(X, Y, Z),
+       duration=<Time in seconds>, startVel=Point3(X, Y, Z),
+       endZ=Point3(X, Y, Z), gravityMult=<multiplier>, name=<Name>)
 
 All parameters don't have to be specified. Here are a combination of parameters
 that will allow you to create a projectile interval. (If startPos is not

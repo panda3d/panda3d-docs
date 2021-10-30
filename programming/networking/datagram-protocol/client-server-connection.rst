@@ -14,17 +14,18 @@ Preparing the server for connection
 
 An average Panda program acting as a server will need to create four classes:
 
--  A QueuedConnectionManager, which handles the low-level connection
+-  A :class:`.QueuedConnectionManager`, which handles the low-level connection
    processes, establishes connections, and handles unexpected network
    termination
 
--  A QueuedConnectionListener, which waits for clients to request connection
-
--  A QueuedConnectionReader, which buffers incoming data from an active
+-  A :class:`.QueuedConnectionListener`, which waits for clients to request a
    connection
 
--  A ConnectionWriter, which allows PyDatagrams to be transmitted out along an
+-  A :class:`.QueuedConnectionReader`, which buffers incoming data from an
    active connection
+
+-  A :class:`.ConnectionWriter`, which allows PyDatagrams to be transmitted out
+   along an active connection
 
 The first step is to instantiate these four classes.
 

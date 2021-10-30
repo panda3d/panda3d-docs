@@ -12,5 +12,11 @@
     "programming/file-reading": "programming/advanced-loading/virtual-file-system",
     "programming/utility-functions": "debugging/inspection-utilities",
     "programming/showbase": "reference/builtins",
-    "programming/motion-paths": "programming/intervals/motion-paths"
+    "programming/motion-paths": "programming/intervals/motion-paths",
+    "programming/using-cpp/index": "introduction/preparation",
+    "programming/using-cpp/compiling/index": "introduction/running-your-program",
+    "programming/using-cpp/compiling/linux": "introduction/running-your-program",
+    "programming/using-cpp/compiling/macos": "introduction/running-your-program",
+    "programming/using-cpp/texturing": "programming/texturing/simple-texture-replacement",
+    "programming/using-cpp/reference-counting": "programming/garbage-collection/reference-counting"
 }

@@ -26,23 +26,24 @@ many different places and reasons for these references garbage collection can
 quickly grow complicated. Following these steps will help to ensure that a
 custom class instance is properly garbage collected.
 
-1. Call ``removeNode()`` on all NodePaths in the scene graph – The first step is
-   to clear out the NodePaths that the custom class has added to the scene
-   graph. If this step isn’t accomplished, it won’t necessarily prevent the
-   custom class instance from being garbage collected, but it could. Even if the
-   custom class instance is still garbage collected the scene graph itself will
-   retain references to the NodePaths that haven’t been cleared out and they
-   will remain in the scene graph. There is one exception to this rule: when a
-   parent NodePath has removeNode called on it that ultimately result in the
-   removal of its child NodePaths, so long as nothing else retains a reference
-   to them. However, relying on this behavior is an easy way to make mistakes so
-   it’s better to manually remove all of the NodePaths a custom class adds to
-   the scene graph.
+1. Call :meth:`~.NodePath.remove_node()` on all NodePaths in the scene graph –
+   The first step is to clear out the NodePaths that the custom class has added
+   to the scene graph. If this step isn’t accomplished, it won’t necessarily
+   prevent the custom class instance from being garbage collected, but it could.
+   Even if the custom class instance is still garbage collected the scene graph
+   itself will retain references to the NodePaths that haven’t been cleared out
+   and they will remain in the scene graph. There is one exception to this rule:
+   when a parent NodePath has :meth:`~.NodePath.remove_node` called on it that
+   ultimately result in the removal of its child NodePaths, so long as nothing
+   else retains a reference to them. However, relying on this behavior is an
+   easy way to make mistakes so it’s better to manually remove all of the
+   NodePaths a custom class adds to the scene graph.
 
-2. Call ``delete()`` on all Actors – Just calling ``removeNode()`` on an Actor
-   isn’t enough. Calling ``delete()`` will remove ties to animations, exposed
-   joints, and so on to ensure that all the extra components of the Actor are
-   removed from memory as well.
+2. Call :py:meth:`~direct.actor.Actor.Actor.delete()` on all Actors – Just
+   calling :meth:`~.NodePath.remove_node()` on an Actor isn’t enough. Calling
+   :py:meth:`~direct.actor.Actor.Actor.delete()` will remove ties to animations,
+   exposed joints, and so on to ensure that all the extra components of the
+   Actor are removed from memory as well.
 
 3. Set all Intervals, Sequences, and Parallels equal to None – It’s very common
    for Intervals, Sequences, and Parallels to retain references to something in
@@ -52,9 +53,9 @@ custom class instance is properly garbage collected.
 
 4. Detach all 3D sounds connected to class NodePaths – 3D sounds won’t actually
    retain references to the custom class, but if the NodePaths they are attached
-   to are removed with ``removeNode()`` and the sounds aren’t detached, they’ll
-   generate an error and crash the program when they try to access the removed
-   NodePaths. Play it safe and detach the sounds.
+   to are removed with :meth:`~.NodePath.remove_node()` and the sounds aren’t
+   detached, they’ll generate an error and crash the program when they try to
+   access the removed NodePaths. Play it safe and detach the sounds.
 
 5. End all tasks running in the class – The task manager will retain a reference
    to the class instance so long as the class instance has a task running, so

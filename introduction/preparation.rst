@@ -10,14 +10,16 @@ between C++ information and Python information.
 
 .. only:: python
 
-   For example, if you want this page to contain information about learning C++
-   instead of learning Python, just hit the "C++" link at the top of this page.
+   **You are currently viewing the Python version of the manual.** If you wish
+   to view the C++ version instead, click the "C++" link at the top-left corner
+   of this page.
 
 .. only:: cpp
 
-   For example, if you want this page to contain information about learning
-   Python instead of learning C++, just hit the "Python" link at the top of this
-   page.
+   **You are currently viewing the C++ version of the manual.** We recommend
+   using Python when first starting out with Panda3D. If you wish to view the
+   Python version instead, click the "Python" link at the top-left corner of
+   this page.
 
 .. only:: python
 
@@ -106,15 +108,20 @@ between C++ information and Python information.
 
    The binaries of the last Windows release are built with Microsoft Visual C++
    2015. If you want to use the provided binaries you can use this version, but
-   2017 will work as well.
+   2017 (and likely 2019) will work as well.
 
    If you wish to use another version you will have to build Panda from source.
    Note that if you do that you will need all the dependencies (such us libjpeg,
    libpng, etc) built by the same compiler than you are using. You can do this
-   yourself or look around for 3rd party binaries.
+   yourself or look around for third-party binaries.
 
-   On UNIX-like operating systems, such as Linux and macOS you can use the LLVM
+   On UNIX-like operating systems, such as Linux and macOS, you can use the LLVM
    Clang or GNU G++ compiler.
 
-   For information about compiling your C++ program, see
-   :ref:`this page <how-to-compile-a-c++-panda3d-program>`.
+   .. note::
+
+      While many resources for Panda3D are written with Python users in mind, in
+      many cases the code can be fairly easily translated to C++. Of particular
+      note is the fact that sample code in Python may use the ``camelCase()``
+      naming convention for methods, which is not available in the C++ API.
+      You will need to translate these to the equivalent ``snake_case()`` names.

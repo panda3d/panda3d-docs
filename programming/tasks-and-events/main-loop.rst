@@ -25,7 +25,7 @@ returns. It is the main loop.
 For an alternative, ``run()`` could not be called at all. Panda doesn't really
 need to own the main loop.  Instead, ``taskMgr.step()`` can be called
 intermittently, which will run through one iteration of Panda's loop. In fact,
-``run()`` is basically just an infinite loop that calls ``Task.step()``
+``run()`` is basically just an infinite loop that calls ``taskMgr.step()``
 repeatedly.
 
 ``taskMgr.step()`` must be called quickly enough after the previous call to

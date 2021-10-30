@@ -126,7 +126,7 @@ Multifile objects
 
 The :class:`~panda3d.core.Multifile` class is designed for opening, reading and
 writing multifiles. You can open a new multifile by creating an instance of the
-class and calling the ``openRead`` method:
+class and calling the :meth:`~.Multifile.open_read()` method:
 
 .. code-block:: python
 
@@ -135,20 +135,21 @@ class and calling the ``openRead`` method:
    mf = Multifile()
    mf.openRead("foo.mf")
 
-The ``openRead`` method opens the multifile as read-only. If you want to make
-changes to it and write it back to disk, you will need to use the
-``openReadWrite`` method. Also, there exists ``openWrite`` to create a new
-multifile.
+The :meth:`~.Multifile.open_read()` method opens the multifile as read-only.
+If you want to make changes to it and write it back to disk, you will need to
+use the :meth:`~.Multifile.open_read_write()` method.
+Also, there exists :meth:`~.Multifile.open_write()` to create a new multifile.
 
 If you have made important structural changes to a Multifile, it is recommended
-to rewrite the multifile using the ``repack()`` method. (This won't work if
-you've opened it using ``openRead``.) If you are uncertain about whether it has
-become suboptimal, you can call ``needsRepack()`` which returns True if the
-Multifile is suboptimal and should be repacked.
+to rewrite the multifile using the :meth:`~.Multifile.repack()` method.
+(This won't work if you've opened it using :meth:`~.Multifile.open_read()`.)
+If you are uncertain about whether it has become suboptimal, you can call
+:meth:`~.Multifile.neesd_repack()` which returns True if the Multifile is
+suboptimal and should be repacked.
 
-To write it back to disk, you can use the ``flush()`` method which flushes the
-changes you've made to the multifile back to disk, or the ``close()`` method if
-you're done with the file.
+To write it back to disk, you can use the :meth:`~.Multifile.flush()` method
+which flushes the changes you've made to the multifile back to disk, or the
+:meth:`~.Multifile.close()` method if you're done with the file.
 
 To mount Multifile objects into the VirtualFileSystem without writing them to
 disk first, here's an example on how to mount them:
@@ -166,11 +167,11 @@ Subfiles
 --------
 
 Files that are added to a multifile are called subfiles. You can add existing
-files to a multifile object using the ``addSubfile`` function. This function
-takes three arguments: the target filename, the existing source file and the
-compression level (1-9). There is also ``updateSubfile``, which does the same
-thing but if the file already exists, only updates it if the content is
-different.
+files to a multifile object using the :meth:`~.Multifile.add_subfile()` method.
+This method takes three arguments: the target filename, the existing source file
+and the compression level (1-9).
+There is also :meth:`~.Multifile.update_subfile()`, which does the same thing
+but if the file already exists, only updates it if the content is different.
 
 There are several other methods which operate on subfiles, which you can find on
 the :class:`~panda3d.core.Multifile` page in the API Reference.
@@ -273,10 +274,11 @@ In the game, from the multifile models.mf, load the .ttf file.
 Encryption
 ----------
 
-Multifiles can also encrypt your files with a password. To do so, you need to
-set the encryption flag and password using the ``setEncryptionFlag`` and
-``setEncryptionPassword`` methods, before adding, extracting or reading
-multifiles.
+Multifiles can also encrypt your files with a password.
+To do so, you need to set the encryption flag and password using the
+:meth:`~.Multifile.set_encryption_flag()` and
+:meth:`~.Multifile.set_encryption_password()` methods, before adding, extracting
+or reading multifiles.
 
 At the OS prompt, to create a password protected multifile and print out the
 contents do the following.
@@ -337,12 +339,14 @@ When running the game, the following should be seen::
    mounted
 
 You can check if a certain subfile is encrypted or not using the
-``isSubfileEncrypted`` method, which takes the subfile index as parameter.
+:meth:`~.Multifile.is_subfile_encrypted()` method, which takes the subfile index
+as parameter.
 
 It is possible to have a multifile where different subfiles have different
 encryption, but you will not be able to mount it with the VirtualFileSystem or
 use it with the multify tool. To mount an encrypted file using the
-VirtualFileSystem, pass the password as parameter to the ``mount`` method:
+VirtualFileSystem, pass the password as parameter to the
+:meth:`~.VirtualFileSystem.mount()` method:
 
 
 .. only:: python

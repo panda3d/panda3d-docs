@@ -14,8 +14,8 @@ objects. You can access these audio managers with the following code:
 In :py:obj:`~builtins.base`, :py:obj:`sfxManagerList
 <direct.showbase.ShowBase.ShowBase.sfxManagerList>` is a list of
 :class:`.AudioManager` objects intended to be used for sound effects, and
-:py:obj:`musicManager <direct.showbase.ShowBase.ShowBase.musicManager>` is an :class:`.AudioManager` object intended to be used for
-music.
+:py:obj:`musicManager <direct.showbase.ShowBase.ShowBase.musicManager>` is an
+:class:`.AudioManager` object intended to be used for music.
 
 Each :class:`.AudioManager` object can have 16 different sounds cached at a
 given time. This value is actually set as the ``audio-cache-limit`` in the panda

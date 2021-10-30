@@ -28,7 +28,7 @@ value is below one quarter intensity.
 
    .. code-block:: cpp
 
-      CPT(RenderAttrib) lowPassFilter = AlphaTestAttrib::make(PandaCompareFunc::M_less, 0.25);
+      CPT(RenderAttrib) low_pass_filter = AlphaTestAttrib::make(PandaCompareFunc::M_less, 0.25);
 
 And now, this attribute can be added to a node to enable the action.
 

@@ -4,10 +4,9 @@ Bullet Debug Renderer
 =====================
 
 In the previous "hello world" sample we have been introduced to a few Bullet
-physics objects, for example the rigid body
-(``BulletRigidBodyNode``) or box and plane
-collision shapes (``BulletPlaneShape``,
-``BulletBoxShape``).
+physics objects, for example the rigid body (:class:`.BulletRigidBodyNode`) or
+box and plane collision shapes (:class:`.BulletPlaneShape`,
+:class:`.BulletBoxShape`).
 
 These objects are part of the Panda3D scene graph. But they are not visible.
 In order to be able to actually see a rigid body we had to reparent a visible
@@ -17,25 +16,16 @@ way an object looks like, by choosing whatever visible geometry we want, and
 a rigid body.
 
 But when developing a game it sometimes would be handy to actually see where
-the physical objects are. This is what the
-``BulletDebugNode`` is for. It's not meant
-for users playing the game, but as an aid in finding problems while developing
-the game.
+the physical objects are. This is what the :class:`.BulletDebugNode` is for.
+It's not meant for users playing the game, but as an aid in finding problems
+while developing the game.
 
 The debug node is pretty easy to use. We just need to create such a node,
 place it in the scene graph, and tell the Bullet world that we have such a
 node. From now on Bullet will create a "debug" visualisation of the world's
 content within the debug node, whenever
-
-.. only:: python
-
-   ``doPhysics``
-
-.. only:: cpp
-
-   ``do_physics``
-
-``is called. The following code snippet shows how to do this:``
+:meth:`~panda3d.bullet.BulletWorld.do_physics()` is called. The following code
+snippet shows how to do this:
 
 .. only:: python
 
@@ -76,60 +66,22 @@ content within the debug node, whenever
 
 We can control the amount of information rendered using the following methods:
 
--
+:meth:`~.panda3d.bullet.BulletDebugNode.show_wireframe()`
+   Displays collision shapes in wireframe mode.
 
-.. only:: python
+:meth:`~.panda3d.bullet.BulletDebugNode.show_constraints()`
+   Display limits defined for constraints, e.g. a pivot axis or maximum
+   amplitude.
 
-   showWireframe
+:meth:`~.panda3d.bullet.BulletDebugNode.show_bounding_boxes()`
+   Displays axis aligned bounding boxes for objects.
 
-.. only:: cpp
+:meth:`~.panda3d.bullet.BulletDebugNode.show_normals()`
+   Displays normal vectors for triangle mesh and heightfield faces.
 
-   show_wireframe
-
-  Displays collisions shapes in wireframe mode.
-
--
-
-.. only:: python
-
-   showConstraints
-
-.. only:: cpp
-
-   show_constraints
-
-  Display limits defined for constraints, e. g. a pivot axis or maximum
-  amplitude.
-
--
-
-.. only:: python
-
-   showBoundingBoxes
-
-.. only:: cpp
-
-   show_bounding_boxes
-
-  Displays axis aligned bounding boxes for objects.
-
--
-
-.. only:: python
-
-   showNormals
-
-.. only:: cpp
-
-   show_normals
-
-  Displays normals for triangle mesh and heightfield faces.
-
-There is one thing to pay attention to: By default the
-``BulletDebugNode`` is hidden right after
-creation. If we want to see the debug visualisation from the first frame on we
-have to unhide it, using
-``show()``.
+There is one thing to pay attention to: By default the :class:`.BulletDebugNode`
+is hidden right after creation. If we want to see the debug visualisation from
+the first frame on we have to unhide it, using :meth:`~.NodePath.show()`.
 
 Since debug rendering is not very fast we can turn debug rendering on and off,
 without having to remove the debug node from the scene graph. Turning debug
@@ -147,10 +99,10 @@ F1 key:
       o.accept('f1', toggleDebug)
 
       def toggleDebug():
-        if debugNP.isHidden():
-          debugNP.show()
-        else:
-          debugNP.hide()
+          if debugNP.isHidden():
+              debugNP.show()
+          else:
+              debugNP.hide()
 
 .. only:: cpp
 

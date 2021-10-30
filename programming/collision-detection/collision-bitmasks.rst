@@ -98,14 +98,14 @@ before.
 
 If you need to have only entities with a certain collision mask to be able to
 collide with a model, it is helpful to open the model's egg file and see where
-the collisions are enabled (see :ref:`Egg Syntax <egg-syntax>`). Then you
-would set the collide mask for only that child node, using
-``NodePath.find()`` (see :ref:`NodePath <the-scene-graph>`). For example, to
-create a box into only "ralph" can collide:
+the collisions are enabled (see :ref:`Egg Syntax <egg-syntax>`). Then you would
+set the collide mask for only that child node, using :meth:`.NodePath.find()`
+(see :ref:`NodePath <the-scene-graph>`). For example, to create a box into only
+"ralph" can collide:
 
 .. code-block:: python
 
-   ralph=loader.loadModel("ralph")
+   ralph = loader.loadModel("ralph")
    ralph.setCollideMask(BitMask32.bit(0))
-   box=loader.loadModel("box")
+   box = loader.loadModel("box")
    box.find("**/Cube;+h").setCollideMask(BitMask32.bit(0))

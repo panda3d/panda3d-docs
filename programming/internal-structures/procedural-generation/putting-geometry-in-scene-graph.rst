@@ -37,7 +37,7 @@ rendered.
 The Geom constructor requires a pointer to the GeomVertexData object you will
 be using. There is only one GeomVertexData associated with any particular
 Geom. You can reset the Geom to use a different GeomVertexData later, if you
-like, by calling geom.setVertexData().
+like, by calling :meth:`geom.setVertexData() <.Geom.set_vertex_data>`.
 
 The GeomNode constructor requires a name, which is the name of the node and
 will be visible in the scene graph. It can be any name you like that means

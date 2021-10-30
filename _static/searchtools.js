@@ -480,7 +480,7 @@ var Search = {
         fileMap[file].length != filteredTermCount
       ) continue;
 
-      if (!this.apiMatches && docnames[file].slice(0, 10) == 'reference/') {
+      if ((!this.apiMatches || !this.bodyMatches) && docnames[file].slice(0, 10) == 'reference/') {
         continue;
       }
 
@@ -514,6 +514,10 @@ var Search = {
           }
         }
         if (!docnamematch && !this.bodyMatches) {
+          continue;
+        }
+        if (docnamematch && docnames[file].slice(0, 10) == 'reference/') {
+          // It'll be returned by the object search if it's the title of an API page...
           continue;
         }
 
