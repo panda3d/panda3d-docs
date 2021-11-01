@@ -60,9 +60,10 @@ With most C++ classes the only way forward is to create a new C++ subclass and
 the related Python wrapper around it. However, there is a work-around for
 classes such as PandaNode and NodePath. Both these C++ classes have in fact
 been designed with functionality to store and retrieve python objects on them.
-Specifically, the methods **setPythonTag()**, **getPythonTag()** and
-**hasPythonTag()** are available to respectively store, retrieve and check for
-the existence of a pointer to an arbitrary python object on these C++ objects.
+Specifically, the methods :meth:`~.NodePath.set_python_tag()`,
+:meth:`~.NodePath.get_python_tag()` and :meth:`~.NodePath.has_python_tag()` are
+available to respectively store, retrieve and check for the existence of a
+pointer to an arbitrary Python object on these C++ objects.
 
 This allows us to subclass from the Python wrapper class around the C++ object
 and store, on the C++ object, a pointer to the new sub class.
@@ -152,7 +153,7 @@ For example:
            ## but doesn't catch subclasses of the subclass
            ## or simply other objects that have the same
            ## interface and would work just as well:
-           if type(theInstanceOfASubclass ) == type(MyNewSubclass):
+           if type(theInstanceOfASubclass) == type(MyNewSubclass):
                theInstanceOfASubclass.aVariable = "a new value"
                continue
 
