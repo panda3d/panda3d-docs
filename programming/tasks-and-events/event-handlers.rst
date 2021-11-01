@@ -174,3 +174,20 @@ define a "destroy" method for any custom classes you create, which calls
 
    messenger.send("FireZeMissiles") # No missiles fire
    base.run()
+
+Coroutine Event Handlers
+------------------------
+
+It is permissible for any event handler to be a :term:`coroutine` (i.e. marked
+as an ``async def``), which permits use of the ``await`` keyword inside the
+handler. Usage is otherwise identical to a regular event handler.
+
+.. code-block:: python
+
+   class Test(DirectObject):
+       def __init__(self):
+           self.accept('space', self.on_space)
+
+       async def on_space(self):
+           await Task.pause(1.0)
+           print("The space key was pressed one second ago!")

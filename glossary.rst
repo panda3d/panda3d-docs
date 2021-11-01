@@ -5,15 +5,32 @@ Glossary
 
 .. glossary::
 
+   async
+      Common abbreviation of :term:`asynchronous`.
+
+   asynchronous
+      Term for an operation that is running in the background, as opposed to
+      blocking the flow of the code until it is completed.
+
    bam
       Binary :term:`model` format native to Panda3D, containing a direct
       representation of the memory structure of a Panda3D scene graph, making
       this format quick to load and ideal for caching and distribution.
 
+   coroutine
+      A function that can be suspended and resumed at a later point.
+      See :ref:`coroutines`.
+
    egg
       A :term:`model` file format native to Panda3D which is text-based, meaning
       it can be opened and inspected using a text editor.  It is usually
       produced by one of several :ref:`model exporters <model-export>`.
+
+   future
+      A special handle that represents an :term:`asynchronous` operation that
+      will complete at some point in the future. Sometimes called a "promise" in
+      other programming languages. Implemented in Panda3D via
+      :class:`.AsyncFuture`.
 
    instancing
       The practice of showing a particular 3D model multiple times without

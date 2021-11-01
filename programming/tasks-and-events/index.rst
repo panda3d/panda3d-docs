@@ -16,4 +16,5 @@ rendering steps.
    tasks
    task-chains
    event-handlers
+   coroutines
    main-loop

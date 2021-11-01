@@ -12,6 +12,7 @@ detail.
 .. toctree::
    :maxdepth: 2
 
+   async
    virtual-file-system
    multifiles
    loading-resources-from-memory
