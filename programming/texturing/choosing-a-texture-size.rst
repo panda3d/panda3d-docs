@@ -30,7 +30,7 @@ two instead of down to the next smaller power of two, use:
 
    textures-power-2 up
 
-In your config file. The default is:
+in your config file. The default is:
 
 .. code-block:: text
 
@@ -44,7 +44,7 @@ instead, use:
 
    textures-power-2 pad
 
-In your config file.
+in your config file.
 
 It will then be up to your code to apply ``texture.getTexScale()`` where needed.
 This mode does, of course, prevent using repeated textures.
@@ -56,7 +56,7 @@ game engine scale or pad them automatically.
 Note that the size you choose for the texture image has nothing to do with the
 size or shape of the texture image onscreen--that's controlled by the size and
 shape of the polygon you apply it to. Making a texture image larger won't make
-it make it appear larger onscreen, but it will tend to make it crisper and more
+it appear larger onscreen, but it will tend to make it crisper and more
 detailed. Similarly, making a texture smaller will tend to make it fuzzier.
 
 Padded Textures
