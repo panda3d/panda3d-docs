@@ -41,88 +41,13 @@ Put this in your :ref:`Config.prc <configuring-panda3d>`:
 Asynchronous Operations
 -----------------------
 
-Panda3D provides several useful functions for loading models and doing other
-expensive operations in a thread, so the user of your application will not
-notice chugs in the frame rate.
+Panda3D provides several useful high-level functions for loading models and
+doing other expensive operations in a thread, so the user of your application
+will not notice chugs in the frame rate. These functions are managed by Panda3D
+automatically, so do not require knowledge of threading. It is recommended that
+you first seek out these features before implementing threading yourself.
 
-Model loading
-~~~~~~~~~~~~~
-
-For example, the
-:py:meth:`loader.loadModel() <direct.showbase.Loader.Loader.loadModel>` call
-also accepts an optional 'callback' argument. If callback is not None, then the
-model load will be performed asynchronously. In this case,
-:py:meth:`~direct.showbase.Loader.Loader.loadModel()` will initiate a background
-load and return immediately. The return value will be an object that you may
-call ``.cancel()`` on to cancel the asynchronous request.
-At some later point, when the requested model(s) have finished loading, the
-callback function will be invoked with the n loaded models passed as its
-parameter list.
-It is possible that the callback will be invoked immediately, even before
-:py:meth:`~direct.showbase.Loader.Loader.loadModel()` returns. If you use
-callback, you may also specify a priority, which specifies the relative
-importance over this model over all of the other asynchronous load requests
-(higher numbers are loaded first).
-
-True asynchronous model loading requires Panda to have been compiled with
-threading support enabled. In the absence of threading support, the asynchronous
-interface still exists and still behaves exactly as described, except that
-:py:meth:`~direct.showbase.Loader.Loader.loadModel()` might not return
-immediately.
-
-Model flattening
-~~~~~~~~~~~~~~~~
-
-Similarly, there is :py:meth:`loader.asyncFlattenStrong()
-<direct.showbase.Loader.Loader.asyncFlattenStrong>`. This performs a
-:meth:`model.flattenStrong() <.NodePath.flatten_strong()>` operation in a
-sub-thread (if threading is compiled into Panda). The model may be a single
-:class:`.NodePath`, or it may be a list of NodePaths.
-
-Each model is duplicated and flattened in the sub-thread. If the optional
-``inPlace`` parameter is True, then when the flatten operation completes, the
-newly flattened copies are automatically dropped into the scene graph, in place
-the original models.
-
-If a callback is specified, then it is called after the operation is finished,
-receiving the flattened model (or a list of flattened models).
-
-The ``.cancel()`` method works for asyncFlattenStrong as well.
-
-Texture uploading
-~~~~~~~~~~~~~~~~~
-
-In addition, you can further ask textures to be loaded to the graphics card
-asynchronously. This means that the first time you look at a particular model,
-the texture might not be available; but instead of holding up the frame while we
-wait for it to be loaded, Panda can render the model immediately, with a flat
-color instead of the texture; and start the texture loading in the background.
-When the texture is eventually loaded, it will be applied. This results in fewer
-frame-rate chugs, but it means that the model looks a little weird at first. It
-has the greatest advantage when you are using lazy-load textures as well as
-texture compression, because it means these things will happen in the
-background. You will need these configuration options to enable this behavior::
-
-   preload-textures 0
-   preload-simple-textures 1
-   texture-compression 1
-   allow-incomplete-render 1
-
-Animation loading
-~~~~~~~~~~~~~~~~~
-
-A similar behavior can be enabled for Actors, so that when you have an Actor
-with a large number of animations (too many to preload them all at once), you
-can have the Actor load them on-demand, so that when you play an animation, the
-animation may not start playing immediately, but will instead be loaded in the
-background. Until it is ready, the actor will hold its last pose, and then when
-the animation is fully loaded, the actor will start playing where it would have
-been had the animation been loaded from the beginning. To make this work, you
-have to run all of the animations through ``egg-optchar`` with the ``-preload``
-option, and you might also want to set::
-
-   allow-async-bind 1
-   restore-initial-pose 0
+See :ref:`async-loading` for more information about these features.
 
 Threading
 ---------
