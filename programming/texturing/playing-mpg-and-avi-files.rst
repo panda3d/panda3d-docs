@@ -36,7 +36,7 @@ as a texture, and once as a sound file:
 
    mySound = loader.loadSfx("myMovie.avi")
 
-Then, you can synchonize the video to the audio:
+Then, you can synchronize the video to the audio:
 
 .. code-block:: python
 
@@ -48,9 +48,9 @@ This is more accurate than synchronizing the video manually.
 For powers-of-two limited graphics hardware
 -------------------------------------------
 
-If your graphics hardware does not support non power-of-two texture, your movie
+If your graphics hardware does not support non power-of-two textures, your movie
 texture size would be shifted up to the next larger power of two size. For
-example, it you have a movie of 640 x 360 in size, the generated texture would
+example, if you have a movie of 640 x 360 in size, the generated texture would
 be actually 1024 x 512. The result is a texture that contains a movie in the
 lower-left corner, and a black pad region to the right and upper portion of the
 texture.
