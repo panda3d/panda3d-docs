@@ -1,5 +1,6 @@
 {
     "programming/internal-structures/matrix-representation": "programming/math-engine/matrix-representation",
+    "programming/advanced-loading/async": "programming/threading",
     "programming/advanced-loading/multifiles": "programming/multifiles/index",
     "programming/advanced-loading/loading-resources-from-memory": "programming/multifiles/loading-resources-from-nonstandard-sources",
     "programming/advanced-loading/patching": "programming/multifiles/patching",
