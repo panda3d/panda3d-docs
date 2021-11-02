@@ -52,10 +52,10 @@ minute. The three Keep values tell this attribute never to modify the values in
 the buffer. Next is the reference value for the comparison function. Before the
 reference value is passed to the comparison function, however, it is bitwise
 ANDed with a mask. In our case, we're interested in reading but not in writing
-the stencil buffer, so we pass 1 and 0 for the read and write masks,
+to the stencil buffer, so we pass 1 and 0 for the read and write masks,
 respectively. These masks are the last two parameters for the StencilAttrib.
 
-Next, we'll look at a stencil attribute that writes the stencil buffer.
+Next, we'll look at a stencil attribute that writes to the stencil buffer.
 Presumably, these two functions will work in tandem to create an effect.
 
 .. code-block:: python

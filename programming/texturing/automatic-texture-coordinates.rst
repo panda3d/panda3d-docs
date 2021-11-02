@@ -84,7 +84,7 @@ the object, the object's (x, y) position will be used to look up colors in the
 texture.
 
 For instance, the teapot.egg sample model that ships with Panda has no texture
-coordinates built in the model, so you cannot normally apply a texture to it.
+coordinates built into the model, so you cannot normally apply a texture to it.
 But you can enable automatic generation of texture coordinates and then apply a
 texture:
 

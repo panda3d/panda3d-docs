@@ -8,10 +8,10 @@ Color and the Model Loader
 
 When you create a 3D model in Max, Maya, or the like, you can color the model
 right in the modeling program. I'm not talking about using a texture. I'm
-talking about just setting a single color to the model as whole. This is called
-a "flat color." These art programs also allow you to "paint vertex colors": you
-can color each vertex of the model a different color. Of course, sometimes you
-do neither, in which case the model is just white.
+talking about just setting a single color to the model as a whole. This is
+called a "flat color". These art programs also allow you to "paint vertex
+colors": you can color each vertex of the model a different color. Of course,
+sometimes you do neither, in which case the model is just white.
 
 Every model you load already has a color attribute. Color Attributes are usually
 not created by the programmer explicitly, they're usually created by the model
@@ -55,7 +55,7 @@ You can remove a previous ``setColor`` using ``clearColor``.
 Tinting the Model
 -----------------
 
-Sometimes, you don't want to replace the existing color, sometimes, you want to
+Sometimes, you don't want to replace the existing color; sometimes, you want to
 tint the existing colors. For this, you need setColorScale:
 
 .. code-block:: python

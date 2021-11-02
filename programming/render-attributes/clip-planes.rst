@@ -68,7 +68,7 @@ To see a debug representation of the plane, call :meth:`~.NodePath.show()` on
 the resulting node path.
 
 Finally, we can use :meth:`~.NodePath.setClipPlane()` in order to apply it to
-any node to which the clipping should take effect:
+any node on which the clipping should take effect:
 
 .. only:: python
 

@@ -8,7 +8,7 @@ Materials
 
 Materials affect how the surfaces of models appear when lights are enabled in
 Panda. These have various effects such as how shiny an object appears, the
-brightness of it's colors etc. Material properties are combined with textures
+brightness of its colors etc. Material properties are combined with textures
 and lighting to get the final look of an object.
 
 It must be emphasized that materials only work when lights are applied to an
@@ -135,10 +135,10 @@ get and clear methods as well.
 ========= =================================================================================================================================================================================================================================================================== ================================
 Property  Effects                                                                                                                                                                                                                                                             Setter Method
 ========= =================================================================================================================================================================================================================================================================== ================================
-Ambient   This is the color of the object as it appears in the absence of direct light. This will be the multiplied by any ambient lights in effect on the material to set its base color.                                                                                    material.setAmbient((R,G,B,A))
+Ambient   This is the color of the object as it appears in the absence of direct light. This will be multiplied by any ambient lights in effect on the material to set its base color.                                                                                        material.setAmbient((R,G,B,A))
 Diffuse   This is the primary color of an object; the color of the object as it appears in direct light, in the absence of highlights. This will be multiplied by any lights in effect on the material to get the color in the parts of the object illuminated by the lights. material.setDiffuse((R,G,B,A))
-Emission  This is the color of the object as it appears in the absence of any light whatsover, including ambient light. It is as if the object is glowing by this color (although of course it will not illuminate neighboring objects)                                       material.setEmission((R,G,B,A))
-Shininess This controls the size of the specular highlight spot. In general, larger number produce a smaller specular highlight, which makes the object appear shinier. Smaller numbers produce a larger highlight, which makes the object appear less shiny.                 material.setShininess(\ *float*)
+Emission  This is the color of the object as it appears in the absence of any light whatsoever, including ambient light. It is as if the object is glowing by this color (although of course it will not illuminate neighboring objects)                                      material.setEmission((R,G,B,A))
+Shininess This controls the size of the specular highlight spot. In general, larger numbers produce a smaller specular highlight, which makes the object appear shinier. Smaller numbers produce a larger highlight, which makes the object appear less shiny.                material.setShininess(\ *float*)
 Specular  This is the highlight color of an object: the color of small highlight reflections.                                                                                                                                                                                 material.setSpecular((R,G,B,A))
 ========= =================================================================================================================================================================================================================================================================== ================================
 

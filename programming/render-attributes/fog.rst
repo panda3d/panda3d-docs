@@ -107,7 +107,7 @@ These settings can be modified using the methods ``getLinearOnsetPoint()``,
 ``setLinearRange(float onset, float opaque)`` of :class:`.Fog`.
 
 There is a hardware issue with rendering fog which means that linear fog can
-breakdown and vanish depending on the angle from which it is viewed:
+break down and vanish depending on the angle from which it is viewed:
 
    "the underlying fog effect supported by hardware is generally only
    one-dimensional, and must be rendered based on linear distance from the
@@ -166,11 +166,11 @@ The last line in the sample above doesn't actually affect the fog, however, it
 generally looks better if the scene background color matches the color of the
 fog.
 
-Since ``setFog`` is called on ``render`` it effects the entire scene. ``setFog``
+Since ``setFog`` is called on ``render`` it affects the entire scene. ``setFog``
 can just as easily be called on some other ``NodePath`` and will effect only
 that ``NodePath`` and its children.
 
-The expontential fog effect can be turned off again using ``clearFog``:
+The exponential fog effect can be turned off again using ``clearFog``:
 
 .. code-block:: python
 

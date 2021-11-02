@@ -6,7 +6,7 @@ Accessing Config Vars in a Program
 Panda3D uses a :ref:`configuration file <configuring-panda3d>` named
 Config.prc. Panda3D supplies functions to easily read values out of
 Config.prc, and to alter their values in memory (the modified values are not
-written back out to disk). The ability to read an alter configuration settings
+written back out to disk). The ability to read and alter configuration settings
 procedurally has two major uses:
 
 #. Storing your own configuration data.
@@ -158,10 +158,9 @@ For example, let's say that Panda3D's configuration file contains this line:
 
    fullscreen #f
 
-By default, Panda3D
-programs will run in a window; not fullscreen. However, if you do this, then
-by the time you instantiate ShowBase, you will have changed the
-fullscreen-flag to true, and your program will run in fullscreen.
+By default, Panda3D programs will run in a window, not fullscreen. However, if
+you do this, then by the time you instantiate ShowBase, you will have changed
+the fullscreen-flag to true, and your program will run in fullscreen.
 
 .. only:: python
 

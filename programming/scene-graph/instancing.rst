@@ -23,7 +23,7 @@ Here is the scene graph that we just created:
 This works fine, but it is a little expensive. Animating a model involves a lot
 of per-vertex matrix calculations. In this case, we're animating 50 copies of
 the exact same model using 50 copies of the exact same animation. That's a lot
-of redundant calculation. It would seem that there must be some way avoid
+of redundant calculations. It would seem that there must be some way to avoid
 calculating the exact same values 50 times. There is: the technique is called
 instancing.
 
@@ -46,7 +46,7 @@ Here is a diagram of the scene graph we just created:
 
 .. image:: instancing2.jpg
 
-It's not a tree any more, it is a directed acyclic graph. But the renderer
+It's not a tree anymore, it is a directed acyclic graph. But the renderer
 still traverses the graph using a recursive tree-traversal algorithm. As a
 result, it ends up traversing the dancer node 50 times. Here is a diagram of
 the depth-first traversal that the renderer takes through the graph. Note that

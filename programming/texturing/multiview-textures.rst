@@ -20,7 +20,7 @@ as stereo textures. View 0 is presented to the left eye, and view 1 is presented
 to the right eye. Additional views beyond view 1 are not used.
 
 A multiview texture is loaded as a series of independent texture images (similar
-to the way a cube map or 3-D texture is loaded). Each image is numbered, and
+to the way a cube map or 3-D texture is loaded). Each image is numbered, and the
 first image (or left image) is image number 0. The right image is image number
 1. If there are additional views, they are numbered consecutively from there.
 All of the images in the series must have the same filename, except for the
@@ -73,7 +73,7 @@ a stereo texture, which contains a left and a right view. It is possible to have
 a stereo 3-D texture, which contains a left and a right view that both contain
 height, width, and depth.) When loading a multiview 3-D texture, you must
 specify the number of views explicitly, because Panda won't be able to figure
-that out based on the number of images files alone.
+that out based on the number of image files alone.
 
 .. only:: python
 
