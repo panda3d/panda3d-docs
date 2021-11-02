@@ -29,9 +29,8 @@ Where ``bits`` is a set of bits indicating what should be written into the
 auxiliary bitplanes.
 
 Although the framebuffer's alpha channel is not technically an auxiliary
-bitplane. However, since it is not generally used to store any data of value, it
-can also be thought of as an auxiliary bitplane: a place to store user-defined
-data.
+bitplane (basically a place to store user-defined data), it can be thought of as
+such, since it is not generally used to store any data of value.
 
 When the shader generator is not enabled, this attrib has no effect.
 
