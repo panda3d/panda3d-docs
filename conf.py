@@ -404,6 +404,28 @@ inheritance_edge_attrs = {
 at_c_at_p_pattern = re.compile(r'@[cp]\s+([^\s]+)')
 method_class_ref_pattern = re.compile(r'([a-zA-Z_][a-zA-Z0-9_.:]*)\(\)|([a-zA-Z_][a-zA-Z0-9_]*::[a-zA-Z_][a-zA-Z0-9_.:]*)(\(\))?|([a-zA-Z_]+[A-Z0-9_][a-zA-Z0-9_.:]*)(\(\))?')
 
+# Built-in variables automatically resolved in references.
+builtins_types = {
+    'base': 'direct.showbase.ShowBase.ShowBase',
+    'render': 'panda3d.core.NodePath',
+    'render2d': 'panda3d.core.NodePath',
+    'aspect2d': 'panda3d.core.NodePath',
+    'pixel2d': 'panda3d.core.NodePath',
+    'hidden': 'panda3d.core.NodePath',
+    'loader': 'direct.showbase.Loader.Loader',
+    'taskMgr': 'direct.task.Task.TaskManager',
+    'jobMgr': 'direct.showbase.JobManager.JobManager',
+    'eventMgr': 'direct.showbase.EventManager.EventManager',
+    'messenger': 'direct.showbase.Messenger.Messenger',
+    'bboard': 'direct.showbase.BulletinBoard.BulletinBoard',
+    'ostream': 'panda3d.core.Ostream',
+    'globalClock': 'panda3d.core.ClockObject',
+    'vfs': 'panda3d.core.VirtualFileSystem',
+    'cpMgr': 'panda3d.core.ConfigPageManager',
+    'cvMgr': 'panda3d.core.ConfigVariableManager',
+    'pandaSystem': 'panda3d.core.PandaSystem',
+}
+
 
 class ExcludeDocumenter(autodoc.Documenter):
     """Special documenter that excludes certain types from autosummary.
@@ -818,6 +840,17 @@ def on_missing_reference(app, env, node, contnode):
 
     target = node['reftarget']
 
+    variation = getattr(env.app.builder, 'current_variation', None)
+    if variation and variation[0] == 'cpp':
+        domain = env.domains['cpp']
+    else:
+        domain = env.domains['py']
+
+    typ = node['reftype']
+    if domain.name == 'cpp' and typ == 'meth':
+        # C++ domain doesn't have "meth", everything is "func" there.
+        typ = 'func'
+
     # Figure out which part is the module and which part is the class.
     prefix = ''
     module = 'panda3d.core'
@@ -834,23 +867,23 @@ def on_missing_reference(app, env, node, contnode):
     else:
         # Something like .core.NodePath, perhaps?
         modpart = target.split('.', 1)[0]
-        if idb.has_module('panda3d.' + modpart):
+        if '.' in target and modpart in builtins_types and domain.name == 'py':
+            # It's actually the name of a built-in.
+            target = builtins_types[modpart] + '.' + target.split('.', 1)[1]
+            if target.startswith('panda3d.'):
+                parts = target.split('.', 2)
+                module = '.'.join(parts[:2])
+                prefix = module + '.'
+                target = '.'.join(parts[2:])
+            else:
+                refdoc = node.get('refdoc', env.docname)
+                return domain.resolve_xref(env, refdoc, app.builder, typ, target, node, contnode)
+        elif idb.has_module('panda3d.' + modpart):
             module = 'panda3d.' + modpart
             prefix = modpart + '.'
             target = target.split('.', 1)[1]
 
-    variation = getattr(env.app.builder, 'current_variation', None)
-    if variation and variation[0] == 'cpp':
-        domain = env.domains['cpp']
-    else:
-        domain = env.domains['py']
-
     resolved = target and resolve_reference(target, module, domain=domain.name)
-
-    typ = node['reftype']
-    if domain.name == 'cpp' and typ == 'meth':
-        # C++ domain doesn't have "meth", everything is "func" there.
-        typ = 'func'
 
     if resolved and (resolved[0] == typ or typ == 'obj'):
         refdoc = node.get('refdoc', env.docname)
