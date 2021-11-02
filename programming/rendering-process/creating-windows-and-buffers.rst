@@ -3,8 +3,8 @@
 Creating Windows and Buffers
 ============================
 
-Although Panda does provide the convenience function ``base.openWindow()`` to
-create a new window, this function does a lot of things automatically for you
+Although Panda does provide the convenience function :meth:`base.openWindow()`
+to create a new window, this function does a lot of things automatically for you
 and therefore takes away a lot of control. The following discussion will focus
 instead on creating a window using the low-level interface, in order provide a
 clearer understanding of the actual class relationships.
@@ -36,23 +36,31 @@ placement onscreen, whether it should be user-resizable, and so on. You can get
 a default WindowProperties object using :meth:`.WindowProperties.get_default()`.
 The default WindowProperties object has its settings filled in according to
 Config.prc file variables. If you are creating an offscreen buffer, you may wish
-to use :meth:`WindowProperties.size(W, H) <.WindowProperties.size>` which
-creates a simple WindowProperties object that simply requests a buffer of size
-W×H.
+to use ``WindowProperties(size=(W, H))`` which creates a simple WindowProperties
+object that simply requests a buffer of size W×H.
 
 Once you have all of these objects, you can create a new window or buffer using
-the call graphicsEngine.makeOutput(). This is the fundamental method for
-creating a new GraphicsOutput; all of the other convenience functions like
-base.makeWindow() or win.makeTextureBuffer() eventually funnel down into this
-call. This method accepts several parameters:
+the call :meth:`.GraphicsEngine.make_output()`. This is the fundamental method
+for creating a new :class:`.GraphicsOutput`; all of the other convenience
+functions like :py:meth:`base.openWindow()` or :meth:`win.make_texture_buffer()
+<.GraphicsOutput.make_texture_buffer>` eventually funnel down into this call.
+This method accepts several parameters:
 
-.. code-block:: python
+.. only:: python
 
-   base.graphicsEngine.makeOutput(pipe, name, sort, fb_prop, win_prop, flags, gsg, host)
+   .. code-block:: python
 
+      base.graphicsEngine.makeOutput(pipe, name, sort, fb_prop, win_prop, flags, gsg, host)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      GraphicsEngine *engine = GraphicsEngine::get_global_ptr();
+      engine->make_output(pipe, name, sort, fb_prop, win_prop, flags, gsg, host);
 
 pipe
-   The GraphicsPipe to use to create this output, usually ``base.pipe``.
+   The :class:`.GraphicsPipe` to use to create this output, usually ``base.pipe``.
 
 name
    A string name to assign to this output. Each window and buffer should have a
@@ -67,12 +75,12 @@ sort
    buffers.
 
 fb_prop
-   The FrameBufferProperties for this output. If you intend to be sharing GSG’s
-   between multiple windows or buffers, it is usually important that they also
-   share the same FrameBufferProperties.
+   The :class:`.FrameBufferProperties` for this output. If you intend to be
+   sharing GSG’s between multiple windows or buffers, it is usually important
+   that they also share the same :class:`.FrameBufferProperties`.
 
 win_prop
-   The WindowProperties for this output.
+   The :class:`.WindowProperties` for this output.
 
 flags
    An integer value, a union of several possible bitmask options defined by the

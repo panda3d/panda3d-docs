@@ -5,8 +5,10 @@ Generalized Image Filters
 
 .. only:: cpp
 
-   Note: Sorry, but the CommonFilters and FilterManager classes are implemented
-   in Python and will not be of much use to C++ users.
+   .. note::
+
+      Sorry, but the CommonFilters and FilterManager classes are implemented in
+      Python and will not be of much use to C++ users.
 
 The Filter Manager
 ------------------

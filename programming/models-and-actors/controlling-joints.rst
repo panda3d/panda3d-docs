@@ -3,14 +3,30 @@
 Controlling a Joint Procedurally
 ================================
 
-Sometimes one wishes to procedurally take control of a model's joint. For
-example, if you wish to force a character model's eyes to follow the mouse,
-you will need to procedurally take control of the neck and head. To achieve
-this, use :py:meth:`~direct.actor.Actor.Actor.controlJoint()`.
+.. only:: python
 
-.. code-block:: python
+   Sometimes one wishes to procedurally take control of a model's joint. For
+   example, if you wish to force a character model's eyes to follow the mouse,
+   you will need to procedurally take control of the neck and head. To achieve
+   this, use :py:meth:`~direct.actor.Actor.Actor.controlJoint()`.
 
-   myNodePath = actor.controlJoint(None, "modelRoot", "Joint Name")
+   .. code-block:: python
+
+      dummy = actor.controlJoint(None, "modelRoot", "Joint Name")
+
+.. only:: cpp
+
+   Sometimes one wishes to procedurally take control of a model's joint. For
+   example, if you wish to force a character model's eyes to follow the mouse,
+   you will need to procedurally take control of the neck and head. To achieve
+   this, use :meth:`.PartBundle.control_joint()`.
+
+   .. code-block:: cpp
+
+      NodePath dummy = model.attach_new_node("dummy");
+      if (bundle->control_joint("Joint Name", dummy)) {
+        std::cerr << "Success!\n";
+      }
 
 This creates a dummy node. Every frame, the transform is copied from the dummy
 node into the joint. By setting the transform of the dummy node, you can control

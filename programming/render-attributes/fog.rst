@@ -76,8 +76,8 @@ Fog Modes
 
 There are three fog modes in Panda: ``Fog.MExponential``,
 ``Fog.MExponentialSquared`` and ``Fog.MLinear``. You can switch the mode of a
-:class:`.Fog` object using :meth:`fog.getMode() <.Fog.get_mode>` and
-:meth:`fog.setMode(Fog.Mode) <.Fog.set_mode>`.
+:class:`.Fog` object using :meth:`fog.get_mode() <.Fog.get_mode>` and
+:meth:`fog.set_mode(Fog.Mode) <.Fog.set_mode>`.
 This explicit mode switching isn't normally necessary, as
 :class:`.Fog` methods implicitly switch the mode for you.
 
@@ -91,7 +91,7 @@ objects the fog affects, it determines the origin and direction of the fog when
 it is in linear mode. When a fog node is in exponential mode its position and
 orientation in the scene graph are irrelevant. Either way, a
 :class:`.Fog` node must be activated by calling
-:meth:`nodePath.setFog(fogNode) <.NodePath.set_fog>` on some :class:`.NodePath`
+:meth:`nodePath.set_fog(fogNode) <.NodePath.set_fog>` on some :class:`.NodePath`
 in the scene graph.
 Which :class:`.NodePath` you call the :meth:`~.NodePath.set_fog` method on
 determines which parts of the scene will be fogged: that :class:`.NodePath` and
@@ -103,20 +103,34 @@ Linear Fog
 This is the default mode. In this mode the position and orientation of a
 :class:`.Fog` node are important.
 A linear-mode :class:`.Fog` node must first be parented into the scene graph,
-then activated by calling :meth:`setFog(fogNode) <.NodePath.set_fog>` on some
+then activated by calling :meth:`set_fog(fogNode) <.NodePath.set_fog>` on some
 :class:`.NodePath` in the scene graph.
 
 Setup a linear fog node at the origin:
 
-.. code-block:: python
+.. only:: python
 
-   colour = (0.5,0.8,0.8)
-   linfog = Fog("A linear-mode Fog node")
-   linfog.setColor(*colour)
-   linfog.setLinearRange(0,320)
-   linfog.setLinearFallback(45,160,320)
-   render.attachNewNode(linfog)
-   render.setFog(linfog)
+   .. code-block:: python
+
+      color = (0.5, 0.8, 0.8)
+      linfog = Fog("A linear-mode Fog node")
+      linfog.setColor(*color)
+      linfog.setLinearRange(0, 320)
+      linfog.setLinearFallback(45, 160, 320)
+      render.attachNewNode(linfog)
+      render.setFog(linfog)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      LColor color(0.5,0.8,0.8);
+      PT(Fog) linfog = new Fog("A linear-mode Fog node");
+      linfog->set_color(color);
+      linfog->set_linear_range(0, 320);
+      linfog->set_linear_fallback(45, 160, 320);
+      render.attach_new_node(linfog);
+      render.set_fog(linfog);
 
 In linear mode, the onset and opaque distances of the fog are defined as offsets
 along the local forward (+Y) axis of the fog node. The onset distance is the
@@ -145,7 +159,7 @@ breakdown and vanish depending on the angle from which it is viewed:
    breakdown of the effect at a 90 degree angle."
 
 The :class:`.Fog` method
-:meth:`setLinearFallback(float angle, float onset, float opaque) <.Fog.set_linear_fallback>`
+:meth:`set_linear_fallback(float angle, float onset, float opaque) <.Fog.set_linear_fallback>`
 defines how the fog should be rendered when the fog effect is diminished in this
 way. ``angle`` is the minimum viewing angle (angle between the camera direction
 and fog direction) at which the fallback effect will be employed. ``onset`` and
@@ -208,7 +222,7 @@ scene. :meth:`~.NodePath.set_fog()` can just as easily be called on some other
 :class:`.NodePath` and will effect only that :class:`.NodePath` and its
 children.
 
-The expontential fog effect can be turned off again using
+The exponential fog effect can be turned off again using
 :meth:`~.NodePath.clear_fog()`:
 
 .. only:: python

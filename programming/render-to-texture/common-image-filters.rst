@@ -5,8 +5,10 @@ Common Image Filters
 
 .. only:: cpp
 
-   Note: Sorry, but the CommonFilters and FilterManager classes are implemented
-   in Python and will not be of much use to C++ users.
+   .. note::
+
+      Sorry, but the CommonFilters and FilterManager classes are implemented in
+      Python and will not be of much use to C++ users.
 
 The purpose of the :py:class:`~direct.filter.CommonFilters.CommonFilters` class
 is to make it easy to set up a number of common image postprocessing operations.

@@ -3,6 +3,12 @@
 OnscreenImage
 =============
 
+.. only:: cpp
+
+   .. note::
+
+      This convenience class is only available in the Python API.
+
 Just like :ref:`onscreentext`, you can use OnscreenImage as a quick way to put
 an image onscreen. Use an OnscreenImage whenever you want a quick way to display
 an ordinary image without a lot of fancy requirements.

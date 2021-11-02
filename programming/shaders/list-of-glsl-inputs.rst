@@ -64,9 +64,9 @@ white.
 
 In 1.10, p3d_Color respects the ColorAttrib rules that also applied to the
 fixed-function pipeline: p3d_Color will contain a white color if the vertex
-colors are absent or if colors are disabled using ``set_color_off()``, and a
-flat color if one is applied using ``set_color()``, even if vertex colors are
-present.
+colors are absent or if colors are disabled using
+:meth:`~.NodePath.set_color_off()`, and a flat color if one is applied using
+:meth:`~.NodePath.set_color()`, even if vertex colors are present.
 
 If you are absolutely certain that the model does not have vertex colors, you
 may also declare p3d_Color as a uniform instead of a vertex attribute.

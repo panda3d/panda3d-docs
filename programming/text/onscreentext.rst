@@ -3,6 +3,13 @@
 OnscreenText
 ============
 
+.. only:: cpp
+
+   .. note::
+
+      This convenience class is only available in the Python API.
+      See :ref:`text-node` for the underlying class that is available in C++.
+
 The OnscreenText object is a convenience wrapper around
 :ref:`TextNode <text-node>`. You can use it as a quick way to put text onscreen
 without having to go through the trouble of creating a TextNode and setting

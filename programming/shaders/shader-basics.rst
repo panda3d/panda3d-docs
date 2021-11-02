@@ -310,6 +310,18 @@ on a node, and ``set_shader_input("w", 2, priority=500)`` on the child, then the
 child will contain ("w"==1), because the priority 1000 overrides the priority
 500.
 
+.. only:: python
+
+   To set multiple shader inputs at once, it is most efficient to use a single
+   call to :meth:`~.NodePath.set_shader_inputs()`:
+
+   .. code-block:: python
+
+      myModel.setShaderInputs(
+          tint=(1.0, 0.5, 0.5, 1.0),
+          tex=myTexture,
+      )
+
 Shader Render Attributes
 ------------------------
 

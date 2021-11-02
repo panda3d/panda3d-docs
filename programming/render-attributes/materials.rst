@@ -111,19 +111,32 @@ Creating and Using Materials
 
 To use explicit materials, import the Materials module when you first begin
 your script. Then creating Materials is a matter of creating instances of the
-Material class and setting the relevant properties:
+:class:`.Material` class and setting the relevant properties:
 
-.. code-block:: python
+.. only:: python
 
-   import direct.directbase.DirectStart
-   from panda3d.core import Material
+   .. code-block:: python
 
-   myMaterial = Material()
-   myMaterial.setShininess(5.0) #Make this material shiny
-   myMaterial.setAmbient((0, 0, 1, 1)) #Make this material blue
+      import direct.directbase.DirectStart
+      from panda3d.core import Material
 
-   myNode = loader.loadModel("panda") #Load the model to apply the material to
-   myNode.setMaterial(myMaterial) #Apply the material to this nodePath
+      myMaterial = Material()
+      myMaterial.setShininess(5.0) # Make this material shiny
+      myMaterial.setAmbient((0, 0, 1, 1)) # Make this material blue
+
+      myNode = loader.loadModel("panda") # Load the model to apply the material to
+      myNode.setMaterial(myMaterial) # Apply the material to this nodePath
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      PT(Material) mat = new Material;
+      mat->set_shininess(5.0); // Make this material shiny
+      mat->set_ambient(LColor(0, 0, 1, 1)); // Make this material blue
+
+      NodePath model = window->load_model(window->get_render(), "panda"); // Load the model to apply the material to
+      model.set_material(mat); // Apply the material to this nodePath
 
 Material Properties
 -------------------
