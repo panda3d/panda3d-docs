@@ -248,8 +248,8 @@ Z-Brush, Crazy Bump, and the like which create normal maps.
 
 See also: :ref:`bump-mapping`
 
-Normal only function when :ref:`shader generation <the-shader-generator>` is
-enabled.
+Normal maps only function when :ref:`shader generation <the-shader-generator>`
+is enabled.
 
 Height / Parallax Map Mode
 --------------------------

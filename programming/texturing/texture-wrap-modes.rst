@@ -128,7 +128,7 @@ WM_border_color
 The above blue color was chosen for illustration purposes; you can use any color
 you like for the border color. (However, some hardware may not efficiently
 support a border color other than opaque white, transparent white, opaque black
-and transparent black) Normally, you would use the background color of the
+and transparent black.) Normally, you would use the background color of the
 texture as the border color, like this:
 
 .. only:: python
@@ -233,7 +233,7 @@ thin line along the edge of your polygon, like this:
 
 This is a particularly common error with a texture that is painted as an alpha
 cutout, where there is an image with a fully transparent background: you will
-often see an thin, barely-visible edge floating along the top (for instance) of
+often see a thin, barely-visible edge floating along the top (for instance) of
 the polygon. This edge is actually the bottom edge of the texture bleeding onto
 the top, because the designer specified ``WM_repeat`` instead of the correct
 mode, ``WM_clamp``.

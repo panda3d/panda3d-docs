@@ -8,7 +8,7 @@ Materials
 
 Materials affect how the surfaces of models appear when lights are enabled in
 Panda. These have various effects such as how shiny an object appears, the
-brightness of it's colors etc. Material properties are combined with textures
+brightness of its colors etc. Material properties are combined with textures
 and lighting to get the final look of an object.
 
 It must be emphasized that materials only work when lights are applied to an
@@ -148,10 +148,10 @@ get and clear methods as well.
 ========= =================================================================================================================================================================================================================================================================== ================================
 Property  Effects                                                                                                                                                                                                                                                             Setter Method
 ========= =================================================================================================================================================================================================================================================================== ================================
-Ambient   This is the color of the object as it appears in the absence of direct light. This will be the multiplied by any ambient lights in effect on the material to set its base color.                                                                                    :meth:`material.set_ambient((R,G,B,A)) <.Material.set_ambient>`
+Ambient   This is the color of the object as it appears in the absence of direct light. This will be multiplied by any ambient lights in effect on the material to set its base color.                                                                                        :meth:`material.set_ambient((R,G,B,A)) <.Material.set_ambient>`
 Diffuse   This is the primary color of an object; the color of the object as it appears in direct light, in the absence of highlights. This will be multiplied by any lights in effect on the material to get the color in the parts of the object illuminated by the lights. :meth:`material.set_diffuse((R,G,B,A)) <.Material.set_diffuse>`
-Emission  This is the color of the object as it appears in the absence of any light whatsover, including ambient light. It is as if the object is glowing by this color (although of course it will not illuminate neighboring objects)                                       :meth:`material.set_emission((R,G,B,A)) <.Material.set_emission>`
-Shininess This controls the size of the specular highlight spot. In general, larger number produce a smaller specular highlight, which makes the object appear shinier. Smaller numbers produce a larger highlight, which makes the object appear less shiny.                 :meth:`material.set_shininess(0..128) <.Material.set_shininess>`
+Emission  This is the color of the object as it appears in the absence of any light whatsoever, including ambient light. It is as if the object is glowing by this color (although of course it will not illuminate neighboring objects)                                      :meth:`material.set_emission((R,G,B,A)) <.Material.set_emission>`
+Shininess This controls the size of the specular highlight spot. In general, larger numbers produce a smaller specular highlight, which makes the object appear shinier. Smaller numbers produce a larger highlight, which makes the object appear less shiny.                :meth:`material.set_shininess(0..128) <.Material.set_shininess>`
 Specular  This is the highlight color of an object: the color of small highlight reflections.                                                                                                                                                                                 :meth:`material.set_specular((R,G,B,A)) <.Material.set_specular>`
 ========= =================================================================================================================================================================================================================================================================== ================================
 

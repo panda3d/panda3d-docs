@@ -58,7 +58,7 @@ disappear, and the second argument is the "near" distance at which it will
 appear.
 
 Continue this pattern to add as many levels of detail as you like. For your
-lowest level of LOD the far distance will be where the model will disappear.
+lowest level of detail the far distance will be where the model will disappear.
 If you would prefer it to stay visible even when very far away then use a
 sufficiently large number for the far distance.
 

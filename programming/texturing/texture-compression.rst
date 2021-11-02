@@ -7,7 +7,7 @@ You may be familiar with image file formats like JPEG, which can compress image
 data dramatically and make image files much smaller than they would be
 otherwise, in return for sacrificing a tiny bit of the original image quality.
 
-JPEG compression only applies onto to the image size on disk, however. Once you
+JPEG compression only applies to the image size on disk, however. Once you
 load a texture image into memory, whether it came from a JPEG, PNG, or TGA file,
 it always takes up the same amount of texture memory on your graphics card
 (based on the size of the texture).

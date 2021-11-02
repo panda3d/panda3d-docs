@@ -19,7 +19,7 @@ of a small island, then the coffee cup, the table, and the island are all
 models: each is a piece of static non-animated geometry.
 
 Many engines provide tools to create terrain, and store that terrain into
-heightmap images. Panda3D can generate geometry for kind of heightmap terrains,
+heightmap images. Panda3D can generate geometry for a kind of heightmap terrain;
 refer to the :ref:`terrain` section for more information. For many simple
 terrains, though, many people prefer to use a static model rather than a
 heightmap image.

@@ -8,10 +8,10 @@ Color and the Model Loader
 
 When you create a 3D model in Max, Maya, or the like, you can color the model
 right in the modeling program. I'm not talking about using a texture. I'm
-talking about just setting a single color to the model as whole. This is called
-a "flat color." These art programs also allow you to "paint vertex colors": you
-can color each vertex of the model a different color. Of course, sometimes you
-do neither, in which case the model is just white.
+talking about just setting a single color to the model as a whole. This is
+called a "flat color". These art programs also allow you to "paint vertex
+colors": you can color each vertex of the model a different color. Of course,
+sometimes you do neither, in which case the model is just white.
 
 Every model you load already has a color attribute. Color Attributes are usually
 not created by the programmer explicitly, they're usually created by the model
@@ -64,7 +64,7 @@ You can remove a previous :meth:`~.NodePath.set_color()` using
 Tinting the Model
 -----------------
 
-Sometimes, you don't want to replace the existing color, sometimes, you want to
+Sometimes, you don't want to replace the existing color; sometimes, you want to
 tint the existing colors. For this, you need setColorScale:
 
 .. only:: python
@@ -137,7 +137,7 @@ A Note about Color Spaces
 All colors that Panda3D expects are floating-point values between 0.0 and 1.0.
 Panda3D performs no correction or color space conversion before writing them
 into the framebuffer.  This means that if you are using a linear workflow (ie.
-you are have set ``framebuffer-srgb`` in Config.prc or are using a
+you have set ``framebuffer-srgb`` in Config.prc or are using a
 post-processing filter that converts the rendered image to sRGB), all colors
 are specified in "linearized sRGB" instead of gamma-encoded sRGB.  Applying a
 color obtained from a color picker is no longer as simple as dividing by 255!

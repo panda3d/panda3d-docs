@@ -6,9 +6,9 @@ Depth Test and Depth Write
 Enabling or Disabling the Depth Buffer
 --------------------------------------
 
-By default, depth buffer is enabled and functions normally. It is possible to
-turn off the use of the depth buffer. It is also possible to alter the behavior
-of the depth buffer.
+By default, the depth buffer is enabled and functions normally. It is possible
+to turn off the use of the depth buffer. It is also possible to alter the
+behavior of the depth buffer.
 
 The most common thing to want to do is to disable the depth-write. This means
 that geometry will still be tested against the depth buffer, but it will not

@@ -8,7 +8,7 @@ similar to a :ref:`3-D texture <3d-textures>`, in that it requires 3-D texture
 coordinates (u, v, w); also, a cube map is stored on disk as a sequence of
 ordinary 2-D images.
 
-But unlike a 3-D texture, which is defined by stacking up an arbitrary number
+But unlike a 3-D texture, which is defined by stacking up an arbitrary number of
 2-D images like pancakes to fill up a volume, a cube map is always defined with
 exactly six 2-D images, which are folded together to make a cube.
 
@@ -51,7 +51,7 @@ the faces are oriented, as long as you always generate your cube map images the
 same way.
 
 In some sense, a cube map is a kind of surface texture, like an ordinary 2-D
-texture. But in other sense, it is also volumetric like a 3-D texture: every
+texture. But in another sense, it is also volumetric like a 3-D texture: every
 point within the 3-D texture coordinate space is colored according to the face
 of the cube it comes closest to. A sphere model with the cube map applied to it
 would pick up the same six faces:
