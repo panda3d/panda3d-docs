@@ -65,8 +65,7 @@ Table of Contents
    :maxdepth: 1
 
    faq
+   samples/index
+   cheat-sheets
    user-contributed-tutorials-and-examples
    video-tutorials
-   cheat-sheets
-   irc-channel
-   samples/index

@@ -1,3 +1,5 @@
+:orphan:
+
 .. _the-irc-channel:
 
 The IRC Channel

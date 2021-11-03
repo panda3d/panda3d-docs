@@ -1,7 +1,11 @@
 .. _faq:
 
-FAQ
-===
+Frequently Asked Questions
+==========================
+
+.. contents:: Table of Contents
+   :local:
+   :backlinks: none
 
 What are the .pz files I am seeing in the samples?
 --------------------------------------------------
