@@ -1,6 +1,6 @@
 .. _hardware-support:
 
-Hardware support
+Hardware Support
 ================
 
 Panda3D provides multiple ways to access the various devices connected to your

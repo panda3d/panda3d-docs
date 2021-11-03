@@ -42,6 +42,6 @@ And now, this attribute can be added to a node to enable the action.
 
    .. code-block:: cpp
 
-      nodePath.set_attrib(lowPassFilter);
+      nodePath.set_attrib(low_pass_filter);
 
 

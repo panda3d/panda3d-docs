@@ -8,22 +8,26 @@ This allows users to see if their files have converted correctly without having
 to create a Panda3D program. Pview is accessed through a command prompt.
 
 To view a model that has been converted to an egg or bam file, type the
-following:
+following::
 
-``pview modelFile.egg``
+   pview modelFile.egg
 
 To view a character model with animations, simply add the name of the file with
 the animation.
 
-``pview modelFile.egg animationFile.egg``
+::
+
+   pview modelFile.egg animationFile.egg
 
 Here's an example based on the panda model distributed with panda source.
 
-``pview panda.egg``
+::
+
+   pview panda.egg
 
 A new window should pop-up and here's what you should see:
 
-|pviewsample.jpg|
+.. image:: pviewsample.jpg
 
 There are some controls and hotkeys available while using pview. To see the
 whole list press shift-question mark in the pview window. To turn this list off
@@ -61,5 +65,3 @@ W                           Toggle wireframe
 escape                      Close Window
 q                           Close Window
 =========================== ====================================================
-
-.. |pviewsample.jpg| image:: pviewsample.jpg

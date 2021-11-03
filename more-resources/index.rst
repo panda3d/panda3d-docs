@@ -55,7 +55,7 @@ Python. Very fast user interface. Models can be exported to Panda3D using the
 editor. Useful for converting image formats, creating and editing textures.
 
 `Audacity <https://www.audacityteam.org/>`__. Audacity is free, open source
-software for recording and editing sounds. It is available for Mac OS X,
+software for recording and editing sounds. It is available for macOS,
 Microsoft Windows, GNU/Linux, and other operating systems.
 
 Table of Contents

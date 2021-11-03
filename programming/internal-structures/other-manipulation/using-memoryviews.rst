@@ -11,7 +11,7 @@ alternative to using
 (as described in :ref:`creating-and-filling-a-geomvertexdata`) is to use
 :py:class:`memoryview` objects to alter the contents of this structure directly.
 Other object types that implement the buffer protocol are :py:class:`bytearray`
-and :py:class:`bytearray` in Python, as well as ``numpy`` arrays, so it's
+and :py:class:`array.array` in Python, as well as ``numpy`` arrays, so it's
 possible to seamlessly pass data between these and memoryviews.
 
 A memoryview can be used to change the values in a vertex array, but also to add
@@ -198,7 +198,7 @@ previous example, this can be accomplished using code like the following:
    v_data.set_num_rows(old_count - 4)
 
    old_count = tris_prim.get_num_vertices()
-   start = side_index * 6 (2 triangles, thus 6 vertex indices)
+   start = side_index * 6 # (2 triangles, thus 6 vertex indices)
    # just like the vertex data rows, the corresponding indices in the primitive
    # will be overwritten with those following them;
    # the latter additionally need to be offset, otherwise they would reference
