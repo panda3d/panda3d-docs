@@ -51,5 +51,4 @@ manual by studying the :ref:`Reference Section <reference>`.
    physics/index
    networking/index
    advanced-loading/index
-   threading
    pandai/index

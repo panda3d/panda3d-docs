@@ -22,5 +22,6 @@
     "programming/garbage-collection/index": "programming/object-management/index",
     "programming/garbage-collection/reference-counting": "programming/object-management/reference-counting",
     "programming/garbage-collection/removing-custom-class-instances": "programming/object-management/removing-custom-class-instances",
-    "programming/subclassing": "programming/object-management/subclassing"
+    "programming/subclassing": "programming/object-management/subclassing",
+    "programming/threading": "programming/tasks-and-events/threading"
 }
