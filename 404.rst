@@ -3,10 +3,14 @@
 Not Found
 =========
 
-The requested page was not found in this version of the documentation.  It may
-exist in a previous version; use the version selector in the sidebar to try a
-different version.  Otherwise, the search feature may help you find what you are
+The requested page was not found in this version of the documentation. It may
+exist in a different version; use the version selector in the sidebar to try a
+different version. Otherwise, the search feature may help you find what you are
 looking for.
+
+.. raw:: html
+
+   <!--INSERT-->
 
 If you have arrived here because you followed a link in the official
 documentation, please
