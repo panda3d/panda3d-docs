@@ -9,11 +9,10 @@ Since :class:`.GeomVertexArrayData` supports the buffer protocol (as of Panda3D
 alternative to using
 :ref:`GeomVertexWriter/Reader/Rewriter <more-about-geomvertexreader-geomvertexwriter-and-geomvertexrewriter>`
 (as described in :ref:`creating-and-filling-a-geomvertexdata`) is to use
-`memoryviews <https://docs.python.org/3/library/stdtypes.html?highlight=memoryview#memoryview>`__
-to alter the contents of this data structure directly.
-Other object types that implement the buffer protocol are ``array.array`` and
-``bytearray`` in Python, as well as ``numpy`` arrays, so it's possible to
-seamlessly pass data between these and memoryviews.
+:py:class:`memoryview` objects to alter the contents of this structure directly.
+Other object types that implement the buffer protocol are :py:class:`bytearray`
+and :py:class:`bytearray` in Python, as well as ``numpy`` arrays, so it's
+possible to seamlessly pass data between these and memoryviews.
 
 A memoryview can be used to change the values in a vertex array, but also to add
 values right after the creation of the array.
@@ -21,11 +20,11 @@ values right after the creation of the array.
 Creating geometry
 -----------------
 
-Let's start with a very simple example, where a ``GeomVertexData`` is created
-with the :ref:`pre-defined format <pre-defined-vertex-formats>`
-``GeomVertexFormat.get_v3()``, such that the resulting data object will consist
-of only a single array, containing the model-space vertex coordinates.
-A memoryview of that array can be created as follows:
+Let's start with a very simple example, where a :class:`.GeomVertexData` is
+created with the :ref:`pre-defined format <pre-defined-vertex-formats>`
+:meth:`.GeomVertexFormat.get_v3()`, such that the resulting data object will
+consist of only a single array, containing the model-space vertex coordinates. A
+memoryview of that array can be created as follows:
 
 .. code-block:: python
 
@@ -63,7 +62,7 @@ Filling in the newly created vertex data can be done like this:
 
 Similarly, the GeomPrimitive that combines the vertices into renderable geometry
 can be filled using a memoryview as well. After all, the return value of
-``GeomPrimitive.modify_vertices`` is also a GeomVertexArrayData.
+:meth:`.GeomPrimitive.modify_vertices` is also a :class:`.GeomVertexArrayData`.
 Let's assume we want to render a square consisting of two triangles:
 
 .. code-block:: python
@@ -115,7 +114,7 @@ In this case, it is no longer possible to assign the values directly; they have
 to be converted to bytes.
 
 As an example, here is some code that makes use of the
-``GeomVertexFormat.get_v3n3c4t2()`` format:
+:meth:`.GeomVertexFormat.get_v3n3c4t2()` format:
 
 .. code-block:: python
 
