@@ -16,5 +16,3 @@ of bad performance in your game.
    messages. You might want to consider output buffering or, on Windows, using
    pythonw (python running with windows subsystem instead of console subsystem)
    if you are experiencing this issue.
-
-

@@ -39,7 +39,11 @@ silly (but destructive) bug. Here are some examples of bugs that I have seen:
    anyone else had ever fired was still flying through space, and the animation
    system was working like crazy to animate tens of thousands of bullets.
 
--  Think of another example here.
+-  A team had gone through the effort of creating optimized collision geometry
+   for their scenes, but they accidentally forgot to disable the collision check
+   against the unoptimized visible geometry. Now, Panda3D was spending a lot of
+   time checking collisions against both the optimized and the highly detailed,
+   unoptimized collision geometry.
 
 I cannot emphasize this too much: do not redesign your game, until you are sure
 that the problem isn't a typo! Imagine how irritated you would be if you wrote

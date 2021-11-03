@@ -3,6 +3,12 @@
 Excessive Fill
 ==============
 
+The fill rate of the video card is number of pixels it can render per second.
+Objects that are occluded (behind other objects) still consume fill rate. The
+total fill-consumption of the scene is the total screen real estate of all
+objects, including the occluded ones. Particles, in particular, can consume
+fill-rate like crazy, especially if the camera gets close to the particles.
+
 Transparency
 ------------
 
@@ -23,5 +29,3 @@ fully transparent, using M_dual may provide an improvement over M_alpha.
 
 For a more in-depth explanation on the various transparency modes, see
 :ref:`transparency-and-blending`.
-
-

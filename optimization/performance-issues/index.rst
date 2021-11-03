@@ -37,7 +37,7 @@ to least likely. Each of these has a section to explain it in greater detail.
    occluded ones. Particles, in particular, can consume fill-rate like crazy,
    especially if the camera gets close to the particles.
 
-   :ref:`memory-full`. A floating point-number takes four bytes. Just one
+   :ref:`memory-full`. A floating-point number takes four bytes. Just one
    vertex contains (X,Y,Z), and a normal, and a texture coordinate. An RGBA
    color takes four bytes, so a 1024x1024 texture is four megabytes. Do the
    math, and you'll see how fast it all adds up.
