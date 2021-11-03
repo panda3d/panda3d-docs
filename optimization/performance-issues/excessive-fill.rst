@@ -1,7 +1,7 @@
 .. _excessive-fill:
 
-Performance Issue: Excessive Fill
-=================================
+Excessive Fill
+==============
 
 Transparency
 ------------

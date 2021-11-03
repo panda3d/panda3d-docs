@@ -1,7 +1,7 @@
 .. _too-many-shader-instructions:
 
-Performance Issue: Too Many Shader Instructions
-===============================================
+Too Many Shader Instructions
+============================
 
 This only can happen if you have at least one :meth:`.NodePath.set_shader()` or
 :meth:`.NodePath.set_shader_auto()` method call in your application, or you are

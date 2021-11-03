@@ -1,7 +1,7 @@
 .. _too-many-text-updates:
 
-Performance Issue: Too Many Text Updates
-========================================
+Too Many Text Updates
+=====================
 
 If you are using the :ref:`TextNode <text-node>` or :ref:`onscreentext` (or
 similar) interfaces, and you have large chunks of text changing every frame, you

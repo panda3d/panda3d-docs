@@ -1,7 +1,7 @@
 .. _miscellaneous:
 
-Performance Issue: Miscellaneous
-================================
+Miscellaneous
+=============
 
 This page lists a number of miscellaneous things that can possibly be a cause
 of bad performance in your game.

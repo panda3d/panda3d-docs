@@ -1,10 +1,7 @@
 .. _python-calculation:
 
-Performance Issue: Python Calculation
-=====================================
-
-Performance Issue: Python Calculation
--------------------------------------
+Python Calculation
+==================
 
 The Panda3D engine is mostly written in C++, not Python. It would be false to
 assume that Panda3D is always slower than other game engines when used with

@@ -1,11 +1,7 @@
 .. _too-many-polygons:
 
-Performance Issue: Too Many Polygons
-====================================
-
-Performance Issue: Too Many Polygons
-------------------------------------
-
+Too Many Polygons
+=================
 
 Even though modern GPUs can handle millions of polygons and vertex data takes
 little space in RAM, there is still a limit and it's not very difficult to
@@ -25,7 +21,7 @@ a joint, even though the GPU will render the mesh at the same speed, the
 calculations done for the animation can get expensive themselves. You can
 easily find out the time spent on skinning with PStats:
 
-|Pstats-skinning-time.png|
+.. image:: pstats-skinning-time.png
 
 Other factors might affect the performance which are not solely based on the
 polygon count. Is your mesh textured? is it shaded? Does it have the
@@ -55,5 +51,3 @@ polygons, there are few optimizations you can do.
    :ref:`far distance or far plane <lenses-and-field-of-view>` of the camera
    lens. Anything farther than the far plane of the camera lens won't be
    rendered. You can use :ref:`fog <fog>` to hide the clipping.
-
-.. |Pstats-skinning-time.png| image:: pstats-skinning-time.png

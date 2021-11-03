@@ -1,7 +1,7 @@
 .. _too-many-meshes:
 
-Performance Issue: Too Many Meshes
-==================================
+Too Many Meshes
+===============
 
 If you have too many nodes/meshes in your scene, this might result in slow
 performance. You can check your Geom count in
