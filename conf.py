@@ -16,10 +16,19 @@ import sys
 import os
 import types
 import re
-from sphinx_interrogatedb import idb
 from sphinx.ext import autodoc
 from docutils import nodes
-from panda3d.interrogatedb import *
+
+build_api_reference = True
+
+try:
+    from panda3d.interrogatedb import *
+    from sphinx_interrogatedb import idb
+except ImportError as ex:
+    print("Could not import Panda3D modules:")
+    print(ex)
+    print("Skipping building building the API reference.")
+    build_api_reference = False
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -43,9 +52,11 @@ extensions = [
     'sphinxcontrib.napoleon',
     'sphinx.ext.inheritance_diagram',
     'sphinx.ext.viewcode',
-    'sphinx_interrogatedb',
     'sphinx.ext.intersphinx',
 ]
+
+if build_api_reference:
+    extensions.append('sphinx_interrogatedb')
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -461,6 +472,9 @@ def resolve_reference(ref, rel, domain='py'):
     may be a module name, or a module name followed by an object name.
 
     If found, returns a 2-tuple (type, fqname), else None."""
+
+    if not build_api_reference:
+        return None
 
     # Find out which module we should be looking in.
     modname = None
@@ -878,7 +892,7 @@ def on_missing_reference(app, env, node, contnode):
             else:
                 refdoc = node.get('refdoc', env.docname)
                 return domain.resolve_xref(env, refdoc, app.builder, typ, target, node, contnode)
-        elif idb.has_module('panda3d.' + modpart):
+        elif build_api_reference and idb.has_module('panda3d.' + modpart):
             module = 'panda3d.' + modpart
             prefix = modpart + '.'
             target = target.split('.', 1)[1]
