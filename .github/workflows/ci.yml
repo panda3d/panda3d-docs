@@ -19,9 +19,9 @@ jobs:
     - name: Test reStructuredText code style
       run: |
         doc8 --ignore=D001
-    - name: Run linkcheck
-      run: |
-        make linkcheck
+    #- name: Run linkcheck
+    #  run: |
+    #    make linkcheck
 
   build-html:
     name: Build HTML
