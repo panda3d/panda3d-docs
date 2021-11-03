@@ -26,24 +26,40 @@ into object, are ANDed together. If the result is not zero--meaning the two
 masks have at least one bit in common--then the collision test is attempted;
 otherwise, the two objects are ignored.
 
-The collide masks are represented using a BitMask32 object, which is really
-just a 32-bit integer with some additional methods for getting and setting
-particular bits.
+The collide masks are represented using a :class:`.BitMask32` object, which is
+really just a 32-bit integer with some additional methods for getting and
+setting particular bits.
 
 You can only set the from collide mask on a collision node, and you must set
 it directly on the node itself, not on the NodePath:
 
-.. code-block:: python
+.. only:: python
 
-   nodePath.node().setFromCollideMask(BitMask32(0x10))
+   .. code-block:: python
+
+      nodePath.node().setFromCollideMask(BitMask32(0x10))
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      node_path.node()->set_from_collide_mask(BitMask32(0x10));
 
 However, the into collide mask may be set on the NodePath, for convenience;
 this recursively modifies the into collide mask for all the nodes at the given
 NodePath level and below.
 
-.. code-block:: python
+.. only:: python
 
-   nodePath.setCollideMask(newMask, bitsToChange, nodeType)
+   .. code-block:: python
+
+      nodePath.setCollideMask(newMask, bitsToChange, nodeType)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      node_path.set_collide_mask(new_mask, bits_to_change, node_type);
 
 The parameter newMask specifies the new mask to apply. The remaining
 parameters are optional; if they are omitted, then every node at nodePath
@@ -52,45 +68,75 @@ bitsToChange is specified, it represents the set of bits that are to be
 changed from the original; bits that are 0 in bitsToChange will not be
 modified at each node level. If nodeType is specified, it should be a
 TypeHandle that represents the type of node that will be modified, e.g.
-``CollisionNode.getClassType()`` to affect only
-CollisionNodes.
+:meth:`.CollisionNode.get_class_type()` to affect only CollisionNodes.
 
 Examples:
 
-.. code-block:: python
+.. only:: python
 
-   nodePath.setCollideMask(BitMask32(0x10))
+   .. code-block:: python
+
+      nodePath.setCollideMask(BitMask32(0x10))
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      node_path.set_collide_mask(BitMask32(0x10));
 
 This sets the into collide mask of nodePath, and all children of nodePath, to
-the value 0x10, regardless of the value each node had before.
+the hexadecimal value 0x10, regardless of the value each node had before.
 
-.. code-block:: python
+.. only:: python
 
-   nodePath.setCollideMask(BitMask32(0x04), BitMask32(0xff))
+   .. code-block:: python
+
+      nodePath.setCollideMask(BitMask32(0x04), BitMask32(0xff))
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      node_path.set_collide_mask(BitMask32(0x04), BitMask32(0xff));
 
 This replaces the lower 8 bits of nodePath and all of its children with the
 value 0x04, leaving the upper 24 bits of each node unchanged.
 
 The default value for both from and into collide masks for a new CollisionNode
-can be retrieved by ``CollisionNode.getDefaultCollideMask()``,
-and the default into collide mask for a new GeomNode is
-``GeomNode.getDefaultCollideMask()``. Note that you can
-create a CollisionNode that collides with visible geometry by doing something
-like this:
+can be retrieved by :meth:`.CollisionNode.get_default_collide_mask()`, and the
+default into collide mask for a new GeomNode is
+:meth:`.GeomNode.get_default_collide_mask()`. Note that you can create a
+CollisionNode that collides with visible geometry by doing something like this:
 
-.. code-block:: python
+.. only:: python
 
-   nodePath.node().setFromCollideMask(GeomNode.getDefaultCollideMask())
+   .. code-block:: python
 
-The ``NodePath.getCollideMask()`` function returns a
-union of all the collide masks for itself and its children. Since the
-``NodePath.setCollideMask()`` function is called
-recursively on its children, the following code can have a profound effect,
-even though it looks like it's doing nothing:
+      nodePath.node().setFromCollideMask(GeomNode.getDefaultCollideMask())
 
-.. code-block:: python
+.. only:: cpp
 
-   nodePath.setCollideMask(nodePath.getCollideMask())
+   .. code-block:: cpp
+
+      node_path.set_collide_mask(GeomNode::get_default_collide_mask());
+
+The :meth:`.NodePath.get_collide_mask()` method returns a union of all the
+collide masks for itself and its children. Since the
+:meth:`.NodePath.set_collide_mask()` method is called recursively on its
+children, the following code can have a profound effect, even though it looks
+like it's doing nothing:
+
+.. only:: python
+
+   .. code-block:: python
+
+      nodePath.setCollideMask(nodePath.getCollideMask())
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      node_path.set_collide_mask(node_path.get_collide_mask());
 
 The above code actually calculates the collide mask for its children, and sets
 all of its children to that same collide mask, wiping out what was there
@@ -103,9 +149,22 @@ set the collide mask for only that child node, using :meth:`.NodePath.find()`
 (see :ref:`NodePath <the-scene-graph>`). For example, to create a box into only
 "ralph" can collide:
 
-.. code-block:: python
+.. only:: python
 
-   ralph = loader.loadModel("ralph")
-   ralph.setCollideMask(BitMask32.bit(0))
-   box = loader.loadModel("box")
-   box.find("**/Cube;+h").setCollideMask(BitMask32.bit(0))
+   .. code-block:: python
+
+      ralph = loader.loadModel("ralph")
+      ralph.setCollideMask(BitMask32.bit(0))
+
+      box = loader.loadModel("box")
+      box.find("**/Cube;+h").setCollideMask(BitMask32.bit(0))
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      NodePath ralph = window->load_model(render, "ralph");
+      ralph.set_collide_mask(BitMask32::bit(0));
+
+      NodePath box = window->load_model(render, "box");
+      box.find("**/Cube;+h").set_collide_mask(BitMask32::bit(0));
