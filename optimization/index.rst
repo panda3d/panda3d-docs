@@ -10,10 +10,10 @@ Inexperienced game programmers, when they see that their programs are running
 slow, often react by trying to reduce the number of polygons. This almost never
 makes any difference whatsoever. Back in the mid-90's, reducing polygon counts
 was a reasonable strategy to make games faster. That strategy just doesn't work
-any more. The reason for this is that video card manufacturers have been
+anymore. The reason for this is that video card manufacturers have been
 increasing the polygon limits of their video cards by leaps and bounds. In fact,
 they've raised the polygon limit so high that you almost never hit that limit
-any more: you usually hit some other limit first.
+anymore: you usually hit some other limit first.
 
 That's the key to modern performance tuning: knowing all the limits of the
 machine other than the polygon limit, and figuring out which of those

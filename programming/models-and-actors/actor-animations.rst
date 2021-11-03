@@ -156,7 +156,7 @@ on the character at the same time. Note that you still have to start both
 animations playing (and they can be playing from different frames or at
 different play rates). Starting or stopping an animation in blend mode does not
 change its control effect; you must set an animation's control effect to 0.0 if
-you don't want it to have any more affect on the actor.
+you don't want it to affect the actor anymore.
 
 When you call :py:meth:`~direct.actor.Actor.Actor.stop()` in blend mode, you can
 stop a particular animation by name, if you want; or you can stop all of the

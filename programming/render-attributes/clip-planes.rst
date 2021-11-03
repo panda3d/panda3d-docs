@@ -74,7 +74,7 @@ any node on which the clipping should take effect:
 
    .. code-block:: python
 
-      render.set_clip_plane(plane_np)
+      render.setClipPlane(plane_np)
 
 .. only:: cpp
 

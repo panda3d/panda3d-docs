@@ -108,7 +108,7 @@ The task chain parameters are:
       each frame, round-robin style, regardless of the task's priority value.
       Set it to true to change the meaning of priority so that certain tasks are
       run less often, in proportion to their time used and to their priority
-      value. See ``AsyncTaskManager.setTimeslicePriority()`` for more.
+      value. See :meth:`.AsyncTaskManager.set_timeslice_priority()` for more.
 
 .. only:: cpp
 
@@ -161,10 +161,10 @@ Using task chains
 .. only:: python
 
    You may add any tasks to the task chain of your choosing with the optional
-   taskChain parameter to ``taskMgr.add()`` or ``taskMgr.doMethodLater()``. This
-   parameter should receive the name of the task chain to add the task to; this
-   is the 'chain_name' you specified in the above call to
-   ``taskMgr.setupTaskChain()``. For example:
+   taskChain parameter to :py:meth:`taskMgr.add()` or
+   :py:meth:`taskMgr.doMethodLater()`. This parameter should receive the name of
+   the task chain to add the task to; this is the 'chain_name' you specified in
+   the above call to :py:meth:`taskMgr.setupTaskChain()`. For example:
 
    .. code-block:: python
 
@@ -173,9 +173,10 @@ Using task chains
 .. only:: cpp
 
    You may add any tasks to the task chain of your choosing by using
-   ``AsyncTask::set_task_chain()``. This method should receive the string name
-   of the task chain to add the task to; this is the "chain_name" you specified
-   in the above call to ``task_mgr->make_task_chain()``. For example:
+   :meth:`AsyncTask::set_task_chain()`. This method should receive the string
+   name of the task chain to add the task to; this is the "chain_name" you
+   specified in the above call to :meth:`task_mgr->make_task_chain()
+   <AsyncTaskManager::make_task_chain>`. For example:
 
    .. code-block:: cpp
 

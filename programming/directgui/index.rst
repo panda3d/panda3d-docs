@@ -13,18 +13,20 @@ DirectGUI
    entries, and frames within the program. All of these items can be decorated
    with text, images, and 3D graphics. Commands may be associated with these
    items as well. Since these objects inherit from the :class:`.NodePath` class,
-   anything done to a NodePath may be done to them, such as show()/hide(),
-   setPos(), posInterval(), and so on. Also, since DirectGui objects are by
-   default parented to the node aspect2d, they will stay on the screen no matter
-   how the user navigates through the world.
+   anything done to a NodePath may be done to them, such as
+   :meth:`~.NodePath.show()`/:meth:`~.NodePath.hide()`,
+   :meth:`~.NodePath.set_pos()`, posInterval(), and so on. Also, since DirectGui
+   objects are by default parented to the node :py:obj:`~builtins.aspect2d`,
+   they will stay on the screen no matter how the user navigates through the
+   world.
 
    You can specify the parent nodepath for any DirectGUI object using the
-   parent= argument. You can use base.aspect2d for center-oriented pacement, and
-   a2dTopLeft or a2dBottomRight respectively. The Y coordinate should be left 0,
-   because it's useless in the 2D space. The Z coordinate goes from -1 to 1, and
-   X depends on the aspect ratio, by the default 4:3 it's from -1.3333 to
-   1.3333. The other aspect2d variants don't scale the numbers, just offset
-   them.
+   parent= argument. You can use :py:obj:`base.aspect2d` for center-oriented
+   placement, and a2dTopLeft or a2dBottomRight respectively. The Y coordinate
+   should be left 0, because it's useless in the 2D space. The Z coordinate goes
+   from -1 to 1, and X depends on the aspect ratio, by the default 4:3 it's from
+   -1.3333 to 1.3333. The other aspect2d variants don't scale the numbers, just
+   offset them.
 
    The direct-gui-edit option in the Config.prc file allows the user to use the
    middle mouse button to move around widgets, and resize them while holding the
@@ -62,11 +64,11 @@ DirectGUI
 
    The image is less often used. It is the filename of a texture image (or an
    already-loaded Texture object). It is intended for displaying a simple
-   texture image for which you don't already have a model created via ``egg-
-   texture-cards``. A default card will be created to display this texture, with
-   a bounding box of (-1, 0, -1) to (1, 0, 1); that is, a square with sides of
-   length 2 units, centered on the origin. You can position and scale this card
-   with the keywords ``image_pos`` and ``image_scale``. See also
+   texture image for which you don't already have a model created via
+   ``egg-texture-cards``. A default card will be created to display this
+   texture, with a bounding box of (-1, 0, -1) to (1, 0, 1); that is, a square
+   with sides of length 2 units, centered on the origin. You can position and
+   scale this card with the keywords ``image_pos`` and ``image_scale``. See also
    :ref:`onscreenimage`.
 
    Finally, the DirectGui may have a frame created for it. This is typically a
@@ -217,16 +219,16 @@ DirectGUI
       PT(Texture) button_inactive = TexturePool::load_texture("button_inactive.png");
 
       // PGFrameStyle is a powerful way to change the appearance of the button:
-      PGFrameStyle MyStyle=my_button->get_frame_style(0); // frame_style(0): ready state
-      MyStyle.set_type(PGFrameStyle::T_flat);
+      PGFrameStyle my_style = my_button->get_frame_style(0); // frame_style(0): ready state
+      my_style.set_type(PGFrameStyle::T_flat);
 
-      MyStyle.set_texture(button_ready);    my_button->set_frame_style(0, MyStyle);
-      MyStyle.set_texture(button_rollover); my_button->set_frame_style(1, MyStyle);
-      MyStyle.set_texture(button_pressed);  my_button->set_frame_style(2, MyStyle);
-      MyStyle.set_texture(button_inactive); my_button->set_frame_style(3, MyStyle);
+      my_style.set_texture(button_ready);    my_button->set_frame_style(0, my_style);
+      my_style.set_texture(button_rollover); my_button->set_frame_style(1, my_style);
+      my_style.set_texture(button_pressed);  my_button->set_frame_style(2, my_style);
+      my_style.set_texture(button_inactive); my_button->set_frame_style(3, my_style);
 
-      NodePath defbutNP = window->get_aspect_2d().attach_new_node(my_button);
-      defbutNP.set_scale(0.1);
+      NodePath button_np = window->get_aspect_2d().attach_new_node(my_button);
+      button_np.set_scale(0.1);
 
       // Setup callback function
       framework.define_key(my_button->get_click_event(MouseButton::one()), "button press", &GUI_Callback_Button_Clicked, my_button);
@@ -263,17 +265,17 @@ DirectGUI
 
    .. code-block:: cpp
 
-      PT(PGSliderBar) Slider = new PGSliderBar("MySliderBar");
+      PT(PGSliderBar) slider = new PGSliderBar("MySliderBar");
 
       // Setup, feeding the constructor with (bool vertical,float length,float width,float bevel)
-      Slider->setup_slider(false, 0.1, 0.1, 0); // 'rail' properties
-      Slider->set_range(0,1);
-      Slider->set_value(0.5);
+      slider->setup_slider(false, 0.1, 0.1, 0); // 'rail' properties
+      slider->set_range(0,1);
+      slider->set_value(0.5);
 
       // Setup scroll bar (the 'moving thumb button' including left and right button)
-      Slider->setup_scroll_bar(false, 0.35, 0.05, false);
-      NodePath SliderNP=window->get_aspect_2d().attach_new_node(Slider);
-      SliderNP.set_pos(0, 0, 0);
+      slider->setup_scroll_bar(false, 0.35, 0.05, false);
+      NodePath slider_np = window->get_aspect_2d().attach_new_node(Slider);
+      slider_np.set_pos(0, 0, 0);
 
    (work in progress, more to come soon.)
 

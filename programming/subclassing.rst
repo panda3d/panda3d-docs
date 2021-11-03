@@ -50,7 +50,7 @@ objects, not Python objects.
 
 So, when you pull the node out of the scene graph later, it creates a new
 Python wrapper around it and returns that new wrapper. Now all you have is the
-original C++ node--it's not your new node class any more, it's just the Python
+original C++ node--it's not your new node class anymore, it's just the Python
 wrapper to the C++ class.
 
 The Practice
@@ -75,21 +75,21 @@ Let's first see an example of what **doesn't** work:
    import direct.directbase.DirectStart
    from panda3d.core import PandaNode
 
-   ## Here we define the new class, subclassing PandaNode
-   ## and adding a new variable to it.
+   # Here we define the new class, subclassing PandaNode
+   # and adding a new variable to it.
    class MyNewNode(PandaNode):
        def __init__(self, aName):
            PandaNode.__init__(self, aName)
            self.aVariable = "A value"
 
-   ## Here we are creating a new node and we -think-
-   ## we are placing it in the scene graph:
+   # Here we are creating a new node and we -think-
+   # we are placing it in the scene graph:
    myNewNode = MyNewNode("MyNewNode")
    aNodePath = aspect2d.attachNewNode(myNewNode)
 
-   ## Here we -attempt- to fetch the stored variable,
-   ## but we'll get an error because aNodePath.node()
-   ## returns a PandaNode, not myNewNode!
+   # Here we -attempt- to fetch the stored variable,
+   # but we'll get an error because aNodePath.node()
+   # returns a PandaNode, not myNewNode!
    print(aNodePath.node().aVariable)
 
 The workaround is for an instance of the new node class to store itself on the
@@ -100,28 +100,28 @@ PandaNode, as a Python tag:
    import direct.directbase.DirectStart
    from panda3d.core import PandaNode
 
-   ## Here we define the new class, subclassing PandaNode
-   ## storing its own instance as a python tag and
-   ## initializing a new variable.
+   # Here we define the new class, subclassing PandaNode
+   # storing its own instance as a python tag and
+   # initializing a new variable.
    class MyNewNode(PandaNode):
        def __init__(self, aName):
            PandaNode.__init__(self, aName)
            PandaNode.setPythonTag(self, "subclass", self)
            self.aVariable = "A value"
 
-   ## Here we create a new node and we are aware we are
-   ## placing its -PandaNode- in the scene graph.
+   # Here we create a new node and we are aware we are
+   # placing its -PandaNode- in the scene graph.
    myNewNode = MyNewNode("MyNewNode")
    aNodePath = aspect2d.attachNewNode(myNewNode)
 
-   ## Now, first we fetch the panda node:
+   # Now, first we fetch the panda node:
    thePandaNode = aNodePath.node()
 
-   ## then we fetch the instance of MyNewNode stored on it:
+   # then we fetch the instance of MyNewNode stored on it:
    theInstanceOfMyNewNode = thePandaNode.getPythonTag("subclass")
 
-   ## and finally we fetch the variable we were
-   ## interested in all along:
+   # and finally we fetch the variable we were
+   # interested in all along:
    print(theInstanceOfMyNewNode.aVariable)
 
 In the real world
@@ -139,27 +139,27 @@ For example:
 
 .. code-block:: python
 
-   ## here we setup the scene
+   # here we setup the scene
    aNodePath = render.attachNewNode(anInstanceOfMyNewSubclass)
    aPandaNode = aNodePath.node()
 
-   ## here we loop over all nodes under render,
-   ## to find the one we are interested in:
+   # here we loop over all nodes under render,
+   # to find the one we are interested in:
    for child in render.getChildren()
        if child.hasPythonTag("subclass"):
            theInstanceOfASubclass = child.getPythonTag("subclass")
 
-           ## here we test for its type, which is safe
-           ## but doesn't catch subclasses of the subclass
-           ## or simply other objects that have the same
-           ## interface and would work just as well:
+           # here we test for its type, which is safe
+           # but doesn't catch subclasses of the subclass
+           # or simply other objects that have the same
+           # interface and would work just as well:
            if type(theInstanceOfASubclass) == type(MyNewSubclass):
                theInstanceOfASubclass.aVariable = "a new value"
                continue
 
-           ## here instead we test for the presence of an
-           ## attribute, which mean that all compatible
-           ## objects get modified:
+           # here instead we test for the presence of an
+           # attribute, which mean that all compatible
+           # objects get modified:
            if hasattr(theInstanceOfASubclass, "aVariable"):
                theInstanceOfASubclass.aVariable = "a new value"
                continue
