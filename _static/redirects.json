@@ -24,5 +24,17 @@
     "programming/garbage-collection/removing-custom-class-instances": "programming/object-management/removing-custom-class-instances",
     "programming/subclassing": "programming/object-management/subclassing",
     "programming/threading": "programming/tasks-and-events/threading",
-    "programming/internal-structures/other-manipulation/creating-textures": "programming/texturing/creating-textures"
+    "programming/internal-structures/other-manipulation/creating-textures": "programming/texturing/creating-textures",
+    "optimization/too-many-meshes": "optimization/performance-issues/too-many-meshes",
+    "optimization/too-many-state-changes": "optimization/performance-issues/too-many-state-changes",
+    "optimization/too-many-text-updates": "optimization/performance-issues/too-many-text-updates",
+    "optimization/too-many-shader-instructions": "optimization/performance-issues/too-many-shader-instructions",
+    "optimization/excessive-fill": "optimization/performance-issues/excessive-fill",
+    "optimization/memory-full": "optimization/performance-issues/memory-full",
+    "optimization/python-calculation": "optimization/performance-issues/python-calculation",
+    "optimization/failure-to-garbage-collect": "optimization/performance-issues/failure-to-garbage-collect",
+    "optimization/collision-system-misuse": "optimization/performance-issues/collision-system-misuse",
+    "optimization/motherboard-integrated-video": "optimization/performance-issues/motherboard-integrated-video",
+    "optimization/too-many-polygons": "optimization/performance-issues/too-many-polygons",
+    "optimization/miscellaneous": "optimization/performance-issues/miscellaneous"
 }
