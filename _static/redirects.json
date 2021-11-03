@@ -18,5 +18,9 @@
     "programming/using-cpp/compiling/linux": "introduction/running-your-program",
     "programming/using-cpp/compiling/macos": "introduction/running-your-program",
     "programming/using-cpp/texturing": "programming/texturing/simple-texture-replacement",
-    "programming/using-cpp/reference-counting": "programming/garbage-collection/reference-counting"
+    "programming/using-cpp/reference-counting": "programming/object-management/reference-counting",
+    "programming/garbage-collection/index": "programming/object-management/index",
+    "programming/garbage-collection/reference-counting": "programming/object-management/reference-counting",
+    "programming/garbage-collection/removing-custom-class-instances": "programming/object-management/removing-custom-class-instances",
+    "programming/subclassing": "programming/object-management/subclassing"
 }

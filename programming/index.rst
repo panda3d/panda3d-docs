@@ -46,11 +46,10 @@ manual by studying the :ref:`Reference Section <reference>`.
    rendering-process/index
    particle-effects/index
    collision-detection/index
-   garbage-collection/index
+   object-management/index
    hardware-support/index
    physics/index
    networking/index
    advanced-loading/index
    threading
-   subclassing
    pandai/index
