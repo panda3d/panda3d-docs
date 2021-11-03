@@ -3,9 +3,6 @@
 The Shader Generator
 ====================
 
-The Shader Generator
---------------------
-
 As of version 1.5.0, panda supports several new features:
 
 -  per-pixel lighting
@@ -73,7 +70,7 @@ game, using this call:
 Sample Programs
 ---------------
 
-Three of the sample programs demonstrate the shader generator in action:
+Four of the sample programs demonstrate the shader generator in action:
 
 -  :ref:`cartoon-shader`
 -  :ref:`glow-filter`
@@ -94,6 +91,22 @@ nice-looking spotlights or specular highlights.
 
 Of course, the real magic of :meth:`~.NodePath.set_shader_auto()` is that it
 enables you to use powerful features like normal maps and the like.
+
+Hardware Skinning
+-----------------
+
+The shader generator is additionally able to improve performance of vertex
+animation by performing the vertex transformation in the shader, so that it does
+not need to happen on the CPU. There are some limitations on this feature, so it
+is disabled by default. To enable it, you will need to set the following
+variables in the :ref:`Config.prc <configuring-panda3d>` file::
+
+   hardware-animated-vertices true
+   basic-shaders-only false
+
+It should be noted that only the four most-weighted joints are considered when
+animating each vertex. There is furthermore a limit of 120 joints that may be
+active at any given time. This limit may be raised in the future.
 
 Known Limitations
 -----------------

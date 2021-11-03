@@ -45,7 +45,21 @@ polygons, there are few optimizations you can do.
    ShaderGenerator or a custom shader.
 
 -  Sometimes it's possible to represent a mesh as a textured plane
-   :ref:`billboard <billboard-effects>`.
+   :ref:`billboard <billboard-effects>`. This can be combined with
+   :ref:`LOD <level-of-detail>` by using a billboard for the lowest levels of
+   detail.
+
+-  If a lot of time is taken up by vertex animation, then you may obtain some
+   benefit from enabling hardware skinning, which causes the vertex
+   transformation to be performed on the GPU instead of the CPU. To enable this,
+   set the following variables in your :ref:`Config.prc <configuring-panda3d>`::
+
+      hardware-animated-vertices true
+      basic-shaders-only false
+
+   For this to work, you will need to have a shader applied that supports
+   hardware skinning, or you need to have :ref:`the-shader-generator` enabled.
+   Otherwise, Panda will silently continue to perform the animation on the CPU.
 
 -  See if you can lower the
    :ref:`far distance or far plane <lenses-and-field-of-view>` of the camera

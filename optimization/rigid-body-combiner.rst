@@ -20,11 +20,11 @@ to see the combined version of these nodes (not likely), you can call
 :meth:`~.RigidBodyCombiner.get_internal_scene()`, this function will return the
 NodePath that is actually sent to the graphics card.
 
-The RigidBodyCombiner class is just another kind of PandaNode. All of the
-standard node interfaces apply. Thus, the easiest way to add nodes to a
-RigidBodyCombiner is to wrap a NodePath around it, and then use the standard
-:meth:`~.NodePath.reparent_to()` interfaces to parent the nodes you want to
-combine to this NodePath.
+The RigidBodyCombiner class is just another kind of :class:`.PandaNode`. All of
+the standard node interfaces apply. Thus, the easiest way to add nodes to a
+RigidBodyCombiner is to wrap a :class:`.NodePath` around it, and then use the
+standard :meth:`~.NodePath.reparent_to()` interfaces to parent the nodes you
+want to combine to this NodePath.
 
 When you are done with reparenting the nodes, you need to call
 :meth:`~.RigidBodyCombiner.collect()` on the original
