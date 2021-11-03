@@ -44,12 +44,14 @@ Actor Basics
 
       from direct.actor.Actor import Actor
 
-   Once the model is loaded, the actor object must be constructed, and the model
-   and animations must be loaded:
+   Once this is done, the actor object can be constructed, and the model and
+   animations can be loaded.
 
-   Loading each animation requires a tuple: the name one is giving the animation
-   and the path to the animation. This entire process can be shortened to a
-   single command:
+   Loading each animation requires a dictionary, where each key is a meaningful
+   name given to the animation and the corresponding value is the path to the
+   animation file.
+
+   All of the above can be written as a single statement:
 
    .. code-block:: python
 
