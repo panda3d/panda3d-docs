@@ -15,5 +15,4 @@ like Textures.
    modifying-existing-geometry
    meshdrawer
    more-about-reader-writer-rewriter
-   creating-textures
    writing-models-to-disk
