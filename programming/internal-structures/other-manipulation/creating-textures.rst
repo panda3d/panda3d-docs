@@ -49,52 +49,69 @@ image by filtering it into a larger or smaller PNMImage:
 
       PNMImage full_size(Filename("testImg.png"));
       PNMImage reduced(256, 256);
-      reduced.gaussianFilterFrom(1.0, full_size);
+      reduced.gaussian_filter_from(1.0, full_size);
 
 You can get individual RGB values using the
-``getRed(x,y), getGreen(x,y), getBlue(x,y)`` or
-``getRedVal(x,y), getGreenVal(x,y), getBlueVal(x,y)`` where x and y tell what
-pixel to look at (lower-left is 0,0 upper right is
-``getXSize()-1, getYSize()-1`` The difference between these functions is that
-the ``get*`` functions return a number between 0 and 1 while the ``get*Val``
-functions return their value as an integer. For example, if your image uses
-8-bit color calling ``getGreenVal`` on a green pixel will return 255 and calling
-``getGreen`` will return 1. You can also get all the RGB information at the same
-time using ``getXel(x,y)`` and ``getXelVal(x,y)`` which return a 3-component
-vector with red in the x, green in the y, and blue in the z.
+:meth:`get_red(x, y) <.PNMImage.get_red>`,
+:meth:`get_green(x, y) <.PNMImage.get_green>`,
+:meth:`get_blue(x, y) <.PNMImage.get_blue>` or
+:meth:`get_red_val(x, y) <.PNMImage.get_red_val>`,
+:meth:`get_green_val(x, y) <.PNMImage.get_green_val>`,
+:meth:`get_blue_val(x, y) <.PNMImage.get_blue_val>` methods, where x and y are
+the coordinates of the pixel to sample (the upper-left corner is ``0, 0``
+whereas the lower-right corner is ``size.x - 1, size.y - 1``).
+The difference between these functions is that the regular getters functions
+return a number between 0.0 and 1.0, while the ones marked with "val" return
+their raw value as an integer. For example, if your image uses 8-bit-per-channel
+color, calling :meth:`~.PNMImage.get_green_val()` will return 255 for a fully
+green pixel whereas calling :meth:`~.PNMImage.get_green()` will return 1.0.
+You can also get all the RGB information at the same time using
+:meth:`get_xel(x, y) <.PNMImage.get_xel>` and
+:meth:`get_xel_val(x, y) <.PNMImage.get_xel_val>`, which return a 3-component
+vector containing the red, green and blue channels, respectively.
 
-.. code-block:: python
+.. only:: python
 
-   # The pixel at 0,0 is red and we're using 8-bit color
-   myImage.getRedVal(0,0) # Returns 255
-   myImage.getRed(0,0) # Returns 1
+   .. code-block:: python
 
-   colors = myImage.getXelVal(0,0) # Returns (255,0,0)
-   colorVal = myImage.getXel(0,0) # Returns (1,0,0)
+      # The pixel at 0,0 is red and we're using 8-bit color
+      myImage.getRedVal(0, 0) # Returns 255
+      myImage.getRed(0, 0) # Returns 1
 
-The functions for setting pixel information are
-``setRed(x,y,value), setGreen(x,y, value), setBlue(x,y, value)`` or
-``setRedVal(x,y,value), setGreenVal(x,y, value), setBlueVal(x,y, value)``.
-There is still the same dichotomy as above when it comes to regular sets and
-using setvals. You can also use ``setXel(x,y,colorVec)`` and
-``setXelVal(x,y, colorVec)``. You can also fill an image with a color by using
-``fill(r,g,b)`` and ``fillVal(r,g,b)``.
+      colors = myImage.getXelVal(0,0) # Returns (255,0,0)
+      colorVal = myImage.getXel(0,0) # Returns (1,0,0)
 
-.. code-block:: python
+The methods for setting pixel information are
+:meth:`set_red(x, y, value) <.PNMImage.set_red>`,
+:meth:`set_green(x, y, value) <.PNMImage.set_green>`,
+:meth:`set_blue(x, y, value) <.PNMImage.set_blue>`,
+:meth:`set_xel(x, y, color) <.PNMImage.set_xel>`, or
+:meth:`set_red_val(x, y, value) <.PNMImage.set_red_val>`,
+:meth:`set_green_val(x, y, value) <.PNMImage.set_green_val>`,
+:meth:`set_blue_val(x, y, value) <.PNMImage.set_blue_val>`,
+:meth:`set_xel_val(x, y, color) <.PNMImage.set_xel_val>`.
+The same as above applies regarding the dichotomy between the regular setters
+and the ones marked with "val". You can also fill an image with a color by using
+:meth:`fill(r, g, b) <.PNMImage.fill>` and
+:meth:`fill_val(r, g, b) <.PNMImage.fill_val>`.
 
-   myImage.setGreenVal(0, 0, 255) # If pixel (0,0) was red before, now it is yellow
-   myImage.setBlue(0, 0, 1) # Pixel (0,0) is now white
+.. only:: python
 
-   gray = Vec3(0.5, 0.5, 0.5)
+   .. code-block:: python
 
-   # Both of these set the origin to gray
-   myImage.setXelVal(0, 0, gray * 255)
-   myImage.setXel(0, 0, gray)
+      myImage.setGreenVal(0, 0, 255) # If pixel (0, 0) was red before, now it is yellow
+      myImage.setBlue(0, 0, 1) # Pixel (0, 0) is now white
 
-   # Makes every pixel red
-   myImage.fillVal(255, 0, 0)
-   # Makes every pixel green
-   myImage.fill(0, 1, 0)
+      gray = Vec3(0.5, 0.5, 0.5)
+
+      # Both of these set the origin to gray
+      myImage.setXelVal(0, 0, gray * 255)
+      myImage.setXel(0, 0, gray)
+
+      # Makes every pixel red
+      myImage.fillVal(255, 0, 0)
+      # Makes every pixel green
+      myImage.fill(0, 1, 0)
 
 There are also gets and sets for the alpha channel using the same interface as
 above. However, if you use them on an image that doesn't have an alpha channel
@@ -105,33 +122,37 @@ and False otherwise. You can add an alpha channel using
 :meth:`~.PNMImage.remove_alpha()`.
 
 You can also make an image grayscale using :meth:`~.PNMImage.make_grayscale()`.
-You can now use sets and gets for Gray too. Using ``getGray*`` on a color image
-just returns the value in the blue channel. If you want to get the grayscale
+To set or get a grayscale value, you can use :meth:`~.PNMImage.get_gray()` and
+:meth:`~.PNMImage.set_gray()`. (Using these functions on a color image will just
+affect the value in the blue channel.) If you want to get the grayscale
 value of a pixel regardless of whether the image is a grayscale or a color
-image, you can use ``getBright(x,y)``, which works equally well on color or on
-grayscale images. If you want to weight the colors use ``getBright(x,y, r,g,b)``
-where r,g,b are the weights for their respective channels.
+image, you can use :meth:`get_bright(x, y) <.PNMImage.get_bright>`, which works
+equally well on color or on grayscale images. If you want to weight the colors
+use :meth:`get_bright(x, y, r, g, b) <.PNMImage.get_bright>`, where r, g, b are
+the weights for the respective channels.
 
 There are several other useful functions in the class, which are described on
 the :class:`~panda3d.core.PNMImage` page in the API Reference.
 
-Getting the Image of a Texture
-------------------------------
+Storing a Texture into an Image
+-------------------------------
 
-The Panda ``Texture`` class does not allow for pixel manipulation. However the
-``PNMImage`` class below does. Therefore, if you want to change the image in a
-``Texture`` object you must call its ``store(myImage)`` which saves the image of
-the texture into ``myImage``.
+The Panda :class:`.Texture` class does not allow for pixel manipulation. But the
+:class:`.PNMImage` class does. Therefore, if you want to change the image in a
+:class:`.Texture` object you must call :meth:`store(image) <.Texture.store>`,
+which saves the image of the texture into the given image object.
 
-.. code-block:: python
+.. only:: python
 
-   myImage = PNMImage()
-   myTexture = loader.loadTexture("myTex.jpg")
+   .. code-block:: python
 
-   # After this call, myImage now holds the same image as the texture
-   myTexture.store(myImage)
+      myImage = PNMImage()
+      myTexture = loader.loadTexture("myTex.jpg")
 
-Loading a PNMImage Into a Texture
+      # After this call, myImage now holds the same image as the texture
+      myTexture.store(myImage)
+
+Loading a PNMImage into a Texture
 ---------------------------------
 
 Once you have changed all the data in the image you can now load it into a
@@ -153,11 +174,12 @@ texture using the texture's :meth:`load(myImage) <.Texture.load>` method, where
    .. code-block:: cpp
 
       // Assume we already have myImage which is our modified PNMImage
-      PT(Texture) myTexture = new Texture("texture name");
+      PT(Texture) my_texture = new Texture("texture name");
 
       // This texture now contains the data from myImage
-      myTexture->load(myImage);
+      my_texture->load(myImage);
 
 Remember however, that most graphics cards require that the dimensions of
-texture have to be a power of two. ``PNMImage`` does not have this restriction
-and Panda will not automatically scale the image when you put it into a texture.
+texture have to be a power of two. :class:`.PNMImage` does not have this
+restriction and Panda will not automatically scale the image when you put it
+into a texture.
