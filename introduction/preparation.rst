@@ -125,3 +125,6 @@ between C++ information and Python information.
       note is the fact that sample code in Python may use the ``camelCase()``
       naming convention for methods, which is not available in the C++ API.
       You will need to translate these to the equivalent ``snake_case()`` names.
+
+      Any Python classes in the :mod:`panda3d` package are also available in the
+      C++ API, whereas Python classes in the :mod:`direct` package are not.
