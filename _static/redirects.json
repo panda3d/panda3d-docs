@@ -23,5 +23,6 @@
     "programming/garbage-collection/reference-counting": "programming/object-management/reference-counting",
     "programming/garbage-collection/removing-custom-class-instances": "programming/object-management/removing-custom-class-instances",
     "programming/subclassing": "programming/object-management/subclassing",
-    "programming/threading": "programming/tasks-and-events/threading"
+    "programming/threading": "programming/tasks-and-events/threading",
+    "programming/internal-structures/other-manipulation/creating-textures": "programming/texturing/creating-textures"
 }

@@ -16,5 +16,4 @@ like Textures.
    using-memoryviews
    meshdrawer
    more-about-reader-writer-rewriter
-   creating-textures
    writing-models-to-disk

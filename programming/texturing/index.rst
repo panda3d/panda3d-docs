@@ -41,3 +41,4 @@ More advanced texturing methods are described in the following sections.
    transparency-and-blending
    texture-management
    texture-compression
+   creating-textures
