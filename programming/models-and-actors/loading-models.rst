@@ -48,6 +48,8 @@ graph:
 
 You can read more about :ref:`the-scene-graph`.
 
+.. _filename-syntax:
+
 Panda Filename Syntax
 ---------------------
 
