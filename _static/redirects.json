@@ -20,6 +20,7 @@
     "programming/gui/directgui/directscrollbar": "programming/directgui/directscrollbar",
     "programming/gui/directgui/directscrolledframe": "programming/directgui/directscrolledframe",
     "programming/internal-structures/matrix-representation": "programming/math-engine/matrix-representation",
+    "programming/advanced-loading/filename-syntax": "programming/models-and-actors/loading-models#filename-syntax",
     "programming/advanced-loading/async": "programming/threading",
     "programming/advanced-loading/multifiles": "programming/multifiles/index",
     "programming/advanced-loading/loading-resources-from-memory": "programming/multifiles/loading-resources-from-nonstandard-sources",
