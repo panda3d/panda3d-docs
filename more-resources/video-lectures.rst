@@ -1,7 +1,7 @@
-.. _video-tutorials:
+.. _video-lectures:
 
-Video Tutorials
-===============
+Video Lectures
+==============
 
 Video lessons by Disney
 -----------------------

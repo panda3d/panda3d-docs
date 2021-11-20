@@ -1,5 +1,4 @@
 {
-    "more-resources/samples/texture-swapping": "more-resources/samples/index",
     "programming/timing/global-clock": "reference/builtins#the-global-clock",
     "programming/timing/index": "reference/builtins#the-global-clock",
     "programming/tasks-and-events/global-clock": "reference/builtins#the-global-clock",
@@ -36,5 +35,7 @@
     "optimization/collision-system-misuse": "optimization/performance-issues/collision-system-misuse",
     "optimization/motherboard-integrated-video": "optimization/performance-issues/motherboard-integrated-video",
     "optimization/too-many-polygons": "optimization/performance-issues/too-many-polygons",
-    "optimization/miscellaneous": "optimization/performance-issues/miscellaneous"
+    "optimization/miscellaneous": "optimization/performance-issues/miscellaneous",
+    "more-resources/samples/texture-swapping": "more-resources/samples/index",
+    "more-resources/video-tutorials": "more-resources/video-lectures"
 }
