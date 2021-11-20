@@ -36,8 +36,7 @@ manual by studying the :ref:`Reference Section <reference>`.
    audio/index
    intervals/index
    tasks-and-events/index
-   text/index
-   directgui/index
+   gui/index
    render-effects/index
    finite-state-machines/index
    terrain/index

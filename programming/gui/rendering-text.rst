@@ -1,20 +1,63 @@
+.. _rendering-text:
+
+Rendering Text
+==============
+
+.. only:: python
+
+   .. _onscreentext:
+
+   OnscreenText
+   ------------
+
+   :py:class:`~.direct.gui.OnscreenText.OnscreenText` is a convenience class
+   that is used a quick way to put text onscreen without having to go through
+   the trouble of creating a TextNode and setting properties on it. However, it
+   doesn't have the full range of rendering options that you can get with
+   TextNode directly; and it doesn't support the DirectGUI features of a
+   :ref:`directlabel`. Use an OnscreenText whenever you want a quick way to
+   display some ordinary text without a lot of fancy requirements.
+
+   .. code-block:: python
+
+      from direct.gui.OnscreenText import OnscreenText
+      textObject = OnscreenText(text='my text string', pos=(-0.5, 0.02), scale=0.07)
+
+   The OnscreenText object inherits from NodePath, so all of the standard NodePath
+   operations can be used on the text object. When you are ready to take the text
+   away, use:
+
+   .. code-block:: python
+
+      textObject.destroy()
+
+   A full list of arguments that can be passed to the constructor is available
+   on the :py:class:`~.direct.gui.OnscreenText.OnscreenText` page of the API
+   reference.
+
 .. _text-node:
 
-Text Node
-=========
+Text Nodes
+----------
 
-The most fundamental way to render text in Panda3D is via the :class:`.TextNode`
-interface. This may be a little more work than the :ref:`onscreentext` or
-:ref:`directlabel` objects, but it gives you a lot more control over the
-appearance of the text.
+.. only:: python
+
+   The most fundamental way to render text in Panda3D is via the
+   :class:`.TextNode` interface. This may be a little more work than the
+   :ref:`onscreentext` or :ref:`directlabel` objects, but it gives you a lot
+   more control over the appearance of the text.
+
+.. only:: cpp
+
+   Rendering text in Panda3D is done using the :class:`.TextNode` interface.
 
 To use a TextNode, simply create one and call :meth:`~.TextNode.set_text()` to
 set the actual text to display, and then parent the TextNode wherever you like
-(you can put it under :ref:`aspect2d <scene-graph-manipulations>` to make a 2-d
-onscreen text, or you can put it in the 3-d world for in-the-world text).
-Note that if you parent the text to render2d or aspect2d, you will probably need
-to give it a fairly small scale, since the coordinate space of the whole screen
-in render2d is in the range (-1, 1).
+(you can put it under :obj:`~builtins.aspect2d` to make a 2-d onscreen text, or
+you can put it in the 3-d world for in-the-world text). Note that if you parent
+the text to render2d or aspect2d, you will probably need to give it a fairly
+small scale, since the coordinate space of the whole screen in render2d is in
+the range (-1, 1).
 
 .. only:: python
 
