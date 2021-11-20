@@ -1,58 +1,9 @@
-.. _loading-models:
-
-Loading Models
-==============
-
-The Basics
-----------
-
-.. only:: python
-
-   Loading static geometry is done using
-   :py:meth:`loader.loadModel() <direct.showbase.Loader.Loader.loadModel>`:
-
-   .. code-block:: python
-
-      m = loader.loadModel("mymodel.egg")
-
-.. only:: cpp
-
-   Loading static geometry is done using ``window->load_model``:
-
-   .. code-block:: cpp
-
-      NodePath m = window->load_model(framework.get_models(), "mymodel.egg");
-
-The path name specified in loadModel can be an absolute path, or a relative
-path. Relative is recommended. If a relative path is used, then Panda3D will
-search its model path to find the egg file. The model path is controlled by
-panda's :ref:`configuration file <the-configuration-file>`.
-
-Inserting the Model into the Scene Graph
-----------------------------------------
-
-Do not forget that loading the model does not, by itself, cause the model to be
-visible. To cause Panda3D to render the model, you must insert it into the scene
-graph:
-
-.. only:: python
-
-   .. code-block:: python
-
-      m.reparentTo(render)
-
-.. only:: cpp
-
-   .. code-block:: cpp
-
-      m.reparent_to(window->get_render());
-
-You can read more about :ref:`the-scene-graph`.
+.. _filename-syntax:
 
 Panda Filename Syntax
----------------------
+=====================
 
-The path used in the model load call must abide by Panda3D's filename
+The path used in all calls to the Panda3D API must abide by Panda3D's filename
 conventions. For easier portability, Panda3D uses Unix-style pathnames, even on
 Microsoft Windows. This means that the directory separator character is always a
 forward slash, not the Windows backslash character, and there is no leading
@@ -88,6 +39,12 @@ Panda functions expect a Filename object as a parameter. The Filename class also
 contains several useful methods for path manipulation and file access, as well
 as for converting between Windows-style filenames and Panda-style filenames; see
 the :class:`.Filename` page in the API Reference for a more complete list.
+
+Normally, you can just use forward slashes in your paths and don't need to worry
+about anything else, since absolute paths should not be used in the program.
+However, when converting paths from the Python standard library or other
+libraries, special care is required to ensure that the application will continue
+to work on Windows correctly.
 
 To convert a Windows filename to a Panda pathname, use code similar to the
 following:
@@ -128,14 +85,16 @@ To convert a Panda filename into a Windows filename, use code like this:
 
       #include "filename.h"
 
-      Filename pandafile ("/c/MyGame/Model1.egg");
+      Filename pandafile("/c/MyGame/Model1.egg");
       const std::string winfile = pandafile.to_os_specific();
       std::cout << winfile << "\n";
 
 .. only:: python
 
-   The :class:`.Filename` class can also be used in combination with Python's
-   built-in path manipulation mechanisms.
+   Starting with Python 3.6, the :class:`.Filename` class is fully interoperable
+   with the filesystem manipulation functions in the Python standard library.
+   Conversely, :py:mod:`pathlib` paths will seamlessly work in all Panda3D calls
+   that accept a :class:`.Filename` object.
 
 Let's say, for instance, that you want to load a model, and the model is in the
 "model" directory that is in the same directory as the program's main file.
@@ -146,18 +105,18 @@ Here is how you would load the model:
 
    .. code-block:: python
 
-      import sys,os
+      import sys, os
       import direct.directbase.DirectStart
       from panda3d.core import Filename
 
       # Get the location of the 'py' file I'm running:
-      mydir = os.path.abspath(sys.path[0])
+      mydir = os.path.dirname(os.path.abspath(__file__))
 
       # Convert that to panda's unix-style notation.
-      mydir = Filename.fromOsSpecific(mydir).getFullpath()
+      mydir = Filename.fromOsSpecific(mydir)
 
       # Now load the model:
-      model = loader.loadModel(mydir + "/models/mymodel.egg")
+      model = loader.loadModel(mydir / "models/mymodel.egg")
 
 .. only:: cpp
 

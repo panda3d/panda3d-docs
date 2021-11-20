@@ -3,11 +3,20 @@
 Level of Detail
 ===============
 
-Using multiple levels of detail for a part of your scene can help improve
-performance. For example you could use LOD to simplify an Actor that is far
-away, saving on costly vertex skinning operations. Another use would be to
-combine several small objects into a simplified single object, or to apply a
-cheaper shader. LOD can also be used to hide objects when they are far away.
+To make a scene look as good as possible, modellers often like to make them very
+intricately detailed, which requires a model to consist of a high amount of
+polygons. However, if every model in a scene were so highly detailed, Panda3D
+would spend a lot of time animating and rendering the scene every frame, causing
+the performance to drop.
+
+A common technique to prevent this is to create multiple levels of detail for a
+model. A highly detailed version of the model is used when it is close to the
+camera, whereas if the model is far away, a lower resolution version is used,
+since the detail is not discernable at a great distance anyway.
+
+Another use would be to combine several small objects into a simplified single
+object, or to apply a shader that is less costly to render at a greater
+distance. LOD can also be used to hide objects when they are far away.
 
 .. only:: cpp
 

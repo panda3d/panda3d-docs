@@ -25,7 +25,7 @@ Animated (skeleton animation) models
 
 If your model is animated via keyframe animation in a package such as 3DSMax
 or Maya--that is, the sort of model you expect to load in via the
-:ref:`Actor <models-and-actors>` interface--then Panda will be aggressive in
+:ref:`Actor <animated-models>` interface--then Panda will be aggressive in
 combining all of the geometry into as few nodes as possible. In order to mark
 particular geometry to be kept separate, you should use the ``egg-optchar``
 program.

@@ -27,8 +27,8 @@ manual by studying the :ref:`Reference Section <reference>`.
    :maxdepth: 2
 
    scene-graph/index
-   configuration/index
    models-and-actors/index
+   configuration/index
    render-attributes/index
    texturing/index
    shaders/index

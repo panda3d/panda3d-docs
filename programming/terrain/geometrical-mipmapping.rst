@@ -45,8 +45,8 @@ Preferably this is a size of a power of two plus one (like 129, 257, 513, 1025,
 etc.), but if it is not, the GeoMipTerrain will automatically scale it up to the
 nearest correct size (which is quite slow).
 :meth:`~.GeoMipTerrain.set_heightfield()` can take a
-:ref:`PNMImage <creating-new-textures-from-scratch>`, Texture or
-:ref:`Filename <loading-models>` instance.
+:ref:`PNMImage <creating-new-textures-from-scratch>`, Texture or a path
+according to the :ref:`filename-syntax`.
 
 The :meth:`set_bruteforce(True) <.GeoMipTerrain.set_bruteforce>` call sets the
 terrain to bruteforce rendering -- this means that the terrain is created at the

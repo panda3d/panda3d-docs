@@ -116,7 +116,7 @@ Built-in Global Variables
 
       This is the primary interface through which assets such as models,
       textures, sounds, shaders and fonts are loaded.
-      See :ref:`loading-models`.
+      See :ref:`model-files` and :ref:`simple-texture-replacement`.
 
       :type: ~direct.showbase.Loader.Loader
 

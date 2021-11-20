@@ -3,7 +3,7 @@
 Asynchronous Loading
 ====================
 
-We've seen a basic way to load models in :ref:`loading-models` using
+We've seen a basic way to load models in :ref:`model-files` using
 :py:meth:`loader.loadModel() <direct.showbase.Loader.Loader.loadModel>`.
 The major problem with this call is that it blocks the main thread while the
 model is being loaded, which means that all other tasks on the main thread

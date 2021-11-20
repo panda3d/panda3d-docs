@@ -21,11 +21,12 @@ Both file formats contain:
 -  Morph animation keyframes
 -  Many control flags
 
-
 The paths (e.g. for textures) can be either relative (as seen from the egg
-file) or absolute (full path). See :ref:`loading-models` for more info about
+file) or absolute (full path). See :ref:`filename-syntax` for more info about
 Panda's Filename Syntax. In most cases the relative path makes more sense.
 
+Table of Contents
+-----------------
 
 .. toctree::
    :maxdepth: 2

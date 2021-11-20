@@ -7,8 +7,8 @@ At its simplest, texturing merely consists of applying a texture in your
 modeling program. When you export the model, the path to the texture and some
 options for it like filtering or repeat-method (see next pages) are saved into
 the egg file. The texture paths can be either relative (as seen from the egg
-file) or absolute (full path). See :ref:`loading-models` for more info about
-Panda's Filename Syntax. In most cases the relative path makes more sense.
+file) or absolute (full path). See :ref:`filename-syntax` for more info about
+Panda's filename syntax. In most cases the relative path makes more sense.
 
 Panda can load JPG, PNG, TIF, and a number of other file formats.
 

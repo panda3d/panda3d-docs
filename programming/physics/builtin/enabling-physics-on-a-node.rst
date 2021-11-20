@@ -13,9 +13,9 @@ position and orientation can be updated automatically by the physics system,
 and so any children of the ActorNode will inherit that position and
 orientation as well.
 
-(Do not confuse ActorNode with the :ref:`Actor <models-and-actors>` class,
-which is used to play animations. They are completely unrelated classes with
-similar names.)
+(Do not confuse ActorNode with the :ref:`Actor <animated-models>` class, which
+is used to play animations. They are completely unrelated classes with similar
+names.)
 
 When an ActorNode is created, it must be associated with a PhysicsManager. The
 PhysicsManager will handle the physics calculations every frame and update the

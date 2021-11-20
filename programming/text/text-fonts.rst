@@ -25,7 +25,7 @@ that is supported by FreeType, directly:
 
 The named file is searched for along the model-path, just like a regular egg
 file. You can also give the full path to the font file if you prefer (but
-remember to observe the :ref:`Panda Filename Syntax <loading-models>`).
+remember to observe the :ref:`filename-syntax`).
 
 It is also possible to pre-generate a font with the egg-mkfont command-line
 utility::

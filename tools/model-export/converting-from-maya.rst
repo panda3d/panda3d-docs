@@ -194,9 +194,9 @@ In that case, the command to export the model is::
    maya2egg -o "Egg Files/Character.egg" "Maya Files/Character.mb"
 
 
-Note that :ref:`Panda Filename Syntax <loading-models>` uses forward slashes,
-even under Windows, and this applies to the exporter as well. After doing this
-export, the character egg will contain the following texture reference:
+Note that :ref:`filename-syntax` uses forward slashes, even under Windows, and
+this applies to the exporter as well. After doing this export, the character egg
+will contain the following texture reference:
 
 ``"../Textures/Character.png"``
 

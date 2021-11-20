@@ -103,8 +103,7 @@ directory at start-up.
 
 Sometimes, it is desirable to load an additional configuration file from disk,
 by giving an explicit filename. To do so, use :func:`.load_prc_file()`. Note
-that :ref:`Panda Filename Syntax <loading-models>` uses a forward slash even
-under Windows.
+that :ref:`filename-syntax` uses a forward slash even under Windows.
 
 .. only:: python
 

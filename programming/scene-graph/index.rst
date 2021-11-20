@@ -24,7 +24,54 @@ the tree that is being made up by these nodes is known as the *scene graph*.
 There may be many scene graphs in an application.  In fact, any tree of
 nodes in existence is technically a scene graph all on its own.
 But for the purposes of rendering 3D models, we usually talk about the standard
-3D scene graph, at the root of which is a node called ``render``.
+3D scene graph, at the root of which is a node called :obj:`~builtins.render`.
+
+The default scene graphs
+------------------------
+
+By default, there are two different scene graphs created automatically when you
+start up Panda3D. These graphs are referred to by their top nodes: render and
+render2d.
+
+You use render most often; this is the top of the ordinary 3-D scene. In order
+to put an object in the world, you will need to parent it to render (or to some
+node that is in turn parented to render).
+
+You will use render2d to render 2-D GUI elements, such as text or buttons, that
+you want to display onscreen; for instance, a heads-up display. Anything
+parented to render2d will be rendered on top of the 3-D scene, as if it were
+painted on the screen glass.
+
+The coordinate system of render2d is set up to match that of the mouse inputs:
+the lower-left corner of the screen is (-1, 0, -1), and the upper-right corner
+is (1, 0, 1). Since this is a square coordinate system, but the screen is
+usually non-square, objects parented directly to render2d may appear squashed.
+For this reason, Panda3D also defines a child of render2d, called aspect2d,
+which has a scale applied to it to correct the non-square aspect ratio of
+render2d. Most often, you will parent GUI elements to aspect2d rather than
+render2d.
+
+Specifically, the coordinate system of aspect2d is by default scaled such that x
+ranges over [-ratio,ratio], and y ranges over [-1,1] where ratio is
+screen_size_x/screen_size_y (in the normal case of a window wider than it is
+tall).
+
+There is one more child of render2d to take note of, called pixel2d.
+This is scaled in such a way that one Panda unit represents one pixel in the
+window. The origin, (0, 0, 0) is in the upper left corner of the window. The
+lower right corner has x and z values equal to the width and -height of the
+window respectively. As Panda3D uses a Z-Up Right coordinate system, the Y
+coordinate in the window will actually be the inverted Z coordinate in Panda.
+This node is especially helpful when you want to do pixel-perfect positioning
+and scaling.
+
+Finally, you may see references to one other top-level node called
+:obj:`~builtins.hidden`. This is simply an ordinary node that has no rendering
+properties set up for it, so that things parented to hidden will not be
+rendered. Older Panda3D code needed to use hidden to remove a node from the
+render scene graph. However, this is no longer necessary, and its use is not
+recommended for new programs; the best way to remove a node from render is to
+call :meth:`.NodePath.detach_node()`.
 
 What you Need to Know about the Hierarchical Scene Graph
 --------------------------------------------------------
@@ -58,13 +105,13 @@ specific reason to do so.
 NodePaths
 ---------
 
-There is a helper class called :class:`~.NodePath` which is a very small object
-containing a pointer to a node, plus some administrative information. For now,
-you can ignore the administrative information; it will be explained in a
-:ref:`later section <instancing>` of the manual. It is the intent of the panda
-designers that you should think of a NodePath as a handle to a node.  Any
-function that creates a node returns a :class:`~.NodePath` that refers to the
-newly-created node.
+Most manipulations of the scene graph are performed using the :class:`.NodePath`
+class. This is a very small object containing a pointer to a node, plus some
+administrative information. For now, you can ignore the administrative
+information; it will be explained in a :ref:`later section <instancing>` of the
+manual. It is the intent of the Panda3D designers that you should think of a
+NodePath as a handle to a node.  Any function that creates a node returns a
+:class:`.NodePath` that refers to the newly-created node.
 
 A NodePath isn't exactly a pointer to a node; it's a "handle" to a node.
 Conceptually, this is almost a distinction without a difference. However,
@@ -130,11 +177,15 @@ In the example above, we call node-methods by first converting the NodePath into
 a node, and then immediately calling the node-method. This is the recommended
 style.
 
+Table of Contents
+-----------------
+
 .. toctree::
    :maxdepth: 2
 
-   scene-graph-manipulations
+   model-files
    common-state-changes
    manipulating-a-piece-of-a-model
    searching-scene-graph
    instancing
+   level-of-detail

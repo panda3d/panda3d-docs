@@ -3,15 +3,13 @@
 Common State Changes
 ====================
 
-Summary
--------
-
 This page lists some of the most common changes you can make to a 3D node. This
 page is really only a quick cheat-sheet summary: the detailed documentation for
-these operations comes later in the manual.
+these operations comes later in the manual. A full list of manipulations can be
+found on the API reference page for the :class:`.NodePath` class.
 
-State Change Cheat Sheet
-------------------------
+Positioning Nodes
+-----------------
 
 Two of the most common changes are position and orientation.
 
@@ -115,28 +113,6 @@ You can also query the current transform information for any of the above:
       myNodePath.get_y();
       myNodePath.get_z();
 
-Also, by using the functions :meth:`~.NodePath.set_tag()` and
-:meth:`~.NodePath.get_tag()` you can store your own information in key-value
-pairs. For example:
-
-.. only:: python
-
-   .. code-block:: python
-
-      myNodePath.setTag("Key", "value")
-
-.. only:: cpp
-
-   .. code-block:: cpp
-
-      myNodePath.set_tag("Key", "value");
-
-.. only:: python
-
-   You can also store Python objects as tags by using the
-   :meth:`~.NodePath.set_python_tag()` function with the same arguments.
-
-
 As a more advanced feature, you may also set or query the position (or any of
 the above transform properties) of a particular NodePath with respect to another
 one. To do this, specify the relative NodePath as the first parameter:
@@ -200,6 +176,94 @@ generated with the +Y axis forward, so this doesn't necessarily make a model
    .. code-block:: cpp
 
       myNodePath.look_at(otherObject);
+
+.. only:: python
+
+   .. tip::
+      If you have trouble to place, scale or rotate your nodes you can use the
+      ``place()`` function to bring up a small GUI which will help you. You need to
+      have Tkinter installed to use it.
+
+      .. code-block:: python
+
+         myNodePath.place()
+
+Changing the Parent
+-------------------
+
+One of the most fundamental scene graph manipulations is changing a node's
+parent. You need to do this at least once after you load a model, to put it
+under render for viewing:
+
+.. only:: python
+
+   .. code-block:: python
+
+      myModel.reparentTo(render)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      myModel.reparent_to(window->get_render());
+
+As you become more comfortable with scene graph operations, you may find
+yourself taking more and more advantage of a deeply nested scene graph, and you
+may start to parent your models to other nodes than just render. Sometimes it is
+convenient to create an empty node for this purpose, for instance, to group
+several models together:
+
+.. only:: python
+
+   .. code-block:: python
+
+      dummyNode = render.attachNewNode("Dummy Node Name")
+      myModel.reparentTo(dummyNode)
+      myOtherModel.reparentTo(dummyNode)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      NodePath dummy_node = window->get_render().attach_new_node("Dummy Node Name");
+      myModel.reparent_to(dummy_node);
+      myOtherModel.reparent_to(dummy_node);
+
+Since a node inherits its position information from its parent node, when you
+reparent a node in the scene graph you might inadvertently change its position
+in the world. If you need to avoid this, you can use a special variant on
+:meth:`~.NodePath.reparent_to()`:
+
+.. only:: python
+
+   .. code-block:: python
+
+      myModel.wrtReparentTo(newParent)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      myModel.wrt_reparent_to(new_parent);
+
+The "wrt" prefix stands for "with respect to". This special method works like
+:meth:`~.NodePath.reparent_to()`, except that it automatically recomputes the
+local transform on myModel to compensate for the change in transform under the
+new parent, so that the node ends up in the same position relative to the world.
+
+Note that the computation required to perform
+:meth:`~.NodePath.wrt_reparent_to()` is a floating-point matrix computation and
+is therefore inherently imprecise. This means that if you use
+:meth:`~.NodePath.wrt_reparent_to()` repeatedly, thousands of times on the same
+node, it may eventually accumulate enough numerical inaccuracies to introduce a
+slight scale on the object (for instance, a scale of 1, 1, 0.99999); if left
+unchecked, this scale could eventually become noticeable.
+
+Beginners tend to overuse this method; you should not use
+:meth:`~.NodePath.wrt_reparent_to()` unless there is a real reason to use it.
+
+Changing the Color
+------------------
 
 Color changes are another common alteration. Values for color are floating point
 numbers from 0 to 1, 0 being black, 1 being white.
@@ -277,7 +341,6 @@ indicated color values by the object's existing color:
 
       myNodePath.set_color_scale(R, G, B, A);
 
-
 One use of :meth:`~.NodePath.set_color_scale()` is to apply it at the top of the
 scene graph (e.g. render) to darken the entire scene uniformly, for instance to
 implement a fade-to-black effect.
@@ -296,6 +359,9 @@ affecting the other color components:
    .. code-block:: cpp
 
       myNodePath.set_alpha_scale(SA);
+
+Hiding and Showing
+------------------
 
 To temporarily prevent an object from being drawn on all cameras, use
 :meth:`~.NodePath.hide()` and :meth:`~.NodePath.show()`:
@@ -350,14 +416,71 @@ all cameras instead use ``nodepath.hide(BitMask32.all_on())``.
    cameras.
 
 Any object that is parented to the object that is hidden will also be hidden.
+However, you can call :meth:`~.NodePath.show_through()` on the nested element
+to force it to show up even if its parent node is hidden.
+
+Hiding a model will only cause it to stop rendering, but other operations (such
+as checking for collisions) will still continue to take place. To deactivate a
+node and its children entirely, you can call the :meth:`~.NodePath.stash()` and
+:meth:`~.NodePath.unstash()` methods instead.
+
+Storing Custom Information
+--------------------------
+
+Also, by using the functions :meth:`~.NodePath.set_tag()` and
+:meth:`~.NodePath.get_tag()` you can store your own information in key-value
+pairs. For example:
 
 .. only:: python
 
-   .. tip::
-      If you have trouble to place, scale or rotate your nodes you can use the
-      ``place()`` function to bring up a small GUI which will help you. You need to
-      have Tkinter installed to use it.
+   .. code-block:: python
 
-      .. code-block:: python
+      myNodePath.setTag("Key", "value")
 
-         myNodePath.place()
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      myNodePath.set_tag("Key", "value");
+
+.. only:: python
+
+   You can also store Python objects as tags by using the
+   :meth:`~.NodePath.set_python_tag()` function with the same arguments.
+
+Removing Nodes
+--------------
+
+To completely remove a node from the scene graph you can call the following,
+which has the effect of emptying the node and releasing the memory taken up by
+the node. Use it only when you have no further use for the node:
+
+.. only:: python
+
+   .. code-block:: python
+
+      myModel.removeNode()
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      myModel.remove_node();
+
+Please note, however, that this does not really do much more than just calling
+:meth:`~.NodePath.detach_node()` followed by dropping the `myModel` variable.
+If the model is still referenced from other places, such as the model pool, it
+will still take up memory. If releasing the model from memory is desired, use
+the following code:
+
+.. only:: python
+
+   .. code-block:: python
+
+      ModelPool.releaseModel("path/to/model.egg")
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      ModelPool::release_model("path/to/model.egg");

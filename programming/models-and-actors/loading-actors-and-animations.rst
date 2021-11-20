@@ -3,14 +3,11 @@
 Loading Actors and Animations
 =============================
 
-Actor Basics
-------------
-
 .. only:: python
 
-   The python class :py:class:`~direct.actor.Actor.Actor` is
-   designed to hold an animatable model and a set of animations. Since the Actor
-   class inherits from the NodePath class, all NodePath functions are applicable
+   The Python class :py:class:`~direct.actor.Actor.Actor` is designed to hold an
+   animatable model and a set of animations. Since the Actor class inherits from
+   the :class:`.NodePath` class, all :ref:`common-state-changes` are applicable
    to actors.
 
    Note, however, that Actor is a Python class that extends the C++ NodePath
@@ -27,9 +24,9 @@ Actor Basics
    NodePath, not an Actor.
 
    The Actor interface provides a high-level interface on the low-level Panda
-   constructs. In Panda, the low-level node that performs the animation is called
-   :class:`~panda3d.core.Character`. You can see the Character node in the scene
-   graph when you call :py:meth:`actor.ls() <direct.actor.Actor.Actor.ls>`.
+   constructs. In Panda, the low-level node that performs the animation is
+   called :class:`.Character`. You can see the Character node in the scene graph
+   when you call :py:meth:`actor.ls() <direct.actor.Actor.Actor.ls>`.
 
    Do not confuse the Actor class with the
    :ref:`ActorNode <enabling-physics-on-a-node>` class, which is used for
@@ -55,27 +52,35 @@ Actor Basics
 
    .. code-block:: python
 
-      actor = Actor('Model Path', {
-          'Animation Name 1': 'Animation Path 1',
-          'Animation Name 2': 'Animation Path 2',
+      actor = Actor('hero.egg', {
+          'walk': 'hero-walk.egg',
+          'swim': 'hero-swim.egg',
       })
 
    Note that it is also possible to store the animations and model in the same
-   file. In that case, just create the Actor with just the model as parameter.
+   file. This is preferred in some other model formats, such as glTF. In that
+   case, just create the Actor with just the model as parameter, without
+   specifying a separate dictionary for the animations.
 
    When you wish to remove the actor from the scene, you need to call the
    :py:meth:`~direct.actor.Actor.Actor.cleanup()` method.  Note that calling
    :py:meth:`~direct.actor.Actor.Actor.removeNode()` is not sufficient.
    This is due to the fact that Actor is a Python class containing additional
-   data that can not be destroyed by the C++
-   :meth:`~.NodePath.remove_node()` method.
+   data that can not be destroyed by the C++ :meth:`~.NodePath.remove_node()`
+   method.
+
+   .. note::
+
+      The paths used in the Actor constructor must follow Panda's filename
+      conventions, so a forward slash is used even on Windows. See
+      :ref:`filename-syntax` for more information. Loading actors and animations
+      utilizes the panda model path, the same as for static models.
 
 .. only:: cpp
 
-   The ``Actor`` class which is
-   available to python users is not available to C++ users. If you need such a
-   class you have to create your own class which at least should do the
-   following:
+   The ``Actor`` class which is available to Python users is not available to
+   C++ users. If you need such a class you have to create your own class which
+   at least should do the following:
 
    -  load the Actor Model
    -  load the animations
@@ -95,14 +100,14 @@ Actor Basics
 
    .. code-block:: cpp
 
-      NodePath Actor = window->load_model(window->get_render(), "panda-model");
+      NodePath actor = window->load_model(window->get_render(), "panda-model");
 
    Load the Animation
    ''''''''''''''''''
 
    .. code-block:: cpp
 
-      window->load_model(Actor, "panda-walk");
+      window->load_model(actor, "panda-walk");
 
    Bind the Model and the Animation
    ''''''''''''''''''''''''''''''''
@@ -113,7 +118,7 @@ Actor Basics
       AnimControlCollection anim_collection;
 
       //bind the animations to the model
-      auto_bind(Actor.node(), anim_collection);
+      auto_bind(actor.node(), anim_collection);
 
    Control the Animations
    ''''''''''''''''''''''
@@ -138,8 +143,9 @@ Actor Basics
 
    .. code-block:: cpp
 
-      for(int n = 0; n < anim_controls.get_num_anims(); ++n)
-          cout << anim_controls.get_anim_name(n) << endl;
+      for (int n = 0; n < anim_controls.get_num_anims(); ++n) {
+        std::cerr << anim_controls.get_anim_name(n) << std::endl;
+      }
 
    If you add more animations to some node after calling:
    ``auto_bind(...)`` they will not be
@@ -148,19 +154,3 @@ Actor Basics
 
    Note that it is possible to store the animations and the model in the same
    file.
-
-Although this is a rarely-used technique, it is possible to assemble a
-character model out of several separate pieces (separate models). This is
-further explained in the section :ref:`multi-part-actors`.
-
-Panda3D supports both skeletal animation and morph animations.
-
-It is also possible to load animations asynchronously, if your build of Panda
-has :ref:`threading` enabled.
-
-Panda Filename Syntax
----------------------
-
-The filenames used in the Actor constructor must follow Panda's filename
-conventions. See :ref:`loading-models` for more information. Loading actors
-and animations utilizes the panda model path, the same as for static models.
