@@ -77,10 +77,19 @@ function only applies to directional lights, not ambient ones.
 
 To enable quantized lighting, use one of these:
 
-.. code-block:: python
+.. only:: python
 
-   np.setAttrib(LightRampAttrib.makeSingleThreshold(t0, l0))
-   np.setAttrib(LightRampAttrib.makeDoubleThreshold(t0, l0, t1, l1))
+   .. code-block:: python
+
+      np.setAttrib(LightRampAttrib.makeSingleThreshold(t0, l0))
+      np.setAttrib(LightRampAttrib.makeDoubleThreshold(t0, l0, t1, l1))
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      np.set_attrib(LightRampAttrib::make_single_threshold(t0, l0));
+      np.set_attrib(LightRampAttrib::make_double_threshold(t0, l0, t1, l1));
 
 In a single-threshold system, the brightness of the diffuse lighting
 contribution is compared to the threshold ``t0``. If the threshold is not met,

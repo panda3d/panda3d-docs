@@ -3,15 +3,15 @@
 Lerp Intervals
 ==============
 
-.. only:: python
+The "lerp interval" is the main workhorse of the Interval system. The word
+"lerp" is short for "linearly interpolate" and means to smoothly adjust
+properties, such as position, from one value to another over a period of time.
+You can use lerp intervals to move and rotate objects around in your world.
+The lerp interval is also the most complex of all of the intervals, since
+there are many different parameters that you might want to specify to control
+the lerp.
 
-   The ``LerpInterval`` is the main workhorse of the Interval system. The word
-   "lerp" is short for "linearly interpolate" and means to smoothly adjust
-   properties, such as position, from one value to another over a period of
-   time. You can use ``LerpIntervals`` to move and rotate objects around in your
-   world. The ``LerpInterval`` is also the most complex of all of the intervals,
-   since there are many different parameters that you might want to specify to
-   control the lerp.
+.. only:: python
 
    An overview of the NodePath-based LerpIntervals
    -----------------------------------------------
@@ -183,3 +183,5 @@ Lerp Intervals
 
 .. only:: cpp
 
+   See the API reference for :class:`.CLerpNodePathInterval` to understand how
+   to construct such an interval.

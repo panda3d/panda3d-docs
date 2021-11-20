@@ -97,37 +97,41 @@ available in most cases.)
 
 Here are some examples in code:
 
-.. code-block:: python
+.. only:: python
 
-   # Calls the function __spam() on the k key event.
-   self.accept('k', self.__spam)
+   .. code-block:: python
 
-   # Calls __spam(eggs, sausage, bacon) on release of the K key.
-   self.accept('k-up', self.__spam, [eggs, sausage, bacon,])
+      # Calls the function __spam() on the k key event.
+      self.accept('k', self.__spam)
 
-   # Exit on pressing the escape button.
-   self.accept('escape', sys.exit)
+      # Calls __spam(eggs, sausage, bacon) on release of the K key.
+      self.accept('k-up', self.__spam, [eggs, sausage, bacon,])
 
-   # Call spamAndEggs when up is pressed and at autorepeat if held.
-   self.accept('arrow_up', self.spamAndEggs)
-   self.accept('arrow_up-repeat', self.spamAndEggs)
+      # Exit on pressing the escape button.
+      self.accept('escape', sys.exit)
 
-   # Calls when the up arrow key is released.
-   self.accept('arrow_up-up', self.spamAndEggs)
+      # Call spamAndEggs when up is pressed and at autorepeat if held.
+      self.accept('arrow_up', self.spamAndEggs)
+      self.accept('arrow_up-repeat', self.spamAndEggs)
 
-.. code-block:: cpp
+      # Calls when the up arrow key is released.
+      self.accept('arrow_up-up', self.spamAndEggs)
 
-   // Calls the function __spam(const Event* eventPtr, void* dataPtr) on the k key event.
-   framework->define_key("k", "call k", __spam, nullptr);
-   framework->define_key("k", "call k", __spam, &data);
+.. only:: cpp
 
-   // Call spamAndEggs(const Event* eventPtr, void* dataPtr) when up is pressed
-   // and at autorepeat if held.
-   framework->define_key("arrow_up", "spam and egg", spamAndEggs, nullptr);
-   framework->define_key("arrow_up-repeat", "spam and egg", spamAndEggs, nullptr);
+   .. code-block:: cpp
 
-   // Calls when the up arrow key is released
-   framework->define_key("arrow_up-up", "spam and egg", spamAndEggs, nullptr);
+      // Calls the function __spam(const Event* eventPtr, void* dataPtr) on the k key event.
+      framework->define_key("k", "call k", __spam, nullptr);
+      framework->define_key("k", "call k", __spam, &data);
+
+      // Call spamAndEggs(const Event* eventPtr, void* dataPtr) when up is pressed
+      // and at autorepeat if held.
+      framework->define_key("arrow_up", "spam and egg", spamAndEggs, nullptr);
+      framework->define_key("arrow_up-repeat", "spam and egg", spamAndEggs, nullptr);
+
+      // Calls when the up arrow key is released
+      framework->define_key("arrow_up-up", "spam and egg", spamAndEggs, nullptr);
 
 .. note::
 
@@ -185,28 +189,30 @@ this situation, you can use the polling interface instead, via the
 name of this class is a bit misleading - it listens for keyboard events as
 well.)
 
-.. code-block:: python
+.. only:: python
 
-   forward_speed = 5.0 # units per second
-   backward_speed = 2.0
-   forward_button = KeyboardButton.ascii_key('w')
-   backward_button = KeyboardButton.ascii_key('s')
+   .. code-block:: python
 
-   def move_task(self, task):
-       speed = 0.0
+      forward_speed = 5.0 # units per second
+      backward_speed = 2.0
+      forward_button = KeyboardButton.ascii_key('w')
+      backward_button = KeyboardButton.ascii_key('s')
 
-       # Check if the player is holding W or S
-       is_down = base.mouseWatcherNode.is_button_down
+      def move_task(self, task):
+          speed = 0.0
 
-       if is_down(forward_button):
-           speed += forward_speed
+          # Check if the player is holding W or S
+          is_down = base.mouseWatcherNode.is_button_down
 
-       if is_down(backward_button):
-           speed -= backward_speed
+          if is_down(forward_button):
+              speed += forward_speed
 
-       # Move the player
-       y_delta = speed * globalClock.get_dt()
-       self.player.set_y(self.player, y_delta)
+          if is_down(backward_button):
+              speed -= backward_speed
+
+          # Move the player
+          y_delta = speed * globalClock.get_dt()
+          self.player.set_y(self.player, y_delta)
 
 Keystroke events
 ----------------

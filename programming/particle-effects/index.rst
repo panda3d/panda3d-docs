@@ -111,12 +111,12 @@ Particle Effects
    Available renderers
    ^^^^^^^^^^^^^^^^^^^
 
-   -  GeomParticleRenderer: displays each particle on the shape of a selected
-      PandaNode
-   -  LineParticleRenderer: displays each particle as a line
-   -  PointParticleRenderer: displays each particle as a point
-   -  SparkleParticleRenderer displays each particle as a plus (+)
-   -  SpriteParticleRenderer:  displays each particle as a sprite
+   -  :class:`.GeomParticleRenderer`: displays each particle in the shape of a
+      selected PandaNode
+   -  :class:`.LineParticleRenderer`: displays each particle as a line
+   -  :class:`.PointParticleRenderer`: displays each particle as a point
+   -  :class:`.SparkleParticleRenderer` displays each particle as a plus (+)
+   -  :class:`.SpriteParticleRenderer`:  displays each particle as a sprite
 
    Each renderer is declared in a separate .h file with the same name as the
    renderer. For example: GeomParticleRenderer is declared in
