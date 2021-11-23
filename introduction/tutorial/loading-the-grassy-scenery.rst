@@ -46,7 +46,6 @@ Update your code as follows:
 
    .. literalinclude:: loading-the-grassy-scenery.py
       :language: python
-      :linenos:
 
    The ShowBase procedure :py:meth:`loader.loadModel()
    <direct.showbase.Loader.Loader.loadModel>` loads the specified file, in this
@@ -58,7 +57,6 @@ Update your code as follows:
 
    .. literalinclude:: loading-the-grassy-scenery.cxx
       :language: cpp
-      :linenos:
 
    The WindowFramework procedure
    :cpp:func:`window->load_model() <WindowFramework::load_model>` loads the
