@@ -121,7 +121,7 @@ what's supported:
 -  normal maps
 -  gloss maps
 -  glow maps
--  materials, but not updates to materials
+-  materials
 -  1D, 2D, 3D, cube textures
 -  most texture stage and combine modes
 -  light ramps (for cartoon shading)
@@ -131,7 +131,7 @@ what's supported:
 
 Here's what's known to be missing:
 
--  some texgen modes
+-  "cube map" and "sphere map" texgen modes
 
 Note that although vertex colors are supported by the ShaderGenerator, in order
 to render vertex colors you need to apply a :meth:`.ColorAttrib.make_vertex()`
@@ -159,9 +159,9 @@ those.
 Caching and the Shader Generator
 --------------------------------
 
-If two objects are rendered using the same RenderState (ie, the exact same
-attributes), then the shader is only generated once. But even a single change to
-the RenderState will cause the shader to be regenerated. This is not entirely
+If two objects are rendered using the same :class:`.RenderState` (ie, the exact
+same attributes), then the shader is only generated once. But certain changes to
+to the RenderState will the shader to be regenerated. This is not entirely
 cheap. Making changes to the RenderState of an object should be avoided when
 shader generation is enabled, because this necessitates regeneration of the
 shader.
@@ -194,11 +194,12 @@ that, you'll probably need to write your own shader.
 
 When you use :meth:`render.set_shader_auto() <.NodePath.set_shader_auto()>`,
 that propagates down the scene graph just like any other render attribute. If
-you assign a specific shader to a node using :meth:`render.set_shader(myshader)
-<.NodePath.set_shader()>`, that overrides any shader assignment propagated down
-from above, including an Auto shader assignment from above. So that means it is
-easy, in the example above, to enable auto shader generation for the scene as a
-whole, and then override that at the pond-nodepath.
+you assign a specific shader to a node using
+:meth:`render.set_shader(myshader) <.NodePath.set_shader()>`, that overrides any
+shader assignment propagated down from above, including an Auto shader
+assignment from above. So that means it is easy, in the example above, to enable
+auto shader generation for the scene as a whole, and then override that at the
+pond-nodepath.
 
 Creating your own Shader Generator
 ----------------------------------
