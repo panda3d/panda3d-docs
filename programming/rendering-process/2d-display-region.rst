@@ -20,22 +20,43 @@ If you are creating a secondary window or buffer, and you would like to layer
 2-D elements on top of the screen, you can do so by simply creating a 2-D scene
 similar to render2d. Some sample code to do so is shown here:
 
-.. code-block:: python
+.. only:: python
 
-   dr = win.makeDisplayRegion()
-   dr.setSort(20)
+   .. code-block:: python
 
-   myCamera2d = NodePath(Camera('myCam2d'))
-   lens = OrthographicLens()
-   lens.setFilmSize(2, 2)
-   lens.setNearFar(-1000, 1000)
-   myCamera2d.node().setLens(lens)
+      dr = win.makeDisplayRegion()
+      dr.sort = 20
 
-   myRender2d = NodePath('myRender2d')
-   myRender2d.setDepthTest(False)
-   myRender2d.setDepthWrite(False)
-   myCamera2d.reparentTo(myRender2d)
-   dr.setCamera(myCamera2d)
+      myCamera2d = NodePath(Camera('myCam2d'))
+      lens = OrthographicLens()
+      lens.setFilmSize(2, 2)
+      lens.setNearFar(-1000, 1000)
+      myCamera2d.node().setLens(lens)
+
+      myRender2d = NodePath('myRender2d')
+      myRender2d.setDepthTest(False)
+      myRender2d.setDepthWrite(False)
+      myCamera2d.reparentTo(myRender2d)
+      dr.setCamera(myCamera2d)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      PT(DisplayRegion) dr = win->make_display_region();
+      dr->set_sort(20);
+
+      NodePath myCamera2d(new Camera("myCam2d"));
+      PT(OrthographicLens) lens = new OrthographicLens;
+      lens->set_film_size(2, 2);
+      lens->set_near_far(-1000, 1000)
+      ((Camera *)myCamera2d.node())->set_lens(lens);
+
+      NodePath myRender2d("myRender2d");
+      myRender2d.set_depth_test(false);
+      myRender2d.set_depth_write(false);
+      myCamera2d.reparent_to(myRender2d);
+      dr->set_camera(myCamera2d)
 
 The first group of commands creates a new DisplayRegion on the window and sets
 its sort value to 20, so that it will be drawn after the main DisplayRegion has
@@ -54,27 +75,30 @@ created attached to it. We turn off the depth test and depth write properties
 because these are not important for a 2-D scene graph, and we don't want them
 to get in the way of our gui elements.
 
-DirectGui in your new window
-----------------------------
+.. only:: python
 
-Note that if you wish to create any :ref:`DirectGui <directgui>` elements, like
-buttons or other clickable widgets, in the new 2-D scene graph, and interact
-with them, you have just a bit more set-up to do. DirectGui has a special
-mechanism to connect it to the mouse pointer, which requires that all of its
-interactive objects be attached directly or indirectly to a PGTop node. In the
-default main window, this PGTop node is aspect2d, a special node created both
-to compensate for the non-square aspect ratio of the window, and also to be the
-special PGTop node required by DirectGui. If you are creating your own 2-D
-scene graph, you can create your own aspect2d node something like this:
+   DirectGui in your new window
+   ----------------------------
 
-.. code-block:: python
+   Note that if you wish to create any :ref:`DirectGui <directgui>` elements,
+   like buttons or other clickable widgets, in the new 2-D scene graph, and
+   interact with them, you have just a bit more set-up to do. DirectGui has a
+   special mechanism to connect it to the mouse pointer, which requires that all
+   of its interactive objects be attached directly or indirectly to a PGTop
+   node. In the default main window, this PGTop node is aspect2d, a special node
+   created both to compensate for the non-square aspect ratio of the window, and
+   also to be the special PGTop node required by DirectGui. If you are creating
+   your own 2-D scene graph, you can create your own aspect2d node something
+   like this:
 
-   aspectRatio = base.getAspectRatio()
-   myAspect2d = myRender2d.attachNewNode(PGTop('myAspect2d'))
-   myAspect2d.setScale(1.0 / aspectRatio, 1.0, 1.0)
-   myAspect2d.node().setMouseWatcher(base.mouseWatcherNode)
+   .. code-block:: python
 
-If this is for a different window than base.win, you will probably need to also
-create your own MouseWatcher, other than base.mouseWatcherNode, to manage the
-mouse associated with your new window. See elsewhere for more information about
-this.
+      aspectRatio = base.getAspectRatio()
+      myAspect2d = myRender2d.attachNewNode(PGTop('myAspect2d'))
+      myAspect2d.setScale(1.0 / aspectRatio, 1.0, 1.0)
+      myAspect2d.node().setMouseWatcher(base.mouseWatcherNode)
+
+   If this is for a different window than base.win, you will probably need to
+   also create your own MouseWatcher, other than base.mouseWatcherNode, to
+   manage the mouse associated with your new window. See elsewhere for more
+   information about this.

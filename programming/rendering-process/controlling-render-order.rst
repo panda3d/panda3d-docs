@@ -88,11 +88,21 @@ If you want simple geometry that's in back of something to render in front of
 something that it logically shouldn't, add the following code to the model that
 you want in front:
 
-.. code-block:: python
+.. only:: python
 
-   model.setBin("fixed", 0)
-   model.setDepthTest(False)
-   model.setDepthWrite(False)
+   .. code-block:: python
+
+      model.setBin("fixed", 0)
+      model.setDepthTest(False)
+      model.setDepthWrite(False)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      model.set_bin("fixed", 0);
+      model.set_depth_test(false);
+      model.set_depth_write(false);
 
 The above code will only work for simple models. If your model self-occludes
 (parts of the model covers other parts of the model), the code will not work as
