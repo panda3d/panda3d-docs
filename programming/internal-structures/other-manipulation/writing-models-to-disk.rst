@@ -41,10 +41,9 @@ of the original egg file may be lost in the conversion.
 
 You can load files of these formats, as well as
 :ref:`any other supported format <model-export>`, using the
-:ref:`loader.loadModel <scene-graph-manipulations>` interface. Any file types
-other than ``.bam`` or ``.egg`` will be automatically
-converted at runtime, exactly as if you had run the appropriate command-line
-conversion tool first.
+:ref:`loader.loadModel <model-files>` interface. Any file types other than
+``.bam`` or ``.egg`` will be automatically converted at runtime, exactly as if
+you had run the appropriate command-line conversion tool first.
 
 The Bam Interface
 -----------------
@@ -57,8 +56,8 @@ that contains your geometry.
 
    myPanda = loader.loadModel("panda")
 
-   #do some fancy calculations on the normals, or texture coordinates that you dont
-   #want to do at runtime
+   # do some fancy calculations on the normals, or texture coordinates that you
+   # dont want to do at runtime
 
    # Save your new custom Panda
    myPanda.writeBamFile("customPanda.bam")
