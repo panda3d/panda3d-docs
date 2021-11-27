@@ -6,9 +6,9 @@ Shader Basics
 Overview of Shaders
 -------------------
 
-Panda3D supports two shading languages: **Cg** and **GLSL**.
+Panda3D supports two shading languages: **GLSL** and **Cg**.
 This section assumes that you have a working knowledge of a shader language.
-If not, it would be wise to read about Cg or GLSL before trying to understand
+If not, it would be wise to read about GLSL or Cg before trying to understand
 how they fit into Panda3D.
 
 Though Panda3D has used only Cg in the past, it is recommended that you create
@@ -46,15 +46,89 @@ There is also another advanced type of shader called a
 :ref:`Compute shader <compute-shaders>`, which stands on its own and does not
 fit into the pipeline above.
 
-You will often only find a vertex and fragment shader, since geometry and
+You will usually only find a vertex and fragment shader, since geometry and
 tessellation shaders are relatively new features that are useful only in more
 specific cases.
 
+GLSL Shaders
+------------
+
+To write a GLSL shader, you must write your vertex, pixel and geometry shaders
+separately, since GLSL requires the names of the entry point to all be
+``main()``.
+
+Example Shader
+~~~~~~~~~~~~~~
+
+This example applies the first texture of the model using the first texture
+coordinate set, but switches the red and blue channels around.
+
+This is the vertex shader, named ``myshader.vert``:
+
+.. code-block:: glsl
+
+   #version 150
+
+   // Uniform inputs
+   uniform mat4 p3d_ModelViewProjectionMatrix;
+
+   // Vertex inputs
+   in vec4 p3d_Vertex;
+   in vec2 p3d_MultiTexCoord0;
+
+   // Output to fragment shader
+   out vec2 texcoord;
+
+   void main() {
+     gl_Position = p3d_ModelViewProjectionMatrix * p3d_Vertex;
+     texcoord = p3d_MultiTexCoord0;
+   }
+
+This is the fragment shader, named ``myshader.frag``:
+
+.. code-block:: glsl
+
+   #version 150
+
+   uniform sampler2D p3d_Texture0;
+
+   // Input from vertex shader
+   in vec2 texcoord;
+
+   // Output to the screen
+   out vec4 p3d_FragColor;
+
+   void main() {
+     vec4 color = texture(p3d_Texture0, texcoord);
+     p3d_FragColor = color.bgra;
+   }
+
+Loading a GLSL Shader
+~~~~~~~~~~~~~~~~~~~~~
+
+To load the above shader and apply it to a model, we can use the following code:
+
+.. only:: python
+
+   .. code-block:: python
+
+      shader = Shader.load(Shader.SL_GLSL,
+                           vertex="myshader.vert",
+                           fragment="myshader.frag")
+      model.setShader(shader)
+
+.. only:: cpp
+
+   .. code-block:: python
+
+      PT(Shader) shader = Shader::load(Shader.SL_GLSL, "myvertexshader.vert", "myfragmentshader.frag");
+      model.set_shader(shader);
+
+To add a geometry shader, simply add the filename of the geometry shader as
+additional parameter, following the fragment shader.
+
 Cg Shaders
 ----------
-
-Overview of Cg Shaders
-~~~~~~~~~~~~~~~~~~~~~~
 
 A Cg shader must contain procedures named ``vshader()`` and ``fshader()``; the
 vertex shader and fragment shader respectively. If a geometry shader is used,
@@ -95,66 +169,6 @@ another for the fragment shader, and a third for the geometry shader. The
 procedure names are still required to be ``vshader()``, ``fshader()`` and
 ``gshader()`` in their respective shader files.
 
-GLSL Shaders
-------------
-
-Overview of GLSL Shaders
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-To write a GLSL shader, you must write your vertex, pixel and geometry shaders
-separately, since GLSL requires the names of the entry point to all be
-``main()``.
-
-GLSL Example
-~~~~~~~~~~~~
-
-This example applies the first texture of the model using the first texture
-coordinate set, but switches the red and blue channels around.
-
-This is the vertex shader, named myshader.vert:
-
-.. code-block:: glsl
-
-   #version 130
-
-   // Uniform inputs
-   uniform mat4 p3d_ModelViewProjectionMatrix;
-
-   // Vertex inputs
-   in vec4 p3d_Vertex;
-   in vec2 p3d_MultiTexCoord0;
-
-   // Output to fragment shader
-   out vec2 texcoord;
-
-   void main() {
-     gl_Position = p3d_ModelViewProjectionMatrix * p3d_Vertex;
-     texcoord = p3d_MultiTexCoord0;
-   }
-
-This is the fragment shader, named myshader.frag:
-
-.. code-block:: glsl
-
-   #version 130
-
-   uniform sampler2D p3d_Texture0;
-
-   // Input from vertex shader
-   in vec2 texcoord;
-
-   void main() {
-     vec4 color = texture(p3d_Texture0, texcoord);
-     gl_FragColor = color.bgra;
-   }
-
-Using Shaders in Panda3D
-------------------------
-
-Shaders in Panda3D use the :class:`.Shader` class. When a shader is loaded, an
-object of this class is returned. This is then applied to a node using the
-:meth:`.NodePath.set_shader()` method.
-
 Loading a Cg Shader
 ~~~~~~~~~~~~~~~~~~~
 
@@ -169,7 +183,8 @@ The following is an example of using this procedure:
 
       from panda3d.core import Shader
 
-      myShader = Shader.load("myshader.sha", Shader.SL_Cg)
+      shader = Shader.load("myshader.sha", Shader.SL_Cg)
+      model.setShader(shader)
 
 .. only:: cpp
 
@@ -177,7 +192,8 @@ The following is an example of using this procedure:
 
       #include "shader.h"
 
-      PT(Shader) myShader = Shader::load("myshader.sha", Shader.SL_Cg);
+      PT(Shader) shader = Shader::load("myshader.sha", Shader.SL_Cg);
+      model.set_shader(shader);
 
 Loading a multi-file Cg shader requires a different set of parameters for the
 :meth:`~.Shader.load()` function; the first being the shader language, and the
@@ -188,82 +204,55 @@ shaders respectively. Here is an example:
 
    .. code-block:: python
 
-      myShader = Shader.load(Shader.SL_Cg,
-                             vertex="myvertexshader.sha",
-                             fragment="myfragmentshader.sha",
-                             geometry="mygeometryshader.sha")
+      shader = Shader.load(Shader.SL_Cg,
+                           vertex="myvertexshader.sha",
+                           fragment="myfragmentshader.sha",
+                           geometry="mygeometryshader.sha")
+      model.setShader(shader)
 
 .. only:: cpp
 
    .. code-block:: cpp
 
-      PT(Shader) myShader = Shader::load(Shader.SL_Cg, "myvertexshader.sha", "myfragmentshader.sha", "mygeometryshader.sha");
+      PT(Shader) shader = Shader::load(Shader.SL_Cg, "myvertexshader.sha", "myfragmentshader.sha", "mygeometryshader.sha");
+      model.set_shader(shader);
 
-Loading a GLSL Shader
-~~~~~~~~~~~~~~~~~~~~~
+Applying the Shader
+-------------------
 
-In the following code sample, a GLSL shader is loaded:
+Shaders can be applied to any part of the scene graph. The call to
+:meth:`.NodePath.set_shader()` causes the model to be rendered with the shader
+passed to it as a parameter. Shaders propagate down the scene graph, like any
+other render attribute; the node and everything beneath it will use the shader.
 
-.. only:: python
-
-   .. code-block:: python
-
-      myShader = Shader.load(Shader.SL_GLSL,
-                             vertex="myshader.vert",
-                             fragment="myshader.frag",
-                             geometry="myshader.geom")
-
-.. only:: cpp
-
-   .. code-block:: python
-
-      PT(Shader) myShader = Shader::load(Shader.SL_GLSL, "myvertexshader.vert", "myfragmentshader.frag", "mygeometryshader.geom");
-
-Applying a Shader
-~~~~~~~~~~~~~~~~~
-
-Shaders can be applied to any part of the scene graph.  Here is an example that
-applies a loaded shader to a model:
-
-.. only:: python
-
-   .. code-block:: python
-
-      myModel.setShader(myShader)
-
-.. only:: cpp
-
-   .. code-block:: cpp
-
-      myModel.set_shader(myShader);
-
-The call to :meth:`.NodePath.set_shader()` causes the model to be rendered with
-the shader passed to it as a parameter. Shaders propagate down the scene graph,
-like any other render attribute; the node and everything beneath it will use the
-shader.
+As with other state changes, it is possible to pass a second ``priority``
+parameter to indicate that the shader specified at that node should override
+shaders specified on a higher or lower node that have a lower priority value.
 
 Fetching Data from the Panda3D Runtime
 --------------------------------------
 
 Each shader program contains a parameter list. Panda3D scans the parameter list
 and interprets each parameter name as a request to extract data from the panda
-runtime. For example, if the shader contains a parameter declaration ``float3
-vtx_position : POSITION``, Panda3D will interpret that as a request for the
-vertex position, and it will satisfy the request. Panda3D will only allow
-parameter declarations that it recognizes and understands.
+runtime. For example, if the shader contains a parameter declaration
+``p3d_Vertex`` (or for Cg, ``float3 vtx_position : POSITION``), Panda3D will
+interpret that as a request for the vertex position, and it will satisfy the
+request. Panda3D will only allow parameter declarations that it recognizes and
+understands.
 
 Panda3D will generate an error if the parameter qualifiers do not match what
 Panda3D is expecting. For example, if you declare the parameter
 ``float3 vtx_position``, then Panda3D will be happy. If, on the other hand, you
 were to declare ``uniform sampler2D vtx_position``, then Panda3D would generate
-two separate errors: Panda3D knows that vtx_position is supposed to be a float-
-vector, not a texture, and that it is supposed to be varying, not uniform.
+two separate errors: Panda3D knows that vtx_position is supposed to be a
+float-vector, not a texture, and that it is supposed to be varying, not uniform.
 
 Again, all parameter names must be recognized. There is a
-:ref:`list of possible Cg shader inputs <list-of-possible-cg-shader-inputs>`
-that shows all the valid parameter names and the data that Panda3D will supply.
+:ref:`list of GLSL shader inputs <list-of-glsl-shader-inputs>` as well as a
+:ref:`list of Cg shader inputs <list-of-possible-cg-shader-inputs>` that shows
+all the valid parameter names and the data that Panda3D will supply.
 
-Supplying data to the Shader Manually
+Supplying Data to the Shader Manually
 -------------------------------------
 
 Most of the data that the shader could want can be fetched from Panda3D at
@@ -275,7 +264,7 @@ necessary to supply some user-provided data to the shader. For this, you need
 
    .. code-block:: python
 
-      myModel.set_shader_input("tint", (1.0, 0.5, 0.5, 1.0));
+      myModel.setShaderInput("tint", (1.0, 0.5, 0.5, 1.0))
 
 .. only:: cpp
 
@@ -295,20 +284,27 @@ interested in a data item labeled "tint".
 
 To fetch data that was supplied using :meth:`~.NodePath.set_shader_input()`, the
 shader must use the appropriate parameter name.
-See the :ref:`list of possible Cg shader inputs <list-of-possible-cg-shader-inputs>`,
+See the :ref:`list of GLSL shader inputs <list-of-glsl-shader-inputs>` or the
+:ref:`list of Cg shader inputs <list-of-possible-cg-shader-inputs>`,
 many of which refer to the data that was stored using
 :meth:`~.NodePath.set_shader_input()`.
 
-Shader Inputs propagate down the scene graph, and accumulate as they go. For
-example, if you store ``set_shader_input("x", 1)`` on a node, and
-``set_shader_input("y", 2)`` on its child, then the child will contain both
-values. If you store ``set_shader_input("z", 1)`` on a node, and
-``set_shader_input("z", 2)`` on its child, then the latter will override the
-former. The method ``set_shader_input()`` accepts a third parameter, priority,
-which defaults to zero. If you store ``set_shader_input("w", 1, priority=1000)``
-on a node, and ``set_shader_input("w", 2, priority=500)`` on the child, then the
-child will contain ("w"==1), because the priority 1000 overrides the priority
-500.
+Shader inputs propagate down the scene graph, and accumulate as they go. For
+example, if you store
+:meth:`set_shader_input("x", 1) <.NodePath.set_shader_input>` on a node, and
+:meth:`set_shader_input("y", 2) <.NodePath.set_shader_input>` on its child, then
+the child will contain both values.
+If you store :meth:`set_shader_input("z", 1) <.NodePath.set_shader_input>` on a
+node, and :meth:`set_shader_input("z", 2) <.NodePath.set_shader_input>` on its
+child, then the latter will override the former.
+
+This method also accepts a third parameter, priority, which defaults to zero.
+If you store
+:meth:`set_shader_input("w", 1, priority=1000) <.NodePath.set_shader_input>` on
+a node, and
+:meth:`set_shader_input("w", 2, priority=500) <.NodePath.set_shader_input>` on
+the child, then the child will contain a "w" value of 1, because the priority
+1000 overrides the priority 500.
 
 .. only:: python
 
