@@ -101,7 +101,7 @@ background. You will need these configuration options to enable this behavior::
 
    preload-textures 0
    preload-simple-textures 1
-   texture-compression 1
+   compressed-textures 1
    allow-incomplete-render 1
 
 Animation loading
