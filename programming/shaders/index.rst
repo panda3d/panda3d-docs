@@ -62,10 +62,10 @@ The following sections will tell you about how to do that in Panda3D.
    :maxdepth: 2
 
    shader-basics
-   list-of-cg-inputs
    list-of-glsl-inputs
+   list-of-cg-inputs
    coordinate-spaces
    known-shader-issues
    shader-generator
-   cg-shader-tutorial/index
    compute-shaders
+   cg-shader-tutorial/index
