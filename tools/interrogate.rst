@@ -103,7 +103,7 @@ There are a few steps involved in generating Python wrappers using interrogate.
 -  Now, you will need to call interrogate_module and generate an
    interrogate_module.cxx file based on your two files from the previous step::
 
-      interrogate_module -module test -oc test_module.cxx -python-native test.in
+      interrogate_module -module test -library test -oc test_module.cxx -python-native test.in
 
 -  Note that you can also run interrogate with the ``-do-module`` option which
    will automatically make sure interrogate_module gets called too. However,
