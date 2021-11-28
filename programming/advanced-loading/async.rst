@@ -191,24 +191,38 @@ the scene graph. Otherwise, if Panda3D happens to render a frame in between
 those calls, there is a chance that the model may briefly appear in its
 original state.
 
-Texture uploading
------------------
+On-demand texture loading
+-------------------------
 
 In addition, you can further ask textures to be loaded to the graphics card
 asynchronously. This means that the first time you look at a particular model,
 the texture might not be available; but instead of holding up the frame while we
-wait for it to be loaded, Panda can render the model immediately, with a flat
-color instead of the texture; and start the texture loading in the background.
+wait for it to be loaded, Panda can render the model immediately, with a very
+low-resolution version of the texture or even a flat color, and start loading of
+the full-resolution version in the background.
 When the texture is eventually loaded, it will be applied. This results in fewer
 frame-rate chugs, but it means that the model looks a little weird at first. It
 has the greatest advantage when you are using lazy-load textures as well as
 texture compression, because it means these things will happen in the
-background. You will need these configuration options to enable this behavior::
+background. Use these configuration options to enable this behavior::
 
    preload-textures 0
    preload-simple-textures 1
-   texture-compression 1
+   simple-image-size 16 16
+   compressed-textures 1
    allow-incomplete-render 1
+
+When converting models to .bam with ``preload-simple-textures`` active, simple
+textures will be baked into the model, so that Panda (starting with version
+1.10.11) doesn't need to load the textures from disk at all until they first
+come into view.
+
+You can set ``async-load-delay`` with a value in seconds to artificially
+introduce a delay for simulating a slower hard drive, on which the textures
+would load less quickly.  This may be useful for testing this feature.
+
+You can use :meth:`.DisplayRegion.set_preload_priority()` if you want ensure
+that textures in some scenes are loaded with higher priority than other scenes.
 
 Animation loading
 -----------------
