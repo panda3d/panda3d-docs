@@ -12,9 +12,7 @@ Filename              Description
 ===================== =============================================================================================================================================================================================================
 bam-info.exe          Scans one or more .bam files and outputs their contents. See executable for more information.
 bam2egg.exe           Converts models in the .bam format to the .egg format. For more information see :ref:`converting-egg-to-bam`.
-bin2c.exe             Reads a file from disk and produces a table that when compiled by C compiler reproduces the same data. See executable for more information.
 cgc.exe               A compiler for NVidia’s Cg language. For more information see :ref:`Using Cg Shaders <shader-basics>`.
-check_md5.exe         Outputs the MD5 hash for one or more files. See Executable for more information.
 dxf-points.exe        Reads in an AutoCad .dxf file and prints out the points contained in it. See executable for more information.
 dxf2egg.exe           Converts models from the AutoCad format to the .egg format. For more information see :ref:`converting-from-other-formats`
 egg-crop.exe          Strips an .egg file of all parts that fall outside the given bounding volume. See executable for more information.
