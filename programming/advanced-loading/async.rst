@@ -217,12 +217,15 @@ textures will be baked into the model, so that Panda (starting with version
 1.10.11) doesn't need to load the textures from disk at all until they first
 come into view.
 
-You can set ``async-load-delay`` with a value in seconds to artificially
-introduce a delay for simulating a slower hard drive, on which the textures
-would load less quickly.  This may be useful for testing this feature.
+To test this process, you can set ``async-load-delay`` with a value in seconds,
+which artificially delays each individual texture load by the given amount.
+This is useful for simulating the user experience on older computers with slower
+hard drives.  Set it to a value like ``0.1`` and you should see the textures pop
+in as you move around the scene.
 
-You can use :meth:`.DisplayRegion.set_preload_priority()` if you want ensure
-that textures in some scenes are loaded with higher priority than other scenes.
+You can use :meth:`.DisplayRegion.set_texture_reload_priority()` if you want
+ensure that textures in some scenes are loaded with higher priority than other
+scenes.
 
 Animation loading
 -----------------
@@ -239,3 +242,17 @@ option, and you might also want to set::
 
    allow-async-bind 1
    restore-initial-pose 0
+
+Configuration
+-------------
+
+All of the above asynchronous operations will take place on a separate
+:ref:`task chain <task-chains>`, automatically created by :class:`.Loader`.
+By default, one low-priority thread is created to serve these requests.
+To increase the number of available threads, or to increase their priority,
+these configuration variables can be changed::
+
+   # default is 1
+   loader-num-threads 2
+   # default is low
+   loader-thread-priority normal
