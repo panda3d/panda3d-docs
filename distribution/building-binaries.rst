@@ -74,6 +74,10 @@ To compile the executable, run the following command::
 
    python setup.py build_apps
 
+The resulting binaries will be stored in the ``build`` folder with one
+sub-folder per targeted platform, together with all the requisite files needed
+to run the application.
+
 GUI and Console Apps
 --------------------
 
@@ -178,25 +182,26 @@ combination is:
    * - p3assimp
      - Adds support for additional model formats beyond BAM by using Assimp
 
-More information about some of the libraries used by these plugins can be found
-:ref:`here <thirdparty-licenses>`. Please review the licensing terms of these
-libraries before including the respective plug-in!
+Note that some plug-ins use third-party libraries that may have different
+licensing terms from Panda3D. More information about these libraries can be
+found :ref:`here <thirdparty-licenses>`. Please review the licensing terms of
+these libraries before including the respective plug-in!
 
 Platform Tags
 -------------
 
-By default, Panda3D will build for Windows, macOS and Linux. More specifically,
-*platform tags* are used to specify the minimum version and architecture of the
-operating system supported by a Python package. You can specify these platforms
-explicitly to customize the targeted platforms and their versions. The default
-set, as of Python 3.7, is as follows:
+By default, Panda3D will build for 64-bit versions of Windows, macOS and Linux.
+More specifically, *platform tags* are used to specify the minimum version and
+architecture of the operating system supported by a Python package. You can
+specify these platforms explicitly to customize the targeted platforms and their
+versions. The default set, as of Python 3.7, is as follows:
 
 .. code-block:: python
 
    'platforms': ['manylinux1_x86_64', 'macosx_10_6_x86_64', 'win_amd64'],
 
-(In some Python versions, more recent platform tags are used by default; see the
-list below for details.)
+On more recent versions of Python, newer defaults are used. See the list below
+for details.
 
 Sometimes, it is desirable to use third-party packages that do not provide
 wheels for a given platform. For example, the latest version of numpy no longer
@@ -234,9 +239,11 @@ platform tags to increase these versions:
      - Target 32-bit Intel Macs running Mac OS X Snow Leopard or above.
        No longer supported as of Python 3.8.
 
-Please note that Python 3.9 no longer supports Windows 7. If you need to target
-Windows 7 in your application, use Python 3.8. Furthermore, if you need to
-support macOS versions older than 10.9, use Python 3.7.
+.. note::
+
+   Python 3.9 no longer supports Windows 7. If you need to target Windows 7 in
+   your application, use Python 3.8, unless you also need to support macOS
+   versions older than 10.9, in which case you should use Python 3.7 or older.
 
 Icons
 -----
@@ -262,25 +269,3 @@ icon look illegible at smaller sizes, we highly recommend providing
 custom-scaled versions at resolutions 16, 32, 48, 128, and 256.
 For best results, it also doesn't hurt to provide icons in additional
 resolutions, such as 24, 64, 96, 512, and 1024.
-
-Optimized Builds
-----------------
-
-By default, Panda3D is built with extra debug information and code (sometimes
-referred to as an SDK build of Panda3D). While this extra debug information and
-code is very useful for developing a Panda3D application, it takes up more disk
-space and runs slower. To solve this, optimized wheels are available that strip
-out this debug information and code.
-
-If ``use_optimized_wheels`` is enabled (which is default), then ``build_apps``
-will automatically try to find an optimized wheel that meets the Panda3D version
-requirements of the application. It does this by exposing an extra index URL to
-pip. Optimized wheels are versioned such that they will have higher priority
-than regular wheels of the same version, but will have less priority than a
-newer version of a regular wheel.
-
-If PyPI or `archive.panda3d.org <https://archive.panda3d.org/>`__ are used as
-the index for the regular Panda3D wheel, then ``build_apps`` can pick an
-appropriate index URL for optimized wheels. Otherwise, set
-``optimized_wheel_index`` to point to the index that contains the optimized
-wheels.

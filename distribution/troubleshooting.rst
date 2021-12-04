@@ -26,6 +26,13 @@ No audio in compiled application
    Have you included an audio plug-in, such as ``p3openal_audio``, in your
    ``setup.py`` file?
 
+Application crashes without a helpful error message
+   By default, ``build_apps`` will use a version of Panda3D that is built with
+   optimizations enabled. This also means that many checks and error messages
+   are disabled. It may help when debugging an application that only crashes in
+   its compiled form to use a non-optimized build of Panda3D. This can be done
+   by adding ``'use_optimized_wheels': False`` to ``setup.py``.
+
 No wheels available for dependency package
    The standard way to distribute Python packages is via .whl files uploaded to
    `PyPI <https://pypi.org/>`__. Nevertheless, it is possible that a .whl file

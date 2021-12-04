@@ -47,24 +47,34 @@ log_filename_strftime
 platforms
    A list of
    `PEP 425 platform tags <https://www.python.org/dev/peps/pep-0425/>`__ to
-   build applications for (defaults to
-   ``['manylinux1_x86_64', 'macosx_10_6_x86_64', 'win_amd64']``); other options
-   are 'win32', 'manylinux1_i686' and 'macosx_10_6_i686'.
+   build applications for. The default differs on the version of Python used.
+   See :ref:`building-binaries` for an explanation and a list of options.
 plugins
    A list of dynamically loaded Panda3D plug-ins included with the built
-   applications (available plug-ins are listed below)
-requirements_paths
+   applications. A list is available on :ref:`building-binaries`.
+requirements_path
    A path to a requirements.txt file to use with PIP when fetching wheels
    (defaults to ./requirements.txt)
 use_optimized_wheels
-   If set, try to download optimized wheels using an extra index url (defaults
-   to True)
+   If set, try to download optimized wheels for Panda3D using an extra index url
+   (defaults to True). These optimized builds of Panda3D are built without extra
+   debug information and error checks; these are useful when developing a
+   Panda3D application, but take up more disk space and run slower, so they are
+   disabled in the optimized wheels.
+
+   Optimized wheels are versioned such that they will have higher priority than
+   regular wheels of the same version, but will have less priority than a newer
+   version of a regular wheel. In other words, if the latest available version
+   does not have an optimized wheel available, a regular wheel is used instead.
 optimized_wheel_index
    The extra index url to use to find optimized wheels (Panda3D will try to set
    a reasonable default if this is not set)
 icons
    New in Panda3D 1.10.4. A dictionary mapping gui_apps/console_apps keys to a
-   list of images from which an icon file is generated.
+   list of images from which an icon file is generated. This list should contain
+   versions the same image at different resolutions. Panda3D will automatically
+   resize the image to provide for missing resolutions if necessary, so it is
+   possible (but not recommended) to specify only one high-resolution image.
 file_handlers
    A dictionary with keys matching extensions and values being functions of the
    form:
@@ -73,11 +83,7 @@ file_handlers
 
       def func(build_cmd, srcpath, dstpath):
 
-
-Default File Handlers
----------------------
-
-File handlers defined by the ``file_handlers`` option are added to a list of
-default file handlers. User-defined file handlers for an extension overrides the
-default file handler. By default, there is only one file handler registered: for
-.egg files, which runs egg2bam.
+   The function is run when encountering a file with the given extension.
+   User-defined file handlers for an extension override the default handler.
+   By default, there is only one file handler registered: for .egg files, which
+   runs egg2bam.
