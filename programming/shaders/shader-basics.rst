@@ -53,9 +53,18 @@ specific cases.
 GLSL Shaders
 ------------
 
-To write a GLSL shader, you must write your vertex, pixel and geometry shaders
-separately, since GLSL requires the names of the entry point to all be
-``main()``.
+GLSL shaders are always separated up into separate files for vertex, fragment
+and geometry shaders, with the main entry point being called ``main()``.
+All GLSL shaders begin with a ``#version`` line indicating the version of the
+GLSL standard that the shader is written in, which maps to a corresponding
+version of OpenGL. For example, version 120 will require OpenGL 2.1, version
+150 requires OpenGL 3.2, and version 330 requires OpenGL 3.3.
+
+In the future, Panda3D will automatically convert the shader to the appropriate
+version of GLSL supported by the graphics card. In the meantime, it is
+recommended to write your shaders in GLSL 150 or later, unless you need to
+support very old graphics hardware, in which case it may be necessary to target
+GLSL 120.
 
 Example Shader
 ~~~~~~~~~~~~~~

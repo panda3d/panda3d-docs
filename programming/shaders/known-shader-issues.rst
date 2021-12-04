@@ -5,6 +5,19 @@ Known Shader Bugs and Limitations
 
 Here is a list of known issues in the shader system, with workarounds:
 
+Problem: GLSL Versions on macOS
+-------------------------------
+
+*Problem:* On macOS, loading a GLSL shader newer than 1.20 will fail, even if
+the hardware is capable of higher versions.
+
+*Workaround:* To use GLSL 1.50 and 3.30 shaders on macOS, it is necessary to
+turn off the fixed-function pipeline. Note that this means it becomes necessary
+to use shaders for all objects, it is no longer possible to mix-and-match custom
+shaders and the fixed-function pipeline. To do this, set this in Config.prc::
+
+   gl-version 3 2
+
 Problem: Register Allocation
 ----------------------------
 
