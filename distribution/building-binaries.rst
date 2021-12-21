@@ -259,7 +259,8 @@ like the following:
        "asteroids": "src/main.py",
    },
    "icons": {
-       # The key needs to match the key used in gui_apps/console_apps
+       # The key needs to match the key used in gui_apps/console_apps.
+       # Alternatively, use "*" to set the icon for all apps.
        "asteroids": ["icon-256.png", "icon-128.png", "icon-48.png", "icon-32.png", "icon-16.png"],
    },
 

@@ -75,6 +75,8 @@ icons
    versions the same image at different resolutions. Panda3D will automatically
    resize the image to provide for missing resolutions if necessary, so it is
    possible (but not recommended) to specify only one high-resolution image.
+
+   If "*" is used as key, sets the icons for all included apps.
 file_handlers
    A dictionary with keys matching extensions and values being functions of the
    form:
