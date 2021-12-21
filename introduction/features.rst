@@ -30,7 +30,7 @@ Full Python Integration
 
 Automatically-generated wrappers expose full functionality of the engine.
 
--  All Python versions from 2.7 to newest 3.9 supported
+-  All Python versions from 2.7 to newest 3.10 supported
 -  Highly optimized: all core functionality in C++
 -  Thoroughly-tested: two commercial MMOs in Python
 -  Panda3D structures garbage collected when using Python
@@ -46,7 +46,7 @@ Exposes Full Power of Graphics API
 
 Modern OpenGL/DirectX features exposed directly to Panda3D user:
 
--  High-level shader languages: Cg, GLSL
+-  High-level shader languages: GLSL, Cg
 -  Powerful interface between shaders and engine
 -  Support for render-to-texture, multiple render targets
 -  Use of depth/shadow/stencil textures
