@@ -78,7 +78,7 @@ the function returns.
       #include "asyncTaskManager.h"
 
       // This task runs for two seconds, then prints done
-      AsyncTask::DoneStatus example_task(GenericAsyncTask *task, void *data) {
+      AsyncTask::DoneStatus example_task(AsyncTask *task, void *data) {
         if (task->get_elapsed_time() < 2.0) {
           return AsyncTask::DS_cont;
         }
@@ -264,6 +264,16 @@ The Task Manager keeps a list of all currently-running tasks.
       task_mgr->add(task);
 
    You can add an arbitrary argument to the call through the third parameter.
+
+   It is also possible to add a lambda or any other ``std::function``-compatible
+   object directly to the ``add()`` call:
+
+   .. code-block:: cpp
+
+      task_mgr->add("MyTaskName", [&](AsyncTask *task) {
+        // contents of task
+        return AsyncTask::DS_cont;
+      });
 
 Although normally each task is given a unique name, you may also create multiple
 different tasks with the same name. This can be convenient for locating or
