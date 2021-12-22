@@ -12,54 +12,54 @@ class MyApp(ShowBase):
         ShowBase.__init__(self)
 
         # Disable the camera trackball controls.
-        self.disableMouse()
+        self.disable_mouse()
 
         # Load the environment model.
-        self.scene = self.loader.loadModel("models/environment")
+        self.scene = self.loader.load_model("models/environment")
         # Reparent the model to render.
-        self.scene.reparentTo(self.render)
+        self.scene.reparent_to(self.render)
         # Apply scale and position transforms on the model.
-        self.scene.setScale(0.25, 0.25, 0.25)
-        self.scene.setPos(-8, 42, 0)
+        self.scene.set_scale(0.25, 0.25, 0.25)
+        self.scene.set_pos(-8, 42, 0)
 
-        # Add the spinCameraTask procedure to the task manager.
-        self.taskMgr.add(self.spinCameraTask, "SpinCameraTask")
+        # Add the spin_camera_task procedure to the task manager.
+        self.taskMgr.add(self.spin_camera_task)
 
         # Load and transform the panda actor.
-        self.pandaActor = Actor("models/panda-model",
+        self.panda_actor = Actor("models/panda-model",
                                 {"walk": "models/panda-walk4"})
-        self.pandaActor.setScale(0.005, 0.005, 0.005)
-        self.pandaActor.reparentTo(self.render)
+        self.panda_actor.set_scale(0.005, 0.005, 0.005)
+        self.panda_actor.reparent_to(self.render)
         # Loop its animation.
-        self.pandaActor.loop("walk")
+        self.panda_actor.loop("walk")
 
         # Create the four lerp intervals needed for the panda to
         # walk back and forth.
-        posInterval1 = self.pandaActor.posInterval(13,
-                                                   Point3(0, -10, 0),
-                                                   startPos=Point3(0, 10, 0))
-        posInterval2 = self.pandaActor.posInterval(13,
-                                                   Point3(0, 10, 0),
-                                                   startPos=Point3(0, -10, 0))
-        hprInterval1 = self.pandaActor.hprInterval(3,
-                                                   Point3(180, 0, 0),
-                                                   startHpr=Point3(0, 0, 0))
-        hprInterval2 = self.pandaActor.hprInterval(3,
-                                                   Point3(0, 0, 0),
-                                                   startHpr=Point3(180, 0, 0))
+        pos_ival1 = self.panda_actor.posInterval(13,
+                                                 Point3(0, -10, 0),
+                                                 startPos=Point3(0, 10, 0))
+        pos_ival2 = self.panda_actor.posInterval(13,
+                                                 Point3(0, 10, 0),
+                                                 startPos=Point3(0, -10, 0))
+        hpr_ival1 = self.panda_actor.hprInterval(3,
+                                                 Point3(180, 0, 0),
+                                                 startHpr=Point3(0, 0, 0))
+        hpr_ival2 = self.panda_actor.hprInterval(3,
+                                                 Point3(0, 0, 0),
+                                                 startHpr=Point3(180, 0, 0))
 
         # Create and play the sequence that coordinates the intervals.
-        self.pandaPace = Sequence(posInterval1, hprInterval1,
-                                  posInterval2, hprInterval2,
+        self.pandaPace = Sequence(pos_ival1, hpr_ival1,
+                                  pos_ival2, hpr_ival2,
                                   name="pandaPace")
         self.pandaPace.loop()
 
     # Define a procedure to move the camera.
-    def spinCameraTask(self, task):
-        angleDegrees = task.time * 6.0
-        angleRadians = angleDegrees * (pi / 180.0)
-        self.camera.setPos(20 * sin(angleRadians), -20 * cos(angleRadians), 3)
-        self.camera.setHpr(angleDegrees, 0, 0)
+    def spin_camera_task(self, task):
+        angle_degrees = task.time * 6.0
+        angle_radians = angle_degrees * (pi / 180.0)
+        self.camera.set_pos(20 * sin(angle_radians), -20 * cos(angle_radians), 3)
+        self.camera.set_hpr(angle_degrees, 0, 0)
         return Task.cont
 
 

@@ -35,8 +35,9 @@ parameters, such a gravity, and it advances the simulation state.
    .. code-block:: python
 
       from panda3d.bullet import BulletWorld
+
       world = BulletWorld()
-      world.setGravity(Vec3(0, 0, -9.81))
+      world.gravity = Vec3(0, 0, -9.81)
 
 .. only:: cpp
 
@@ -60,15 +61,15 @@ second). In SI units 9.81 m/s² is the gravity on Earth's surface.
 
 Next we need to advance the simulation state. This is best done by a task which
 gets called each frame. We find out about the elapsed time (dt), and pass this
-value to the ``do_physics()`` method.
+value to the :meth:`~.BulletWorld.do_physics()` method.
 
 .. only:: python
 
    .. code-block:: python
 
       def update(task):
-          dt = globalClock.getDt()
-          world.doPhysics(dt)
+          dt = globalClock.dt
+          world.do_physics(dt)
           return task.cont
 
       taskMgr.add(update, 'update')
@@ -91,16 +92,16 @@ value to the ``do_physics()`` method.
       task_mgr->add(task); // Note: task_mgr = AsyncTaskManager::get_global_ptr();
       ...
 
-The ``doPhysics`` method allows finer control on the way the simulation state is
-advanced. Internally Bullet splits a timestep into several substeps. We can pass
-a maximum number of substeps and the size of each substep, like show in the
-following code.
+The :meth:`~.BulletWorld.do_physics()` method allows finer control on the way
+the simulation state is advanced. Internally Bullet splits a timestep into
+several substeps. We can pass a maximum number of substeps and the size of each
+substep, like show in the following code.
 
 .. only:: python
 
    .. code-block:: python
 
-      world.doPhysics(dt, 10, 1.0/180.0)
+      world.do_physics(dt, 10, 1.0 / 180.0)
 
 .. only:: cpp
 
@@ -131,12 +132,12 @@ serve as a ground.
       shape = BulletPlaneShape(Vec3(0, 0, 1), 1)
 
       node = BulletRigidBodyNode('Ground')
-      node.addShape(shape)
+      node.add_shape(shape)
 
-      np = render.attachNewNode(node)
-      np.setPos(0, 0, -2)
+      np = render.attach_new_node(node)
+      np.set_pos(0, 0, -2)
 
-      world.attachRigidBody(node)
+      world.attach_rigid_body(node)
 
 .. only:: cpp
 
@@ -161,7 +162,7 @@ so we won't go into more detail here.
 Next we create a rigid body and add the previously created shape.
 ``BulletRigidBodyNode`` is derived from ``PandaNode``, and thus the rigid body
 can be placed within the Panda3D scene graph. you can also use methods like
-``setPos`` or ``setH`` to place the rigid body node where you want it to be.
+``set_pos`` or ``set_h`` to place the rigid body node where you want it to be.
 
 Finally we need to attach the newly created rigid body node to the world. Only
 rigid bodies attached to the world will be considered when advancing the
@@ -187,13 +188,13 @@ the body unmovable (static).
       shape = BulletBoxShape(Vec3(0.5, 0.5, 0.5))
 
       node = BulletRigidBodyNode('Box')
-      node.setMass(1.0)
-      node.addShape(shape)
+      node.mass = 1.0
+      node.add_shape(shape)
 
-      np = render.attachNewNode(node)
-      np.setPos(0, 0, 2)
+      np = render.attach_new_node(node)
+      np.set_pos(0, 0, 2)
 
-      world.attachRigidBody(node)
+      world.attach_rigid_body(node)
 
 .. only:: cpp
 
@@ -213,9 +214,9 @@ the body unmovable (static).
 
 Bullet will automatically update a rigid body node's position and orientation if
 is has changed after advancing the simulation state. So, if you have a
-``GeomNode``- e. g. a textured box - and reparent this geom node below the rigid
-body node, then the geom node will move around together with the rigid body. You
-don't have to synchronize the visual world with the physics world.
+:class:`.GeomNode` - e.g. a textured box - and reparent this geom node below the
+rigid body node, then the geom node will move around together with the rigid
+body. You don't have to synchronize the visual world with the physics world.
 
 The Program
 -----------
@@ -245,37 +246,37 @@ archive: https://www.panda3d.org/download/noversion/bullet-samples.zip
       from panda3d.bullet import BulletRigidBodyNode
       from panda3d.bullet import BulletBoxShape
 
-      base.cam.setPos(0, -10, 0)
-      base.cam.lookAt(0, 0, 0)
+      base.cam.set_pos(0, -10, 0)
+      base.cam.look_at(0, 0, 0)
 
       # World
       world = BulletWorld()
-      world.setGravity(Vec3(0, 0, -9.81))
+      world.gravity = Vec3(0, 0, -9.81)
 
       # Plane
       shape = BulletPlaneShape(Vec3(0, 0, 1), 1)
       node = BulletRigidBodyNode('Ground')
-      node.addShape(shape)
-      np = render.attachNewNode(node)
-      np.setPos(0, 0, -2)
-      world.attachRigidBody(node)
+      node.add_shape(shape)
+      np = render.attach_new_node(node)
+      np.set_pos(0, 0, -2)
+      world.attach_rigid_body(node)
 
       # Box
       shape = BulletBoxShape(Vec3(0.5, 0.5, 0.5))
       node = BulletRigidBodyNode('Box')
-      node.setMass(1.0)
-      node.addShape(shape)
-      np = render.attachNewNode(node)
-      np.setPos(0, 0, 2)
-      world.attachRigidBody(node)
-      model = loader.loadModel('models/box.egg')
-      model.flattenLight()
-      model.reparentTo(np)
+      node.mass = 1.0
+      node.add_shape(shape)
+      np = render.attach_new_node(node)
+      np.set_pos(0, 0, 2)
+      world.attach_rigid_body(node)
+      model = loader.load_model('models/box.egg')
+      model.flatten_light()
+      model.reparent_to(np)
 
       # Update
       def update(task):
-          dt = globalClock.getDt()
-          world.doPhysics(dt)
+          dt = globalClock.dt
+          world.do_physics(dt)
           return task.cont
 
       taskMgr.add(update, 'update')
