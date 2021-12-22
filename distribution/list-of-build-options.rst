@@ -4,7 +4,10 @@ List of Build Options
 =====================
 
 This page lists the full set of options that can be used with the ``build_apps``
-command:
+and ``bdist_apps`` commands.
+
+build_apps
+----------
 
 build_base
    The directory to build the applications in (defaults to "build" in the
@@ -88,3 +91,51 @@ file_handlers
    User-defined file handlers for an extension override the default handler.
    By default, there is only one file handler registered: for .egg files, which
    runs egg2bam.
+
+application_id
+   This field is required by Android and uniquely identifies the application.
+   It is usually based on the inverse of the developer's domain name (e.g.
+   "gamestudio.com" becomes "com.gamestudio"), followed by any other components
+   as needed to further identify the application.
+   As an example, we might publish the Asteroids example on the Play store as
+   ``org.panda3d.samples.asteroids``.
+
+   .. caution::
+
+      Once the application has been uploaded to the Google Play Store, it is no
+      longer possible to change the identifier.
+
+android_version_code
+   This should be an integer that starts at 1 and is incremented with every app
+   update. This is just internal, whereas the ``version`` metadata field is used
+   to show an arbitrary dot-separated version string to the user. Every time you
+   upload a new release to the Play Console, this number must be increased.
+
+android_min_sdk_version
+   Overrides the lowest version of Android that the game will still operate on.
+   The default is the minimum version of Android that Panda3D supports (19).
+
+android_max_sdk_version
+   Overrides the highest version of Android that the game will still operate on.
+   There is normally no need to set this.
+
+android_target_sdk_version
+   Overrides the version of Android targeted by the application. This affects
+   various behaviors and optimizations applied by Android, but does not affect
+   the minimum version of Android supported by the application.
+   This should be at least 30 to be able to upload the game to the Play Store.
+
+bdist_apps
+----------
+
+installers
+   See :ref:`packaging-binaries`.
+signing_certificate
+   Path to a .pem file that is used to sign the package. Currently, this is only
+   used on Android.
+signing_private_key
+   Path to a .pem file that contains the private key matching the certificate
+   specified with ``signing_certificate``.
+signing_passphrase
+   If the private key is encrypted, sets the password necessary to decrypt it.
+   If no password is provided, it will be prompted on the command-line.

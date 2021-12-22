@@ -84,5 +84,6 @@ Table of Contents
    building-binaries
    list-of-build-options
    packaging-binaries
+   building-for-android
    troubleshooting
    thirdparty-licenses

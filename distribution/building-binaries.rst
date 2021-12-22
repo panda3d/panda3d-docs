@@ -223,6 +223,8 @@ increase these versions:
      - Target 32-bit Linux distributions more recent than (more or less) 2010.
    * - macosx_10_9_x86_64
      - Target Intel Macs running OS X Mavericks or higher. Recommended.
+   * - android
+     - See :ref:`building-for-android` for more information.
 
 .. note::
 
@@ -251,6 +253,6 @@ the ``setup.py`` file to something like the following:
 You can provide a single image file of at least 256×256 and Panda3D will scale
 it down to smaller sizes as needed, but because automatic scaling can make the
 icon look illegible at smaller sizes, we highly recommend providing
-custom-scaled versions at resolutions 16, 32, 48, 128, and 256.
-For best results, it also doesn't hurt to provide icons in additional
-resolutions, such as 24, 64, 96, 512, and 1024.
+custom-scaled versions at resolutions 16, 32, 48, 128, and 256. Some platforms
+may also prefer additional resolutions, such as 24, 64, 72, 96, 144, 192,
+512, and 1024.
