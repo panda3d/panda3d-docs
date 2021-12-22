@@ -33,17 +33,16 @@ exclude_modules
    applications) and values being lists of Python modules to not freeze into the
    application regardless of whether FreezeTool detects it as a dependency
 log_filename
-   If specifies, all of the output (such as print statemetns and error messages)
+   If specifies, all of the output (such as print statements and error messages)
    is written to a file. The ``$USER_APPDATA/`` prefix can be used to write
    refer to the AppData directory of the current user.
+
+   This string may contain additional formatting parameters containing the
+   current date or time, such as ``$USER_APPDATA/My Game/logs/%Y-%m-%d.log``.
 log_append
    The default is to erase the log file every time the application is re-run.
    If this is set to True, it will instead preserve the existing contents and
    instead append to the end of the log file.
-log_filename_strftime
-   New in Panda3D 1.10.9. If set to true, the ``log_filename`` string can
-   contain additional formatting parameters containing the current date or time,
-   such as ``$USER_APPDATA/My Game/logs/%Y-%m-%d.log``.
 platforms
    A list of
    `PEP 425 platform tags <https://www.python.org/dev/peps/pep-0425/>`__ to
