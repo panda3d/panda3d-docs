@@ -166,8 +166,7 @@ Running your Program
 
    You will need to replace ``{panda3dinclude}`` with the location of the
    Panda3D header files. On Linux, this is likely ``/usr/include/panda3d/``.
-   On macOS, this will be in ``/Library/Developer/Panda3D/include/`` in Panda3D
-   1.10.5 and higher or ``/Developer/Panda3D/include/`` in older versions.
+   On macOS, this will be in ``/Library/Developer/Panda3D/include/``.
 
    To generate an executable, you can use the following command:
 
@@ -177,8 +176,7 @@ Running your Program
 
    As above, change `{panda3dlibs}` to point to the Panda3D libraries. On Linux
    this will be ``/usr/lib/panda3d`` or ``/usr/lib/x86_64-gnu-linux/panda3d``,
-   whereas on macOS it will be ``/Library/Developer/Panda3D/lib`` or
-   ``/Developer/Panda3D/lib``, depending on your exact version of Panda3D.
+   whereas on macOS it will be ``/Library/Developer/Panda3D/lib``.
 
    Here is an equivalent SConstruct file, organized for clarity:
 
@@ -208,12 +206,3 @@ Running your Program
 
    If it runs, congratulations! You have successfully compiled your own Panda3D
    program!
-
-   .. note::
-
-      On macOS, Panda3D versions 1.10.4.1 and below were compiled with
-      libstdc++, and so require passing ``-stdlib=libstdc++`` to the compiler.
-      Panda3D 1.10.5 offers a choice: the download marked "MacOSX10.6" is
-      compiled with libstdc++, whereas the download marked "MacOSX10.9" is
-      compiled with libc++.
-      It is recommended to use the download marked "MacOSX10.9".
