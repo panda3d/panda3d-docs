@@ -49,7 +49,7 @@ extensions = [
     'sphinx_autopackagesummary',
     'variations',
     'sphinx.ext.graphviz',
-    'sphinxcontrib.napoleon',
+    'sphinx.ext.napoleon',
     'sphinx.ext.inheritance_diagram',
     'sphinx.ext.viewcode',
     'sphinx.ext.intersphinx',
