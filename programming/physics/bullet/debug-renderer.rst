@@ -108,24 +108,13 @@ F1 key:
 
    .. code-block:: cpp
 
-      ...
-      void toggle_physics_debug(const Event *e, void *data) {
-          static bool show_state = true;
-          show_state = !show_state;
-          bullet_dbg_node->show_bounding_boxes(show_state);
-          bullet_dbg_node->show_constraints(show_state);
-          bullet_dbg_node->show_normals(show_state);
-          bullet_dbg_node->show_wireframe(show_state);
-      }
-      ...
-      framework.define_key("f1", "Toggle Physics debug", toggle_physics_debug, nullptr);
-      ....
-
-   You can notice that CXX code made Toggle action in different way than Python
-   code, the reason is simple, CXX uses the BulletDebugNode instead of NodePath
-   that parent first node, anyway you can apply the last one using global
-   variables or static function calls, or use directly BulletDebugNode like the
-   following program.
+      framework.define_key("f1", "Toggle Physics debug", [](const Event *e) {
+        if (np_dbg_node.is_hidden()) {
+          np_dbg_node.show();
+        } else {
+          np_dbg_node.hide();
+        }
+      });
 
    .. code-block:: cpp
 
