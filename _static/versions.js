@@ -23,6 +23,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
         // Create a select option for each version
         var isOutdated = false;
+        var isPreview = false;
         var latestVersion = null;
         for (var i = 0; i < versions.length; ++i) {
             var version = versions[i];
@@ -36,6 +37,9 @@ window.addEventListener("DOMContentLoaded", function() {
                 window.versionIndex = i;
                 if (version.outdated) {
                     isOutdated = true;
+                }
+                if (version.preview) {
+                    isPreview = true;
                 }
             } else if (version.hidden) {
                 continue;
@@ -53,7 +57,11 @@ window.addEventListener("DOMContentLoaded", function() {
 
         if (isOutdated) {
             const latestPath = window.versionRoot + '/' + latestVersion + '/' + window.currentPagePath;
-            $('div.document').prepend('<div class="admonition warning"><p class="first admonition-title">Note</p><p class="last">You are browsing the documentation for an obsolete version. <a href="' + latestPath + '">Click here</a> to go to the latest version.</p></div>');
+            $('div.document').prepend('<div class="admonition warning"><p class="first admonition-title">Note</p><p class="last">You are browsing the documentation for an obsolete version. <a href="' + latestPath + '">Click here</a> to go to the latest released version.</p></div>');
+        }
+        else if (isPreview) {
+            const latestPath = window.versionRoot + '/' + latestVersion + '/' + window.currentPagePath;
+            $('div.document').prepend('<div class="admonition warning"><p class="first admonition-title">Note</p><p class="last">You are browsing the documentation for an unreleased preview version of Panda3D. <a href="' + latestPath + '">Click here</a> to go to the latest released version.</p></div>');
         }
     });
 });
