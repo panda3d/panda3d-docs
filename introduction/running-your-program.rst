@@ -84,8 +84,7 @@ Running your Program
    .. image:: msvc-2015-release-x64.png
 
    Now, open up the project configuration pages. Change the "Platform Toolset"
-   in the "General" tab to "v140_xp" (if you wish your project to be able to
-   work on Windows XP) or "v140".
+   in the "General" tab to "v140".
 
    Furthermore, we need to go to C/C++ -> "Preprocessor Definitions" and remove
    the ``NDEBUG`` symbol from the preprocessor definitions. This was

@@ -14,8 +14,8 @@ Just Works, Right out of the Box
 No-hassle install:
 
 -  Convenient installer packages for Windows, macOS and Linux
--  Supports Windows versions all the way from Windows XP to Windows 10
--  Supports Mac OS X 10.6 "Snow Leopard" through macOS 11 "Big Sur"
+-  Supports Windows versions all the way from Windows Vista to Windows 10
+-  Supports OS X 10.9 "Mavericks" through macOS 11 "Big Sur"
 -  Only one external dependency: working graphics driver
 -  Sample programs run right out of Start Menu
 -  No compilation step needed
@@ -30,7 +30,7 @@ Full Python Integration
 
 Automatically-generated wrappers expose full functionality of the engine.
 
--  All Python versions from 2.7 to newest 3.10 supported
+-  All Python versions from 3.7 to newest 3.10 supported
 -  Highly optimized: all core functionality in C++
 -  Thoroughly-tested: two commercial MMOs in Python
 -  Panda3D structures garbage collected when using Python

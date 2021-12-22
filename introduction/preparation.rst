@@ -48,9 +48,9 @@ between C++ information and Python information.
    added to the PATH environment variable. This enables you to type "python" at
    the command prompt, and it will run the Python that comes with Panda.
 
-   On macOS, Python 2.7 already comes pre-installed on your system, which will
-   work with Panda3D. However, it is recommended to install a newer version of
-   Python from https://www.python.org/downloads/mac-osx/ .
+   On macOS, Python 2.7 already comes pre-installed on your system, but this
+   version is too old to work with Panda3D. It is recommended to instead install
+   a newer version of Python from https://www.python.org/downloads/macos/ .
 
    What if I already have a copy of Python?
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
