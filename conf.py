@@ -386,7 +386,7 @@ add_module_names = False
 
 # Map to camel-case for now.
 autodoc_interrogatedb_mangle_type_names = False
-autodoc_interrogatedb_mangle_function_names = True
+autodoc_interrogatedb_mangle_function_names = False
 
 # Set the directory where the .in files should be located.
 try:
@@ -514,7 +514,7 @@ def resolve_reference(ref, rel, domain='py'):
                 return ('func', func_name)
             elif domain == 'py':
                 # Grab the mangled function name.
-                func_name = idb.get_function_name(ifunc, scoped=False, mangle=True)
+                func_name = idb.get_function_name(ifunc, scoped=False, mangle=False)
                 if interrogate_function_is_method(ifunc):
                     outer = interrogate_function_class(ifunc)
                     prefix = interrogate_type_module_name(outer)
