@@ -39,7 +39,7 @@ Then, we can build the binaries using ``python setup.py build_apps``.
 
 A ``build`` directory will be created and contain a directory for each platform
 that binaries were built for. Since no platforms were specified, the defaults
-were used (manylinux1_x86_64, macosx_10_6_x86_64, win_amd64).
+were used (manylinux2010_x86_64, macosx_10_9_x86_64, win_amd64).
 
 Note, win32 is missing from the defaults. If a win32 build is desired, then
 platforms must be defined in ``setup.py`` and ``win_amd64`` added to the list:
@@ -54,8 +54,8 @@ platforms must be defined in ``setup.py`` and ``win_amd64`` added to the list:
            'build_apps': {
                'console_apps': {'hello_world': 'main.py'},
                'platforms': [
-                   'manylinux1_x86_64',
-                   'macosx_10_6_x86_64',
+                   'manylinux2010_x86_64',
+                   'macosx_10_9_x86_64',
                    'win_amd64',
                    'win32',
                ],

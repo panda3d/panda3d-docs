@@ -194,24 +194,21 @@ By default, Panda3D will build for 64-bit versions of Windows, macOS and Linux.
 More specifically, *platform tags* are used to specify the minimum version and
 architecture of the operating system supported by a Python package. You can
 specify these platforms explicitly to customize the targeted platforms and their
-versions. The default set, as of Python 3.7, is as follows:
-
-.. code-block:: python
-
-   'platforms': ['manylinux1_x86_64', 'macosx_10_6_x86_64', 'win_amd64'],
-
-On more recent versions of Python, newer defaults are used. See the list below
-for details.
-
-Sometimes, it is desirable to use third-party packages that do not provide
-wheels for a given platform. For example, the latest version of numpy no longer
-publishes wheels for ``manylinux1_x86_64`` or ``macosx_10_6_x86_64``. If you
-wish to use the latest version of numpy, then you need to therefore set the
-platform tags to increase these versions:
+versions. The default set is as follows:
 
 .. code-block:: python
 
    'platforms': ['manylinux2010_x86_64', 'macosx_10_9_x86_64', 'win_amd64'],
+
+Sometimes, it is desirable to use third-party packages that do not provide
+wheels for a given platform. For example, a package may no longer publish wheels
+for a ``manylinux2010_x86_64``, but only for ``manylinux2014_x86_64``. If you
+wish to use this package, then you need to therefore set the platform tags to
+increase these versions:
+
+.. code-block:: python
+
+   'platforms': ['manylinux2014_x86_64', 'macosx_10_9_x86_64', 'win_amd64'],
 
 .. list-table:: List of Platforms
    :widths: 20, 80
@@ -220,24 +217,12 @@ platform tags to increase these versions:
      - 64-bit Windows systems (including Intel x64 processors).
    * - win32
      - 32-bit Windows systems, rarely used nowadays.
-   * - manylinux1_x86_64
-     - Set this to target the oldest 64-bit Linux distributions. No longer
-       supported as of Python 3.10, where manylinux2010_x86_64 is silently used
-       as default.
-   * - manylinux1_i686
-     - Set this to target the oldest 32-bit Linux distributions.
    * - manylinux2010_x86_64
      - Target 64-bit Linux distributions more recent than (more or less) 2010.
    * - manylinux2010_i686
      - Target 32-bit Linux distributions more recent than (more or less) 2010.
    * - macosx_10_9_x86_64
      - Target Intel Macs running OS X Mavericks or higher. Recommended.
-   * - macosx_10_6_x86_64
-     - Target 64-bit Intel Macs running Mac OS X Snow Leopard or above.
-       No longer supported as of Python 3.8.
-   * - macosx_10_6_i386
-     - Target 32-bit Intel Macs running Mac OS X Snow Leopard or above.
-       No longer supported as of Python 3.8.
 
 .. note::
 
@@ -249,9 +234,8 @@ Icons
 -----
 
 On Windows and macOS, it is possible to change the icon that is shown in file
-browsers or the dock for the compiled executable. This feature requires Panda3D
-1.10.4 or later. To use this feature, modify the ``setup.py`` file to something
-like the following:
+browsers or the dock for the compiled executable. To use this feature, modify
+the ``setup.py`` file to something like the following:
 
 .. code-block:: python
 
