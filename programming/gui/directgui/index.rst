@@ -231,17 +231,9 @@ DirectGUI
       button_np.set_scale(0.1);
 
       // Setup callback function
-      framework.define_key(my_button->get_click_event(MouseButton::one()), "button press", &GUI_Callback_Button_Clicked, my_button);
-
-   An example of a callback function:
-
-   .. code-block:: cpp
-
-      static void GUI_Callback_Button_Clicked(const Event *ev, void *data) {
-        PGButton *button = (PGButton *)data;
-        // Your action here
-        printf("%s has been pressed.\n", button->get_name().c_str());
-      }
+      framework.define_key(my_button->get_click_event(MouseButton::one()), "", [=](const Event *ev) {
+        printf("%s has been pressed.\n", my_button->get_name().c_str());
+      });
 
    [PGSliderBar]
 
