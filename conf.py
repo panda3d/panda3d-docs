@@ -829,16 +829,6 @@ def on_autodoc_skip_member(app, what, name, obj, skip, options):
 
 
 def on_autodoc_process_docstring(app, what, name, obj, options, lines):
-    # This is a temporary hack for a particularly nasty docstring in
-    # direct.fsm.FourState and direct.fsm.FourStateAI that was badly
-    # formatted.  It can be removed once a new version of Panda3D is
-    # released with the offending docstring fixed.
-
-    if (name == 'direct.fsm.FourState.FourState.__init__' or
-        name == 'direct.fsm.FourStateAI.FourStateAI.__init__') \
-       and 'are used:' in lines:
-        lines[lines.index('are used:')] = 'are used::'
-
     if lines:
         line0 = lines[0].lstrip()
         if line0.startswith('/**') or line0.startswith('// '):
