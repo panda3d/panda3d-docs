@@ -79,10 +79,10 @@ copyright = u'2019 Carnegie Mellon University'
 # built documents.
 #
 # The short X.Y version.
-version = '1.10'
+version = '1.11'
 
 # The full X.Y.Z version.
-release = '1.10.10'
+release = '1.11.0'
 
 # Whether to generate Python or C++ documentation.  TODO:
 tags.add('python')
