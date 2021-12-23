@@ -94,7 +94,7 @@ reparent the model to this scene graph:
 
 It is possible to reparent the model to any node (even to another model, or to
 a sub-part of a different model), not just to :obj:`~builtins.render`!
-Important is that it is parented to a node that is itself parented to a scene
+What's important is that it is parented to a node that is itself parented to a scene
 graph, so that Panda3D can find it. Otherwise, the model will remain invisible.
 
 The converse is to remove a model from the scene graph, which can be done as
