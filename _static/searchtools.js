@@ -365,8 +365,17 @@ var Search = {
           } else if (!this.partialMatches) {
             continue;
           }
+          var domain = objnames[match[1]][0];
           var objname = objnames[match[1]][2];
           var title = titles[match[0]];
+
+          if (domain !== 'py' && window.VARIATION === 'python') {
+            continue;
+          }
+          if (domain !== 'cpp' && window.VARIATION === 'cpp') {
+            continue;
+          }
+
           // If more than one term searched for, we require other words to be
           // found in the name/title/description
           if (otherterms.length > 0) {
