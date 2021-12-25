@@ -20,7 +20,7 @@ not mean you need to abandon Python and rewrite all your code in C++ for that
 single bottleneck. Only that single function or class can be ported to C++ and
 called from your Python code.
 
-You might be able to get away with not using C++ at all though.
+Before considering writing any C++ code, consider other options:
 
 -  See if you can optimize your code. The Python website has a
    `page <https://wiki.python.org/moin/PythonSpeed/PerformanceTips>`__ for

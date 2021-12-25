@@ -3,21 +3,35 @@
 Too Many Shader Instructions
 ============================
 
-This only can happen if you have at least one :meth:`.NodePath.set_shader()` or
-:meth:`.NodePath.set_shader_auto()` method call in your application, or you are
-using a postprocessing filter from
-:py:class:`~direct.filter.CommonFilters.CommonFilters`.
+.. only:: python
+
+   This can only happen if you have at least one :meth:`.NodePath.set_shader()`
+   or :meth:`.NodePath.set_shader_auto()` method call in your application, or
+   you are using a postprocessing filter from
+   :py:class:`~direct.filter.CommonFilters.CommonFilters`.
+
+.. only:: cpp
+
+   This can only happen if you have at least one :meth:`.NodePath.set_shader()`
+   or :meth:`.NodePath.set_shader_auto()` method call in your application.
 
 Too Many Vertex Shader Instructions
 -----------------------------------
 
+Although relatively rare, a bottleneck can form in the vertex processing stage
+if there are many vertices in the scene and the vertex shaders applied to the
+scene are too complex.
+
 Try to simplify your scene. Objects that are far away don't need millions of
-vertices. Look at LODNode and FadeLODNode.
+vertices. Consider the use of :ref:`level-of-detail` techniques.
+
+Alternatively, try to simplify the vertex shader. Look for calculations that
+could instead be done in advance, on the CPU, and passed in as a shader input.
 
 Too Many Fragment/Pixel Shader Instructions
 -------------------------------------------
 
-An easy way to detect whether this is a bottleneck in your application, try
+As an easy way to detect whether this is a bottleneck in your application, try
 resizing the window. If the framerate heavily varies with the window size or
 screen resolution, you're most likely dealing with this problem.
 

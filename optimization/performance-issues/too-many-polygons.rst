@@ -30,7 +30,7 @@ normal/gloss/glow maps? Is backface culling enabled? These all can affect the
 performance. If you are sure that your performance issue is caused by too many
 polygons, there are few optimizations you can do.
 
--  The first obvious solution is to just make your models lowpoly or not use
+-  The first obvious solution is to just make your models low-poly or not use
    two polygons where you can use one. However, you should also note that
    per-vertex lightning uses vertices to shade the mesh, so a wall consisting
    of one single quad won't shade the same way as a wall consisting of
@@ -39,9 +39,9 @@ polygons, there are few optimizations you can do.
 -  You can have :ref:`multiple levels of detail <level-of-detail>` for your
    mesh.
 
--  If you have a highpoly model, you can create a lowpoly version of it and
-   generate a normal map from the highpoly model which you can assign to your
-   lowpoly version in Panda. Normal mapping requires lightning and the
+-  If you have a high-poly model, you can create a low-poly version of it and
+   generate a normal map from the high-poly model which you can assign to your
+   low-poly version in Panda. Normal mapping requires lightning and the
    ShaderGenerator or a custom shader.
 
 -  Sometimes it's possible to represent a mesh as a textured plane
