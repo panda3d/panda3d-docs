@@ -130,13 +130,10 @@ This code shows a dynamically updated terrain with LOD:
       terrain.generate();
 
       // Add a task to keep updating the terrain
-      taskMgr->add(new GenericAsyncTask("Updates terrain", &UpdateTerrain, nullptr));
-
-      // And the task, outside main:
-      AsyncTask::DoneStatus UpdateTerrain(GenericAsyncTask *task, void *data) {
+      taskMgr->add("update", [&](AsyncTask *task) {
         terrain.update();
         return AsyncTask::DS_cont;
-      }
+      });
 
 This code shows a dynamically updated terrain, which is updated every frame with
 the camera as focal point. You see that a few functions are called: The

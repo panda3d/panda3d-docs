@@ -1,28 +1,9 @@
 #include "pandaFramework.h"
 #include "pandaSystem.h"
 
-#include "genericAsyncTask.h"
-#include "asyncTaskManager.h"
-
 #include "cIntervalManager.h"
 #include "cLerpNodePathInterval.h"
 #include "cMetaInterval.h"
-
-// Global stuff
-PT(AsyncTaskManager) taskMgr = AsyncTaskManager::get_global_ptr();
-PT(ClockObject) globalClock = ClockObject::get_global_clock();
-NodePath camera;
-
-// Task to move the camera
-AsyncTask::DoneStatus SpinCameraTask(GenericAsyncTask *task, void *data) {
-  double time = globalClock->get_real_time();
-  double angledegrees = time * 6.0;
-  double angleradians = angledegrees * (3.14 / 180.0);
-  camera.set_pos(20 * sin(angleradians), -20.0 * cos(angleradians), 3);
-  camera.set_hpr(angledegrees, 0, 0);
-
-  return AsyncTask::DS_cont;
-}
 
 int main(int argc, char *argv[]) {
   // Open a new window framework and set the title
@@ -32,23 +13,21 @@ int main(int argc, char *argv[]) {
 
   // Open the window
   WindowFramework *window = framework.open_window();
-  camera = window->get_camera_group(); // Get the camera and store it
+  NodePath camera = window->get_camera_group(); // Get the camera and store it
 
   // Load the environment model
-  NodePath scene = window->load_model(framework.get_models(),
-    "models/environment");
+  NodePath scene = window->load_model(framework.get_models(), "models/environment");
   scene.reparent_to(window->get_render());
   scene.set_scale(0.25, 0.25, 0.25);
   scene.set_pos(-8, 42, 0);
 
   // Load our panda
-  NodePath pandaActor = window->load_model(framework.get_models(),
-    "models/panda-model");
-  pandaActor.set_scale(0.005);
-  pandaActor.reparent_to(window->get_render());
+  NodePath panda = window->load_model(framework.get_models(), "models/panda-model");
+  panda.set_scale(0.005);
+  panda.reparent_to(window->get_render());
 
   // Load the walk animation
-  window->load_model(pandaActor, "models/panda-walk4");
+  window->load_model(panda, "models/panda-walk4");
   window->loop_animations(0);
 
   // Create the lerp intervals needed to walk back and forth
@@ -56,25 +35,25 @@ int main(int argc, char *argv[]) {
     pandaHprInterval1, pandaHprInterval2;
   pandaPosInterval1 = new CLerpNodePathInterval("pandaPosInterval1",
     13.0, CLerpInterval::BT_no_blend,
-    true, false, pandaActor, NodePath());
+    true, false, panda, NodePath());
   pandaPosInterval1->set_start_pos(LPoint3(0, 10, 0));
   pandaPosInterval1->set_end_pos(LPoint3(0, -10, 0));
 
   pandaPosInterval2 = new CLerpNodePathInterval("pandaPosInterval2",
     13.0, CLerpInterval::BT_no_blend,
-    true, false, pandaActor, NodePath());
+    true, false, panda, NodePath());
   pandaPosInterval2->set_start_pos(LPoint3(0, -10, 0));
   pandaPosInterval2->set_end_pos(LPoint3(0, 10, 0));
 
   pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0,
     CLerpInterval::BT_no_blend,
-    true, false, pandaActor, NodePath());
+    true, false, panda, NodePath());
   pandaHprInterval1->set_start_hpr(LPoint3(0, 0, 0));
   pandaHprInterval1->set_end_hpr(LPoint3(180, 0, 0));
 
   pandaHprInterval2 = new CLerpNodePathInterval("pandaHprInterval2", 3.0,
     CLerpInterval::BT_no_blend,
-    true, false, pandaActor, NodePath());
+    true, false, panda, NodePath());
   pandaHprInterval2->set_start_hpr(LPoint3(180, 0, 0));
   pandaHprInterval2->set_end_hpr(LPoint3(0, 0, 0));
 
@@ -91,18 +70,25 @@ int main(int argc, char *argv[]) {
     CMetaInterval::RS_previous_end);
   pandaPace->loop();
 
-  // Add our task.
-  taskMgr->add(new GenericAsyncTask("Spins the camera",
-    &SpinCameraTask, nullptr));
+  // Add our task, which can be any function or lambda that returns DoneStatus.
+  framework.get_task_mgr().add("SpinCameraTask", [=](AsyncTask *task) mutable {
+    // Calculate the new position and orientation (inefficient - change me!)
+    double angledegrees = task->get_elapsed_time() * 6.0;
+    double angleradians = angledegrees * (3.14 / 180.0);
+    camera.set_pos(20 * sin(angleradians), -20.0 * cos(angleradians), 3);
+    camera.set_hpr(angledegrees, 0, 0);
 
-  // This is a simpler way to do stuff every frame,
-  // if you're too lazy to create a task.
-  Thread *current_thread = Thread::get_current_thread();
-  while (framework.do_frame(current_thread)) {
-    // Step the interval manager
+    // Tell the task manager to continue this task the next frame.
+    return AsyncTask::DS_cont;
+  });
+
+  // Add another task to step the interval manager.
+  framework.get_task_mgr().add("intervals", [](AsyncTask *task) {
     CIntervalManager::get_global_ptr()->step();
-  }
+    return AsyncTask::DS_cont;
+  });
 
-  framework.close_framework();
+  // Run Panda's main loop until the user closes the window.
+  framework.main_loop();
   return 0;
 }

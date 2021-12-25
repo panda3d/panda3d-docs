@@ -62,16 +62,13 @@ call it every frame.
 
 .. only:: cpp
 
-   The object passed to :meth:`taskMgr->add() <.AsyncTaskManager.add>` is an
-   :class:`.AsyncTask` object. We can use ``GenericAsyncTask`` to wrap a global
-   function or static method around a task. We can also pass an additional
-   ``void*`` parameter that we can cast into a pointer of any data type we like,
-   which is passed as argument to the task function. A GenericAsyncTask function
-   must look like the following:
+   The object passed to :meth:`taskMgr->add() <.AsyncTaskManager.add>` is a
+   C++ ``std::function`` object, which can be a lambda or separate function.
+   If defined as a separate function, it should look like this:
 
    .. code-block:: cpp
 
-      AsyncTask::DoneStatus your_task(GenericAsyncTask *task, void *data) {
+      AsyncTask::DoneStatus your_task(AsyncTask *task) {
         // Do your stuff here.
 
         // Tell the task manager to continue this task the next frame.
@@ -79,7 +76,7 @@ call it every frame.
         return AsyncTask::DS_cont;
       }
 
-   For more advanced usage, you can subclass AsyncTask and override the
+   For more advanced usage, you can also subclass AsyncTask and override the
    ``do_task`` method to make it do what you want.
 
 In our code, the procedure ``spinCameraTask()`` calculates the desired position

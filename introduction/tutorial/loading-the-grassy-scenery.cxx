@@ -16,9 +16,7 @@ int main(int argc, char *argv[]) {
   scene.set_scale(0.25f, 0.25f, 0.25f);
   scene.set_pos(-8, 42, 0);
 
-  // Run the engine.
+  // Run Panda's main loop until the user closes the window.
   framework.main_loop();
-  // Shut down the engine when done.
-  framework.close_framework();
   return 0;
 }

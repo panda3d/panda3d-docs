@@ -49,7 +49,7 @@ snippet shows how to do this:
 
    .. code-block:: cpp
 
-      #include "panda3d/bulletDebugNode.h"
+      #include "bulletDebugNode.h"
       ...
       PT(BulletDebugNode) bullet_dbg_node;
       bullet_dbg_node = new BulletDebugNode("Debug");
@@ -58,10 +58,10 @@ snippet shows how to do this:
       bullet_dbg_node->show_normals(true);
       bullet_dbg_node->show_wireframe(true);
 
-      NodePath np_dbg_node = window->get_render().attach_new_node(get_physics_debug_node());
+      NodePath np_dbg_node = window->get_render().attach_new_node(bullet_dbg_node);
       np_dbg_node.show();
 
-      physics_world->set_debug_node(get_physics_debug_node());
+      world->set_debug_node(bullet_dbg_node);
       ...
 
 We can control the amount of information rendered using the following methods:
@@ -125,114 +125,91 @@ F1 key:
       // Compiling and Linking documentation and notes are not
       // covered in this file, check manual for mor information.
 
-      #include "panda3d/pandaFramework.h"
-      #include "panda3d/windowFramework.h"
-      #include "panda3d/nodePath.h"
-      #include "panda3d/clockObject.h"
+      #include "pandaFramework.h"
+      #include "windowFramework.h"
+      #include "nodePath.h"
+      #include "clockObject.h"
 
-      #include "panda3d/asyncTask.h"
-      #include "panda3d/genericAsyncTask.h"
+      #include "asyncTask.h"
 
-      #include "panda3d/bulletWorld.h"
-      #include "panda3d/bulletDebugNode.h"
-      #include "panda3d/bulletPlaneShape.h"
-      #include "panda3d/bulletBoxShape.h"
-
-      BulletWorld *get_physics_world() {
-          // physics_world is supposed to be an global variable,
-          // but declaring global variables is not cool
-          // for good programmers lol, instead, should use static keyword.
-          static BulletWorld *physics_world = new BulletWorld();
-          return physics_world;
-      }
-
-      BulletDebugNode *get_physics_debug_node() {
-          // Global variable.
-          static BulletDebugNode *bullet_dbg_node = new BulletDebugNode("Debug");
-          return bullet_dbg_node;
-      }
-
-      void toggle_physics_debug(const Event *e, void *data) {
-          static bool show_state = true;
-          show_state = !show_state;
-          get_physics_debug_node()->show_bounding_boxes(show_state);
-          get_physics_debug_node()->show_constraints(show_state);
-          get_physics_debug_node()->show_normals(show_state);
-          get_physics_debug_node()->show_wireframe(show_state);
-      }
-
-      AsyncTask::DoneStatus update_scene(GenericAsyncTask* task, void* data) {
-          // Get dt (from Python example) and apply to do_physics(float, int, int);
-          ClockObject *co = ClockObject::get_global_clock();
-          get_physics_world()->do_physics(co->get_dt(), 10, 1.0 / 180.0);
-
-          return AsyncTask::DS_cont;
-      }
+      #include "bulletWorld.h"
+      #include "bulletDebugNode.h"
+      #include "bulletPlaneShape.h"
+      #include "bulletBoxShape.h"
 
       int main(int argc, char *argv[]) {
-          // All variables.
-          PandaFramework framework;
-          WindowFramework *window;
-          PT(AsyncTaskManager) task_mgr;
+        // All variables.
+        PandaFramework framework;
+        WindowFramework *window;
 
-          // Init everything :D
-          framework.open_framework(argc, argv);
-          framework.set_window_title("Bullet Physics");
+        // Init everything :D
+        framework.open_framework(argc, argv);
+        framework.set_window_title("Bullet Physics");
 
-          window = framework.open_window();
-          window->enable_keyboard();
-          window->setup_trackball();
+        window = framework.open_window();
+        window->enable_keyboard();
+        window->setup_trackball();
 
-          task_mgr = AsyncTaskManager::get_global_ptr();
+        // Make physics simulation.
+        // Static world stuff.
+        PT(BulletWorld) world = new BulletWorld;
+        world->set_gravity(0, 0, -9.8);
 
-          // Make physics simulation.
-          // Static world stuff.
-          get_physics_world()->set_gravity(0, 0, -9.8);
+        PT(BulletPlaneShape) floor_shape = new BulletPlaneShape(LVecBase3(0, 0, 1), 1);
+        PT(BulletRigidBodyNode) floor_rigid_node = new BulletRigidBodyNode("Ground");
 
-          PT(BulletPlaneShape) floor_shape = new BulletPlaneShape(LVecBase3(0, 0, 1), 1);
-          PT(BulletRigidBodyNode) floor_rigid_node = new BulletRigidBodyNode("Ground");
+        floor_rigid_node->add_shape(floor_shape);
 
-          floor_rigid_node->add_shape(floor_shape);
+        NodePath np_ground = window->get_render().attach_new_node(floor_rigid_node);
+        np_ground.set_pos(0, 0, -2);
+        world->attach(floor_rigid_node);
 
-          NodePath np_ground = window->get_render().attach_new_node(floor_rigid_node);
-          np_ground.set_pos(0, 0, -2);
-          get_physics_world()->attach(floor_rigid_node);
+        // Dynamic world stuff.
+        PT(BulletBoxShape) box_shape = new BulletBoxShape(LVecBase3(0.5, 0.5, 0.5));
+        PT(BulletRigidBodyNode) box_rigid_node = new BulletRigidBodyNode("Box");
 
-          // Dynamic world stuff.
-          PT(BulletBoxShape) box_shape = new BulletBoxShape(LVecBase3(0.5, 0.5, 0.5));
-          PT(BulletRigidBodyNode) box_rigid_node = new BulletRigidBodyNode("Box");
+        box_rigid_node->set_mass(1.0); // Gravity affects this rigid node.
+        box_rigid_node->add_shape(box_shape);
 
-          box_rigid_node->set_mass(1.0); // Gravity affects this rigid node.
-          box_rigid_node->add_shape(box_shape);
+        NodePath np_box = window->get_render().attach_new_node(box_rigid_node);
+        np_box.set_pos(0, 0, 2);
+        world->attach(box_rigid_node);
 
-          NodePath np_box = window->get_render().attach_new_node(box_rigid_node);
-          np_box.set_pos(0, 0, 2);
-          get_physics_world()->attach(box_rigid_node);
+        NodePath np_box_model = window->load_model(framework.get_models(), "models/box");
+        np_box_model.set_pos(-0.5, -0.5, -0.5);
+        np_box.flatten_light();
+        np_box_model.reparent_to(np_box);
 
-          NodePath np_box_model = window->load_model(framework.get_models(), "models/box");
-          np_box_model.set_pos(-0.5, -0.5, -0.5);
-          np_box.flatten_light();
-          np_box_model.reparent_to(np_box);
+        // Debug stuff.
+        BulletDebugNode *bullet_dbg_node = new BulletDebugNode("Debug");
+        bullet_dbg_node->show_bounding_boxes(true);
+        bullet_dbg_node->show_constraints(true);
+        bullet_dbg_node->show_normals(true);
+        bullet_dbg_node->show_wireframe(true);
 
-          // Debug stuff.
-          get_physics_debug_node()->show_bounding_boxes(true);
-          get_physics_debug_node()->show_constraints(true);
-          get_physics_debug_node()->show_normals(true);
-          get_physics_debug_node()->show_wireframe(true);
+        NodePath np_dbg_node = window->get_render().attach_new_node(bullet_dbg_node);
+        np_dbg_node.show();
 
-          NodePath np_dbg_node = window->get_render().attach_new_node(get_physics_debug_node());
-          np_dbg_node.show();
+        world->set_debug_node(bullet_dbg_node);
 
-          get_physics_world()->set_debug_node(get_physics_debug_node());
-          framework.define_key("f1", "Toggle Physics debug", toggle_physics_debug, nullptr);
+        // Add a key to toggle debug visibility.
+        bool show_state = true;
+        framework.define_key("f1", "Toggle Physics debug", [=, &show_state](const Event *) {
+          show_state = !show_state;
+          bullet_dbg_node->show_bounding_boxes(show_state);
+          bullet_dbg_node->show_constraints(show_state);
+          bullet_dbg_node->show_normals(show_state);
+          bullet_dbg_node->show_wireframe(show_state);
+        });
 
-          // Setup tasks and keys.
-          PT(GenericAsyncTask) task;
-          task = new GenericAsyncTask("Scene update", &update_scene, nullptr);
-          task_mgr->add(task);
+        framework.get_task_mgr().add("update", [=](AsyncTask *task) {
+          // Get dt and apply to do_physics(float, int, int);
+          ClockObject *clock = ClockObject::get_global_clock();
+          world->do_physics(clock->get_dt(), 10, 1.0 / 180.0);
 
-          framework.main_loop();
-          framework.close_framework();
+          return AsyncTask::DS_cont;
+        });
 
-          return (0);
+        framework.main_loop();
+        return 0;
       }

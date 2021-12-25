@@ -84,8 +84,7 @@ Starting Panda3D
 
         // Do the main loop, equal to run() in python
         framework.main_loop();
-        framework.close_framework();
-        return (0);
+        return 0;
       }
 
    For information about the Window Framework to open a window, click
