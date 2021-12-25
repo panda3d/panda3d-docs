@@ -41,8 +41,10 @@ RenderAttrib.
 -  :ref:`CullFaceAttrib <backface-culling-and-frontface-culling>`: Causes
    backfaces or frontfaces of the model to be visible.
 
--  DepthOffsetAttrib: Causes the Z-buffer to treat the object as if it were
+-  DepthBiasAttrib: Causes the Z-buffer to treat the object as if it were
    closer or farther.
+
+-  DepthOffsetAttrib: Deprecated predecessor of DepthOffsetAttrib.
 
 -  :ref:`DepthTestAttrib <depth-test-and-depth-write>`: Alters the way the
    Z-buffer affects the model.
