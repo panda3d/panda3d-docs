@@ -203,9 +203,9 @@ and stretches in one direction to infinity.
 It is particularly useful for picking objects from the screen, since you can
 create a ray that starts at the camera's point of view and extends into the
 screen, and then determine which objects that ray is intersecting. (In fact,
-there is a method on CollisionRay called ``setFromLens()`` that automatically
-sets up the ray based on a 2-d onscreen coordinate; this is used by the
-"picker". See :ref:`clicking-on-3d-objects`.)
+there is a method on CollisionRay called :meth:`~.CollisionRay.set_from_lens()`
+that automatically sets up the ray based on a 2-d onscreen coordinate; this is
+used by the "picker". See :ref:`clicking-on-3d-objects`.)
 
 The CollisionRay is also useful in conjunction with the CollisionHandlerFloor;
 see :ref:`collision-handlers`.
