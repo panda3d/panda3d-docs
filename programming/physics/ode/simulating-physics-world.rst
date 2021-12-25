@@ -69,7 +69,7 @@ from a ridge:
           # Set the force on the body to push it off the ridge
           body.setForce(0, min(task.time**4 * 500000 - 500000, 0), 0)
           # Add the deltaTime for the task to the accumulator
-          deltaTimeAccumulator += globalClock.getDt()
+          deltaTimeAccumulator += base.clock.dt
           while deltaTimeAccumulator > stepSize:
               # Remove a stepSize from the accumulator until
               # the accumulated time is less than the stepsize
@@ -102,7 +102,7 @@ from a ridge:
       OdeBody *body;
       OdeWorld world;
       NodePath sphere;
-      PT(ClockObject) globalClock = ClockObject::get_global_clock();
+      PT(ClockObject) clock = ClockObject::get_global_clock();
 
       // Create an accumulator to track the time since the sim
       // has been running
@@ -150,7 +150,7 @@ from a ridge:
         // Set the force on the body to push it off the ridge
         body->set_force(0, min(pow(task->get_elapsed_time(),4) * 500000 - 500000, 0), 0);
         // Add the deltaTime for the task to the accumulator
-        deltaTimeAccumulator += globalClock->get_dt();
+        deltaTimeAccumulator += clock->get_dt();
         while (deltaTimeAccumulator > stepSize ) {
           // Remove a stepSize from the accumulator until
           // the accumulated time is less than the stepsize

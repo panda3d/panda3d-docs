@@ -220,7 +220,7 @@ class World(DirectObject):
 
         # Get the time elapsed since last frame. We need this
         # for framerate-independent movement.
-        elapsed = globalClock.getDt()
+        elapsed = base.clock.dt
 
         # If the camera-left key is pressed, move camera left.
         # If the camera-right key is pressed, move camera right.

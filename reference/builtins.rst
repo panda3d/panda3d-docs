@@ -184,6 +184,9 @@ Built-in Global Variables
 
          frameTime = globalClock.getFrameTime()
 
+      This is now deprecated, use
+      :py:data:`base.clock <direct.showbase.ShowBase.ShowBase.clock>` instead.
+
       :type: ~panda3d.core.ClockObject
 
    .. py:data:: vfs

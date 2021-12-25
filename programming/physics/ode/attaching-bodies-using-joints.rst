@@ -85,7 +85,7 @@ To explain how joints work, look at the following example:
    # The task for our simulation
    def simulationTask(task):
        # Step the simulation and set the new positions
-       world.quickStep(globalClock.getDt())
+       world.quickStep(base.clock.dt)
        frowney.setPosQuat(render, frowneyBody.getPosition(), frowneyBody.getQuaternion())
        smiley.setPosQuat(render, smileyBody.getPosition(), smileyBody.getQuaternion())
        drawLines()

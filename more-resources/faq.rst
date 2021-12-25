@@ -116,7 +116,7 @@ during this period, by putting this line after your loop, etc.
 
 .. code-block:: python
 
-   globalClock.setFrameTime(globalClock.getRealTime())
+   base.clock.frame_time = base.clock.real_time
 
 This simply resets the "frame time" to whatever the current real time is towards
 the end of your long frame. This will break the atomic-frame rule for (only)

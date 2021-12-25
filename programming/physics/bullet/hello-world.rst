@@ -68,7 +68,7 @@ value to the :meth:`~.BulletWorld.do_physics()` method.
    .. code-block:: python
 
       def update(task):
-          dt = globalClock.dt
+          dt = base.clock.dt
           world.do_physics(dt)
           return task.cont
 
@@ -275,7 +275,7 @@ archive: https://www.panda3d.org/download/noversion/bullet-samples.zip
 
       # Update
       def update(task):
-          dt = globalClock.dt
+          dt = base.clock.dt
           world.do_physics(dt)
           return task.cont
 

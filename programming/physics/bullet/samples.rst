@@ -56,7 +56,7 @@ Stack of cubes falling on top of each other:
 
       # Update
       def update(task):
-        dt = globalClock.getDt()
+        dt = base.clock.dt
         world.doPhysics(dt)
         return task.cont
 

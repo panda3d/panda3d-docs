@@ -211,7 +211,7 @@ well.)
               speed -= backward_speed
 
           # Move the player
-          y_delta = speed * globalClock.get_dt()
+          y_delta = speed * clock.dt
           self.player.set_y(self.player, y_delta)
 
 Keystroke events

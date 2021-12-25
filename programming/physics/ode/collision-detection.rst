@@ -264,7 +264,7 @@ floor.
    def simulationTask(task):
        space.autoCollide() # Setup the contact joints
        # Step the simulation and set the new positions
-       world.quickStep(globalClock.getDt())
+       world.quickStep(base.clock.dt)
        for np, body in boxes:
            np.setPosQuat(render, body.getPosition(), Quat(body.getQuaternion()))
        contactgroup.empty() # Clear the contact joints
