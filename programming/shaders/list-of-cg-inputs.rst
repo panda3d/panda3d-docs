@@ -3,6 +3,8 @@
 List of Possible Cg Shader Inputs
 =================================
 
+.. note:: The use of Cg is deprecated as of Panda3D 1.11.
+
 In many cases, it is desirable to access information from the render state or
 from the 3-D transformation of the node that is currently being rendered.
 Instead of having to pass all this information manually, it is possible to name

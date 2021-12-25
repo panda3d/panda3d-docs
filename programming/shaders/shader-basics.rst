@@ -6,14 +6,16 @@ Shader Basics
 Overview of Shaders
 -------------------
 
-Panda3D supports two shading languages: **GLSL** and **Cg**.
-This section assumes that you have a working knowledge of a shader language.
-If not, it would be wise to read about GLSL or Cg before trying to understand
-how they fit into Panda3D.
+Panda3D uses the **GLSL** shading language. This section assumes that you have a
+working knowledge of a shader language. If not, it would be wise to read about
+GLSL before trying to understand how it fits into Panda3D.
 
-Though Panda3D has used only Cg in the past, it is recommended that you create
-new shaders in GLSL unless you want to target DirectX as well, since the NVIDIA
-Cg toolkit is no longer being maintained.
+In the past, Panda3D used the Cg shading language. This language is now
+deprecated. Although Panda3D still supports it in a limited form for
+compatibility reasons, it is strongly recommended to write new shaders in GLSL
+instead. Note that support for GLSL is not just limited to the OpenGL graphics
+back-end; Panda3D is able to automatically transpile the shader to a different
+shading language, if required by the graphics API.
 
 There are various types of shaders, each capable of describing a different stage
 in the rendering process. In the most simple case, a model simply has a *vertex
@@ -56,15 +58,13 @@ GLSL Shaders
 GLSL shaders are always separated up into separate files for vertex, fragment
 and geometry shaders, with the main entry point being called ``main()``.
 All GLSL shaders begin with a ``#version`` line indicating the version of the
-GLSL standard that the shader is written in, which maps to a corresponding
-version of OpenGL. For example, version 120 will require OpenGL 2.1, version
-150 requires OpenGL 3.2, and version 330 requires OpenGL 3.3.
+GLSL standard that the shader is written in. Panda3D fully supports shaders
+written in GLSL 330 and above and will automatically convert them as needed to
+a different version of GLSL as required by the graphics driver.
 
-In the future, Panda3D will automatically convert the shader to the appropriate
-version of GLSL supported by the graphics card. In the meantime, it is
-recommended to write your shaders in GLSL 150 or later, unless you need to
-support very old graphics hardware, in which case it may be necessary to target
-GLSL 120.
+GLSL versions older than 330 are supported only for compatibility with older
+Panda3D projects, and with significant limitations. It is recommended to use
+only GLSL 330 or higher.
 
 Example Shader
 ~~~~~~~~~~~~~~
@@ -76,7 +76,7 @@ This is the vertex shader, named ``myshader.vert``:
 
 .. code-block:: glsl
 
-   #version 150
+   #version 330
 
    // Uniform inputs
    uniform mat4 p3d_ModelViewProjectionMatrix;
@@ -97,7 +97,7 @@ This is the fragment shader, named ``myshader.frag``:
 
 .. code-block:: glsl
 
-   #version 150
+   #version 330
 
    uniform sampler2D p3d_Texture0;
 
