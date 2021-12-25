@@ -68,4 +68,3 @@ The following sections will tell you about how to do that in Panda3D.
    known-shader-issues
    shader-generator
    compute-shaders
-   cg-shader-tutorial/index
