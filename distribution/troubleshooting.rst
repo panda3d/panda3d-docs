@@ -66,20 +66,3 @@ No wheels available for dependency package
       then this becomes more difficult. The easiest option at this point is to
       choose a different package that does publish wheel files, but otherwise,
       you must build the package manually for each individual platform.
-
-AttributeError: module 'nt' has no attribute '_path_splitroot'
-   This was a compatibility issue with Python 3.8.10, which is fixed as of
-   Panda3D 1.10.10. If you cannot use Panda3D 1.10.10, you need to downgrade to
-   an older version of Python.
-
-Cryptic FileNotFoundError when using virtualenv
-   The build process is tested and known to work with the built-in :mod:`venv`
-   module that has been part of Python since version 3.3 as well as with
-   the ``pipenv`` tool.
-
-   There has been an `issue <https://github.com/panda3d/panda3d/issues/747>`__
-   reported that an error was encountered when using the
-   `virtualenv <https://pypi.org/project/virtualenv/>`__ package from PyPI
-   instead of the :mod:`venv` module included with Python. This issue has been
-   addressed as of Panda3D version **1.10.5**, but we recommend using the
-   built-in :mod:`venv` module instead.

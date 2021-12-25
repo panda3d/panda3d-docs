@@ -116,12 +116,12 @@ Loading in a coroutine
    during the load operation. If we also wanted to handle exceptions in the load
    operation properly, it would get more complicated still!
 
-   A far more convenient way to do this is using :ref:`coroutines`, introduced
-   in Python 3.5 and supported as of Panda3D 1.10. These are special functions
-   that can be suspended temporarily and resumed at a later point (pending the
-   completion of an :term:`asynchronous` operation). Instead, we can write our
-   code as though it were synchronous, but we insert the ``await`` keyword where
-   we want the task to be suspended while waiting for the following operation.
+   A far more convenient way to do this is using :ref:`coroutines`. These are
+   special functions that can be suspended temporarily and resumed at a later
+   point (pending the completion of an :term:`asynchronous` operation). Instead,
+   we can write our code as though it were synchronous, but we insert the
+   ``await`` keyword where we want the task to be suspended while waiting for
+   the following operation.
 
    To make this possible, a few things are necessary:
 

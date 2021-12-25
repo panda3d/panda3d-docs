@@ -81,19 +81,6 @@ you will have to edit the build scripts.
    ImportError: No module named direct.directbase.DirectStart
 
 This error means it couldn't find the Python modules -- please make sure you are
-running the correct version of Python (probably Python 3.7, that depends on the
+running the correct version of Python (probably Python 3.8, that depends on the
 Panda3D version) and that the panda3d.pth is located inside the Python
 site-packages directory.
-
-**What to do if you see the Error Message:**
-
-::
-
-   ImportError: /usr/lib/panda3d/libpandaexpress.so: undefined symbol: PyUnicodeUCS4_AsWideChar
-
-This could mean that your version of Python is compiled with the flag
-``Py_UNICODE_SIZE`` set to ``2``. Please find a Python version compiled with
-Py_UNICODE_SIZE set to 4 (which is usually the default). See `this forum topic
-<https://discourse.panda3d.org/t/installing-on-ubunutu-7-10/3561/24>`__ for a
-more detailed explanation about this problem.  Upgrading to a more recent
-version of Python (at least 3.3) may also resolve the problem.

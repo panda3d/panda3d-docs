@@ -229,8 +229,7 @@ increase these versions:
 .. note::
 
    Python 3.9 no longer supports Windows 7. If you need to target Windows 7 in
-   your application, use Python 3.8, unless you also need to support macOS
-   versions older than 10.9, in which case you should use Python 3.7 or older.
+   your application, use Python 3.8.
 
 Icons
 -----

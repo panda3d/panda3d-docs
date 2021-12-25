@@ -5,10 +5,10 @@ Coroutines
 
 .. only:: python
 
-   Coroutines are a special kind of function introduced in Python 3.5 that can
-   be temporarily suspended, pending the completion of an :term:`asynchronous`
-   operation, to be resumed after this operation is complete. Panda3D's task
-   system has full support for Python's coroutines.
+   Coroutines are a special kind of function that can be temporarily suspended,
+   pending the completion of an :term:`asynchronous` operation, to be resumed
+   after this operation is complete. Panda3D's task system has full support for
+   Python's coroutines.
 
    This feature can be hard to understand at first, but it is tremendously
    useful and powerful, since it makes it easy to write lag-free applications.
