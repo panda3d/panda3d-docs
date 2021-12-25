@@ -256,3 +256,10 @@ these configuration variables can be changed::
    loader-num-threads 2
    # default is low
    loader-thread-priority normal
+
+The variables to contol texture reloading are separate (as of Panda3D 1.11)::
+
+   # default is 1
+   texture-reload-num-threads 2
+   # default is normal
+   texture-reload-thread-priority high
