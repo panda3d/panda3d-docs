@@ -12,7 +12,6 @@ Filename              Description
 ===================== =============================================================================================================================================================================================================
 bam-info.exe          Scans one or more .bam files and outputs their contents. See executable for more information.
 bam2egg.exe           Converts models in the .bam format to the .egg format. For more information see :ref:`converting-egg-to-bam`.
-cgc.exe               A compiler for NVidia’s Cg language. For more information see :ref:`Using Cg Shaders <shader-basics>`.
 dxf-points.exe        Reads in an AutoCad .dxf file and prints out the points contained in it. See executable for more information.
 dxf2egg.exe           Converts models from the AutoCad format to the .egg format. For more information see :ref:`converting-from-other-formats`
 egg-crop.exe          Strips an .egg file of all parts that fall outside the given bounding volume. See executable for more information.

@@ -144,20 +144,6 @@ distribution.
 
 License: LGPL
 
-Cg Toolkit
-~~~~~~~~~~
-
-https://developer.nvidia.com/cg-toolkit
-
-Nvidia's Cg Toolkit is required for Panda's Cg support. At the moment, it cannot
-be removed without recompiling Panda3D from source code.
-
-License:
-`Proprietary <https://developer.download.nvidia.com/cg/Cg_2.2/license.pdf>`__
-
-License note: Required to use the Panda3D Shader Generator, which utilizes
-Nvidia Cg.
-
 Eigen
 ~~~~~
 
