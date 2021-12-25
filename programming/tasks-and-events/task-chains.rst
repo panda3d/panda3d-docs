@@ -153,7 +153,7 @@ The task chain parameters are:
       each frame, round-robin style, regardless of the task's priority value.
       Set it to true to change the meaning of priority so that certain tasks are
       run less often, in proportion to their time used and to their priority
-      value. See ``AsyncTaskManager::set_timeslice_priority()`` for more.
+      value. See :meth:`.AsyncTaskManager::set_timeslice_priority()` for more.
 
 Using task chains
 -----------------
