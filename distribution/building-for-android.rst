@@ -50,6 +50,53 @@ An example file for the Asteroids sample program follows below. If you are
 building a multi-platform app, it may be useful to have multiple versions of
 ``setup.py``, one for the desktop version and one for the mobile version.
 
+.. code-block:: python
+
+   from setuptools import setup
+
+   # Set renderer to pandagles2 (shaders) with pandagles (FFP) as fallback
+   PRC_DATA = '''
+   load-display pandagles2
+   aux-display pandagles
+
+   notify-level info
+   gl-debug true
+   '''
+
+   setup(
+       name='Asteroids',
+       version='1.0.0',
+       options={
+           'build_apps': {
+               # Uniquely identifies the app
+               'application_id': 'org.panda3d.samples.asteroids',
+
+               # Update this for every version uploaded to the Play Store
+               'android_version_code': 1,
+
+               'gui_apps': {
+                   'asteroids': 'main.py',
+               },
+               'plugins': [
+                   # Note use of pandagles2/pandagles instead of pandagl
+                   'pandagles2',
+                   'pandagles',
+                   'p3openal_audio',
+               ],
+               'include_patterns': [
+                   '**/*.png',
+                   '**/*.jpg',
+                   '**/*.egg',
+               ],
+               'extra_prc_data': PRC_DATA,
+
+               'icons': {'*': 'logo.png'},
+           },
+       },
+       # Choosing a classifier in the Games category makes it marked a "Game"
+       classifiers=['Topic :: Games/Entertainment'],
+   )
+
 Building
 --------
 
@@ -61,6 +108,10 @@ generate an App Bundle in the `dist` directory::
 If no ``.aab`` file was generated, you should carefully study the output of the
 ``bdist_apps`` command for error messages. There may be an error in your
 configuration.
+
+.. note::
+
+   Building for Android requires the use of Python 3.8 or newer.
 
 Testing
 -------
