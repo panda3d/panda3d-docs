@@ -8,43 +8,39 @@ Running your Program
    Using Command Prompt to Run your Program
    ----------------------------------------
 
-   You can run your script by using your computer’s ‘Command Prompt’. You can
-   access this by clicking ‘Start > All Programs > Accessories > Command
-   Prompt’, or by going to 'Start > Run' and typing 'cmd'. When it opens, it
-   should look something like this:
+   You can run your script by using your computer's "Terminal" or
+   "Command Prompt". When you open it, it should look something like this:
 
    .. image:: running-your-program-1.png
 
-   At the moment it’s pointing to its default directory, which in my case is
-   ‘Documents and Settings’ (it doesn’t matter if yours is different). We need
-   to change the directory to the one where we saved our script. To do this, we
-   use the ``cd`` command. This stands for ‘change directory’. Type the
-   following text after the > symbol:
+   At the moment it’s pointing to its default directory, which is typically the
+   user directory in ``C:\Users\username``, ``/home/user`` or ``/Users/user``,
+   depending on your operating system. We need to change the directory to the
+   one where we saved our script. To do this, we use the ``cd`` command. This
+   stands for ‘change directory’. For example, if the script is saved in a
+   MyProject folder inside the home directory, we should type this:
 
    .. code-block:: bat
 
-      cd C:\Panda3D-1.11.0-x64\mystuff\
+      cd MyProject
 
-   Instead of version 1.11.0-x64, you should type the version number of Panda3D
-   that you have downloaded and installed. Please note that this folder name is
-   case-sensitive and must match exactly (other than the version number, of
-   course). Then, press the ‘Enter’ key on your keyboard. You should now have
-   the following on the Command Prompt:
+   Please note that this folder name is case-sensitive and must match exactly.
+   Then, press the ‘Enter’ key on your keyboard. You should now have the
+   following on the Command Prompt:
 
    .. image:: running-your-program-2.png
 
-   This means that it’s now pointing to the right directory. To run your script
-   and start Panda3D, type the following text after the > symbol:
+   This means that it’s now pointing to the right directory. Assuming the script
+   has been named ``main.py``, type the following text after the > symbol:
 
    .. code-block:: bash
 
-      ppython myscript.py
+      python main.py
 
    .. image:: running-your-program-3.png
 
-   Press the ‘Enter’ key on your keyboard. This will run the version of Python
-   that is distributed with Panda3D. If all is well, Panda3D will start and you
-   should see the main rendering window appear.
+   Press the ‘Enter’ key on your keyboard. If all is well, Panda3D will start
+   and you should see the main rendering window appear.
 
    .. image:: running-your-program-4.png
 

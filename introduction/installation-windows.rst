@@ -57,9 +57,9 @@ is configured to indicate the location of python. However, some PCs have unusual
 security configurations that prevent the installer from modifying the PATH. This
 can result in the error message shown above.
 
-To solve this problem, it may be necessary to modify the PATH manually. Click on
-the "My Computer" icon on your desktop and select Properties. Choose the tab
-"Advanced". Click the Button "Environment Variables":
+To solve this problem, it may be necessary to modify the PATH manually.
+Right-click the Start icon, click System, and then "Advanced sytem settings".
+Then, click the button "Environment Variables":
 
 .. image:: environvariables.png
 
