@@ -63,7 +63,7 @@ Running your Program
    -----------------------------------------
 
    The descriptions below assume Microsoft Visual Studio 2015, but they should
-   also work for 2017.
+   also work for 2017, 2019 and 2022.
 
    Setting up the project
    ~~~~~~~~~~~~~~~~~~~~~~
