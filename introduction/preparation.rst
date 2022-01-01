@@ -108,7 +108,7 @@ between C++ information and Python information.
 
    The binaries of the last Windows release are built with Microsoft Visual C++
    2015. If you want to use the provided binaries you can use this version, but
-   2017 (and likely 2019) will work as well.
+   2017, 2019 or 2022 will work as well.
 
    If you wish to use another version you will have to build Panda from source.
    Note that if you do that you will need all the dependencies (such us libjpeg,
