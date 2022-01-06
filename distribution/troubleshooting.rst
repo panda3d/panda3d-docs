@@ -69,8 +69,8 @@ No wheels available for dependency package
 
 AttributeError: module 'nt' has no attribute '_path_splitroot'
    This was a compatibility issue with Python 3.8.10, which is fixed as of
-   Panda3D 1.10.10. If you cannot use Panda3D 1.10.10, you need to downgrade to
-   an older version of Python.
+   Panda3D 1.10.10. If you cannot upgrade to Panda3D 1.10.10 (or higher), you
+   need to downgrade to an older version of Python.
 
 Cryptic FileNotFoundError when using virtualenv
    The build process is tested and known to work with the built-in :mod:`venv`

@@ -97,13 +97,13 @@ Running your Program
 
    ::
 
-      C:\Panda3D-1.10.10-x64\include
+      C:\Panda3D-1.10.11-x64\include
 
    .. rubric:: Library Directories
 
    ::
 
-      C:\Panda3D-1.10.10-x64\lib
+      C:\Panda3D-1.10.11-x64\lib
 
    Then, you need to add the appropriate Panda3D libraries to the list of
    "Additional Dependencies" your project should be linked with. The exact set
@@ -134,7 +134,7 @@ Running your Program
 
    ::
 
-      PATH=C:\Panda3D-1.10.10-x64\bin;%PATH%
+      PATH=C:\Panda3D-1.10.11-x64\bin;%PATH%
 
    Now, assuming that the project built successfully, you can press F5 to run
    the program. Of course, not much will happen yet, because we don't have any
