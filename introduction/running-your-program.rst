@@ -171,7 +171,7 @@ Running your Program
       g++ filename.o -o filename -L{panda3dlibs} -lp3framework -lpanda -lpandafx -lpandaexpress -lp3dtoolconfig -lp3dtool -lp3direct
 
    As above, change `{panda3dlibs}` to point to the Panda3D libraries. On Linux
-   this will be ``/usr/lib/panda3d`` or ``/usr/lib/x86_64-gnu-linux/panda3d``,
+   this will be ``/usr/lib/panda3d`` or ``/usr/lib/x86_64-linux-gnu/panda3d``,
    whereas on macOS it will be ``/Library/Developer/Panda3D/lib``.
 
    Here is an equivalent SConstruct file, organized for clarity:
