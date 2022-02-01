@@ -52,7 +52,7 @@ shift-l                     List hierarchy
 shift-a                     Analyze hierarchy
 h                           Highlight node
 arrow-up                    Move highlight to parent
-arrown-down                 Move highlight to child
+arrow-down                 Move highlight to child
 arrow-left                  Move highlight to sibling
 arrow-right                 Move highlight to sibling
 shift-s                     Activate PStats
