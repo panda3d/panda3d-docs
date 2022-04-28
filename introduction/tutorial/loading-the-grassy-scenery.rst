@@ -33,10 +33,6 @@ as X, fingers as Y, and palm as Z facing toward you; then tilt backward until
 your hand is level with the fingers pointing away and palm facing up. Moving
 "forward" in Panda3D is a positive change in Y coordinate.
 
-This is demonstrated in the diagram below:
-
-.. image:: coordinatesPic.png
-
 The Program
 -----------
 
