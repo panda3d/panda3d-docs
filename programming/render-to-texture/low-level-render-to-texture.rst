@@ -158,7 +158,7 @@ is :meth:`~.GraphicsEngine.make_output()` on the :class:`.GraphicsEngine` class.
       win_prop.set_size(512, 512);
 
       // Don't open a window - force it to be an offscreen buffer.
-      int flags = GraphicsPipe.BF_refuse_window;
+      int flags = GraphicsPipe::BF_refuse_window;
 
       GraphicsEngine *engine = GraphicsEngine::get_global_ptr();
       engine->make_output(pipe, "My Buffer", -100, fb_prop, win_prop, flags, win->get_gsg(), win);
