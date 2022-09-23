@@ -6,7 +6,7 @@ Sound
 Sound System Options
 --------------------
 
-To play audio in your game, Panda3D can offer you the following three choices
+To play audio in your game, Panda3D can offer you the following two choices
 of audio libraries:
 
 -  `OpenAL <https://www.openal.org/>`__ is a well-known and popular open-source
@@ -19,10 +19,6 @@ of audio libraries:
    license. Non-commercial use of FMOD is free of charge. (For more
    information on this, visit the
    `FMOD Licenses <https://www.fmod.com/index.php/sales>`__ page.)
--  `Miles <http://www.radgametools.com/miles.htm>`__ is a sound system that is
-   not included in the downloadable binaries of Panda3D. In order to use this
-   you will need to purchase Miles and compile Panda3D from scratch using the
-   ppremake system
 
 If these choices are not enough for you, then you can try other sound
 libraries.
@@ -32,9 +28,9 @@ Setting the Sound System
 
 To configure Panda3D to use a specific sound system, you will need to change
 your :ref:`Config.prc <configuring-panda3d>` configuration. You should look up
-the variable ``audio-library-name`` and change the value to one of
-``p3openal_audio``, ``p3fmod_audio``, or ``miles_audio``. (The names of the
-libraries may differ with the way Panda3D was built.)
+the variable ``audio-library-name`` and change the value to either
+``p3openal_audio`` or ``p3fmod_audio``. (The names of the libraries may differ
+with the way Panda3D was built.)
 
 Extra Notes
 -----------

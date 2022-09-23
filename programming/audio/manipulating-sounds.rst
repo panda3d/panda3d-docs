@@ -67,7 +67,7 @@ Notes on Looping Sounds Seamlessly
 Looping a sound seamlessly should be as simple as loading the sound, then
 calling :meth:`~.AudioSound.set_loop()` and :meth:`~.AudioSound.play()`.
 However, occasionally Panda users have had difficulty getting sounds to loop
-seamlessly. The problems have been traced to three(!) different causes:
+seamlessly. The problems have been traced to two(!) different causes:
 
 #. Some MP3 encoders contain a bug where they add blank space at the end of the
    sound. This causes a skip during looping. Try using a wav instead.
@@ -75,9 +75,6 @@ seamlessly. The problems have been traced to three(!) different causes:
    intervals depend on Panda's Thread to restart the sound, and if the CPU is
    is busy, there's a skip. This is not a seamless method, in general. Use
    :meth:`~.AudioSound.set_loop()` instead.
-#. There is a bug in Miles sound system, which requires a workaround in Panda3D.
-   At one time, the workaround was causing problems with FMOD, until we devised
-   a new workaround. This bug no longer exists, you can ignore it.
 
 So the easiest way to get a reliable looping sound is to use wav files, and to
 use :meth:`~.AudioSound.set_loop()`, not sound intervals. Of course, when it
