@@ -69,8 +69,6 @@ audio-library-name     p3openal_audio   p3openal_audio     Loads the appropriate
 
                        p3fmod_audio
 
-                       p3miles_audio
-
                        null
 want-directtools       true             true               Enables directtools, a suite of interactive object/camera manipulation tools
 

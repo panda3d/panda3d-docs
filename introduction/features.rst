@@ -97,7 +97,6 @@ Several options for adding sounds to your game:
 
 -  Support for the OpenAL audio engine
 -  Support for the FMOD audio engine
--  Support for the Miles audio engine
 
 |clear|
 
