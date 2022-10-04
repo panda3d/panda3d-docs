@@ -18,6 +18,16 @@ shaders and the fixed-function pipeline. To do this, set this in Config.prc::
 
    gl-version 3 2
 
+Problem: No Cg Shaders on Apple Silicon
+---------------------------------------
+
+*Problem:* Cg shaders, including the shader generator and CommonFilters, don't
+work on Apple Silicon computers.
+
+*Workaround:* The NVIDIA Cg Toolkit is not available for the arm64 architecture.
+If you need to target Apple Silicon computers, use GLSL shaders, keeping in mind
+the limitations described above, or use an Intel build in emulation mode.
+
 Problem: Register Allocation
 ----------------------------
 
