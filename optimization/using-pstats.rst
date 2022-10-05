@@ -18,13 +18,13 @@ Panda client, or they may be drawn on another computer on the same LAN, which is
 useful for analyzing fullscreen applications. The remote computer need not be
 running the same operating system as the client computer.
 
-To use PStats, you first need to build the PStats server program, which is part
-of the Pandatool tree (it's called pstats.exe on Windows, and pstats on a Unix
-platform). Start by running the PStats server program (it runs in the
-background), and then start your Direct/Panda client with the following in your
+To use PStats, you first need to run the PStats server program, which is part of
+the Panda3D installation on Windows and Linux. On macOS, it is not included, but
+it can be built from source if the GTK+ 3 library is available on the system.
 
 .. only:: python
 
+   Once it is running, launch your application with the following set in your
    Config.prc file:
 
    .. code-block:: text
@@ -39,7 +39,8 @@ background), and then start your Direct/Panda client with the following in your
 
 .. only:: cpp
 
-   startup code:
+   Once it is running, launch your application with the following added to your
+   start-up code:
 
    .. code-block:: cpp
 
@@ -98,6 +99,14 @@ down rendering bottlenecks, you may set the following configuration variable:
 This will enable a new set of graphs that use timer queries to measure how much
 time each task is actually taking on the GPU.
 
+.. note::
+
+   Please make sure you are at least using Panda3D 1.10.12 when trying to use
+   this feature. Older versions had a bug that made GPU timing not work
+   correctly with some graphics cards. Panda3D 1.11.0 has even more improvements
+   for this feature, so you will get the best results by updating to the very
+   latest version.
+
 If your card does not support it or does not give reliable timer query
 information, a crude way of working around this and getting more accurate timing
 breakdown, you can set this:
@@ -136,6 +145,9 @@ additional graphs by selecting from the Graphs pulldown menu.
 
 Time-based Strip Charts
 ~~~~~~~~~~~~~~~~~~~~~~~
+
+.. image:: pstats-strip-chart-time.png
+   :width: 546
 
 This is the graph type you will use most frequently to examine performance data.
 The horizontal axis represents the passage of time; each frame is represented as
@@ -195,38 +207,91 @@ parent collector that is not accounted for by any of the child collectors.
 
 You can further drill down by double-clicking on any of the new labels; or
 double-click on the top label, or the white part of the graph, to return back up
-to the previous level.
+to the previous level. Right-clicking a label will provide further options.
 
 Value-based Strip Charts
 ~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. image:: pstats-strip-chart-level.png
+   :width: 546
 
 There are other strip charts you may create, which show arbitrary kinds of data
 per frame other than elapsed time. These can only be accessed from the Graphs
 pulldown menu, and include things such as texture memory in use and vertices
 drawn. They behave similarly to the time-based strip charts described above.
 
+Flame Graphs
+~~~~~~~~~~~~
+
+.. image:: pstats-flame-graph.png
+   :width: 1103
+
+This is probably the most useful graph, giving an immediate insight into how the
+time is broken down in a frame or in a particular category, but it can be a bit
+difficult to wrap your head around at first. It collects a running average of
+the time spent in each collector, with the currently-focused collector (the
+bottom-most bar, by default the entire frame) being stretched to fit the entire
+width of the chart.
+
+The way the bars are stacked indicates how the collectors are nested. Let's say
+that Panda3D performs a Cull pass for display region A and B separately. The
+Strip Chart view would just tell you the total Cull time in the frame, which
+doesn't tell you which scene you need to optimize. The Flame Graph view on the
+other hand, will show two separate Cull bars, one stacked above the bar for
+display region A, and the other stacked above the bar for display region B.
+
+You can double-click on any bar to focus in to that particular collector and
+see how its time is broken up. Double-click the white background to go back to
+the previous level. Right-clicking a bar will show further options, such as to
+open additional charts.
+
+Timeline
+~~~~~~~~
+
+.. image:: pstats-timeline.png
+   :width: 1018
+
+This graph is used less frequently, but when it is needed it is a valuable tool
+to reveal exactly how the time is spent within a frame. Sometimes you really
+need to know the exact sequence and timing of events in the frame, not just
+an accumulated time spent in each collector. For example, it is very useful for
+finding lag spikes that occurred only during a single frame, like during a
+loading process. In the Timeline chart, a bar is drawn between each start and
+stop event of each particular collector, with the vertical axis showing the
+nesting of collectors.
+
+When using multiple threads (or when GPU timing is enabled), the timelines for
+the different threads are listed vertically, underneath each other. This makes
+it the only chart that can show multiple threads at once, making it possible
+to find synchronization issues. When GPU timing is enabled, the video card is
+considered a separate thread, but due to the fact that the GPU has a separate
+clock, the GPU and CPU threads may not be perfectly aligned.
+
+There are several ways to navigate through the timeline. By double-clicking a
+particular bar, the view will zoom to fit that bar. You can also use the WASD
+keys to navigate, or the scroll wheel of the mouse while holding the control key
+on the keyboard.
+
+Please note that PStats discards data older than 60 seconds by default. To be
+able to see the entire timeline, you need to change the ``pstats-history``
+configuration variable.
+
+The timeline chart may be created from the Graphs pulldown menu.
+
 Piano Roll Charts
 ~~~~~~~~~~~~~~~~~
 
-This graph is used less frequently, but when it is needed it is a valuable tool
-to reveal exactly how the time is spent within a frame. The PStats server
-automatically collects together all the time spent within each collector and
-shows it as a single total, but in reality it may not all have been spent in one
-continuous block of time.
+This graph is no longer considered useful. It predates the Timeline chart, which
+is easier to read while giving a more powerful view of how the time is broken up
+in each frame. Nevertheless, it is still available for those who find it useful.
 
-For instance, when Panda draws each display region in single-threaded mode, it
-performs a cull traversal followed by a draw traversal for each display region.
-Thus, if your Panda client includes multiple display regions, it will alternate
-its time spent culling and drawing as it processes each of them. The strip
-chart, however, reports only the total cull time and draw time spent.
-
-Sometimes you really need to know the sequence of events in the frame, not just
-the total time spent in each collector. The piano roll chart shows this kind of
-data. It is so named because it is similar to the paper music roll for an old-
-style player piano, with holes punched down the roll for each note that is to be
-played. The longer the hole, the longer the piano key is held down. (Think of
-the chart as rotated 90 degrees from an actual piano roll. A player piano roll
-plays from bottom to top; the piano roll chart reads from left to right.)
+The piano roll chart shows the sequence of events in the last frame, not just
+the total time spent in each collector. It is so named because it is similar to
+the paper music roll for an old-style player piano, with holes punched down the
+roll for each note that is to be played. The longer the hole, the longer the
+piano key is held down. (Think of the chart as rotated 90 degrees from an actual
+piano roll. A player piano roll plays from bottom to top; the piano roll chart
+reads from left to right.)
 
 Unlike a strip chart, a piano roll chart does not show trends; the chart shows
 only the current frame's data. The horizontal axis shows time within the frame,
@@ -256,8 +321,7 @@ server can open up graphs for these threads as well. Each separate thread is
 considered unrelated to the main thread, and may have the same or an independent
 frame rate. Each separate thread will be given its own pulldown menu to create
 graphs associated with that thread; these auxiliary thread menus will appear on
-the menu bar following the Graphs menu. At the time of this writing, support for
-multiple threads within the PStats graph is largely theoretical and untested.
+the menu bar following the Graphs menu.
 
 Color and Other Optional Collector Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -288,24 +352,25 @@ the same collector.
 Furthermore, the collector's name can be used to define the hierarchical
 relationship of each collector with other existing collectors. To do this,
 prefix the collector's name with the name of its parent(s), followed by a colon
-separator. For instance, PStatCollector("Draw:Flip") defines a collector named
-"Flip", which is a child of the "Draw" collector, defined elsewhere.
+separator. For instance, ``PStatCollector("Draw:Flip")`` defines a collector
+named "Flip", which is a child of the "Draw" collector, defined elsewhere.
 
 You can also define a collector as a child of another collector by giving the
 parent collector explicitly followed by the name of the child collector alone,
 which is handy for dynamically-defined collectors. For instance,
-PStatCollector(draw, "Flip") defines the same collector named above, assuming
-that draw is the result of the PStatCollector("Draw") constructor.
+``PStatCollector(draw, "Flip")`` defines the same collector named above,
+assuming that draw is the result of the ``PStatCollector("Draw")`` constructor.
 
 Once you have a collector, simply bracket the region of code you wish to time
-with collector.start() and collector.stop(). It is important to ensure that each
-call to start() is matched by exactly one call to stop(). If you are programming
-in C++, it is highly recommended that you use the PStatTimer class to make these
-calls automatically, which guarantees the correct pairing; the PStatTimer's
-constructor calls start() and its destructor calls stop(), so you may simply
-define a PStatTimer object at the beginning of the block of code you wish to
-time. If you are programming in Python, you must call start() and stop()
-explicitly.
+with :meth:`collector.start() <.PStatCollector.start>` and
+:meth:`collector.stop() <.PStatCollector.stop>`. It is important to ensure that
+each call to start() is matched by exactly one call to stop(). If you are
+programming in C++, it is highly recommended that you use the
+:class:`.PStatTimer` class to make these calls automatically, which guarantees
+the correct pairing; the PStatTimer's constructor calls start() and its
+destructor calls stop(), so you may simply define a PStatTimer object at the
+beginning of the block of code you wish to time. If you are programming in
+Python, you must call start() and stop() explicitly.
 
 When you call start() and there was another collector already started, that
 previous collector is paused until you call the matching stop() (at which time
@@ -383,10 +448,7 @@ The PStats Client
 
 The client code is in panda/src/pstatclient, and is available to run in every
 Panda client unless it is compiled out. (It will be compiled out if OPTIMIZE is
-set to level 4, unless DO_PSTATS is also explicitly set to non-empty. It will
-also be compiled out if NSPR is not available, since both client and server
-depend on the NSPR library to exchange data, even when running the server on the
-same machine as the client.)
+set to level 4, unless DO_PSTATS is also explicitly set to non-empty.)
 
 The client code is designed for minimal runtime overhead when it is compiled in
 but not enabled (that is, when the client is not in contact with a PStats
@@ -394,7 +456,7 @@ server), as well as when it is enabled (when the client is in contact with a
 PStats server). It is also designed for zero runtime overhead when it is
 compiled out.
 
-There is one global PStatClient class object, which manages all of the
+There is one global :class:`.PStatClient` class object, which manages all of the
 communications on the client side. Each PStatCollector is simply an index into
 an array stored within the PStatClient object, although the interface is
 intended to hide this detail from the programmer.
@@ -402,7 +464,7 @@ intended to hide this detail from the programmer.
 Initially, before the PStatClient has established a connection, calls to start()
 and stop() simply return immediately.
 
-When you call PStatClient.connect(), the client attempts to contact the
+When you call :meth:`.PStatClient.connect()`, the client attempts to contact the
 PStatServer via a TCP connection to the hostname and port named in the pstats-
 host and pstats-port Config.prc variables, respectively. (The default hostname
 and port are localhost and 5185.) You can also pass in a specific hostname
@@ -446,9 +508,9 @@ the creation of windows and the handling of mouse input, etc.; most of the real
 work of interpreting the data is done in the generic code in the pstatserver
 directory.
 
-The PStatServer owns all of the connections, and interfaces with the NSPR
-library to communicate with the clients. It listens on the specified port for
-new connections, using the pstats-port Config.prc variable to determine the port
+The PStatServer owns all of the connections, and uses network sockets to
+communicate with the clients. It listens on the specified port for new
+connections, using the pstats-port Config.prc variable to determine the port
 number (this is the same variable that specifies the port to the client).
 Usually you can leave this at its default value of 5185, but there may be some
 cases in which that port is already in use on a particular machine (for
