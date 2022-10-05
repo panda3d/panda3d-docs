@@ -47,6 +47,7 @@
     "programming/subclassing": "programming/object-management/subclassing",
     "programming/threading": "programming/tasks-and-events/threading",
     "programming/internal-structures/other-manipulation/creating-textures": "programming/texturing/creating-textures",
+    "optimization/pstats/index": "optimization/using-pstats",
     "optimization/too-many-meshes": "optimization/performance-issues/too-many-meshes",
     "optimization/too-many-state-changes": "optimization/performance-issues/too-many-state-changes",
     "optimization/too-many-text-updates": "optimization/performance-issues/too-many-text-updates",

@@ -18,13 +18,13 @@ Panda client, or they may be drawn on another computer on the same LAN, which is
 useful for analyzing fullscreen applications. The remote computer need not be
 running the same operating system as the client computer.
 
-To use PStats, you first need to build the PStats server program, which is part
-of the Pandatool tree (it's called pstats.exe on Windows, and pstats on a Unix
-platform). Start by running the PStats server program (it runs in the
-background), and then start your Direct/Panda client with the following in your
+To use PStats, you first need to run the PStats server program, which is part of
+the Panda3D installation on Windows and Linux. On macOS, it is not included, but
+it can be built from source if the GTK+ 2 library is available on the system.
 
 .. only:: python
 
+   Once it is running, launch your application with the following set in your
    Config.prc file:
 
    .. code-block:: text
@@ -39,7 +39,8 @@ background), and then start your Direct/Panda client with the following in your
 
 .. only:: cpp
 
-   startup code:
+   Once it is running, launch your application with the following added to your
+   start-up code:
 
    .. code-block:: cpp
 
@@ -98,6 +99,12 @@ down rendering bottlenecks, you may set the following configuration variable:
 This will enable a new set of graphs that use timer queries to measure how much
 time each task is actually taking on the GPU.
 
+.. note::
+
+   Please make sure you are at least using Panda3D 1.10.12 when trying to use
+   this feature. Older versions had a bug that made GPU timing not work
+   correctly with some graphics cards.
+
 If your card does not support it or does not give reliable timer query
 information, a crude way of working around this and getting more accurate timing
 breakdown, you can set this:
@@ -136,6 +143,9 @@ additional graphs by selecting from the Graphs pulldown menu.
 
 Time-based Strip Charts
 ~~~~~~~~~~~~~~~~~~~~~~~
+
+.. image:: pstats-strip-chart-time.png
+   :width: 546
 
 This is the graph type you will use most frequently to examine performance data.
 The horizontal axis represents the passage of time; each frame is represented as
@@ -200,6 +210,9 @@ to the previous level.
 Value-based Strip Charts
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. image:: pstats-strip-chart-level.png
+   :width: 546
+
 There are other strip charts you may create, which show arbitrary kinds of data
 per frame other than elapsed time. These can only be accessed from the Graphs
 pulldown menu, and include things such as texture memory in use and vertices
@@ -256,8 +269,7 @@ server can open up graphs for these threads as well. Each separate thread is
 considered unrelated to the main thread, and may have the same or an independent
 frame rate. Each separate thread will be given its own pulldown menu to create
 graphs associated with that thread; these auxiliary thread menus will appear on
-the menu bar following the Graphs menu. At the time of this writing, support for
-multiple threads within the PStats graph is largely theoretical and untested.
+the menu bar following the Graphs menu.
 
 Color and Other Optional Collector Properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -288,24 +300,25 @@ the same collector.
 Furthermore, the collector's name can be used to define the hierarchical
 relationship of each collector with other existing collectors. To do this,
 prefix the collector's name with the name of its parent(s), followed by a colon
-separator. For instance, PStatCollector("Draw:Flip") defines a collector named
-"Flip", which is a child of the "Draw" collector, defined elsewhere.
+separator. For instance, ``PStatCollector("Draw:Flip")`` defines a collector
+named "Flip", which is a child of the "Draw" collector, defined elsewhere.
 
 You can also define a collector as a child of another collector by giving the
 parent collector explicitly followed by the name of the child collector alone,
 which is handy for dynamically-defined collectors. For instance,
-PStatCollector(draw, "Flip") defines the same collector named above, assuming
-that draw is the result of the PStatCollector("Draw") constructor.
+``PStatCollector(draw, "Flip")`` defines the same collector named above,
+assuming that draw is the result of the ``PStatCollector("Draw")`` constructor.
 
 Once you have a collector, simply bracket the region of code you wish to time
-with collector.start() and collector.stop(). It is important to ensure that each
-call to start() is matched by exactly one call to stop(). If you are programming
-in C++, it is highly recommended that you use the PStatTimer class to make these
-calls automatically, which guarantees the correct pairing; the PStatTimer's
-constructor calls start() and its destructor calls stop(), so you may simply
-define a PStatTimer object at the beginning of the block of code you wish to
-time. If you are programming in Python, you must call start() and stop()
-explicitly.
+with :meth:`collector.start() <.PStatCollector.start>` and
+:meth:`collector.stop() <.PStatCollector.stop>`. It is important to ensure that
+each call to start() is matched by exactly one call to stop(). If you are
+programming in C++, it is highly recommended that you use the
+:class:`.PStatTimer` class to make these calls automatically, which guarantees
+the correct pairing; the PStatTimer's constructor calls start() and its
+destructor calls stop(), so you may simply define a PStatTimer object at the
+beginning of the block of code you wish to time. If you are programming in
+Python, you must call start() and stop() explicitly.
 
 When you call start() and there was another collector already started, that
 previous collector is paused until you call the matching stop() (at which time
@@ -383,10 +396,7 @@ The PStats Client
 
 The client code is in panda/src/pstatclient, and is available to run in every
 Panda client unless it is compiled out. (It will be compiled out if OPTIMIZE is
-set to level 4, unless DO_PSTATS is also explicitly set to non-empty. It will
-also be compiled out if NSPR is not available, since both client and server
-depend on the NSPR library to exchange data, even when running the server on the
-same machine as the client.)
+set to level 4, unless DO_PSTATS is also explicitly set to non-empty.)
 
 The client code is designed for minimal runtime overhead when it is compiled in
 but not enabled (that is, when the client is not in contact with a PStats
@@ -394,7 +404,7 @@ server), as well as when it is enabled (when the client is in contact with a
 PStats server). It is also designed for zero runtime overhead when it is
 compiled out.
 
-There is one global PStatClient class object, which manages all of the
+There is one global :class:`.PStatClient` class object, which manages all of the
 communications on the client side. Each PStatCollector is simply an index into
 an array stored within the PStatClient object, although the interface is
 intended to hide this detail from the programmer.
@@ -402,7 +412,7 @@ intended to hide this detail from the programmer.
 Initially, before the PStatClient has established a connection, calls to start()
 and stop() simply return immediately.
 
-When you call PStatClient.connect(), the client attempts to contact the
+When you call :meth:`.PStatClient.connect()`, the client attempts to contact the
 PStatServer via a TCP connection to the hostname and port named in the pstats-
 host and pstats-port Config.prc variables, respectively. (The default hostname
 and port are localhost and 5185.) You can also pass in a specific hostname
@@ -446,9 +456,9 @@ the creation of windows and the handling of mouse input, etc.; most of the real
 work of interpreting the data is done in the generic code in the pstatserver
 directory.
 
-The PStatServer owns all of the connections, and interfaces with the NSPR
-library to communicate with the clients. It listens on the specified port for
-new connections, using the pstats-port Config.prc variable to determine the port
+The PStatServer owns all of the connections, and uses network sockets to
+communicate with the clients. It listens on the specified port for new
+connections, using the pstats-port Config.prc variable to determine the port
 number (this is the same variable that specifies the port to the client).
 Usually you can leave this at its default value of 5185, but there may be some
 cases in which that port is already in use on a particular machine (for
