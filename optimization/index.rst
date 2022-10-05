@@ -144,7 +144,7 @@ Table of Contents
    :titlesonly:
 
    basic-performance-diagnostics
-   using-pstats
+   pstats/index
    performance-issues/index
    rigid-body-combiner
 
