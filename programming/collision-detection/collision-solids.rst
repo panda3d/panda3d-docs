@@ -98,8 +98,8 @@ spherocylinder. Note that before Panda3D 1.10, this shape was called
 "CollisionTube", and this name remains as an alias for backward compatibility.
 
 The capsule is good as an "into" object, for objects that are largely
-cylindrical. It is not a very good choice for a "from" object, because not many
-intersection tests have been written from capsules into other shapes.
+cylindrical. It can also be used as a "from" object, but keep in mind that it
+can be significantly more expensive to use a capsule in tests than a sphere.
 
 .. image:: tube.jpg
 
@@ -298,6 +298,6 @@ Parabola                                     **Yes**   **Yes**     **Yes**    **
 Ray              **Yes\***     **Yes**       **Yes**   **Yes**     **Yes**    **Yes**     **Yes**
 Segment                        **Yes**       **Yes**   **Yes**     **Yes**    **Yes**     **Yes**
 Sphere           **Yes**       **Yes**       **Yes**   **Yes**     **Yes**    **Yes**     **Yes**
-Box                                          **1.10**  **1.10**    **Yes**                **1.10**
-Capsule                                      **1.10**              **1.10**   **1.10**    **1.10**
+Capsule                        **1.10.2**    **1.10**  **1.10.13** **1.10**   **1.10**    **1.10**
+Box                            **1.10.2**    **1.10**  **1.10**    **Yes**                **1.10**
 ================ ============= ============= ========= =========== ========== =========== ========
