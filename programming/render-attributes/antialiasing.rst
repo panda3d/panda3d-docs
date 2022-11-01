@@ -76,6 +76,14 @@ You may also be able to request more multisamples, such as 4 or 8, depending on
 your graphics card. If your card can provide additional samples, it produces a
 higher-quality antialiasing, at a small cost to render time.
 
+.. note::
+
+   On some graphics cards, enabling a multisample framebuffer will
+   automatically enable multisample antialiasing, regardless of the setting of
+   the antialias attribute.  It is not possible to disable this.  If you do not
+   want the entire framebuffer to be multisample-antialiased, consider the use
+   of render-to-texture.
+
 The function :meth:`~.NodePath.clear_antialias()` can be used to remove the
 antialias setting. The function :meth:`~.NodePath.set_antialias()` takes an
 optional priority parameter, to control attribute overrides.

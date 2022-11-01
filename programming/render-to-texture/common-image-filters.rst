@@ -31,8 +31,7 @@ Currently, the image postprocessing operations supported by CommonFilters are:
 #. sRGB Encode - ensures the image is encoded using the sRGB inverse EOTF.
 #. High Dynamic Range Filter - enables HDR rendering and tone mapping.
 #. Exposure Adjust - applies exposure compensation before tone mapping.
-
-We expect this list to grow rather substantially over the next year or so.
+#. MSAA - enables multisample antialiasing.
 
 Basic Setup
 -----------
@@ -315,3 +314,18 @@ halves it.
    filters.delExposureAdjust()
 
 This filter is available as of Panda3D 1.10.7.
+
+The MSAA Filter
+---------------
+
+This is not really a "filter" as such, but just a way to enable multisample
+antialiasing on the offscreen buffer.  Doing this has a couple of advantages
+compared to enabling multisample filtering on the main window, such as the fact
+that you can switch this setting based on detected capabilities and user
+settings, without having to reopen the window.
+
+When using this setting, it is recommended to leave multisample filtering off
+on the main window, otherwise it will be a waste of GPU memory.  So, do *not*
+put ``framebuffer-multisample`` in your Config.prc file.
+
+This filter is available as of Panda3D 1.10.13.
