@@ -287,6 +287,11 @@ latex_documents = [
 # If false, no module index is generated.
 #latex_domain_indices = True
 
+from sphinx.util import texescape
+texescape.tex_replacements += [
+    ('\ufe0f', ''), # unicode representation
+    ('\u274c', r'\(\pmb{\times}\)'), # cross mark
+]
 
 # -- Options for manual page output ---------------------------------------
 
