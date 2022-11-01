@@ -271,7 +271,7 @@ the AABB.
 
 .. code-block:: python
 
-   box = CollisionBox(Point3(minx, miny, minz),Point3(maxx, maxy, maxz))
+   box = CollisionBox(Point3(minx, miny, minz), Point3(maxx, maxy, maxz))
 
 Collision System Chart
 ----------------------
