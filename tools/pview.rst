@@ -31,7 +31,7 @@ press shift-question mark again. For convenience here is the full list of as the
 time of writing:
 
 =========================== ====================================================
-Left-click and drag Mouse   Pans the camera.
+Left-click and drag Mouse   Moves the camera laterally.
 Middle-click and drag Mouse Rotates the model around its pivot
 Right-click and drag Mouse  Moves the model away and towards the camera
 f                           Report current framerate to the console window.
@@ -48,7 +48,7 @@ shift-l                     List hierarchy
 shift-a                     Analyze hierarchy
 h                           Highight node
 arrow-up                    Move highlight to parent
-arrown-down                 Move highlight to child
+arrow-down                  Move highlight to child
 arrow-left                  Move highlight to sibling
 arrow-right                 Move highlight to sibling
 shift-s                     Activate PStats
@@ -58,8 +58,8 @@ shift-w                     Open new window
 alt-enter                   Toggle between full-screen and windowed mode
 2                           Split the window
 W                           Toggle wireframe
-escape                      Close Window
-q                           Close Window
+escape                      Close window
+q                           Close window
 =========================== ====================================================
 
 .. |pviewsample.jpg| image:: pviewsample.jpg
