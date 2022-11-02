@@ -213,9 +213,9 @@ Assimp
 
 http://www.assimp.org/
 
-As of Panda3D 1.10.0, Panda3D can make use of the Open Asset Import (Assimp)
-library to read in additional 3D file formats. File formats supported by
-Assimp can be found
+As of Panda3D 1.10.0, Panda3D can make use of the Open Asset Importer library
+to read in additional 3D file formats (see :ref:`supported-model-formats`).
+A list of file formats supported by Assimp can be found
 `here <https://github.com/assimp/assimp#supported-file-formats>`__.
 
 License: BSD license
@@ -350,10 +350,11 @@ FCollada
 https://www.khronos.org/collada/wiki/FCollada
 
 FCollada is an open-source C++ library which offers support for COLLADA
-interoperability, used for dae2egg and for loading dae files directly into
-Panda.
+interoperability. It is used by the dae2egg utility, which converts COLLADA
+files into Egg files. See :ref:`converting-to-egg`.
 
-Use of FCollada in Panda is deprecated.
+The FCollada library is discontinued and no longer being maintained. Support
+will likely be removed in a future version of Panda3D.
 
 License: `MIT License <https://opensource.org/licenses/mit-license.php>`__
 

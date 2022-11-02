@@ -55,6 +55,18 @@ various classes.
 
    programming/index
 
+Asset Pipeline
+--------------
+
+This section explains how to get artistic content (such as models and textures)
+produced in other programs imported into Panda3D.
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 2
+
+   pipeline/index
+
 Debugging
 ---------
 
