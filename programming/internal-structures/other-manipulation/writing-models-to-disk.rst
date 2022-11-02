@@ -40,7 +40,7 @@ since it does not convert advanced features like animation; and some structure
 of the original egg file may be lost in the conversion.
 
 You can load files of these formats, as well as
-:ref:`any other supported format <model-export>`, using the
+:ref:`any other supported format <supported-model-formats>`, using the
 :ref:`loader.loadModel <model-files>` interface. Any file types other than
 ``.bam`` or ``.egg`` will be automatically converted at runtime, exactly as if
 you had run the appropriate command-line conversion tool first.

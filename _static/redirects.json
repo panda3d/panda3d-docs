@@ -60,6 +60,16 @@
     "optimization/motherboard-integrated-video": "optimization/performance-issues/motherboard-integrated-video",
     "optimization/too-many-polygons": "optimization/performance-issues/too-many-polygons",
     "optimization/miscellaneous": "optimization/performance-issues/miscellaneous",
+    "tools/model-export/index": "pipeline/index",
+    "tools/model-export/converting-from-3d-studio-max": "pipeline/converting-from-3ds-max",
+    "tools/model-export/converting-from-maya": "pipeline/converting-from-maya",
+    "tools/model-export/converting-from-blender": "pipeline/converting-from-blender",
+    "tools/model-export/converting-from-other-formats": "pipeline/converting-from-other-formats",
+    "tools/model-export/converting-egg-to-bam": "pipeline/converting-egg-to-bam",
+    "tools/model-export/parsing-and-generating-egg-files": "pipeline/egg-files/parsing-and-generating-egg-files",
+    "tools/model-export/egg-syntax": "pipeline/egg-files/syntax",
+    "tools/pview": "pipeline/previewing-models",
+    "tools/pipeline-tips": "pipeline/tips",
     "more-resources/samples/texture-swapping": "more-resources/samples/index",
     "more-resources/video-tutorials": "more-resources/video-lectures"
 }

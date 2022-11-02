@@ -23,8 +23,7 @@ Glossary
 
    egg
       A :term:`model` file format native to Panda3D which is text-based, meaning
-      it can be opened and inspected using a text editor.  It is usually
-      produced by one of several :ref:`model exporters <model-export>`.
+      it can be opened and inspected using a text editor. See :ref:`egg-files`.
 
    future
       A special handle that represents an :term:`asynchronous` operation that

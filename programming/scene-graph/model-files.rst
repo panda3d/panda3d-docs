@@ -4,14 +4,19 @@ Model Files
 ===========
 
 The most common way to put geometry in the scene is by loading it from a file.
-A model file contains a tree of nodes, similar to a scene graph. Most models
-will contain one or more :class:`.GeomNode` nodes, which contain the actual
-geometry that Panda3D can render to the screen.
+A model file contains a tree of nodes, similar to a scene graph, under which
+the actual geometry is stored that Panda3D can render to the screen.
+
+Model files can contain static geometry, but they can also contain information
+for animating the model, as well as information about the model's material, ie.
+what color the material has, and how this color changes under the influence of
+lighting.
 
 Panda does not distinguish between big stuff and small stuff. For example, if a
 virtual world contains a coffee cup on a table, and the table is in the middle
 of a small island, then the coffee cup, the table, and the island are all
-models: each is a piece of static non-animated geometry.
+models: each is a piece of static non-animated geometry. A model file could
+also contain the entire island with all the smaller models included within it.
 
 Panda3D does distinguish between animated and non-animated geometry, however.
 "Animated" in this sense means that the geometry changes shape; a flying ball
@@ -26,10 +31,29 @@ refer to the :ref:`terrain` section for more information. For many simple
 scenes, though, it is simpler to use a static model loaded from a file rather
 than a dynamically generated heightmap terrain.
 
+File Formats
+------------
+
+Models can be stored in one of a number of file formats. Panda3D's own native
+format for storing models is EGG. This is a human-readable format containing
+a textual description of the geometry and its animations and materials.
+Panda3D provides various tools that can convert model files from other formats
+to the EGG format, and manipulate EGG files in various ways.
+
+The other native format of Panda3D is the BAM format, which is a binary
+representation of the internal object structure of Panda3D. As such, it is very
+efficient to load. Therefore, it is also the format of choice when shipping the
+game to an end-user. Panda3D will automatically convert your models to BAM for
+caching purposes, or when packaging a finished game for distribution.
+
+There are a range of plug-ins available to load models in other formats, such
+as the glTF format, which is a widely-used format in the industry. See
+:ref:`supported-model-formats` for more information about supported formats.
+
 Loading a Model File
 --------------------
 
-You can load a model using the following code:
+You can load a model file using the following code:
 
 .. only:: python
 
@@ -113,76 +137,30 @@ follows:
 
       myModel.detach_node();
 
-Panda's Primary File Format
----------------------------
+The Model Cache
+---------------
 
-In Panda3D, geometry is generally stored in EGG files. An EGG file can contain
-static geometry, but it can also contain information for animating the model,
-as well as information about the model's material, ie. what color the material
-has, and how this color changes under the influence of lighting).
+The first time you load an EGG file, it loads slowly. However, the second time
+you use that same EGG file, it loads fast. This is possible because Panda3D is
+quietly translating the EGG file into a performance-optimized BAM file. It
+stores these BAM files in a directory called the *model cache*. The next time
+you try to load the EGG file, if it has not been modified on disk, Panda3D will
+load the corresponding optimized BAM file from the model cache instead.
 
-EGG files are created by exporting models from 3D modeling programs like Maya,
-Max, or Blender. Currently, the support for Maya is very strong, since the
-developers of Panda3D mostly use Maya. The Max exporter is not very reliable
-right now. There is a third-party exporter for Blender, which is said to be
-quite good.
-
-The EGG format is a human-readable format. You can open an EGG file in a text
-editor and see what it contains. See :ref:`egg-syntax` for more detailed
-information about the contents of EGG files.
-
-Panda's Optimized File Format
------------------------------
-
-The EGG file is optimized for debugging, not speed. The first time you load an
-EGG file, it loads slowly. However, the second time you use that same EGG file,
-it loads fast.
-
-This is possible because Panda3D is quietly translating the EGG file into a
-performance-optimized form: the BAM file. It stores these BAM files in a
-directory called the model cache. When developing a game, this works great: the
-only time you notice a delay is if you just created the EGG file for the first
-time. Otherwise, it runs blazing fast.
-
-However, there is one situation where this doesn't work so well: if you are
-shipping your game to a customer. You don't want your customer's first
-experience with your game to have delays caused by file loading. In that case,
-it may make sense to ship BAM files instead of EGG files to the user. To do
-this, you would use a tool like ``egg2bam`` to convert your EGG files into BAM
-files manually. The distribution tools that ship with Panda3D automatically
-convert your models to .bam.
-
-.. caution::
-
-   Whereas .egg files are considered to be stable across many versions of
-   Panda3D, .bam files are a reflection of the internal memory structure of
-   Panda3D.  Therefore, it's theoretically possible for a .bam file created
-   using one version of Panda3D to no longer work in a different version of
-   Panda3D in the future.  Therefore, if you choose to work directly with .bam
-   files, you should make sure to always preserve the source assets and
-   information about the pipeline so that you can reconvert them as needed.
-
-Other File Formats
-------------------
-
-An increasingly commonly used format for 3D models is the glTF format. This is a
-standard format that is very widely supported by many modelling suites. There
-are also many models available on the internet in this format.
-
-In the future, Panda3D will contain native support for loading glTF models.
-Until then, there is a high quality third party plug-in that can be installed
-that can be used to load glTF models:
-
-https://github.com/Moguri/panda3d-gltf
+Where this cache is stored depends on your operating system. On Windows, it is
+usually in ``C:\Users\\YourUser\\AppData\\Local\\Panda3D-1.10``, whereas on
+Linux, it can be found in ``~/.cache/panda3d``. The location can be controlled
+using the ``model-cache-dir`` variable in your
+:ref:`Config.prc <configuring-panda3d>` file, or disabled by setting this
+variable to an empty string.
 
 .. only:: python
 
-   After installing this plug-in using the "pip" package manager, no extra steps
-   are needed. You can simply give Panda a path to a file with a .gltf extension
-   and it will load via the panda3d-gltf plug-in.
+   You can alternatively force a model to bypass the model cache by passing the
+   ``noCache=True`` argument to the ``loader.loadModel`` call.
 
-Compressing Models
-------------------
+Compressed Models
+-----------------
 
 Because EGG files are text-based, they can get rather large in size. It is often
 desirable to store them in a compressed fashion so that they take up less space.

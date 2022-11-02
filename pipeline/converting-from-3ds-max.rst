@@ -1,7 +1,7 @@
-.. _converting-from-3d-studio-max:
+.. _converting-from-3ds-max:
 
-Converting from 3D Studio Max
-=============================
+Converting from 3ds Max
+=======================
 
 .. contents::
    :local:

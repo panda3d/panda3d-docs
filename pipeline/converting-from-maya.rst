@@ -1,7 +1,7 @@
 .. _converting-from-maya:
 
-Converting from Maya
-====================
+Converting from Autodesk Maya
+=============================
 
 This section talks about how to prepare a Maya model for export, and then export
 it. Since exporting is the very last step, the actual instructions for the
@@ -29,21 +29,21 @@ The first step in texturing your model is to apply a "Phong" shader. This is the
 only kind of shader that Panda3D understands. You can apply a phong shader using
 the Maya menus:
 
-|maya-tex-1.jpg|
+.. image:: maya-tex-1.jpg
 
 Next, tell maya that you want to control the color of the surface by clicking
 the color button:
 
-|maya-tex-2.jpg|
+.. image:: maya-tex-2.jpg
 
 Now create a file texture - this will control the color of the surface:
 
-|maya-tex-3.jpg|
+.. image:: maya-tex-3.jpg
 
 Set the filename. Once you do this, you will be able to see your texture in
 Maya:
 
-|maya-tex-4.jpg|
+.. image:: maya-tex-4.jpg
 
 You now have a straightforward textured model that Panda3D can export.
 
@@ -54,18 +54,18 @@ You may wish to use Panda's advanced texturing abilities: multitexturing, normal
 maps, gloss maps, transparency, or glow maps. To use these features, you will
 need to access Maya's hypershade editor:
 
-|maya-hypershade.jpg|
+.. image:: maya-hypershade.jpg
 
 A straightforwardly textured model will look like this in the hypershade:
 
-|maya-hyper-1.jpg|
+.. image:: maya-hyper-1.jpg
 
 To apply a normal map, create another file texture and connect the "out color"
 of the normal map to the "normal camera" input of the phong shader. The normal
 map must be a true normal map (you can recognize them by their light blue
 color), not a bump map (which are black-and-white.)
 
-|maya-hyper-2.jpg|
+.. image:: maya-hyper-2.jpg
 
 Unfortunately, there is a maya button to help you set up a bump map, but what it
 creates is not correct for Panda3D. If you use the button, you end up with the
@@ -73,7 +73,7 @@ following incorrect configuration. So far as I know, the only way to get the
 correct configuration (shown above) is to set it up manually in the hypershade.
 The incorrect configuration is:
 
-|maya-hyper-3.jpg|
+.. image:: maya-hyper-3.jpg
 
 You may wish for parts of your model to be transparent. This is a little tricky,
 because Panda3D understands "opacity maps," and maya understands "transparency
@@ -81,21 +81,21 @@ maps," which are opposites of each other. (In an opacity map, white is opaque,
 in a transparency map, black is opaque.) To set it up, you will need to create a
 reverser-object:
 
-|maya-hyper-4.jpg|
+.. image:: maya-hyper-4.jpg
 
 You may also wish to control which areas of the model are glossy, and which are
 not. Panda3D calls this a "gloss map." To do this, create a black-and-white
 image and connect it to the "specularColor" input of the phong shader. Note that
 it must be black-and-white, or Panda3D won't understand it.
 
-|maya-hyper-5.jpg|
+.. image:: maya-hyper-5.jpg
 
 You may also want to create glowing areas on your model. Panda3D calls this a
 "glow map." I have also heard it called a "self-illumination map" or an
 "incandescence map." Create a black-and-white image and connect it to the
 "incandescence" input of the phong shader:
 
-|maya-hyper-6.jpg|
+.. image:: maya-hyper-6.jpg
 
 Creating a glow map will cause those parts of the model which are glowing to be
 bright even when the light is dark. However, it will not by itself create a
@@ -106,7 +106,7 @@ Panda3D program in conjunction with the glow map. There is a
 Finally, there is plain old multitexturing. Create this structure in the
 hypershade, using a "Layered Texture" (NOT a "Layered Shader!"):
 
-|maya-hyper-8.jpg|
+.. image:: maya-hyper-7.jpg
 
 This will cause the two textures to be multiplied, which is the simplest form of
 multitexturing. You can also obtain certain other effects by changing the
@@ -176,7 +176,7 @@ for Maya 5.0 is maya2egg5, for 6.0 its maya2egg6 and for 6.5 its maya2egg65.
 The following is an example of how to convert a file(maya binary .mb) if using
 Maya 6.0 through the command line.
 
-|MayaCommandLineExport.png|
+.. image:: mayacommandlineexport.png
 
 The egg file will contain the filenames of the textures. These texture
 pathnames will be stored as relative paths, relative to the location of the
@@ -259,7 +259,7 @@ package.
 
 **SIMPLE MODE**
 
-|Egg_Gui_simple.jpg|
+.. image:: maya-egg-gui-simple.jpg
 
 For viewing the video tutorial click `here <https://vimeo.com/11445320>`__
 
@@ -329,8 +329,9 @@ track.
 
 **ADVANCED MODE**
 
-|Egg_Gui_advanced.jpg| For viewing the video tutorial click
-`here <https://vimeo.com/11445391>`__
+.. image:: maya-egg-gui-advanced.jpg
+
+For viewing the video tutorial click `here <https://vimeo.com/11445391>`__
 
 In the beginning Simple Mode should cover the basics of single file exporting.
 However, once you’ve had to load the application a few times and enter the same
@@ -370,21 +371,21 @@ files you actually changed. The exporter skips any unchanged files by default,
 but this behavior can be overridden by checking the “Override export changed
 files” checkbox next to the Run Batch button.
 
-Using the Egg-Palletize Tool
+Using the Egg-Palettize Tool
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For viewing the video tutorial click `here <https://vimeo.com/11445357>`__
 
 Egg-palettize is an optimization tool in Panda for you to group your textures.
-You can have your textures placed in a single palette. In the advance mode of
+You can have your textures placed in a single palette. In the advanced mode of
 the GUI, choose the egg-palettize panel. This is the egg-palettize Tool.
 
-|Pallettize_1.jpg|
+.. image:: maya-egg-palettize-1.jpg
 
 For using egg-palettize on a single egg file select that option in the drop
 down list:
 
-|Pallettize_2.jpg|
+.. image:: maya-egg-palettize-2.jpg
 
 First, specify the input egg file, the output texture file and the output egg
 file. The output texture file is where the palette will be put in. And the
@@ -422,7 +423,7 @@ batch, the palette will be generated.
 
 Egg-palettize for multiple eggs
 
-|Pallettize_3.jpg|
+.. image:: maya-egg-palettize-3.jpg
 
 Egg-palettize can also generate a palette image for multiple egg files to share.
 This palette image has all the textures of multiple egg files to be placed on
@@ -439,11 +440,11 @@ There is also a graphical front-end to maya2egg. To run the graphical Maya
 exporter, drag MayaPandaTool.mel from the panda plugins directory into the Maya
 workspace.
 
-|MayaPandaToolLoad.png|
+.. image:: mayapandatoolload.png
 
 The UI window(below) will appear.
 
-|Maya-exporter.png|
+.. image:: maya-exporter.png
 
 You can alternatively load the .mel file from the script editor. To save space,
 the graphical tool does not have access to all of the features of the exporter.
@@ -465,7 +466,7 @@ to launch the MayaPandaTool, using Maya shelf to store the MEL script:
 5. (optional) Using Shelf Editor, you can change the image of Panda exporter
    icon to distinguish it from the others:
 
-   |LaunchMPT.jpg|
+   .. image:: launchmpt.jpg
 
 Anytime you need to open the Panda Exporter, just click the icon on the shelf.
 
@@ -477,25 +478,3 @@ the actual file dropped to QuickLaunch is only the shortcut to the MEL file.
 
 Anytime you need to open the Panda exporter, just drag it from QuickLaunch bar
 to the 3D window of Maya.
-
-.. |maya-tex-1.jpg| image:: maya-tex-1.jpg
-.. |maya-tex-2.jpg| image:: maya-tex-2.jpg
-.. |maya-tex-3.jpg| image:: maya-tex-3.jpg
-.. |maya-tex-4.jpg| image:: maya-tex-4.jpg
-.. |maya-hypershade.jpg| image:: maya-hypershade.jpg
-.. |maya-hyper-1.jpg| image:: maya-hyper-1.jpg
-.. |maya-hyper-2.jpg| image:: maya-hyper-2.jpg
-.. |maya-hyper-3.jpg| image:: maya-hyper-3.jpg
-.. |maya-hyper-4.jpg| image:: maya-hyper-4.jpg
-.. |maya-hyper-5.jpg| image:: maya-hyper-5.jpg
-.. |maya-hyper-6.jpg| image:: maya-hyper-6.jpg
-.. |maya-hyper-8.jpg| image:: maya-hyper-8.jpg
-.. |MayaCommandLineExport.png| image:: mayacommandlineexport.png
-.. |Egg_Gui_simple.jpg| image:: egg-gui-simple.jpg
-.. |Egg_Gui_advanced.jpg| image:: egg-gui-advanced.jpg
-.. |Pallettize_1.jpg| image:: pallettize-1.jpg
-.. |Pallettize_2.jpg| image:: pallettize-2.jpg
-.. |Pallettize_3.jpg| image:: pallettize-3.jpg
-.. |MayaPandaToolLoad.png| image:: mayapandatoolload.png
-.. |Maya-exporter.png| image:: maya-exporter.png
-.. |LaunchMPT.jpg| image:: launchmpt.jpg

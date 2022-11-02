@@ -41,8 +41,5 @@ Table of Contents
    :titlesonly:
 
    scene-graph-browser/index
-   model-export/index
-   pview
-   pipeline-tips
    interrogate
    list-of-executables

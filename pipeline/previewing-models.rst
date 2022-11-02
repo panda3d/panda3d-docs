@@ -1,9 +1,9 @@
 .. _pview:
 
-Previewing 3D Models in Pview
-=============================
+Previewing Models in pview
+==========================
 
-Pview or Panda Viewer is a model and animation viewer for egg and bam files.
+PView or Panda Viewer is a model and animation viewer for supported model files.
 This allows users to see if their files have converted correctly without having
 to create a Panda3D program. Pview is accessed through a command prompt.
 
@@ -27,7 +27,7 @@ Here's an example based on the panda model distributed with panda source.
 
 A new window should pop-up and here's what you should see:
 
-.. image:: pviewsample.jpg
+.. image:: pview-sample.jpg
 
 There are some controls and hotkeys available while using pview. To see the
 whole list press shift-question mark in the pview window. To turn this list off
