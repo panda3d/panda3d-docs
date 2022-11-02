@@ -3,10 +3,6 @@
 Enhanced Mouse Navigation
 =========================
 
-Enhanced mouse navigation is only available when 'Direct Tools' are enabled.
-Information on enabling 'Direct Tools' is available in the
-:ref:`Panda Tools <tools>` section.
-
 Direct Tools gives more functionality to the middle mouse button. First,
 clicking the middle mouse button changes the pivot point it uses to rotate
 around the environment. The middle mouse button will also move the camera

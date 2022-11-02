@@ -1,7 +1,7 @@
 .. _inspection-utilities:
 
-Inspection Utilities
-====================
+Utility Functions
+=================
 
 Panda3D has a set of utilities that may be used to learn more about various
 objects and methods within an application.
@@ -30,6 +30,3 @@ panel.
    camera.place()
    render.explore()
    panda.rgbPanel()
-
-Useful DirectTool panels are explained in the :ref:`Panda Tools <tools>`
-section.

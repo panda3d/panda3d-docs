@@ -1,3 +1,5 @@
+:orphan:
+
 .. _list-of-panda3d-executables:
 
 List of Panda3D Executables

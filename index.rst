@@ -105,19 +105,6 @@ executable file and package it up for distribution.
 
    distribution/index
 
-Tools
------
-
-This section lists a number of tools to support programming with Panda3D,
-including the various exporters for 3D modelling programs in order to get models
-imported into Panda3D.
-
-.. toctree::
-   :titlesonly:
-   :maxdepth: 2
-
-   tools/index
-
 API Reference
 -------------
 
