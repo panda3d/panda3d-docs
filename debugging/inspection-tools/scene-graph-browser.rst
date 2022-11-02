@@ -3,10 +3,6 @@
 The Scene Graph Browser
 =======================
 
-The Scene Graph Browser is only available when 'Direct Tools' are enabled.
-Information on enabling 'Direct Tools' is available in the
-:ref:`Panda Tools <tools>` section.
-
 In the main Direct Session window, there are several scene placement tools
 available through the tabs at the right side of the screen. Clicking on these
 tabs will bring up a dialog box with the various properties for these aspects.
@@ -24,8 +20,3 @@ window allows these movements to be relative to another object in the program.
 
 Many of these panels can also be launched by calling specific
 :ref:`utility functions <inspection-utilities>`.
-
-.. toctree::
-   :maxdepth: 2
-
-   enhanced-mouse-navigation

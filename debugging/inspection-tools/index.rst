@@ -1,7 +1,7 @@
-.. _tools:
+.. _inspection-tools:
 
-Panda3D Tools
-=============
+Inspection Tools
+================
 
 This section lists a number of tools to support programming in Panda.
 
@@ -40,6 +40,6 @@ Table of Contents
    :maxdepth: 2
    :titlesonly:
 
-   scene-graph-browser/index
-   interrogate
-   list-of-executables
+   scene-graph-browser
+   enhanced-mouse-navigation
+   utility-functions
