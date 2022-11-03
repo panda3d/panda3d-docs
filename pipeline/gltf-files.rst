@@ -35,15 +35,15 @@ Installing the Plug-In
 
 There are two ways to load glTF files. By default, Panda3D will load glTF files
 via the :ref:`Assimp plug-in <assimp-loader>`, but the quality of its converter
-is not very good. Instead, there is a high quality third-party plug-in that can
-be installed by typing the following pip command::
+is not very good. Instead, there is a high quality third-party plug-in for this
+purpose called `panda3d-gltf <https://github.com/Moguri/panda3d-gltf>`__.
+It can be installed by typing the following pip command::
 
    python -m pip install -U panda3d-gltf
 
 .. only:: python
 
-   After installing this plug-in, no extra steps are needed, assuming you are
-   using a somewhat recent version of Panda3D.
+   After installing this plug-in, no extra steps are needed.
    You can simply pass any filename with a .gltf extension to the
    :py:meth:`loader.loadModel() <direct.showbase.Loader.Loader.loadModel>` call
    and it will be loaded using this plug-in. Of course, Panda's model cache
@@ -68,7 +68,7 @@ want.
 You should instead use the ``gltf-viewer`` utility that is included with
 panda3d-gltf, since it ensures that the panda3d-gltf plug-in is being used.
 It also includes a default PBR shader that is able to render any PBR materials
-are specified by the glTF asset.
+that are specified by the glTF asset.
 
 Embedding Binary Data
 ---------------------
