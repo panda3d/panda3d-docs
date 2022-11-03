@@ -122,3 +122,18 @@ Panda3D to also use the linear workflow.  This requires two steps:
    displayed on the monitor.  This is achieved by enabling ``framebuffer-srgb``
    in Config.prc, or by adding a post-processing filter as described in
    :ref:`common-image-filters`.
+
+Tangent and Binormal Vectors
+----------------------------
+
+When converting models via blend2bam or panda3d-gltf, binormal vectors are not
+present in the converted models. Instead, the tangent vector is stored as a
+4-component value, with the w component storing the sign of the binormal vector.
+This may be an issue when using custom shaders that expect a binormal vector to
+be present for normal mapping.
+
+The binormal vector can be reconstructed as follows in the vertex shader:
+
+.. code-block:: glsl
+
+   binormal = cross(p3d_Normal, p3d_Tangent.xyz) * p3d_Tangent.w
