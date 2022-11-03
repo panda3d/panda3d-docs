@@ -47,8 +47,9 @@ game to an end-user. Panda3D will automatically convert your models to BAM for
 caching purposes, or when packaging a finished game for distribution.
 
 There are a range of plug-ins available to load models in other formats, such
-as the glTF format, which is a widely-used format in the industry. See
-:ref:`supported-model-formats` for more information about supported formats.
+as the :ref:`glTF format <gltf-files>`, which is a widely-used format in the
+industry. See :ref:`supported-model-formats` for more information about
+supported formats.
 
 Loading a Model File
 --------------------

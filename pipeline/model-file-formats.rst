@@ -68,36 +68,25 @@ The :class:`.EggData` class is the main entry point of this API.
 glTF Plug-In
 ------------
 
-An increasingly commonly used format for 3D models is the glTF format. This is a
-standard format that is very widely supported by many modelling suites. There
-are also many models available on the internet in this format.
+An increasingly commonly used format for 3D assets is the
+:ref:`glTF format <gltf-files>`. This is a standard format that is very widely
+supported by many modelling suites. There are also many models available on the
+internet in this format.
 
-A particular advantage of this format is its support for PBR (physically-based
-rendering) materials, which are better supported with glTF than with Egg,
-although at the moment you will need a custom shader or a third-party add-on
-such as `panda3d-simplepbr <https://github.com/Moguri/panda3d-simplepbr>`__ to
-render these materials correctly. glTF is also the format of choice when
-exporting models from Blender 2.80 and above, as explained
-:ref:`here <converting-from-blender>`.
+The best way to load these files is via the third-party
+`panda3d-gltf <https://github.com/Moguri/panda3d-gltf>`__ plug-in.
+This plug-in is not included with Panda3D by default, but needs to be installed
+separately. The easiest way is to use the following pip command::
 
-In the future, Panda3D will contain native support for loading glTF models.
-Until then, there is a high quality third party plug-in that can be installed
-that can be used to load glTF models:
+   python -m pip install -U panda3d-gltf
 
-https://github.com/Moguri/panda3d-gltf
+If you do not install panda3d-gltf, Panda3D will load glTF files using the
+Assimp plug-in, which also supports glTF files. However, panda3d-gltf is
+significantly more mature and featureful than the Assimp loader, so it is
+*strongly* recommended that you use panda3d-gltf instead.
 
-.. only:: python
-
-   After installing this plug-in using the "pip" package manager, no extra steps
-   are needed. You can simply give Panda a path to a file with a .gltf extension
-   and it will load via this plug-in.
-
-.. caution::
-
-   You may notice Panda3D will still load .gltf files if you do not install this
-   plug-in. That is because Panda3D will try to load the model via the Assimp
-   plug-in instead. However, it is recommended to use panda3d-gltf instead, as
-   it contains a more well-tested, feature-rich and better-maintained converter.
+For more information on the glTF format and importing glTF files into Panda3D,
+see :ref:`gltf-files`.
 
 .. _assimp-loader:
 
@@ -106,8 +95,8 @@ Assimp Plug-In
 
 Panda3D also provides a plug-in out of the box that integrates with the Assimp
 library. This third-party library supports a broad range of different formats,
-such as .obj, .stl and .dxf, allowing them to be loaded into Panda3D without a
-conversion step.
+such as .obj, .stl and .dxf, allowing them to be loaded into Panda3D without an
+explicit conversion step.
 
 The full list of supported formats is available on this page:
 
@@ -230,8 +219,8 @@ route.
 Supported Feature Table
 -----------------------
 
-This table lists the most commonly used supported file formats and the various
-features that are supported by these formats.
+This table lists the most commonly used supported file formats and the features
+that are supported by these formats and their respective importers:
 
 ===================== ==== ==== ===== ==== ==== ===
 \                     .bam .egg .gltf .obj .dae .x

@@ -15,6 +15,7 @@ Table of Contents
 
    model-file-formats
    egg-files/index
+   gltf-files
    converting-from-blender
    converting-from-maya
    converting-from-3ds-max

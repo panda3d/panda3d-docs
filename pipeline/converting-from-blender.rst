@@ -6,7 +6,8 @@ Converting from Blender
 Currently, there are several ways to get models from Blender into Panda3D. The
 most popular has always been the YABEE exporter, but it is no longer recommended
 as it is not compatible with the latest version of Blender, 2.80.  Instead, we
-recommend the use of blend2bam, or to export to the glTF 2.0 format.
+recommend the use of blend2bam, or to export to the
+:ref:`glTF format <gltf-files>`.
 
 Please note that some of these tools rely on features that were introduced in
 Panda3D 1.10.8, so please make sure you are using the latest stable version of
@@ -28,7 +29,7 @@ considered the most fool-proof option for getting Blender models into Panda3D.
 
 You can simply add this to your Panda3D installation using pip::
 
-   python -m pip install panda3d-blend2bam
+   python -m pip install -U panda3d-blend2bam
 
 To convert a model, enter the blend2bam command on the command-line::
 
@@ -41,24 +42,32 @@ https://github.com/Moguri/blend2bam
 Option 2: Exporting to glTF
 ---------------------------
 
-blend2bam, when using Blender 2.80 or higher, will use the built-in glTF 2.0
-exporter provided with Blender in conjunction with a Python module called
-panda3d-gltf to convert the model to Panda3D.
+When using Blender 2.80 or higher, blend2bam uses the built-in glTF 2.0 exporter
+provided with Blender to produce a :ref:`glTF file <gltf-files>`, and then uses
+a Python module called `panda3d-gltf <https://github.com/Moguri/panda3d-gltf>`__
+to convert the model to Panda3D.
 
-If you want to store or manipulate the intermediate glTF files, you can also do
-these steps manually, by installing the panda3d-gltf plug-in into Panda3D.
-This will allow you to load .gltf models directly in Panda3D without an explicit
-conversion step. A utility called ``gltf2bam`` is also provided for converting
-glTF models to .bam on the command-line, as well as a ``gltf-viewer`` tool for
-previewing how a glTF model will appear in Panda3D.
+The advantage of using blend2bam is that it will automatically set up the glTF
+exporter and supervise this process to produce the best results for Panda3D.
+However, if you prefer, it is still possible to manually export the glTF file
+from Blender and load it into Panda3D.
 
-To add this to your Panda3D installation, use this pip command::
+The glTF exporter interface can be opened by going to File > Export > glTF 2.0:
 
-   python -m pip install panda3d-gltf
+.. image:: blender-gltf-1.png
+   :width: 450
+   :height: 600
 
-For more information, and issue reports, visit the GitHub page for panda3d-gltf:
+.. image:: blender-gltf-2.png
+   :height: 600
 
-https://github.com/Moguri/panda3d-gltf
+The exporter interface provides many settings that can be customized, but the
+settings indicated in the image above provide a good starting point. After
+dialing in the settings and selecting the file path, click "Export glTF 2.0" to
+produce the glTF file.
+
+Once you have the .gltf (or .glb) file, follow the instructions on
+:ref:`this page <gltf-files>` to load the model into Panda3D.
 
 Option 3: Exporting to Egg
 --------------------------
@@ -122,18 +131,3 @@ Panda3D to also use the linear workflow.  This requires two steps:
    displayed on the monitor.  This is achieved by enabling ``framebuffer-srgb``
    in Config.prc, or by adding a post-processing filter as described in
    :ref:`common-image-filters`.
-
-Tangent and Binormal Vectors
-----------------------------
-
-When converting models via blend2bam or panda3d-gltf, binormal vectors are not
-present in the converted models. Instead, the tangent vector is stored as a
-4-component value, with the w component storing the sign of the binormal vector.
-This may be an issue when using custom shaders that expect a binormal vector to
-be present for normal mapping.
-
-The binormal vector can be reconstructed as follows in the vertex shader:
-
-.. code-block:: glsl
-
-   binormal = cross(p3d_Normal, p3d_Tangent.xyz) * p3d_Tangent.w
