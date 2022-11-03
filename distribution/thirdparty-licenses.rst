@@ -227,9 +227,9 @@ Assimp
 
 http://www.assimp.org/
 
-As of Panda3D 1.10.0, Panda3D can make use of the Open Asset Import (Assimp)
-library to read in additional 3D file formats. File formats supported by
-Assimp can be found
+As of Panda3D 1.10.0, Panda3D can make use of the Open Asset Importer library
+to read in additional 3D file formats (see :ref:`supported-model-formats`).
+A list of file formats supported by Assimp can be found
 `here <https://github.com/assimp/assimp#supported-file-formats>`__.
 
 License: BSD license

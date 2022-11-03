@@ -3,10 +3,10 @@
 Converting to Egg
 =================
 
-If a file format cannot be loaded directly by a supported plug-in, it needs to
-be converted to a supported format first. This can be done using a conversion
-utility or with a plug-in. Panda3D provides various tools and plug-ins that can
-be used to convert a model to the Egg format.
+If a file format cannot be loaded directly by a supported loader plug-in, it
+needs to be converted to a supported format first. This can be done using a
+conversion utility or with a plug-in for the modelling program. Panda3D provides
+various such tools and plug-ins for converting models to the Egg format.
 
 .. contents::
    :local:
@@ -41,6 +41,18 @@ glTF format instead, see :ref:`converting-from-blender` for more information.
    floating around the internet. These ports are not officially supported as
    they are often tailored to the author's own purposes and may not produce the
    expected output in the general case.
+
+COLLADA (.dae)
+--------------
+
+COLLADA is a standardized interchange file format that can be exported by
+many different authoring tools. These files have the .dae or .zae extension.
+
+Panda3D ships a tool called ``dae2egg`` that can be used to convert these models
+to the Egg format. However, it is based on the FCollada library, which has been
+discontinued, so it is possible that this tool will be removed from a future
+version of Panda3D. There are currently no plans to rewrite this tool, as the
+games industry has moved on to prefer the newer glTF format.
 
 Wavefront .obj
 --------------

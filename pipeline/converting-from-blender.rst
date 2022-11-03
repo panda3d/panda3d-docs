@@ -59,10 +59,11 @@ https://github.com/Moguri/panda3d-gltf
 Option 3: Exporting to Egg
 --------------------------
 
-There is a community-provided plug-in called YABEE, which adds an option to the
-Blender GUI for exporting :ref:`egg-files`. However, this plug-in only works
-with Blender 2.5x, 2.6x and 2.7x. It does not work with newer versions, and as
-such is no longer recommended.
+There is a community-provided Blender add-on called YABEE, which adds an option
+to the Blender GUI for exporting :ref:`egg-files`. This is considered the most
+mature and stable add-on for Blender, however, it only works with Blender 2.5x,
+2.6x and 2.7x. It does not work with newer versions, and as such is no longer
+recommended.
 
 If you are using one of these older versions of Blender, however, this plug-in
 may still be useful to you:
@@ -80,9 +81,10 @@ PBR Rendering
 -------------
 
 Blender 2.80 and above use a physically-based rendering model to render
-materials. If you wish to get a rendering result that approaches the way it
-appears in Blender, you need to use a shader that applies lighting in a similar
-way to Blender.
+materials. As of this time of writing, Panda3D's shader generator does not
+implement such a rendering model. If you wish to get a rendering result that
+approaches the way the model appears in Blender, you need to use a shader that
+applies lighting in a similar way to Blender.
 
 For best reproduction of the Blender materials, you can use the simplepbr
 package, which provides a set of shaders that are designed to approximate the

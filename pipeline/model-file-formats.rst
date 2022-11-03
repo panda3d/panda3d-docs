@@ -73,8 +73,12 @@ standard format that is very widely supported by many modelling suites. There
 are also many models available on the internet in this format.
 
 A particular advantage of this format is its support for PBR (physically-based
-rendering) materials, which are better supported with glTF than with Egg. It is
-also the format of choice when exporting models from newer versions of Blender.
+rendering) materials, which are better supported with glTF than with Egg,
+although at the moment you will need a custom shader or a third-party add-on
+such as `panda3d-simplepbr <https://github.com/Moguri/panda3d-simplepbr>`__ to
+render these materials correctly. glTF is also the format of choice when
+exporting models from Blender 2.80 and above, as explained
+:ref:`here <converting-from-blender>`.
 
 In the future, Panda3D will contain native support for loading glTF models.
 Until then, there is a high quality third party plug-in that can be installed
@@ -93,7 +97,7 @@ https://github.com/Moguri/panda3d-gltf
    You may notice Panda3D will still load .gltf files if you do not install this
    plug-in. That is because Panda3D will try to load the model via the Assimp
    plug-in instead. However, it is recommended to use panda3d-gltf instead, as
-   it contains a more well-tested and better-maintained converter.
+   it contains a more well-tested, feature-rich and better-maintained converter.
 
 Assimp Plug-In
 --------------
@@ -226,7 +230,7 @@ Basic textures        ✔️   ✔️   ✔️    ✔️   ✔️   ✔️
 Texture blending      ✔️   ✔️   ❌    ❌   ❌   ❌
 Gloss maps            ✔️   ✔️   ❌    ❌   ✔️   ❌
 Normal maps           ✔️   ✔️   ✔️    ❌   ✔️   ❌
-Height maps           ✔️   ✔️   ❌    ✔️   ❌   ❌
+Height/parallax maps  ✔️   ✔️   ❌    ✔️   ❌   ❌
 Emission maps         ✔️   ✔️   ✔️    ✔️   ✔️   ❌
 Roughness/metal maps  ✔️   ❌   ✔️    ✔️   ❌   ❌
 Texcoord transforms   ✔️   ✔️   ✔️    ❌   ❌   ❌
