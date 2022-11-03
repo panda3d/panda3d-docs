@@ -59,9 +59,10 @@ Wavefront .obj
 
 There is a tool provided with Panda3D called ``obj2egg`` which can convert
 Wavefront .obj files to .egg. However, this tool is extremely limited and
-does not support materials and textures. It is recommended to convert the .obj
-file to another format first, or to load the .obj file directly into Panda3D
-(using the Assimp plug-in that is provided by default).
+does not support scene hierarchy, materials, or textures, among other things.
+It is recommended to convert the .obj file to another format first, or to load
+the .obj file directly into Panda3D using the
+:ref:`Assimp plug-in <assimp-loader>`.
 
 Other Formats
 -------------

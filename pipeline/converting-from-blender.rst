@@ -8,6 +8,10 @@ most popular has always been the YABEE exporter, but it is no longer recommended
 as it is not compatible with the latest version of Blender, 2.80.  Instead, we
 recommend the use of blend2bam, or to export to the glTF 2.0 format.
 
+Please note that some of these tools rely on features that were introduced in
+Panda3D 1.10.8, so please make sure you are using the latest stable version of
+Panda3D.
+
 .. contents::
    :local:
 
@@ -111,7 +115,8 @@ Panda3D to also use the linear workflow.  This requires two steps:
 
 #. Set your textures to use the ``Texture.F_srgb`` or ``Texture.F_srgb_alpha``
    texture format, which automatically linearizes the colors before they are
-   used in the rendering process.
+   used in the rendering process. This should only be done on color textures,
+   not on other types of texture maps.
 #. Tell Panda3D to ask the graphics driver for an "sRGB framebuffer", which
    causes the GPU to automatically convert colors back to sRGB before they are
    displayed on the monitor.  This is achieved by enabling ``framebuffer-srgb``

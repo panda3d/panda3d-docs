@@ -99,6 +99,8 @@ https://github.com/Moguri/panda3d-gltf
    plug-in instead. However, it is recommended to use panda3d-gltf instead, as
    it contains a more well-tested, feature-rich and better-maintained converter.
 
+.. _assimp-loader:
+
 Assimp Plug-In
 --------------
 
@@ -117,14 +119,27 @@ For example, Assimp includes support for .gltf files, but the panda3d-gltf
 plug-in (mentioned above) is considered to be higher-quality.
 
 Please note that while skeletal animations are supported, morph targets (also
-known as shape keys) are not currently supported by the Assimp plug-in.
+known as shape keys) are not currently supported by the Assimp plug-in, even if
+they are supported by the underlying format.
 
 .. caution::
 
    Models loaded with the Assimp plug-in may appear rotated around the X axis,
    due to the fact that Assimp uses a Y-up coordinate system whereas Panda3D
    uses a Z-up coordinate system. A future version of Panda3D will correct this
-   automatically, but for now, you will need to manually rotate your models.
+   automatically, but for now, you will need to manually rotate your models:
+
+   .. only:: python
+
+      .. code-block:: python
+
+         model.setP(90)
+
+   .. only:: cpp
+
+      .. code-block:: cpp
+
+         model.set_p(90);
 
 The following Config.prc settings can be used to control the behavior of the
 Assimp loader. Note that you will need to clear the model cache after changing
@@ -184,6 +199,12 @@ one of these variables for these changes to take effect.
        as 'crease angle'. Only has effect if assimp-gen-normals is set to true
        and the file does not contain normals. Note that you may need to clear
        the model-cache after changing this.
+   * - assimp-collapse-dummy-root-node
+     - ``false``
+     - If set to true, collapses the root node that Assimp creates, if it
+       appears to be a synthetic dummy root node and contains no meshes. This
+       variable is new as of Panda3D 1.10.13 and will become true by default as
+       of Panda3D 1.11.0.
 
 Other Formats
 -------------

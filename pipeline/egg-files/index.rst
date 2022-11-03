@@ -64,7 +64,7 @@ Sample Files
 
 There are a few models provided in the "models" folder of the Panda3D SDK
 installation that can be used as example files or as temporary stand-ins.
-Other models are available in the sample programs available on the download
+Other models are provided with the sample programs available on the download
 page.
 
 In addition, here are two sources containing an assortment of models in the

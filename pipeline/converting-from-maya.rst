@@ -116,8 +116,8 @@ at this time. For the most part, you can only multiply.
 Merging Textures
 ~~~~~~~~~~~~~~~~
 
-The Maya exporter may will try to merge textures. For example, if your model has
-an RGB color map, and a black-and-white opacity map, then the exporter will
+The Maya exporter may try to merge textures. For example, if your model has an
+RGB color map, and a black-and-white opacity map, then the exporter will
 consider loading them together as a single RGBA texture.
 
 In order to merge two textures, the following rules must be satisfied:
@@ -131,7 +131,7 @@ prefix "house-". A common prefix consists of a series of alphanumeric characters
 followed by a dash. If you do not want two files merged, use a different file
 naming convention.
 
-Flagging Objects From Maya
+Flagging Objects from Maya
 --------------------------
 
 The Maya exporter is able to automatically flag objects for collisions if the
@@ -257,7 +257,8 @@ package.
    you need to use the app in Linux of macOS the necessary steps can be provided
    to ensure the application working correctly.
 
-**SIMPLE MODE**
+Simple Mode
+~~~~~~~~~~~
 
 .. image:: maya-egg-gui-simple.jpg
 
@@ -327,7 +328,8 @@ Panda3D forums. There are a number of experts and seasoned artists who have
 probably come across the same problems you have and can quickly get you back on
 track.
 
-**ADVANCED MODE**
+Advanced Mode
+~~~~~~~~~~~~~
 
 .. image:: maya-egg-gui-advanced.jpg
 

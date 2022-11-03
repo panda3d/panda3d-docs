@@ -147,8 +147,7 @@ listed as "Pose") type should be chosen for exporting an environment or static
 geometry, with the "Model" type chosen for exporting an animatable model with
 joints and vertex membership. Using "Static" will generate an egg file without a
 "Dart" tag. The "Model" export will produce a "Dart" tag in the egg file. See
-:ref:`Parsing and Generating Egg Files <parsing-and-generating-egg-files>` for
-more details.
+:ref:`egg-syntax` for more details.
 
 .. |maxexp1.jpg| image:: maxexp1.jpg
 .. |maxexp2.jpg| image:: maxexp2.jpg
