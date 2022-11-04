@@ -103,5 +103,5 @@ named ``key``, it is assigned whatever state is associated with ``value``.
       myNodePath.set_tag("Blur Shading", "True");
 
 For a full guide about Multi-Pass rendering in Panda3D, please read the
-`Howto on Multipass Rendering <https://raw.githubusercontent.com/panda3d/panda3d/release/1.10.x/panda/src/doc/howto.use_multipass.txt>`__
+`Howto on Multipass Rendering <https://raw.githubusercontent.com/panda3d/panda3d/master/panda/src/doc/howto.use_multipass.txt>`__
 of the original Panda3D documentation.
