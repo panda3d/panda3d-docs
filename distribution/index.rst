@@ -5,10 +5,9 @@ Distributing Panda3D Applications
 
 .. only:: python
 
-   Starting with Panda3D 1.10.0, Panda3D provides new tools that make it easy to
-   compile Python applications using Panda3D into a self-contained executable
-   file, which can then be hosted on a website or store front for distribution
-   to end-users.
+   Panda3D provides a set of tools that make it easy to compile Python
+   applications using Panda3D into a self-contained executable file, which can
+   then be hosted on a website or store front for distribution to end-users.
 
    These tools are unique among packaging tools in that they will automatically
    produce binaries for Windows, Linux and macOS. You do not need to own those
