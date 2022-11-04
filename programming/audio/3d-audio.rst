@@ -62,8 +62,7 @@ Read more about :ref:`collision-traversers`.
 
 The attenuation of moving sounds by distance and the doppler shift are based
 the way sound works in the real world. By default it assumes a scale of 1
-panda unit equal to 1 foot (or 1 meter in Panda3D 1.10 and above). If you use
-another scale you'll need to use
+panda unit equal to 1 meter. If you use another scale you'll need to use
 :py:meth:`~direct.showbase.Audio3DManager.Audio3DManager.setDistanceFactor()` to
 adjust the scale.
 
