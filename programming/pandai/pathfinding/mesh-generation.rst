@@ -25,9 +25,11 @@ Maya Users (IMPORTANT)
 
 Since the egg file produced by Maya uses a different format from 3DSMax, you
 will need to first convert them into the same format (triangles) by using the
-following command::
+following command:
 
-   C:\Panda3D-1.10.12-x64\bin\egg-trans -C -o out.egg in.egg
+.. parsed-literal::
+
+   C:\\Panda3D-\ |release|\ -x64\\bin\\egg-trans -C -o out.egg in.egg
 
 The egg file that is thereby generated should be passed to the Mesh Generation
 Tool.

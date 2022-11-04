@@ -95,15 +95,15 @@ Running your Program
 
    .. rubric:: Include Directories
 
-   ::
+   .. parsed-literal::
 
-      C:\Panda3D-1.10.12-x64\include
+      C:\\Panda3D-\ |release|\ -x64\\include
 
    .. rubric:: Library Directories
 
-   ::
+   .. parsed-literal::
 
-      C:\Panda3D-1.10.12-x64\lib
+      C:\\Panda3D-\ |release|\ -x64\\lib
 
    Then, you need to add the appropriate Panda3D libraries to the list of
    "Additional Dependencies" your project should be linked with. The exact set
@@ -132,9 +132,9 @@ Running your Program
    under "Debugging", open the "Environment" option. Add the following setting,
    once again adjusting for your specific Panda3D installation directory:
 
-   ::
+   .. parsed-literal::
 
-      PATH=C:\Panda3D-1.10.12-x64\bin;%PATH%
+      PATH=C:\\Panda3D-\ |release|\ -x64\\bin;%PATH%
 
    Now, assuming that the project built successfully, you can press F5 to run
    the program. Of course, not much will happen yet, because we don't have any

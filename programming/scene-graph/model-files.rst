@@ -149,8 +149,8 @@ you try to load the EGG file, if it has not been modified on disk, Panda3D will
 load the corresponding optimized BAM file from the model cache instead.
 
 Where this cache is stored depends on your operating system. On Windows, it is
-usually in ``C:\Users\\YourUser\\AppData\\Local\\Panda3D-1.10``, whereas on
-Linux, it can be found in ``~/.cache/panda3d``. The location can be controlled
+usually in C:\\Users\\YourUser\\AppData\\Local\\Panda3D-|version|, whereas on
+Linux, it can be found in ~/.cache/panda3d. The location can be controlled
 using the ``model-cache-dir`` variable in your
 :ref:`Config.prc <configuring-panda3d>` file, or disabled by setting this
 variable to an empty string.
