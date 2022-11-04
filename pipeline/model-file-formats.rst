@@ -189,11 +189,10 @@ one of these variables for these changes to take effect.
        and the file does not contain normals. Note that you may need to clear
        the model-cache after changing this.
    * - assimp-collapse-dummy-root-node
-     - ``false``
+     - ``true``
      - If set to true, collapses the root node that Assimp creates, if it
        appears to be a synthetic dummy root node and contains no meshes. This
-       variable is new as of Panda3D 1.10.13 and will become true by default as
-       of Panda3D 1.11.0.
+       variable is true by default as of Panda3D 1.11.0.
 
 Other Formats
 -------------
