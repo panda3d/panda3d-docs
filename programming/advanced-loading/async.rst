@@ -172,7 +172,7 @@ Loading in a coroutine
    but we insert the ``co_await`` keyword where we want the task to be suspended
    while waiting for the following operation.
 
-   Unfortunately, as of Panda3D 1.10, this feature of C++20 is not yet supported
+   Unfortunately, as of Panda3D 1.11, this feature of C++20 is not yet supported
    by Panda3D. If you are feeling adventurous, see this forum thread for a way
    to use C++20 coroutines with the Panda3D task system:
 
