@@ -34,8 +34,8 @@ jobs:
     - name: Install requirements
       run: |
         sudo apt-get install --no-install-recommends graphviz
-        grep -v '^panda3d' requirements.txt > requirements-nopanda3d.txt
-        pip install -r requirements-nopanda3d.txt
+        pip install -r requirements.txt
+        pip uninstall -y panda3d
     - name: Build HTML manual
       run: |
         make html
