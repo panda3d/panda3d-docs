@@ -131,7 +131,6 @@ Table of Contents
    actor-intervals
    sound-intervals
    sequences-and-parallels
-   position-rotation-and-scale-intervals
    motion-paths
    particle-intervals
    projectile-intervals
