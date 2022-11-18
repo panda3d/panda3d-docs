@@ -7,6 +7,9 @@ The PStats server offers a range of different graphs, giving different views of
 the data being sent from the client. The graph windows can be opened from the
 Graphs pull-down menu.
 
+.. contents::
+   :local:
+
 .. _pstats-strip-chart:
 
 Time-based Strip Charts
