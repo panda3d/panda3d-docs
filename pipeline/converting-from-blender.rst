@@ -90,6 +90,24 @@ https://github.com/09th/YABEE
    they are often tailored to the author's own purposes and may not produce the
    expected output in the general case.
 
+Material Set-Up
+---------------
+
+Blender 2.80 (and higher) uses a node graph to define materials. This is a very
+flexible way to define materials, but export formats are very rigid in how they
+like their materials to be structured. Therefore, the exporter contains code to
+recognize particular combinations of material nodes and map them to the
+more rigidly-defined material slots of the export format.
+
+This does mean that your materials need to be structured in a certain way in
+order for them to be converted correctly. For example, you must use the
+Principled BSDF shader node in your materials, and connect its output directly
+to the Surface input of the Material Output node. More information on the
+limitations of the Blender exporter can be found in the Blender manual (though
+note that not all features mentioned here are supported by Panda3D):
+
+https://docs.blender.org/manual/en/latest/addons/import_export/scene_gltf2.html
+
 PBR Rendering
 -------------
 
