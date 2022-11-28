@@ -5,7 +5,7 @@ Panda3D Rendering Process
 
 The rendering process in Panda is comprised by four classes and their
 interactions: :class:`.GraphicsPipe`, :class:`.GraphicsEngine`,
-:class:`.GraphicsStateGaurdian`, and :class:`.GraphicsOutput`. The following
+:class:`.GraphicsStateGuardian`, and :class:`.GraphicsOutput`. The following
 sections will explain the purpose of each of these classes in detail.
 
 Note that the following interfaces are for the advanced user only. If you are
