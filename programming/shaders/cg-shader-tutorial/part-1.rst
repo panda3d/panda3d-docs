@@ -3,6 +3,10 @@
 Cg Tutorial Part 1
 ==================
 
+.. caution::
+
+   Support for Cg shaders will be deprecated in an upcoming version of Panda3D.
+
 Cg Tutorial Part 1: The Baseline Panda App
 ------------------------------------------
 
