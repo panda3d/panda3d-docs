@@ -65,18 +65,51 @@ The PStats server interface will remain open, giving you a chance to further
 analyze the data or save it to disk. You need to close the existing session and
 click "New Session" before you can reconnect a new client.
 
-Task Profiling
---------------
+.. only:: python
 
-If you are developing Python code, you may be interested in reporting the
-relative time spent within each Python task (by subdividing the total time spent
-in Python, as reported under "Show Code"). To do this, add the following lines
-to your Config.prc file before you start ShowBase:
+   .. _pstats-python-profiler:
 
-.. code-block:: text
+   Profiling Python Code
+   ---------------------
 
-   task-timer-verbose 1
-   pstats-tasks 1
+   If you are developing Python code, you may be interested in reporting the
+   relative time spent within each Python task (by subdividing the total time
+   spent in Python code, as reported under "App:Tasks"). To do this, add the
+   following line to your Config.prc file before you start ShowBase:
+
+   .. code-block:: text
+
+      pstats-tasks 1
+
+   However, it can be even more useful to enable the Python profiler feature,
+   which collects detailed information about the individual function calls made
+   by the Python interpreter. There is a performance cost to this feature, which
+   is why it is not enabled by default. To enable it, use the following setting:
+
+   .. code-block:: text
+
+      pstats-python-profiler 1
+
+   To get a hierarchical breakdown of the time taken by a particular Python
+   module, class or function, use the Strip Chart view and double-click the App,
+   then the Python label on the left side. Then, you can drill down into the
+   specific Python packages, modules and functions:
+
+   .. image:: strip-chart-python-time.png
+      :width: 1005
+
+   The time-based strip charts just collect the total time spent executing a
+   particular function, without any information about what other functions a
+   particular function is calling or is called by. Use the Flame Graph view to
+   see call graph information:
+
+   .. image:: flame-graph-python.png
+      :width: 747
+
+   You can hover the mouse over the individual bars to see the full name, exact
+   time and call count of the given function within its parent scope.
+   Double-clicking a bar will narrow down the view to only that function and any
+   functions called by it, and double-clicking the white space will go back.
 
 Remote Profiling
 ----------------

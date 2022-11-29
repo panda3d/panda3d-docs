@@ -20,6 +20,11 @@ not mean you need to abandon Python and rewrite all your code in C++ for that
 single bottleneck. Only that single function or class can be ported to C++ and
 called from your Python code.
 
+To determine whether it is the Python code that is slowing down an application,
+you should use PStats. You can enable the ``pstats-python-profiler`` Config.prc
+variable to get a detailed view of how much time each Python module, class and
+function is taking up. See :ref:`pstats-python-profiler` for more information.
+
 Before considering writing any C++ code, consider other options:
 
 -  See if you can optimize your code. The Python website has a
