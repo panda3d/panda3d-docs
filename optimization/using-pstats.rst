@@ -75,6 +75,9 @@ the profiling machine:
 
 .. only:: python
 
+   Profiling Python Code
+   ~~~~~~~~~~~~~~~~~~~~~
+
    If you are developing Python code, you may be interested in reporting the
    relative time spent within each Python task (by subdividing the total time
    spent in Python, as reported under "Show Code"). To do this, add the
@@ -94,8 +97,12 @@ the profiling machine:
 
       pstats-python-profiler 1
 
-Caveats
-~~~~~~~
+   To access this view, in the Frame strip chart, double-click the App collector
+   on the left side, then double-click the Python collector. Then, you can drill
+   down further into the packages, modules, classes and functions.
+
+Profiling GPU Time
+~~~~~~~~~~~~~~~~~~
 
 OpenGL is asynchronous, which means that function calls aren't guaranteed to
 execute right away. This can make performance analysis of OpenGL operations
