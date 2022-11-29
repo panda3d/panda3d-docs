@@ -73,15 +73,26 @@ the profiling machine:
 
    pstats-host profiling-machine-ip-or-hostname
 
-If you are developing Python code, you may be interested in reporting the
-relative time spent within each Python task (by subdividing the total time spent
-in Python, as reported under "Show Code"). To do this, add the following lines
-to your Config.prc file before you start ShowBase:
+.. only:: python
 
-.. code-block:: text
+   If you are developing Python code, you may be interested in reporting the
+   relative time spent within each Python task (by subdividing the total time
+   spent in Python, as reported under "Show Code"). To do this, add the
+   following line to your Config.prc file before you start ShowBase:
 
-   task-timer-verbose 1
-   pstats-tasks 1
+   .. code-block:: text
+
+      pstats-tasks 1
+
+   As of Panda3D 1.10.13 and Python 3.6 or higher, it is also possible to get a
+   more detailed view of which specific Python modules, classes and functions
+   are taking up time in the application. Note that this may slow down your
+   application somewhat due to the fact that information is collected each time
+   a function is called. To enable this, add the following line:
+
+   .. code-block:: text
+
+      pstats-python-profiler 1
 
 Caveats
 ~~~~~~~
@@ -167,7 +178,8 @@ above the upper right corner of the graph. The labels on the guide bars on the
 right are also shown in milliseconds; if you prefer to think about a target
 frame rate rather than an elapsed time in milliseconds, you may find it useful
 to select "Hz" from the Units pulldown menu, which changes the time units
-accordingly.
+accordingly. As of Panda3D 1.10.13, a counter may also be shown in the top-right
+corner keeping track of how many times during a frame the collector is started.
 
 The running Panda client suggests its target frame rate, as well as the initial
 vertical scale of the graph (that is, the height of the colored bars). You can
