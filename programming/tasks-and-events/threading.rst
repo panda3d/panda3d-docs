@@ -169,3 +169,13 @@ build Panda3D yourself if you want to take advantage of true threading.
 If you wish to disable threading, you can pass the option
 ``--override HAVE_THREADS=UNDEF`` to makepanda.py. If you wish to use the simple
 threading model, you may pass ``--override SIMPLE_THREADS=1`` instead.
+
+Debugging Threading Bugs
+------------------------
+
+Due to the nature of threading-related bugs, it can be very difficult to track
+down the source of a problem if a piece of code is crashing due to a threading
+problem. It may be useful to recompile Panda3D with the ``DEBUG_THREADS=1``
+option enabled. This will enable various debug checking tools that will alert
+you of incorrect use of threading, rather than crashing. However, there is a
+significant performance cost associated with this option.
