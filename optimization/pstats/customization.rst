@@ -17,6 +17,24 @@ This will cause the server to remember the current layout of the graph windows.
 The next time you start a new session and connect a client, all of the
 previously saved graph windows will be reopened.
 
+Guide Bars
+----------
+
+The running Panda client suggests its target frame rate, as well as the initial
+vertical scale of the strip chart (that is, the height of the colored bars).
+You can change the scale freely by clicking within the graph itself and dragging
+the mouse up or down as necessary. One of the horizontal guide bars is drawn in
+a lighter shade of gray; this one represents the actual target frame rate
+suggested by the client. The other, darker, guide bars are drawn automatically
+at harmonic subdivisions of the target frame rate. You can change the target
+frame rate with the Config.prc variable pstats-target-frame-rate on the client.
+
+You can also create any number of user-defined guide bars by dragging them into
+the graph from the gray space immediately above or below the graph. These are
+drawn in a dashed blue line. It is sometimes useful to place one of these to
+mark a performance level so it may be compared to future values (or to alternate
+configurations).
+
 Collector Colors
 ----------------
 

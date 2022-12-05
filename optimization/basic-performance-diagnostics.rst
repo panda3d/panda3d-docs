@@ -6,9 +6,10 @@ Basic Performance Diagnostics
 Introductory Performance Diagnostics
 ------------------------------------
 
-In Panda3D, the "big gun" of performance analysis is called pstats. This program
-gives you real-time diagnostic analysis of a running Panda3D virtual world
-broken down into hundreds of different categories.
+In Panda3D, the "big gun" of performance analysis is called
+:doc:`PStats <pstats/index>`. This program gives you real-time diagnostic
+analysis of a running Panda3D virtual world broken down into hundreds of
+different categories.
 
 But sometimes, when you've just encountered a problem, you don't want that much
 information. Sometimes, you just want a simple question answered, like "how many

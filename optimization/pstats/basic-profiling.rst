@@ -125,6 +125,10 @@ the profiling machine:
 .. code-block:: text
 
    pstats-host profiling-machine-ip-or-hostname
+   pstats-port 5185
+
+By default, the port number used by PStats is 5185. It can be changed by using
+the ``pstats-port`` variable, as shown above.
 
 Session Files
 -------------
@@ -137,17 +141,20 @@ Use the "Save Session" menu item to store the recorded data in a session file.
 At any point, you can launch the PStats server (without a connected client) and
 use "Open Session" to review the recorded data.
 
-If you close the PStats Server by accident without saving the session file to
-disk, you can start PStats and use the "Open Last Session" menu option to
-restore this data.
+The PStats Server also automatically stores the last recorded session to a file
+in the Panda3D cache directory called ``last-session.pstats``. If you close the
+PStats Server by accident without saving the session file to disk, you can start
+PStats and use the "Open Last Session" menu option to restore this data.
 
 Exporting to JSON
 -----------------
 
 To export the timing information to a format that can be read by other
 applications, the "Export to JSON" menu option can be used. The format of this
-file is the Trace Event Format. This can be read by a variety of tools,
-including the Chrome Tracing tool and the online Perfetto application.
+file is the `Trace Event Format <https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview>`__.
+This can be read by a variety of tools, including the
+`Chrome Tracing tool <about:tracing>`__ and the online
+`Perfetto <https://ui.perfetto.dev/>`__ application.
 
 It is also possible to use this feature if no graphical PStats server is
 available. To do this, use the ``text-stats`` utility like so::
