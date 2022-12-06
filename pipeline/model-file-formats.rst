@@ -206,7 +206,8 @@ For several formats for which Panda3D ships with a to-egg conversion tool,
 Panda3D can automatically do the step of converting the model to .egg on load.
 For example, Panda3D ships with a flt2egg converter, which can convert
 OpenFlight models to the Egg format. If you try to load a .flt file, Panda3D
-will implicitly invoke flt2egg behind the scenes.
+will implicitly invoke flt2egg behind the scenes. The plug-in responsible for
+this is called p3ptloader.
 
 The formats supported by this plug-in are OpenFlight (.flt), LightWave (.lwo),
 AutoCAD (.dxf), VRML (.wrl), Direct X (.x), and Wavefront OBJ (.obj).

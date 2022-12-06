@@ -89,3 +89,20 @@ file_handlers
    User-defined file handlers for an extension override the default handler.
    By default, there is only one file handler registered: for .egg files, which
    runs egg2bam.
+
+bam_model_extensions
+   New in Panda3D 1.10.13. A list of model extensions that are automatically
+   converted to .bam during build. Add extensions to this if you are using other
+   file formats than .egg (such as .gltf and .glb for
+   :ref:`glTF files <gltf-files>`).
+
+strip_docstrings
+   New in Panda3D 1.10.13. If true, which is the default, all docstrings will be
+   removed as an optimization, and any use of ``__doc__`` will return ``None``.
+   Set this to false if you need to keep these docstrings for some reason.
+
+prefer_discrete_gpu
+   New in Panda3D 1.10.13. On systems with both an integrated and dedicated
+   GPUs, tells the driver that the application prefers to use the dedicated GPU,
+   which usually provides higher performance. At the moment, this option is only
+   implemented on Windows, and only for NVIDIA and AMD graphics cards.
