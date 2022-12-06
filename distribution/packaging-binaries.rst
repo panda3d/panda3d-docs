@@ -17,8 +17,7 @@ The ``bdist_apps`` command will make use of ``build_apps.build_base`` and
 installers
    A dictionary of installers/packages to create for each platform (keys are
    strings for the platform, values are strings representing installers,
-   defaults to gztar for manylinux2010_x86_64/manylinux2010_i386 and zip for
-   everything else)
+   defaults to gztar for manylinux and zip for everything else)
 
 Installers
 ----------

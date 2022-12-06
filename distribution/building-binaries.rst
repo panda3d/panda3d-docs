@@ -176,11 +176,14 @@ combination is:
    * - p3fmod_audio
      - Audio (including 3D audio) support using FMOD (note the licensing!)
    * - pandaegg
-     - Enables support for reading .egg files (usually not necessary)
+     - Enables support for reading .egg files. Generally, you should not include
+       this, since .egg files are automatically converted to .bam during build.
    * - p3ptloader
-     - Adds support for additional model formats beyond BAM
+     - Adds support for additional model formats. You probably want to instead
+       add those model extensions to the ``bam-model-extensions`` list.
    * - p3assimp
-     - Adds support for additional model formats beyond BAM by using Assimp
+     - Adds support for additional model formats. You probably want to instead
+       add those model extensions to the ``bam-model-extensions`` list.
 
 Note that some plug-ins use third-party libraries that may have different
 licensing terms from Panda3D. More information about these libraries can be
@@ -198,17 +201,17 @@ versions. The default set is as follows:
 
 .. code-block:: python
 
-   'platforms': ['manylinux2010_x86_64', 'macosx_10_9_x86_64', 'win_amd64'],
+   'platforms': ['manylinux2014_x86_64', 'macosx_10_9_x86_64', 'win_amd64'],
 
 Sometimes, it is desirable to use third-party packages that do not provide
 wheels for a given platform. For example, a package may no longer publish wheels
-for a ``manylinux2010_x86_64``, but only for ``manylinux2014_x86_64``. If you
-wish to use this package, then you need to therefore set the platform tags to
+for a ``macosx_10_9_x86_64``, but only for ``macosx_10_13_x86_64``. If you wish
+to use this package, then you need to therefore set the platform tags to
 increase these versions:
 
 .. code-block:: python
 
-   'platforms': ['manylinux2014_x86_64', 'macosx_10_9_x86_64', 'win_amd64'],
+   'platforms': ['manylinux2014_x86_64', 'macosx_10_13_x86_64', 'win_amd64'],
 
 .. list-table:: List of Platforms
    :widths: 20, 80
@@ -217,10 +220,14 @@ increase these versions:
      - 64-bit Windows systems (including Intel x64 processors).
    * - win32
      - 32-bit Windows systems, rarely used nowadays.
-   * - manylinux2010_x86_64
-     - Target 64-bit Linux distributions more recent than (more or less) 2010.
-   * - manylinux2010_i686
-     - Target 32-bit Linux distributions more recent than (more or less) 2010.
+   * - manylinux2014_x86_64
+     - Target 64-bit Linux distributions more recent than (more or less) 2014.
+   * - manylinux2014_i686
+     - Target 32-bit Linux distributions more recent than (more or less) 2014.
+   * - linux_x86_64
+     - Target 64-bit Linux distributions, letting Panda decide which version.
+   * - linux_i686
+     - Target 32-bit Linux distributions, letting Panda decide which version.
    * - macosx_10_9_x86_64
      - Target Intel Macs running OS X Mavericks or higher. Recommended.
    * - android

@@ -131,6 +131,26 @@ the vertex shader:
 
    binormal = cross(p3d_Normal, p3d_Tangent.xyz) * p3d_Tangent.w
 
+Distributing glTF Models
+------------------------
+
+.. only:: python
+
+   When :ref:`building your application <distribution>`, glTF models with the
+   .gltf or .glb models are converted to .bam by default, assuming that they are
+   referenced in the include_patterns list in setup.py. The .bam extension is
+   appended after the existing extension, like ``model.gltf.bam``. This will
+   allow the model loader to automatically look for ``model.gltf.bam`` when
+   trying to load ``model.gltf``, so that you do not need to change your calls
+   to :py:meth:`loader.loadModel() <direct.showbase.Loader.Loader.loadModel>`.
+
+.. only:: cpp
+
+   To avoid having to include the plug-ins with a distributed application, use
+   the gltf2bam utility (provided with panda3d-gltf) or write a script to
+   convert the model to .bam using :meth:`.NodePath.write_bam_file()` and ship
+   the converted .bam file instead of the original source file.
+
 External Links
 --------------
 

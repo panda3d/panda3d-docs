@@ -89,8 +89,23 @@ file_handlers
 
    The function is run when encountering a file with the given extension.
    User-defined file handlers for an extension override the default handler.
-   By default, there is only one file handler registered: for .egg files, which
-   runs egg2bam.
+
+bam_model_extensions
+   A list of model extensions that are automatically converted to .bam during
+   build. By default, this includes .egg, .gltf and .glb. Change this if you
+   wish to use :ref:`other file formats <supported-model-formats>` than these,
+   or if you don't want these models to be converted to .bam during build.
+
+strip_docstrings
+   If true, which is the default, all docstrings will be removed as an
+   optimization, and any use of ``__doc__`` will return ``None``. Set this to
+   false if you need to keep these docstrings for some reason.
+
+prefer_discrete_gpu
+   On systems with both an integrated and dedicated GPUs, tells the driver that
+   the application prefers to use the dedicated GPU, which usually provides
+   higher performance. At the moment, this option is only implemented on
+   Windows, and only for NVIDIA and AMD graphics cards.
 
 application_id
    This field is required by Android and uniquely identifies the application.
