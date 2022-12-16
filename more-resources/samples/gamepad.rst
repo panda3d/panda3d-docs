@@ -17,7 +17,7 @@ If you're a Linux user, you'll find the sample programs in /usr/share/panda3d.
 
 .. rubric:: Explanation
 
-This sample program shows how to use game controler devices such as gamepads,
+This sample program shows how to use game controller devices such as gamepads,
 steering wheels and joysticks in Panda3D. Gamepad devices are mostly used to
 control characters in games using input from specialized devices. In this
 example we will control the camera to steer around the environment with either a
