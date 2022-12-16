@@ -127,25 +127,55 @@ Why do my colors look different in Panda3D?
 -------------------------------------------
 
 It is important to note that Blender uses a linear workflow, meaning all colors
-are converted from the sRGB color encoding to the "linearized sRGB" color space
-before being used for lighting and blending.  After the render process, the
-colors in the framebuffer are converted back to sRGB for display on the screen.
+sampled from textures are converted from the sRGB gamma encoding to the
+"linearized sRGB" color space before being used for lighting and blending.
+After the render process, the colors in the framebuffer are converted back to
+gamma-encoded sRGB for display on the screen. This results in more natural
+lighting and blending, because these calculations happen in a linear domain.
+For more reading about this topic, see
+`this article from "GPU Gems" <https://developer.nvidia.com/gpugems/gpugems3/part-iv-image-effects/chapter-24-importance-being-linear>`__.
 
-Panda3D by default does not perform any color conversion, meaning that all the
-input colors are rendered as-is into the window.  However, this can mean that
-colors defined in Blender will not appear the same way in Panda3D, as they have
-not undergone the same color conversion as Blender performs.
+By default, blend2bam and panda3d-gltf enable the gamma-correction feature on
+textures by setting their format to :cpp:enum:`Texture::F_srgb` or
+:cpp:enum:`Texture::F_srgb_alpha`, but the second step of converting the colors
+back to sRGB at the end of the rendering process needs to be explicitly enabled
+in the application. If this is not done, the texture colors will look incorrect.
 
-If you use blend2bam in conjunction with the panda3d-simplepbr package, this
-will be handled for you automatically.  Otherwise, you will need to configure
-Panda3D to also use the linear workflow.  This requires two steps:
+If you use the panda3d-simplepbr package, this step is enabled automatically.
+Otherwise, you will need to configure Panda3D to enable sRGB gamma correction.
+This can be done by asking the graphics driver for an "sRGB framebuffer", which
+causes the GPU to automatically convert colors back to sRGB before they are
+displayed on the monitor. This is achieved by enabling ``framebuffer-srgb true``
+in Config.prc, or by adding a post-processing filter as described in
+:ref:`common-image-filters`.
 
-#. Set your textures to use the ``Texture.F_srgb`` or ``Texture.F_srgb_alpha``
-   texture format, which automatically linearizes the colors before they are
-   used in the rendering process. This should only be done on color textures,
-   not on other types of texture maps.
-#. Tell Panda3D to ask the graphics driver for an "sRGB framebuffer", which
-   causes the GPU to automatically convert colors back to sRGB before they are
-   displayed on the monitor.  This is achieved by enabling ``framebuffer-srgb``
-   in Config.prc, or by adding a post-processing filter as described in
-   :ref:`common-image-filters`.
+If you do not want to use the linearized workflow, despite its benefits, you can
+tell blend2bam not to mark the textures as being sRGB-encoded, meaning that they
+are read without gamma correction. To do this, use the ``--no-srgb`` flag.
+
+If you do wish to use the linearized workflow, but have other models or textures
+that you wish to integrate into the same application, it is important to set
+their texture to use the sRGB format as well so that they do not appear too
+bright. This can be done with the following code:
+
+.. only:: python
+
+   .. code-block:: python
+
+      for tex in model.find_all_textures():
+          if tex.num_components == 4:
+              tex.set_format(Texture.F_srgb_alpha)
+          else:
+              tex.set_format(Texture.F_srgb)
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      for (Texture *tex : model.find_all_textures()) {
+        if (Texture::has_alpha(tex->get_format())) {
+          tex->set_format(Texture::F_srgb_alpha);
+        } else {
+          tex->set_format(Texture::F_srgb);
+        }
+      }
