@@ -7,6 +7,14 @@ To run a sample program, you need to install Panda3D.
 If you're a Windows user, you'll find the sample programs in your start menu.
 If you're a Linux user, you'll find the sample programs in /usr/share/panda3d.
 
+.. rubric:: Screenshots
+
+.. image:: screenshot-sample-programs-gamepad.png
+   :width: 49%
+
+.. image:: screenshot-sample-programs-gamepad-mapping.png
+   :width: 49%
+
 .. rubric:: Explanation
 
 This sample program shows how to use game controler devices such as gamepads,

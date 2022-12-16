@@ -9,7 +9,8 @@ If you're a Linux user, you'll find the sample programs in /usr/share/panda3d.
 
 .. rubric:: Screenshots
 
-.. image:: screenshot-sample-programs-normal-mapping.jpg
+.. image:: screenshot-sample-programs-bump-mapping.png
+   :height: 392
 
 .. rubric:: Explanation
 
