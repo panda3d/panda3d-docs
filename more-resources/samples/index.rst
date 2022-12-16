@@ -100,7 +100,8 @@ Alternatively, you can download the samples separately from the download page.
 
 .. rubric:: :ref:`motion-trails`
 
-* Difficulty: Advanced
+* Difficulty: Intermediate (or Advanced)
+* Creating a trail behind a moving object.
 * Captures contents of screen and reuses it later.
 
 .. rubric:: :ref:`music-box`
