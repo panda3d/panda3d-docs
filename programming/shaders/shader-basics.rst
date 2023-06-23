@@ -10,10 +10,7 @@ Panda3D uses the **GLSL** shading language. This section assumes that you have a
 working knowledge of a shader language. If not, it would be wise to read about
 GLSL before trying to understand how it fits into Panda3D.
 
-In the past, Panda3D used the Cg shading language. This language is now
-deprecated. Although Panda3D still supports it in a limited form for
-compatibility reasons, it is strongly recommended to write new shaders in GLSL
-instead. Note that support for GLSL is not just limited to the OpenGL graphics
+Note that support for GLSL is not just limited to the OpenGL graphics
 back-end; Panda3D is able to automatically transpile the shader to a different
 shading language, if required by the graphics API.
 
@@ -136,96 +133,6 @@ To load the above shader and apply it to a model, we can use the following code:
 To add a geometry shader, simply add the filename of the geometry shader as
 additional parameter, following the fragment shader.
 
-Cg Shaders
-----------
-
-A Cg shader must contain procedures named ``vshader()`` and ``fshader()``; the
-vertex shader and fragment shader respectively. If a geometry shader is used,
-then it must also contain a procedure named ``gshader()``.
-
-Single-File Cg Shaders
-~~~~~~~~~~~~~~~~~~~~~~
-
-To write a Cg shader in a single file, you must create a shader program that
-looks much like the one shown below. This example preserves position but
-switches the red and green channels of everything it is applied to:
-
-.. code-block:: glsl
-
-   //Cg
-
-   void vshader(float4 vtx_position : POSITION,
-                float4 vtx_color: COLOR,
-                out float4 l_position : POSITION,
-                out float4 l_color0 : COLOR0,
-                uniform float4x4 mat_modelproj)
-   {
-     l_position = mul(mat_modelproj, vtx_position);
-     l_color0 = vtx_color;
-   }
-
-   void fshader(float4 l_color0 : COLOR0,
-                out float4 o_color : COLOR)
-   {
-     o_color = l_color0.grba;
-   }
-
-Multi-File Cg Shaders
-~~~~~~~~~~~~~~~~~~~~~
-
-Cg shaders can be divided into several files as well; one for the vertex shader,
-another for the fragment shader, and a third for the geometry shader. The
-procedure names are still required to be ``vshader()``, ``fshader()`` and
-``gshader()`` in their respective shader files.
-
-Loading a Cg Shader
-~~~~~~~~~~~~~~~~~~~
-
-Loading a single-file Cg shader is done with the :meth:`.Shader.load()`
-procedure. The first parameter is the path to the shader file, and the second is
-the shader language, which in this case is :obj:`.Shader.SL_Cg`.
-The following is an example of using this procedure:
-
-.. only:: python
-
-   .. code-block:: python
-
-      from panda3d.core import Shader
-
-      shader = Shader.load("myshader.sha", Shader.SL_Cg)
-      model.setShader(shader)
-
-.. only:: cpp
-
-   .. code-block:: cpp
-
-      #include "shader.h"
-
-      PT(Shader) shader = Shader::load("myshader.sha", Shader.SL_Cg);
-      model.set_shader(shader);
-
-Loading a multi-file Cg shader requires a different set of parameters for the
-:meth:`~.Shader.load()` function; the first being the shader language, and the
-second, third and fourth being paths to the vertex, fragment and geometry
-shaders respectively. Here is an example:
-
-.. only:: python
-
-   .. code-block:: python
-
-      shader = Shader.load(Shader.SL_Cg,
-                           vertex="myvertexshader.sha",
-                           fragment="myfragmentshader.sha",
-                           geometry="mygeometryshader.sha")
-      model.setShader(shader)
-
-.. only:: cpp
-
-   .. code-block:: cpp
-
-      PT(Shader) shader = Shader::load(Shader.SL_Cg, "myvertexshader.sha", "myfragmentshader.sha", "mygeometryshader.sha");
-      model.set_shader(shader);
-
 Applying the Shader
 -------------------
 
@@ -244,10 +151,9 @@ Fetching Data from the Panda3D Runtime
 Each shader program contains a parameter list. Panda3D scans the parameter list
 and interprets each parameter name as a request to extract data from the panda
 runtime. For example, if the shader contains a parameter declaration
-``p3d_Vertex`` (or for Cg, ``float3 vtx_position : POSITION``), Panda3D will
-interpret that as a request for the vertex position, and it will satisfy the
-request. Panda3D will only allow parameter declarations that it recognizes and
-understands.
+``p3d_Vertex``, Panda3D willinterpret that as a request for the vertex position, 
+and it will satisfy the request. Panda3D will only allow parameter declarations 
+that it recognizes and understands.
 
 Panda3D will generate an error if the parameter qualifiers do not match what
 Panda3D is expecting. For example, if you declare the parameter
@@ -257,8 +163,7 @@ two separate errors: Panda3D knows that vtx_position is supposed to be a
 float-vector, not a texture, and that it is supposed to be varying, not uniform.
 
 Again, all parameter names must be recognized. There is a
-:ref:`list of GLSL shader inputs <list-of-glsl-shader-inputs>` as well as a
-:ref:`list of Cg shader inputs <list-of-possible-cg-shader-inputs>` that shows
+:ref:`list of GLSL shader inputs <list-of-glsl-shader-inputs>` that shows
 all the valid parameter names and the data that Panda3D will supply.
 
 Supplying Data to the Shader Manually
@@ -293,8 +198,7 @@ interested in a data item labeled "tint".
 
 To fetch data that was supplied using :meth:`~.NodePath.set_shader_input()`, the
 shader must use the appropriate parameter name.
-See the :ref:`list of GLSL shader inputs <list-of-glsl-shader-inputs>` or the
-:ref:`list of Cg shader inputs <list-of-possible-cg-shader-inputs>`,
+See the :ref:`list of GLSL shader inputs <list-of-glsl-shader-inputs>`
 many of which refer to the data that was stored using
 :meth:`~.NodePath.set_shader_input()`.
 
@@ -344,7 +248,7 @@ explicitly. As an example, the code below shows how to create a
    .. code-block:: python
 
       attrib = ShaderAttrib.make()
-      attrib = attrib.setShader(Shader.load("myshader.sha"))
+      attrib = attrib.setShader(Shader.load("myshader.vert", "myshader.frag"))
       attrib = attrib.setShaderInput("tint", (1.0, 0.5, 0.5, 1.0))
       base.cam.node().setInitialState(attrib)
 
@@ -353,7 +257,7 @@ explicitly. As an example, the code below shows how to create a
    .. code-block:: cpp
 
       CPT(ShaderAttrib) attrib = DCAST(ShaderAttrib, ShaderAttrib::make());
-      attrib = attrib->set_shader(Shader::load("myshader.sha"));
+      attrib = attrib->set_shader(Shader::load("myshader.sha", "myshader.frag"));
       attrib = attrib->set_shader_input("tint", LVector4(1.0, 0.5, 0.5, 1.0));
       camera.set_initial_state(attrib);
 
@@ -365,11 +269,11 @@ functions work by returning a new attrib (which contains the modified data).
 Deferred Shader Compilation
 ---------------------------
 
-When you create a Cg shader object, it compiles the shader, checking for syntax
-errors. But it does not check whether or not your video card is powerful enough
-to handle the shader. This only happens later on, when you try to render
-something with the shader. In the case of GLSL shaders, all of this will only
-happen when the shader is first used to render something.
+When you create a GLSL shader object and it is used to render something, 
+it compiles the shader, checking for syntax errors. But it does not check 
+whether or not your video card is powerful enough to handle the shader. 
+This only happens later on, when you try to render
+something with the shader. 
 
 In the unusual event that your computer contains multiple video cards, the
 shader may be compiled more than once. It is possible that the compilation could

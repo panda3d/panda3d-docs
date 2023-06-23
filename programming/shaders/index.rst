@@ -63,7 +63,6 @@ The following sections will tell you about how to do that in Panda3D.
 
    shader-basics
    list-of-glsl-inputs
-   list-of-cg-inputs
    coordinate-spaces
    known-shader-issues
    shader-generator

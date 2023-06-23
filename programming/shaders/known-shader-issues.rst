@@ -21,24 +21,6 @@ The simple solution is to upgrade your GLSL shaders. We recommend upgrading to
 at least GLSL 3.30. Panda3D's shader compiler can automatically convert the
 shaders back to an older GLSL version if the driver does not support GLSL 3.30.
 
-Problem: Poor Support for Cg Shaders
-------------------------------------
-
-*Problem:* Some syntax of NVIDIA Cg shaders is poorly recognized.
-
-*Workaround:* Since the proprietary NVIDIA Cg Toolkit is deprecated and not
-available for some platforms, Panda3D 1.11 replaces it with a new compiler.
-This compiler is provided as a best-effort attempt to retain backward
-compatibility with existing shaders, but it is not as good as the Cg Toolkit.
-Support for some language features may be flaky. Generally, it is possible to
-fudge the shader so that it will compile, but we recommend writing your shaders
-in GLSL 3.30 instead going forward.
-
-If you do find a shader that used to compile with the Cg Toolkit but no longer
-compiles with the new compiler, please file an issue on the issue tracker:
-
-https://github.com/panda3d/panda3d/issues/new?assignees=&labels=&template=bug.md
-
 Problem: Untested/Unfinished DirectX Support
 --------------------------------------------
 
