@@ -7,12 +7,15 @@ Why Panda3D?
 ------------
 
 Panda3D was created for commercial game development and is still used for
-developing commercial games. Because of this, the engine needs to emphasize four
-areas: power, speed, completeness, and error tolerance.
+developing commercial games. It supports both Python and C++ with Python
+having additional features. The engine could be a good fit for you because
+of four reasons: completeness, error tolerance, speed, and power.
 
-Completeness means that Panda3D contains many unexciting but essential tools:
-scene graph browsing, performance monitoring, animation optimizers, and so
-forth.
+Completeness means that not only does Panda3D contains many unexciting but
+essential tools - scene graph browsing, performance monitoring, animation optimizers, 
+cross platform builds, and much more - but the engine comes with what you'll
+need out of the box to create realtime games, visualizations, simulations, 
+and experiments.
 
 Error tolerance is about the fact that all game developers create bugs. When you
 do, you want your engine to give you a clear error message and help you find the
@@ -20,10 +23,23 @@ mistake. Too many engines will just crash if you pass the wrong value to a
 function. Panda3D almost never crashes, and much code is dedicated to the
 problem of tracking and isolating errors.
 
-Finally, to come back to power and speed: Panda3D is very powerful because it 
-let's you structure your project in the way you want and imposes very few design
-choices on you. As for speed Panda3D is very lightweight in both download
-size and system requirements. It doesn't even need a GPU to render.
+As for speed Panda3D is fast to develop in because of its Python bindings 
+which allow you to access to Python's massive ecosystem and community but
+if you need something more low level it's easy to drop into C++ and get
+what you need. Additionally the engine is very lightweight in terms of download
+size and system requirements. So when you use Panda3D you don't need to worry 
+about if your hardware is powerful enough or if you'll need a new hard drive,
+and neither will you target audience. 
+
+Panda3D is very powerful for not only the reasons listed above but also
+because it gives you freedom to create your project the way you what while 
+providing the tools to do that unlike many other tools which either lock you
+into their design or expect you to create everything yourself.
+
+So what are you waiting for? Join our friendly and helpful global community
+and start using Panda3D today!
+
+You can read more about Panda3D's :ref:`features`.
 
 Samples
 ------
@@ -48,11 +64,6 @@ interest in Panda3D is commercial. Panda3D is being used in the development of a
 number of Disney games and amusement-park exhibits. To serve Disney's needs,
 Panda3D must be a fully-featured engine, capable of all the performance and
 quality one expects in any 'A-grade' commercial title.
-
-The most supported language is Python. Though you can use C++ too, the
-documentation is mostly aimed at Python use.
-
-You can read more about Panda3D's :ref:`features`.
 
 Panda3D's Software License
 --------------------------
