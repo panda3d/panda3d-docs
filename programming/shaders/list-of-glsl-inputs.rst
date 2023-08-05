@@ -141,7 +141,7 @@ any shader stage.
 
    // Access the material attributes assigned via a Material object.
    // Unused struct parameters may be omitted without consequence.
-   uniform struct {
+   uniform struct p3d_MaterialParameters {
      vec4 ambient;
      vec4 diffuse;
      vec4 emission;
@@ -156,7 +156,7 @@ any shader stage.
    } p3d_Material;
 
    // The sum of all active ambient light colors.
-   uniform struct {
+   uniform struct p3d_LightModelParameters {
      vec4 ambient;
    } p3d_LightModel;
 
