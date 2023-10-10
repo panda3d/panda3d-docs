@@ -11,6 +11,14 @@ Panda3D has keyboard support built-in. Keyboard presses send
 when it is first pressed down, when it is released, and one repeatedly while
 it is pressed.
 
+.. only:: cpp
+
+   Begin first by enabling keyboard events from the WindowFramework object:
+
+   .. code-block:: cpp
+
+      window->enable_keyboard();
+
 The events can be accepted with the following code:
 
 .. only:: python
@@ -22,6 +30,10 @@ The events can be accepted with the following code:
       self.acceptOnce(<event name>, <function>)
       self.acceptOnce(<event name>, <function>, <parameters list>)
 
+   <event name> is a string that labels the event. <function> is a python function
+   to be called when the event is sent. <parameters list> is a python list of
+   parameters to use to call <function>.
+
 .. only:: cpp
 
    .. code-block:: cpp
@@ -29,9 +41,9 @@ The events can be accepted with the following code:
       framework->define_key(<event name>, <description>, <function>, nullptr);
       framework->define_key(<event name>, <description>, <function>, <data>);
 
-<event name> is a string that labels the event. <function> is a python function
-to be called when the event is sent. <parameters list> is a python list of
-parameters to use to call <function>.
+   <event name> is a string that labels the event. <function> is an EventCallbackFunction
+   to be called when the event is sent. <data> is an arbitrary pointer to be passed when
+   the framework calls <function>.
 
 .. only:: python
 
