@@ -95,11 +95,12 @@ yourself:
 .. code-block:: python
 
    myEffect = BillboardEffect.make(
-       upVector=vec3,
-       eyeRelative=bool,
-       axialRotate=bool,
+       up_vector=vec3,
+       eye_relative=bool,
+       axial_rotate=bool,
        offset=float,
-       lookAt=nodepath,
-       lookAtPoint=point3
+       look_at=nodepath,
+       look_at_point=point3,
+       fixed_depth=bool
    )
    myNodePath.node().setEffect(myEffect)
