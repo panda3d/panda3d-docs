@@ -24,7 +24,7 @@ you can leave on throughout the entire development process. This is valuable in
 that it gives you immediate feedback when you do something inefficient. To turn
 on the frame-rate meter, put this in your config file::
 
-   show-frame-rate-meter #t
+   show-frame-rate-meter true
 
 Or, if you want to have it set at run-time:
 
@@ -42,27 +42,25 @@ Or, if you want to have it set at run-time:
       meter = new FrameRateMeter("frame_rate_meter");
       meter->setup_window(graphics_window);
 
-The Scene Analyzer
-------------------
+However, keep in mind that measuring the frame rate in FPS gives a distorted
+view of the application performance. This is because FPS is not a linear scale:
+improving your frame rate from 500 to 1000 FPS sounds like a lot, but it
+represents a difference of only 1 millisecond, which is about the same as
+improving your frame rate from 29 to 30 FPS, and does therefore not actually
+represent a very significant optimization.
 
-If a scene needs to be rendered and has multiple nodes, Panda has to send each
-node to the graphics hardware as a separate batch of polygons (because the nodes
-might move independently, or have different state changes on them). Modern
-graphics hardware hasn't made any improvements recently in handling large
-numbers of batches, just in handling large numbers of polygons per batch. So if
-a scene is composed of a large number of nodes with a small number of polygons
-per node, the frame rate will suffer. This problem is not specific to Panda; any
-graphics engine will have the same problem. The problem is due to the nature of
-the PC and the AGP bus.
+It is more meaningful to look at the reciprocal of this number, the
+*frame time*, usually measured in milliseconds. To see the frame rate in ms,
+put this in your config file::
 
-For example, though your graphics card may claim it can easily handle 100,000
-polygons, this may be true in practice only if all of those polygons are sent in
-one batch--that is, just a single :ref:`geom`. If, however, your scene consists
-of 1,000 nodes with 100 polygons each, it may not have nearly as good a frame
-rate.
+   frame-rate-meter-milliseconds true
 
-To inspect performance the NodePath.analyze() method is extremely useful. For
-example:
+The Scene Graph Analyzer
+------------------------
+
+To inspect the complexity of a scene or object, the :meth:`.NodePath.analyze()`
+method is extremely useful. This will quickly tell you if your scene has
+:ref:`too many meshes <too-many-meshes>`, for example.
 
 .. only:: python
 
@@ -91,43 +89,5 @@ The response is printed to the command window. It may look something like this::
    0 lines, 0 points.
    99 textures, estimated minimum 326929K texture memory required.
 
-For a scene with many static nodes there exists a workaround.
-
-If a scene is composed of many static objects, for example boxes, and the intent
-of all of these boxes to just sit around and be part of the background, or to
-move as a single unit, they can flattened together into a handful of nodes (or
-even one node). To do this, parent them all to the same node, and use:
-
-.. only:: python
-
-   .. code-block:: python
-
-      node.flattenStrong()
-
-.. only:: cpp
-
-   .. code-block:: cpp
-
-      node.flatten_strong();
-
-One thing that flatten_strong() won't touch is geometry under a ModelRoot or
-ModelNode node. Since each egg or bam file loads itself up under a ModelRoot
-node, the proper way to handle this is to get rid of that node first to make the
-geometry from multiple different egg files to be flattened together. This can be
-done with the following:
-
-.. only:: python
-
-   .. code-block:: python
-
-      modelRoot = loader.loadModel('myModel.egg')
-      newModel = NodePath('model')
-      modelRoot.getChildren().reparentTo(newModel)
-
-.. only:: cpp
-
-   .. code-block:: cpp
-
-      NodePath model = window->load_model(framework.get_models(), "myModel.egg");
-      NodePath new_model("model");
-      model.get_children().reparent_to(new_model);
+To optimize a scene with too many static nodes, see :ref:`too-many-meshes` for
+possible solutions.

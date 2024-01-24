@@ -3,11 +3,25 @@
 Threading
 =========
 
-Panda3D provides a safe threading interface you can use, which works very
-similar to Python's threading modules. Panda3D is compiled by default to use
-"true" threading, which makes it safe to use Python threading interfaces (or any
-other threading library) in conjunction with or in lieu of Panda's own built-in
-threading interfaces described below.
+By default, all code is executed on only a single processor core. However,
+modern processors can contain many cores that can run code simultaneously, and
+all this extra processing power provided by these other cores would go unused.
+To take advantage of these extra cores and improve a program's performance, a
+program's flow needs to be restructured into multiple separate threads of
+execution.
+
+One reason to use multiple threads is to improve an application's performance
+by using the extra processing power provided by the other cores. Another is to
+perform long-running computations or I/O operations in the background while the
+foreground thread continues to do the normal frame-to-frame rendering functions
+without slowing down.
+
+Panda3D provides various ways to use threading, both implicitly (by telling it
+to run some things in separate threads) as well as explicitly, by offering ways
+to create your own threads for running your own code. Panda3D is compiled by
+default to use "true" threading, which makes it safe to use Python threading
+interfaces (or any other threading library) in conjunction with or in lieu of
+Panda's own built-in threading interfaces described below.
 
 If you want to test whether threading is enabled in your build of panda, use the
 following program:
@@ -38,6 +52,17 @@ Put this in your :ref:`Config.prc <configuring-panda3d>`:
 
    support-threads #f
 
+Multi-threaded Render Pipeline
+------------------------------
+
+Panda's own rendering pipeline is divided up into multiple stages: App, Cull,
+and Draw. These stages can be executed concurrently on separate threads, which
+makes it possible for the next frame to start its computations before the
+previous frame has finished being drawn to the screen. In the best case, this
+means theoretically improving performance by 3x!
+
+See the page :ref:`multithreaded-render-pipeline` for more information.
+
 Asynchronous Operations
 -----------------------
 
@@ -48,6 +73,12 @@ automatically, so do not require knowledge of threading. It is recommended that
 you first seek out these features before implementing threading yourself.
 
 See :ref:`async-loading` for more information about these features.
+
+Task Chains
+-----------
+
+Task chains provide a high-level interface for automatically running tasks on
+separate threads. See the :ref:`task-chains` page for more information.
 
 Threading
 ---------
@@ -138,3 +169,13 @@ build Panda3D yourself if you want to take advantage of true threading.
 If you wish to disable threading, you can pass the option
 ``--override HAVE_THREADS=UNDEF`` to makepanda.py. If you wish to use the simple
 threading model, you may pass ``--override SIMPLE_THREADS=1`` instead.
+
+Debugging Threading Bugs
+------------------------
+
+Due to the nature of threading-related bugs, it can be very difficult to track
+down the source of a problem if a piece of code is crashing due to a threading
+problem. It may be useful to recompile Panda3D with the ``DEBUG_THREADS=1``
+option enabled. This will enable various debug checking tools that will alert
+you of incorrect use of threading, rather than crashing. However, there is a
+significant performance cost associated with this option.

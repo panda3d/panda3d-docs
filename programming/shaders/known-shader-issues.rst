@@ -5,6 +5,17 @@ Known Shader Bugs and Limitations
 
 Here is a list of known issues in the shader system, with workarounds:
 
+Problem: No Cg Shaders on ARM Platforms
+---------------------------------------
+
+*Problem:* Cg shaders, including the shader generator and CommonFilters, don't
+work on ARM-based machines, such as Apple Silicon computers.
+
+*Workaround:* The NVIDIA Cg Toolkit is not available for the arm64 architecture.
+If you need to target Apple Silicon computers or other ARM-based machines, use
+GLSL shaders. This will be remedied in Panda3D 1.11, but it is nonetheless
+recommended to migrate to GLSL as Cg will be deprecated in a future version.
+
 Problem: GLSL Versions on macOS
 -------------------------------
 
@@ -17,6 +28,21 @@ to use shaders for all objects, it is no longer possible to mix-and-match custom
 shaders and the fixed-function pipeline. To do this, set this in Config.prc::
 
    gl-version 3 2
+
+The following table lists which shader languages and versions are supported in
+which situation on macOS:
+
+======================= ========= ========= ========= =========
+Situation               NVIDIA Cg GLSL 1.20 GLSL 1.50 GLSL 3.30
+======================= ========= ========= ========= =========
+No `gl-version`, Intel  ✔️         ✔️         ❌         ❌
+No `gl-version`, ARM64  ❌         ✔️         ❌         ❌
+With ``gl-version 3 2`` ❌         ❌         ✔️         ✔️
+======================= ========= ========= ========= =========
+
+In Panda3D 1.11, this situation will be improved as Panda3D will be able to
+automatically back-translate GLSL 1.50+ shaders to 1.20 as required by the
+driver.
 
 Problem: Register Allocation
 ----------------------------

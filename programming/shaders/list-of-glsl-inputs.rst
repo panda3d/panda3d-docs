@@ -42,6 +42,11 @@ necessary to replace the "in" keyword with "attribute".
    in vec3 p3d_Tangent0;
    in vec3 p3d_Tangent1;
 
+   // Some models, such as those loaded from glTF, only have a 4-component tangent
+   // vector and no binormal.  In this case, the binormal is derived as follows:
+   //   binormal = cross(p3d_Normal, p3d_Tangent.xyz) * p3d_Tangent.w
+   in vec4 p3d_Tangent;
+
    // A vertex column named "anything".  The number of components should match up with
    // that of the vertex array.  "uvec" and "ivec" variants are allowed for integer
    // vertex arrays to access un-normalized data.
@@ -136,7 +141,7 @@ any shader stage.
 
    // Access the material attributes assigned via a Material object.
    // Unused struct parameters may be omitted without consequence.
-   uniform struct {
+   uniform struct p3d_MaterialParameters {
      vec4 ambient;
      vec4 diffuse;
      vec4 emission;
@@ -151,7 +156,7 @@ any shader stage.
    } p3d_Material;
 
    // The sum of all active ambient light colors.
-   uniform struct {
+   uniform struct p3d_LightModelParameters {
      vec4 ambient;
    } p3d_LightModel;
 

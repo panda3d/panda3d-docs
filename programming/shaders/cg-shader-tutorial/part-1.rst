@@ -3,6 +3,10 @@
 Cg Tutorial Part 1
 ==================
 
+.. caution::
+
+   Support for Cg shaders will be deprecated in an upcoming version of Panda3D.
+
 Cg Tutorial Part 1: The Baseline Panda App
 ------------------------------------------
 
@@ -122,11 +126,11 @@ can only have one color, but what happens if we want each of the six faces to
 be a different color? This is impossible if the cube is only defined with
 eight vertices. There are more disadvantages if we only define the cube with
 eight vertices, which we will talk about later on. The only advantage of
-having less vertices is that we have to send less vertices to the graphic card
-but in almost all applications vertices are not a limiting factor. The memory
-consumption of vertices in comparison to the memory consumption of textures is
-negligible. Besides the color entry for a vertex, a vertex also has one UV
-entry associated with it.
+having fewer vertices is that we have to send fewer vertices to the graphic
+card but in almost all applications vertices are not a limiting factor.
+The memory consumption of vertices in comparison to the memory consumption of
+textures is negligible. Besides the color entry for a vertex, a vertex also
+has one UV entry associated with it.
 
 Next look at the colors defined in the egg file. If you compare all the color
 entries, you will only find eight unique colors in the egg file. Why does the

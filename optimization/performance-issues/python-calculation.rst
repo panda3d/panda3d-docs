@@ -20,6 +20,17 @@ not mean you need to abandon Python and rewrite all your code in C++ for that
 single bottleneck. Only that single function or class can be ported to C++ and
 called from your Python code.
 
+To determine whether it is the Python code that is slowing down an application,
+you should :ref:`use PStats <measuring-performance-with-pstats>`. As of Panda3D
+version 1.10.13, you can set the ``pstats-python-profiler`` Config.prc variable
+to get a detailed view of how much time each Python module, class and function
+is taking up. To access this view, in the Frame strip chart, double-click the
+App collector on the left side, then double-click the Python collector. Then,
+you can drill down further into the packages, modules, classes and functions.
+
+.. image:: pstats-python-time.png
+   :width: 1005
+
 Before considering writing any C++ code, consider other options:
 
 -  See if you can optimize your code. The Python website has a

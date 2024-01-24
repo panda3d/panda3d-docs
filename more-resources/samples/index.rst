@@ -32,6 +32,12 @@ Alternatively, you can download the samples separately from the download page.
 * Difficulty: Intermediate
 * Loading animated actors and playing animations
 
+.. rubric:: :ref:`bump-mapping`
+
+* Difficulty: Intermediate (or Advanced)
+* Enables per-pixel lighting
+* Explicit Shaders
+
 .. rubric:: :ref:`carousel`
 
 * Difficulty: Beginner
@@ -100,7 +106,8 @@ Alternatively, you can download the samples separately from the download page.
 
 .. rubric:: :ref:`motion-trails`
 
-* Difficulty: Advanced
+* Difficulty: Intermediate (or Advanced)
+* Creating a trail behind a moving object.
 * Captures contents of screen and reuses it later.
 
 .. rubric:: :ref:`music-box`
@@ -108,12 +115,6 @@ Alternatively, you can download the samples separately from the download page.
 * Difficulty: Intermediate
 * Playing sounds
 * GUI buttons and sliders
-
-.. rubric:: :ref:`bump-mapping`
-
-* Difficulty: Intermediate (or Advanced)
-* Enables per-pixel lighting
-* Explicit Shaders
 
 .. rubric:: :ref:`particles`
 
@@ -156,6 +157,7 @@ Alternatively, you can download the samples separately from the download page.
    asteroids
    ball-in-maze
    boxing-robots
+   bump-mapping
    carousel
    cartoon-shader
    chessboard
@@ -171,7 +173,6 @@ Alternatively, you can download the samples separately from the download page.
    motion-trails
    mouse-modes
    music-box
-   bump-mapping
    particles
    procedural-cube
    render-to-texture

@@ -23,14 +23,19 @@ Glossary
 
    egg
       A :term:`model` file format native to Panda3D which is text-based, meaning
-      it can be opened and inspected using a text editor.  It is usually
-      produced by one of several :ref:`model exporters <model-export>`.
+      it can be opened and inspected using a text editor. See :ref:`egg-files`.
 
    future
       A special handle that represents an :term:`asynchronous` operation that
       will complete at some point in the future. Sometimes called a "promise" in
       other programming languages. Implemented in Panda3D via
       :class:`.AsyncFuture`.
+
+   glb
+      A binary form of the :ref:`glTF file format <gltf-files>`.
+
+   glTF
+      A standard :term:`model` and scene file format. See :ref:`gltf-files`.
 
    instancing
       The practice of showing a particular 3D model multiple times without
@@ -69,6 +74,11 @@ Glossary
    parallel
       A type of :term:`interval` that executes two or more other intervals at
       the same time, see :ref:`sequences-and-parallels`.
+
+   PBR
+      Physically-based rendering, a method of defining materials that more
+      accurately models the reflection of light on objects, enabling more
+      physically accurate rendering results.
 
    physics
       A system that calculates how objects should move when acted upon by forces

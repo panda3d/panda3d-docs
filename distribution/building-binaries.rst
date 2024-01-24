@@ -176,11 +176,14 @@ combination is:
    * - p3fmod_audio
      - Audio (including 3D audio) support using FMOD (note the licensing!)
    * - pandaegg
-     - Enables support for reading .egg files (usually not necessary)
+     - Enables support for reading .egg files. Generally, you should not include
+       this, since .egg files are automatically converted to .bam during build.
    * - p3ptloader
-     - Adds support for additional model formats beyond BAM
+     - Adds support for additional model formats. You probably want to instead
+       add those model extensions to the ``bam-model-extensions`` list.
    * - p3assimp
-     - Adds support for additional model formats beyond BAM by using Assimp
+     - Adds support for additional model formats. You probably want to instead
+       add those model extensions to the ``bam-model-extensions`` list.
 
 Note that some plug-ins use third-party libraries that may have different
 licensing terms from Panda3D. More information about these libraries can be
@@ -228,8 +231,13 @@ platform tags to increase these versions:
      - Set this to target the oldest 32-bit Linux distributions.
    * - manylinux2010_x86_64
      - Target 64-bit Linux distributions more recent than (more or less) 2010.
+       No longer supported by Python 3.11, which uses manylinux2014_x86_64.
    * - manylinux2010_i686
      - Target 32-bit Linux distributions more recent than (more or less) 2010.
+   * - manylinux2014_x86_64
+     - Target 64-bit Linux distributions more recent than (more or less) 2014.
+   * - manylinux2014_i686
+     - Target 32-bit Linux distributions more recent than (more or less) 2014.
    * - macosx_10_9_x86_64
      - Target Intel Macs running OS X Mavericks or higher. Recommended.
    * - macosx_10_6_x86_64

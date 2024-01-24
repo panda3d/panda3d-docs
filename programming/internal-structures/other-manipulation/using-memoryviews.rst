@@ -73,7 +73,7 @@ Let's assume we want to render a square consisting of two triangles:
    ])
    tris_prim = GeomTriangles(GeomEnums.UH_static)
    tris_array = tris_prim.modify_vertices()
-   # note that `unclean_set_num_rows` fills the primitive with more or less
+   # note that `unclean_set_num_rows` fills the primitive with more or fewer
    # random integer values, which can be much larger than the number of vertices
    # in the associated vertex data object; this will cause an error when the
    # primitive is added to the scenegraph, so make sure the correct indices are
@@ -202,7 +202,7 @@ previous example, this can be accomplished using code like the following:
    # just like the vertex data rows, the corresponding indices in the primitive
    # will be overwritten with those following them;
    # the latter additionally need to be offset, otherwise they would reference
-   # vertices that are not in the vertex data table (since there are 4 less now)
+   # vertices that are not in the vertex data table (since there are 4 fewer now)
    tris_prim.offset_vertices(-4, start + 6, old_count)
    tris_array = tris_prim.modify_vertices()
    view = memoryview(tris_array).cast('B').cast('H')

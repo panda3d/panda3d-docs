@@ -3,6 +3,10 @@
 Cg Tutorial Part 3
 ==================
 
+.. caution::
+
+   Support for Cg shaders will be deprecated in an upcoming version of Panda3D.
+
 Cg Tutorial Part 3: The Simplest Useful Shader
 ----------------------------------------------
 

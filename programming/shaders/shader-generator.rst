@@ -125,13 +125,9 @@ what's supported:
 -  1D, 2D, 3D, cube textures
 -  most texture stage and combine modes
 -  light ramps (for cartoon shading)
--  some texgen modes
+-  most texgen modes (sphere / cube map modes require Panda3D 1.10.14)
 -  texmatrix
 -  fog
-
-Here's what's known to be missing:
-
--  "cube map" and "sphere map" texgen modes
 
 Note that although vertex colors are supported by the ShaderGenerator, in order
 to render vertex colors you need to apply a :meth:`.ColorAttrib.make_vertex()`

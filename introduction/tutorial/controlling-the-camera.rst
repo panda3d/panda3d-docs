@@ -54,13 +54,21 @@ Update your code as follows:
       :language: cpp
       :linenos:
 
-The procedure ``taskMgr.add()`` tells Panda3D's task manager to call the
-procedure ``spinCameraTask()`` every frame. This is a procedure that we have
-written to control the camera. As long as the procedure ``spinCameraTask()``
-returns the constant ``AsyncTask.DS_cont``, the task manager will continue to
-call it every frame.
+.. only:: python
+
+   The procedure :py:meth:`taskMgr.add()` tells Panda3D's task manager to call
+   the procedure ``spinCameraTask()`` every frame. This is a procedure that we
+   have written to control the camera. As long as the procedure
+   ``spinCameraTask()`` returns the constant ``Task.cont``, the task manager
+   will continue to call it every frame.
 
 .. only:: cpp
+
+   The procedure :meth:`taskMgr->add() <.AsyncTaskManager.add>` tells Panda3D's
+   task manager to call the procedure ``spinCameraTask()`` every frame. This is
+   a procedure that we have written to control the camera. As long as the
+   procedure ``spinCameraTask()`` returns the constant ``AsyncTask.DS_cont``,
+   the task manager will continue to call it every frame.
 
    The object passed to :meth:`taskMgr->add() <.AsyncTaskManager.add>` is an
    :class:`.AsyncTask` object. We can use ``GenericAsyncTask`` to wrap a global

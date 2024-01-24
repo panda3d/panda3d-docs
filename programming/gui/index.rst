@@ -59,6 +59,14 @@ appropriate font).
    :ref:`directlabel`, which integrates with the rest of the :ref:`directgui`
    system.
 
+Rendering 3D Models
+-------------------
+
+It is possible to render 3D models in the 2D scene graph. However, because the
+depth buffer is disabled by default on the 2D scene graph, self-overlapping
+models may not render correctly. It is necessary to turn on the depth buffer for
+these models. This is explained on the page :ref:`depth-test-and-depth-write`.
+
 Table of Contents
 -----------------
 

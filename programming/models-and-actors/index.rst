@@ -14,7 +14,7 @@ The following sections of the manual explain how to load and manipulate an
 animated model. They assume that you have a valid egg file (or other compatible
 format) which has an animatable model, and some additional egg files containing
 animations. To learn how to convert a model into an egg file see the
-:ref:`model-export` section.
+:ref:`asset-pipeline` section.
 
 To learn how to load a regular, non-animated model, see the :ref:`model-files`
 section.

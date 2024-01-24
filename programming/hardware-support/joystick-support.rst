@@ -60,7 +60,7 @@ The device that needs to be passed to this function can be obtained using
 :meth:`self.devices.get_devices() <.InputDeviceManager.get_devices>`, which will
 give you all devices of a given device class.
 After the device has been attached, you can catch events like for example,
-``"[prefix]_face_a"`` which will be thrown
+``"[prefix]-face_a"`` which will be thrown
 whenever the 'A' button on the device with the specified prefix is hit. As
 with keyboard support, there also is the '-up' postfix which can be added to
 catch the event which will be thrown when a previously pressed button is

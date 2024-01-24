@@ -82,7 +82,7 @@ copyright = u'2019 Carnegie Mellon University'
 version = '1.10'
 
 # The full X.Y.Z version.
-release = '1.10.11'
+release = '1.10.14'
 
 # Whether to generate Python or C++ documentation.  TODO:
 tags.add('python')
@@ -287,6 +287,11 @@ latex_documents = [
 # If false, no module index is generated.
 #latex_domain_indices = True
 
+from sphinx.util import texescape
+texescape.tex_replacements += [
+    ('\ufe0f', ''), # unicode representation
+    ('\u274c', r'\(\pmb{\times}\)'), # cross mark
+]
 
 # -- Options for manual page output ---------------------------------------
 

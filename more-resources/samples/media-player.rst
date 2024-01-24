@@ -9,7 +9,8 @@ If you're a Linux user, you'll find the sample programs in /usr/share/panda3d.
 
 .. rubric:: Screenshots
 
-.. image:: screenshot-sample-programs-media-player.jpg
+.. image:: screenshot-sample-programs-media-player.png
+   :height: 392
 
 .. rubric:: Explanation
 

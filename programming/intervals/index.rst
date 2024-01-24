@@ -7,26 +7,62 @@ Panda3D's Interval system is a sophisticated mechanism for playback of scripted
 actions. With the use of Intervals, you can build up a complex interplay of
 animations, sound effects, or any other actions, and play the script on demand.
 
-The core of system is the :py:class:`~direct.interval.Interval.Interval` class.
-There are several different kinds of Intervals, which will be discussed in
-detail in the following pages, but all of them have in common the following
-property: each Interval represents an action (or a series of actions) that
-occurs over a specific, finite interval of time (hence the name).
+.. only:: python
+
+   The core of the system is the :py:class:`~direct.interval.Interval.Interval`
+   class. There are several different kinds of Intervals, which will be
+   discussed in detail in the following pages, but all of them have in common
+   the following property: each Interval represents an action (or a series of
+   actions) that occurs over a specific, finite interval of time (hence the
+   name).
+
+.. only:: cpp
+
+   The core of the system is the :class:`~.CInterval` class. There are several
+   different kinds of Intervals, which will be discussed in detail in the
+   following pages, but all of them have in common the following property: each
+   Interval represents an action (or a series of actions) that occurs over a
+   specific, finite interval of time (hence the name).
 
 The real power of the Interval system comes from :ref:`sequences-and-parallels`,
 which are a special kind of Interval that can contain nested Intervals of any
 kind (including additional Sequences and/or Parallels). By using these grouping
 Intervals, you can easily assemble complex scripts from the basic atoms.
 
+.. only:: python
+
+   The class responsible for keeping track of the intervals that are currently
+   playing and updating them periodically is called
+   :py:class:`~direct.interval.IntervalManager.IntervalManager`. Normally, you
+   do not need to interface with this class directly, but you can use it to
+   query the list of running intervals or perform operations on multiple
+   intervals at the same time. There is one global instance of this class, which
+   can be imported as follows:
+
+   .. code-block:: python
+
+      from direct.interval.IntervalManager import ivalMgr
+
+.. only:: cpp
+
+   The class responsible for keeping track of the intervals that are currently
+   playing and updating them periodically is called :class:`.CIntervalManager`.
+   There is one global instance, available via
+   :meth:`.CIntervalManager::get_global_ptr()`. You need to call
+   :meth:`~.CIntervalManager::step()` on this class every frame in order to
+   advance the intervals.
+
 Using Intervals
 ---------------
 
-In any Panda3D module that uses Intervals, you should first import the interval
-module:
+.. only:: python
 
-.. code-block:: python
+   In any Panda3D module that uses Intervals, you should first import the
+   interval module:
 
-   from direct.interval.IntervalGlobal import *
+   .. code-block:: python
+
+      from direct.interval.IntervalGlobal import *
 
 There are a handful of methods that all Intervals have in common.
 
@@ -131,7 +167,6 @@ Table of Contents
    actor-intervals
    sound-intervals
    sequences-and-parallels
-   position-rotation-and-scale-intervals
    motion-paths
    particle-intervals
    projectile-intervals

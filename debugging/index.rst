@@ -10,6 +10,6 @@ Panda3D program.
    :maxdepth: 2
 
    log-messages
-   inspection-utilities
+   inspection-tools/index
    python-debugger
    cpp-debugger

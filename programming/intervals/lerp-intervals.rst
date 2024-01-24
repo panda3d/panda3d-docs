@@ -118,6 +118,28 @@ the lerp.
       same name will automatically stop when this one is started. The default is
       to assign a unique name for each interval.
 
+   Convenience Short-Hands
+   -----------------------
+
+   Various convenience methods are defined on the NodePath class which provide
+   a short-hand syntax for creating a LerpInterval for that NodePath.
+   These are called ``posInterval()``, ``hprInterval()``, ``quatInterval``, and
+   so on. As an example:
+
+   .. code-block::
+
+      # This lets the actor move to point 10, 10, 10 in 1.0 second.
+      myInterval1 = myActor.posInterval(1.0, Point3(10, 10, 10))
+
+      # This move takes 2.0 seconds to complete.
+      myInterval2 = myActor.posInterval(2.0, Point3(8, -5, 10))
+
+      # You can specify a starting position, too.
+      myInterval3 = myActor.posInterval(1.0, Point3(2, -3, 8), startPos=Point3(2, 4, 1))
+
+      # This rotates the actor 180 degrees on heading and 90 degrees on pitch.
+      myInterval4 = myActor.hprInterval(1.0, Vec3(180, 90, 0))
+
    The rest of the NodePath-based LerpIntervals
    --------------------------------------------
 

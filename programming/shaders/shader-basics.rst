@@ -139,6 +139,10 @@ additional parameter, following the fragment shader.
 Cg Shaders
 ----------
 
+.. caution::
+
+   Support for Cg shaders will be deprecated in an upcoming version of Panda3D.
+
 A Cg shader must contain procedures named ``vshader()`` and ``fshader()``; the
 vertex shader and fragment shader respectively. If a geometry shader is used,
 then it must also contain a procedure named ``gshader()``.

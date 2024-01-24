@@ -52,8 +52,8 @@ Useful Tools
 ------------
 
 `Blender <https://www.blender.org/>`__. 3D modeling and animation. Extensible in
-Python. Very fast user interface. Models can be exported to Panda3D using the
-`YABEE <https://github.com/09th/YABEE>`__ Egg exporter.
+Python. Very fast user interface. See :ref:`converting-from-blender` to learn
+how to convert models created in Blender to Panda3D.
 
 `The GIMP <https://www.gimp.org>`__. A very capable free software raster image
 editor. Useful for converting image formats, creating and editing textures.
