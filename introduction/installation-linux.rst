@@ -18,32 +18,36 @@ run the sample using Python:
 
    $ cd /usr/share/panda3d/samples
    $ ls
-   Asteroids
-   Ball-in-Maze
-   Boxing-Robots
-   Carousel
-   Cartoon-Shader
-   Chessboard
-   Disco-Lights
-   Fireflies
-   Fractal-Plants
-   Glow-Filter
-   GUI
-   Infinite-Tunnel
-   Looking-and-Gripping
-   Media-Player
-   Motion-Trails
-   Music-Box
-   Normal-Mapping
-   Particles
-   Procedural-Cube
-   Roaming-Ralph
-   Shadows
-   Solar-System
-   Teapot-on-TV
-   Texture-Swapping
-   $ cd Boxing-Robots
-   $ python Tut-Boxing-Robots.py
+   asteroids
+   ball-in-maze
+   boxing-robots
+   bump-mapping
+   carousel
+   cartoon-shader
+   chessboard
+   culling
+   disco-lights
+   distortion
+   fireflies
+   fractal-plants
+   gamepad
+   glow-filter
+   infinite-tunnel
+   looking-and-gripping
+   media-player
+   motion-trails
+   mouse-modes
+   music-box
+   particles
+   procedural-cube
+   render-to-texture
+   roaming-ralph
+   rocket-console
+   shader-terrain
+   shadows
+   solar-system
+   $ cd boxing-robots
+   $ python3 main.py
 
 **Using an Unsupported Linux Distribution or an Unsupported Python**
 
