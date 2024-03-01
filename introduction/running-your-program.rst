@@ -65,9 +65,11 @@ Running your Program
    ~~~~~~~~~~~~~~~~~~~~~~
 
    When creating a new project in Visual Studio, be sure to select the template
-   for a "Win32 Console application" under the Visual C++ templates category. We
-   recommend disabling "Precompiled headers" for now. (Don't worry, you can
-   still change these things later.)
+   for a "Win32 Console application" under the Visual C++ templates category. If
+   you can't see this then make sure you've downloaded *Mobile Development with 
+   C++* workload from the Visual Studio Installer. We recommend disabling 
+   "Precompiled headers" for now. (Don't worry, you can still change these 
+   things later.)
 
    When you created your project, the first thing you'll need to do is change
    "Debug" to "Release" below the menu bar, as shown in the image below. This is
@@ -79,9 +81,11 @@ Running your Program
 
    .. image:: msvc-2015-release-x64.png
 
-   Now, open up the project configuration pages. Change the "Platform Toolset"
+   Now, open up the project configuration pages. These can be found by going to
+   Project -> *project name* Settings. Change the "Platform Toolset"
    in the "General" tab to "v140_xp" (if you wish your project to be able to
-   work on Windows XP) or "v140".
+   work on Windows XP) or "v140" - If it's set to this by default then there's
+   no need to do anything else.
 
    Furthermore, we need to go to C/C++ -> "Preprocessor Definitions" and remove
    the ``NDEBUG`` symbol from the preprocessor definitions. This was
@@ -92,6 +96,9 @@ Running your Program
    Now we are ready to add the paths to the Panda3D directories. Add the
    following paths to the appropriate locations (replace the path to Panda3D
    with the directory you installed Panda3D into, of course):
+
+   The Include Directories can be found in *C/C++ -> General* while the
+   the Library Directories can be found in *Linker -> General*.
 
    .. rubric:: Include Directories
 
