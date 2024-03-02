@@ -26,6 +26,7 @@ everything is connected together.
    introducing-graphics-classes
    graphics-pipe
    creating-windows-and-buffers
+   changing-windows
    display-regions
    creating-mouse-watchers
    clearing-display-regions
