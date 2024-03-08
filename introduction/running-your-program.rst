@@ -142,6 +142,43 @@ Running your Program
    code that should be added to open a Panda3D window and start rendering
    objects.
 
+   Compiling your Program with CLion (Windows)
+   ----------------------------------------
+
+   Create default project in CLion, after do these steps:
+   1. Settings (CTRL+ALT+S) -> Build, Execution, Deployment -> Toolchains: Press on +, after that select Visual Studio (you should have Visual Studio on your PC).
+
+   .. image:: setting_compiler.png
+
+   2. Settings (CTRL+ALT+S) - Build, Execution, Deployment -> CMake: Change Build Type on Release.
+
+   .. image:: setting_cmake_clion.png
+
+   3. Apply everything.
+
+   4. In your CMakeLists.txt write next CMake code:
+
+   .. code_block:: cmake
+
+      # Some other CMake code...
+
+      set(P3DSDK {PANDA3D_SDK})
+
+      target_link_libraries({PROJECT_NAME} ${P3DSDK}/lib/libp3framework.lib)
+      target_link_libraries({PROJECT_NAME} ${P3DSDK}/lib/libpanda.lib)
+      target_link_libraries({PROJECT_NAME} ${P3DSDK}/lib/libpandaexpress.lib)
+      target_link_libraries({PROJECT_NAME} ${P3DSDK}/lib/libp3dtool.lib)
+      target_link_libraries({PROJECT_NAME} ${P3DSDK}/lib/libp3dtoolconfig.lib)
+
+      include_directories(${P3DSDK}/include)
+
+   Replace ```{PANDA3D_SDK``` with path to your installed Panda SDK, also replace ```{PROJECT_NAME}``` with your project name that defined in CMake (or basically how you named your project in CLion).
+   Also make sure to remove line ```set(CMAKE_CXX_STANDARD ...)``` to work properly.
+
+   .. image:: cmake_clion .png
+
+   Done, you have installed Panda3D to CLion!
+
    Compiling your Program with GCC or Clang
    ----------------------------------------
 
