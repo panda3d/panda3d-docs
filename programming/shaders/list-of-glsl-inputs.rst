@@ -221,6 +221,52 @@ any shader stage.
      float scale; // 1.0 / (end - start)
    } p3d_Fog;
 
+   // In addition to the above matrices, it is possible to request arbitrary matrices
+   // (or parts of matrices), either of the current model, or of an aribtrary node.
+   // In the latter case, the node should be supplied the shader via a call to :meth:`~.NodePath.set_shader_input()`.
+
+   // A matrix that transforms from coordinate system X to coordinate system Y. See
+   // the section on :ref:`shaders-and-coordinate-spaces` for more information.
+   uniform mat4 trans_x_to_y;
+   // Transpose of trans_x_to_y
+   uniform mat4 tpose_x_to_y;
+
+   // Row 0 of trans_x_to_y.
+   uniform vec4 row0_x_to_y;
+   // Row 1 of trans_x_to_y.
+   uniform vec4 row1_x_to_y;
+   // Row 2 of trans_x_to_y.
+   uniform vec4 row2_x_to_y;
+   // Row 3 of trans_x_to_y.
+   uniform vec4 row3_x_to_y;
+     
+   // Col 0 of trans_x_to_y.
+   uniform vec4 col0_x_to_y;
+   // Col 1 of trans_x_to_y.
+   uniform vec4 col1_x_to_y;
+   // Col 2 of trans_x_to_y.
+   uniform vec4 col2_x_to_y;
+   // Col 3 of trans_x_to_y.
+   uniform vec4 col3_x_to_y;
+     
+   // Model-Space Transform of X, aka trans_x_to_model
+   uniform mat4 mstrans_x;
+   // Clip-Space Transform of X, aka trans_x_to_clip
+   uniform mat4 cstrans_x;
+   // World-Space Transform of X, aka trans_x_to_world
+   uniform mat4 wstrans_x;
+   // View-Space Transform of X, aka trans_x_to_view
+   uniform mat4 vstrans_x;
+   
+   // Model-Space Position of X, aka row3_x_to_model
+   uniform vec4 mspos_x;
+   // Clip-Space Position of X, aka row3_x_to_clip
+   uniform vec4 cspos_x;
+   // World-Space Position of X, aka row3_x_to_world
+   uniform vec4 wspos_x;
+   // View-Space Position of X, aka row3_x_to_view
+   uniform float4 vspos_x;
+
 Besides these predefined uniform inputs, it is possible to use most of the types
 available in GLSL in conjunction with :meth:`~.NodePath.set_shader_input()` to
 pass custom data, including arrays and structs, to a certain named shader input.
