@@ -22,7 +22,7 @@ from docutils import nodes
 build_api_reference = True
 
 try:
-    from panda3d.interrogatedb import *
+    from interrogatedb import *
     from sphinx_interrogatedb import idb
 except ImportError as ex:
     print("Could not import Panda3D modules:")
