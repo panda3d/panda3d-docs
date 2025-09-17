@@ -11,6 +11,7 @@
    .. autoclass:: {{ objname }}
       :members:
       :undoc-members:
+      :exclude-members: DtoolClassDict
 
       .. rubric:: Inheritance diagram
 
@@ -24,6 +25,7 @@
    .. autoclass:: {{ objname }}
       :members:
       :undoc-members:
+      :exclude-members: DtoolClassDict
 
       .. rubric:: Inheritance diagram
 
