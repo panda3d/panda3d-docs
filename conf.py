@@ -356,6 +356,8 @@ autosummary_mock_imports = [
     'direct.directutil.DirectMySQLdb',
     'direct.directutil.DirectMySQLdbConnection',
     'direct.directutil.MemoryLeakHelpers',
+    'direct.dist._android',
+    'direct.dist._dist_hooks',
     'direct.dist.pfreeze',
     'direct.filter.filterBloomI',
     'direct.filter.filterBloomX',
