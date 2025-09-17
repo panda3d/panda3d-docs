@@ -140,6 +140,14 @@ android_target_sdk_version
    the minimum version of Android supported by the application.
    This should be at least 30 to be able to upload the game to the Play Store.
 
+android_abis
+   A list of `Android ABIs <https://developer.android.com/ndk/guides/abis>`__
+   to target with the build. This indicates which architectures the resulting
+   build will be able to run on. By default, Panda will build for the four
+   currently supported ABIs (``['arm64-v8a', 'armeabi-v7a', 'x86_64', 'x86']``).
+   During testing, to shorten build times, it may be useful to set it to just
+   one architecture.
+
 bdist_apps
 ----------
 
