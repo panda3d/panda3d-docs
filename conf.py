@@ -19,6 +19,8 @@ import re
 from sphinx.ext import autodoc
 from docutils import nodes
 
+sys.setrecursionlimit(2000)
+
 build_api_reference = True
 
 try:
