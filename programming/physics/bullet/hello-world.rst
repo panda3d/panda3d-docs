@@ -80,7 +80,7 @@ value to the :meth:`~.BulletWorld.do_physics()` method.
       framework.get_task_mgr().add("update", [=](AsyncTask *task) {
         // Get dt and apply to do_physics(float, int, int);
         ClockObject *clock = ClockObject::get_global_clock();
-        world->do_physics(clock->get_dt(), 10, 1.0 / 180.0);
+        world->do_physics(clock->get_dt());
 
         return AsyncTask::DS_cont;
       });
