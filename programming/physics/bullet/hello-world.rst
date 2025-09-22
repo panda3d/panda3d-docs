@@ -81,7 +81,7 @@ value to the ``do_physics()`` method.
       AsyncTask::DoneStatus update_scene(GenericAsyncTask* task, void* data) {
           // Get dt (from Python example) and apply to do_physics(float, int, int);
           ClockObject *co = ClockObject::get_global_clock();
-          physics_world->do_physics(co->get_dt(), 10, 1.0 / 180.0);
+          physics_world->do_physics(co->get_dt());
 
           return AsyncTask::DS_cont;
       }
