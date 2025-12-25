@@ -238,8 +238,12 @@ platform tags to increase these versions:
      - Target 64-bit Linux distributions more recent than (more or less) 2014.
    * - manylinux2014_i686
      - Target 32-bit Linux distributions more recent than (more or less) 2014.
+   * - macosx_10_13_x86_64
+     - Target Intel Macs running macOS High Sierra or higher. Recommended when
+       using Python 3.13. We don't recommend using Python 3.14 on macOS for now.
    * - macosx_10_9_x86_64
-     - Target Intel Macs running OS X Mavericks or higher. Recommended.
+     - Target Intel Macs running OS X Mavericks or higher. Recommended, but only
+       with Python versions up to 3.12.
    * - macosx_10_6_x86_64
      - Target 64-bit Intel Macs running Mac OS X Snow Leopard or above.
        No longer supported as of Python 3.8.
