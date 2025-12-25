@@ -78,3 +78,9 @@ distance, you can set the drop off factor to 0.
 .. code-block:: python
 
    audio3d.setDropOffFactor(scale)
+
+.. warning::
+
+   If you are not using the default Z-up-right coordinate system, please make
+   sure that you are using at least Panda3D 1.10.16, as older versions contained
+   a bug causing the coordinates not to be converted correctly.

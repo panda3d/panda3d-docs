@@ -132,6 +132,12 @@ any shader stage.
    uniform sampler2D p3d_TextureNormal[];   // default color: (0.5, 0.5, 1, 0)
    uniform sampler2D p3d_TextureHeight[];   // default color: (0.5, 0.5, 1, 0)
    uniform sampler2D p3d_TextureGloss[];    // default color: (1, 1, 1, 1)
+   uniform sampler2D p3d_TextureEmission[]; // default color: (1, 1, 1, 1)
+
+   // Experimental input, new in 1.10.16, containing the metallic-roughness
+   // texture as may be imported from a glTF file using panda3d-gltf.
+   // The green channel contains roughness and blue contains metalness.
+   uniform sampler2D p3d_TextureMetallicRoughness[]; // default color: (1, 1, 1, 1)
 
    // New in 1.10.0.  Contains the matrix generated from texture pos and scale.
    uniform mat4 p3d_TextureMatrix[];
