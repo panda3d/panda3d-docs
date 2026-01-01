@@ -3,97 +3,56 @@
 Introduction to Panda3D
 =======================
 
-Panda3D Basics
---------------
-
-Panda3D is a 3D engine: a library of subroutines for 3D rendering and game
-development. The library is C++ with a set of Python bindings. Game development
-with Panda3D usually consists of writing a Python or C++ program that controls
-the Panda3D library.
+Why Panda3D?
+------------
 
 Panda3D was created for commercial game development and is still used for
-developing commercial games. Because of this, the engine needs to emphasize four
-areas: power, speed, completeness, and error tolerance. Everyone knows what
-power and speed are. But completeness and error tolerance deserve some extra
-commentary.
+developing commercial games. It supports both Python and C++ with Python
+having additional features. The engine could be a good fit for you because
+of four reasons: completeness, error tolerance, speed, and power.
 
-Completeness means that Panda3D contains many unexciting but essential tools:
-scene graph browsing, performance monitoring, animation optimizers, and so
-forth.
+Completeness means that not only does Panda3D contains many unexciting but
+essential tools - scene graph browsing, performance monitoring, animation
+optimizers, cross platform builds, and much more - but the engine comes with
+what you'll need out of the box to create realtime games, visualizations,
+simulations, and experiments.
 
-Error tolerance is about the fact that all game developers create bugs. When you
-do, you want your engine to give you a clear error message and help you find the
-mistake. Too many engines will just crash if you pass the wrong value to a
-function. Panda3D almost never crashes, and much code is dedicated to the
-problem of tracking and isolating errors.
+Error tolerance is about the fact that all game developers create bugs. When
+you do, you want your engine to give you a clear error message and help
+you find the mistake. Too many engines will just crash if you pass the wrong
+value to a function. Panda3D almost never crashes, and much code is dedicated
+to the problem of tracking and isolating errors.
 
-Finally, to come back to power and speed: to gauge Panda3D's capabilities you
-can take a look at the :ref:`Sample Programs <samples>`. These are short
-programs that demonstrate a sampling of Panda3D's capabilities. The screenshots
-have frame-rates in the upper-right corner, taken on a Radeon X700. Note that
-some samples are old and use placeholder art and so are not great examples of
-Panda3D's visual capabilities.
+As for speed Panda3D is fast to develop in because of its Python bindings
+which allow you to access to Python's massive ecosystem and community but
+if you need something more low level it's easy to drop into C++ and get
+what you need. Additionally the engine is very lightweight in terms of download
+size and system requirements. So when you use Panda3D you don't need to worry
+about if your hardware is powerful enough or if you'll need a new hard drive,
+and neither will you target audience.
+
+Panda3D is very powerful for not only the reasons listed above but also
+because it gives you freedom to create your project the way you what while
+providing the tools to do that unlike many other tools which either lock you
+into their design or expect you to create everything yourself.
+
+So what are you waiting for? Join our friendly and helpful global community
+and start using Panda3D today!
+
+You can read more about Panda3D's :ref:`features`.
+
+Samples
+------
+You can view Panda3D's samples here: :ref:`Sample Programs <samples>`.
+
+History
+-------
 
 Panda3D was developed by Disney for their massively multiplayer online game,
 Toontown Online. It was released as free software in 2002. Carnegie Mellon
 University's Entertainment Technology Center, which currently hosts the website
 and other Panda3D services, was actively involved in the development of Panda3D
-into an open source project. It is now developed jointly by Disney and
-contributors from around the world.
-
-You can read more about Panda3D's :ref:`features`.
-
-Panda3D is not a Beginner's Tool or a Toy
------------------------------------------
-
-To successfully use Panda3D, you must be a skilled programmer. If you do not
-know what an "API" is, or if you don't know what a "tree" is, you will probably
-find Panda3D overwhelming. This is no point-and-click game-maker: this is a tool
-for professionals. While it is important to point that out so you have accurate
-expectations, it's also relevant to be aware that Panda3D is one of the easiest
-and most powerful engines you will ever use, and we welcome your participation.
-
-If you are just getting started with programming, we suggest that your best
-option is to start with a class on programming. Alternately, you could try
-teaching yourself using a training tool like `Alice <https://www.alice.org>`__,
-from CMU.
-
-Panda3D supports the full range of what modern engines should: it provides
-convenient support for normal mapping, gloss mapping, HDR, cartoon shading and
-inking, bloom, and a number of other things. It also allows you to write your
-own shaders.
-
-People sometimes have the mistaken impression that Panda3D is written in Python,
-which would make it very slow. But Panda3D is not written in Python; it's
-written in C++. Python is just used for scripting. Developers usually write the
-performance-intensive bits, if any, in C++ or something similar
-`Cython <https://www.panda3d.org/blog/panda3d-and-cython/>`__. To see what kind
-of framerate a small Panda3D program typically gets, take a look at the
-screenshots of the :ref:`Sample Programs <samples>`. Those were taken using an
-old Radeon x700. Of course, only a sample program can run at 400 fps like that,
-but for a real game, 60 fps is quite attainable. One caveat, though: to get that
-kind of performance, you need to understand 3D cards and 3D performance
-optimization. It doesn't happen automatically. Panda3D includes profiling tools
-you need to hit 60 fps.
-
-Panda3D's Software License
---------------------------
-
-Since version 1.5.3, Panda3D has been released under the so-called "Modified BSD
-license," which is a free software license with very few restrictions on usage.
-In versions 1.5.2 and before, it used a proprietary license which was very
-similar in intention to the BSD and MIT licenses, though there was some
-disagreement about the freeness of two of the clauses. The old license can still
-be accessed `here <https://raw.githubusercontent.com/panda3d/panda3d/41876b5829d921ade92d0795bb7091d009e3f9b7/doc/LICENSE>`__.
-
-Although the engine itself is completely free, it comes with various third-party
-libraries that are not free software. Some of them (like FMOD) even restrict you
-from using them in commercial games unless you have licensed copies. Because of
-this reason, Panda3D makes it easy to disable or remove these restricted third-
-party libraries, and most of the time it offers an alternative. For example, it
-also comes with OpenAL which you can use instead of FMOD.
-
-You can read `Panda3D's License <https://www.panda3d.org/license/>`__.
+into an open source project.
 
 Who is Working on Panda3D
 -------------------------
@@ -106,8 +65,26 @@ number of Disney games and amusement-park exhibits. To serve Disney's needs,
 Panda3D must be a fully-featured engine, capable of all the performance and
 quality one expects in any 'A-grade' commercial title.
 
-The most supported language is Python. Though you can use C++ too, the
-documentation is mostly aimed at Python use.
+Panda3D's Software License
+--------------------------
+
+Since version 1.5.3, Panda3D has been released under the so-called "Modified BSD
+license," which is a free software license with very few restrictions on usage.
+In versions 1.5.2 and before, it used a proprietary license which was very
+similar in intention to the BSD and MIT licenses, though there was some
+disagreement about the freeness of two of the clauses. The old license can still
+be accessed`here
+ <https://raw.githubusercontent.com/panda3d/panda3d/41876b5829d921ade92d0795bb7091d009e3f9b7/doc/LICENSE>`__.
+
+Although the engine itself is completely free, it comes with various third-party
+libraries that are not free software. Some of them (like FMOD) even restrict you
+from using them in commercial games unless you have licensed copies. Because of
+this reason, Panda3D makes it easy to disable or remove these restricted third-
+party libraries, and most of the time it offers an alternative. For example, it
+also comes with OpenAL which you can use instead of FMOD.
+
+You can read `Panda3D's License <https://www.panda3d.org/license/>`__.
+
 
 The Introductory Chapter
 ------------------------
