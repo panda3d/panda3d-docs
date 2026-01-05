@@ -74,6 +74,9 @@ building a multi-platform app, it may be useful to have multiple versions of
                # Update this for every version uploaded to the Play Store
                'android_version_code': 1,
 
+               # Build for Android, you may add desktop platforms here too
+               'platforms': ['android'],
+
                'gui_apps': {
                    'asteroids': 'main.py',
                },
