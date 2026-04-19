@@ -54,6 +54,17 @@ used for rendering things like heads-up displays, which have no relation to the
       nodePath.set_depth_test(false);  // Disable
       nodePath.set_depth_test(true);   // Enable
 
+.. note::
+
+   Disabling the depth-test with ``setDepthTest(False)`` also implicitly
+   disables depth-writes, regardless of the current depth-write setting. This
+   is because the graphics hardware ties both behaviors to the same comparison
+   function: turning the comparison off disables writes as a side effect. If
+   you want geometry to continue writing to the depth buffer while ignoring
+   the existing depth values, leave depth-test enabled and instead use
+   ``DepthTestAttrib`` with ``M_always`` (see below), which always passes the
+   test but still allows depth-writes to occur.
+
 One can remove these settings using :meth:`~.NodePath.clear_depth_test()` and
 :meth:`~.NodePath.clear_depth_write()`.
 
@@ -95,6 +106,12 @@ the following variants:
       nodePath.set_attrib(DepthTestAttrib::make(RenderAttrib::M_greater_equal));
       nodePath.set_attrib(DepthTestAttrib::make(RenderAttrib::M_not_equal));
       nodePath.set_attrib(DepthTestAttrib::make(RenderAttrib::M_always));
+
+The ``M_none`` mode is equivalent to calling ``setDepthTest(False)`` and, as
+noted above, disables depth-writes as well. To keep depth-writes active while
+having the depth test unconditionally pass, use ``M_always`` instead: this
+configures the comparison to succeed for every fragment, so the depth buffer
+will still be updated if depth-write is enabled.
 
 Depth Sorting
 -------------
