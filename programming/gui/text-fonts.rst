@@ -71,6 +71,42 @@ fixed-width font. These three fonts were generated from free fonts provided with
 the Metafont utility (which is not a part of Panda3D). There is also a default
 font image which is compiled into Panda if you do not load any other font.
 
+Replacing or Reloading a Font
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Once a font has been loaded, you can swap it for a different font file (or
+reload the same file from disk) using :meth:`~.DynamicTextFont.read()`, which
+returns ``True`` on success or ``False`` if the font file could not be loaded.
+On failure the font may be left in an invalid state, so check the return value
+before continuing to use it:
+
+.. only:: python
+
+   .. code-block:: python
+
+      if not font.read('other-font.ttf'):
+          print("Failed to load font")
+
+.. only:: cpp
+
+   .. code-block:: cpp
+
+      if (!dfont->read("other-font.ttf")) {
+        nout << "Failed to load font\n";
+      }
+
+Any :class:`.TextNode` that references the font object will automatically pick
+up the change and regenerate its text on the next render. The same is true for
+any other property change on the font, such as the pixels-per-unit, page size,
+or render mode described below — you no longer need to manually reassign the
+font on each TextNode to see updates.
+
+.. note::
+
+   Automatic change-tracking does not apply when the font was supplied via an
+   :ref:`embedded text property <embedded-text-properties>`. In that case,
+   force a regeneration by reassigning the TextNode's text.
+
 Font Quality
 ~~~~~~~~~~~~
 

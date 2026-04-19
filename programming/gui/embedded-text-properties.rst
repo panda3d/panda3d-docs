@@ -36,6 +36,14 @@ such as slant, shadow, and font, will remain whatever they were previously.
 Similarly for tpSlant, which only changes the slant, and tpRoman, which only
 changes the font.
 
+.. note::
+
+   A TextNode automatically regenerates its text when properties on its
+   directly-assigned font change (see :ref:`text-fonts`). This tracking does
+   *not* extend to fonts referenced through a TextProperties object — if you
+   mutate or :meth:`~.DynamicTextFont.read()` such a font, you must manually
+   poke the text (for example, by reassigning ``setText``) to force a regen.
+
 Registering the new TextProperties objects
 ------------------------------------------
 
