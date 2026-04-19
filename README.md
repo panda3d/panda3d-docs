@@ -14,15 +14,27 @@ extensions into an existing Python installation is using pip:
 pip install -r requirements.txt
 ```
 
-You can then build the manual in the desired format.  For example, you can build
-it in the HTML format by executing this command in your command prompt:
+You can then build the manual in the desired format.  The manual is built in
+two variations — one showing Python code samples and one showing C++ — and
+while you are editing one of them, it is often convenient to build just that
+variation.  For example, to build the Python variation in HTML format:
 ```
-make html
+sphinx-build -M html . _build -D variations=python
 ```
+The resulting documentation can be found in the `_build/html/python` folder.
 
-If the command was successful, the resulting documentation can be found in the
-`_build/html` folder.  Other formats are also possible, such as `make latexpdf`
-for producing a .pdf file.  Consult the Sphinx manual for other options.
+Running `make html` builds both variations by default, which takes roughly
+twice as long.  Other formats are also possible, such as `make latexpdf` for
+producing a .pdf file.  Consult the Sphinx manual for other options.
+
+By default, the build skips the API reference, which takes a few seconds.  To
+build the full documentation — including the API reference for every class —
+as shown on docs.panda3d.org, run:
+```
+make html-full
+```
+The full build takes well over an hour and requires `panda3d` to be importable
+in the build environment.
 
 On Windows, if you receive an error like the following:
 ```

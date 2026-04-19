@@ -105,17 +105,19 @@ executable file and package it up for distribution.
 
    distribution/index
 
-API Reference
--------------
+.. only:: api_reference
 
-This section contains a complete listing of all the classes and functions that
-are a part of the Panda3D API.
+   API Reference
+   -------------
 
-.. toctree::
-   :titlesonly:
-   :maxdepth: 2
+   This section contains a complete listing of all the classes and functions
+   that are a part of the Panda3D API.
 
-   reference/index
+   .. toctree::
+      :titlesonly:
+      :maxdepth: 2
+
+      reference/index
 
 More Resources
 --------------

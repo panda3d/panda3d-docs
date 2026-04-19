@@ -19,16 +19,18 @@ import re
 from sphinx.ext import autodoc
 from docutils import nodes
 
-build_api_reference = True
+# By default, we don't build the API reference, which takes too long.
+build_api_reference = 'api_reference' in tags
 
-try:
-    from interrogatedb import *
-    from sphinx_interrogatedb import idb
-except ImportError as ex:
-    print("Could not import Panda3D modules:")
-    print(ex)
-    print("Skipping building building the API reference.")
-    build_api_reference = False
+if build_api_reference:
+    try:
+        from interrogatedb import *
+        from sphinx_interrogatedb import idb
+    except ImportError as ex:
+        print("Could not import Panda3D modules:")
+        print(ex)
+        print("Skipping building the API reference.")
+        build_api_reference = False
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -103,6 +105,14 @@ variations = [('python', 'Python'),
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+
+# Without panda3d / interrogate, the reference pages can't be built anyway
+# and would produce thousands of warnings — drop them entirely.
+if not build_api_reference:
+    exclude_patterns.append('reference')
+    # `.. only:: api_reference` hides the section in the output, but Sphinx
+    # still collects the toctree entries and warns about the missing docs.
+    suppress_warnings = ['toc.excluded', 'toc.not_readable']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -852,6 +862,12 @@ def on_missing_reference(app, env, node, contnode):
     # Resolver for interrogate classes that supports either snake case or camel
     # case naming.  Depending on the variation that is active, it will link to
     # either the Python or C++ reference as appropriate.
+
+    if not build_api_reference:
+        # API reference isn't built, so don't bother resolving cross-references
+        # into it — just return the content node unchanged so Sphinx renders it
+        # as literal text instead of warning once per reference.
+        return contnode
 
     target = node['reftarget']
 
