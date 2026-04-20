@@ -1083,6 +1083,12 @@ def generate_dot(self, name, urls={}, env=None,
     return ''.join(res)
 
 
+def on_viewcode_find_source(app, modname):
+    # Prevent viewcode importing panda3d.* modules.
+    if modname == 'panda3d' or modname.startswith('panda3d.'):
+        return '', {}
+
+
 def setup(app):
     from sphinx.ext.inheritance_diagram import InheritanceGraph
     InheritanceGraph.generate_dot = generate_dot
@@ -1094,5 +1100,7 @@ def setup(app):
     app.connect('autodoc-process-docstring', on_autodoc_process_docstring)
 
     app.connect('missing-reference', on_missing_reference, priority=901)
+
+    app.connect('viewcode-find-source', on_viewcode_find_source)
 
     app.add_autodocumenter(ExcludeDocumenter)
