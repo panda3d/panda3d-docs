@@ -104,7 +104,7 @@ variations = [('python', 'Python'),
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '.venv']
 
 # Without panda3d / interrogate, the reference pages can't be built anyway
 # and would produce thousands of warnings — drop them entirely.
