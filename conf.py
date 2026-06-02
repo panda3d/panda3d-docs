@@ -32,6 +32,32 @@ if build_api_reference:
         print("Skipping building the API reference.")
         build_api_reference = False
 
+if build_api_reference:
+    # The standalone panda3d-interrogate package ships its own (initially empty)
+    # interrogate database, separate from the data compiled into the panda3d C++
+    # modules.  Unless we load Panda3D's interrogate data into it explicitly,
+    # idb.has_module() returns False for every module and sphinx_interrogatedb
+    # silently falls back to plain autodoc (which dumps the raw "C++ Interface:"
+    # docstrings).  Point it at the .in files shipped in pandac/input and load
+    # them so the interrogatedb documenters can do their job.
+    try:
+        import glob
+        import pandac
+        input_dir = os.path.join(pandac.__path__[0], 'input')
+        interrogate_add_search_directory(input_dir)
+        for in_file in sorted(glob.glob(os.path.join(input_dir, '*.in'))):
+            interrogate_request_database(os.path.basename(in_file))
+
+        if interrogate_number_of_global_types() == 0:
+            print("Loaded no interrogate types from", input_dir)
+            print("Skipping building the API reference.")
+            build_api_reference = False
+    except Exception as ex:
+        print("Could not load the Panda3D interrogate database:")
+        print(ex)
+        print("Skipping building the API reference.")
+        build_api_reference = False
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
