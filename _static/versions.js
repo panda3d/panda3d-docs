@@ -1,8 +1,14 @@
 window.addEventListener("DOMContentLoaded", function() {
-    var opts = window.DOCUMENTATION_OPTIONS;
+    // Sphinx 7+ declares DOCUMENTATION_OPTIONS with `const`, which is not a
+    // property of `window`, so reference the global binding directly.
+    var opts = window.DOCUMENTATION_OPTIONS || DOCUMENTATION_OPTIONS;
+
+    // URL_ROOT was removed from DOCUMENTATION_OPTIONS in Sphinx 7.2; it is now
+    // provided as a separate global by the page template.
+    var urlRoot = (typeof URL_ROOT !== "undefined") ? URL_ROOT : opts.URL_ROOT;
 
     // Load in version index
-    $.getJSON(opts.URL_ROOT + "../_versions.json", function(versions) {
+    $.getJSON(urlRoot + "../_versions.json", function(versions) {
         window.versionDropdown = document.getElementById("ver-dropdown");
         if (!window.versionDropdown) {
             return;
@@ -10,13 +16,13 @@ window.addEventListener("DOMContentLoaded", function() {
         window.versionIndex = 0;
 
         var pathComponents = window.location.pathname.split(/[\/\\]+/g);
-        if (opts.URL_ROOT[0] === '/') {
+        if (urlRoot[0] === '/') {
             // Absolute path, eg. in case of the 404 page.
-            window.versionRoot = opts.URL_ROOT.replace(/\/[^\/]+\/?$/g, '');
+            window.versionRoot = urlRoot.replace(/\/[^\/]+\/?$/g, '');
             var numComponents = (window.versionRoot.match(/\//g) || []).length;
             window.currentPagePath = pathComponents.slice(numComponents + 2).join('/');
         } else {
-            var numComponents = (opts.URL_ROOT.match(/\.\./g) || []).length;
+            var numComponents = (urlRoot.match(/\.\./g) || []).length;
             window.versionRoot = pathComponents.slice(0, pathComponents.length - numComponents - 2).join('/');
             window.currentPagePath = pathComponents.slice(pathComponents.length - numComponents - 1).join('/');
         }

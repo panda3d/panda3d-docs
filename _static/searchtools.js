@@ -1,25 +1,20 @@
 /*
- * searchtools.js
- * ~~~~~~~~~~~~~~~~
- *
  * Sphinx JavaScript utilities for the full-text search.
- *
- * :copyright: Copyright 2007-2021 by the Sphinx team, see AUTHORS.
- * :license: BSD, see LICENSE for details.
- *
  */
+"use strict";
 
-if (!Scorer) {
-  /**
-   * Simple result scoring code.
-   */
+/**
+ * Simple result scoring code.
+ */
+if (typeof Scorer === "undefined") {
   var Scorer = {
     // Implement the following function to further tweak the score for each result
-    // The function takes a result array [filename, title, anchor, descr, score]
+    // The function takes a result array [docname, title, anchor, descr, score, filename]
     // and returns the new score.
     /*
-    score: function(result) {
-      return result[4];
+    score: result => {
+      const [docname, title, anchor, descr, score, filename, kind] = result
+      return score
     },
     */
 
@@ -28,9 +23,11 @@ if (!Scorer) {
     // or matches in the last dotted part of the object name
     objPartialMatch: 6,
     // Additive scores depending on the priority of the object
-    objPrio: {0:  15,   // used to be importantResults
-              1:  5,   // used to be objectResults
-              2: -5},  // used to be unimportantResults
+    objPrio: {
+      0: 15, // used to be importantResults
+      1: 5, // used to be objectResults
+      2: -5, // used to be unimportantResults
+    },
     //  Used when the priority is not in the mapping.
     objPrioDefault: 0,
 
@@ -39,511 +36,715 @@ if (!Scorer) {
     partialTitle: 7,
     // query found in terms
     term: 5,
-    partialTerm: 2
+    partialTerm: 2,
   };
 }
 
-if (!splitQuery) {
-  function splitQuery(query) {
-    return query.split(/\s+/);
+// Global search result kind enum, used by themes to style search results.
+// prettier-ignore
+class SearchResultKind {
+  static get index() { return "index"; }
+  static get object() { return "object"; }
+  static get text() { return "text"; }
+  static get title() { return "title"; }
+}
+
+const _removeChildren = (element) => {
+  while (element && element.lastChild) element.removeChild(element.lastChild);
+};
+
+/**
+ * See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#escaping
+ */
+const _escapeRegExp = (string) =>
+  string.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
+
+const _escapeHTML = (text) => {
+  return text
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;");
+};
+
+const _displayItem = (item, searchTerms, highlightTerms) => {
+  const docBuilder = DOCUMENTATION_OPTIONS.BUILDER;
+  const docFileSuffix = DOCUMENTATION_OPTIONS.FILE_SUFFIX;
+  const docLinkSuffix = DOCUMENTATION_OPTIONS.LINK_SUFFIX;
+  const showSearchSummary = DOCUMENTATION_OPTIONS.SHOW_SEARCH_SUMMARY;
+  const contentRoot = document.documentElement.dataset.content_root;
+
+  const [docName, title, anchor, descr, score, _filename, kind] = item;
+
+  let listItem = document.createElement("li");
+  // Add a class representing the item's type:
+  // can be used by a theme's CSS selector for styling
+  // See SearchResultKind for the class names.
+  listItem.classList.add(`kind-${kind}`);
+  let requestUrl;
+  let linkUrl;
+  if (docBuilder === "dirhtml") {
+    // dirhtml builder
+    let dirname = docName + "/";
+    if (dirname.match(/\/index\/$/))
+      dirname = dirname.substring(0, dirname.length - 6);
+    else if (dirname === "index/") dirname = "";
+    requestUrl = contentRoot + dirname;
+    linkUrl = requestUrl;
+  } else {
+    // normal html builders
+    // Panda3D customisation: the variation builder nests pages under a
+    // per-language subdirectory, so content_root points above the variation
+    // directory.  Fetch summaries relative to the search page instead.
+    requestUrl = docName + docFileSuffix;
+    linkUrl = docName + docLinkSuffix;
   }
+  let linkEl = listItem.appendChild(document.createElement("a"));
+  linkEl.href = linkUrl + anchor;
+  linkEl.dataset.score = score;
+  linkEl.innerHTML = _escapeHTML(title);
+  if (descr) {
+    listItem.appendChild(document.createElement("span")).innerHTML =
+      ` (${_escapeHTML(descr)})`;
+    // highlight search terms in the description
+    if (SPHINX_HIGHLIGHT_ENABLED)
+      // SPHINX_HIGHLIGHT_ENABLED is set in sphinx_highlight.js
+      highlightTerms.forEach((term) =>
+        _highlightText(listItem, term, "highlighted"),
+      );
+  } else if (showSearchSummary)
+    fetch(requestUrl)
+      .then((responseData) => responseData.text())
+      .then((data) => {
+        if (data)
+          listItem.appendChild(
+            Search.makeSearchSummary(data, searchTerms, anchor),
+          );
+        // highlight search terms in the summary
+        if (SPHINX_HIGHLIGHT_ENABLED)
+          // SPHINX_HIGHLIGHT_ENABLED is set in sphinx_highlight.js
+          highlightTerms.forEach((term) =>
+            _highlightText(listItem, term, "highlighted"),
+          );
+      })
+      // Panda3D customisation: a missing or unreachable summary (e.g. when
+      // browsing over file://) should just leave the result without one,
+      // rather than surfacing an unhandled promise rejection.
+      .catch(() => {});
+  Search.output.appendChild(listItem);
+};
+const _finishSearch = (resultCount) => {
+  Search.stopPulse();
+  Search.title.innerText = _("Search Results");
+  if (!resultCount)
+    Search.status.innerText = Documentation.gettext(
+      "Your search did not match any documents. Please make sure that all words are spelled correctly and that you've selected enough categories.",
+    );
+  else
+    Search.status.innerText = Documentation.ngettext(
+      "Search finished, found one page matching the search query.",
+      "Search finished, found ${resultCount} pages matching the search query.",
+      resultCount,
+    ).replace("${resultCount}", resultCount);
+};
+const _displayNextItem = (
+  results,
+  resultCount,
+  searchTerms,
+  highlightTerms,
+) => {
+  // results left, load the summary and display it
+  // this is intended to be dynamic (don't sub resultsCount)
+  if (results.length) {
+    _displayItem(results.pop(), searchTerms, highlightTerms);
+    setTimeout(
+      () => _displayNextItem(results, resultCount, searchTerms, highlightTerms),
+      5,
+    );
+  }
+  // search finished, update title and status message
+  else _finishSearch(resultCount);
+};
+// Helper function used by query() to order search results.
+// Each input is an array of [docname, title, anchor, descr, score, filename, kind].
+// Order the results by score (in opposite order of appearance, since the
+// `_displayNextItem` function uses pop() to retrieve items) and then alphabetically.
+const _orderResultsByScoreThenName = (a, b) => {
+  const leftScore = a[4];
+  const rightScore = b[4];
+  if (leftScore === rightScore) {
+    // same score: sort alphabetically
+    const leftTitle = a[1].toLowerCase();
+    const rightTitle = b[1].toLowerCase();
+    if (leftTitle === rightTitle) return 0;
+    return leftTitle > rightTitle ? -1 : 1; // inverted is intentional
+  }
+  return leftScore > rightScore ? 1 : -1;
+};
+
+/**
+ * Default splitQuery function. Can be overridden in ``sphinx.search`` with a
+ * custom function per language.
+ *
+ * The regular expression works by splitting the string on consecutive characters
+ * that are not Unicode letters, numbers, underscores, or emoji characters.
+ * This is the same as ``\W+`` in Python, preserving the surrogate pair area.
+ */
+if (typeof splitQuery === "undefined") {
+  var splitQuery = (query) =>
+    query
+      .split(/[^\p{Letter}\p{Number}_\p{Emoji_Presentation}]+/gu)
+      .filter((term) => term); // remove remaining empty strings
 }
 
 /**
  * Search Module
  */
-var Search = {
+const Search = {
+  _index: null,
+  _queued_query: null,
+  _pulse_status: -1,
 
-  _index : null,
-  _queued_query : null,
-  _pulse_status : -1,
-
-  partialMatches : true,
-  apiMatches : true,
+  // Panda3D customisation: categories of results that can be toggled on/off
+  // from the checkboxes shown above the search results.
+  partialMatches: true,
+  apiMatches: true,
   bodyMatches: true,
 
-  _counter : 0,
-
-  htmlToText : function(htmlString) {
-      var virtualDocument = document.implementation.createHTMLDocument('virtual');
-      var htmlElement = $(htmlString, virtualDocument);
-      htmlElement.find('.headerlink').remove();
-      docContent = htmlElement.find('[role=main]')[0];
-      if(docContent === undefined) {
-          console.warn("Content block not found. Sphinx search tries to obtain it " +
-                       "via '[role=main]'. Could you check your theme or template.");
-          return "";
-      }
-      return docContent.textContent || docContent.innerText;
+  // Panda3D customisation: build the checkboxes that toggle the result
+  // categories above.  Changing one re-runs the search.
+  makeSearchOptions: () => {
+    const options = [
+      ["partialMatches", "Include partial matches"],
+      ["apiMatches", "Include API reference results"],
+      ["bodyMatches", "Search contents of pages"],
+    ];
+    const container = document.createElement("p");
+    options.forEach(([flag, labelText]) => {
+      const label = container.appendChild(document.createElement("label"));
+      const checkbox = label.appendChild(document.createElement("input"));
+      checkbox.type = "checkbox";
+      checkbox.checked = Search[flag];
+      checkbox.addEventListener("change", () => {
+        Search[flag] = checkbox.checked;
+        Search.init();
+      });
+      label.appendChild(document.createTextNode(labelText));
+    });
+    return container;
   },
 
-  init : function() {
-      var params = $.getQueryParameters();
-      if (params.q) {
-          var query = params.q[0];
-          $('input[name="q"]')[0].value = query;
-          this.performSearch(query);
-      }
+  htmlToText: (htmlString, anchor) => {
+    const htmlElement = new DOMParser().parseFromString(
+      htmlString,
+      "text/html",
+    );
+    for (const removalQuery of [".headerlink", "script", "style"]) {
+      htmlElement.querySelectorAll(removalQuery).forEach((el) => {
+        el.remove();
+      });
+    }
+    if (anchor) {
+      const anchorContent = htmlElement.querySelector(
+        `[role="main"] ${anchor}`,
+      );
+      if (anchorContent) return anchorContent.textContent;
+
+      console.warn(
+        `Anchored content block not found. Sphinx search tries to obtain it via DOM query '[role=main] ${anchor}'. Check your theme or template.`,
+      );
+    }
+
+    // if anchor not specified or not found, fall back to main content
+    const docContent = htmlElement.querySelector('[role="main"]');
+    if (docContent) return docContent.textContent;
+
+    console.warn(
+      "Content block not found. Sphinx search tries to obtain it via DOM query '[role=main]'. Check your theme or template.",
+    );
+    return "";
   },
 
-  loadIndex : function(url) {
-    $.ajax({type: "GET", url: url, data: null,
-            dataType: "script", cache: true,
-            complete: function(jqxhr, textstatus) {
-              if (textstatus != "success") {
-                document.getElementById("searchindexloader").src = url;
-              }
-            }});
+  init: () => {
+    const query = new URLSearchParams(window.location.search).get("q");
+    document
+      .querySelectorAll('input[name="q"]')
+      .forEach((el) => (el.value = query));
+    if (query) Search.performSearch(query);
   },
 
-  setIndex : function(index) {
-    var q;
-    this._index = index;
-    if ((q = this._queued_query) !== null) {
-      this._queued_query = null;
-      Search.query(q);
+  loadIndex: (url) =>
+    (document.body.appendChild(document.createElement("script")).src = url),
+
+  setIndex: (index) => {
+    Search._index = index;
+    if (Search._queued_query !== null) {
+      const query = Search._queued_query;
+      Search._queued_query = null;
+      Search.query(query);
     }
   },
 
-  hasIndex : function() {
-      return this._index !== null;
-  },
+  hasIndex: () => Search._index !== null,
 
-  deferQuery : function(query) {
-      this._queued_query = query;
-  },
+  deferQuery: (query) => (Search._queued_query = query),
 
-  stopPulse : function() {
-      this._pulse_status = 0;
-  },
+  stopPulse: () => (Search._pulse_status = -1),
 
-  startPulse : function() {
-    if (this._pulse_status >= 0)
-        return;
-    function pulse() {
-      var i;
+  startPulse: () => {
+    if (Search._pulse_status >= 0) return;
+
+    const pulse = () => {
       Search._pulse_status = (Search._pulse_status + 1) % 4;
-      var dotString = '';
-      for (i = 0; i < Search._pulse_status; i++)
-        dotString += '.';
-      Search.dots.text(dotString);
-      if (Search._pulse_status > -1)
-        window.setTimeout(pulse, 500);
-    }
+      Search.dots.innerText = ".".repeat(Search._pulse_status);
+      if (Search._pulse_status >= 0) window.setTimeout(pulse, 500);
+    };
     pulse();
   },
 
   /**
    * perform a search for something (or wait until index is loaded)
    */
-  performSearch : function(query) {
+  performSearch: (query) => {
     // create the required interface elements
-    this.out = $('#search-results');
-    this.out.empty();
-    this.title = $('<h2>' + _('Searching') + '</h2>').appendTo(this.out);
-    this.dots = $('<span></span>').appendTo(this.title);
-    $('<p><label><input type="checkbox" onChange="Search.partialMatches=this.checked; Search.init();" ' + (Search.partialMatches ? 'checked ' : '') + '/>Include partial matches</label><label><input type="checkbox" onChange="Search.apiMatches=this.checked; Search.init();" ' + (Search.apiMatches ? 'checked ' : '') + '/>Include API reference results</label><label><input type="checkbox" onChange="Search.bodyMatches=this.checked; Search.init();" ' + (Search.bodyMatches ? 'checked ' : '') + '/>Search contents of pages</label></p>').appendTo(this.out);
-    this.status = $('<p class="search-summary"></p>').appendTo(this.out);
-    this.output = $('<ul class="search"/>').appendTo(this.out);
+    const searchText = document.createElement("h2");
+    searchText.textContent = _("Searching");
+    const searchSummary = document.createElement("p");
+    searchSummary.classList.add("search-summary");
+    searchSummary.innerText = "";
+    const searchList = document.createElement("ul");
+    searchList.setAttribute("role", "list");
+    searchList.classList.add("search");
 
-    $('#search-progress').text(_('Preparing search...'));
-    this.startPulse();
+    const out = document.getElementById("search-results");
+    // Panda3D customisation: clear previous output so re-running the search
+    // (search-as-you-type, or toggling an option) does not stack duplicates.
+    _removeChildren(out);
+    Search.title = out.appendChild(searchText);
+    Search.dots = Search.title.appendChild(document.createElement("span"));
+    out.appendChild(Search.makeSearchOptions());
+    Search.status = out.appendChild(searchSummary);
+    Search.output = out.appendChild(searchList);
+
+    const searchProgress = document.getElementById("search-progress");
+    // Some themes don't use the search progress node
+    if (searchProgress) {
+      searchProgress.innerText = _("Preparing search...");
+    }
+    Search.startPulse();
 
     // index already loaded, the browser was quick!
-    if (this.hasIndex())
-      this.query(query);
-    else
-      this.deferQuery(query);
+    if (Search.hasIndex()) Search.query(query);
+    else Search.deferQuery(query);
+  },
+
+  _parseQuery: (query) => {
+    // stem the search terms and add them to the correct list
+    const stemmer = new Stemmer();
+    const searchTerms = new Set();
+    const excludedTerms = new Set();
+    const highlightTerms = new Set();
+    const objectTerms = new Set(splitQuery(query.toLowerCase().trim()));
+    splitQuery(query.trim()).forEach((queryTerm) => {
+      const queryTermLower = queryTerm.toLowerCase();
+
+      // maybe skip this "word"
+      // stopwords set is from language_data.js
+      if (stopwords.has(queryTermLower) || queryTerm.match(/^\d+$/)) return;
+
+      // stem the word
+      let word = stemmer.stemWord(queryTermLower);
+      // select the correct list
+      if (word[0] === "-") excludedTerms.add(word.substr(1));
+      else {
+        searchTerms.add(word);
+        highlightTerms.add(queryTermLower);
+      }
+    });
+
+    if (SPHINX_HIGHLIGHT_ENABLED) {
+      // SPHINX_HIGHLIGHT_ENABLED is set in sphinx_highlight.js
+      localStorage.setItem(
+        "sphinx_highlight_terms",
+        [...highlightTerms].join(" "),
+      );
+    }
+
+    // console.debug("SEARCH: searching for:");
+    // console.info("required: ", [...searchTerms]);
+    // console.info("excluded: ", [...excludedTerms]);
+
+    return [query, searchTerms, excludedTerms, highlightTerms, objectTerms];
   },
 
   /**
    * execute search (requires search index to be loaded)
    */
-  query : function(query) {
-    var i;
+  _performSearch: (
+    query,
+    searchTerms,
+    excludedTerms,
+    highlightTerms,
+    objectTerms,
+  ) => {
+    const filenames = Search._index.filenames;
+    const docNames = Search._index.docnames;
+    const titles = Search._index.titles;
+    const allTitles = Search._index.alltitles;
+    const indexEntries = Search._index.indexentries;
 
-    // stem the searchterms and add them to the correct list
-    var stemmer = new Stemmer();
-    var searchterms = [];
-    var excluded = [];
-    var hlterms = [];
-    var tmp = splitQuery(query);
-    var objectterms = [];
-    for (i = 0; i < tmp.length; i++) {
-      if (tmp[i] !== "") {
-          objectterms.push(tmp[i].toLowerCase());
-      }
+    // Collect multiple result groups to be sorted separately and then ordered.
+    // Each is an array of [docname, title, anchor, descr, score, filename, kind].
+    const normalResults = [];
+    const nonMainIndexResults = [];
 
-      if ($u.indexOf(stopwords, tmp[i].toLowerCase()) != -1 || tmp[i].match(/^\d+$/) ||
-          tmp[i] === "") {
-        // skip this "word"
-        continue;
+    _removeChildren(document.getElementById("search-progress"));
+
+    const queryLower = query.toLowerCase().trim();
+    for (const [title, foundTitles] of Object.entries(allTitles)) {
+      if (
+        title.toLowerCase().trim().includes(queryLower)
+        && queryLower.length >= title.length / 2
+      ) {
+        for (const [file, id] of foundTitles) {
+          const score = Math.round(
+            (Scorer.title * queryLower.length) / title.length,
+          );
+          const boost = titles[file] === title ? 1 : 0; // add a boost for document titles
+          normalResults.push([
+            docNames[file],
+            titles[file] !== title ? `${titles[file]} > ${title}` : title,
+            id !== null ? "#" + id : "",
+            null,
+            score + boost,
+            filenames[file],
+            SearchResultKind.title,
+          ]);
+        }
       }
-      // stem the word
-      var word = stemmer.stemWord(tmp[i].toLowerCase());
-      // prevent stemmer from cutting word smaller than two chars
-      if(word.length < 3 && tmp[i].length >= 3) {
-        word = tmp[i];
-      }
-      var toAppend;
-      // select the correct list
-      if (word[0] == '-') {
-        toAppend = excluded;
-        word = word.substr(1);
-      }
-      else {
-        toAppend = searchterms;
-        hlterms.push(tmp[i].toLowerCase());
-      }
-      // only add if not already in the list
-      if (!$u.contains(toAppend, word))
-        toAppend.push(word);
     }
-    var highlightstring = '?highlight=' + $.urlencode(hlterms.join(" "));
 
-    // console.debug('SEARCH: searching for:');
-    // console.info('required: ', searchterms);
-    // console.info('excluded: ', excluded);
-
-    // prepare search
-    var terms = this._index.terms;
-    var titleterms = this._index.titleterms;
-
-    // array of [filename, title, anchor, descr, score]
-    var results = [];
-    $('#search-progress').empty();
+    // search for explicit entries in index directives
+    for (const [entry, foundEntries] of Object.entries(indexEntries)) {
+      if (entry.includes(queryLower) && queryLower.length >= entry.length / 2) {
+        for (const [file, id, isMain] of foundEntries) {
+          const score = Math.round((100 * queryLower.length) / entry.length);
+          const result = [
+            docNames[file],
+            titles[file],
+            id ? "#" + id : "",
+            null,
+            score,
+            filenames[file],
+            SearchResultKind.index,
+          ];
+          if (isMain) {
+            normalResults.push(result);
+          } else {
+            nonMainIndexResults.push(result);
+          }
+        }
+      }
+    }
 
     // lookup as object
-    for (i = 0; i < objectterms.length; i++) {
-      var others = [].concat(objectterms.slice(0, i),
-                             objectterms.slice(i+1, objectterms.length));
-      results = results.concat(this.performObjectSearch(objectterms[i], others));
-    }
+    objectTerms.forEach((term) =>
+      normalResults.push(...Search.performObjectSearch(term, objectTerms)),
+    );
 
     // lookup as search terms in fulltext
-    results = results.concat(this.performTermsSearch(searchterms, excluded, terms, titleterms));
+    normalResults.push(
+      ...Search.performTermsSearch(searchTerms, excludedTerms),
+    );
 
     // let the scorer override scores with a custom scoring function
     if (Scorer.score) {
-      for (i = 0; i < results.length; i++)
-        results[i][4] = Scorer.score(results[i]);
+      normalResults.forEach((item) => (item[4] = Scorer.score(item)));
+      nonMainIndexResults.forEach((item) => (item[4] = Scorer.score(item)));
     }
 
-    // now sort the results by score (in opposite order of appearance, since the
-    // display function below uses pop() to retrieve items) and then
-    // alphabetically
-    results.sort(function(a, b) {
-      var left = a[4];
-      var right = b[4];
-      if (left > right) {
-        return 1;
-      } else if (left < right) {
-        return -1;
-      } else {
-        // same score: sort alphabetically
-        left = a[1].toLowerCase();
-        right = b[1].toLowerCase();
-        return (left > right) ? -1 : ((left < right) ? 1 : 0);
+    // Sort each group of results by score and then alphabetically by name.
+    normalResults.sort(_orderResultsByScoreThenName);
+    nonMainIndexResults.sort(_orderResultsByScoreThenName);
+
+    // Combine the result groups in (reverse) order.
+    // Non-main index entries are typically arbitrary cross-references,
+    // so display them after other results.
+    let results = [...nonMainIndexResults, ...normalResults];
+
+    // remove duplicate search results
+    // note the reversing of results, so that in the case of duplicates, the highest-scoring entry is kept
+    let seen = new Set();
+    results = results.reverse().reduce((acc, result) => {
+      let resultStr = result
+        .slice(0, 4)
+        .concat([result[5]])
+        .map((v) => String(v))
+        .join(",");
+      if (!seen.has(resultStr)) {
+        acc.push(result);
+        seen.add(resultStr);
       }
-    });
+      return acc;
+    }, []);
+
+    return results.reverse();
+  },
+
+  query: (query) => {
+    const [
+      searchQuery,
+      searchTerms,
+      excludedTerms,
+      highlightTerms,
+      objectTerms,
+    ] = Search._parseQuery(query);
+    const results = Search._performSearch(
+      searchQuery,
+      searchTerms,
+      excludedTerms,
+      highlightTerms,
+      objectTerms,
+    );
 
     // for debugging
     //Search.lastresults = results.slice();  // a copy
-    //console.info('search results:', Search.lastresults);
-
-    var counter = ++this._counter;
+    // console.info("search results:", Search.lastresults);
 
     // print the results
-    var resultCount = results.length;
-    function displayNextItem() {
-      if (Search._counter > counter) {
-        return;
-      }
-
-      // results left, load the summary and display it
-      if (results.length) {
-        var item = results.pop();
-        var listItem = $('<li></li>');
-        var requestUrl = "";
-        var linkUrl = "";
-        if (DOCUMENTATION_OPTIONS.BUILDER === 'dirhtml') {
-          // dirhtml builder
-          var dirname = item[0] + '/';
-          if (dirname.match(/\/index\/$/)) {
-            dirname = dirname.substring(0, dirname.length-6);
-          } else if (dirname == 'index/') {
-            dirname = '';
-          }
-          requestUrl = DOCUMENTATION_OPTIONS.URL_ROOT + dirname;
-          linkUrl = requestUrl;
-
-        } else {
-          // normal html builders
-          requestUrl = item[0] + DOCUMENTATION_OPTIONS.FILE_SUFFIX;
-          linkUrl = item[0] + DOCUMENTATION_OPTIONS.LINK_SUFFIX || '';
-        }
-        listItem.append($('<a/>').attr('href',
-            linkUrl +
-            highlightstring + item[2]).html(item[1]));
-        if (item[3]) {
-          listItem.append($('<span> (' + item[3] + ')</span>'));
-          Search.output.append(listItem);
-          setTimeout(function() {
-            displayNextItem();
-          }, 5);
-        } else if (DOCUMENTATION_OPTIONS.HAS_SOURCE) {
-          $.ajax({url: requestUrl,
-                  dataType: "text",
-                  complete: function(jqxhr, textstatus) {
-                    var data = jqxhr.responseText;
-                    if (data !== '' && data !== undefined) {
-                      var summary = Search.makeSearchSummary(data, searchterms, hlterms);
-                      if (summary) {
-                        listItem.append(summary);
-                      }
-                    }
-                    Search.output.append(listItem);
-                    setTimeout(function() {
-                      displayNextItem();
-                    }, 5);
-                  }});
-        } else {
-          // no source available, just display title
-          Search.output.append(listItem);
-          setTimeout(function() {
-            displayNextItem();
-          }, 5);
-        }
-      }
-      // search finished, update title and status message
-      else {
-        Search.stopPulse();
-        Search.title.text(_('Search Results'));
-        if (!resultCount)
-          Search.status.text(_('Your search did not match any documents. Please make sure that all words are spelled correctly and that you\'ve selected enough categories.'));
-        else
-            Search.status.text(_('Search finished, found %s page(s) matching the search query.').replace('%s', resultCount));
-        Search.status.fadeIn(500);
-      }
-    }
-    displayNextItem();
+    _displayNextItem(results, results.length, searchTerms, highlightTerms);
   },
 
   /**
    * search for object names
    */
-  performObjectSearch : function(object, otherterms) {
-    var filenames = this._index.filenames;
-    var docnames = this._index.docnames;
-    var objects = this._index.objects;
-    var objnames = this._index.objnames;
-    var titles = this._index.titles;
+  performObjectSearch: (object, objectTerms) => {
+    const filenames = Search._index.filenames;
+    const docNames = Search._index.docnames;
+    const objects = Search._index.objects;
+    const objNames = Search._index.objnames;
+    const titles = Search._index.titles;
 
-    var i;
-    var results = [];
+    const results = [];
 
-    if (!this.apiMatches) {
-      return results;
-    }
+    // Panda3D customisation: API reference results can be toggled off.
+    if (!Search.apiMatches) return results;
 
-    for (var prefix in objects) {
-      for (var iMatch = 0; iMatch != objects[prefix].length; ++iMatch) {
-        var match = objects[prefix][iMatch];
-        var name = match[4];
-        var fullname = (prefix ? prefix + '.' : '') + name;
-        var fullnameLower = fullname.toLowerCase()
-        if (fullnameLower.indexOf(object) > -1) {
-          var score = 0;
-          var parts = fullnameLower.split('.');
-          // check for different match types: exact matches of full name or
-          // "last name" (i.e. last dotted part)
-          if (fullnameLower == object || parts[parts.length - 1] == object) {
-            score += Scorer.objNameMatch;
-          // matches in last name
-          } else if (this.partialMatches && parts[parts.length - 1].indexOf(object) > -1) {
-            score += Scorer.objPartialMatch;
-          } else if (!this.partialMatches) {
-            continue;
-          }
-          var domain = objnames[match[1]][0];
-          var objname = objnames[match[1]][2];
-          var title = titles[match[0]];
+    const objectSearchCallback = (prefix, match) => {
+      const name = match[4];
+      const fullname = (prefix ? prefix + "." : "") + name;
+      const fullnameLower = fullname.toLowerCase();
+      if (fullnameLower.indexOf(object) < 0) return;
 
-          if (domain !== 'py' && window.VARIATION === 'python') {
-            continue;
-          }
-          if (domain !== 'cpp' && window.VARIATION === 'cpp') {
-            continue;
-          }
+      let score = 0;
+      const parts = fullnameLower.split(".");
 
-          // If more than one term searched for, we require other words to be
-          // found in the name/title/description
-          if (otherterms.length > 0) {
-            var haystack = (prefix + ' ' + name + ' ' +
-                            objname + ' ' + title).toLowerCase();
-            var allfound = true;
-            for (i = 0; i < otherterms.length; i++) {
-              if (haystack.indexOf(otherterms[i]) == -1) {
-                allfound = false;
-                break;
-              }
-            }
-            if (!allfound) {
-              continue;
-            }
-          }
-          var descr = objname + _(', in ') + title;
+      // check for different match types: exact matches of full name or
+      // "last name" (i.e. last dotted part)
+      if (fullnameLower === object || parts.slice(-1)[0] === object)
+        score += Scorer.objNameMatch;
+      // Panda3D customisation: partial (non-exact) matches can be toggled off.
+      else if (Search.partialMatches && parts.slice(-1)[0].indexOf(object) > -1)
+        score += Scorer.objPartialMatch; // matches in last name
+      else if (!Search.partialMatches) return;
 
-          var anchor = match[3];
-          if (anchor === '')
-            anchor = fullname;
-          else if (anchor == '-')
-            anchor = objnames[match[1]][1] + '-' + fullname;
-          // add custom score for some objects according to scorer
-          if (Scorer.objPrio.hasOwnProperty(match[2])) {
-            score += Scorer.objPrio[match[2]];
-          } else {
-            score += Scorer.objPrioDefault;
-          }
-          results.push([docnames[match[0]], fullname, '#'+anchor, descr, score, filenames[match[0]]]);
-        }
+      // Panda3D customisation: only show objects for the current language
+      // variation (Python vs. C++).
+      const domain = objNames[match[1]][0];
+      if (domain !== "py" && window.VARIATION === "python") return;
+      if (domain !== "cpp" && window.VARIATION === "cpp") return;
+
+      const objName = objNames[match[1]][2];
+      const title = titles[match[0]];
+
+      // If more than one term searched for, we require other words to be
+      // found in the name/title/description
+      const otherTerms = new Set(objectTerms);
+      otherTerms.delete(object);
+      if (otherTerms.size > 0) {
+        const haystack = `${prefix} ${name} ${objName} ${title}`.toLowerCase();
+        if (
+          [...otherTerms].some((otherTerm) => haystack.indexOf(otherTerm) < 0)
+        )
+          return;
       }
-    }
 
+      let anchor = match[3];
+      if (anchor === "") anchor = fullname;
+      else if (anchor === "-") anchor = objNames[match[1]][1] + "-" + fullname;
+
+      const descr = objName + _(", in ") + title;
+
+      // add custom score for some objects according to scorer
+      if (Scorer.objPrio.hasOwnProperty(match[2]))
+        score += Scorer.objPrio[match[2]];
+      else score += Scorer.objPrioDefault;
+
+      results.push([
+        docNames[match[0]],
+        fullname,
+        "#" + anchor,
+        descr,
+        score,
+        filenames[match[0]],
+        SearchResultKind.object,
+      ]);
+    };
+    Object.keys(objects).forEach((prefix) =>
+      objects[prefix].forEach((array) => objectSearchCallback(prefix, array)),
+    );
     return results;
-  },
-
-  /**
-   * See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
-   */
-  escapeRegExp : function(string) {
-    return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
   },
 
   /**
    * search for full-text terms in the index
    */
-  performTermsSearch : function(searchterms, excluded, terms, titleterms) {
-    var docnames = this._index.docnames;
-    var filenames = this._index.filenames;
-    var titles = this._index.titles;
+  performTermsSearch: (searchTerms, excludedTerms) => {
+    // prepare search
+    const terms = Search._index.terms;
+    const titleTerms = Search._index.titleterms;
+    const filenames = Search._index.filenames;
+    const docNames = Search._index.docnames;
+    const titles = Search._index.titles;
 
-    var i, j, file;
-    var fileMap = {};
-    var scoreMap = {};
-    var results = [];
+    const scoreMap = new Map();
+    const fileMap = new Map();
 
     // perform the search on the required terms
-    for (i = 0; i < searchterms.length; i++) {
-      var word = searchterms[i];
-      var files = [];
-      var _o = [
-        {files: terms[word], score: Scorer.term},
-        {files: titleterms[word], score: Scorer.title}
+    searchTerms.forEach((word) => {
+      const files = [];
+      // find documents, if any, containing the query word in their text/title term indices
+      // use Object.hasOwnProperty to avoid mismatching against prototype properties
+      const arr = [
+        {
+          files: terms.hasOwnProperty(word) ? terms[word] : undefined,
+          score: Scorer.term,
+        },
+        {
+          files: titleTerms.hasOwnProperty(word) ? titleTerms[word] : undefined,
+          score: Scorer.title,
+        },
       ];
       // add support for partial matches
-      if (word.length > 2 && this.partialMatches) {
-        var word_regex = this.escapeRegExp(word);
-        for (var w in terms) {
-          if (w.match(word_regex) && !terms[word]) {
-            _o.push({files: terms[w], score: Scorer.partialTerm})
-          }
+      // Panda3D customisation: partial matches can be toggled off.
+      if (word.length > 2 && Search.partialMatches) {
+        const escapedWord = _escapeRegExp(word);
+        if (!terms.hasOwnProperty(word)) {
+          Object.keys(terms).forEach((term) => {
+            if (term.match(escapedWord))
+              arr.push({ files: terms[term], score: Scorer.partialTerm });
+          });
         }
-        for (var w in titleterms) {
-          if (w.match(word_regex) && !titleterms[word]) {
-              _o.push({files: titleterms[w], score: Scorer.partialTitle})
-          }
+        if (!titleTerms.hasOwnProperty(word)) {
+          Object.keys(titleTerms).forEach((term) => {
+            if (term.match(escapedWord))
+              arr.push({ files: titleTerms[term], score: Scorer.partialTitle });
+          });
         }
       }
 
       // no match but word was a required one
-      if ($u.every(_o, function(o){return o.files === undefined;})) {
-        break;
-      }
+      if (arr.every((record) => record.files === undefined)) return;
+
       // found search word in contents
-      $u.each(_o, function(o) {
-        var _files = o.files;
-        if (_files === undefined)
-          return
+      arr.forEach((record) => {
+        if (record.files === undefined) return;
 
-        if (_files.length === undefined)
-          _files = [_files];
-        files = files.concat(_files);
+        let recordFiles = record.files;
+        if (recordFiles.length === undefined) recordFiles = [recordFiles];
+        files.push(...recordFiles);
 
-        // set score for the word in each file to Scorer.term
-        for (j = 0; j < _files.length; j++) {
-          file = _files[j];
-          if (!(file in scoreMap))
-            scoreMap[file] = {};
-          scoreMap[file][word] = o.score;
-        }
+        // set score for the word in each file
+        recordFiles.forEach((file) => {
+          if (!scoreMap.has(file)) scoreMap.set(file, new Map());
+          const fileScores = scoreMap.get(file);
+          fileScores.set(word, record.score);
+        });
       });
 
       // create the mapping
-      for (j = 0; j < files.length; j++) {
-        file = files[j];
-        if (file in fileMap && fileMap[file].indexOf(word) === -1)
-          fileMap[file].push(word);
-        else
-          fileMap[file] = [word];
-      }
-    }
+      files.forEach((file) => {
+        if (!fileMap.has(file)) fileMap.set(file, [word]);
+        else if (fileMap.get(file).indexOf(word) === -1)
+          fileMap.get(file).push(word);
+      });
+    });
 
     // now check if the files don't contain excluded terms
-    for (file in fileMap) {
-      var valid = true;
-
+    const results = [];
+    for (const [file, wordList] of fileMap) {
       // check if all requirements are matched
-      var filteredTermCount = // as search terms with length < 3 are discarded: ignore
-        searchterms.filter(function(term){return term.length > 2}).length
-      if (
-        fileMap[file].length != searchterms.length &&
-        fileMap[file].length != filteredTermCount
-      ) continue;
 
-      if ((!this.apiMatches || !this.bodyMatches) && docnames[file].slice(0, 10) == 'reference/') {
+      // as search terms with length < 3 are discarded
+      const filteredTermCount = [...searchTerms].filter(
+        (term) => term.length > 2,
+      ).length;
+      if (
+        wordList.length !== searchTerms.size
+        && wordList.length !== filteredTermCount
+      )
         continue;
-      }
 
       // ensure that none of the excluded terms is in the search result
-      for (i = 0; i < excluded.length; i++) {
-        if (terms[excluded[i]] == file ||
-            titleterms[excluded[i]] == file ||
-            $u.contains(terms[excluded[i]] || [], file) ||
-            $u.contains(titleterms[excluded[i]] || [], file)) {
-          valid = false;
-          break;
-        }
+      if (
+        [...excludedTerms].some(
+          (term) =>
+            terms[term] === file
+            || titleTerms[term] === file
+            || (terms[term] || []).includes(file)
+            || (titleTerms[term] || []).includes(file),
+        )
+      )
+        break;
+
+      // Panda3D customisation: skip API reference pages entirely when either
+      // the API reference or page-contents categories are disabled.
+      if (
+        (!Search.apiMatches || !Search.bodyMatches) &&
+        docNames[file].slice(0, 10) === "reference/"
+      )
+        continue;
+
+      // select one (max) score for the file.
+      let score = Math.max(...wordList.map((w) => scoreMap.get(file).get(w)));
+
+      // Panda3D customisation: boost results whose document name or title
+      // matches a search term, and remember whether such a match occurred.
+      let docNameMatch = true;
+      for (const word of searchTerms) {
+        const idx = docNames[file].toLowerCase().indexOf(word);
+        if (
+          idx !== -1 &&
+          (idx === 0 ||
+            docNames[file][idx - 1] === "." ||
+            docNames[file][idx - 1] === "/") &&
+          docNames[file].toLowerCase().endsWith(word)
+        )
+          score += 1000;
+        else if (idx !== -1 && titles[file].toLowerCase().indexOf(word) !== -1)
+          score += 100;
+        else docNameMatch = false;
       }
 
-      // if we have still a valid result we can add it to the result list
-      if (valid) {
-        // select one (max) score for the file.
-        // for better ranking, we should calculate ranking by using words statistics like basic tf-idf...
-        var score = $u.max($u.map(fileMap[file], function(w){return scoreMap[file][w]}));
+      // Panda3D customisation: when page contents are excluded, keep only
+      // results matching the document name/title.
+      if (!docNameMatch && !Search.bodyMatches) continue;
 
-        var docnamematch = true;
-        for (var w in searchterms) {
-          var word = searchterms[w];
-          i = docnames[file].toLowerCase().indexOf(word);
-          if (i !== -1 && (i === 0 || docnames[file][i - 1] === '.' || docnames[file][i - 1] === '/') && docnames[file].toLowerCase().endsWith(word)) {
-            score += 1000;
-          } else if (i !== -1 && titles[file].toLowerCase().indexOf(word) !== -1) {
-            score += 100;
-          } else {
-            docnamematch = false;
-          }
-        }
-        if (!docnamematch && !this.bodyMatches) {
-          continue;
-        }
-        if (docnamematch && docnames[file].slice(0, 10) == 'reference/') {
-          // It'll be returned by the object search if it's the title of an API page...
-          continue;
-        }
+      // Panda3D customisation: API reference pages matched by name are already
+      // returned by the object search above.
+      if (docNameMatch && docNames[file].slice(0, 10) === "reference/") continue;
 
-        results.push([docnames[file], titles[file], '', null, score, filenames[file]]);
-      }
+      // add result to the result list
+      results.push([
+        docNames[file],
+        titles[file],
+        "",
+        null,
+        score,
+        filenames[file],
+        SearchResultKind.text,
+      ]);
     }
     return results;
   },
@@ -551,95 +752,68 @@ var Search = {
   /**
    * helper function to return a node containing the
    * search summary for a given text. keywords is a list
-   * of stemmed words, hlwords is the list of normal, unstemmed
-   * words. the first one is used to find the occurrence, the
-   * latter for highlighting it.
+   * of stemmed words.
    */
-  makeSearchSummary : function(htmlText, keywords, hlwords) {
-    var text = Search.htmlToText(htmlText);
-    if (text == "") {
-      return null;
-    }
-    var textLower = text.toLowerCase();
-    var start = 0;
-    $.each(keywords, function() {
-      var i = textLower.indexOf(this.toLowerCase());
-      if (i > -1)
-        start = i;
-    });
-    start = Math.max(start - 120, 0);
-    var excerpt = ((start > 0) ? '...' : '') +
-      $.trim(text.substr(start, 240)) +
-      ((start + 240 - text.length) ? '...' : '');
-    var rv = $('<p class="context"></p>').text(excerpt);
-    $.each(hlwords, function() {
-      rv = rv.highlightText(this, 'highlighted');
-    });
-    return rv;
-  }
+  makeSearchSummary: (htmlText, keywords, anchor) => {
+    const text = Search.htmlToText(htmlText, anchor);
+    if (text === "") return null;
+
+    const textLower = text.toLowerCase();
+    const actualStartPosition = [...keywords]
+      .map((k) => textLower.indexOf(k.toLowerCase()))
+      .filter((i) => i > -1)
+      .slice(-1)[0];
+    const startWithContext = Math.max(actualStartPosition - 120, 0);
+
+    const top = startWithContext === 0 ? "" : "...";
+    const tail = startWithContext + 240 < text.length ? "..." : "";
+
+    let summary = document.createElement("p");
+    summary.classList.add("context");
+    summary.textContent =
+      top + text.substr(startWithContext, 240).trim() + tail;
+
+    return summary;
+  },
 };
 
-function debounce(func, wait, immediate) {
-  var timeout;
-  return function() {
-    var context = this, args = arguments;
-    var later = function() {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    };
-    var callNow = immediate && !timeout;
+// Panda3D customisation: update the results live as the query is edited,
+// keeping the URL's ?q= parameter in sync (vanilla-JS port of the original
+// jQuery handlers).
+const _debounce = (func, wait) => {
+  let timeout;
+  return (...args) => {
     clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) func.apply(context, args);
+    timeout = setTimeout(() => func(...args), wait);
   };
 };
 
-function replaceSearchTerm(q) {
-  var s = document.location.search;
-  var snew = '';
-  var parts = s.substr(s.indexOf('?') + 1).split('&');
-  var hadq = false;
-  for (var i = 0; i < parts.length; i++) {
-    if (parts[i].length === 0) {
-      continue;
-    }
-    var tmp = parts[i].split('=', 2);
-    if (snew === '') {
-      snew += '?';
-    } else {
-      snew += '&';
-    }
-    var key = tmp[0];
-    if (key === 'q') {
-      if (!hadq) {
-        snew += 'q=' + jQuery.urlencode(q);
-        hadq = true;
-      }
-    } else {
-      snew += parts[i];
-    }
-  }
-  if (!hadq) {
-    if (snew === '') {
-      snew += '?';
-    } else {
-      snew += '&';
-    }
-    snew += 'q=' + jQuery.urlencode(q);
-  }
-  history.replaceState(null, document.title, document.location.pathname + snew);
+const _replaceSearchTerm = (q) => {
+  const params = new URLSearchParams(document.location.search);
+  params.set("q", q);
+  history.replaceState(
+    null,
+    document.title,
+    document.location.pathname + "?" + params.toString(),
+  );
   Search.init();
 };
 
-$(document).ready(function() {
+_ready(() => {
   Search.init();
 
-  $('input[name="q"]').on("input", debounce(function(e) {
-    replaceSearchTerm($(this).val());
-  }, 250));
+  document.querySelectorAll('input[name="q"]').forEach((input) =>
+    input.addEventListener(
+      "input",
+      _debounce(() => _replaceSearchTerm(input.value), 250),
+    ),
+  );
 
-  $('#rtd-search-form').on("submit", function(e) {
-    e.preventDefault();
-    replaceSearchTerm($('input[name="q"]').val());
-  });
+  const form = document.getElementById("rtd-search-form");
+  if (form)
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const input = form.querySelector('input[name="q"]');
+      if (input) _replaceSearchTerm(input.value);
+    });
 });

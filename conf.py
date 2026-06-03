@@ -191,7 +191,6 @@ html_theme_options = {
     'collapse_navigation': False,
     'prev_next_buttons_location': 'both',
     'style_external_links': True,
-    'display_version': False,
 }
 
 # The name for this set of Sphinx documents.  If None, it defaults to
@@ -217,10 +216,13 @@ html_favicon = '_static/favicon.ico'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+# Extra stylesheets, loaded after the theme's own CSS.  Paths are relative to
+# a directory in html_static_path.
+html_css_files = [
+    'panda.css',  # override wide tables in RTD theme
+]
+
 html_context = {
-    'css_files': [
-        '_static/panda.css',  # override wide tables in RTD theme
-    ],
     'display_github': True,
     'github_user': 'panda3d',
     'github_repo': 'panda3d-docs',
@@ -422,6 +424,17 @@ autodoc_default_options = {
     "show-inheritance": None,
 }
 autodoc_inherit_docstrings = False
+
+# Sphinx 9 rewrote autodoc with a new directive implementation (in
+# sphinx.ext.autodoc._directive) that dispatches by object type internally and
+# no longer honours custom Documenter subclasses registered via
+# add_autodocumenter.  sphinx_interrogatedb relies entirely on that mechanism,
+# so under the new autodoc its documenters never run and autoclass/autofunction
+# fall back to plain autodoc -- dumping the raw "C++ Interface:" docstrings.
+# Re-enable the legacy class-based autodoc so the interrogate documenters work.
+# Only needed for the API reference build; the config value is ignored on
+# Sphinx < 9.  See also reregister_interrogatedb_documenters() below.
+autodoc_use_legacy_class_based = build_api_reference
 napoleon_custom_sections = ["Usage", "Features"]
 autosummary_generate = True
 # Prevent prepending module name to all classes/functions
@@ -1053,6 +1066,28 @@ def on_config_inited(app, config):
         config.html_context['link_suffix'] = '.html'
 
 
+def reregister_interrogatedb_documenters(app, config):
+    # Sphinx 9's legacy class-based autodoc (enabled via
+    # autodoc_use_legacy_class_based) registers the stock ClassDocumenter etc.
+    # in its own 'config-inited' handler.  That handler runs before this one and
+    # overwrites the interrogate-aware documenters that sphinx_interrogatedb
+    # installed during its setup(), so autoclass/autofunction would fall back to
+    # plain autodoc (dumping the raw "C++ Interface:" docstrings).  Re-install
+    # them here, after autodoc has had its say, so the interrogate documenters
+    # win.  Connected with a high priority so it runs last.
+    if not build_api_reference:
+        return
+    try:
+        from sphinx_interrogatedb import documenters as idb_documenters
+    except ImportError:
+        return
+    for documenter in (idb_documenters.TypeDocumenter,
+                       idb_documenters.FunctionDocumenter,
+                       idb_documenters.MakeSeqDocumenter,
+                       idb_documenters.ElementDocumenter):
+        app.add_autodocumenter(documenter, override=True)
+
+
 # This is an awful hack to get the inheritance graphs to incorporate the
 # current variation into the links properly, and, at the same time, not
 # generate the arrow connections inverted. :-/
@@ -1121,6 +1156,7 @@ def setup(app):
 
     app.add_config_value('html_absolute_url_root', None, 'html')
     app.connect('config-inited', on_config_inited)
+    app.connect('config-inited', reregister_interrogatedb_documenters, priority=800)
 
     app.connect('autodoc-skip-member', on_autodoc_skip_member)
     app.connect('autodoc-process-docstring', on_autodoc_process_docstring)

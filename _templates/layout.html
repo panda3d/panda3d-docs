@@ -20,22 +20,16 @@
   {%- endblock -%}
 
   {# CSS #}
-  <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}" type="text/css" />
-  <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css" />
   {%- for css in css_files %}
-    {%- if css|attr("rel") %}
-  <link rel="{{ css.rel }}" href="{{ pathto(css.filename, 1) }}" type="text/css"{% if css.title is not none %} title="{{ css.title }}"{% endif %} />
+    {%- if css|attr("filename") %}
+  {{ css_tag(css) }}
     {%- else %}
-  <link rel="stylesheet" href="{{ pathto(css, 1) }}" type="text/css" />
+  <link rel="stylesheet" href="{{ pathto(css, 1)|e }}" type="text/css" />
     {%- endif %}
   {%- endfor %}
 
   {%- for cssfile in extra_css_files %}
-    <link rel="stylesheet" href="{{ pathto(cssfile, 1) }}" type="text/css" />
-  {%- endfor %}
-
-  {%- for cssfile in extra_css_files %}
-    <link rel="stylesheet" href="{{ pathto(cssfile, 1) }}" type="text/css" />
+  <link rel="stylesheet" href="{{ pathto(cssfile, 1) }}" type="text/css" />
   {%- endfor %}
 
   {%- if theme_display_header %}
@@ -60,19 +54,13 @@
   {%- if not embedded %}
     <script type="text/javascript">
     var VARIATION = "{{ currentvariation[0] }}";
-    var DOCUMENTATION_OPTIONS = {
-        URL_ROOT: "{{ url_root }}",
-        VERSION: '{{ version|e }}',
-        LANGUAGE: '{{ language }}',
-        COLLAPSE_INDEX: false,
-        BUILDER: '{{ builder }}',
-        FILE_SUFFIX: '{{ file_suffix }}',
-        LINK_SUFFIX: '{{ link_suffix }}',
-        HAS_SOURCE: {{ has_source|lower }},
-        SOURCELINK_SUFFIX: '{{ sourcelink_suffix }}',
-        NAVIGATION_WITH_KEYS: {{ 'true' if theme_navigation_with_keys|tobool else 'false'}}
-    };
+    {# URL_ROOT used to live in DOCUMENTATION_OPTIONS, but Sphinx 7.2 removed
+       it from there; expose it as a plain global for versions.js. #}
+    var URL_ROOT = "{{ url_root }}";
     </script>
+    {# DOCUMENTATION_OPTIONS is now emitted by Sphinx itself as part of
+       script_files (_static/documentation_options.js); declaring it here as
+       well clashes with that file's const declaration. #}
     {%- for scriptfile in script_files %}
       {{ js_tag(scriptfile) }}
     {%- endfor %}
