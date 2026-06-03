@@ -1046,16 +1046,69 @@ def on_html_page_context(app, pagename, templatename, context, doctree):
 
     context['pathto'] = pathto
 
+    # Sphinx >= 7.2 builds the css_tag/js_tag template helpers inline in
+    # StandaloneHTMLBuilder.handle_page(), where they close over the builder's
+    # own relative pathto rather than context['pathto'].  (Before 7.2 they were
+    # set up by a separately-connected setup_js_tag_helper handler that we could
+    # simply re-run after this one; that function was removed in 7.2.)  Re-create
+    # them here, bound to our absolute pathto, so static asset URLs are absolute
+    # like everything else.
+    import html as _html
+    from sphinx.builders.html._assets import _file_checksum, _JavaScript
+
+    builder = app.builder
+    outdir = builder.outdir
+
+    def css_tag(css):
+        attrs = [
+            f'{key}="{_html.escape(value, quote=True)}"'
+            for key, value in css.attributes.items()
+            if value is not None
+        ]
+        uri = pathto(os.fspath(css.filename), resource=True)
+        if builder.name not in {'epub', 'htmlhelp'}:
+            if checksum := _file_checksum(outdir, css.filename):
+                uri += f'?v={checksum}'
+        return f'<link {" ".join(sorted(attrs))} href="{uri}" />'
+
+    context['css_tag'] = css_tag
+
+    def js_tag(js):
+        if not isinstance(js, _JavaScript):
+            # str value (old style)
+            return f'<script src="{pathto(js, resource=True)}"></script>'
+
+        body = js.attributes.get('body', '')
+        attrs = [
+            f'{key}="{_html.escape(value, quote=True)}"'
+            for key, value in js.attributes.items()
+            if key != 'body' and value is not None
+        ]
+
+        if not js.filename:
+            if attrs:
+                return f'<script {" ".join(sorted(attrs))}>{body}</script>'
+            return f'<script>{body}</script>'
+
+        js_filename_str = os.fspath(js.filename)
+        uri = pathto(js_filename_str, resource=True)
+        if 'MathJax.js?' in js_filename_str:
+            # MathJax v2 reads a ``?config=...`` query parameter; skip checksum.
+            pass
+        elif builder.name != 'epub':
+            if checksum := _file_checksum(outdir, js.filename):
+                uri += f'?v={checksum}'
+        if attrs:
+            return f'<script {" ".join(sorted(attrs))} src="{uri}"></script>'
+        return f'<script src="{uri}"></script>'
+
+    context['js_tag'] = js_tag
+
 
 def on_config_inited(app, config):
     if config.html_absolute_url_root:
         app.connect('builder-inited', on_builder_inited)
         app.connect('html-page-context', on_html_page_context)
-
-        # This normally runs before our hook, so it still picks up the old
-        # pathto, hence we need to register it again
-        from sphinx.builders.html import setup_js_tag_helper
-        app.connect('html-page-context', setup_js_tag_helper)
 
     # Used in searchbox.html.
     if config.html_link_suffix is not None:

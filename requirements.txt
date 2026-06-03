@@ -1,5 +1,5 @@
 --extra-index-url https://archive.panda3d.org/simple
-sphinx>=7.0
+sphinx>=7.2
 sphinx-variations>=1.1.1
 sphinx-rtd-theme>=3.0
 sphinx-autopackagesummary>=1.0
