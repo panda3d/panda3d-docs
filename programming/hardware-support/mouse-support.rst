@@ -37,9 +37,10 @@ To get the position:
 
    .. code-block:: python
 
-      if base.mouseWatcherNode.hasMouse():
-        x = base.mouseWatcherNode.getMouseX()
-        y = base.mouseWatcherNode.getMouseY()
+      pointer = base.win.get_pointer(0)
+      if pointer.in_window:
+	      mouseX = pointer.get_x()
+          mouseY = pointer.get_y()
 
 .. only:: cpp
 
