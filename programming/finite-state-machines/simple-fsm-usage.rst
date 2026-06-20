@@ -101,8 +101,11 @@ Simple FSM Usage
    To enforce this, you can store ``self.defaultTransitions`` in the FSM's
    ``__init__()`` method. This should be a map of allowed transitions from each
    state. That is, each key of the map is a state name; for that key, the value
-   is a list of allowed transitions from the indicated state. Any transition not
-   listed in defaultTransitions is considered invalid. For example:
+   is a list of allowed transitions from the indicated state. In addition an
+   enum value for "Any" state can be used by setting ``FSM.EnumStates.ANY`` as
+   a key or ``[FSM.EnumStates.ANY]`` as value.
+   Any transition not listed in defaultTransitions is considered invalid.
+   For example:
 
    .. code-block:: python
 
