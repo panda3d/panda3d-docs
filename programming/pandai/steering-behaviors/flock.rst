@@ -157,7 +157,7 @@ The full working code in Panda3D :
            self.AIworld = AIWorld(render)
 
            #Flock functions
-           self.MyFlock = Flock(1, 270, 10, 2, 4, 0.2)
+           self.MyFlock = Flock(1, 270, 10, 2, 4, 1)
            self.AIworld.addFlock(self.MyFlock)
            self.AIworld.flockOn(1)
 
