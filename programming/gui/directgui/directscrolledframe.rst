@@ -47,10 +47,43 @@ scrolled frame on the middle of the screen:
 
 .. code-block:: python
 
-   from direct.gui.DirectGui import *
-   import direct.directbase.DirectStart
+    from direct.gui.DirectGui import *
+    import direct.directbase.DirectStart
 
-   myframe = DirectScrolledFrame(canvasSize=(-2, 2, -2, 2), frameSize=(-.5, .5, -.5, .5))
-   myframe.setPos(0, 0, 0)
+    def add_obs(objects,canvas):
+        for pos, objectName in enumerate(objects):
+            pos=pos-1
+            DirectLabel(
+            parent=canvas,
+            relief=None,
+            text=objectName,
+            scale=0.06,
+            pos=(0, 0, -pos * 0.1)
+            )
 
-   run()
+    canvasSize1=(-0.5, 0.5, -0.6, 0.2)
+    canvasSize2=(-0.5, 0.5, -0.6, 0.3)
+    canvasSize3=(-0.5, 0.5, -0.6, 0.2)
+    canvasSize4=(-0.2, 0.2, -1.4, 0.2)
+
+    myframe1 = DirectScrolledFrame(canvasSize=canvasSize1, frameSize=(-.5, .5, 0, .5))
+    myframe1.setPos(-0.5, 0, 0.4)
+    myframe2 = DirectScrolledFrame(canvasSize=canvasSize2, frameSize=(-.5, .5, 0, .5))
+    myframe2.setPos(0.5, 0, 0.4)
+    myframe3 = DirectScrolledFrame(canvasSize=canvasSize3, frameSize=(-.2, .2, 0, .5))
+    myframe3.setPos(-0.5, 0, -0.5)
+    myframe4 = DirectScrolledFrame(canvasSize=canvasSize4, frameSize=(-.3, .3, 0, .5))
+    myframe4.setPos(0.5, 0, -0.5)
+
+    objects="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore".split(" ")
+        
+    canvas = myframe1.getCanvas()
+    add_obs(objects,canvas)
+    canvas = myframe2.getCanvas()
+    add_obs(objects,canvas)
+    canvas = myframe3.getCanvas()
+    add_obs(objects,canvas)
+    canvas = myframe4.getCanvas()
+    add_obs(objects,canvas)
+
+    run()
