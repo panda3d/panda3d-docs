@@ -129,7 +129,7 @@ instead of a BulletTriangleMeshShape.)
       shape = BulletSphereShape(0.5)
       penetration = 0.0
 
-      result = world.sweepTestClosest(shape, tsFrom, tsTo, penetration)
+      result = world.sweepTestClosest(shape, tsFrom, tsTo, BitMask32.allOn(), penetration)
 
       print(result.hasHit())
       print(result.getHitPos())

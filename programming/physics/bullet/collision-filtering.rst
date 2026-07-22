@@ -137,14 +137,14 @@ collision groups the object belongs to.
 
    .. code-block:: python
 
-      shape = shape = BulletBoxShape(Vec3(0.5, 0.5, 0.5))
+      shape = BulletBoxShape(Vec3(0.5, 0.5, 0.5))
 
       body = BulletRigidBodyNode('Body')
       body.addShape(shape)
 
       world.attachRigidBody(body)
 
-      bodyNP = self.worldNP.attachNewNode(body)
+      bodyNP = render.attachNewNode(body)
       bodyNP.setPos(0, 0, -1)
 
       # Set it to be a part of group 0
@@ -174,7 +174,7 @@ following line is an alternate way to set the collide mask:
 
    .. code-block:: python
 
-      bodyNP.node().setIntoCollideMask(mask)
+      bodyNP.setIntoCollideMask(mask)
 
 .. only:: cpp
 
