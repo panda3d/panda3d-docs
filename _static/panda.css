@@ -111,3 +111,9 @@ body, .wy-body-for-nav {
     border-top: inherit;
     padding: inherit;
 }
+
+@media (prefers-color-scheme: dark) {
+    body, .wy-body-for-nav {
+        background: url("https://www.panda3d.org/wp-content/themes/panda3d/assets/img/elements/background_inverted.jpg") #f9f9f9;
+    }
+}

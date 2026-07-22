@@ -53,6 +53,7 @@ extensions = [
     'sphinx.ext.inheritance_diagram',
     'sphinx.ext.viewcode',
     'sphinx.ext.intersphinx',
+    "sphinx_rtd_dark_mode",
 ]
 
 if build_api_reference:
