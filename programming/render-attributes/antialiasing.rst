@@ -78,6 +78,11 @@ higher-quality antialiasing, at a small cost to render time.
 
 .. note::
 
+   Setting ``multisamples`` to ``1`` is a special case that requests the maximum
+   number of samples available from the graphics card.
+
+.. note::
+
    On some graphics cards, enabling a multisample framebuffer will
    automatically enable multisample antialiasing, regardless of the setting of
    the antialias attribute.  It is not possible to disable this.  If you do not
